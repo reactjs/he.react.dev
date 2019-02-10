@@ -1,8 +1,8 @@
 ---
-title: Declarative
+title: הצהרתי
 order: 0
 ---
 
-React makes it painless to create interactive UIs. Design simple views for each state in your application, and React will efficiently update and render just the right components when your data changes.
+ריאקט הופך את היצירה של ממשקי משתמש לנטולת כאבים. עצב תצוגה פשוטה לכל מצב בישום שלך וריאקט יעדכן ויעבד בצורה אפקטיבית רק את הקומפוננטות הנכונות כאשר המידע שלך משתנה.
 
-Declarative views make your code more predictable and easier to debug.
+תצוגה הצהרתית עושה את הקוד שלך יותר צפוי וקל יותר לדיבוג
