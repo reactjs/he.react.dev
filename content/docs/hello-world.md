@@ -1,50 +1,56 @@
 ---
 id: hello-world
-title: Hello World
+title: שלום עולם
 permalink: docs/hello-world.html
 prev: cdn-links.html
 next: introducing-jsx.html
 ---
 
-The smallest React example looks like this:
+הדוגמה הקטנה ביותר ב-React נראית כך:
 
 ```js
 ReactDOM.render(
-  <h1>Hello, world!</h1>,
+  <h1>שלום עולם</h1>,
   document.getElementById('root')
 );
 ```
 
-It displays a heading saying "Hello, world!" on the page.
+היא מראה את הכותרת ״שלום עולם״ על הדף.
 
-[](codepen://hello-world)
+[נסו את זה ב-CodePen](codepen://hello-world)
 
-Click the link above to open an online editor. Feel free to make some changes, and see how they affect the output. Most pages in this guide will have editable examples like this one.
+יש ללחוץ על הקישור מעל כדי לפתוח את אתר העריכה.  הרגישו נוח לעשות כמה שינויים כדי שתראו איך הם משנים את התוצאה. 
+לרוב העמודים במדריך הזה יהיו דוגמאות שניתנות לעריכה.
 
 
-## How to Read This Guide {#how-to-read-this-guide}
+## כיצד לקרוא את המדריך הזה {#how-to-read-this-guide}
 
-In this guide, we will examine the building blocks of React apps: elements and components. Once you master them, you can create complex apps from small reusable pieces.
+במדריך אנו נבחן את החלקים של אפליקציות React: יסודות וקומפוננטים.
+ברגע שתשלטו בהם תוכלו ליצור בעזרת חלקים קטנים ועם שימוש חוזר אפליקציות מורכבות.
 
->Tip
+>עצה
 >
->This guide is designed for people who prefer **learning concepts step by step**. If you prefer to learn by doing, check out our [practical tutorial](/tutorial/tutorial.html). You might find this guide and the tutorial complementary to each other.
+>מדריך זה נועד לאנשים שמעדיפים ללמוד רעיונות צעד אחר צעד.
+אם הנכם מעדיפים ללמוד על ידי עשייה, בדקו את [ההדרכה המעשית](/tutorial/tutorial.html) שלנו. ייתכן שתמצאו שהמדריך וההדרכה המעשית משלימים אחד את השני.
 
-This is the first chapter in a step-by-step guide about main React concepts. You can find a list of all its chapters in the navigation sidebar. If you're reading this from a mobile device, you can access the navigation by pressing the button in the bottom right corner of your screen.
+זה הפרק הראשון במדריך שמלמד צעד אחר צעד על הרעיונות העיקריים של React.
+תוכלו למצוא רשימה של כל הפרקים בסרגל הניווט.
+אם אתם קוראים את זה ממכשיר נייד, אתם יכולים להיכנס לניווט על ידי לחיצה על הכפתור הנמצא בצד הימני של תחתית המסך.
 
-Every chapter in this guide builds on the knowledge introduced in earlier chapters. **You can learn most of React by reading the “Main Concepts” guide chapters in the order they appear in the sidebar.** For example, [“Introducing JSX”](/docs/introducing-jsx.html) is the next chapter after this one.
+כל פרק במדריך הזה נבנה על הידע שהוצג
+בפרקים קודמים. **אתם יכולים ללמוד את רוב React על ידי קריאת פרקי ״הרעיונות העיקריים״ לפי סדר הופעתם בסרגל**.
+לדוגמא, ["מציגים JSX"](/docs/introducing-jsx.html) הוא הפרק הבא.
 
-## Knowledge Level Assumptions {#knowledge-level-assumptions}
+## הערכת רמת הידע {#knowledge-level-assumptions}
 
-React is a JavaScript library, and so we'll assume you have a basic understanding of the JavaScript language. **If you don't feel very confident, we recommend [going through a JavaScript tutorial](https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript) to check your knowledge level** and enable you to follow along this guide without getting lost. It might take you between 30 minutes and an hour, but as a result you won't have to feel like you're learning both React and JavaScript at the same time.
+React הוא ספריית JavaScript.
+אנו מניחים שיש לכם הבנה בסיסית של JavaScript.
+**אם אינכם מרגישים בטוחים בעצמכם אנו ממליצים שתעברו [הדרכה ב-JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript) לבדיקת רמת הידע שלכם** ולאפשר  אתכם לעקוב אחר המדריך בלי ללכת לאיבוד. זה יכול לקחת 30 דקות עד שעה, אבל כתוצאה, לא תרגישו שאתם לומדים React ו-JavaScript באותו צמן.
 
->Note
+>הערה
 >
->This guide occasionally uses some of the newer JavaScript syntax in the examples. If you haven't worked with JavaScript in the last few years, [these three points](https://gist.github.com/gaearon/683e676101005de0add59e8bb345340c) should get you most of the way.
+>מדי פעם, המדריך הזה משתמש בתחביר JavaScript חדש בדוגמאות. אם לא אבדתם עם JavaScript בשנים האחרונות, [שלוש הנקודות האלה](https://gist.github.com/gaearon/683e676101005de0add59e8bb345340c) אמורים לעדכן אתכם. 
 
+## בואו נתחיל! {#lets-get-started}
 
-## Let's Get Started! {#lets-get-started}
-
-Keep scrolling down, and you'll find the link to the [next chapter of this guide](/docs/introducing-jsx.html) right before the website footer.
-
-
+המשיכו לגלול ותמצאו את הקישור [לפרק הבא במדריך הזה](/docs/introducing-jsx.html), מיד לפנה התחתונה של האתר.
