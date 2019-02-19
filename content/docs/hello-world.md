@@ -45,12 +45,12 @@ ReactDOM.render(
 
 React הוא ספריית JavaScript.
 אנו מניחים שיש לכם הבנה בסיסית של JavaScript.
-**אם אינכם מרגישים בטוחים בעצמכם אנו ממליצים שתעברו [הדרכה ב-JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript) לבדיקת רמת הידע שלכם** ולאפשר  אתכם לעקוב אחר המדריך בלי ללכת לאיבוד. זה יכול לקחת 30 דקות עד שעה, אבל כתוצאה, לא תרגישו שאתם לומדים React ו-JavaScript באותו צמן.
+**אם אינכם מרגישים בטוחים בעצמכם אנו ממליצים שתעברו [הדרכה ב-JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript) לבדיקת רמת הידע שלכם** ולאפשר  אתכם לעקוב אחר המדריך בלי ללכת לאיבוד. זה יכול לקחת 30 דקות עד שעה, אבל כתוצאה, לא תרגישו שאתם לומדים React ו-JavaScript באותו הצמן.
 
 >הערה
 >
->מדי פעם, המדריך הזה משתמש בתחביר JavaScript חדש בדוגמאות. אם לא אבדתם עם JavaScript בשנים האחרונות, [שלוש הנקודות האלה](https://gist.github.com/gaearon/683e676101005de0add59e8bb345340c) אמורים לעדכן אתכם. 
+>מדי פעם, המדריך הזה משתמש בתחביר JavaScript חדש בדוגמאות. אם לא עבדתם עם JavaScript בשנים האחרונות, [שלוש הנקודות האלה](https://gist.github.com/gaearon/683e676101005de0add59e8bb345340c) אמורים לעדכן אתכם. 
 
 ## בואו נתחיל! {#lets-get-started}
 
-המשיכו לגלול ותמצאו את הקישור [לפרק הבא במדריך הזה](/docs/introducing-jsx.html), מיד לפנה התחתונה של האתר.
+המשיכו לגלול ותמצאו את הקישור [לפרק הבא במדריך הזה](/docs/introducing-jsx.html), מיד לפניי התחתית של האתר.
