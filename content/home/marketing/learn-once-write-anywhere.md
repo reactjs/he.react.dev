@@ -1,8 +1,8 @@
 ---
-title: Learn Once, Write Anywhere
+title: למד פעם אחת, כתוב בכל מקום
 order: 2
 ---
 
-We don't make assumptions about the rest of your technology stack, so you can develop new features in React without rewriting existing code.
+אנחנו לא עושים הנחות על שאר הטכנולוגיות הנמצאות בשימוש, כך שאתה יכול לפתח בReactמבלי לשכתב קוד קיים.
 
-React can also render on the server using Node and power mobile apps using [React Native](https://facebook.github.io/react-native/).
+React יכול גם להתרנדר בצד-שרת באמצעות Node ולתפעל אפליקציות מובייל באמצעות [React Native](https://facebook.github.io/react-native/).

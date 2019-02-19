@@ -1,8 +1,8 @@
 ---
-title: Component-Based
+title: מבוסס קומפוננטות
 order: 1
 ---
 
-Build encapsulated components that manage their own state, then compose them to make complex UIs.
+בנה קומפונטות מוכמסות המנהלות את הstate .שלהן ולאחר מכן הרכב אותן יחד לבניית ממשקי משתמש מורכבים
 
-Since component logic is written in JavaScript instead of templates, you can easily pass rich data through your app and keep state out of the DOM.
+כיוון שהלוגיקה של הקומפוננטות כתובה בג'אווהסקריפט במקום בטמפלטים, אתה יכול להעביר מידע עשיר דרך האפליקציה ולהשאיר את הstate מחוץ לDOM.
