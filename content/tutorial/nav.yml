@@ -1,7 +1,7 @@
 - title: Tutorial
   items:
     - id: before-we-start-the-tutorial
-      title: לפני שאנחנו מתחילים במדיך
+      title: לפני שאנחנו מתחילים במדריך
       href: /tutorial/tutorial.html#before-we-start-the-tutorial
       forceInternal: true
       subitems:
@@ -61,7 +61,7 @@
       forceInternal: true
       subitems:
         - id: lifting-state-up
-          title: הרמת המצב למעלה
+          title: הרמת ה-State למעלה
           href: /tutorial/tutorial.html#lifting-state-up
           forceInternal: true
         - id: why-immutability-is-important
@@ -90,7 +90,7 @@
           href: /tutorial/tutorial.html#storing-a-history-of-moves
           forceInternal: true
         - id: lifting-state-up-again
-          title: הרמת המצב למעלה, שוב
+          title: הרמת ה-State למעלה, שוב
           href: /tutorial/tutorial.html#lifting-state-up-again
           forceInternal: true
         - id: showing-the-past-moves
