@@ -1,6 +1,6 @@
 ---
 id: tutorial
-title: "Tutorial: Intro to React"
+title: "מדריך: מבוא ל-React"
 layout: tutorial
 sectionid: tutorial
 permalink: tutorial/tutorial.html
@@ -12,99 +12,99 @@ redirect_from:
   - "docs/tutorial-zh-CN.html"
 ---
 
-This tutorial doesn't assume any existing React knowledge.
+מדריך זה לא מניח שום ידע קודם ב-React.
 
-## Before We Start the Tutorial {#before-we-start-the-tutorial}
+## לפני שאנחנו מתחילים במדריך {#before-we-start-the-tutorial}
 
-We will build a small game during this tutorial. **You might be tempted to skip it because you're not building games -- but give it a chance.** The techniques you'll learn in the tutorial are fundamental to building any React apps, and mastering it will give you a deep understanding of React.
+במהלך מדריך זה אנחנו נבנה משחק קטן. **יתכן שתתפתו לדלג עליו מכיוון שאינכם בונים משחקים -- אבל תנו לו סיכוי.** הטכניקות שתלמדו במדריך הן הבסיס לבניית כל אפליקציית React, ושליטה בהן תיתן לכם הבנה עמוקה של React.
 
->Tip
+>טיפ
 >
->This tutorial is designed for people who prefer to **learn by doing**. If you prefer learning concepts from the ground up, check out our [step-by-step guide](/docs/hello-world.html). You might find this tutorial and the guide complementary to each other.
+>מדריך זה מיועד לאנשים שמעדיפים **ללמוד תוך-כדי עשייה**. אם אתם מעדיפים ללמוד קונספט מלמטה למעלה, בדקו את [מדריך צעד-אחר-צעד](/docs/hello-world.html). יתכן שתמצאו את מבוא זה ואת המדריך כמשלימים אחד את השני.
 
-The tutorial is divided into several sections:
+מדריך זה מחולק למספר חלקים:
 
-* [Setup for the Tutorial](#setup-for-the-tutorial) will give you **a starting point** to follow the tutorial.
-* [Overview](#overview) will teach you **the fundamentals** of React: components, props, and state.
-* [Completing the Game](#completing-the-game) will teach you **the most common techniques** in React development.
-* [Adding Time Travel](#adding-time-travel) will give you **a deeper insight** into the unique strengths of React.
+* [הכנה למדריך](#setup-for-the-tutorial) תיתן לכם **נקודת התחלה** להמשך המדריך.
+* [סקירה כללית](#overview) תלמד אתכם את **היסודות** של React: components, props ו-state.
+* [השלמת המשחק](#completing-the-game) בו תלמדו את **הטכניקות הנפוצות ביותר** בפיתוח React.
+* [הוספת Time Travel](#adding-time-travel) ייתן לכם **תובנה עמוקה יותר** אל תוך החוזקות הייחודיות של React.
 
-You don't have to complete all of the sections at once to get the value out of this tutorial. Try to get as far as you can -- even if it's one or two sections.
+אין צורך להשלים את כל הסעיפים בבת אחת כדי לקבל את ערך ממדריך זה. נסו להגיע רחוק ככל שתוכלו -- גם אם זה רק חלק אחד או שניים.
 
-It's fine to copy and paste code as you're following along the tutorial, but we recommend to type it by hand. This will help you develop a muscle memory and a stronger understanding.
+זה בסדר להעתיק ולהדביק קוד בזמן שאתם עוקבים אחר המדריך, אבל אנחנו ממליצים להקליד את הקוד ביד. זה יעזור לכם לפתח זיכרון שריר והבנה חזקה יותר.
 
-### What Are We Building? {#what-are-we-building}
+### מה אנחנו בונים? {#what-are-we-building}
 
-In this tutorial, we'll show how to build an interactive tic-tac-toe game with React.
+במדריך זה, אנו נראה כיצד לבנות משחק איקס-עיגול אינטראקטיבי עם React.
 
-You can see what we'll be building here: **[Final Result](https://codepen.io/gaearon/pen/gWWZgR?editors=0010)**. If the code doesn't make sense to you, or if you are unfamiliar with the code's syntax, don't worry! The goal of this tutorial is to help you understand React and its syntax.
+תוכלו לראות מה נבנה כאן: **[תוצאה סופית](https://codepen.io/gaearon/pen/gWWZgR?editors=0010)**. אם הקוד אינו עושה לכם הגיון, או אם אינכם מכירים את תחביר הקוד, אל תדאגו! מטרתו של מדריך זה היא לעזור לכם להבין את React ואת התחביר שלה.
 
-We recommend that you check out the tic-tac-toe game before continuing with the tutorial. One of the features that you'll notice is that there is a numbered list to the right of the game's board. This list gives you a history of all of the moves that have occurred in the game, and is updated as the game progresses.
+אנו ממליצים לכם לבדוק את משחק איקס-עיגול לפני שתמשיך עם הדרכה. אחת התכונות בהן תבחינו היא שיש רשימה ממוספרת בצד ימין של לוח המשחק. רשימה זו נותנת לכם היסטוריה של כל המהלכים שהתרחשו במשחק, והיא מתעדכנת עם התקדמות המשחק.
 
-You can close the tic-tac-toe game once you're familiar with it. We'll be starting from a simpler template in this tutorial. Our next step is to set you up so that you can start building the game.
+תוכלו לסגור את משחק האיקס-עיגול ברגע שאתם מבינים אותו. אנו מתחילים מתבנית פשוטה יותר במדריך זה. השלב הבא שלנו הוא לארגן אתכם כך שתוכלו להתחיל לבנות את המשחק.
 
-### Prerequisites {#prerequisites}
+### דרישות קדם {#prerequisites}
 
-We'll assume that you have some familiarity with HTML and JavaScript, but you should be able to follow along even if you're coming from a different programming language. We'll also assume that you're familiar with programming concepts like functions, objects, arrays, and to a lesser extent, classes.
+אנחנו יוצאים מנקודת הנחה שיש לכם היכרות כלשהי עם HTML ו-JavaScript, אבל אתם אמורים להיות מסוגלים לעקוב גם אם אתם באים משפת תכנות אחרת. נניח גם שאתם מכירים מושגים מעולם התכנות כמו פונקציות, אובייקטים, מערכים, ובמידה פחותה יותר, מחלקות.
 
-If you need to review JavaScript, we recommend reading [this guide](https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript). Note that we're also using some features from ES6 -- a recent version of JavaScript. In this tutorial, we're using [arrow functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions), [classes](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes), [`let`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let), and [`const`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const) statements. You can use the [Babel REPL](babel://es5-syntax-example) to check what ES6 code compiles to.
+אם עליך להתרענן ב-JavaScript, אנו ממליצים לקרוא את ה[מדריך הבא](https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript). שימו לב שאנו משתמשים גם בכמה תכונות מ-ES6 -- גרסה חדשה של JavaScript. במדריך זה, אנו משתמשים ב[פונקציות חץ](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions), [מחלקות](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes), והצהרות [`let`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let), ו-[`const`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const). אתם יכולים להשתמש ב-[Babel REPL](babel://es5-syntax-example) כדי לבדוק לאיזה קוד מתקמפל קוד ה-ES6.
 
-## Setup for the Tutorial {#setup-for-the-tutorial}
+## הכנה למדריך {#setup-for-the-tutorial}
 
-There are two ways to complete this tutorial: you can either write the code in your browser, or you can set up a local development environment on your computer.
+ישנן שתי דרכים להשלמת מדריך זה: באפשרותכם לכתוב את הקוד בדפדפן שלכם, או שתוכלו להגדיר סביבת פיתוח מקומית על המחשב שלכם.
 
-### Setup Option 1: Write Code in the Browser {#setup-option-1-write-code-in-the-browser}
+### אפשרות התקנה 1: כתיבת קוד בדפדפן {#setup-option-1-write-code-in-the-browser}
 
-This is the quickest way to get started!
+זו הדרך המהירה ביותר כדי להתחיל!
 
-First, open this **[Starter Code](https://codepen.io/gaearon/pen/oWWQNa?editors=0010)** in a new tab. The new tab should display an empty tic-tac-toe game board and React code. We will be editing the React code in this tutorial.
+תחילה פתחו את **[קוד ההתחלה הזה](https://codepen.io/gaearon/pen/oWWQNa?editors=0010)** בטאב חדש בדפדפן. הטאב החדש אמור להציג לוח משחק איקס-עיגול ריק וקוד React. אנו נערוך את קוד ה-React במדריך זה.
 
-You can now skip the second setup option, and go to the [Overview](#overview) section to get an overview of React.
+כעת באפשרותך לדלג על אפשרות ההתקנה השנייה וללכת אל הקטע [סקירה כללית](#overview) כדי לקבל סקירה כללית של React.
 
-### Setup Option 2: Local Development Environment {#setup-option-2-local-development-environment}
+### אפשרות התקנה 2: סביבת פיתוח מקומית {#setup-option-2-local-development-environment}
 
-This is completely optional and not required for this tutorial!
+זה אופציונלי לחלוטין ולא נדרש עבור מדריך זה!
 
 <br>
 
 <details>
 
-<summary><b>Optional: Instructions for following along locally using your preferred text editor</b></summary>
+<summary><b>אופציונלי: הוראות להתקדמות באמצעות עורך הטקסט המועדף עליכם מקומית</b></summary>
 
-This setup requires more work but allows you to complete the tutorial using an editor of your choice. Here are the steps to follow:
+התקנה זו דורשת יותר עבודה, אבל מאפשר לכם להשלים את המדריך באמצעות עורך על פי בחירתכם. הנה השלבים אותם יש לבצע:
 
-1. Make sure you have a recent version of [Node.js](https://nodejs.org/en/) installed.
-2. Follow the [installation instructions for Create React App](/docs/create-a-new-react-app.html#create-react-app) to make a new project.
+1. וודאו שיש ברשותכם גרסה עדכנית של [Node.js](https://nodejs.org/en/) מותקנת.
+2. עקבו אחר [הוראות ההתקנה ליצירת אפליקציית React](/docs/create-a-new-react-app.html#create-react-app) כדי ליצור פרוייקט חדש.
 
 ```bash
 npx create-react-app my-app
 ```
 
-3. Delete all files in the `src/` folder of the new project 
+3. מחקו את כל הקבצים בתיקיית `src/` של הפרוייקט החדש 
 
-> Note:
+> שימו לב:
 >
->**Don't delete the entire `src` folder, just the original source files inside it.** We'll replace the default source files with examples for this project in the next step.
+>**אל תמחקו את כל תיקיית `src`, רק את קבצי המקור המקוריים בתוכה.** We'll החליפו את קבצי המקור המוגדרים כברירת מחדל עם הדוגמאות לפרויקט זה בשלב הבא.
 
 ```bash
 cd my-app
 cd src
 
-# If you're using a Mac or Linux:
+# אם אתם משמשים במק או לינוקס:
 rm -f *
 
-# Or, if you're on Windows:
+# או, אם אתם משתמשים בווינדוס:
 del *
 
-# Then, switch back to the project folder
+# אז, חזרו לתיקיית הפרוייקט
 cd ..
 ```
 
-4. Add a file named `index.css` in the `src/` folder with [this CSS code](https://codepen.io/gaearon/pen/oWWQNa?editors=0100).
+4. הוסיפו את הקובץ שנקרא `index.css` בתקיית `src/` עם [קוד ה-CSS הזה](https://codepen.io/gaearon/pen/oWWQNa?editors=0100).
 
-5. Add a file named `index.js` in the `src/` folder with [this JS code](https://codepen.io/gaearon/pen/oWWQNa?editors=0010).
+5. הוסיפו את הקובץ שנקרא `index.js` בתקיית `src/` עם [קוד ה-JS הזה](https://codepen.io/gaearon/pen/oWWQNa?editors=0010).
 
-6. Add these three lines to the top of `index.js` in the `src/` folder:
+6. הוסיפו את השורות הבאות בתחילת הקובץ `index.js` בתיקיית `src/`:
 
 ```js
 import React from 'react';
@@ -112,25 +112,25 @@ import ReactDOM from 'react-dom';
 import './index.css';
 ```
 
-Now if you run `npm start` in the project folder and open `http://localhost:3000` in the browser, you should see an empty tic-tac-toe field.
+כעת אם תריצו  `npm start` בתיקיית הפרוייקט ותפתחו את `http://localhost:3000` בדפדפן, אתם אמורים לראות לוח איקס-עיגול ריק.
 
-We recommend following [these instructions](https://babeljs.io/docs/editors/) to configure syntax highlighting for your editor.
+אנו ממליצים לעקוב אחר [ההוראות האלו](https://babeljs.io/docs/editors/) כדי להגדיר הדגשת תחביר עבור העורך שלך.
 
 </details>
 
-### Help, I'm Stuck! {#help-im-stuck}
+### הצילו, אני תקוע! {#help-im-stuck}
 
-If you get stuck, check out the [community support resources](/community/support.html). In particular, [Reactiflux Chat](https://discord.gg/0ZcbPKXt5bZjGY5n) is a great way to get help quickly. If you don't receive an answer, or if you remain stuck, please file an issue, and we'll help you out.
+אם אתם נתקעים, בדקו את [משאבי התמיכה בקהילה](/community/support.html). בפרט, [צ'אט Reactiflux](https://discord.gg/0ZcbPKXt5bZjGY5n) הוא דרך מצוינת לקבל עזרה במהירות. אם אתם לא מקבלים תשובה, או אם נשארתם תקועים, אנא שלחו לנו את הבעיה בה נתקלתם, ואנו נעזור לכם.
 
-## Overview {#overview}
+## סקירה כללית {#overview}
 
-Now that you're set up, let's get an overview of React!
+כעת שאתם מוכנים, בואו נקבל סקירה כללית של React!
 
-### What Is React? {#what-is-react}
+### מה זה React? {#what-is-react}
 
-React is a declarative, efficient, and flexible JavaScript library for building user interfaces. It lets you compose complex UIs from small and isolated pieces of code called "components".
+React היא ספריית JavaScript הצהרתית, יעילה וגמישה של לבניית ממשקי משתמש. היא מאפשרת לייצר ממשקי משתמש מורכבים מחתיכות קטנות ומבודדות של קוד בשם "components" (רכיבים).
 
-React has a few different kinds of components, but we'll start with `React.Component` subclasses:
+ל-React יש מספר רכיבים שונים, אבל נתחיל מתת-המחלקה `React.Component`
 
 ```javascript
 class ShoppingList extends React.Component {
@@ -151,11 +151,12 @@ class ShoppingList extends React.Component {
 // Example usage: <ShoppingList name="Mark" />
 ```
 
-We'll get to the funny XML-like tags soon. We use components to tell React what we want to see on the screen. When our data changes, React will efficiently update and re-render our components.
+נגיע לתגיות המצחיקות שמזכירות XML בהמשך. אנו משתמשים ברכיבים (components) כדי לומר ל- React מה אנחנו רוצים לראות על המסך. כאשר הנתונים שלנו ישתנו, React יעדכן וירנדר מחדש את הרכיבים שלנו.
 
-Here, ShoppingList is a **React component class**, or **React component type**. A component takes in parameters, called `props` (short for "properties"), and returns a hierarchy of views to display via the `render` method.
 
-The `render` method returns a *description* of what you want to see on the screen. React takes the description and displays the result. In particular, `render` returns a **React element**, which is a lightweight description of what to render. Most React developers use a special syntax called "JSX" which makes these structures easier to write. The `<div />` syntax is transformed at build time to `React.createElement('div')`. The example above is equivalent to:
+כאן, ShoppingList היא **מחלקת רכיב React**, או **מסוג רכיב React**. רכיב לוקח פרמטרים, הנקראים `props` (פרופס, קיצור עבור "מאפיינים", properties), ומחזיר היררכיה של תצוגות (views) להצגה דרך המתודה `render`.
+
+המתודה `render` מחזירה *תיאור* של מה שאתם רוצים לראות על המסך. React לוקחת את התיאור ומציגה את התוצאה. בפרט, `render` מחזירה **אלמנט React**, שהוא תיאור מופשט של מה שצריך לרנדר. רוב מפתחי React משתמשים בתחביר מיוחד בשם "JSX" שהופך את המבנים האלה לקלים יותר לכתיבה. התחביר `<div />`  משתנה בזמן הבנייה (build time) ל-`React.createElement('div')`. הדוגמה שלמעלה שקולה לקוד:
 
 ```javascript
 return React.createElement('div', {className: 'shopping-list'},
@@ -164,33 +165,33 @@ return React.createElement('div', {className: 'shopping-list'},
 );
 ```
 
-[See full expanded version.](babel://tutorial-expanded-version)
+[ראו גרסה מורחבת מלאה.](babel://tutorial-expanded-version)
 
-If you're curious, `createElement()` is described in more detail in the [API reference](/docs/react-api.html#createelement), but we won't be using it in this tutorial. Instead, we will keep using JSX.
+אם אתם סקרנים, `createElement()` מתוארת ביתר פירוט [במסמך ה-API](/docs/react-api.html#createelement), אך לא נשתמש בה במדריך זה. במקום זאת, נמשיך להשתמש ב-JSX.
 
-JSX comes with the full power of JavaScript. You can put *any* JavaScript expressions within braces inside JSX. Each React element is a JavaScript object that you can store in a variable or pass around in your program.
+JSX מגיעה עם מלוא העוצמה של JavaScript. תוכלו לשים *כל* ביטוי JavaScript בין סוגריים מסולסלים בתוך JSX. כל אלמנט React הוא אובייקט JavaScript שניתן לאחסן במשתנה או להעביר בתוך התוכנית שלך.
 
-The `ShoppingList` component above only renders built-in DOM components like `<div />` and `<li />`. But you can compose and render custom React components too. For example, we can now refer to the whole shopping list by writing `<ShoppingList />`. Each React component is encapsulated and can operate independently; this allows you to build complex UIs from simple components.
+הרכיב `ShoppingList` למעלה רק מרנדר רכיבים מובנים ב-DOM כמו `<div />` ו-`<li />`. אבל ניתן לבנות ולרנדר רכיבי React מותאמים אישית באותו אופן. לדוגמה, כעת אנו יכולים להתייחס לרכיב רשימת הקניות כולו על ידי כתיבת `<ShoppingList />`. כל רכיב React הוא כמוס (encapsulated) והוא יכול לפעול באופן עצמאי; זה מאפשר לנו לבנות ממשקי משתמש מורכבים מרכיבים פשוטים.
 
-## Inspecting the Starter Code {#inspecting-the-starter-code}
+## בדיקת קוד הבסיס {#inspecting-the-starter-code}
 
-If you're going to work on the tutorial **in your browser,** open this code in a new tab: **[Starter Code](https://codepen.io/gaearon/pen/oWWQNa?editors=0010)**. If you're going to work on the tutorial **locally,** instead open `src/index.js` in your project folder (you have already touched this file during the [setup](#setup-option-2-local-development-environment)).
+אם אתם מתכוונים לעבוד על המדריך **בדפדפן שלכם,** פתחו את הקוד הבא בטאב חדש: **[קוד בסיס](https://codepen.io/gaearon/pen/oWWQNa?editors=0010)**. אם אתם הולכים לעבוד על המדריך **מקומית,** במקום זאת פתחו את `src/index.js` בתיקייה הפרויקט שלכם (כבר נגעתם בקובץ זה במהלך [ההתקנה](#setup-option-2-local-development-environment)).
 
-This Starter Code is the base of what we're building. We've provided the CSS styling so that you only need to focus on learning React and programming the tic-tac-toe game.
+קוד בסיס זה הוא הבסיס למה שאנחנו בונים. סיפקנו את קוד הסגנון (CSS) כך שאתם צריכים להתמקד רק בלמידת React ותכנות משחק האיקס-עיגול.
 
-By inspecting the code, you'll notice that we have three React components:
+בעת בדיקת הקוד, תבחינו שיש לנו שלושה רכיבי React:
 
-* Square
-* Board
-* Game
+* ריבוע (Square)
+* לוח (Board)
+* משחק (Game)
 
-The Square component renders a single `<button>` and the Board renders 9 squares. The Game component renders a board with placeholder values which we'll modify later. There are currently no interactive components.
+רכיב הריבוע מרנדר `<button>` (כפתור) אחד והלוח מציג 9 ריבועים. רכיב המשחק מרנדר לוח עם ערכי שומרי מקום, שאותם נשנה מאוחר יותר. אין כרגע רכיבים אינטראקטיביים.
 
-### Passing Data Through Props {#passing-data-through-props}
+### העברת נתונים באמצעות Props {#passing-data-through-props}
 
-Just to get our feet wet, let's try passing some data from our Board component to our Square component.
+רק כדי ללכלך את הידיים, בואו ננסה להעביר כמה נתונים מתוך רכיב הלוח שלנו לרכיב הריבוע שלנו.
 
-In Board's `renderSquare` method, change the code to pass a prop called `value` to the Square:
+במתודת `renderSquare` של הלוח, שנו את הקוד על מנת להעביר את הערך שנקרא `value` לריבוע:
 
 ```js{3}
 class Board extends React.Component {
@@ -199,7 +200,7 @@ class Board extends React.Component {
   }
 ```
 
-Change Square's `render` method to show that value by replacing `{/* TODO */}` with `{this.props.value}`:
+שנו את מתודת `render` של ריבוע כדי להציג את הערך על-ידי החלפת `{/* TODO */}` עם `{this.props.value}`:
 
 ```js{5}
 class Square extends React.Component {
@@ -213,22 +214,22 @@ class Square extends React.Component {
 }
 ```
 
-Before:
+לפני:
 
 ![React Devtools](../images/tutorial/tictac-empty.png)
 
-After: You should see a number in each square in the rendered output.
+אחרי: אתם אמורים לראות מספר התוך כל אחד מהריבועים בפלט המוצג.
 
 ![React Devtools](../images/tutorial/tictac-numbers.png)
 
-**[View the full code at this point](https://codepen.io/gaearon/pen/aWWQOG?editors=0010)**
+**[צפו בקוד המלא עד נקודה זו](https://codepen.io/gaearon/pen/aWWQOG?editors=0010)**
 
-Congratulations! You've just "passed a prop" from a parent Board component to a child Square component. Passing props is how information flows in React apps, from parents to children.
+מזל טוב! בדיוק "העברתם prop" מרכיב האב לוח לרכיב הבן ריבוע. העברת props היא הדרך בה זורם מידע באפליקציות React, מהורים לילדיהם.
 
-### Making an Interactive Component {#making-an-interactive-component}
+### יצירת רכיב אינטראקטיבי {#making-an-interactive-component}
 
-Let's fill the Square component with an "X" when we click it.
-First, change the button tag that is returned from the Square component's `render()` function to this:
+בואו נמלא את הרכיב ריבוע עם "X" כאשר אנו לוחצים עליו.
+ראשית, שנו את תג הכפתור שמוחזר מפונקצית `render()` של רכיב הריבוע לזה:
 
 ```javascript{4}
 class Square extends React.Component {
@@ -242,11 +243,11 @@ class Square extends React.Component {
 }
 ```
 
-If we click on a Square now, we should get an alert in our browser.
+אם נלחץ על ריבוע עכשיו, אנחנו אמורים לקבל התראה מהדפדפן שלנו.
 
->Note
+>שימו לב
 >
->To save typing and avoid the [confusing behavior of `this`](https://yehudakatz.com/2011/08/11/understanding-javascript-function-invocation-and-this/), we will use the [arrow function syntax](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions) for event handlers here and further below:
+>כדי לחסוך בהקלדות ולהמנע מ[התנהגות מבלבלת של `this`](https://yehudakatz.com/2011/08/11/understanding-javascript-function-invocation-and-this/), אנחנו נשתמש ב[תחביר פונקציית חץ](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions) עבור פונקציות מנהלי אירועים מכאן והלאה:
 >
 >```javascript{4}
 >class Square extends React.Component {
@@ -260,13 +261,14 @@ If we click on a Square now, we should get an alert in our browser.
 >}
 >```
 >
->Notice how with `onClick={() => alert('click')}`, we're passing *a function* as the `onClick` prop. It only fires after a click. Forgetting `() =>` and writing `onClick={alert('click')}` is a common mistake, and would fire the alert every time the component re-renders.
+>שימו לב איך עם `onClick={() => alert('click')}`, אנחנו מעבירים *פונקציה* בתור המאפיין `onClick`. הפונקציה תרוץ רק אחרי לחיצה. לשכוח את `() =>` ולכתוב רק `onClick={alert('click')}` היא טעות נפוצה, והיא תגרום להקפצת ההתראה בכל פעם שהרכיב מתרנדר מחדש.
 
-As a next step, we want the Square component to "remember" that it got clicked, and fill it with an "X" mark. To "remember" things, components use **state**.
+בצעד הבא, אנחנו רוצים שהרכיב ריבוע "יזכור" שהוא נלחץ, וימלא את עצמו עם 
+הסימן "X". כדי "לזכור" דברים, רכיבים משתמשים ב**מצב (state)**.
 
-React components can have state by setting `this.state` in their constructors. `this.state` should be considered as private to a React component that it's defined in. Let's store the current value of the Square in `this.state`, and change it when the Square is clicked.
+רכיבי React יכול להשתמש ב-state על ידי הגדרת `this.state` בבנאים (constructor) שלהם. `this.state` צריך להיחשב כפרטי לרכיב ה-React שהוא מוגדר בו. בואו נאחסן את הערך הנוכחי של הריבוע ב-`this.state`, ונשנה אותו כאשר נלחץ על הריבוע.
 
-First, we'll add a constructor to the class to initialize the state:
+תחילה, נוסיף בנאי למחלקה כדי לאתחל את המצב.
 
 ```javascript{2-7}
 class Square extends React.Component {
@@ -287,17 +289,17 @@ class Square extends React.Component {
 }
 ```
 
->Note
+>שימו לב
 >
->In [JavaScript classes](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes), you need to always call `super` when defining the constructor of a subclass. All React component classes that have a `constructor` should start it with a `super(props)` call.
+>ב-[מחלקות של JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes), עליכם תמיד לקרוא לפונקציה `super` בעת הגדרת בנאי של תת-מחלקה. כל מחלקה של רכיב React שיש לה `constructor` צריך להתחיל עם קריאה ל-`super(props)`.
 
-Now we'll change the Square's `render` method to display the current state's value when clicked:
+כעת נשנה את מתודת `render` של ריבוע כך שתציג את הערך שמוגדר ב-state בעת לחיצה:
 
-* Replace `this.props.value` with `this.state.value` inside the `<button>` tag.
-* Replace the `() => alert()` event handler with `() => this.setState({value: 'X'})`.
-* Put the `className` and `onClick` props on separate lines for better readability.
+* החליפו את `this.props.value` עם `this.state.value` בתוך התגית `<button>`.
+* החליפו את מנהל האירוע `() => alert()` עם `() => this.setState({value: 'X'})`.
+* שימו את המאפיינים `className` ו-`onClick` בשורות נפרדות על מנת שתהיה לנו קריאות טובה יותר.
 
-After these changes, the `<button>` tag that is returned by the Square's `render` method looks like this:
+לאחר ביצוע שינויים אלה, תגית הכפתור `<button>` שמוחזרת ממתודת `render` של ריבוע אמורה להיראות כך:
 
 ```javascript{12-13,15}
 class Square extends React.Component {
@@ -321,42 +323,42 @@ class Square extends React.Component {
 }
 ```
 
-By calling `this.setState` from an `onClick` handler in the Square's `render` method, we tell React to re-render that Square whenever its `<button>` is clicked. After the update, the Square's `this.state.value` will be `'X'`, so we'll see the `X` on the game board. If you click on any Square, an `X` should show up.
+על ידי קריאה ל-`this.setState` מהאירוע `onClick` במתודה `render` של ריבוע, אנו אומרים ל-React לרנדר מחדש את ריבוע זה בכל פעם שהכפתור `<button>` שלו נלחץ. לאחר העדכון, הערך `this.state.value` של הריבוע יהיה `'X'`, כך שנראה את ה-`X` על לוח המשחק. אם תלחצו על כל אחד מהריבועים, `X` אמור להופיע.
 
-When you call `setState` in a component, React automatically updates the child components inside of it too.
+כאשר אנו קוראים ל-`setState` ברכיב כלשהו, React מעדכנת אוטומטית גם את רכיבי הבנים בתוכו.
 
-**[View the full code at this point](https://codepen.io/gaearon/pen/VbbVLg?editors=0010)**
+**[צפו בקוד המלא עד נקודה זו](https://codepen.io/gaearon/pen/VbbVLg?editors=0010)**
 
-### Developer Tools {#developer-tools}
+### כלי פיתוח {#developer-tools}
 
-The React Devtools extension for [Chrome](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en) and [Firefox](https://addons.mozilla.org/en-US/firefox/addon/react-devtools/) lets you inspect a React component tree with your browser's developer tools.
+התוסף React Devtools עבור [Chrome](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en) ו-[Firefox](https://addons.mozilla.org/en-US/firefox/addon/react-devtools/) מאפשר לכם לבדוק עץ רכיבים של React עם כלי הפיתוח של הדפדפן שלכם.
 
 <img src="../images/tutorial/devtools.png" alt="React Devtools" style="max-width: 100%">
 
-The React DevTools let you check the props and the state of your React components.
+ה-React DevTools מאפשר לכם לבדוק את המאפיינים (`props`) ואת המצב (`state`) של רכיבי ה-React שלכם.
 
-After installing React DevTools, you can right-click on any element on the page, click "Inspect" to open the developer tools, and the React tab will appear as the last tab to the right.
+לאחר התקנת React DevTools, באפשרותכם ללחוץ לחיצה ימנית על כל אלמנט בדף, ללחוץ על "בדוק" ("Inspect") כדי לפתוח את כלי הפיתוח, והכרטיסייה React תופיע ככרטיסייה האחרונה מימין.
 
-**However, note there are a few extra steps to get it working with CodePen:**
+**עם זאת, שימו לב כי ישנם כמה צעדים נוספים כדי לגרום לזה לעבוד עם CodePen:**
 
-1. Log in or register and confirm your email (required to prevent spam).
-2. Click the "Fork" button.
-3. Click "Change View" and then choose "Debug mode".
-4. In the new tab that opens, the devtools should now have a React tab.
+1. היכנסו או הירשמו ואשרו את הדוא"ל שלכם (נדרש כדי למנוע דואר זבל).
+2. לחצו על הלחצן "פצל" ("Fork").
+3. לחצו על "שנה תצוגה" ("Change View") ולאחר מכן בחרו "מצב דיבאג" ("Debug mode").
+4. בכרטיסייה החדשה שנפתחת, ל-devtools כעת אמורה להיות הכרטיסייה React.
 
-## Completing the Game {#completing-the-game}
+## השלמת המשחק {#completing-the-game}
 
-We now have the basic building blocks for our tic-tac-toe game. To have a complete game, we now need to alternate placing "X"s and "O"s on the board, and we need a way to determine a winner.
+עכשיו יש לנו את אבני הבניין הבסיסיים שלנו למשחק האיקס-עיגול. כדי לקבל משחק שלם, עכשיו אנחנו צריכים להחליף לסירוגין בין השמת "X"-ים ו-"O"-ים על הלוח, ואנחנו צריכים דרך כדי לקבוע את הזוכה.
 
-### Lifting State Up {#lifting-state-up}
+### הרמת ה-State למעלה {#lifting-state-up}
 
-Currently, each Square component maintains the game's state. To check for a winner, we'll maintain the value of each of the 9 squares in one location.
+נכון לעכשיו, כל רכיב ריבוע שומר על מצב המשחק. כדי לבדוק מי הזוכה, נשמור על הערך של כל אחד מ-9 הריבועים במקום אחד.
 
-We may think that Board should just ask each Square for the Square's state. Although this approach is possible in React, we discourage it because the code becomes difficult to understand, susceptible to bugs, and hard to refactor. Instead, the best approach is to store the game's state in the parent Board component instead of in each Square. The Board component can tell each Square what to display by passing a prop, [just like we did when we passed a number to each Square](#passing-data-through-props).
+אנחנו יכולים לחשוב כי הלוח צריך רק לשאול כל ריבוע את מצבו. למרות שגישה זו אפשרית ב-React, אנו נרתעים ממנה משום ששימוש בה הופך את הקוד להיות קשה להבנה, רגיש לבאגים וקשה לשכתוב. במקום זאת, הגישה הטובה יותר היא לאחסן את מצב המשחק באכיב האב לוח במקום בכל ריבוע. רכיב הלוח יכול להגיד לכל ריבוע מה להציג על ידי העברת מאפיין (prop), [בדיוק כמו שעשינו כאשר העברנו מספר לכל ריבוע](#passing-data-through-props).
 
-**To collect data from multiple children, or to have two child components communicate with each other, you need to declare the shared state in their parent component instead. The parent component can pass the state back down to the children by using props; this keeps the child components in sync with each other and with the parent component.**
+**כדי לאסוף נתונים ממספר ילדים, או כדי לאפשר לשני רכיבי ילדים לתקשר אחד עם השני, עלינו להכריז על מצב משותף ברכיב האב שלהם במקום. רכיב האב יכול להעביר את המצב שלו בחזרה לילדים באמצעות שימוש במאפיינים; פעולה זו שומרת על רכיבי הילדים מסונכרנים זה עם זה ועם רכיב האב.**
 
-Lifting state into a parent component is common when React components are refactored -- let's take this opportunity to try it out. We'll add a constructor to the Board and set the Board's initial state to contain an array with 9 nulls. These 9 nulls correspond to the 9 squares:
+הרמת המצב לרכיב אב היא פעולה נפוצה כאשר משכתבים רכיבי React -- בואו ניקח את ההזדמנות הזו כדי לנסות זאת. נוסיף בנאי ללוח ונקבע את המצב הראשוני של הלוח כך שיכיל מערך עם 9 ערכים ריקים (nulls). אלה 9 ערכים ריקים שתואמים ל-9 הריבועים:
 
 ```javascript{2-7}
 class Board extends React.Component {
@@ -398,7 +400,7 @@ class Board extends React.Component {
 }
 ```
 
-When we fill the board in later, the board will look something like this:
+כאשר נמלא את הלוח בשלב מאוחר יותר, הלוח ייראה כמו משהו כזה:
 
 ```javascript
 [
@@ -408,7 +410,7 @@ When we fill the board in later, the board will look something like this:
 ]
 ```
 
-The Board's `renderSquare` method currently looks like this:
+מתודת "renderSquare" של הלוח כרגע נראית כך:
 
 ```javascript
   renderSquare(i) {
@@ -416,9 +418,9 @@ The Board's `renderSquare` method currently looks like this:
   }
 ```
 
-In the beginning, we [passed the `value` prop down](#passing-data-through-props) from the Board to show numbers from 0 to 8 in every Square. In a different previous step, we replaced the numbers with an "X" mark [determined by Square's own state](#making-an-interactive-component). This is why Square currently ignores the `value` prop passed to it by the Board.
+בתחילה, [העברנו את מאפיין ה-`value` למטה](#passing-data-through-props) מהלוח כדי להראות מספרים מ-0 ועד 8 בכל ריבוע. בשלב קודם שונה, החלפנו את המספרים עם סימן "X" [שנקבע על ידי המצב של ריבוע עצמו](#making-an-interactive-component). זו הסיבה שריבוע מתעלם כעת מהערך `value` שהלוח מעביר אליו.
 
-We will now use the prop passing mechanism again. We will modify the Board to instruct each individual Square about its current value (`'X'`, `'O'`, or `null`). We have already defined the `squares` array in the Board's constructor, and we will modify the Board's `renderSquare` method to read from it:
+כעת נשתמש במנגנון העברת המאפיין שוב. אנו נשנה את הלוח כדי להורות לכל ריבוע בן באופן אינדיבידואלי על הערך הנוכחי שלו (`"X"`, `"O"`, או `null`). כבר הגדרנו את מערך הריבועים `squares` בבנאי הלוח, ואנו נשנה את מתודת `renderSquare` של הלוח כדי לקרוא ממנו:
 
 ```javascript{2}
   renderSquare(i) {
@@ -426,13 +428,13 @@ We will now use the prop passing mechanism again. We will modify the Board to in
   }
 ```
 
-**[View the full code at this point](https://codepen.io/gaearon/pen/gWWQPY?editors=0010)**
+**[צפו בקוד המלא עד נקודה זו](https://codepen.io/gaearon/pen/gWWQPY?editors=0010)**
 
-Each Square will now receive a `value` prop that will either be `'X'`, `'O'`, or `null` for empty squares.
+כל ריבוע יקבל כעת מאפיין `value` אשר יהיה אחד מן הערכים `'X'`, `'O'`, או `null` עבור ריבועים ריקים.
 
-Next, we need to change what happens when a Square is clicked. The Board component now maintains which squares are filled. We need to create a way for the Square to update the Board's state. Since state is considered to be private to a component that defines it, we cannot update the Board's state directly from Square.
+כעת, אנחנו צריכים לשנות את מה שקורה כאשר ריבוע כלשהו נלחץ. רכיב הלוח עכשיו שומר אילו ריבועים מולאו. אנחנו צריכים ליצור דרך לריבוע לעדכן את המצב של הלוח. מאחר שהמצב נחשב פרטי לאכיב המגדיר אותו, אין באפשרותנו לעדכן את מצב הלוח ישירות מהריבוע.
 
-To maintain the Board's state's privacy, we'll pass down a function from the Board to the Square. This function will get called when a Square is clicked. We'll change the `renderSquare` method in Board to:
+כדי לשמור על הפרטיות של מצב הלוח, נעביר למטה פונקציה מהלוח לריבוע. פונקציה זו תקרא כאשר לוחצים על ריבוע. אנו נשנה את המתודה `renderSquare` בלוח למתודה הבאה:
 
 ```javascript{5}
   renderSquare(i) {
@@ -445,17 +447,17 @@ To maintain the Board's state's privacy, we'll pass down a function from the Boa
   }
 ```
 
->Note
+>שימו לב
 >
->We split the returned element into multiple lines for readability, and added parentheses so that JavaScript doesn't insert a semicolon after `return` and break our code.
+>אנו מחלקים את האלמנט שהוחזר למספר שורות לשיפור הקריאות, ומוסיפים סוגריים כדי ש-JavaScript לא תוסיף נקודה-פסיק לאחר ה-`return` ותשבור את הקוד שלנו.
 
-Now we're passing down two props from Board to Square: `value` and `onClick`. The `onClick` prop is a function that Square can call when clicked. We'll make the following changes to Square:
+עכשיו אנחנו מעבירים למטה שני מאפיינים מהלוח לריבוע: `value` ו-`onClick`. המאפיין `onClick` היא פונקציה שאליה יכול ריבוע לקרוא כאשר לוחצים עליו. נערוך את השינויים הבאים בריבוע:
 
-* Replace `this.state.value` with `this.props.value` in Square's `render` method
-* Replace `this.setState()` with `this.props.onClick()` in Square's `render` method
-* Delete the `constructor` from Square because Square no longer keeps track of the game's state
+* נחליף את `this.state.value` עם `this.props.value` במתודת `render` של ריבוע
+* נחליף את `this.setState()` עם `this.props.onClick()` במתודת `render` של ריבוע
+* נמחק את הבנאי `constructor` מריבוע מכיון שריבוע כבר לא עוקב אחר מצב המשחק
 
-After these changes, the Square component looks like this:
+לאחר ביצוע שינויים אלו, רכיב הריבוע נראה כך:
 
 ```javascript{1,2,6,8}
 class Square extends React.Component {
@@ -472,19 +474,19 @@ class Square extends React.Component {
 }
 ```
 
-When a Square is clicked, the `onClick` function provided by the Board is called. Here's a review of how this is achieved:
+כאשר לוחצים על ריבוע, נקראת פונקציית `onClick` שמסופקת על ידי הלוח. הנה סקירה של איך התנהגות זו מושגת:
 
-1. The `onClick` prop on the built-in DOM `<button>` component tells React to set up a click event listener.
-2. When the button is clicked, React will call the `onClick` event handler that is defined in Square's `render()` method.
-3. This event handler calls `this.props.onClick()`. The Square's `onClick` prop was specified by the Board.
-4. Since the Board passed `onClick={() => this.handleClick(i)}` to Square, the Square calls `this.handleClick(i)` when clicked.
-5. We have not defined the `handleClick()` method yet, so our code crashes.
+1. המאפיין `onClick` ברכיב המובנה של ה-DOM `<button>` גורם ל-React להגדיר מאזין לאירועי לחיצות.
+2. כאשר לוחצים על הכפתור, React יקרא למטפל האירועים `onClick` המוגדר במתודה `render()` של ריבוע.
+3. מטפל אירוע זה קורא ל-`this.props.onClick()`. המאפיין `onClick` של ריבוע הוגדר על ידי הלוח.
+4. מאחר שהלוח העביר את `onClick={() => this.handleClick(i)}` לריבוע, הריבוע קורא ל-`this.handleClick(i)` בעת לחיצה עליו.
+5. עדיין לא הגדרנו את המתודה `handleClick()`, ולכן שהקוד שלנו קורס.
 
->Note
+>שימו לב
 >
->The DOM `<button>` element's `onClick` attribute has a special meaning to React because it is a built-in component. For custom components like Square, the naming is up to you. We could name the Square's `onClick` prop or Board's `handleClick` method differently. In React, however, it is a convention to use `on[Event]` names for props which represent events and `handle[Event]` for the methods which handle the events.
+>לתכונה `onClick` של אלמנט `<button>` של ה-DOM יש משמעות מיוחדת עבור React מכיוון שהוא רכיב מובנה. עבור רכיבים מותאמים אישית כמו ריבוע, הגדרת השמות תלויה בנו. אנו יכולים להגדיר את השם של מאפיין `onClick` של ריבוע או מתודת `handleClick` של לוח בצורה אחרת. ב-React, לעומת זאת, זוהי קונבנציה להשתמש בשמות כמו `on[Event]` עבור מאפיינים אשר מייצגים אירועים ו-`handle[Event]` עבור המתודות אשר מטפלות באירועים.
 
-When we try to click a Square, we should get an error because we haven't defined `handleClick` yet. We'll now add `handleClick` to the Board class:
+כאשר אנו מנסים ללחוץ על ריבוע, אנחנו אמורים לקבל שגיאה כי עדיין לא הגדרנו את `handleClick`. כעת נוסיף את `handleClick` למחלקה לוח:
 
 ```javascript{9-13}
 class Board extends React.Component {
@@ -537,28 +539,28 @@ class Board extends React.Component {
 }
 ```
 
-**[View the full code at this point](https://codepen.io/gaearon/pen/ybbQJX?editors=0010)**
+**[צפו בקוד המלא עד נקודה זו](https://codepen.io/gaearon/pen/ybbQJX?editors=0010)**
 
-After these changes, we're again able to click on the Squares to fill them. However, now the state is stored in the Board component instead of the individual Square components. When the Board's state changes, the Square components re-render automatically. Keeping the state of all squares in the Board component will allow it to determine the winner in the future.
+לאחר ביצוע שינויים אלה, נוכל שוב ללחוץ על הריבועים כדי למלא אותם. למרות זאת, כעת המצב מאוחסן ברכיב הלוח במקום ברכיבי הריבועים עצמם. כאשר מצבו של הלוח משתנה, רכיבי הריבוע מרונדרים מחדש באופן אוטומטי. שמירת מצב כל הריבועים ברכיב הלוח תאפשר לו לקבוע את הזוכה בעתיד.
 
-Since the Square components no longer maintain state, the Square components receive values from the Board component and inform the Board component when they're clicked. In React terms, the Square components are now **controlled components**. The Board has full control over them.
+מאחר שרכיבי הריבוע אינם מתחזקים מצב יותר, רכיבי הריבוע מקבלים ערכים מרכיב הלוח ומעדכנים את רכיב הלוח כאשר לוחצים עליהם. במונחי React, רכיבי הריבוע הם כעת **רכיבים מבוקרים**. הלוח הוא בעל שליטה מלאה עליהם.
 
-Note how in `handleClick`, we call `.slice()` to create a copy of the `squares` array to modify instead of modifying the existing array. We will explain why we create a copy of the `squares` array in the next section.
+שימו לב כיצד ב-`handleClick` אנו קוראים ל-`.slice()` כדי לייצר עותק של מערך `squares` על מנת לשנותו במקום לשנות את המערך הקיים. נסביר מדוע אנו יוצרים עותק של מערך `squares` בחלק הבא.
 
-### Why Immutability Is Important {#why-immutability-is-important}
+### מהי החשיבות של אי-יכולת השתנות  {#why-immutability-is-important}
 
-In the previous code example, we suggested that you use the `.slice()` operator to create a copy of the `squares` array to modify instead of modifying the existing array. We'll now discuss immutability and why immutability is important to learn.
+בדוגמת הקוד הקודמת, הצענו להשתמש באופרטור `.slice()` כדי ליצור עותק של מערך `squares` על מנת לשנותו במקום לשנות את המערך הקיים. כעת נדון באי-יכולת השתנות (Immutability) ומדוע חשוב ללמוד על אי-יכולת השתנות.
 
-There are generally two approaches to changing data. The first approach is to *mutate* the data by directly changing the data's values. The second approach is to replace the data with a new copy which has the desired changes.
+יש בדרך כלל שתי גישות לשינוי נתונים. הגישה הראשונה היא *לשנות* את הנתונים על ידי שינוי ישיר של ערכי הנתונים. הגישה השנייה היא להחליף את הנתונים עם עותק חדש שבו יש את השינויים הרצויים.
 
-#### Data Change with Mutation {#data-change-with-mutation}
+#### שינוי נתונים עם מוטציה {#data-change-with-mutation}
 ```javascript
 var player = {score: 1, name: 'Jeff'};
 player.score = 2;
 // Now player is {score: 2, name: 'Jeff'}
 ```
 
-#### Data Change without Mutation {#data-change-without-mutation}
+#### שינוי נתונים ללא מוטציה {#data-change-without-mutation}
 ```javascript
 var player = {score: 1, name: 'Jeff'};
 
@@ -569,31 +571,31 @@ var newPlayer = Object.assign({}, player, {score: 2});
 // var newPlayer = {...player, score: 2};
 ```
 
-The end result is the same but by not mutating (or changing the underlying data) directly, we gain several benefits described below.
+התוצאה הסופית היא זהה, אך על ידי העתקה ללא מוטציה (או שינוי הנתונים הבסיסיים) ישירות, אנו מרוויחים מספר יתרונות המתוארים בהמשך.
 
-#### Complex Features Become Simple {#complex-features-become-simple}
+#### פיצ'רים מורכבים הופכים לפשוטים {#complex-features-become-simple}
 
-Immutability makes complex features much easier to implement. Later in this tutorial, we will implement a "time travel" feature that allows us to review the tic-tac-toe game's history and "jump back" to previous moves. This functionality isn't specific to games -- an ability to undo and redo certain actions is a common requirement in applications. Avoiding direct data mutation lets us keep previous versions of the game's history intact, and reuse them later.
+אי-יכולת השתנות הופכת פיצ'רים מורכבים להרבה יותר קלים ליישום. מאוחר יותר במדריך זה, נוכל ליישם פיצ'ר של "נסיעה בזמן" ("time travel") המאפשר לנו לסקור את היסטוריית משחק האיקס-עיגול ו"לקפוץ בחזרה" למהלכים קודמים במשחק. פונקציונליות זו אינה ספציפית למשחקים -- היכולת לבטל ולבצע מחדש פעולות מסוימות היא דרישה נפוצה בתוכנות. הימנעות ממוטציה ישירה של נתונים מאפשרת לנו לשמור על גירסאות קודמות של היסטוריית המשחק ללא שינוי, ולהשתמש בהן שוב במועד מאוחר יותר.
 
-#### Detecting Changes {#detecting-changes}
+#### זיהוי שינויים {#detecting-changes}
 
-Detecting changes in mutable objects is difficult because they are modified directly. This detection requires the mutable object to be compared to previous copies of itself and the entire object tree to be traversed.
+זיהוי שינויים באובייקטים משתנים היא קשה מכיוון שהם משתנים ישירות. זיהוי זה מחייב את האובייקט המשתנה להיות מושווה לעותקים קודמים של עצמו ומעבר על עץ האובייקט כולו.
 
-Detecting changes in immutable objects is considerably easier. If the immutable object that is being referenced is different than the previous one, then the object has changed.
+זיהוי שינויים באובייקטים בלתי ניתנים לשינוי הוא הרבה יותר קל. אם האובייקט הבלתי משתנה שאליו אנחנו מתייחסים שונה מהקודם, אזי האובייקט השתנה.
 
-#### Determining When to Re-render in React {#determining-when-to-re-render-in-react}
+#### ההחלטה מתי לרנדר מחדש ב-React {#determining-when-to-re-render-in-react}
 
-The main benefit of immutability is that it helps you build _pure components_ in React. Immutable data can easily determine if changes have been made which helps to determine when a component requires re-rendering.
+היתרון העיקרי של אי-יכולת השתנות הוא שהיא עוזר לנו לבנות _רכיבים טהורים (pure components)_ ב-React. נתונים בלתי ניתנים לשינוי מאפשרים לקבוע בקלות אם בוצעו שינויים, דבר אשר מסייע לקבוע מתי רכיב דורש רינדור מחדש.
 
-You can learn more about `shouldComponentUpdate()` and how you can build *pure components* by reading [Optimizing Performance](/docs/optimizing-performance.html#examples).
+אתם יכולים ללמוד עוד על `shouldComponentUpdate()` וכיצד ניתן לבנות *רכיבים טהורים* על ידי קריאת [אופטימיזציה של ביצועים](/docs/optimizing-performance.html#examples).
 
-### Function Components {#function-components}
+### רכיבי פונקציות {#function-components}
 
-We'll now change the Square to be a **function component**.
+כעת נשנה את הריבוע כך שיהיה **רכיב פונקציה (function component)**.
 
-In React, **function components** are a simpler way to write components that only contain a `render` method and don't have their own state. Instead of defining a class which extends `React.Component`, we can write a function that takes `props` as input and returns what should be rendered. Function components are less tedious to write than classes, and many components can be expressed this way.
+ב-React, **רכיבי פונקציה** הם דרך פשוטה יותר לכתוב רכיבים המכילים רק מתודת `render` ואין להם מצב משלהם. במקום להגדיר מחלקה המרחיבה את `React.Component`, אנו יכולים לכתוב פונקציה שמקבלת `props` כקלט ומחזירה את מה שצריך להיות מרונדר. רכיבי פונקציה הם פחות מייגעים לכתיבה מאשר מחלקות, ורכיבים רבים יכולים לבוא לידי ביטוי בדרך זו.
 
-Replace the Square class with this function:
+החליפו את מחלקת ריבוע בפונקציה הבאה:
 
 ```javascript
 function Square(props) {
@@ -605,19 +607,19 @@ function Square(props) {
 }
 ```
 
-We have changed `this.props` to `props` both times it appears.
+החלפנו את `this.props` ב-`props` בשתי הפעמים שהוא מופיע.
 
-**[View the full code at this point](https://codepen.io/gaearon/pen/QvvJOv?editors=0010)**
+**[צפו בקוד המלא עד נקודה זו](https://codepen.io/gaearon/pen/QvvJOv?editors=0010)**
 
->Note
+>שימו לב
 >
->When we modified the Square to be a function component, we also changed `onClick={() => this.props.onClick()}` to a shorter `onClick={props.onClick}` (note the lack of parentheses on *both* sides). In a class, we used an arrow function to access the correct `this` value, but in a function component we don't need to worry about `this`.
+>כאשר שינינו את הריבוע והפכנו אותו לרכיב פונקציה, שינינו גם את `onClick={() => this.props.onClick()}` לגירסה קצרה יותר `onClick={props.onClick}` (שימו לב לחיסרון בסוגריים *משני* הצדדים). במחלקה, השתמשנו בפונקצית החץ כדי לגשת לערך `this`, אבל ברכיב פונקציה אנחנו לא צריכים לדאוג ל-`this`.
 
-### Taking Turns {#taking-turns}
+### חלוקה לתורות {#taking-turns}
 
-We now need to fix an obvious defect in our tic-tac-toe game: the "O"s cannot be marked on the board.
+עכשיו אנחנו צריכים לתקן פגם ברור במשחק האיקס-עיגול שלנו: ה-"O"ים לא יכולים להיות מסומנים על הלוח.
 
-We'll set the first move to be "X" by default. We can set this default by modifying the initial state in our Board constructor:
+אנו נקבע את המהלך הראשון להיות "X" כברירת מחדל. אנו יכולים להגדיר את ברירת המחדל הזו על ידי שינוי המצב ההתחלתי בבנאי הלוח שלנו:
 
 ```javascript{6}
 class Board extends React.Component {
@@ -630,7 +632,7 @@ class Board extends React.Component {
   }
 ```
 
-Each time a player moves, `xIsNext` (a boolean) will be flipped to determine which player goes next and the game's state will be saved. We'll update the Board's `handleClick` function to flip the value of `xIsNext`:
+בכל פעם ששחקן מבצע מהלך, `xIsNext` (בוליאני) יתהפך כדי לקבוע איזה שחקן משחק בתור הבא ומצב המשחק יישמר. אנו נעדכן את הפונקציה `handleClick` של הלוח כדי להפוך את הערך של `xIsNext`:
 
 ```javascript{3,6}
   handleClick(i) {
@@ -643,17 +645,17 @@ Each time a player moves, `xIsNext` (a boolean) will be flipped to determine whi
   }
 ```
 
-With this change, "X"s and "O"s can take turns. Let's also change the "status" text in Board's `render` so that it displays which player has the next turn:
+עם שינוי זה, "X"ים ו"O"ים יכולים להתחלף בתורות. בואו נשנה גם את טקסט שורת המצב (ה-"status") בפונקציית `render` של הלוח כך שתציג איזה שחקן משחק את התור הבא:
 
 ```javascript{2}
   render() {
     const status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
 
     return (
-      // the rest has not changed
+      // ההמשך לא השתנה
 ```
 
-After applying these changes, you should have this Board component:
+לאחר החלת שינויים אלה, רכיב הלוח שלכם אמור להיראות כך:
 
 ```javascript{6,11-16,29}
 class Board extends React.Component {
@@ -710,11 +712,11 @@ class Board extends React.Component {
 }
 ```
 
-**[View the full code at this point](https://codepen.io/gaearon/pen/KmmrBy?editors=0010)**
+**[צפו בקוד המלא עד נקודה זו](https://codepen.io/gaearon/pen/KmmrBy?editors=0010)**
 
-### Declaring a Winner {#declaring-a-winner}
+### הכרזת הזוכה {#declaring-a-winner}
 
-Now that we show which player's turn is next, we should also show when the game is won and there are no more turns to make. We can determine a winner by adding this helper function to the end of the file:
+עכשיו שאנחנו כבר מראים איזה שחקן הבא בתור, אנחנו צריכים להראות גם כאשר המשחק הסתיים ואין יותר תורות לעשות. אנחנו יכולים לקבוע שיש זוכה על ידי הוספת פונקצית העזר הבאה בסוף הקובץ:
 
 ```javascript
 function calculateWinner(squares) {
@@ -738,7 +740,7 @@ function calculateWinner(squares) {
 }
 ```
 
-We will call `calculateWinner(squares)` in the Board's `render` function to check if a player has won. If a player has won, we can display text such as "Winner: X" or "Winner: O". We'll replace the `status` declaration in Board's `render` function with this code:
+אנחנו נקרא לפונקציה `calculateWinner(squares)` מתוך הפונקציה `render` של הלוח כדי לבדוק אם שחקן זכה. אם שחקן זכה, אנו יכולים להציג טקסט כגון "הזוכה: X" או "הזוכה: O". אנו מחליפים את הצהרת "שורת המצב" (`status`) בפונקציה `render` של הלוח באמצעות קוד זה:
 
 ```javascript{2-8}
   render() {
@@ -754,7 +756,7 @@ We will call `calculateWinner(squares)` in the Board's `render` function to chec
       // the rest has not changed
 ```
 
-We can now change the Board's `handleClick` function to return early by ignoring a click if someone has won the game or if a Square is already filled:
+כעת אנו יכולים לשנות את הפונקציה `handleClick` של הלוח כדי שתחזור מהר יותר על ידי התעלמות מקליק אם מישהו זכה במשחק או אם ריבוע כבר מלא:
 
 ```javascript{3-5}
   handleClick(i) {
@@ -770,21 +772,21 @@ We can now change the Board's `handleClick` function to return early by ignoring
   }
 ```
 
-**[View the full code at this point](https://codepen.io/gaearon/pen/LyyXgK?editors=0010)**
+**[צפו בקוד המלא עד נקודה זו](https://codepen.io/gaearon/pen/LyyXgK?editors=0010)**
 
-Congratulations! You now have a working tic-tac-toe game. And you've just learned the basics of React too. So *you're* probably the real winner here.
+מזל טוב! עכשיו יש לנו משחק איקס-עיגול עובד. וזה עתה גם למדתם את היסודות של React. אז *אתם* כנראה המנצחים האמיתיים כאן.
 
-## Adding Time Travel {#adding-time-travel}
+## הוספת מסע בזמן {#adding-time-travel}
 
-As a final exercise, let's make it possible to "go back in time" to the previous moves in the game.
+בתור תרגיל אחרון, בואו נאפשר "לחזור אחורה בזמן" (time travel) למהלכים הקודמים במשחק.
 
-### Storing a History of Moves {#storing-a-history-of-moves}
+### אחסון היסטוריה של מהלכים {#storing-a-history-of-moves}
 
-If we mutated the `squares` array, implementing time travel would be very difficult.
+אם היינו משנים ערכים במערך `squares`, יישום הנסיעה בזמן היה קשה מאוד.
 
-However, we used `slice()` to create a new copy of the `squares` array after every move, and [treated it as immutable](#why-immutability-is-important). This will allow us to store every past version of the `squares` array, and navigate between the turns that have already happened.
+לעומת זאת, מאחר שהשתמשנו ב-`slice()` כדי ליצור עותק חדש של מערך הריבועים `squares` לאחר כל מהלך, ו[התייחסנו אליו כבלתי ניתן לשינוי](#why-immutability-is-important). הדבר יאפשר לנו לאחסן כל גרסה קודמת של מערך הריבועים `squares`, ולנווט בין התורות שכבר התרחשו.
 
-We'll store the past `squares` arrays in another array called `history`. The `history` array represents all board states, from the first to the last move, and has a shape like this:
+נשמור את מערכי הריבועים `squares` הקודמים במערך אחר שלו נקרא היסטוריה (`history`). מערך ההיסטוריה מייצג את כל מצבי הלוח, מהצעד הראשון ועד האחרון, ויש לו צורה כזאת:
 
 ```javascript
 history = [
@@ -816,15 +818,15 @@ history = [
 ]
 ```
 
-Now we need to decide which component should own the `history` state.
+עכשיו אנחנו צריכים להחליט איזה רכיב צריך להיות הבעלים של הסטוריית המצב (`history`).
 
-### Lifting State Up, Again {#lifting-state-up-again}
+### הרמת ה-State למעלה, שוב {#lifting-state-up-again}
 
-We'll want the top-level Game component to display a list of past moves. It will need access to the `history` to do that, so we will place the `history` state in the top-level Game component.
+נרצה שרכיב המשחק ברמה העליונה ביותר יציג רשימה של מהלכים קודמים. הוא יזדקק לגישה למשתנה ההיסטוריה `history` כדי לעשות זאת, לכן נציב את היסטוריית המצבים `history` ברכיב המשחק ברמה העליונה.
 
-Placing the `history` state into the Game component lets us remove the `squares` state from its child Board component. Just like we ["lifted state up"](#lifting-state-up) from the Square component into the Board component, we are now lifting it up from the Board into the top-level Game component. This gives the Game component full control over the Board's data, and lets it instruct the Board to render previous turns from the `history`.
+הצבת מצב ההיסטוריה `history` ברכיב המשחק מאפשרת לנו להסיר את מצב הריבועים `squares` מהבן שלו, רכיב הלוח. בדיוק כמו ש["הרמנו את המצב למעלה"](#lifting-state-up) מרכיב הריבוע לתוך רכיב הלוח, עכשיו נרים אותו מהלוח לתוך הרמה העליונה שהיא רכיב המשחק. זה נותן לרכיב המשחק שליטה מלאה בנתוני הלוח, ומאפשר לו להנחות את הלוח לרנדר תורים קודמים ממתוך ההיסטוריה `history`.
 
-First, we'll set up the initial state for the Game component within its constructor:
+ראשית, עלינו להגדיר את המצב הראשוני של רכיב המשחק בתוך הבנאי שלו:
 
 ```javascript{2-10}
 class Game extends React.Component {
@@ -854,13 +856,13 @@ class Game extends React.Component {
 }
 ```
 
-Next, we'll have the Board component receive `squares` and `onClick` props from the Game component. Since we now have a single click handler in Board for many Squares, we'll need to pass the location of each Square into the `onClick` handler to indicate which Square was clicked. Here are the required steps to transform the Board component:
+הדבר הבא שיהיה עלינו לעשות הוא לדאוג שרכיב הלוח יקבל את מאפייני הריבועים (`squares`) ו-`onClick` מרכיב המשחק. מכיוון שיש לנו כעת מנהל אירוע לחיצה יחיד בלוח עבור מספר רב של ריבועים, נצטרך להעביר את המיקום של כל ריבוע לתוך מנהל האירוע `onClick` כדי לציין איזה ריבוע נלחץ. לפניכם השלבים הנדרשים כדי לשנות את רכיב הלוח:
 
-* Delete the `constructor` in Board.
-* Replace `this.state.squares[i]` with `this.props.squares[i]` in Board's `renderSquare`.
-* Replace `this.handleClick(i)` with `this.props.onClick(i)` in Board's `renderSquare`.
+* מחיקת הבנאי `constructor` מהלוח.
+* החלפת `this.state.squares[i]` ב-`this.props.squares[i]` בפונקציית `renderSquare` של הלוח.
+* החלפת `this.handleClick(i)` ב-`this.props.onClick(i)` בפונקציית `renderSquare` של הלוח.
 
-The Board component now looks like this:
+רכיב הלוח נראה עכשיו כך:
 
 ```javascript{17,18}
 class Board extends React.Component {
@@ -918,7 +920,7 @@ class Board extends React.Component {
 }
 ```
 
-We'll update the Game component's `render` function to use the most recent history entry to determine and display the game's status:
+אנו נעדכן את הפונקציה `render` של רכיב המשחק כך שתשתמש בערך ההיסטוריה העדכני ביותר כדי לקבוע ולהציג את מצב המשחק:
 
 ```javascript{2-11,16-19,22}
   render() {
@@ -950,7 +952,7 @@ We'll update the Game component's `render` function to use the most recent histo
   }
 ```
 
-Since the Game component is now rendering the game's status, we can remove the corresponding code from the Board's `render` method. After refactoring, the Board's `render` function looks like this:
+מאחר שרכיב המשחק מרנדר עכשיו את מצב המשחק, אנו יכולים להסיר את הקוד התואם ממתודת `render` של הלוח. לאחר שכתוב הקוד, הפונקציה `render` של הלוח נראית כך:
 
 ```js{1-4}
   render() {
@@ -976,7 +978,7 @@ Since the Game component is now rendering the game's status, we can remove the c
   }
 ```
 
-Finally, we need to move the `handleClick` method from the Board component to the Game component. We also need to modify `handleClick` because the Game component's state is structured differently. Within the Game's `handleClick` method, we concatenate new history entries onto `history`.
+לסיום, אנחנו צריכים להעביר את המתודה `handleClick` מרכיב הלוח אל רכיב המשחק. אנחנו צריכים גם לשנות את `handleClick` כי המצב של רכיב המשחק הוא בעל מבנה בצורה שונה. בתוך מתודת `handleClick` של המשחק, אנו משרשרים ערכי היסטוריה חדשים לתוך ההיסטוריה `history`.
 
 ```javascript{2-4,10-12}
   handleClick(i) {
@@ -996,30 +998,30 @@ Finally, we need to move the `handleClick` method from the Board component to th
   }
 ```
 
->Note
+>שימו לב
 >
->Unlike the array `push()` method you might be more familiar with, the `concat()` method doesn't mutate the original array, so we prefer it.
+>שלא כמו המתודה `push()` של מערך שיתכן שאתם מכירים טוב יותר, המתודה `concat()` אינה משנה את המערך המקורי, לכן אנו מעדיפים אותה.
 
-At this point, the Board component only needs the `renderSquare` and `render` methods. The game's state and the `handleClick` method should be in the Game component.
+בשלב זה, רכיב הלוח צריך רק את מתודות ה-`renderSquare` ו-`render`. מצב המשחק והמתודה `handleClick` צריכים להיות ברכיב המשחק.
 
-**[View the full code at this point](https://codepen.io/gaearon/pen/EmmOqJ?editors=0010)**
+**[צפו בקוד המלא עד נקודה זו](https://codepen.io/gaearon/pen/EmmOqJ?editors=0010)**
 
-### Showing the Past Moves {#showing-the-past-moves}
+### הצגת המהלכים הקודמים {#showing-the-past-moves}
 
-Since we are recording the tic-tac-toe game's history, we can now display it to the player as a list of past moves.
+מכיוון שאנו מקליטים את ההיסטוריה של משחק האיקס-עיגול, אנו יכולים כעת להציג אותה לשחקן כרשימה של מהלכים קודמים.
 
-We learned earlier that React elements are first-class JavaScript objects; we can pass them around in our applications. To render multiple items in React, we can use an array of React elements.
+למדנו מוקדם יותר כי רכיבי React הם אובייקטי JavaScript מדרגה ראשונה; אנחנו יכולים להעביר אותם בין מחלקות ופונקציות ביישומים שלנו. כדי לרנדר פריטים מרובים ב- React, אנו יכולים להשתמש במערך של רכיבי React.
 
-In JavaScript, arrays have a [`map()` method](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) that is commonly used for mapping data to other data, for example:
+ב-JavaScript, למערכים יש את [`מתודת map()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) אשר נעשה בה שימוש לעתים קרובות כדי למפות מידע למידע אחר, למשל:
 
 ```js
 const numbers = [1, 2, 3];
 const doubled = numbers.map(x => x * 2); // [2, 4, 6]
 ```
 
-Using the `map` method, we can map our history of moves to React elements representing buttons on the screen, and display a list of buttons to "jump" to past moves.
+על ידי שימוש במתודה `map`, אנו יכולים למפות את היסטוריית המהלכים שלנו לרכיבי React המייצגים לחצנים על המסך, ולהציג רשימה של לחצנים כדי "לקפוץ" למהלכים קודמים.
 
-Let's `map` over the `history` in the Game's `render` method:
+בואו נמפה בעזרת `map` את ההיסטוריה `history` במתודה `render` של המשחק:
 
 ```javascript{6-15,34}
   render() {
@@ -1062,27 +1064,32 @@ Let's `map` over the `history` in the Game's `render` method:
   }
 ```
 
-**[View the full code at this point](https://codepen.io/gaearon/pen/EmmGEa?editors=0010)**
+**[צפו בקוד המלא עד נקודה זו](https://codepen.io/gaearon/pen/EmmGEa?editors=0010)**
 
-For each move in the tic-tac-toes's game's history, we create a list item `<li>` which contains a button `<button>`. The button has a `onClick` handler which calls a method called `this.jumpTo()`. We haven't implemented the `jumpTo()` method yet. For now, we should see a list of the moves that have occurred in the game and a warning in the developer tools console that says:
+עבור כל מהלך בהיסטוריית משחק האיקס-עיגול, אנו יוצרים פריט רשימה `<li>` המכיל כפתור `<button>`. לכפתור יש מנהל אירוע `onClick` אשר קורא למתודה הנקראת `this.jumpTo()`. לא יישמנו את המתודה `jumpTo()` עדיין. לעת עתה, אנחנו צריכים לראות רשימה של המהלכים שהתרחשו במשחק ואזהרה במסוף כלי הפיתוח (developer tools console) שאומרת:
 
 >  Warning:
 >  Each child in an array or iterator should have a unique "key" prop. Check the render method of "Game".
 
-Let's discuss what the above warning means.
+תרגום:
 
-### Picking a Key {#picking-a-key}
+>  אזהרה:
+>  כל ילד במערך או איטרטור צריך להיות בעל "מפתח" ייחודי. בדוק את מתודת רנדר של "משחק".
 
-When we render a list, React stores some information about each rendered list item. When we update a list, React needs to determine what has changed. We could have added, removed, re-arranged, or updated the list's items.
+בואו נדבר על משמעות האזהרה למעלה.
 
-Imagine transitioning from
+### בחירת מפתח {#picking-a-key}
+
+כאשר אנו מרנדרים רשימה, React מאחסן מידע על כל פריט רשימה שרונדר. כאשר אנו מעדכנים רשימה, React צריכה לקבוע מה השתנה. יכולנו להוסיף, להסיר, לסדר מחדש או לעדכן את הפריטים ברשימה.
+
+תארו לעצמכם מעבר ממצב
 
 ```html
 <li>Alexa: 7 tasks left</li>
 <li>Ben: 5 tasks left</li>
 ```
 
-to
+למצב
 
 ```html
 <li>Ben: 9 tasks left</li>
@@ -1090,28 +1097,28 @@ to
 <li>Alexa: 5 tasks left</li>
 ```
 
-In addition to the updated counts, a human reading this would probably say that we swapped Alexa and Ben's ordering and inserted Claudia between Alexa and Ben. However, React is a computer program and does not know what we intended. Because React cannot know our intentions, we need to specify a *key* property for each list item to differentiate each list item from its siblings. One option would be to use the strings `alexa`, `ben`, `claudia`. If we were displaying data from a database, Alexa, Ben, and Claudia's database IDs could be used as keys.
+בנוסף לספירות המעודכנות, בן-אדם שקורא קוד זה בוודאי יגיד שהחלפנו את הסדר של אלקסה ובן והכניסנו את קלאודיה בין אלקסה ובן. לעומת זאת, React היא תוכנת מחשב ואינה יודעת מה התכוונו. מכיוון ש-React אינה יכולה לדעת את כוונותינו, אנו צריכים לציין מאפיין *מפתח (key)* עבור כל פריט ברשימה כדי להבדיל כל פריט רשימה מהאחים שלו. אפשרות אחת היא להשתמש במחרוזות `alexa`, `ben`, `claudia`. אם היינו מציגים נתונים ממסד נתונים, היינו יכולים להשתמש במזהי מסד הנתונים של Alexa, Ben ו-Claudia.
 
 ```html
 <li key={user.id}>{user.name}: {user.taskCount} tasks left</li>
 ```
 
-When a list is re-rendered, React takes each list item's key and searches the previous list's items for a matching key. If the current list has a key that didn't exist before, React creates a component. If the current list is missing a key that existed in the previous list, React destroys the previous component. If two keys match, the corresponding component is moved. Keys tell React about the identity of each component which allows React to maintain state between re-renders. If a component's key changes, the component will be destroyed and re-created with a new state.
+כאשר רשימה מרונדרת מחדש, React לוקחת כל מפתח של פריט ברשימה ומחפשת עבור מפתח תואם בפריטים ברשימה הקודמת. אם הרשימה הנוכחית כוללת מפתח שלא היה קיים קודם לכן, React יוצרת רכיב חדש. אם ברשימה הנוכחית חסר מפתח שהיה קיים ברשימה הקודמת, React משמידה את הרכיב הקודם. אם שני מפתחות תואמים, הרכיב המתאים מועבר. מפתחות מספרים ל-React על הזהות של כל רכיב, דבר המאפשר ל-React לשמור על המצב בין רינדורים מחדש. אם מפתח של רכיב משתנה, הרכיב יושמד וייווצר מחדש עם מצב חדש.
 
-`key` is a special and reserved property in React (along with `ref`, a more advanced feature). When an element is created, React extracts the `key` property and stores the key directly on the returned element. Even though `key` may look like it belongs in `props`, `key` cannot be referenced using `this.props.key`. React automatically uses `key` to decide which components to update. A component cannot inquire about its `key`.
+המאפיין `key` (מפתח) הוא מאפיין מיוחד ושמור ב- React (יחד עם `ref`, תכונה מתקדמת יותר). כאשר נוצר אלמנט, React מחלץ את המאפיין `key` ומאחסן את המפתח ישירות על האלמנט המוחזר. למרות ש-`key` נראה כאילו הוא שייך ל-`props`, לא ניתן לפנות אל `key` באמצעות `this.props.key`. React משתמשת אוטומטית ב-`key` כדי להחליט אילו רכיבים לעדכן. רכיב לא יכול לתשאל על ה-`key` שלו.
 
-**It's strongly recommended that you assign proper keys whenever you build dynamic lists.** If you don't have an appropriate key, you may want to consider restructuring your data so that you do.
+**מומלץ מאוד להקצות מפתחות הולמים בכל פעם שאתם בונה רשימות דינמיות.** אם אין לכם מפתח הולם, מומלץ לשקול ארגון מחדש של הנתונים שלכם כך שיהיו לכם כאלו.
 
-If no key is specified, React will present a warning and use the array index as a key by default. Using the array index as a key is problematic when trying to re-order a list's items or inserting/removing list items. Explicitly passing `key={i}` silences the warning but has the same problems as array indices and is not recommended in most cases.
+אם לא צוין מפתח, React תציג אזהרה ותשתמש באינדקס של המערך כמפתח כברירת מחדל. שימוש באינדקס המערך כמפתח הוא בעייתי בעת ניסיון לבצע סידור מחדש של פריטי רשימה או הוספה/הסרה של פריטי רשימה. הגדרת `key={i}` במפורש משתיקה את האזהרה אבל משאירה את אותן בעיות כמו אינדקסים של מערך והיא לא מומלצת ברוב המקרים.
 
-Keys do not need to be globally unique; they only need to be unique between components and their siblings.
+מפתחות לא צריכים להיות ייחודיים גלובלית; הם רק צריכים להיות ייחודיים בין רכיבים לבין האחים שלהם.
 
 
-### Implementing Time Travel {#implementing-time-travel}
+### מימוש מסע בזמן {#implementing-time-travel}
 
-In the tic-tac-toe game's history, each past move has a unique ID associated with it: it's the sequential number of the move. The moves are never re-ordered, deleted, or inserted in the middle, so it's safe to use the move index as a key.
+בהיסטוריה של משחק האיקס-עיגול, לכל מהלך קודם יש מזהה ייחודי הקשור אליו: זהו המספר הסידורי של המהלך. המהלכים לעולם אינם מסודרים מחדש, נמחקים, או מוכנסים באמצע, לכן בטוח להשתמש באינדקס המהלך כמפתח.
 
-In the Game component's `render` method, we can add the key as `<li key={move}>` and React's warning about keys should disappear:
+במתודת `render` של רכיב המשחק, נוכל להוסיף את המפתח כ-`<li key={move}>` והאזהרה של React בנוגע למפתחות אמורה להיעלם:
 
 ```js{6}
     const moves = history.map((step, move) => {
@@ -1126,11 +1133,11 @@ In the Game component's `render` method, we can add the key as `<li key={move}>`
     });
 ```
 
-**[View the full code at this point](https://codepen.io/gaearon/pen/PmmXRE?editors=0010)**
+**[צפו בקוד המלא עד נקודה זו](https://codepen.io/gaearon/pen/PmmXRE?editors=0010)**
 
-Clicking any of the list item's buttons throws an error because the `jumpTo` method is undefined. Before we implement `jumpTo`, we'll add `stepNumber` to the Game component's state to indicate which step we're currently viewing.
+לחיצה על כל אחד מכפתורי פריטי הרשימה זורקת שגיאה מכיוון שמתודת `jumpTo` אינה מוגדרת. לפני שאנו מיישמים את `jumpTo`, נוסיף את מספר התור `stepNumber` למצב של רכיב המשחק כדי לציין באיזה צעד אנו צופים כעת.
 
-First, add `stepNumber: 0` to the initial state in Game's `constructor`:
+ראשית, הוסיפו את `stepNumber: 0` למצב ההתחלתי בבנאי של המשחק:
 
 ```js{8}
 class Game extends React.Component {
@@ -1146,11 +1153,11 @@ class Game extends React.Component {
   }
 ```
 
-Next, we'll define the `jumpTo` method in Game to update that `stepNumber`. We also set `xIsNext` to true if the number that we're changing `stepNumber` to is even:
+בשלב הבא, נגדיר את מתודת `jumpTo` במשחק כדי לעדכון את מספר הצעד `stepNumber`. בנוסף נקבע את `xIsNext` ל-`true` אם המספר שאנו משנים את `stepNumber` להיות הוא זוגי:
 
 ```javascript{5-10}
   handleClick(i) {
-    // this method has not changed
+    // המתודה לא השתנתה
   }
 
   jumpTo(step) {
@@ -1161,15 +1168,15 @@ Next, we'll define the `jumpTo` method in Game to update that `stepNumber`. We a
   }
 
   render() {
-    // this method has not changed
+    // המתודה לא השתנתה
   }
 ```
 
-We will now make a few changes to the Game's `handleClick` method which fires when you click on a square.
+כעת נערוך מספר שינויים במתודת `handleClick` של המשחק אשר נקראת כאשר השחקן לוחץ על ריבוע.
 
-The `stepNumber` state we've added reflects the move displayed to the user now. After we make a new move, we need to update `stepNumber` by adding `stepNumber: history.length` as part of the `this.setState` argument. This ensures we don't get stuck showing the same move after a new one has been made.
+מצב `stepNumber` שהוספנו משקף את המהלך המוצג למשתמש כעת. לאחר שנעשה מהלך חדש, עלינו לעדכן את `stepNumber` על-ידי הוספת `stepNumber: history.length` כחלק מהארגומנטים של `this.setState`. זה מבטיח שאנחנו לא נתקע כשאנחנו מראים את אותו מהלך אחרי שמהלך חדש כבר בוצע.
 
-We will also replace reading `this.state.history` with `this.state.history.slice(0, this.state.stepNumber + 1)`. This ensures that if we "go back in time" and then make a new move from that point, we throw away all the "future" history that would now become incorrect.
+בנוסף נחליף את הקריאה מ-`this.state.history` עם `this.state.history.slice(0, this.state.stepNumber + 1)`. זה מבטיח שאם אנחנו "חוזרים אחורה בזמן" ולאחר מכן עושים מהלך חדש מנקודה זו, אנו זורקים את כל ההיסטוריה "העתידית" שעכשיו תיהפך לשגויה.
 
 ```javascript{2,13}
   handleClick(i) {
@@ -1190,7 +1197,7 @@ We will also replace reading `this.state.history` with `this.state.history.slice
   }
 ```
 
-Finally, we will modify the Game component's `render` method from always rendering the last move to rendering the currently selected move according to `stepNumber`:
+לסיום, נשנה את מתודת `render` של רכיב המשחק מרינדור קבוע של המהלך האחרון לרינדור של המהלך שבחור כעת לפי `stepNumber`:
 
 ```javascript{3}
   render() {
@@ -1201,30 +1208,30 @@ Finally, we will modify the Game component's `render` method from always renderi
     // the rest has not changed
 ```
 
-If we click on any step in the game's history, the tic-tac-toe board should immediately update to show what the board looked like after that step occurred.
+אם נלחץ על כל צעד בהיסטורית המשחק, לוח האיקס-עיגול צריך להתעדכן באופן מיידי כדי להראות איך הלוח נראה לאחר שצעד זה התרחש.
 
-**[View the full code at this point](https://codepen.io/gaearon/pen/gWWZgR?editors=0010)**
+**[צפו בקוד המלא עד נקודה זו](https://codepen.io/gaearon/pen/gWWZgR?editors=0010)**
 
-### Wrapping Up {#wrapping-up}
+### לסיום {#wrapping-up}
 
-Congratulations! You've created a tic-tac-toe game that:
+ברכותינו! יצרתם משחק איקס-עיגול אשר:
 
-* Lets you play tic-tac-toe,
-* Indicates when a player has won the game,
-* Stores a game's history as a game progresses,
-* Allows players to review a game's history and see previous versions of a game's board.
+* מאפשר לכם לשחק איקס-עיגול,
+* מציין מתי ששחקן ניצח במשחק,
+* שומר הסטוריית משחק ככל שהמשחק מתקדם,
+* מאפשר לשחקנים לסקור את היסטוריית המשחק ולראות גרסאות קודמות של לוח המשחק.
 
-Nice work! We hope you now feel like you have a decent grasp on how React works.
+עבודה טובה! אנו מקווים כי עכשיו אתם מרגישים שיש לכם הבנה טובה על איך עובדת React.
 
-Check out the final result here: **[Final Result](https://codepen.io/gaearon/pen/gWWZgR?editors=0010)**.
+בדקו את התוצאה הסופית כאן: **[תוצאה סופית](https://codepen.io/gaearon/pen/gWWZgR?editors=0010)**.
 
-If you have extra time or want to practice your new React skills, here are some ideas for improvements that you could make to the tic-tac-toe game which are listed in order of increasing difficulty:
+אם יש לכם זמן נוסף או שתרצו לתרגל את מיומנויות React החדשות שלכם, הנה כמה רעיונות לשיפורים שאתם יכולים לעשות למשחק האיקס-עיגול אשר מוצגים בסדר קושי עולה:
 
-1. Display the location for each move in the format (col, row) in the move history list.
-2. Bold the currently selected item in the move list.
-3. Rewrite Board to use two loops to make the squares instead of hardcoding them.
-4. Add a toggle button that lets you sort the moves in either ascending or descending order.
-5. When someone wins, highlight the three squares that caused the win.
-6. When no one wins, display a message about the result being a draw.
+1. הציגו את המיקום עבור כל מהלך בתבנית (עמודה, שורה) ברשימת ההיסטוריה של המהלכים.
+2. הדגישו את הפריט שבחור כעת ברשימת המהלכים.
+3. שכתבו את הלוח כך שישתמש בשתי לולאות כדי לייצר את הריבועים במקום שיהיו כתובים בקידוד קשיח (hardcoded).
+4. הוספת כפתור "החלפה" המאפשר למיין את המהלכים בסדר עולה או יורד.
+5. כאשר מישהו זוכה, הדגישו את שלושת הריבועים שגרמו לניצחון.
+6. כאשר אין זוכה, הציגו הודעה על כך שהתוצאה היא תיקו.
 
-Throughout this tutorial, we touched on React concepts including elements, components, props, and state. For a more detailed explanation of each of these topics, check out [the rest of the documentation](/docs/hello-world.html). To learn more about defining components, check out the [`React.Component` API reference](/docs/react-component.html).
+במהלך מדריך זה, נגענו בקונספטים של React כולל אלמנטים, רכיבים, מאפיינים, ומצב. לקבלת הסבר מפורט יותר על כל אחד מהנושאים הללו, עיינו ב[שאר התיעוד](/docs/hello-world.html). כדי ללמוד עוד אודות הגדרת רכיבים, עיינו ב-[`React.Component` API reference](/docs/react-component.html).
