@@ -132,21 +132,13 @@ const Header = ({location}: {location: Location}) => (
             to="/tutorial/tutorial.html"
           />
           <HeaderLink
-<<<<<<< HEAD
-            isActive={location.pathname.includes('/community/')}
-            title="קהילה"
-            to="/community/support.html"
-          />
-          <HeaderLink
-=======
->>>>>>> bab2a3491a18e7074799272d60c8a159473bb7f5
             isActive={location.pathname.includes('/blog')}
             title="בלוג"
             to="/blog/"
           />
           <HeaderLink
             isActive={location.pathname.includes('/community/')}
-            title="Community"
+            title="קהילה"
             to="/community/support.html"
           />
         </nav>
@@ -167,7 +159,7 @@ const Header = ({location}: {location: Location}) => (
             //width: 'calc(100% / 4)',
             //},
           }}>
-          <a
+          <Link
             css={{
               padding: '5px 10px',
               marginRight: 10,
@@ -188,21 +180,6 @@ const Header = ({location}: {location: Location}) => (
                 display: 'none',
               },
             }}
-<<<<<<< HEAD
-            href="https://github.com/facebook/react/"
-            target="_blank"
-            rel="noopener">
-            GitHub
-            <ExternalLinkSvg
-              cssProps={{
-                marginLeft: 5,
-                verticalAlign: -2,
-                color: colors.subtle,
-              }}
-            />
-          </a>
-          <Link
-=======
             to="/versions">
             v{version}
           </Link>
@@ -228,19 +205,19 @@ const Header = ({location}: {location: Location}) => (
             <LanguagesIcon />{' '}
             <span
               css={{
-                marginLeft: '0.5rem',
+                marginRight: '0.5rem',
 
                 [media.lessThan('medium')]: {
                   display: 'none',
                 },
               }}>
-              Languages
+              שפות
             </span>
           </Link>
           <a
->>>>>>> bab2a3491a18e7074799272d60c8a159473bb7f5
             css={{
               padding: '5px 10px',
+              marginRight: 10,
               whiteSpace: 'nowrap',
               ...fonts.small,
 
@@ -254,13 +231,22 @@ const Header = ({location}: {location: Location}) => (
                 borderRadius: 15,
               },
 
-              [media.lessThan('large')]: {
+              [media.lessThan('medium')]: {
                 display: 'none',
               },
             }}
-            to="/versions">
-            v{version}
-          </Link>
+            href="https://github.com/facebook/react/"
+            target="_blank"
+            rel="noopener">
+            GitHub
+            <ExternalLinkSvg
+              cssProps={{
+                marginRight: 5,
+                verticalAlign: -2,
+                color: colors.subtle,
+              }}
+            />
+        </a>
         </div>
       </div>
     </Container>

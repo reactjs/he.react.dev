@@ -46,29 +46,29 @@ const Languages = ({location}: Props) => (
     <Container>
       <div css={sharedStyles.articleLayout.container}>
         <div css={sharedStyles.articleLayout.content}>
-          <Header>Languages</Header>
-          <TitleAndMetaTags title="React - Languages" />
+          <Header>שפות</Header>
+          <TitleAndMetaTags title="React - שפות" />
 
           <div css={sharedStyles.markdown}>
             <p>
-              The React documentation is available in the following languages:
+              התיעוד של React זמין בשפות הבאות:
             </p>
 
             <LanguagesGrid languages={complete} />
 
-            <h2>In Progress</h2>
+            <h2>בתהליך</h2>
             <LanguagesGrid languages={partial} />
 
-            <h2>Needs Contributors</h2>
+            <h2>דורש מתנדבים</h2>
             <LanguagesGrid languages={incomplete} />
 
             <p>
-              Don't see your language above?{' '}
+              לא רואים את השפה שלכם למעלה?{' '}
               <a
                 href="https://github.com/reactjs/reactjs.org-translation#reactjsorg-translation"
                 target="_blank"
                 rel="noopener">
-                Let us know
+                ספרו לנו
               </a>
               .
             </p>
@@ -84,7 +84,7 @@ const LanguagesGrid = ({languages}) => (
     css={{
       display: 'flex',
       flexWrap: 'wrap',
-      marginLeft: -20,
+      marginRight: -20,
     }}>
     {languages
       .sort((a, b) => a.code.localeCompare(b.code))
@@ -106,7 +106,7 @@ const Language = ({code, name, status, translatedName}) => {
   return (
     <li
       css={{
-        paddingLeft: 20,
+        paddingRight: 20,
         paddingTop: 20,
         borderTop: '1px dotted #ececec',
         paddingBottom: 20,
@@ -149,7 +149,7 @@ const Language = ({code, name, status, translatedName}) => {
           href={`https://github.com/reactjs/${prefix}reactjs.org/`}
           target="_blank"
           rel="noopener">
-          Contribute
+          התנדבו
         </a>
       </div>
     </li>
