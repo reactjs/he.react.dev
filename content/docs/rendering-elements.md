@@ -34,7 +34,7 @@ Unlike browser DOM elements, React elements are plain objects, and are cheap to 
 
 בדרך כלל, אפליקציות הנבנות עם ריאקט הן בעלות קודקוד DOM שורשי אחד. במידה ואתה משלב את ריאקט לתוך אפליקציה קיימת, אתה יכול להשתמש בכמות בלתי מוגבלת של קודקודי DOM שורשיים.
 
-על ממת לצייר אלמנט ריאקטי לתוך קודקוד DOM שורשי, העבר אותם אל הפונקציה `ReactDOM.render()`:
+על מנת לצייר אלמנט ריאקטי לתוך קודקוד DOM שורשי, העבר אותם אל הפונקציה `ReactDOM.render()`:
 
 `embed:rendering-elements/render-an-element.js`
 
