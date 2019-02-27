@@ -1,6 +1,6 @@
 ---
 id: handling-events
-title: Handling Events
+title: טיפול באירועים
 permalink: docs/handling-events.html
 prev: state-and-lifecycle.html
 next: conditional-rendering.html
@@ -8,36 +8,36 @@ redirect_from:
   - "docs/events-ko-KR.html"
 ---
 
-Handling events with React elements is very similar to handling events on DOM elements. There are some syntactic differences:
+טיפול באירועים עם אלמנטים של React דומה מאוד לטיפול באירועים באלמנטים של DOM. ישנם כמה הבדלים תחביריים:
 
-* React events are named using camelCase, rather than lowercase.
-* With JSX you pass a function as the event handler, rather than a string.
+* שמות אירועים של React נכתבים באמצעות תחביר camelCase (כל תחילת מילה באות גדולה פרט לראשונה), ולא באותיות קטנות.
+* ב-JSX מעבירים פונקציה כמטפל האירוע, ולא מחרוזת.
 
-For example, the HTML:
+למשל, ה-HTML:
 
 ```html
 <button onclick="activateLasers()">
-  Activate Lasers
+  הפעל לייזרים
 </button>
 ```
 
-is slightly different in React:
+הוא מעט שונה ב-React:
 
 ```js{1}
 <button onClick={activateLasers}>
-  Activate Lasers
+  הפעל לייזרים
 </button>
 ```
 
-Another difference is that you cannot return `false` to prevent default behavior in React. You must call `preventDefault` explicitly. For example, with plain HTML, to prevent the default link behavior of opening a new page, you can write:
+הבדל נוסף הוא שאינכם יכולים להחזיר `false` כדי למנוע התנהגות ברירת מחדל ב-React. אתם חייבים לקרוא ל-`preventDefault` במפורש. לדוגמה, עם HTML רגיל, כדי למנוע את התנהגות ברירת המחדל עבור קישור של פתיחת דף חדש, אתם יכולים לכתוב:
 
 ```html
-<a href="#" onclick="console.log('The link was clicked.'); return false">
-  Click me
+<a href="#" onclick="console.log('הקישור נלחץ.'); return false">
+  לחץ עלי
 </a>
 ```
 
-In React, this could instead be:
+ב-React, זה יכול להיות במקום זאת:
 
 ```js{2-5,8}
 function ActionLink() {
@@ -54,11 +54,11 @@ function ActionLink() {
 }
 ```
 
-Here, `e` is a synthetic event. React defines these synthetic events according to the [W3C spec](https://www.w3.org/TR/DOM-Level-3-Events/), so you don't need to worry about cross-browser compatibility. See the [`SyntheticEvent`](/docs/events.html) reference guide to learn more.
+כאן, `e` הוא אירוע סינתטי. React מגדיר אירועים סינתטיים אלה בהתאם ל[מפרט W3C](https://www.w3.org/TR/DOM-Level-3-Events/), כך שאתם לא צריכים לדאוג לתאימות בין דפדפנים. עיינו בהפנייה למדריך [`SyntheticEvent`](/docs/events.html) כדי ללמוד עוד.
 
-When using React you should generally not need to call `addEventListener` to add listeners to a DOM element after it is created. Instead, just provide a listener when the element is initially rendered.
+בעת שימוש ב-React אתם בדרך כלל לא צריכים לקרוא ל-`addEventListener` כדי להוסיף מאזינים לאלמנט DOM לאחר שנוצר. במקום זאת, רק ספקו מאזין כאשר האלמנט רונדר בהתחלה.
 
-When you define a component using an [ES6 class](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes), a common pattern is for an event handler to be a method on the class. For example, this `Toggle` component renders a button that lets the user toggle between "ON" and "OFF" states:
+כאשר אתם מגדירים קומפוננטה באמצעות [מחלקת ES6](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes), זהו דפוס נפוץ שמטפל אירוע הוא מתודה במחלקה. למשל, רכיב `Toggle` זה מרנדר כפתור המאפשר למשתמש לעבור בין מצבי "ON" ו-"OFF":
 
 ```js{6,7,10-14,18}
 class Toggle extends React.Component {
@@ -66,7 +66,7 @@ class Toggle extends React.Component {
     super(props);
     this.state = {isToggleOn: true};
 
-    // This binding is necessary to make `this` work in the callback
+    // ה-binding הזה הכרחי כדי לגרום לכך ש-`this` יעבוד בתוך ה-callback
     this.handleClick = this.handleClick.bind(this);
   }
 
@@ -91,18 +91,18 @@ ReactDOM.render(
 );
 ```
 
-[**Try it on CodePen**](https://codepen.io/gaearon/pen/xEmzGg?editors=0010)
+[**נסו זאת ב-CodePen**](https://codepen.io/gaearon/pen/xEmzGg?editors=0010)
 
-You have to be careful about the meaning of `this` in JSX callbacks. In JavaScript, class methods are not [bound](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_objects/Function/bind) by default. If you forget to bind `this.handleClick` and pass it to `onClick`, `this` will be `undefined` when the function is actually called.
+עליכם להיות זהירים לגבי המשמעות של `this` בקריאות JSX. ב-JavaScript, מתודות מחלקה אינן [bound](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_objects/Function/bind) כברירת מחדל. אם תשכחו לעשות bind ל-`this.handleClick` ותעבירו אותה ל-`onClick`, `this` יהיה `undefined` כאשר הפונקציה תקרא למעשה.
 
-This is not React-specific behavior; it is a part of [how functions work in JavaScript](https://www.smashingmagazine.com/2014/01/understanding-javascript-function-prototype-bind/). Generally, if you refer to a method without `()` after it, such as `onClick={this.handleClick}`, you should bind that method.
+זו אינה התנהגות ספציפית ל-React; זה חלק מ[איך שפונקציות פועלות ב-JavaScript](https://www.smashingmagazine.com/2014/01/understanding-javascript-function-prototype-bind/). באופן כללי, אם אתם מתייחסים למתודה ללא `()` אחריה, כגון `onClick={this.handleClick}`, עליכם לעשות bind לאותה מתודה.
 
-If calling `bind` annoys you, there are two ways you can get around this. If you are using the experimental [public class fields syntax](https://babeljs.io/docs/plugins/transform-class-properties/), you can use class fields to correctly bind callbacks:
+אם קריאה ל-`bind` מפריעה לכם, יש שתי דרכים לעקוף את זה. אם אתם משתמשים ב[תחביר שדות ציבוריים של מחלקה](https://babeljs.io/docs/plugins/transform-class-properties/) הנסיוני, תוכלו להשתמש בשדות המחלקה כדי לעשות bind ל-callbacks בדרך הנכונה:
 
 ```js{2-6}
 class LoggingButton extends React.Component {
-  // This syntax ensures `this` is bound within handleClick.
-  // Warning: this is *experimental* syntax.
+  // תחביר זה מבטיח ש-`this` הוא bound בתוך handleClick.
+  // אזהרה: זהו תחביר *ניסיוני*.
   handleClick = () => {
     console.log('this is:', this);
   }
@@ -117,9 +117,8 @@ class LoggingButton extends React.Component {
 }
 ```
 
-This syntax is enabled by default in [Create React App](https://github.com/facebookincubator/create-react-app).
-
-If you aren't using class fields syntax, you can use an [arrow function](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/Arrow_functions) in the callback:
+תחביר זה מופעל כברירת מחדל ב-[Create React App](https://github.com/facebookincubator/create-react-app).
+אם אינכם משתמשים בתחביר שדות של מחלקה, באפשרותכם להשתמש ב[פונקצית חץ](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/Arrow_functions) ב-callback:
 
 ```js{7-9}
 class LoggingButton extends React.Component {
@@ -128,7 +127,7 @@ class LoggingButton extends React.Component {
   }
 
   render() {
-    // This syntax ensures `this` is bound within handleClick
+    // תחביר זה מבטיח ש-`this` הוא bound בתוך handleClick
     return (
       <button onClick={(e) => this.handleClick(e)}>
         Click me
@@ -138,17 +137,17 @@ class LoggingButton extends React.Component {
 }
 ```
 
-The problem with this syntax is that a different callback is created each time the `LoggingButton` renders. In most cases, this is fine. However, if this callback is passed as a prop to lower components, those components might do an extra re-rendering. We generally recommend binding in the constructor or using the class fields syntax, to avoid this sort of performance problem.
+הבעיה עם תחביר זה היא שנוצר callback שונה בכל פעם שה-`LoggingButton` מרונדר. ברוב המקרים, זה בסדר. עם זאת, אם callback זה מועבר כ-prop לקומפוננטות נמוכות יותר, קומפוננטות אלו עשויות לבצע רינדור מחדש נוסף. באופן כללי אנו ממליצים על ביצוע binding בבנאי או באמצעות תחביר שדות מחלקה, כדי למנוע בעית ביצועים זו.
 
-## Passing Arguments to Event Handlers {#passing-arguments-to-event-handlers}
+## העברת ארגומנטים למטפלי אירועים {#passing-arguments-to-event-handlers}
 
-Inside a loop it is common to want to pass an extra parameter to an event handler. For example, if `id` is the row ID, either of the following would work:
+בתוך לולאה זהו דבר נפוץ לרצות להעביר פרמטר נוסף למטפל האירוע. לדוגמה, אם `id` הוא מזהה השורה, כל אחת מהאפשרויות הבאות תעבוד:
 
 ```js
-<button onClick={(e) => this.deleteRow(id, e)}>Delete Row</button>
-<button onClick={this.deleteRow.bind(this, id)}>Delete Row</button>
+<button onClick={(e) => this.deleteRow(id, e)}>מחק שורה</button>
+<button onClick={this.deleteRow.bind(this, id)}>מחק שורה</button>
 ```
 
-The above two lines are equivalent, and use [arrow functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions) and [`Function.prototype.bind`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_objects/Function/bind) respectively.
+שתי השורות למעלה שוות, ומשתמשות ב[פונקציות חץ](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions) ו-[`Function.prototype.bind`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_objects/Function/bind) בהתאמה.
 
-In both cases, the `e` argument representing the React event will be passed as a second argument after the ID. With an arrow function, we have to pass it explicitly, but with `bind` any further arguments are automatically forwarded.
+בשני המקרים, הארגומנט `e` שמייצג את אירוע ה-React יועבר כארגומנט שני לאחר המזהה. עם פונקציית חץ, אנחנו צריכים להעביר אותו במפורש, אבל עם `bind` כל הארגומנטים הנוספים מועברים באופן אוטומטי.
