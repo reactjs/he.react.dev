@@ -5,7 +5,7 @@ permalink: docs/hooks-intro.html
 next: hooks-overview.html
 ---
 
-*Hooks* הם תוספת חדשה בReact 16.8. הם נותנים לך להשתמש בstate ובתכונות של React מבלי לכתוב מחלקה.
+*Hooks* הם תוספת חדשה ב-React 16.8. הם נותנים לך להשתמש ב-state ובתכונות של React מבלי לכתוב מחלקה.
 
 ```js{4,5}
 import React, { useState } from 'react';
@@ -25,24 +25,23 @@ function Example() {
 }
 ```
 
-הפונקציה החדשה הזאת `useState` היא ה"Hook" הראשון שנלמד. דוגמא זו היא רק הצצה, אל תדאג אם זה עדיין לא נשמע הגיוני!
+הפונקציה החדשה הזאת `useState` היא ה-“Hook" הראשון שנלמד. דוגמא זו היא רק הצצה, אל תדאג אם זה עדיין לא נשמע הגיוני!
 
-**אתה יכול להתחיל ללמוד Hooks [בעמוד הבא](/docs/hooks-overview.html).** בעמוד זה, נמשיך להסביר למה הוספנו את Hooks ל-React ואיך הם יכולים לעזור לך לכתוב יישומים מעולים.
+**אתה יכול להתחיל ללמוד Hooks [בעמוד הבא](/docs/hooks-overview.html).** בעמוד זה, נמשיך להסביר למה הוספנו את Hooks ל-React ואיך הם יכולים לעזור לך לכתוב אפליקציות מעולות.
 
 >הערה
 >
 >React 16.8.0 היא הגרסא הראשונה שתומכת ב-Hooks. בעת שדרוג, לא לשכוח לעדכן את כל הספריות, כולל React Native .React Dom יתמוך ב-Hooks בגרסא היציבה הבאה.
 
-
 ## מבוא וידאו {#video-introduction}
 
-ב-Sophie Alpert, React Conf 2018  ו-Dan Abramov הציגו את Hooks, אחרייהם Ryan Florence הדגים איך לשכתב יישום ולהשתמש בהם. צפו בסרטון כאן:
+ב-Sophie Alpert, React Conf 2018  ו-Dan Abramov הציגו את Hooks, אחרייהם Ryan Florence הדגים איך לשכתב אפליקציה ולהשתמש בהם. צפו בסרטון כאן:
 
 <br>
 
 <iframe width="650" height="366" src="//www.youtube.com/embed/dpw9EHDh2bM" frameborder="0" allowfullscreen></iframe>
 
-## אינו עדכון שביר {#no-breaking-changes}
+## אינו עדכון שובר {#no-breaking-changes}
 
 לפני שנמשיך, שים לב שHooks הם:
 
@@ -54,8 +53,7 @@ function Example() {
 
 **Hooks אינם מחליפים את הידע שלך בקונספט של React.** במקום זאת, Hooks מספקים API ישיר יותר לקונספט של React שאתה כבר מכיר: props, state, context, refs, lifecycle. כפי שנראה בהמשך, Hooks גם מציעים דרך חדשה וחזקה כדי לשלב אותם.
 
-
-**אם אתה רק רוצה להתחיל ללמוד Hooks, תרגיש חופשי [לקפוץ ישירות לעמוד הבא!](/docs/hooks-overview.html)** אתה יכול גם להמשיך לקרוא את העמוד הזה וללמוד למה אנחנו מוסיפים את Hooks, ואיך אנחנו הולכים להשתמש בהם מבלי לשכתב את היישום שלנו.
+**אם אתה רק רוצה להתחיל ללמוד Hooks, תרגיש חופשי [לקפוץ ישירות לעמוד הבא!](/docs/hooks-overview.html)** אתה יכול גם להמשיך לקרוא את העמוד הזה וללמוד למה אנחנו מוסיפים את Hooks, ואיך אנחנו הולכים להשתמש בהם מבלי לשכתב את האפליקציה שלנו.
 
 ## מוטיבציה {#motivation}
 
@@ -64,7 +62,6 @@ Hooks פותר מגוון רחב לכאורה של בעיות שלא קשורו�
 ### זה קשה לעשות שימוש חוזר בלוגיקה בין קומפוננטות {#its-hard-to-reuse-stateful-logic-between-components}
 
 React אינו מציע דרך ״לצרף״ התנהגות חוזרת לקומפוננטה (לדוגמא,  לחבר אותה לstore). אם עבדת עם React זמן מה, אתה עשוי להכיר תבניות כמו [render props](/docs/render-props.html) ו-[higher-order components](/docs/higher-order-components.html) אשר מנסות לפתור זאת. אבל תבניות אילו דורשות ממך לארגן מחדש את הקומפוננטה שלך כאשר אתה משתמש בהן, אשר יכול להיות מסורבל והופך את הקוד לקשה יותר לעקיבה. אם תסתכל על אפלייקצית React טיפוסית בReact DevTools, סביר להניח שתמצא ״wrapper hell״ של קומפוננטות שמוקפות בשכבות של providers, consumers, higher-order components, render props ועוד. בזמן שיכלנו [לסנן אותם מDevTools](https://github.com/facebook/react-devtools/pull/503), זה מצביע על בעיה עמוקה יותר: React זקוק לפרימיטיב טוב יותר בשביל שיתוף הלוגיקה.
-
 
 עם Hooks, אתה יכול לחלץ לוגיקה מקומפוננטה כך שתוכל להבדק בצורה עצמאית ולהשתמש בה שנית. **Hooks מאפשר לך לעשות שימוש חוזר בלוגיקה מבלי לשנות את ההירכייה בקומפוננטה.** זה הופך את Hooks לפשוט יותר לשיתוף בין קומפוננטות והקהילה.
 
