@@ -41,7 +41,7 @@ function Example() {
 
 <iframe width="650" height="366" src="//www.youtube.com/embed/dpw9EHDh2bM" frameborder="0" allowfullscreen></iframe>
 
-## אינו עדכון שובר {#no-breaking-changes}
+## אינו שובר תאימות לאחור {#no-breaking-changes}
 
 לפני שנמשיך, שים לב שHooks הם:
 
