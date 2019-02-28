@@ -246,7 +246,7 @@ const Header = ({location}: {location: Location}) => (
                 color: colors.subtle,
               }}
             />
-        </a>
+          </a>
         </div>
       </div>
     </Container>

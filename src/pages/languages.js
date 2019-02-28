@@ -50,9 +50,7 @@ const Languages = ({location}: Props) => (
           <TitleAndMetaTags title="React - שפות" />
 
           <div css={sharedStyles.markdown}>
-            <p>
-              התיעוד של React זמין בשפות הבאות:
-            </p>
+            <p>התיעוד של React זמין בשפות הבאות:</p>
 
             <LanguagesGrid languages={complete} />
 
