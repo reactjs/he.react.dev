@@ -13,7 +13,7 @@ React ו-ReactDOM זמינים דרך הCDN.
 <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
 ```
 
-הגרסאות המצוינות מעלה מתייחסות לפיתוח ולא מתאימות ל-production. גרסאות ממוזערות ומאופטמות של production של React זמינום כך:
+הגרסאות המצוינות לעיל מתייחסות לפיתוח ולא מתאימות ל-production. גרסאות ממוזערות ומאופטמות של production של React זמינות כך:
 
 ```html
 <script crossorigin src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
@@ -24,7 +24,7 @@ React ו-ReactDOM זמינים דרך הCDN.
 
 ### למה משמשת תכונת `crossorigin`? {#why-the-crossorigin-attribute}
 
-אם תשתמש בReact דרך הCDN, אנו ממליצים להשתמש בסט מאפייניי [`crossorigin`](https://developer.mozilla.org/en-US/docs/Web/HTML/CORS_settings_attributes):
+אם תשתמש בReact דרך הCDN, אנו ממליצים להשתמש בסט מאפייני [`crossorigin`](https://developer.mozilla.org/en-US/docs/Web/HTML/CORS_settings_attributes):
 
 ```html
 <script crossorigin src="..."></script>
