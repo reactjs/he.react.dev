@@ -252,6 +252,8 @@ const sharedStyles = {
       padding: '0 3px',
       fontSize: '0.94em', // 16px on 17px text, smaller in smaller text
       wordBreak: 'break-word',
+      direction: 'ltr',
+      display: 'inline-block',
     },
 
     '& hr': {
