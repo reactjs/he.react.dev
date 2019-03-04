@@ -31,9 +31,13 @@ redirect_from:
 
 אין צורך להשלים את כל הסעיפים בבת אחת כדי לקבל את ערך ממדריך זה. נסו להגיע רחוק ככל שתוכלו -- גם אם זה רק חלק אחד או שניים.
 
+<<<<<<< HEAD
 זה בסדר להעתיק ולהדביק קוד בזמן שאתם עוקבים אחר המדריך, אבל אנחנו ממליצים להקליד את הקוד ביד. זה יעזור לכם לפתח זיכרון שריר והבנה חזקה יותר.
 
 ### מה אנחנו בונים? {#what-are-we-building}
+=======
+### What Are We Building? {#what-are-we-building}
+>>>>>>> 8803c6375b153af39a850822d844db94ea4c9b0a
 
 במדריך זה, אנו נראה כיצד לבנות משחק איקס-עיגול אינטראקטיבי עם React.
 
@@ -189,7 +193,13 @@ JSX מגיעה עם מלוא העוצמה של JavaScript. תוכלו לשים *
 
 ### העברת נתונים באמצעות Props {#passing-data-through-props}
 
+<<<<<<< HEAD
 רק כדי ללכלך את הידיים, בואו ננסה להעביר כמה נתונים מתוך רכיב הלוח שלנו לרכיב הריבוע שלנו.
+=======
+To get our feet wet, let's try passing some data from our Board component to our Square component.
+
+We strongly recommend typing code by hand as you're working through the tutorial and not using copy/paste. This will help you develop muscle memory and a stronger understanding.
+>>>>>>> 8803c6375b153af39a850822d844db94ea4c9b0a
 
 במתודת `renderSquare` של הלוח, שנו את הקוד על מנת להעביר את הערך שנקרא `value` לריבוע:
 
@@ -243,7 +253,11 @@ class Square extends React.Component {
 }
 ```
 
+<<<<<<< HEAD
 אם נלחץ על ריבוע עכשיו, אנחנו אמורים לקבל התראה מהדפדפן שלנו.
+=======
+If you click on a Square now, you should see an alert in your browser.
+>>>>>>> 8803c6375b153af39a850822d844db94ea4c9b0a
 
 >שימו לב
 >
@@ -261,7 +275,11 @@ class Square extends React.Component {
 >}
 >```
 >
+<<<<<<< HEAD
 >שימו לב איך עם `onClick={() => alert('click')}`, אנחנו מעבירים *פונקציה* בתור המאפיין `onClick`. הפונקציה תרוץ רק אחרי לחיצה. לשכוח את `() =>` ולכתוב רק `onClick={alert('click')}` היא טעות נפוצה, והיא תגרום להקפצת ההתראה בכל פעם שהרכיב מתרנדר מחדש.
+=======
+>Notice how with `onClick={() => alert('click')}`, we're passing *a function* as the `onClick` prop. React will only call this function after a click. Forgetting `() =>` and writing `onClick={alert('click')}` is a common mistake, and would fire the alert every time the component re-renders.
+>>>>>>> 8803c6375b153af39a850822d844db94ea4c9b0a
 
 בצעד הבא, אנחנו רוצים שהרכיב ריבוע "יזכור" שהוא נלחץ, וימלא את עצמו עם 
 הסימן "X". כדי "לזכור" דברים, רכיבים משתמשים ב**מצב (state)**.
@@ -295,9 +313,15 @@ class Square extends React.Component {
 
 כעת נשנה את מתודת `render` של ריבוע כך שתציג את הערך שמוגדר ב-state בעת לחיצה:
 
+<<<<<<< HEAD
 * החליפו את `this.props.value` עם `this.state.value` בתוך התגית `<button>`.
 * החליפו את מנהל האירוע `() => alert()` עם `() => this.setState({value: 'X'})`.
 * שימו את המאפיינים `className` ו-`onClick` בשורות נפרדות על מנת שתהיה לנו קריאות טובה יותר.
+=======
+* Replace `this.props.value` with `this.state.value` inside the `<button>` tag.
+* Replace the `onClick={...}` event handler with `onClick={() => this.setState({value: 'X'})}`.
+* Put the `className` and `onClick` props on separate lines for better readability.
+>>>>>>> 8803c6375b153af39a850822d844db94ea4c9b0a
 
 לאחר ביצוע שינויים אלה, תגית הכפתור `<button>` שמוחזרת ממתודת `render` של ריבוע אמורה להיראות כך:
 
@@ -358,7 +382,13 @@ class Square extends React.Component {
 
 **כדי לאסוף נתונים ממספר ילדים, או כדי לאפשר לשני רכיבי ילדים לתקשר אחד עם השני, עלינו להכריז על מצב משותף ברכיב האב שלהם במקום. רכיב האב יכול להעביר את המצב שלו בחזרה לילדים באמצעות שימוש במאפיינים; פעולה זו שומרת על רכיבי הילדים מסונכרנים זה עם זה ועם רכיב האב.**
 
+<<<<<<< HEAD
 הרמת המצב לרכיב אב היא פעולה נפוצה כאשר משכתבים רכיבי React -- בואו ניקח את ההזדמנות הזו כדי לנסות זאת. נוסיף בנאי ללוח ונקבע את המצב הראשוני של הלוח כך שיכיל מערך עם 9 ערכים ריקים (nulls). אלה 9 ערכים ריקים שתואמים ל-9 הריבועים:
+=======
+Lifting state into a parent component is common when React components are refactored -- let's take this opportunity to try it out.
+
+Add a constructor to the Board and set the Board's initial state to contain an array of 9 nulls corresponding to the 9 squares:
+>>>>>>> 8803c6375b153af39a850822d844db94ea4c9b0a
 
 ```javascript{2-7}
 class Board extends React.Component {
@@ -372,35 +402,13 @@ class Board extends React.Component {
   renderSquare(i) {
     return <Square value={i} />;
   }
-
-  render() {
-    const status = 'Next player: X';
-
-    return (
-      <div>
-        <div className="status">{status}</div>
-        <div className="board-row">
-          {this.renderSquare(0)}
-          {this.renderSquare(1)}
-          {this.renderSquare(2)}
-        </div>
-        <div className="board-row">
-          {this.renderSquare(3)}
-          {this.renderSquare(4)}
-          {this.renderSquare(5)}
-        </div>
-        <div className="board-row">
-          {this.renderSquare(6)}
-          {this.renderSquare(7)}
-          {this.renderSquare(8)}
-        </div>
-      </div>
-    );
-  }
-}
 ```
 
+<<<<<<< HEAD
 כאשר נמלא את הלוח בשלב מאוחר יותר, הלוח ייראה כמו משהו כזה:
+=======
+When we fill the board in later, the `this.state.squares` array will look something like this:
+>>>>>>> 8803c6375b153af39a850822d844db94ea4c9b0a
 
 ```javascript
 [
@@ -434,7 +442,11 @@ class Board extends React.Component {
 
 כעת, אנחנו צריכים לשנות את מה שקורה כאשר ריבוע כלשהו נלחץ. רכיב הלוח עכשיו שומר אילו ריבועים מולאו. אנחנו צריכים ליצור דרך לריבוע לעדכן את המצב של הלוח. מאחר שהמצב נחשב פרטי לאכיב המגדיר אותו, אין באפשרותנו לעדכן את מצב הלוח ישירות מהריבוע.
 
+<<<<<<< HEAD
 כדי לשמור על הפרטיות של מצב הלוח, נעביר למטה פונקציה מהלוח לריבוע. פונקציה זו תקרא כאשר לוחצים על ריבוע. אנו נשנה את המתודה `renderSquare` בלוח למתודה הבאה:
+=======
+Instead, we'll pass down a function from the Board to the Square, and we'll have Square call that function when a square is clicked. We'll change the `renderSquare` method in Board to:
+>>>>>>> 8803c6375b153af39a850822d844db94ea4c9b0a
 
 ```javascript{5}
   renderSquare(i) {
@@ -476,15 +488,27 @@ class Square extends React.Component {
 
 כאשר לוחצים על ריבוע, נקראת פונקציית `onClick` שמסופקת על ידי הלוח. הנה סקירה של איך התנהגות זו מושגת:
 
+<<<<<<< HEAD
 1. המאפיין `onClick` ברכיב המובנה של ה-DOM `<button>` גורם ל-React להגדיר מאזין לאירועי לחיצות.
 2. כאשר לוחצים על הכפתור, React יקרא למטפל האירועים `onClick` המוגדר במתודה `render()` של ריבוע.
 3. מטפל אירוע זה קורא ל-`this.props.onClick()`. המאפיין `onClick` של ריבוע הוגדר על ידי הלוח.
 4. מאחר שהלוח העביר את `onClick={() => this.handleClick(i)}` לריבוע, הריבוע קורא ל-`this.handleClick(i)` בעת לחיצה עליו.
 5. עדיין לא הגדרנו את המתודה `handleClick()`, ולכן שהקוד שלנו קורס.
+=======
+1. The `onClick` prop on the built-in DOM `<button>` component tells React to set up a click event listener.
+2. When the button is clicked, React will call the `onClick` event handler that is defined in Square's `render()` method.
+3. This event handler calls `this.props.onClick()`. The Square's `onClick` prop was specified by the Board.
+4. Since the Board passed `onClick={() => this.handleClick(i)}` to Square, the Square calls `this.handleClick(i)` when clicked.
+5. We have not defined the `handleClick()` method yet, so our code crashes. If you click a square now, you should see a red error screen saying something like "this.handleClick is not a function".
+>>>>>>> 8803c6375b153af39a850822d844db94ea4c9b0a
 
 >שימו לב
 >
+<<<<<<< HEAD
 >לתכונה `onClick` של אלמנט `<button>` של ה-DOM יש משמעות מיוחדת עבור React מכיוון שהוא רכיב מובנה. עבור רכיבים מותאמים אישית כמו ריבוע, הגדרת השמות תלויה בנו. אנו יכולים להגדיר את השם של מאפיין `onClick` של ריבוע או מתודת `handleClick` של לוח בצורה אחרת. ב-React, לעומת זאת, זוהי קונבנציה להשתמש בשמות כמו `on[Event]` עבור מאפיינים אשר מייצגים אירועים ו-`handle[Event]` עבור המתודות אשר מטפלות באירועים.
+=======
+>The DOM `<button>` element's `onClick` attribute has a special meaning to React because it is a built-in component. For custom components like Square, the naming is up to you. We could give any name to the Square's `onClick` prop or Board's `handleClick` method, and the code would work the same. In React, it's conventional to use `on[Event]` names for props which represent events and `handle[Event]` for the methods which handle the events.
+>>>>>>> 8803c6375b153af39a850822d844db94ea4c9b0a
 
 כאשר אנו מנסים ללחוץ על ריבוע, אנחנו אמורים לקבל שגיאה כי עדיין לא הגדרנו את `handleClick`. כעת נוסיף את `handleClick` למחלקה לוח:
 
@@ -541,7 +565,11 @@ class Board extends React.Component {
 
 **[צפו בקוד המלא עד נקודה זו](https://codepen.io/gaearon/pen/ybbQJX?editors=0010)**
 
+<<<<<<< HEAD
 לאחר ביצוע שינויים אלה, נוכל שוב ללחוץ על הריבועים כדי למלא אותם. למרות זאת, כעת המצב מאוחסן ברכיב הלוח במקום ברכיבי הריבועים עצמם. כאשר מצבו של הלוח משתנה, רכיבי הריבוע מרונדרים מחדש באופן אוטומטי. שמירת מצב כל הריבועים ברכיב הלוח תאפשר לו לקבוע את הזוכה בעתיד.
+=======
+After these changes, we're again able to click on the Squares to fill them, the same as we had before. However, now the state is stored in the Board component instead of the individual Square components. When the Board's state changes, the Square components re-render automatically. Keeping the state of all squares in the Board component will allow it to determine the winner in the future.
+>>>>>>> 8803c6375b153af39a850822d844db94ea4c9b0a
 
 מאחר שרכיבי הריבוע אינם מתחזקים מצב יותר, רכיבי הריבוע מקבלים ערכים מרכיב הלוח ומעדכנים את רכיב הלוח כאשר לוחצים עליהם. במונחי React, רכיבי הריבוע הם כעת **רכיבים מבוקרים**. הלוח הוא בעל שליטה מלאה עליהם.
 
@@ -583,7 +611,11 @@ var newPlayer = Object.assign({}, player, {score: 2});
 
 זיהוי שינויים באובייקטים בלתי ניתנים לשינוי הוא הרבה יותר קל. אם האובייקט הבלתי משתנה שאליו אנחנו מתייחסים שונה מהקודם, אזי האובייקט השתנה.
 
+<<<<<<< HEAD
 #### ההחלטה מתי לרנדר מחדש ב-React {#determining-when-to-re-render-in-react}
+=======
+#### Determining When to Re-Render in React {#determining-when-to-re-render-in-react}
+>>>>>>> 8803c6375b153af39a850822d844db94ea4c9b0a
 
 היתרון העיקרי של אי-יכולת השתנות הוא שהיא עוזר לנו לבנות _רכיבים טהורים (pure components)_ ב-React. נתונים בלתי ניתנים לשינוי מאפשרים לקבוע בקלות אם בוצעו שינויים, דבר אשר מסייע לקבוע מתי רכיב דורש רינדור מחדש.
 
@@ -613,7 +645,11 @@ function Square(props) {
 
 >שימו לב
 >
+<<<<<<< HEAD
 >כאשר שינינו את הריבוע והפכנו אותו לרכיב פונקציה, שינינו גם את `onClick={() => this.props.onClick()}` לגירסה קצרה יותר `onClick={props.onClick}` (שימו לב לחיסרון בסוגריים *משני* הצדדים). במחלקה, השתמשנו בפונקצית החץ כדי לגשת לערך `this`, אבל ברכיב פונקציה אנחנו לא צריכים לדאוג ל-`this`.
+=======
+>When we modified the Square to be a function component, we also changed `onClick={() => this.props.onClick()}` to a shorter `onClick={props.onClick}` (note the lack of parentheses on *both* sides).
+>>>>>>> 8803c6375b153af39a850822d844db94ea4c9b0a
 
 ### חלוקה לתורות {#taking-turns}
 
@@ -645,7 +681,13 @@ class Board extends React.Component {
   }
 ```
 
+<<<<<<< HEAD
 עם שינוי זה, "X"ים ו"O"ים יכולים להתחלף בתורות. בואו נשנה גם את טקסט שורת המצב (ה-"status") בפונקציית `render` של הלוח כך שתציג איזה שחקן משחק את התור הבא:
+=======
+With this change, "X"s and "O"s can take turns. Try it!
+
+Let's also change the "status" text in Board's `render` so that it displays which player has the next turn:
+>>>>>>> 8803c6375b153af39a850822d844db94ea4c9b0a
 
 ```javascript{2}
   render() {
@@ -716,7 +758,11 @@ class Board extends React.Component {
 
 ### הכרזת הזוכה {#declaring-a-winner}
 
+<<<<<<< HEAD
 עכשיו שאנחנו כבר מראים איזה שחקן הבא בתור, אנחנו צריכים להראות גם כאשר המשחק הסתיים ואין יותר תורות לעשות. אנחנו יכולים לקבוע שיש זוכה על ידי הוספת פונקצית העזר הבאה בסוף הקובץ:
+=======
+Now that we show which player's turn is next, we should also show when the game is won and there are no more turns to make. Copy this helper function and paste it at the end of the file:
+>>>>>>> 8803c6375b153af39a850822d844db94ea4c9b0a
 
 ```javascript
 function calculateWinner(squares) {
@@ -740,7 +786,13 @@ function calculateWinner(squares) {
 }
 ```
 
+<<<<<<< HEAD
 אנחנו נקרא לפונקציה `calculateWinner(squares)` מתוך הפונקציה `render` של הלוח כדי לבדוק אם שחקן זכה. אם שחקן זכה, אנו יכולים להציג טקסט כגון "הזוכה: X" או "הזוכה: O". אנו מחליפים את הצהרת "שורת המצב" (`status`) בפונקציה `render` של הלוח באמצעות קוד זה:
+=======
+Given an array of 9 squares, this function will check for a winner and return `'X'`, `'O'`, or `null` as appropriate.
+
+We will call `calculateWinner(squares)` in the Board's `render` function to check if a player has won. If a player has won, we can display text such as "Winner: X" or "Winner: O". We'll replace the `status` declaration in Board's `render` function with this code:
+>>>>>>> 8803c6375b153af39a850822d844db94ea4c9b0a
 
 ```javascript{2-8}
   render() {
