@@ -1,6 +1,6 @@
 ---
 id: composition-vs-inheritance
-title: הכלה vs הורשה
+title: הכלה לעומת הורשה
 permalink: docs/composition-vs-inheritance.html
 redirect_from:
   - "docs/multiple-components.html"
