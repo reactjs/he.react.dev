@@ -59,10 +59,10 @@ expect(result.props.children).toEqual([
 
 אתה יכול לחשוב על shallowRenderer כ-“מקום” לרנדור קומפוננטה שאתה בודק, וממנו ניתן להוציא את הפלט של הקומפוננטה.
 
-`shallowRenderer.render()` דומה ל-[`()ReactDOM.render`](/docs/react-dom.html#render) אבל לא דורש DOM ומרנדר רק רמה אחת עמוקה. זה אומר שאתה יכול לבדוק קומפוננט מבודדות מבלי לדעת איך הילדים שלהם ממומשים.
+`shallowRenderer.render()` דומה ל-[`()ReactDOM.render`](/docs/react-dom.html#render) אבל לא דורש DOM ומרנדר רק רמת עומק אחת. זה אומר שאתה יכול לבדוק קומפוננט מבודדות מבלי לדעת איך הילדים שלהם ממומשים.
 
 ### `()shallowRenderer.getRenderOutput` {#shallowrenderergetrenderoutput}
 
 אחרי ש-`shallowRenderer.render()` נקרא, אתה יכול להשתמש ב-`shallowRenderer.getRenderOutput()` כדי לקבל את הפלט המרונדר הרדוד.
 
-אתה אחרי זה יכול להתחיל לטעון עובדות על הפלט.
+אתה אחרי זה יכול להתחיל לתשאל עובדות על הפלט.
