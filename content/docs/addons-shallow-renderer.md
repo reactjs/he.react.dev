@@ -51,7 +51,7 @@ expect(result.props.children).toEqual([
 
 > הערה:
 >
-> אנחנו גם ממליצים לבדוק את ה-[API של המרנדר הרדוד](https://airbnb.io/enzyme/docs/api/shallow.html) של Enzyme. הוא מספק API רמה-גבוהה יותר על אותה פונקציונליות.
+> אנחנו גם ממליצים לבדוק את ה-[API של המרנדר הרדוד](https://airbnb.io/enzyme/docs/api/shallow.html) של Enzyme. הוא מספק API מרמה-גבוהה יותר על אותה פונקציונליות.
 
 ## עיון {#reference}
 
@@ -59,10 +59,10 @@ expect(result.props.children).toEqual([
 
 אתה יכול לחשוב על shallowRenderer כ-“מקום” לרנדור קומפוננטה שאתה בודק, וממנו ניתן להוציא את הפלט של הקומפוננטה.
 
-`shallowRenderer.render()` דומה ל-[`()ReactDOM.render`](/docs/react-dom.html#render) אבל לא דורש DOM ומרנדר רק רמת עומק אחת. זה אומר שאתה יכול לבדוק קומפוננט מבודדות מבלי לדעת איך הילדים שלהם ממומשים.
+`shallowRenderer.render()` דומה ל-[`()ReactDOM.render`](/docs/react-dom.html#render) אבל לא דורש DOM ומרנדר רק רמת עומק אחת. זה אומר שאתה יכול לבדוק קומפוננטות מבודדות מבלי לדעת איך הילדים שלהם ממומשים.
 
-### `()shallowRenderer.getRenderOutput` {#shallowrenderergetrenderoutput}
+### `shallowRenderer.getRenderOutput()` {#shallowrenderergetrenderoutput}
 
-אחרי ש-`shallowRenderer.render()` נקרא, אתה יכול להשתמש ב-`shallowRenderer.getRenderOutput()` כדי לקבל את הפלט המרונדר הרדוד.
+אחרי ש-`shallowRenderer.render()` נקרא, אתה יכול להשתמש ב-`shallowRenderer.getRenderOutput()` כדי לקבל את הפלט הרדוד שרונדר.
 
-אתה אחרי זה יכול להתחיל לתשאל עובדות על הפלט.
+אחרי זה אתה יכול להתחיל לתשאל עובדות על הפלט.
