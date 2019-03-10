@@ -28,7 +28,7 @@ function FancyBorder(props) {
 }
 ```
 
-דבר זה מאפשר לקומפוננטות אחרות להעביר אלמנטי ילדים שרירותיים על ידי קינון הJSX:
+דבר זה מאפשר לקומפוננטות אחרות להעביר אלמנטי ילדים שרירותיים על ידי קינון ה-JSX:
 
 ```js{4-9}
 function WelcomeDialog() {
@@ -45,9 +45,9 @@ function WelcomeDialog() {
 }
 ```
 
-**[נסה זאת בCodePen](https://codepen.io/gaearon/pen/ozqNOV?editors=0010)**
+**[נסה זאת ב-CodePen](https://codepen.io/gaearon/pen/ozqNOV?editors=0010)**
 
-כל דבר בתוך תגית הJSX של `<FancyBorder>` מועבר לקומפוננטה `FancyBorder`-כprop בשם `children`.-מכיוון ש`FancyBorder` מרנדר `{props.children}` בתוך אלמנט ה`<div>`, האלמנטים המועברים מופיעים בפלט הסופי.
+כל דבר בתוך תגית ה-JSX של `<FancyBorder>` מועבר לקומפוננטה `FancyBorder`-כprop בשם `children`.-מכיוון ש`FancyBorder` מרנדר `{props.children}` בתוך אלמנט ה-`<div>`, האלמנטים המועברים מופיעים בפלט הסופי.
 
 לעיתים באופן פחות נפוץ נדרשים מספר ״חורים״ בקומפוננטה. במקרים הללו אתה יכול לבחור בקונבנציה שלך במקום להשתמש ב-`children`:
 
@@ -78,7 +78,7 @@ function App() {
 }
 ```
 
-[**נסה זאת בCodePen**](https://codepen.io/gaearon/pen/gwZOJp?editors=0010)
+[**נסה זאת ב-CodePen**](https://codepen.io/gaearon/pen/gwZOJp?editors=0010)
 
 אלמנטי React כמו `<Contacts />` ו`<Chat />` הם פשוט אובייקטים, אז אתה יכול להעביר אותם כ-props כמו כל מידע אחר. גישה זאת יכולה להזכיר ״slots" בספריות אחרות, אבל אין הגבלות לגבי מה שניתן להעביר כ-props -בReact.
 
@@ -111,7 +111,7 @@ function WelcomeDialog() {
 }
 ```
 
-[**נסה זאת בCodePen**](https://codepen.io/gaearon/pen/kkEaOZ?editors=0010)
+[**נסה זאת ב-CodePen**](https://codepen.io/gaearon/pen/kkEaOZ?editors=0010)
 
 הכלה עובדת טוב בצורה שווה עבור קומפוננטות המוגדרות כמחלקות:
 
@@ -161,7 +161,7 @@ class SignUpDialog extends React.Component {
 }
 ```
 
-[**נסה זאת בCodePen**](https://codepen.io/gaearon/pen/gwZbYa?editors=0010)
+[**נסה זאת ב-CodePen**](https://codepen.io/gaearon/pen/gwZbYa?editors=0010)
 
 ## אז מה לגבי הורשה? {#so-what-about-inheritance}
 
