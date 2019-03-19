@@ -6,7 +6,7 @@ category: Reference
 permalink: docs/react-dom.html
 ---
 
-אם אתם טוענים את React מתג `<script>`, ה-APIs מהרמה העליונה הבאים זמינים תחת המשתתנה הגלובאלי `ReactDOM`. אם אתם משתמשים ב-ES6 עם npm, אתם יכולים לכתוב `import ReactDOM from 'react-dom'`. אם אתם משתמשים ב-ES5 עם npm, תוכלו לכתוב `var ReactDOM = require('react-dom')`.
+אם אתם טוענים את React מתגית `<script>`, ה-APIs מהרמה העליונה הבאים זמינים תחת המשתנה הגלובלי `ReactDOM`. אם אתם משתמשים ב-ES6 עם npm, אתם יכולים לכתוב `import ReactDOM from 'react-dom'`. אם אתם משתמשים ב-ES5 עם npm, תוכלו לכתוב `var ReactDOM = require('react-dom')`.
 
 ## סקירה כללית {#overview}
 
