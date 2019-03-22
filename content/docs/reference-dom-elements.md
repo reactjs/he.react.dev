@@ -20,7 +20,7 @@ React מיישם ממשק DOM בשביל ביצועים ותמיכה בין דפ
 
 ## הבדלים בתכונות {#differences-in-attributes}
 
-ישנן מספר תכוננות שעובדות בצורה שונה בין HTML וReact:
+ישנן מספר תכונות שעובדות בצורה שונה בין HTML וReact:
 
 ### checked {#checked}
 
