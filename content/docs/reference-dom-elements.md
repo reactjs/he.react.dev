@@ -154,7 +154,7 @@ sizes span spellCheck src srcDoc srcLang srcSet start step style summary
 tabIndex target title type useMap value width wmode wrap
 ```
 
-באופן דומה, כל תכונות הSVG נתמכות באופן מלא:
+באופן דומה, כל תכונות ה-SVG נתמכות באופן מלא:
 
 ```
 accentHeight accumulate additive alignmentBaseline allowReorder alphabetic
