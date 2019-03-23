@@ -136,7 +136,7 @@ React תמיד סיפקה ממשק משתמש ממוקד JavaScript ל-DOM. מכ
 
 ה-props הללו עובדים באופן דומה לתכונות ה-HTML המקבילות, עם הוצאה מן הכלל של המקרים המיוחדים המתועדים לעיל.
 
-חלק מתכונות הDOM הנתמכות על ידי React כוללות:
+חלק מתכונות ה-DOM הנתמכות על ידי React כוללות:
 
 ```
 accept acceptCharset accessKey action allowFullScreen alt async autoComplete
