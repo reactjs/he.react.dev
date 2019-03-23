@@ -16,7 +16,7 @@ redirect_from:
 
 React מיישמת מערכת DOM ללא-תלות בדפדפן עבור ביצועים ותאימות לדפדפנים שונים. ניצלנו את ההזדמנות על מנת לנקות מספר בעיות במימוש ה-DOM של הדפדפן.
 
-בReact, כל התכונות והproperties- ( כולל event handles) צריכים להיות camelCased. לדוגמה, תכונת הHTML tabindex מקבילה לתכונה tabIndex בReact. המקרים היוצאים מן הכלל הם aria-* וdata-*, שצריכים להיות באותיות קטנות. לדוגמה, נוכל להשאיר את aria-label כaria-label.
+ב-React, כל המאפיינים (properties) והתכונות (attributes) של ה-DOM (כולל מנהלי אירועים) צריכים להיות camelCased. לדוגמה, תכונת ה-`tabindex` של HTML מקבילה לתכונה `tabIndex` ב-React. המקרים היוצאים מן הכלל הם `aria-*` ו-`data-*`, שצריכים להיות באותיות קטנות. לדוגמה, נוכל להשאיר את `aria-label` בתור `aria-label`.
 
 ## הבדלים בתכונות {#differences-in-attributes}
 
