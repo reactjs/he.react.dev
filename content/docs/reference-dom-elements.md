@@ -126,7 +126,7 @@ React תוסיף באופן אוטומטי סיומת  "px" לכמה מאפיי�
 
 החל מ-React 16, כל תכונת DOM סטנדרטית או [מותאמת אישית](/blog/2017/09/08/dom-attributes-in-react-16.html), נתמכת באופן מלא.
 
-React תמיד סיפקה ממשק משתמש ממוקד JavaScript לDOM. מכיוון שקומפוננטות React מקבלות props מותאמות אישית וגם כאלה שקשורות לDOM, React משתמש במוסכמת ה`camelCase` כמו ממשקי משתמש של הDOM:
+React תמיד סיפקה ממשק משתמש ממוקד JavaScript ל-DOM. מכיוון שקומפוננטות React בדרך כלל מקבלות גם props מותאמות אישית וגם כאלה שקשורות ל-DOM, React משתמשת במוסכמת ה-`camelCase` בדיוק כמו ממשקי המשתמש של ה-DOM:
 
 ```js
 <div tabIndex="-1" />      // כמו node.tabIndex DOM API
