@@ -28,13 +28,13 @@ React מיישמת מערכת DOM ללא-תלות בדפדפן עבור ביצו
 
 ### className {#classname}
 
-כדי להוסיף מחלקת CSS, נשתמש בתכונת ה `className`. זה נוגע לכל אלמנטי הDOM וSVG כמו `<div>`,  `<a>` ועוד.
+כדי להוסיף מחלקת CSS, נשתמש בתכונת ה-`className`. העניין נוגע לכל אלמנטי ה-DOM וה-SVG הרגילים כמו `<div>`, `<a>` ואחרים.
 אם אתה משתמש בReact עם Web Components (דבר שלא נפוץ כל כך), השתמש בתכונת הclass במקום.
 
 
 ### dangerouslySetInnerHTML {#dangerouslysetinnerhtml}
 
-`dangerouslySetInnerHTML` היא התחלופה של React לשימוש ב`innerHTML` בDOM של הדפדפן. באופן כללי, קביעת HTML לא בקוד היא מסוכנת מכיוון שזה קל בטעות לחשוף את המשתמשים שלך ל[מתקפת XSS))] (https://en.wikipedia.org/wiki/Cross-site_scripting). לעומת זאת, אפשר לכתוב HTML ישירות מReact, אבל אתה צריך לכתוב `dangerouslySetInnerHTML` ולהעביר אובייקט עם מפתח `__html`, על מנת להזכיר לעצמך שזה מסוכן. לדוגמה:
+`dangerouslySetInnerHTML` היא החלופה של React לשימוש ב-`innerHTML` ב-DOM של הדפדפן. באופן כללי, קביעת HTML מהקוד היא מסוכנת מכיוון שזה קל בטעות לחשוף את המשתמשים שלך ל[מתקפת XSS))] (https://en.wikipedia.org/wiki/Cross-site_scripting). לעומת זאת, אפשר לכתוב HTML ישירות מ-React, אבל אתה צריך לכתוב `dangerouslySetInnerHTML` ולהעביר אובייקט עם מפתח `__html`, על מנת להזכיר לעצמך שזה מסוכן. לדוגמה:
 
 ```js
 function createMarkup() {
@@ -48,23 +48,23 @@ function MyComponent() {
 
 ### htmlFor {#htmlfor}
 
-מאחר ו`for` היא מילה שמורה בJavaScript, אלמנטי React משתמשים בhtmlFor במקום.
+מאחר ו-`for` היא מילה שמורה ב-JavaScript, אלמנטי React משתמשים ב-`htmlFor` במקום.
 
 ### onChange {#onchange}
 
-Event ה`onChange` מתנהג כמו שהיית מצפה: כששדה טופס משתנה, event זה נורה. אנחנו בכוונה לא משתמשים בהתנהגות הבנויה בדפדפן בגלל ש`onChange` הוא לא מתנהג כמו שהוא אמור להתנהג, וReact מסתמכת עליו שיטפל בקלטי משתמש בזמן אמת.
+אירוע ה-`onChange` מתנהג כמו שהיית מצפה: בכל פעם ששדה טופס משתנה, אירוע זה נורה. אנחנו בכוונה לא משתמשים בהתנהגות המובנית בדפדפן בגלל ש-`onChange` לא מתנהג כמו שהוא אמור להתנהג, ו-React מסתמכת על אירוע זה שיטפל בקלטי משתמש בזמן אמת.
 
 ### selected {#selected}
 
-התכונה selected נתמכת על ידי קומפוננטות `<option>`. ניתן להשתמש בתכונה על מנת לקבוע האם קומפוננטה נבחרה. דבר זה הוא שימושי לבניית קומפוננטות נשלטות.
+התכונה `selected` נתמכת על ידי קומפוננטות `<option>`. ניתן להשתמש בה על מנת לקבוע האם הקומפוננטה נבחרה. דבר זה שימושי לבניית קומפוננטות נשלטות.
 
 ### style {#style}
 
 >שימו לב:
 >
->כמה דוגמאות בדוקומנטציה משתמשות ב`style` מטעמי נוחות, אבל **שימוש ב`style` תמיד על מנת לעצב קומפוננטות הוא לא מומלץ.** ברוב המקרים, [`className`](#classname) צריכה להיות זאתי שמתייחסת למחלקות CSS שהוגדרו בקבצי CSS חיצוניים. ברוב המקרים שמשתמשים ב`style` בReact המטרה היא להוסיף עיצובים שחושבו באופן דינמי בזמן הרינדור. ראה [FAQ: Styling and CSS](/docs/faq-styling.html).
+>כמה דוגמאות בתיעוד משתמשות ב-`style` מטעמי נוחות, אבל **שימוש בתכונה `style` בתור האפשרות העיקרית לעיצוב קומפוננטות איננה מומלצת באופן כללי.** ברוב המקרים, [`className`](#classname) צריכה להיות בשימוש כדי להתייחס למחלקות CSS שהוגדרו בקבצי CSS חיצוניים. ברוב המקרים שמשתמשים ב-`style` באפליקציות React המטרה היא להוסיף עיצובים שחושבו באופן דינמי בזמן הרינדור. ראה [FAQ: עיצוב ו-CSS](/docs/faq-styling.html).
 
-תכונת ה`style` מקבלת אובייקט JavaScript עם camelCased properties במקום מחרוזת CSS. התנהגות התכונה דומה לstyle של הDOM, אך זאתי של React היא יותר אפקטיבית, ומונעת חורי אבטחת XSS. לדוגמה:
+תכונת ה-`style` מקבלת אובייקט JavaScript עם מאפייני camelCased במקום מחרוזת CSS. התנהגות התכונה עקבית עם מאפיין `style` של ה-DOM ב-JavaScript, אך היא יותר יעילה, ומונעת חורי אבטחת XSS. לדוגמה:
 
 ```js
 const divStyle = {
@@ -81,8 +81,8 @@ function HelloWorldComponent() {
 
 ```js
 const divStyle = {
-  WebkitTransition: 'all', // שים לב לאות 'W'
-  msTransition: 'all' // 'ms' הוא הprefix באותיות קטנות היחיד
+  WebkitTransition: 'all', // שים לב לאות 'W' הגדולה
+  msTransition: 'all' // 'ms' הוא ה-prefix היחיד באותיות קטנות
 };
 
 function ComponentWithTransition() {
@@ -90,9 +90,9 @@ function ComponentWithTransition() {
 }
 ```
 
-Style keys הם camelCased על מנת להיות עקביים עם גישה לproperties על הDOM nodes מJavaScript( לדוגמה `node.style.backgroundImage`). ספקי prefixes  [ששונים מ `ms`](https://www.andismith.com/blogs/2012/02/modernizr-prefixed/) צריכים להתחיל עם אות גדולה. לכן `WebkitTransition` מתחיל עם אות גדולה.
+מפתחות עיצוב הם camelCased על מנת להיות עקביים עם גישה למאפיינים על צמתי ה-DOM מ-JavaScript (לדוגמה `node.style.backgroundImage`). קדימויות של ספקים [ששונים מ-`ms`](https://www.andismith.com/blogs/2012/02/modernizr-prefixed/) צריכים להתחיל עם אות גדולה. זו הסיבה ש-`WebkitTransition` מתחיל עם אות גדולה.
 
-React תוסיף באופן אוטומטי סיומת  "px" לכמה מאפייני סגנון. אם אתה רוצה להשתמש ביחידות מידה אחרות חוץ מ"px", נקוב בערך כמחרוזת עם יחידת המידה הרצויה. לדוגמה:
+React תוסיף באופן אוטומטי סיומת  "px" לכמה מאפייני סגנון. אם אתה רוצה להשתמש ביחידות מידה אחרות חוץ מ-"px", נקוב בערך כמחרוזת עם יחידת המידה הרצויה. לדוגמה:
 
 ```js
 // תוצאה: '10px'
@@ -106,23 +106,23 @@ React תוסיף באופן אוטומטי סיומת  "px" לכמה מאפיי�
 </div>
 ```
 
-לא כל הstyle properties מומרים למחרוזות פיקסלים. כמה מהם נשארים ללא יחידת מידה( לדוגמה `zoom`, `order`, `flex`). רשימה מלאה נמצאת [כאן](https://github.com/facebook/react/blob/4131af3e4bf52f3a003537ec95a1655147c81270/src/renderers/dom/shared/CSSProperty.js#L15-L59).
+לא כל מאפייני העיצוב מומרים למחרוזות פיקסלים. כמה מהם נשארים ללא יחידת מידה (לדוגמה `zoom`, `order`, `flex`). רשימה מלאה של מאפיינים ללא יחידות מידה נמצאת [כאן](https://github.com/facebook/react/blob/4131af3e4bf52f3a003537ec95a1655147c81270/src/renderers/dom/shared/CSSProperty.js#L15-L59).
 
 ### suppressContentEditableWarning {#suppresscontenteditablewarning}
 
-בדרך כלל, ישנה אזהרה כשאלמנט עם ילדים מסומן כ`contentEditable`, בגלל שהוא לא יעבוד. תכונה זו עוצרת את האזהרה. לא מומלץ להשתמש בזה אלא אם אתה בונה ספרייה כמו [Draft.js](https://facebook.github.io/draft-js/) שמנהלת `contentEditable` באופן ידני.
+בדרך כלל, ישנה אזהרה כשאלמנט עם ילדים מסומן כ-`contentEditable`, בגלל שזה לא יעבוד. תכונה זו עוצרת את האזהרה. אל תשתמש בזה אלא אם אתה בונה ספרייה כמו [Draft.js](https://facebook.github.io/draft-js/) שמנהלת `contentEditable` באופן ידני.
 
 ### suppressHydrationWarning {#suppresshydrationwarning}
 
-אם אתה משתמש ברינדור server-side בReact, בדרך כלל יש אזהרה כשהשרת והלקוח מרנדרים תוכן שונה. לעומת זאת, במקרים נדירים, זה קשה מאוד עד בלתי אפשרי להבטיח תוצאה זהה. לדוגמה, חותמות זמן אמורות להיות שונות בשרת ובלקוח.
+אם אתה משתמש ברינדור בצד-שרת ב-React, בדרך כלל יש אזהרה כשהשרת והלקוח מרנדרים תוכן שונה. לעומת זאת, במקרים נדירים, זה קשה מאוד עד בלתי אפשרי להבטיח תוצאה זהה. לדוגמה, חותמות זמן אמורות להיות שונות בשרת ובלקוח.
 
-אם אתה קובע את `suppressHydrationWarning` כtrue, React לא תזהיר אותך לגבי אי התאמה בתכונות ובתוכן של האלמנט. דבר זה עובד בעומק של אלמנט אחד בלבד, ומיועד לשימוש כדרך מוצא. לא מומלץ להשתמש בזה יותר מדי. ניתן לקרוא עוד על hydration ב  [`ReactDOM.hydrate()` documentation](/docs/react-dom.html#hydrate).
+אם אתה קובע את `suppressHydrationWarning` כ-`true`, React לא תזהיר אותך לגבי אי התאמה בתכונות ובתוכן של האלמנט. דבר זה עובד בעומק של רמה אחת בלבד, ומיועד לשימוש כפתח מילוט. אל תשתמש בזה יותר מדי. ניתן לקרוא עוד על hydration ב-[`ReactDOM.hydrate()` documentation](/docs/react-dom.html#hydrate).
 
 ### value {#value}
 
-תכונת ה`value` נתמכת על ידי הקומפוננטות `<input>` `<textarea>`. ניתן להשתמש בזה לקבוע את ערך הקומפוננטה. זה שימושי לבניית קומפוננטות נשלטות. `defaultValue` הוא המקביל הלא נשלט, שקובע את ערך הקומפוננטה כשהיא לראשונה mounted.
+תכונת ה-`value` נתמכת על ידי הקומפוננטות `<input>` ו-`<textarea>`. ניתן להשתמש בה כדי לקבוע את ערך הקומפוננטה. זה שימושי לבניית קומפוננטות נשלטות. `defaultValue` הוא המקביל הבלתי נשלט, שקובע את ערך הקומפוננטה כשהיא mounted לראשונה.
 
-## כל תכונות הHTML הנתמכות: {#all-supported-html-attributes}
+## כל תכונות ה-HTML הנתמכות: {#all-supported-html-attributes}
 
 החל מ-React 16, כל תכונת DOM סטנדרטית או [מותאמת אישית](/blog/2017/09/08/dom-attributes-in-react-16.html), נתמכת באופן מלא.
 
