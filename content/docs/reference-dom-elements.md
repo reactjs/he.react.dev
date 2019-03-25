@@ -29,8 +29,8 @@ React מיישמת מערכת DOM ללא-תלות בדפדפן עבור ביצו
 ### className {#classname}
 
 כדי להוסיף מחלקת CSS, נשתמש בתכונת ה-`className`. העניין נוגע לכל אלמנטי ה-DOM וה-SVG הרגילים כמו `<div>`, `<a>` ואחרים.
-אם אתה משתמש בReact עם Web Components (דבר שלא נפוץ כל כך), השתמש בתכונת הclass במקום.
 
+אם אתה משתמש ב-React עם Web Components (דבר שאיננו נפוץ כל כך), השתמש בתכונת ה-`class` במקום.
 
 ### dangerouslySetInnerHTML {#dangerouslysetinnerhtml}
 
