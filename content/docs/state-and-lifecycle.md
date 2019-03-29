@@ -72,9 +72,13 @@ ReactDOM.render(
 
 State זהה ל-props, אבל הוא פרטי ונשלט במלואו על ידי הקומפוננטה.
 
+<<<<<<< HEAD
 [הזכרנו קודם לכן](/docs/components-and-props.html#functional-and-class-components) שקומפוננטות שמוגדרות כמחלקות הן בעלות תכונות נוספות. state מקומי הוא בדיוק זה: תכונה שזמינה רק למחלקות.
 
 ## המרת פונקציה למחלקה {#converting-a-function-to-a-class}
+=======
+## Converting a Function to a Class {#converting-a-function-to-a-class}
+>>>>>>> d0f2db967a38e358bd59c65e981862cdf38f3d0b
 
 אתם יכולים להמיר קומפוננטת פונקציה כמו `Clock` למחלקה בחמישה צעדים:
 
