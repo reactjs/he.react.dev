@@ -151,8 +151,6 @@ class Welcome extends React.Component {
 
 מפתחות צריכים להיות ייחודיים רק בין אלמנטים אחים באותו מערך. הם לא צריכים להיות ייחודיים על פני האפליקציה כולה או אפילו קומפוננטה אחת.
 
-Don't pass something like `Math.random()` to keys. It is important that keys have a "stable identity" across re-renders so that React can determine when items are added, removed, or re-ordered. Ideally, keys should correspond to unique and stable identifiers coming from your data, such as `post.id`.
-
 אל תעביר משהו כמו `Math.random()` למפתחות. חשוב שלמפתחות תהיה "זהות קבועה" על פני רינדורים מחדש כך ש-React תוכל לקבוע מתי פריטים מתווספים, מוסרים, או מאורגנים מחדש. באופן אידיאלי, מפתחות צריכים להתאים למזהים ייחודיים וקבועים שמקורם בנתונים שלכם, כגון `post.id`.
 
 ## [Refs](/docs/refs-and-the-dom.html) {#refs}
