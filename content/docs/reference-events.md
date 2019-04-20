@@ -6,13 +6,13 @@ layout: docs
 category: Reference
 ---
 
-This reference guide documents the `SyntheticEvent` wrapper that forms part of React's Event System. See the [Handling Events](/docs/handling-events.html) guide to learn more.
+מדריך עזר זה מסביר על עטיפת ה- `SyntheticEvent` המהווה חלק ממערכת האירועים של ריאקט. ראה [טיפול באירועים](/docs/handling-events.html) על מנת ללמוד עוד.
 
-## Overview {#overview}
+## סקירה כללית {#overview}
 
-Your event handlers will be passed instances of `SyntheticEvent`, a cross-browser wrapper around the browser's native event. It has the same interface as the browser's native event, including `stopPropagation()` and `preventDefault()`, except the events work identically across all browsers.
+מטפלי האירועים שלך מקבלים מופעים של `SyntheticEvent`, שהוא מעטפת בין דפדפנים מסביב לאירוע המקורי של הדפדפן. יש לו את אותו ממשק כמו האירוע המקורי, כולל `stopPropagation()` ו- `preventDefault()`, למעט זה שהאירועים עובדים באופן זהה בין כל הדפדפנים.
 
-If you find that you need the underlying browser event for some reason, simply use the `nativeEvent` attribute to get it. Every `SyntheticEvent` object has the following attributes:
+אם אתה מגלה שאתה זקוק לאירוע הדפדפן הבסיסי מסיבה כלשהי, השתמש בתכונה `nativeEvent` על מנת לקבל אותו. כל אובייקט `SyntheticEvent` מכיל את התכונות הבאות:
 
 ```javascript
 boolean bubbles
@@ -31,19 +31,18 @@ number timeStamp
 string type
 ```
 
-> Note:
+> הערה:
 >
-> As of v0.14, returning `false` from an event handler will no longer stop event propagation. Instead, `e.stopPropagation()` or `e.preventDefault()` should be triggered manually, as appropriate.
+> החל מגרסה 0.14, החזרת `false` ממטפל אירועים כבר לא תעצור התפשטות אירועים. לחלופין, `e.stopPropagation()` או `e.preventDefault()` יופעלו ידנית, בהתאם לצורך.
 
-### Event Pooling {#event-pooling}
+### איגוד אירועים {#event-pooling}
 
-The `SyntheticEvent` is pooled. This means that the `SyntheticEvent` object will be reused and all properties will be nullified after the event callback has been invoked.
-This is for performance reasons.
-As such, you cannot access the event in an asynchronous way.
+`SyntheticEvent` הוא מאוגד. זה אומר שייעשה שימוש חוזר באובייקט ה- `SyntheticEvent` וכל מאפייניו יבוטלו לאחר שה- callback של האירוע יופעל. דבר זה קורה בגלל סיבות שקשורות לביצועים. כתוצאה מכך, לא ניתן לגשת לאירוע בצורה אסינכרונית. 
+
 
 ```javascript
 function onClick(event) {
-  console.log(event); // => nullified object.
+  console.log(event); // => אובייקט מבוטל.
   console.log(event.type); // => "click"
   const eventType = event.type; // => "click"
 
@@ -52,54 +51,54 @@ function onClick(event) {
     console.log(eventType); // => "click"
   }, 0);
 
-  // Won't work. this.state.clickEvent will only contain null values.
+  // לא יעבוד. this.state.clickEvent יכיל ערכי null.
   this.setState({clickEvent: event});
 
-  // You can still export event properties.
+  // עדיין ניתן לייצא את מאפייני האירוע.
   this.setState({eventType: event.type});
 }
 ```
 
-> Note:
+> הערה:
 >
-> If you want to access the event properties in an asynchronous way, you should call `event.persist()` on the event, which will remove the synthetic event from the pool and allow references to the event to be retained by user code.
+> אם אתה רוצה לגשת למאפייני האירוע בצורה אסינכרונית, ניתן לעשות זאת באמצעות קריאה ל- `event.persist()` באירוע, דבר שיסיר את האירוע הסינתטי מהאיגוד ויאפשר הפניות לאירוע להישמר על ידי קוד המשתמש.
 
-## Supported Events {#supported-events}
+## אירועים נתמכים {#supported-events}
 
-React normalizes events so that they have consistent properties across different browsers.
+ריאקט מנרמל אירועים כך שיש להם מאפיינים קבועים בין דפדפנים שונים.
 
-The event handlers below are triggered by an event in the bubbling phase. To register an event handler for the capture phase, append `Capture` to the event name; for example, instead of using `onClick`, you would use `onClickCapture` to handle the click event in the capture phase.
+מטפלי האירועים שלהלן מופעלים על ידי אירוע בשלב הבעבוע. על מנת לרשום מטפל אירועים לשלב הלכידה, הוסף `Capture` לשם האירוע; לדוגמה, במקום שימוש ב- `onClick`, נשתמש ב- `onClickCapture` על מנת לטפל באירוע ההקלקה בשלב הלכידה.
 
-- [Clipboard Events](#clipboard-events)
-- [Composition Events](#composition-events)
-- [Keyboard Events](#keyboard-events)
-- [Focus Events](#focus-events)
-- [Form Events](#form-events)
-- [Mouse Events](#mouse-events)
-- [Pointer Events](#pointer-events)
-- [Selection Events](#selection-events)
-- [Touch Events](#touch-events)
-- [UI Events](#ui-events)
-- [Wheel Events](#wheel-events)
-- [Media Events](#media-events)
-- [Image Events](#image-events)
-- [Animation Events](#animation-events)
-- [Transition Events](#transition-events)
-- [Other Events](#other-events)
+- [אירועי clipboard](#clipboard-events)
+- [אירועי קומפוזיציה](#composition-events)
+- [אירועי מקלדת](#keyboard-events)
+- [אירועי פוקוס](#focus-events)
+- [אירועי טפסים](#form-events)
+- [אירועי עכבר](#mouse-events)
+- [אירועי מצביע](#pointer-events)
+- [אירועי בחירה](#selection-events)
+- [אירועי טאץ'](#touch-events)
+- [אירועי ממשק משתמש](#ui-events)
+- [אירועי גלגל](#wheel-events)
+- [אירועי מדיה](#media-events)
+- [אירועי תמונה](#image-events)
+- [אירועי אנימציה](#animation-events)
+- [אירועי מעבר](#transition-events)
+- [אירועים אחרים](#other-events)
 
 * * *
 
-## Reference {#reference}
+## עיון {#reference}
 
-### Clipboard Events {#clipboard-events}
+### אירועי clipboard {#clipboard-events}
 
-Event names:
+שמות אירועים:
 
 ```
 onCopy onCut onPaste
 ```
 
-Properties:
+מאפיינים:
 
 ```javascript
 DOMDataTransfer clipboardData
@@ -107,15 +106,15 @@ DOMDataTransfer clipboardData
 
 * * *
 
-### Composition Events {#composition-events}
+### אירועי קומפוזיציה {#composition-events}
 
-Event names:
+שמות אירועים:
 
 ```
 onCompositionEnd onCompositionStart onCompositionUpdate
 ```
 
-Properties:
+מאפיינים:
 
 ```javascript
 string data
@@ -124,15 +123,15 @@ string data
 
 * * *
 
-### Keyboard Events {#keyboard-events}
+### אירועי מקלדת {#keyboard-events}
 
-Event names:
+שמות אירועים:
 
 ```
 onKeyDown onKeyPress onKeyUp
 ```
 
-Properties:
+מאפיינים:
 
 ```javascript
 boolean altKey
@@ -149,21 +148,21 @@ boolean shiftKey
 number which
 ```
 
-The `key` property can take any of the values documented in the [DOM Level 3 Events spec](https://www.w3.org/TR/uievents-key/#named-key-attribute-values).
+מאפיין ה- `key` יכול לקבל כל ערך שנמצא ב- [אירועי DOM שלב שלישי](https://www.w3.org/TR/uievents-key/#named-key-attribute-values).
 
 * * *
 
-### Focus Events {#focus-events}
+### אירועי פוקוס {#focus-events}
 
-Event names:
+שמות אירועים:
 
 ```
 onFocus onBlur
 ```
 
-These focus events work on all elements in the React DOM, not just form elements.
+אירועי הפוקוס הללו עובדים על כל האלמנטים ב- DOM של ריאקט, לא רק אלמנטי טפסים.
 
-Properties:
+מאפיינים:
 
 ```javascript
 DOMEventTarget relatedTarget
@@ -171,21 +170,21 @@ DOMEventTarget relatedTarget
 
 * * *
 
-### Form Events {#form-events}
+### אירועי טפסים {#form-events}
 
-Event names:
+שמות אירועים:
 
 ```
 onChange onInput onInvalid onSubmit
 ```
 
-For more information about the onChange event, see [Forms](/docs/forms.html).
+לקבלת מידע נוסף על אירוע ה- onChange, ראה [טפסים](/docs/forms.html).
 
 * * *
 
-### Mouse Events {#mouse-events}
+### אירועי עכבר {#mouse-events}
 
-Event names:
+שמות אירועים:
 
 ```
 onClick onContextMenu onDoubleClick onDrag onDragEnd onDragEnter onDragExit
@@ -193,9 +192,9 @@ onDragLeave onDragOver onDragStart onDrop onMouseDown onMouseEnter onMouseLeave
 onMouseMove onMouseOut onMouseOver onMouseUp
 ```
 
-The `onMouseEnter` and `onMouseLeave` events propagate from the element being left to the one being entered instead of ordinary bubbling and do not have a capture phase.
+אירועי ה- `onMouseEnter` ו- `onMouseLeave` מופצים מהאלמנט השמאלי אל האלמנט שהוזן במקום בעבוע רגיל ואין לו שלב לכידה.
 
-Properties:
+מאפיינים:
 
 ```javascript
 boolean altKey
@@ -216,20 +215,20 @@ boolean shiftKey
 
 * * *
 
-### Pointer Events {#pointer-events}
+### אירועי מצביע {#pointer-events}
 
-Event names:
+שמות אירועים:
 
 ```
 onPointerDown onPointerMove onPointerUp onPointerCancel onGotPointerCapture
 onLostPointerCapture onPointerEnter onPointerLeave onPointerOver onPointerOut
 ```
 
-The `onPointerEnter` and `onPointerLeave` events propagate from the element being left to the one being entered instead of ordinary bubbling and do not have a capture phase.
+אירועי ה- `onPointerEnter` ו- `onPointerLeave` מופצים מהאלמנט השמאלי אל האלמנט שהוזן במקום בעבוע רגיל ואין לו שלב לכידה.
 
-Properties:
+מאפיינים:
 
-As defined in the [W3 spec](https://www.w3.org/TR/pointerevents/), pointer events extend [Mouse Events](#mouse-events) with the following properties:
+כמו שהוגדר ב- [W3 spec](https://www.w3.org/TR/pointerevents/), אירועי מצביע מרחיבים [אירועי עכבר](#mouse-events) עם המאפיינים הבאים:
 
 ```javascript
 number pointerId
@@ -244,17 +243,17 @@ string pointerType
 boolean isPrimary
 ```
 
-A note on cross-browser support:
+הערה לגבי תמיכה בדפדנים:
 
-Pointer events are not yet supported in every browser (at the time of writing this article, supported browsers include: Chrome, Firefox, Edge, and Internet Explorer). React deliberately does not polyfill support for other browsers because a standard-conform polyfill would significantly increase the bundle size of `react-dom`.
+אירועי מצביע עדיין לא נתמכים בכל דפדפן( בזמן כתיבת מאמר זה, הדפדנים הנתמכים הם: כרום, פיירפוקס, edge, ו- internet explorer). ריאקט באופן מכוון לא תומכת בדפדפנים אחרים כי 'פוליפיל' רגיל יגדיל משמעותית את הגודל של `react-dom`.
 
-If your application requires pointer events, we recommend adding a third party pointer event polyfill.
+אם היישום שלך דורש אירועי מצביע, אנו ממליצים שתוסיף 'פוליפיל' צד שלישי.
 
 * * *
 
-### Selection Events {#selection-events}
+### אירועי בחירה {#selection-events}
 
-Event names:
+שמות אירועים:
 
 ```
 onSelect
@@ -262,15 +261,15 @@ onSelect
 
 * * *
 
-### Touch Events {#touch-events}
+### אירועי טאץ' {#touch-events}
 
-Event names:
+שמות אירועים:
 
 ```
 onTouchCancel onTouchEnd onTouchMove onTouchStart
 ```
 
-Properties:
+מאפיינים:
 
 ```javascript
 boolean altKey
@@ -285,15 +284,15 @@ DOMTouchList touches
 
 * * *
 
-### UI Events {#ui-events}
+### אירועי ממשק משתמש {#ui-events}
 
-Event names:
+שמות אירועים:
 
 ```
 onScroll
 ```
 
-Properties:
+מאפיינים:
 
 ```javascript
 number detail
@@ -302,15 +301,15 @@ DOMAbstractView view
 
 * * *
 
-### Wheel Events {#wheel-events}
+### אירועי גלגל {#wheel-events}
 
-Event names:
+שמות אירועים:
 
 ```
 onWheel
 ```
 
-Properties:
+מאפיינים:
 
 ```javascript
 number deltaMode
@@ -321,9 +320,9 @@ number deltaZ
 
 * * *
 
-### Media Events {#media-events}
+### אירועי מדיה {#media-events}
 
-Event names:
+שמות אירועים:
 
 ```
 onAbort onCanPlay onCanPlayThrough onDurationChange onEmptied onEncrypted
@@ -334,9 +333,9 @@ onTimeUpdate onVolumeChange onWaiting
 
 * * *
 
-### Image Events {#image-events}
+### אירועי תמונה {#image-events}
 
-Event names:
+שמות אירועים:
 
 ```
 onLoad onError
@@ -344,15 +343,15 @@ onLoad onError
 
 * * *
 
-### Animation Events {#animation-events}
+### אירועי אנימציה {#animation-events}
 
-Event names:
+שמות אירועים:
 
 ```
 onAnimationStart onAnimationEnd onAnimationIteration
 ```
 
-Properties:
+מאפיינים:
 
 ```javascript
 string animationName
@@ -362,15 +361,15 @@ float elapsedTime
 
 * * *
 
-### Transition Events {#transition-events}
+### אירועי מעבר {#transition-events}
 
-Event names:
+שמות אירועים:
 
 ```
 onTransitionEnd
 ```
 
-Properties:
+מאפיינים:
 
 ```javascript
 string propertyName
@@ -380,9 +379,9 @@ float elapsedTime
 
 * * *
 
-### Other Events {#other-events}
+### אירועים אחרים {#other-events}
 
-Event names:
+שמות אירועים:
 
 ```
 onToggle
