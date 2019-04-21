@@ -1,68 +1,68 @@
 ---
 id: shallow-renderer
-title: Shallow Renderer
+title: מרנדר רדוד
 permalink: docs/shallow-renderer.html
 layout: docs
 category: Reference
 ---
 
-**Importing**
+**ייבוא**
 
 ```javascript
 import ShallowRenderer from 'react-test-renderer/shallow'; // ES6
-var ShallowRenderer = require('react-test-renderer/shallow'); // ES5 with npm
+var ShallowRenderer = require('react-test-renderer/shallow'); // npm עם ES5 
 ```
 
-## Overview {#overview}
+## סקירה כללית {#overview}
 
-When writing unit tests for React, shallow rendering can be helpful. Shallow rendering lets you render a component "one level deep" and assert facts about what its render method returns, without worrying about the behavior of child components, which are not instantiated or rendered. This does not require a DOM.
+בעת כתיבת בדיקות יחידה עבור React, מרנדר רדוד יכול לעזור. מרנדר רדוד נותן לך לרנדר קומפוננטה “רמת עומק אחת”, ולוודא על מה המתודה רנדר מחזירה, מבלי לדאוג על התנהגותם של קומפוננטות הילדים שלה, אשר לא מייצרים מופע חדש או מתרנדרים. זה לא דורש DOM.
 
-For example, if you have the following component:
+לדוגמה, אם יש לך את הקומפוננטה הבאה: 
 
 ```javascript
 function MyComponent() {
   return (
     <div>
-      <span className="heading">Title</span>
+      <span className="heading">כותרת</span>
       <Subcomponent foo="bar" />
     </div>
   );
 }
 ```
 
-Then you can assert:
+אז אתה יכול לוודא: 
 
 ```javascript
 import ShallowRenderer from 'react-test-renderer/shallow';
 
-// in your test:
+// בבדיקה שלך:
 const renderer = new ShallowRenderer();
 renderer.render(<MyComponent />);
 const result = renderer.getRenderOutput();
 
 expect(result.type).toBe('div');
 expect(result.props.children).toEqual([
-  <span className="heading">Title</span>,
+  <span className="heading">כותרת</span>,
   <Subcomponent foo="bar" />
 ]);
 ```
 
-Shallow testing currently has some limitations, namely not supporting refs.
+למרנדר רדוד כרגע יש כמה מגבלות, למשל חוסר תמיכה ב-refs.
 
-> Note:
+> הערה:
 >
-> We also recommend checking out Enzyme's [Shallow Rendering API](https://airbnb.io/enzyme/docs/api/shallow.html). It provides a nicer higher-level API over the same functionality.
+> אנחנו גם ממליצים לבדוק את ה-[API של המרנדר הרדוד](https://airbnb.io/enzyme/docs/api/shallow.html) של Enzyme. הוא מספק API מרמה-גבוהה יותר על אותה פונקציונליות.
 
-## Reference {#reference}
+## עיון {#reference}
 
 ### `shallowRenderer.render()` {#shallowrendererrender}
 
-You can think of the shallowRenderer as a "place" to render the component you're testing, and from which you can extract the component's output.
+אתה יכול לחשוב על shallowRenderer כ-“מקום” לרנדור קומפוננטה שאתה בודק, וממנו ניתן להוציא את הפלט של הקומפוננטה.
 
-`shallowRenderer.render()` is similar to [`ReactDOM.render()`](/docs/react-dom.html#render) but it doesn't require DOM and only renders a single level deep. This means you can test components isolated from how their children are implemented.
+`shallowRenderer.render()` דומה ל-[`()ReactDOM.render`](/docs/react-dom.html#render) אבל לא דורש DOM ומרנדר רק רמת עומק אחת. זה אומר שאתה יכול לבדוק קומפוננטות מבודדות מבלי לדעת איך הילדים שלהם ממומשים.
 
 ### `shallowRenderer.getRenderOutput()` {#shallowrenderergetrenderoutput}
 
-After `shallowRenderer.render()` has been called, you can use `shallowRenderer.getRenderOutput()` to get the shallowly rendered output.
+אחרי ש-`shallowRenderer.render()` נקרא, אתה יכול להשתמש ב-`shallowRenderer.getRenderOutput()` כדי לקבל את הפלט הרדוד שרונדר.
 
-You can then begin to assert facts about the output.
+אחרי זה אתה יכול להתחיל לתשאל עובדות על הפלט.
