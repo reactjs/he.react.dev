@@ -89,6 +89,11 @@ const fonts = {
     lineHeight: '65px',
     fontWeight: 700,
 
+    [media.lessThan('small')]: {
+      overflowWrap: 'break-word',
+      wordBreak: 'break-word',
+    },
+
     [media.lessThan('medium')]: {
       fontSize: 40,
       lineHeight: '45px',
@@ -252,6 +257,8 @@ const sharedStyles = {
       padding: '0 3px',
       fontSize: '0.94em', // 16px on 17px text, smaller in smaller text
       wordBreak: 'break-word',
+      direction: 'ltr',
+      display: 'inline-block',
     },
 
     '& hr': {
@@ -402,6 +409,10 @@ const sharedStyles = {
         '&:nth-of-type(2)': {
           marginTop: 0,
         },
+      },
+
+      '& .gatsby-highlight': {
+        marginLeft: 0,
       },
     },
 
