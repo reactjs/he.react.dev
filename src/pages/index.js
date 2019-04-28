@@ -142,7 +142,6 @@ class Home extends Component {
                       paddingTop: 40,
                       flexWrap: 'wrap',
                       justifyContent: 'center',
-
                       [media.greaterThan('xlarge')]: {
                         paddingTop: 65,
                       },
@@ -321,6 +320,8 @@ Home.propTypes = {
 const CtaItem = ({children, primary = false}) => (
   <div
     css={{
+      width: '50%',
+
       [media.between('small', 'large')]: {
         paddingLeft: 20,
       },
@@ -330,17 +331,12 @@ const CtaItem = ({children, primary = false}) => (
       },
 
       '&:first-child': {
-<<<<<<< HEAD
         textAlign: 'left',
-        paddingLeft: 15,
-=======
-        textAlign: 'right',
         paddingRight: 7,
         paddingLeft: 7,
         [media.lessThan('small')]: {
           marginBottom: 10,
         },
->>>>>>> 4244fc646618de6bae934686f93dd04c9000d9ae
       },
 
       '&:nth-child(2)': {
