@@ -15,13 +15,13 @@ var ReactTestUtils = require('react-dom/test-utils'); // ES5 עם npm
 
 ## סקירה כללית {#overview}
 
-ReactTestUtils` מקל על תהליך בדיקת קומפוננטות ריאקט בכל פריימוורק בדיקה שתבחר. בפייסבוק אנו משתמשים ב- [Jest](https://facebook.github.io/jest/) לבדיקות ג'אווהסקריפט. למד איך להתחיל עם Jest דרך [למד איך להתחיל עם Jest דרך](https://jestjs.io/docs/tutorial-react).
+`ReactTestUtils` מקל על תהליך בדיקת קומפוננטות React בכל פריימוורק בדיקה שתבחר. ב-Facebook אנו משתמשים ב-[Jest](https://facebook.github.io/jest/) לבדיקות JavaScript בצורה קלה. למד איך להתחיל עם Jest דרך [מדריך React](https://jestjs.io/docs/tutorial-react) באתר האינטרנט של Jest.
 
 > הערה:
 >
-> אנו ממליצים להשתמש ב- [`react-testing-library`](https://git.io/react-testing-library) מכיוון שתוכננה לאפשר ולעודד כתיבת בדיקות שמשתמשות בקומפוננטות שלך בצורה זהה למשתמשים.
+> אנו ממליצים להשתמש ב-[`react-testing-library`](https://git.io/react-testing-library) שתוכננה לאפשר ולעודד כתיבת בדיקות שמשתמשות בקומפוננטות שלך בצורה זהה למשתמשי הקצה.
 >
-> לחלופין, Airbnb שחררו כלי בדיקה שנקרא [Enzyme](https://airbnb.io/enzyme/), שמקל על טעינת, תפעול וחצייה של פלט קומפוננטות ריאקט.
+> לחלופין, Airbnb שחררו כלי בדיקה שנקרא [Enzyme](https://airbnb.io/enzyme/), שמקל על ווידוא, מניפולציה ומעבר על פלט קומפוננטות ה-React שלך.
 
  - [`act()`](#act)
  - [`mockComponent()`](#mockcomponent)
@@ -44,11 +44,11 @@ ReactTestUtils` מקל על תהליך בדיקת קומפוננטות ריאק�
 
 ### `act()` {#act}
 
-כדי להכין קומפוננטה לטעינה, עטוף את הקוד שמרנדר אותה ומעדכן אותה בתוך קריאת `act()`. זה גורם לבדיקה שלך לרוץ קרוב לצורה שבה ריאקט עובדת בדפדפן.
+כדי להכין קומפוננטה לווידוא, עטוף את הקוד שמרנדר אותה ומבצע עליה עדכונים בתוך קריאת `act()`. פעולה זו גורמת לבדיקה שלך לרוץ באופן דומה לצורה שבה React עובדת בדפדפן.
 
 >הערה
 >
->אם אתה משתמש ב- `react-test-renderer`, הספרייה גם מספקת מתודת `act` שמתנהגת באותה צורה.
+>אם אתה משתמש ב-`react-test-renderer`, הספרייה גם מספקת מתודת `act` שמתנהגת באותה צורה.
 
 לדוגמה, נגיד שיש לנו את קומפוננטת `Counter` הבאה:
 
@@ -83,7 +83,7 @@ class Counter extends React.Component {
 }
 ```
 
-פה נראה כיצד להריץ עליה בדיקה:
+ככה נוכל לבדוק אותה:
 
 ```js{3,20-22,29-31}
 import React from 'react';
@@ -104,7 +104,7 @@ afterEach(() => {
 });
 
 it('can render and update a counter', () => {
-  // בדיקת רינדור ראשון ו- componentDidMount
+  // בדיקת רינדור ראשון ו-componentDidMount
   act(() => {
     ReactDOM.render(<Counter />, container);
   });
@@ -113,7 +113,7 @@ it('can render and update a counter', () => {
   expect(label.textContent).toBe('You clicked 0 times');
   expect(document.title).toBe('You clicked 0 times');
 
-  // בדיקת רינדור שני ו- componentDidUpdate
+  // בדיקת רינדור שני ו-componentDidUpdate
   act(() => {
     button.dispatchEvent(new MouseEvent('click', {bubbles: true}));
   });
@@ -122,7 +122,7 @@ it('can render and update a counter', () => {
 });
 ```
 
-אסור לשכוח ששיגור אירועי DOM עובד רק כשקונטיינר ה- DOM נוסף ל-  `document`.  ניתן להשתמש בעזר כמו [`react-testing-library`](https://github.com/kentcdodds/react-testing-library) על מנת להפחית קוד.
+אסור לשכוח ששיגור אירועי DOM עובד רק כשקונטיינר ה-DOM נוסף ל-`document`.  ניתן להשתמש בעזר כמו [`react-testing-library`](https://github.com/kentcdodds/react-testing-library) על מנת להפחית קוד תבנית קבועה.
 
 * * *
 
@@ -135,11 +135,11 @@ mockComponent(
 )
 ```
 
-העבר מודול קומפוננטה ''מזוייפת'' למתודה זו על מנת להרחיב אותה עם מתודות שימושיות שנותנות את האפשרות להשתמש בה כקומפוננטת דמה. במקום לרנדר כרגיל, הקומפוננטה תהפוך ל- `<div>` פשוט(או תג אחר אם `mockTagName` מועברת גם) שמכיל את ה''ילדים'' המועברים.
+העבר מודול קומפוננטה "מזוייפת" למתודה זו על מנת להרחיב אותה עם מתודות שימושיות שנותנות את האפשרות להשתמש בה כקומפוננטת React מדומה. במקום לרנדר כרגיל, הקומפוננטה תהפוך ל-`<div>` פשוט (או תג אחר אם סופק גם `mockTagName`) שמכיל את הילדים שסופקו.
 
 > הערה:
 >
-> `mockComponent()` הוא API ישן. אנו ממליצים להשתמש ב- [רינדור רדוד](/docs/shallow-renderer.html) או [`jest.mock()`](https://facebook.github.io/jest/docs/en/tutorial-react-native.html#mock-native-modules-using-jestmock) במקום.
+> `mockComponent()` הוא API ישן. אנו ממליצים להשתמש ב-[רינדור רדוד](/docs/shallow-renderer.html) או ב-[`jest.mock()`](https://facebook.github.io/jest/docs/en/tutorial-react-native.html#mock-native-modules-using-jestmock) במקום.
 
 * * *
 
@@ -149,7 +149,7 @@ mockComponent(
 isElement(element)
 ```
 
-מחזיר `true` אם `element` הוא אלמנט ריאקט כלשהו.
+מחזיר `true` אם `element` הוא אלמנט React כלשהו.
 
 * * *
 
@@ -162,7 +162,7 @@ isElementOfType(
 )
 ```
 
-מחזיר `true` אם `element` הוא אלמנט ריאקט מסוג`componentClass` של ריאקט.
+מחזיר `true` אם `element` הוא אלמנט React מסוג `componentClass` של React.
 
 * * *
 
@@ -172,7 +172,7 @@ isElementOfType(
 isDOMComponent(instance)
 ```
 
-מחזיר `true` אם `instance` הוא קומפוננטת DOM(   כמו  `<div>` או `<span>`).
+מחזיר `true` אם `instance` הוא קומפוננטת DOM (כמו `<div>` או `<span>`).
 
 * * *
 
@@ -195,7 +195,7 @@ isCompositeComponentWithType(
 )
 ```
 
-מחזיר `true` אם `instance` הוא קומפוננטה מסוג `componentClass` של ריאקט.
+מחזיר `true` אם `instance` הוא קומפוננטה מסוג `componentClass` של React.
 
 * * *
 
@@ -208,7 +208,7 @@ findAllInRenderedTree(
 )
 ```
 
-חוצה את כל הקומפוננטות ב- `tree` וצובר את כל הקומפוננטות שבהן `test(component)` הוא `true`. זה לא כל כך שימושי בפני עצמו, אבל זה משמש כבסיס לכלי בדיקה אחרים.
+חוצה את כל הקומפוננטות ב-`tree` וצובר את כל הקומפוננטות שבהן `test(component)` הוא `true`. זה לא כל כך שימושי בפני עצמו, אבל זה משמש כבסיס לכלי בדיקה אחרים.
 
 * * *
 
@@ -221,7 +221,7 @@ scryRenderedDOMComponentsWithClass(
 )
 ```
 
-מאתר את כל אלמנטי ה- DOM של קומפוננטות בעץ המרונדר שהן קומפוננטות DOM עם שם המחלקה התואם `className`.
+מאתר את כל אלמנטי ה-DOM של קומפוננטות בעץ המרונדר שהן קומפוננטות DOM עם שם המחלקה התואם `className`.
 
 * * *
 
@@ -234,7 +234,7 @@ findRenderedDOMComponentWithClass(
 )
 ```
 
-כמו [`scryRenderedDOMComponentsWithClass()`](#scryrendereddomcomponentswithclass) אבל מצפה לתוצאה אחת, ומחזיר את התוצאה האחת הזו, או מחזיר שגיאה אם יש מספר אחר של תוצאות.
+כמו [`scryRenderedDOMComponentsWithClass()`](#scryrendereddomcomponentswithclass) אבל מצפה שתהיה תוצאה אחת, ומחזיר את התוצאה האחת הזו, או זורק שגיאה אם יש מספר אחר של תוצאות מעבר לאחת.
 
 * * *
 
@@ -247,7 +247,7 @@ scryRenderedDOMComponentsWithTag(
 )
 ```
 
-מאתר את כל אלמנטי ה- DOM של קומפוננטות בעץ המרונדר שהן קומפוננטות DOM עם שם התג התואם `tagName`.
+מאתר את כל אלמנטי ה-DOM של קומפוננטות בעץ המרונדר שהן קומפוננטות DOM עם שם תג התואם את `tagName`.
 
 * * *
 
@@ -260,7 +260,7 @@ findRenderedDOMComponentWithTag(
 )
 ```
 
-כמו [`scryRenderedDOMComponentsWithTag()`](#scryrendereddomcomponentswithtag) אבל מצפה לתוצאה אחת, ומחזיר את התוצאה האחת הזו, או מחזיר שגיאה אם יש מספר אחר של תוצאות.
+כמו [`scryRenderedDOMComponentsWithTag()`](#scryrendereddomcomponentswithtag) אבל מצפה לתוצאה אחת, ומחזיר את התוצאה האחת הזו, או זורק שגיאה אם יש מספר אחר של תוצאות מעבר לאחת.
 
 * * *
 
@@ -273,7 +273,7 @@ scryRenderedComponentsWithType(
 )
 ```
 
-מאתר את כל מופעי הקומפוננטות שלהן סוג שווה ל- `componentClass`.
+מאתר את כל מופעי הקומפוננטות שהסוג שלהן שווה ל-`componentClass`.
 
 * * *
 
@@ -286,7 +286,7 @@ findRenderedComponentWithType(
 )
 ```
 
-כמו [`scryRenderedComponentsWithType()`](#scryrenderedcomponentswithtype) אבל מצפה לתוצאה אחת, ומחזיר את התוצאה האחת הזו, או מחזיר שגיאה אם יש מספר אחר של תוצאות.
+כמו [`scryRenderedComponentsWithType()`](#scryrenderedcomponentswithtype) אבל מצפה לתוצאה אחת, ומחזיר את התוצאה האחת הזו, או זורק שגיאה אם יש מספר אחר של תוצאות מעבר לאחת.
 
 ***
 
@@ -296,7 +296,7 @@ findRenderedComponentWithType(
 renderIntoDocument(element)
 ```
 
-מרנדר אלמנט ריאקט ל- DOM node מנותק בדף. **פונקצייה זו דורשת DOM נוכח.** זה שווה ערך ל:
+מרנדר אלמנט React לצומת DOM מנותקת בדף. **פונקצייה זו דורשת DOM נוכח.** זה שווה ערך ל:
 
 ```js
 const domContainer = document.createElement('div');
@@ -305,7 +305,7 @@ ReactDOM.render(element, domContainer);
 
 > הערה:
 >
-> יש צורך ב- `window`, `window.document` ו- `window.document.createElement` **לפני** שמייבאים את ריאקט. אחרת ריאקט יחשוב שאין גישה ל- DOM ומתודות כמו `setState` לא יעבדו.
+> יש צורך ב-`window`, `window.document` ו-`window.document.createElement` זמינים באופן גלובלי **לפני** שמייבאים את `React`. אחרת React תחשוב שאין לה גישה ל-DOM ומתודות כמו `setState` לא יעבדו.
 
 * * *
 
@@ -320,9 +320,9 @@ Simulate.{eventName}(
 )
 ```
 
-מדמה שיגור אירוע על DOM node עם `eventData` אופציונאלי.
+מדמה שיגור אירוע על צומת DOM עם נתוני אירוע `eventData` אופציונאליים.
 
-ל- `Simulate` יש מתודה לכל [אירוע שריאקט מבין](/docs/events.html#supported-events).
+ל-`Simulate` יש מתודה ל[כל אירוע שReact מבינה](/docs/events.html#supported-events).
 
 **לחיצה על אלמנט**
 
@@ -344,6 +344,6 @@ ReactTestUtils.Simulate.keyDown(node, {key: "Enter", keyCode: 13, which: 13});
 
 > הערה
 >
-> תצטרך לספק כל מאפיין אירוע שאתה משתמש בקומפוננטה שלך( כמו keyCode, which וכדומה) מכיון שריאקט לא יוצר אותם בשבילך.
+> תצטרך לספק כל מאפיין אירוע שאתה משתמש בו בקומפוננטה שלך (כמו keyCode, which וכו') מכיון ש-React לא יוצרת אף אחד מהם עבורך.
 
 * * *
