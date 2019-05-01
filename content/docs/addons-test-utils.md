@@ -40,7 +40,7 @@ var ReactTestUtils = require('react-dom/test-utils'); // ES5 עם npm
  - [`renderIntoDocument()`](#renderintodocument)
  - [`Simulate`](#simulate)
 
-## עיון {#reference}
+## סימוכין {#reference}
 
 ### `act()` {#act}
 
