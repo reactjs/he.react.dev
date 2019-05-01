@@ -90,7 +90,7 @@ React מנרמלת אירועים כך שיהיו להם מאפיינים עקב
 
 * * *
 
-## עיון {#reference}
+## סימוכין {#reference}
 
 ### אירועי clipboard {#clipboard-events}
 
