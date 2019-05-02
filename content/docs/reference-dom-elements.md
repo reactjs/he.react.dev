@@ -34,7 +34,7 @@ React מיישמת מערכת DOM ללא-תלות בדפדפן עבור ביצו
 
 ### dangerouslySetInnerHTML {#dangerouslysetinnerhtml}
 
-`dangerouslySetInnerHTML` היא החלופה של React לשימוש ב-`innerHTML` ב-DOM של הדפדפן. באופן כללי, קביעת HTML מהקוד היא מסוכנת מכיוון שזה קל בטעות לחשוף את המשתמשים שלך ל[מתקפת XSS))] (https://en.wikipedia.org/wiki/Cross-site_scripting). לעומת זאת, אפשר לכתוב HTML ישירות מ-React, אבל אתה צריך לכתוב `dangerouslySetInnerHTML` ולהעביר אובייקט עם מפתח `__html`, על מנת להזכיר לעצמך שזה מסוכן. לדוגמה:
+`dangerouslySetInnerHTML` היא החלופה של React לשימוש ב-`innerHTML` ב-DOM של הדפדפן. באופן כללי, קביעת HTML מהקוד היא מסוכנת מכיוון שזה קל בטעות לחשוף את המשתמשים שלך ל[מתקפת XSS](https://en.wikipedia.org/wiki/Cross-site_scripting) .לעומת זאת, אפשר לכתוב HTML ישירות מ-React, אבל אתה צריך לכתוב `dangerouslySetInnerHTML` ולהעביר אובייקט עם מפתח `__html`, על מנת להזכיר לעצמך שזה מסוכן. לדוגמה:
 
 ```js
 function createMarkup() {
