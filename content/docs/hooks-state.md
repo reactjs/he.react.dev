@@ -8,7 +8,6 @@ prev: hooks-overview.html
 
 *Hooks* הם תוסף חדש ב-React 16.8. הם מאפשרים שימוש ב- state ופיצ'רים אחרים של React מבלי לכתוב מחלקה.
 
-
 [הדף הקודם](/docs/hooks-intro.html) הדף הקודם הציג Hooks עם הדוגמה הבאה:
 
 ```js{4-5}

@@ -99,7 +99,7 @@ React תוכננה מלכתחילה לאימוץ הדרגתי, ו**אתם יכו
 
 ### קונספטים מתקדמים {#advanced-concepts}
 
-ברגע שאתם מרגישים בנוח עם [הקונספטים העיקריים](#main-concepts) ושיחקתם קצת עם React, אתם עשויים להתעניין בנושאים מתקדמים יותר. חלק זה יציג בפניכם את התכונות החזקות, אך פחות נפוצות לשימוש, של React כגון [context](/docs/context.html) ו- [refs](/docs/refs-and-the-dom.html).
+ברגע שאתם מרגישים בנוח עם [הקונספטים העיקריים](/docs/hello-world.html) ושיחקתם קצת עם React, אתם עשויים להתעניין בנושאים מתקדמים יותר. חלק זה יציג בפניכם את התכונות החזקות, אך פחות נפוצות לשימוש, של React כגון [context](/docs/context.html) ו- [refs](/docs/refs-and-the-dom.html).
 
 ### API Reference {#api-reference}
 
@@ -115,7 +115,7 @@ React תוכננה מלכתחילה לאימוץ הדרגתי, ו**אתם יכו
 
 תוכלו גם לעקוב אחר [חשבון @reactjs](https://twitter.com/reactjs) ב- Twitter, אך לא תחמיצו שום דבר חיוני אם תקראו את הבלוג בלבד.
 
-לא כל גירסת React ראויה לבלוג פוסט משל עצמה, אך תוכלו למצוא קובץ שינויים מפורט עבור כל גירסה [בקובץ CHANGELOG.md` בריפוזיטורי של React](https://github.com/facebook/react/blob/master/CHANGELOG.md), וכן בדף ה[שיחרורים](https://github.com/facebook/react).
+לא כל גירסת React ראויה לבלוג פוסט משל עצמה, אך תוכלו למצוא קובץ שינויים מפורט עבור כל גירסה [בקובץ CHANGELOG.md` בריפוזיטורי של React](https://github.com/facebook/react/blob/master/CHANGELOG.md), וכן בדף ה[שיחרורים](https://github.com/facebook/react/releases).
 
 ## גרסאות תיעוד {#versioned-documentation}
 
