@@ -12,7 +12,7 @@ redirect_from:
   - "docs/tutorial-zh-CN.html"
 ---
 
-מדריך זה לא מניח שום ידע קודם ב-React.
+מדריך זה לא מצריך שום ידע קודם ב-React.
 
 ## לפני שאנחנו מתחילים במדריך {#before-we-start-the-tutorial}
 
