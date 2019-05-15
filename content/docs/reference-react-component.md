@@ -489,7 +489,7 @@ UNSAFE_componentWillUpdate(nextProps, nextState)
 
 > הערה
 >
-> `UNSAFE_componentWillUpdate()` לא תתבצע אם [`shouldComponentUpdate()`](#shouldcomponentupdate) מחזירה ביטוי שקר.
+> `UNSAFE_componentWillUpdate()` לא תתבצע אם [`shouldComponentUpdate()`](#shouldcomponentupdate) מחזירה false.
 
 * * *
 
