@@ -638,6 +638,6 @@ CustomButton.defaultProps = {
 
 אם ערך כלשהו לא בשימוש עבור רינדור או עבור זרימת מידע (לדוגמא, timer ID), אין חובה לשים אותו בתוך ה-state. ערכים כאלו יכולים להיות מוגדרים כשדות בקומפוננטת המופע.
 
-עיינו ב-[State and Lifecycle](/docs/state-and-lifecycle.html) עבור מידע נוסף על ה-state.
+עיינו ב-[State ומחזור חיים](/docs/state-and-lifecycle.html) עבור מידע נוסף על ה-state.
 
 לעולם אל תשנו את `this.state` ישירות, מכיוון שקריאה ל- `setState()` לאחר מכן עלולה להחליף את השינוי שביצעתם. התייחסו ל- `this.state` כאילו היה אימיוטבל.
