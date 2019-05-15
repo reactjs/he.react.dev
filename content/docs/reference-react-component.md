@@ -265,7 +265,7 @@ shouldComponentUpdate(nextProps, nextState)
 
 אנחנו לא ממליצים לבצע בדיקות איכות עמוקות או שימוש ב- `JSON.stringify()` ב- `shouldComponentUpdate()`. זה מאוד לא יעיל ויכול לגרוע בביצועים.
 
-כרגע, אם `shouldComponentUpdate()` מחזירה `ביטוי שקר`, אז [`UNSAFE_componentWillUpdate()`](#unsafe_componentwillupdate), [`render()`](#render), ו- [`componentDidUpdate()`](#componentdidupdate) לא יתבצעו. בעתיד React אולי תתייחס ל- `shouldComponentUpdate()` כאל רמז, מאשר כאל directive נוקשה, והחזרת `ביטוי שקר` אולי יוביל לרינדור נוסף של הקומפוננטה.
+כרגע, אם `shouldComponentUpdate()` מחזירה `false`, אז [`UNSAFE_componentWillUpdate()`](#unsafe_componentwillupdate), [`render()`](#render), ו- [`componentDidUpdate()`](#componentdidupdate) לא יתבצעו. בעתיד React אולי תתייחס ל- `shouldComponentUpdate()` כאל רמז, מאשר כאל directive נוקשה, והחזרת `false` אולי תוביל לרינדור נוסף של הקומפוננטה.
 
 * * *
 
