@@ -628,7 +628,7 @@ CustomButton.defaultProps = {
 
 ### `props` {#props}
 
-`this.props` מכין את ה-props שהוגדרו על ידי המפעיל של הקומפוננטה הזו. עיינו ב-[Components and Props](/docs/components-and-props.html) עבור הקדמה ל-props.
+`this.props` מכין את ה-props שהוגדרו על ידי המפעיל של הקומפוננטה הזו. עיינו ב-[קומפוננטות ו-props](/docs/components-and-props.html) עבור הקדמה ל-props.
 
 `this.props.children` הוא prop מיוחד, בדרך כלל מוגדר על ידי הטאגים של הילד בביטוי ה-JSX  מאשר בטאג עצמו.
 
