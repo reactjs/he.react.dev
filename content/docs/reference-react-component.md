@@ -423,7 +423,7 @@ class ErrorBoundary extends React.Component {
 
 ### Legacy Lifecycle Methods {#legacy-lifecycle-methods}
 
-מתודות מעגל-החיים להלן מסומן כ"מורשת". הן עדיין יעבדו, אבל אנחנו לא ממליצים להשתמש בהם בקוד חדש. אתם יכולים ללמוד עוד על מעבר ממתודות מעגל-חיים המוגדרות כ"מורשת" ב-[פוסט הזה] (/blog/2018/03/27/update-on-async-rendering.html).
+מתודות מעגל-החיים להלן מסומן כ"ישנות". הן עדיין יעבדו, אבל אנחנו לא ממליצים להשתמש בהם בקוד חדש. אתם יכולים ללמוד עוד על מעבר ממתודות מעגל-חיים המוגדרות כ"מורשת" ב-[פוסט הזה] (/blog/2018/03/27/update-on-async-rendering.html).
 
 ### `UNSAFE_componentWillMount()` {#unsafe_componentwillmount}
 
