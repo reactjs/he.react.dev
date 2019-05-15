@@ -257,7 +257,7 @@ shouldComponentUpdate(nextProps, nextState)
 
 השתמשו ב- `shouldComponentUpdate` כדי לגרום ל-React לדעת אם פלט של קומפוננטה לא מושפע על ידי השינוי הנוכחי ב-state או props. התנהגות ברירת המחדל היא לרנדר שוב בכל שינוי של state, וברוב המקרים עליכם להסתמך על התנהגות זו.
 
-המתודה `shouldComponentUpdate()` מתבצעת לפני רינדור בעקבות קבלת props או state חדשים. ברירת המחדל היא `ביטוי אמת`. לא מתבצעת קריאה למתודה זו ברינדור הראשוני או כאשר יש שימוש ב- `forceUpdate()`.
+המתודה `shouldComponentUpdate()` מתבצעת לפני רינדור בעקבות קבלת props או state חדשים. ברירת המחדל היא `true`. לא מתבצעת קריאה למתודה זו ברינדור הראשוני או כאשר יש שימוש ב- `forceUpdate()`.
 
 המתודה הזו קיימת רק כ-**[אופטימיזציה בביצועים](/docs/optimizing-performance.html).** אל תסתמכו עליה כדי "למנוע" רינדור, זה יכול להוביל לבאגים. **שיקלו להשתמש ב-[`PureComponent`](/docs/react-api.html#reactpurecomponent)** במקום לכתוב את `shouldComponentUpdate()` בעצמכם. `PureComponent` מבצע השוואה רדודה של props ו-state, ומפחית את הסיכוי שנדלג על עדכון הכרחי.
 
