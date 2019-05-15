@@ -52,7 +52,7 @@ class Welcome extends React.Component {
 
 >הערה:
 >
->המתודות האלו נחשבות למורשת וכדאי [להימנע מהן](/blog/2018/03/27/update-on-async-rendering.html) בקוד חדש:
+>המתודות האלו נחשבות לישנות וכדאי [להימנע מהן](/blog/2018/03/27/update-on-async-rendering.html) בקוד חדש:
 >- [`UNSAFE_componentWillUpdate()`](#unsafe_componentwillupdate)
 >- [`UNSAFE_componentWillReceiveProps()`](#unsafe_componentwillreceiveprops)
 
