@@ -69,7 +69,7 @@ class Welcome extends React.Component {
 
 >הערה:
 >
->המתודות להלן נחשבות "מורשת" (מתודות ישנות ולא מתוחזקות) ועדיף [להמנע משימוש בהן](/blog/2018/03/27/update-on-async-rendering.html) בקוד חדש:
+>המתודות להלן נחשבות ישנות ועדיף [להמנע משימוש בהן](/blog/2018/03/27/update-on-async-rendering.html) בקוד חדש:
 >
 >- [`UNSAFE_componentWillUpdate()`](#unsafe_componentwillupdate)
 >- [`UNSAFE_componentWillReceiveProps()`](#unsafe_componentwillreceiveprops)
