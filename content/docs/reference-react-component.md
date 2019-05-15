@@ -134,7 +134,7 @@ render()
 
 > הערה
 >
-> `render()` לא תתבצע אם [`shouldComponentUpdate()`](#shouldcomponentupdate) מחזירה ביטוי שקר.
+> `render()` לא תתבצע אם [`shouldComponentUpdate()`](#shouldcomponentupdate) מחזירה 'false'.
 
 * * *
 
