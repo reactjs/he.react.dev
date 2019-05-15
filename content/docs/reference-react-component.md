@@ -228,7 +228,7 @@ componentDidUpdate(prevProps) {
  
 > הערה
 >
-> המתודה `componentDidUpdate()` לא תתבצע אם [`shouldComponentUpdate()`](#shouldcomponentupdate) תחזיר ביטוי שקר.
+> המתודה `componentDidUpdate()` לא תתבצע אם [`shouldComponentUpdate()`](#shouldcomponentupdate) תחזיר 'false'.
 
 * * *
 
