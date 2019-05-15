@@ -106,7 +106,7 @@ class Welcome extends React.Component {
 
 * * *
 
-## הפנייה {#reference}
+## עיון {#reference}
 
 ### מתודות מעגל-חיים שבשימוש נפוץ {#commonly-used-lifecycle-methods}
 
