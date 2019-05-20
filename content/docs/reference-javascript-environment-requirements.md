@@ -11,8 +11,8 @@ React 16 תלוי באוסף הטיפוסים [Map](https://developer.mozilla.or
 סביבת polyfilled ל-React 16 עם שימוש ב-core-js כדי לתמוך בדפדפנים ישנים עשוייה להראות כך:
 
 ```js
-import 'core-js/es6/map';
-import 'core-js/es6/set';
+import 'core-js/es/map';
+import 'core-js/es/set';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
