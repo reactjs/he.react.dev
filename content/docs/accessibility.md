@@ -1,22 +1,22 @@
 ---
 id: accessibility
-title: Accessibility
+title: נגישות
 permalink: docs/accessibility.html
 ---
 
-## Why Accessibility? {#why-accessibility}
+## למה נגישות? {#why-accessibility}
 
-Web accessibility (also referred to as [**a11y**](https://en.wiktionary.org/wiki/a11y)) is the design and creation of websites that can be used by everyone. Accessibility support is necessary to allow assistive technology to interpret web pages.
+נגישות ברשת (ידועה גם כ [**a11y**](https://en.wiktionary.org/wiki/a11y)) היא יצירה ועיצוב אתרים שמתאימים לשימוש ע״י כולם. תמיכה בנגישות נדרשת ע״י טכנולוגית מסייעת כדי לפרש דפי אינטרנט.
 
-React fully supports building accessible websites, often by using standard HTML techniques.
+React מספקת תמיכה מלאה בבניית אתרים נגישים, בדרך כלל ע״י שימוש בטכניקות HTML סטנדרטיות.
 
-## Standards and Guidelines {#standards-and-guidelines}
+## סטנדרטים וקווים מנחים {#standards-and-guidelines}
 
 ### WCAG {#wcag}
 
-The [Web Content Accessibility Guidelines](https://www.w3.org/WAI/intro/wcag) provides guidelines for creating accessible web sites.
+ניתן למצוא קוים מנחים ליצירת אתרים נגישים ב[Web Content Accessibility Guidelines](https://www.w3.org/WAI/intro/wcag).
 
-The following WCAG checklists provide an overview:
+הרשימה הבאה מ WCAG מספקת סקירה כללית:
 
 - [WCAG checklist from Wuhcag](https://www.wuhcag.com/wcag-checklist/)
 - [WCAG checklist from WebAIM](https://webaim.org/standards/wcag/checklist)
@@ -24,9 +24,10 @@ The following WCAG checklists provide an overview:
 
 ### WAI-ARIA {#wai-aria}
 
-The [Web Accessibility Initiative - Accessible Rich Internet Applications](https://www.w3.org/WAI/intro/aria) document contains techniques for building fully accessible JavaScript widgets.
+המסמך מ [Web Accessibility Initiative - Accessible Rich Internet Applications](https://www.w3.org/WAI/intro/aria) מכיל טכניקות לבניית ווידג׳טים נגישים ב Javascript.
 
-Note that all `aria-*` HTML attributes are fully supported in JSX. Whereas most DOM properties and attributes in React are camelCased, these attributes should be hyphen-cased (also known as kebab-case, lisp-case, etc) as they are in plain HTML:
+שימו לב שJSX תומך לחלוטין בכל תכונות הHTML `aria-*`.
+בשונה מרוב תכונות הDOM בReact שנקראות בcamelCase, תכונות אלה נקראות בhyphen-cased (שמוכר גם בשמות אחרים כמו kebab-case, lisp-case וכו׳), בדיוק כמו בHTML רגיל:
 
 ```javascript{3,4}
 <input
@@ -39,17 +40,16 @@ Note that all `aria-*` HTML attributes are fully supported in JSX. Whereas most 
 />
 ```
 
-## Semantic HTML {#semantic-html}
-Semantic HTML is the foundation of accessibility in a web application. Using the various HTML elements to reinforce the meaning of information
-in our websites will often give us accessibility for free.
+## סמנטי HTML {#semantic-html}
+HTML סמנטי (או דקדוקי) הוא הבסיס לנגישות באפליקציות ואתרי אינטרנט.
+השימוש באלמנטים שונים על מנת לחזק את המשמעות של המידע שמוצג באתרים, בדרך כלל יוביל לנגישות בפני עצמו.
 
 - [MDN HTML elements reference](https://developer.mozilla.org/en-US/docs/Web/HTML/Element)
 
-Sometimes we break HTML semantics when we add `<div>` elements to our JSX to make our React code work, especially when working with lists (`<ol>`, `<ul>` and `<dl>`) and the HTML `<table>`.
-In these cases we should rather use [React Fragments](/docs/fragments.html) to group together multiple elements.
+לפעמים הסמנטיקה נשברת כשאנחנו מוסיפים אלמנטים כמו `<div>` לJSX כדי לגרום לReact לעבוד כמו שצריך, בעיקר בזמן שימוש ברשימות וטבלאות (`<ol>`, `<ul>`, `<dl>`, `<table>` וכו׳)
+במקרים האלה ניתן להשתמש ב[פרגמנטים בReact](/docs/fragments.html) במקום `div`, כדי לאחד מספר אלמנטים.
 
-For example,
-
+לדוגמא,
 ```javascript{1,5,8}
 import React, { Fragment } from 'react';
 
@@ -73,14 +73,14 @@ function Glossary(props) {
 }
 ```
 
-You can map a collection of items to an array of fragments as you would any other type of element as well:
+ניתן כמובן למפות רשימת פריטים למערך של פרגמנטים באותה צורה שממפים כל אלמנט אחר:
 
 ```javascript{6,9}
 function Glossary(props) {
   return (
     <dl>
       {props.items.map(item => (
-        // Fragments should also have a `key` prop when mapping collections
+        // גם לפרגמנטים prop `key` בזמן מיפוי רשימות צריך להוסיף את ה
         <Fragment key={item.id}>
           <dt>{item.term}</dt>
           <dd>{item.description}</dd>
@@ -91,7 +91,7 @@ function Glossary(props) {
 }
 ```
 
-When you don't need any props on the Fragment tag you can use the [short syntax](/docs/fragments.html#short-syntax), if your tooling supports it:
+כשאין צורך בהוספת props ניתן להשתמש ב[סינטקס מקוצר](/docs/fragments.html#short-syntax), בהנחה ושאר הכלים תומכים בו:
 
 ```javascript{3,6}
 function ListItem({ item }) {
@@ -104,7 +104,7 @@ function ListItem({ item }) {
 }
 ```
 
-For more info, see [the Fragments documentation](/docs/fragments.html).
+לעוד מידע, ראו את עמוד [תיעוד הפרגמנטים](/docs/fragments.html).
 
 ## Accessible Forms {#accessible-forms}
 
