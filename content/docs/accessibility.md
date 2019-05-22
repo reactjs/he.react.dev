@@ -106,44 +106,45 @@ function ListItem({ item }) {
 
 לעוד מידע, ראו את עמוד [תיעוד הפרגמנטים](/docs/fragments.html).
 
-## Accessible Forms {#accessible-forms}
+## טפסים נגישים {#accessible-forms}
 
-### Labeling {#labeling}
-Every HTML form control, such as `<input>` and `<textarea>`, needs to be labeled accessibly. We need to provide descriptive labels that are also exposed to screen readers.
+### תיוג {#labeling}
 
-The following resources show us how to do this:
+כל אלמנט או form ב HTML, (כמו `<input>` ו `<textarea>`), צריכים לקבל תיוג נגיש. עלינו לספק תגיות שמתארות אותם בשביל קוראי המסך.
 
-- [The W3C shows us how to label elements](https://www.w3.org/WAI/tutorials/forms/labels/)
-- [WebAIM shows us how to label elements](https://webaim.org/techniques/forms/controls)
-- [The Paciello Group explains accessible names](https://www.paciellogroup.com/blog/2017/04/what-is-an-accessible-name/)
+המשאבים הנ״ל מראים לנו איך לספק תגיות מתאימות:
 
-Although these standard HTML practices can be directly used in React, note that the `for` attribute is written as `htmlFor` in JSX:
+- [ה W3C מראה לנו איך לתייג אלמנטים](https://www.w3.org/WAI/tutorials/forms/labels/)
+- [WebAIM מראה לנו איך לתייג אלמנטים](https://webaim.org/techniques/forms/controls)
+- [Paciello Group מסבירים על שמות נגישים](https://www.paciellogroup.com/blog/2017/04/what-is-an-accessible-name/)
+
+למרות שבדרך כלל אנחנו יכולים להשתמש בסטנדרטים הנהוגים בHTML ישירות בReact, שימו לב שהתכונה `for` למשל נכתבת בJSX כ`htmlFor`:
 
 ```javascript{1}
 <label htmlFor="namedInput">Name:</label>
 <input id="namedInput" type="text" name="name"/>
 ```
 
-### Notifying the user of errors {#notifying-the-user-of-errors}
+### ידוע המשתמש במקרה של שגיאות {#notifying-the-user-of-errors}
 
-Error situations need to be understood by all users. The following link shows us how to expose error texts to screen readers as well:
+שגיאות צריכות להיות מובנות לכל משתמש. הלינק הבא מראה לנו איך להעביר את תוכן השגיאה גם לקורא המסך:
 
-- [The W3C demonstrates user notifications](https://www.w3.org/WAI/tutorials/forms/notifications/)
-- [WebAIM looks at form validation](https://webaim.org/techniques/formvalidation/)
+- [הW3C מדגים הודעות למשתמש](https://www.w3.org/WAI/tutorials/forms/notifications/)
+- [WebAIM מסביר על ולידציה של דפים](https://webaim.org/techniques/formvalidation/)
 
-## Focus Control {#focus-control}
+## בקרת פוקוס {#focus-control}
 
-Ensure that your web application can be fully operated with the keyboard only:
+חשוב לבנות אפליקציות שניתנות לשימוש בעזרת המקלדת בלבד (ללא עזרת העכבר):
 
-- [WebAIM talks about keyboard accessibility](https://webaim.org/techniques/keyboard/)
+- [WebAIM מסביר על נגישות מקלדת](https://webaim.org/techniques/keyboard/)
 
-### Keyboard focus and focus outline {#keyboard-focus-and-focus-outline}
+### פוקוס מקלדת ומסגרת פוקוס {#keyboard-focus-and-focus-outline}
 
-Keyboard focus refers to the current element in the DOM that is selected to accept input from the keyboard. We see it everywhere as a focus outline similar to that shown in the following image:
+פוקוס המקלדת מתאר את האלמנט בDOM שבחור ומוכן לקבל נתונים מהמקלדת. ניתן לראות את הפוקוס במסגרת או הדגש, כמו בתמונה הבאה:
 
 <img src="../images/docs/keyboard-focus.png" alt="Blue keyboard focus outline around a selected link." />
 
-Only ever use CSS that removes this outline, for example by setting `outline: 0`, if you are replacing it with another focus outline implementation.
+מומלץ להסיר את ההדגש הנ״ל אך ורק בכדי להחליף אותו בצורת הדגש אחרת (לדוגמא בעזרת הקונפיגורציה `outline: 0`)
 
 ### Mechanisms to skip to desired content {#mechanisms-to-skip-to-desired-content}
 
