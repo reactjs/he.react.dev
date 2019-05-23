@@ -238,16 +238,16 @@ this.inputElement.current.focus();
 >למרות שזאת תכונת נגישות חשובה מאוד, חשוב להשתמש בשיפוט בזמן השימוש בטכניקה. המטרה צריכה להיות החזרת הפוקוס למקלדת, ולא לנסות לחזות את דרישות המשתמש
 >ואופן השימוש שלו/ה באתר.
 
-## Mouse and pointer events {#mouse-and-pointer-events}
+## אירועי עכבר וסמן {#mouse-and-pointer-events}
 
-Ensure that all functionality exposed through a mouse or pointer event can also be accessed using the keyboard alone. Depending only on the pointer device will lead to many cases where
-keyboard users cannot use your application.
+יש לדאוג שכל פונקציונאליות שזמינה דרך שימוש בעכבר, נגישה באותה מידה בשימוש במקלדת בלבד.
+תלות בסמן (דרך עכבר או משטח מגע) מובילה להרבה מקרים לא נגישים למשתמשי מקלדת, שכותצאה מכך לא יוכלו להשתמש באפליקציה.
 
-To illustrate this, let's look at a prolific example of broken accessibility caused by click events. This is the outside click pattern, where a user can disable an opened popover by clicking outside the element.
+כדוגמא, נציג מקרה שכיח ביותר של נגישות שבורה כתוצאה מאירועי לחיצה - כשהמשתמש יכול לסגור חלון צץ באמצעות לחיצה מחוץ לחלון.
 
 <img src="../images/docs/outerclick-with-mouse.gif" alt="A toggle button opening a popover list implemented with the click outside pattern and operated with a mouse showing that the close action works." />
 
-This is typically implemented by attaching a `click` event to the `window` object that closes the popover:
+בדרך כלל התנהגות זו מיושמת ע״י קישור אירוע הלחיצה `click` לעצם החלון `window` שסוגר את החלון הצץ:
 
 ```javascript{12-14,26-30}
 class OuterClickExample extends React.Component {
@@ -297,13 +297,11 @@ constructor(props) {
   }
 }
 ```
-
-This may work fine for users with pointer devices, such as a mouse, but operating this with the keyboard alone leads to broken functionality when tabbing to the next element
-as the `window` object never receives a `click` event. This can lead to obscured functionality which blocks users from using your application.
+למרות שהתנהגות זו לא מהווה בעיה למשתמשים שיכולים להעזר בסמן, היא מובילה להתנהלות שבורה למשתמשים שתלוים במקלדת כדי לנווט בין אלמנטים, כי עצם החלון לא מקבל את אירוע הלחיצה. ובסופו של דבר גם מונעת ממשתמשים גישה לפונקציונאליות באתר.
 
 <img src="../images/docs/outerclick-with-keyboard.gif" alt="A toggle button opening a popover list implemented with the click outside pattern and operated with the keyboard showing the popover not being closed on blur and it obscuring other screen elements." />
 
-The same functionality can be achieved by using an appropriate event handlers instead, such as `onBlur` and `onFocus`:
+אפשר במקום זאת להגיע להתנהגות זהה בעזרת מטפלי אירועים כמו `onBlur` ו `onFocus`:
 
 ```javascript{19-29,31-34,37-38,40-41}
 class BlurExample extends React.Component {
@@ -324,10 +322,10 @@ class BlurExample extends React.Component {
     }));
   }
 
-  // We close the popover on the next tick by using setTimeout.
-  // This is necessary because we need to first check if
-  // another child of the element has received focus as
-  // the blur event fires prior to the new focus event.
+
+  // setTimeout סוגרים את החלון הצץ בטיק הבא בעזרת.
+  // זה חשוב כי אנחנו צריכים קודם כל לבדוק אם ילד אחר של האלמנט
+  // קורה לפני אירוע הפוקוס blurקיבל פוקוס, כיוון שהאירוע של ה
   onBlurHandler() {
     this.timeOutId = setTimeout(() => {
       this.setState({
@@ -336,14 +334,14 @@ class BlurExample extends React.Component {
     });
   }
 
-  // If a child receives focus, do not close the popover.
+  // כדי לא לסגור Timeout מסירים את ה
+  // את החלון הצץ כשילד אחר מקבל פוקוס
   onFocusHandler() {
     clearTimeout(this.timeOutId);
   }
 
   render() {
-    // React assists us by bubbling the blur and
-    // focus events to the parent.
+    // לאב focus וה blur עוזר לנו בהעלאת אירועי ה React
     return (
       <div onBlur={this.onBlurHandler}
            onFocus={this.onFocusHandler}>
@@ -365,13 +363,13 @@ class BlurExample extends React.Component {
 }
 ```
 
-This code exposes the functionality to both pointer device and keyboard users. Also note the added `aria-*` props to support screen-reader users. For simplicity's sake
-the keyboard events to enable `arrow key` interaction of the popover options have not been implemented.
+הקוד הזה חושף פונקציונאליות למשתמשי המקלדת בלי להפקיר את הסמן. בנוסף, שימו לב לתוספת ה`aria-*` props שתומכים במשתמשים שנעזרים בקוראי מסך.
+על מנת להשאיר את הדוגמא פשוטה, לא כללנו את אירועי המקלדת שמאפשרים אינטרקציית `arrow key` עם החלון הצץ.
 
 <img src="../images/docs/blur-popover-close.gif" alt="A popover list correctly closing for both mouse and keyboard users." />
 
-This is one example of many cases where depending on only pointer and mouse events will break functionality for keyboard users. Always testing with the keyboard will immediately
-highlight the problem areas which can then be fixed by using keyboard aware event handlers.
+זאת דוגמא שבה מספר מקרים שתלויים רק בסמן מונעים ממשתמשים שתלויים במקלדת נגישות לפונקציונאליות.
+תמיד בדקו את האתר עם המקלדת כדי למצוא את האזורים הבעיתיים ולתקן אותם בעזרת מטפלי אירועים שזמינים למקלדת.
 
 ## More Complex Widgets {#more-complex-widgets}
 
