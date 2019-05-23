@@ -146,42 +146,40 @@ function ListItem({ item }) {
 
 מומלץ להסיר את ההדגש הנ״ל אך ורק בכדי להחליף אותו בצורת הדגש אחרת (לדוגמא בעזרת הקונפיגורציה `outline: 0`)
 
-### Mechanisms to skip to desired content {#mechanisms-to-skip-to-desired-content}
+### דילוג לתוכן מבוקש {#mechanisms-to-skip-to-desired-content}
 
-Provide a mechanism to allow users to skip past navigation sections in your application as this assists and speeds up keyboard navigation.
+על מנת שהשימוש באתר יהיה מהיר ואופטימלי עם המקלדת, ניתן לספק דרך לדלג בעזרת אזורי ניווט לתוכן מבוקש
 
-Skiplinks or Skip Navigation Links are hidden navigation links that only become visible when keyboard users interact with the page. They are very easy to implement with
-internal page anchors and some styling:
+לינקים לדילוג ניווט (SkipLinks) הם לינקים נסתרים שמתגלים בזמן אינטרקציה עם האתר באמצעות המקלדת בלבד. הם פשוטים לפיתוח בעצמאות קישורים עוגנים (anchors) וסגנונות עיצוב:
 
-- [WebAIM - Skip Navigation Links](https://webaim.org/techniques/skipnav/)
+- [WebAIM - לינקים לדילוג ניווט](https://webaim.org/techniques/skipnav/)
 
-Also use landmark elements and roles, such as `<main>` and `<aside>`, to demarcate page regions as assistive technology allow the user to quickly navigate to these sections.
+בנוסף, אפשר להשתמש באלמנטים לציון דרך כמו `<main>` ו `<aside>`, על מנת לציין אזורים בדף בשביל להרשות למשתמש לנווט אליהם בקלות ובמהירות בעזרת טכנולוגיה מסייעת.
 
-Read more about the use of these elements to enhance accessibility here:
+קרא עוד על אלמנטים לציון דרך לשיפור נגישות בלינק הבא:
 
-- [Accessible Landmarks](https://www.scottohara.me/blog/2018/03/03/landmarks.html)
+- [ציוני דרך נגישים](https://www.scottohara.me/blog/2018/03/03/landmarks.html)
 
-### Programmatically managing focus {#programmatically-managing-focus}
+### שליטה מבוקרת בפוקוס {#programmatically-managing-focus}
 
-Our React applications continuously modify the HTML DOM during runtime, sometimes leading to keyboard focus being lost or set to an unexpected element. In order to repair this,
-we need to programmatically nudge the keyboard focus in the right direction. For example, by resetting keyboard focus to a button that opened a modal window after that modal window is closed.
+אפליקציות React משנות את הDOM בזמן ריצה באופן מתמשך, מה שגורם לפעמים למקלדת לאבד פוקוס או לפוקוס לעבור למקום בלתי צפוי. על מנת למנוע זאת, ביכולתנו להחזיר את פוקוס המקלדת למקום הנכון באופן תוכניתי. לדוגמא, ע״י החזרת הפוקוס לכפור שפתח טופס מודאלי, אחרי סגירתו.
 
-MDN Web Docs takes a look at this and describes how we can build [keyboard-navigable JavaScript widgets](https://developer.mozilla.org/en-US/docs/Web/Accessibility/Keyboard-navigable_JavaScript_widgets).
+התיעוד בMDN Web Docs מתאר איך לבנות [ניווט מקלדת בווידג׳טים ב JavaScript](https://developer.mozilla.org/en-US/docs/Web/Accessibility/Keyboard-navigable_JavaScript_widgets).
 
-To set focus in React, we can use [Refs to DOM elements](/docs/refs-and-the-dom.html).
+כדי לתת פוקוס בReact, אנחנו יכולים להשתמש ב[קישור לאלמנטים בDOM](/docs/refs-and-the-dom.html).
 
-Using this, we first create a ref to an element in the JSX of a component class:
+נתחיל ביצירת קישור לאלמנט בJSX של מחלקת קומפוננטה:
 
 ```javascript{4-5,8-9,13}
 class CustomTextInput extends React.Component {
   constructor(props) {
     super(props);
-    // Create a ref to store the textInput DOM element
+    // DOM ב textInput צור קישור לאלמנט
     this.textInput = React.createRef();
   }
   render() {
-  // Use the `ref` callback to store a reference to the text input DOM
-  // element in an instance field (for example, this.textInput).
+  // על מנת לאחסן את ההפניה `ref` callback השתמש בפונקצית ה
+  // (this.textInput) בשדה מופע textInput לאלמנט
     return (
       <input
         type="text"
@@ -192,18 +190,18 @@ class CustomTextInput extends React.Component {
 }
 ```
 
-Then we can focus it elsewhere in our component when needed:
+לאחר מכן נוכל לשנות את הפוקוס למקום אחר בקומפוננטה לפי הצורך:
 
  ```javascript
  focus() {
-   // Explicitly focus the text input using the raw DOM API
-   // Note: we're accessing "current" to get the DOM node
+   // DOMשל ה API שנה את הפוקוס של שדה הטקסט באופן מכוון בעזרת ה
+   // DOMכדי לקבל גישה לצומת ה "current" שימו לב שאנחנו משתמשים ב
    this.textInput.current.focus();
  }
  ```
 
-Sometimes a parent component needs to set focus to an element in a child component. We can do this by [exposing DOM refs to parent components](/docs/refs-and-the-dom.html#exposing-dom-refs-to-parent-components)
-through a special prop on the child component that forwards the parent's ref to the child's DOM node.
+לפעמים אלמנט אב צריך לשנות פוקוס לקומפוננטת ילד. ניתן לעזאת זאת ע״י [חשיפות הפנית הDOM לאלמנט האב](/docs/refs-and-the-dom.html#exposing-dom-refs-to-parent-components)
+בעזרת prop מיוחד בקומפוננטת הילד שמעבירה לאלמנט האב את צומת הDOM של הילד.
 
 ```javascript{4,12,16}
 function CustomTextInput(props) {
@@ -226,21 +224,19 @@ class Parent extends React.Component {
   }
 }
 
-// Now you can set focus when required.
+// עכשיו תוכלו להעביר פוקוס לפי הצורך
 this.inputElement.current.focus();
 ```
 
-When using a HOC to extend components, it is recommended to [forward the ref](/docs/forwarding-refs.html) to the wrapped component using the `forwardRef` function of React. If a third party HOC
-does not implement ref forwarding, the above pattern can still be used as a fallback.
+בזמן השימוש בHOC להרחבת קומפוננטות, מומלץ ל[העביר את ההפניה](/docs/forwarding-refs.html) לקומפוננטה הנעטפת בעזרת הפונקציה `forwardRef` של React.
+במקרה וקומפוננטת HOC שלא בשליטתכם (צד שלישי) לא מממשת את ההעברת ההפניה, השיטה לעיל יכולה בכל זאת לעזור.
 
-A great focus management example is the [react-aria-modal](https://github.com/davidtheclark/react-aria-modal). This is a relatively rare example of a fully accessible modal window. Not only does it set initial focus on
-the cancel button (preventing the keyboard user from accidentally activating the success action) and trap keyboard focus inside the modal, it also resets focus back to the element that
-initially triggered the modal.
+דוגמא טובה לשליטה בפוקוס אפשר למצוא ב[react-aria-modal](https://github.com/davidtheclark/react-aria-modal). זאת דוגמא יחסית נדירה של חלון מודאלי נגיש לגמרי. לא רק שהוא שם פוקוס התחלתי בכפתור הביטול (כדי למנוע ממשתמש המקלדת להתחיל את פעולת האישור בטעות) ושומר את פוקוס המקלדת בתוך החלון, הוא גם מחזיר את הפוקוס לאלמנט שפתח את החלון מלכתחילה לאחר סגירתו.
 
->Note:
+>הערה:
 >
->While this is a very important accessibility feature, it is also a technique that should be used judiciously. Use it to repair the keyboard focus flow when it is disturbed, not to try and anticipate how
->users want to use applications.
+>למרות שזאת תכונת נגישות חשובה מאוד, חשוב להשתמש בשיפוט בזמן השימוש בטכניקה. המטרה צריכה להיות החזרת הפוקוס למקלדת, ולא לנסות לחזות את דרישות המשתמש
+>ואופן השימוש שלו/ה באתר.
 
 ## Mouse and pointer events {#mouse-and-pointer-events}
 
