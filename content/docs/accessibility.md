@@ -416,31 +416,29 @@ class BlurExample extends React.Component {
 - [WebAIM - בודק ניגודי צבעים](https://webaim.org/resources/contrastchecker/)
 - [The Paciello Group - מוודא ניגודי צבעים](https://www.paciellogroup.com/resources/contrastanalyser/)
 
-## Development and Testing Tools {#development-and-testing-tools}
+## כלים לפיתוח ובדק {#development-and-testing-tools}
 
-There are a number of tools we can use to assist in the creation of accessible web applications.
+יש מספר כלים שיכולים לעזור ביצירת אפליקציות נגישות.
 
-### The keyboard {#the-keyboard}
+### המקלדת {#the-keyboard}
 
-By far the easiest and also one of the most important checks is to test if your entire website can be reached and used with the keyboard alone. Do this by:
+הבדיקה הכי פשוטה וגם אחת מהחשובות, היא שהאתר מתפקד בצורה מוחלטת בשימוש במקלדת בלבד. אפשר לעשות זאת בצורה הזאת:
 
-1. Plugging out your mouse.
-1. Using `Tab` and `Shift+Tab` to browse.
-1. Using `Enter` to activate elements.
-1. Where required, using your keyboard arrow keys to interact with some elements, such as menus and dropdowns.
+1. נתק/י את העכבר.
+1. בעזרת שימוש במקש ה `Tab` ו `Shift+Tab` כדי לנווט.
+1. בעזרת שימוש במקש ה `Enter` כדי להפעיל אלמנטים.
+1. שימוש בחצי המקלדת כדי לתפעל אלמנטים כמו תפריטים ורשימות לפי הצורך.
 
-### Development assistance {#development-assistance}
+### עזרה בפיתוח {#development-assistance}
 
-We can check some accessibility features directly in our JSX code. Often intellisense checks are already provided in JSX aware IDE's for the ARIA roles, states and properties. We also
-have access to the following tool:
+אפשר לבדוק מספק תכונות נגישות באופן ישיר בקוד הJSX שלנו.
+לדוגמא בדיקות intellisense כמו ARIA roles, states and properties, מסופקות ישירות בIDE's שמכירים בJSX. בנוסף ניתן להשתמש בכלי להלן:
 
 #### eslint-plugin-jsx-a11y {#eslint-plugin-jsx-a11y}
 
-The [eslint-plugin-jsx-a11y](https://github.com/evcohen/eslint-plugin-jsx-a11y) plugin for ESLint provides AST linting feedback regarding accessibility issues in your JSX. Many
-IDE's allow you to integrate these findings directly into code analysis and source code windows.
+הכלי [eslint-plugin-jsx-a11y](https://github.com/evcohen/eslint-plugin-jsx-a11y) הוא תוסף לESLint שמספק יכולות AST linting מיוחדות לבדיקת נגישות בקוד. IDE's רבים גם מספקים אינטגרציה ישירה עם  כלים כאלה ישירות לחלון שבו נכתב הקוד לאחר כל שמירה.
 
-[Create React App](https://github.com/facebookincubator/create-react-app) has this plugin with a subset of rules activated. If you want to enable even more accessibility rules,
-you can create an `.eslintrc` file in the root of your project with this content:
+[צור אפליקצית React](https://github.com/facebookincubator/create-react-app) כולל את התוסף הזה עם חלק מהחוקים מופעלים בצורה מובנית. כדי להפעיל חוקים אחרים, ניתן לצור קובץ `.eslintrc` בתקייה הראשית של הפרויקט עם התוכן:
 
   ```json
   {
