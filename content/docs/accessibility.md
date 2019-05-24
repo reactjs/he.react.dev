@@ -473,49 +473,49 @@ Deque Systems מציעה את [aXe-core](https://github.com/dequelabs/axe-core) 
 - [הפעלת בודקת הנגישות של Chrome](https://gist.github.com/marcysutton/0a42f815878c159517a55e6652e3b23a)
 - [שימוש בבודק הנגישות של OS X Safari](https://developer.apple.com/library/content/documentation/Accessibility/Conceptual/AccessibilityMacOSX/OSXAXTestingApps.html)
 
-### Screen readers {#screen-readers}
+### קוראי מסך {#screen-readers}
 
-Testing with a screen reader should form part of your accessibility tests.
+חשוב להשתמש בקורא מסך כחלק מבדיקות הנגישות באתר.
 
-Please note that browser / screen reader combinations matter. It is recommended that you test your application in the browser best suited to your screen reader of choice.
+שימו לב שהשילוב בין סוג הדפדפן וקורא המסוך חשוב יחסית, ומומלץ לבדוק את האפליקציה בדפדפן המתאים ביותר לקורא המסך שבחרתם.
 
-### Commonly Used Screen Readers {#commonly-used-screen-readers}
+### קוראי מסך מוכרים ונפוצים {#commonly-used-screen-readers}
 
-#### NVDA in Firefox {#nvda-in-firefox}
+#### NVDA ב Firefox {#nvda-in-firefox}
 
-[NonVisual Desktop Access](https://www.nvaccess.org/) or NVDA is an open source Windows screen reader that is widely used.
+[NonVisual Desktop Access](https://www.nvaccess.org/) או בקיצור NVDA הוא קורא מסך פתוח לWindows שרבים משתמשים בו.
 
-Refer to the following guides on how to best use NVDA:
+הקישורים הבאים מסבירים על שימוש נכון בNVDA:
 
-- [WebAIM - Using NVDA to Evaluate Web Accessibility](https://webaim.org/articles/nvda/)
-- [Deque - NVDA Keyboard Shortcuts](https://dequeuniversity.com/screenreaders/nvda-keyboard-shortcuts)
+- [WebAIM - שימוש בNVDA לבדיקת נגישות באתר](https://webaim.org/articles/nvda/)
+- [Deque - קיצורי מקלדת בNVDA](https://dequeuniversity.com/screenreaders/nvda-keyboard-shortcuts)
 
-#### VoiceOver in Safari {#voiceover-in-safari}
+#### VoiceOver ב Safari {#voiceover-in-safari}
 
-VoiceOver is an integrated screen reader on Apple devices.
+VoiceOver הוא קורא מסך מובנה במכשירים של Apple.
 
-Refer to the following guides on how activate and use VoiceOver:
+הקישורים הבאים מסבירים איך להפעיל ולהשתמש בVoiceOver:
 
-- [WebAIM - Using VoiceOver to Evaluate Web Accessibility](https://webaim.org/articles/voiceover/)
-- [Deque - VoiceOver for OS X Keyboard Shortcuts](https://dequeuniversity.com/screenreaders/voiceover-keyboard-shortcuts)
-- [Deque - VoiceOver for iOS Shortcuts](https://dequeuniversity.com/screenreaders/voiceover-ios-shortcuts)
+- [WebAIM - שימוש בVoiceOver לבדיקת נגישות](https://webaim.org/articles/voiceover/)
+- [Deque - קיצורי מקלדת ל VoiceOver ב OS X](https://dequeuniversity.com/screenreaders/voiceover-keyboard-shortcuts)
+- [Deque - קיצורי מקלדת ל VoiceOver ב iOS](https://dequeuniversity.com/screenreaders/voiceover-ios-shortcuts)
 
-#### JAWS in Internet Explorer {#jaws-in-internet-explorer}
+#### JAWS ב Internet Explorer {#jaws-in-internet-explorer}
 
-[Job Access With Speech](https://www.freedomscientific.com/Products/software/JAWS/) or JAWS, is a prolifically used screen reader on Windows.
+[Job Access With Speech](https://www.freedomscientific.com/Products/software/JAWS/) או בקיצור JAWS, הוא קורא מסך נפוץ ל Windows.
 
-Refer to the following guides on how to best use JAWS:
+הקישורים הבאים מסבירים איך להשתמש ב JAWS:
 
-- [WebAIM - Using JAWS to Evaluate Web Accessibility](https://webaim.org/articles/jaws/)
-- [Deque - JAWS Keyboard Shortcuts](https://dequeuniversity.com/screenreaders/jaws-keyboard-shortcuts)
+- [WebAIM - בדיקת נגישות אתר עם JAWS](https://webaim.org/articles/jaws/)
+- [Deque - קיצורי מקלדת עם JAWS](https://dequeuniversity.com/screenreaders/jaws-keyboard-shortcuts)
 
-### Other Screen Readers {#other-screen-readers}
+### קוראי מסך אחרים {#other-screen-readers}
 
-#### ChromeVox in Google Chrome {#chromevox-in-google-chrome}
+#### ChromeVox ב Google Chrome {#chromevox-in-google-chrome}
 
-[ChromeVox](https://www.chromevox.com/) is an integrated screen reader on Chromebooks and is available [as an extension](https://chrome.google.com/webstore/detail/chromevox/kgejglhpjiefppelpmljglcjbhoiplfn?hl=en) for Google Chrome.
+[ChromeVox](https://www.chromevox.com/) הוא קורא מסך מובנה ב Chromebooks שאפשר להוריד כ [תוסף](https://chrome.google.com/webstore/detail/chromevox/kgejglhpjiefppelpmljglcjbhoiplfn?hl=en) ל Google Chrome.
 
-Refer to the following guides on how best to use ChromeVox:
+הקישורים הבאים מסבירים איך להשתמש ב ChromeVox:
 
-- [Google Chromebook Help - Use the Built-in Screen Reader](https://support.google.com/chromebook/answer/7031755?hl=en)
-- [ChromeVox Classic Keyboard Shortcuts Reference](https://www.chromevox.com/keyboard_shortcuts.html)
+- [Google Chromebook Help - שימוש בקורא מסך מובנה](https://support.google.com/chromebook/answer/7031755?hl=en)
+- [קיצורי מקלדת קלאסיים בChromeVox](https://www.chromevox.com/keyboard_shortcuts.html)
