@@ -371,52 +371,50 @@ class BlurExample extends React.Component {
 זאת דוגמא שבה מספר מקרים שתלויים רק בסמן מונעים ממשתמשים שתלויים במקלדת נגישות לפונקציונאליות.
 תמיד בדקו את האתר עם המקלדת כדי למצוא את האזורים הבעיתיים ולתקן אותם בעזרת מטפלי אירועים שזמינים למקלדת.
 
-## More Complex Widgets {#more-complex-widgets}
+## ווידג׳טים מסובכים יותר {#more-complex-widgets}
 
-A more complex user experience should not mean a less accessible one. Whereas accessibility is most easily achieved by coding as close to HTML as possible,
-even the most complex widget can be coded accessibly.
+חוויית משתמש מסובכת יותר לא צריכה להיות פחות נגישה. הדרך הפשוטה ביותר לפתח אתר נגיש היא לפתח קוד קרוב ככל האפשר לHTML, אבל גם ווידג׳טים מסובכים יותר אפשר לפתח בצורה נגישה.
 
-Here we require knowledge of [ARIA Roles](https://www.w3.org/TR/wai-aria/#roles) as well as [ARIA States and Properties](https://www.w3.org/TR/wai-aria/#states_and_properties).
-These are toolboxes filled with HTML attributes that are fully supported in JSX and enable us to construct fully accessible, highly functional React components.
+כאן נדרשת הבנה של [ARIA Roles](https://www.w3.org/TR/wai-aria/#roles) ו[ARIA States and Properties](https://www.w3.org/TR/wai-aria/#states_and_properties).
 
-Each type of widget has a specific design pattern and is expected to function in a certain way by users and user agents alike:
+אלה מספקות ארגז כלים מלא בתכונות HTML עם תמיכה מלאה בJSX' שעוזרים לנו לבנות קומפוננטות React פונקציונאליות.
 
-- [WAI-ARIA Authoring Practices - Design Patterns and Widgets](https://www.w3.org/TR/wai-aria-practices/#aria_ex)
-- [Heydon Pickering - ARIA Examples](https://heydonworks.com/practical_aria_examples/)
-- [Inclusive Components](https://inclusive-components.design/)
+כל סוג ווידג׳ט ממומש בצורה ותבנית עיצוב שונה, אבל המשתמש וסוכני המשתמש מצפים ממנו להתנהגות מסוימת:
 
-## Other Points for Consideration {#other-points-for-consideration}
+- [WAI-ARIA Authoring Practices - תבניות עיצוב ווידג׳טים](https://www.w3.org/TR/wai-aria-practices/#aria_ex)
+- [Heydon Pickering - ARIA דוגמאות](https://heydonworks.com/practical_aria_examples/)
+- [קומפוננטות אינקלוסיביות](https://inclusive-components.design/)
 
-### Setting the language {#setting-the-language}
+## עוד נקודות למחשבה {#other-points-for-consideration}
 
-Indicate the human language of page texts as screen reader software uses this to select the correct voice settings:
+### קביעת שפה {#setting-the-language}
 
-- [WebAIM - Document Language](https://webaim.org/techniques/screenreader/#language)
+ציין את השפה שבה כתובים הטקסטים בדף על מנת לאפשר לקוראי המסך לבחור את הגדרות הקול בהתאים:
 
-### Setting the document title {#setting-the-document-title}
+- [WebAIM - תיעוד שפה](https://webaim.org/techniques/screenreader/#language)
 
-Set the document `<title>` to correctly describe the current page content as this ensures that the user remains aware of the current page context:
+### קביעת כותרת הדף {#setting-the-document-title}
 
-- [WCAG - Understanding the Document Title Requirement](https://www.w3.org/TR/UNDERSTANDING-WCAG20/navigation-mechanisms-title.html)
+דאג לציין את כותרת הדף בעזרת האלמנט `<title>` על מנת לתאר את תוכן ומטרת הדף המוצג באופן מדויק למשתמש:
 
-We can set this in React using the [React Document Title Component](https://github.com/gaearon/react-document-title).
+- [WCAG - הבנת דרישות כותרת הדף](https://www.w3.org/TR/UNDERSTANDING-WCAG20/navigation-mechanisms-title.html)
 
-### Color contrast {#color-contrast}
+אנחנו יכולים לציין זאת בReact בעזרת [קומפוננטת כותרת הדף](https://github.com/gaearon/react-document-title)
 
-Ensure that all readable text on your website has sufficient color contrast to remain maximally readable by users with low vision:
+### ניגוד צבעים {#color-contrast}
 
-- [WCAG - Understanding the Color Contrast Requirement](https://www.w3.org/TR/UNDERSTANDING-WCAG20/visual-audio-contrast-contrast.html)
-- [Everything About Color Contrast And Why You Should Rethink It](https://www.smashingmagazine.com/2014/10/color-contrast-tips-and-tools-for-accessibility/)
-- [A11yProject - What is Color Contrast](https://a11yproject.com/posts/what-is-color-contrast/)
+ודאו שלכל הטקסטים באתר יש ניגוד צבעים מספק, על מנת להקל על משתמשים עם יכולות ראייה פחותות לקרוא אותם:
 
-It can be tedious to manually calculate the proper color combinations for all cases in your website so instead, you can [calculate an entire accessible color palette with Colorable](https://jxnblk.com/colorable/).
+- [WCAG - הבנת דרישות ניגוד צבעים](https://www.w3.org/TR/UNDERSTANDING-WCAG20/visual-audio-contrast-contrast.html)
+- [כל מה שתרצו לדעת על ניגוד צבעים וסיבות לחשוב עליהם שוב](https://www.smashingmagazine.com/2014/10/color-contrast-tips-and-tools-for-accessibility/)
+- [A11yProject - מה הוא ניגוד צבעים](https://a11yproject.com/posts/what-is-color-contrast/)
 
-Both the aXe and WAVE tools mentioned below also include color contrast tests and will report on contrast errors.
+חישוב הניגוד לכל קומבינצית צבעים באתר יכול לקחת הרבה זמן. דרך יותר פשוטה היא לחשב באופן אוטומטי [פלטת צבעים מלאה לאתר בעזרת Colorable](https://jxnblk.com/colorable/).
 
-If you want to extend your contrast testing abilities you can use these tools:
+הכלים המצוין להלן (aXe ו WAVE) מספקים בדיקות אוטומטיות ומדווחים על שגיאות בניגודי צבעים:
 
-- [WebAIM - Color Contrast Checker](https://webaim.org/resources/contrastchecker/)
-- [The Paciello Group - Color Contrast Analyzer](https://www.paciellogroup.com/resources/contrastanalyser/)
+- [WebAIM - בודק ניגודי צבעים](https://webaim.org/resources/contrastchecker/)
+- [The Paciello Group - מוודא ניגודי צבעים](https://www.paciellogroup.com/resources/contrastanalyser/)
 
 ## Development and Testing Tools {#development-and-testing-tools}
 
