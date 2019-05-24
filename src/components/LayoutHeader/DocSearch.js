@@ -22,7 +22,7 @@ class DocSearch extends Component<{}, State> {
     // eslint-disable-next-line no-undef
     if (window.docsearch) {
       window.docsearch({
-        apiKey: '36221914cce388c46d0420343e0bb32e',
+        apiKey: '7024bfdd231882f6429c597eea8ab9b5',
         indexName: 'react',
         inputSelector: '#algolia-doc-search',
       });
