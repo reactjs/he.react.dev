@@ -447,33 +447,31 @@ class BlurExample extends React.Component {
   }
   ```
 
-### Testing accessibility in the browser {#testing-accessibility-in-the-browser}
+### בדיקת נגישות בדפדפן {#testing-accessibility-in-the-browser}
 
-A number of tools exist that can run accessibility audits on web pages in your browser. Please use them in combination with other accessibility checks mentioned here as they can only
-test the technical accessibility of your HTML.
+קיימים מספר כלים שבודקים נגישות על עמודי אינטרנט בדפדפן. כדאי להשתמש בהם בתוספת לכלים אחרים שצוינו קודם, כיוון שהם בודקים אך ורק את הנגישות הטכנית של קוד הHTML.
 
-#### aXe, aXe-core and react-axe {#axe-axe-core-and-react-axe}
+#### aXe-core, aXe ו react-axe {#axe-axe-core-and-react-axe}
 
-Deque Systems offers [aXe-core](https://github.com/dequelabs/axe-core) for automated and end-to-end accessibility tests of your applications. This module includes integrations for Selenium.
+Deque Systems מציעה את [aXe-core](https://github.com/dequelabs/axe-core) לבדיקות אוטומטיות של האפליקציה. הכלי עובד גם עם Selenium.
 
-[The Accessibility Engine](https://www.deque.com/products/axe/) or aXe, is an accessibility inspector browser extension built on `aXe-core`.
+[מנוע הנגישות](https://www.deque.com/products/axe/) שנקרא גם aXe, הוא תוסף לדפדפן שבודק נגישות ומרחיב את `aXe-core`.
 
-You can also use the [react-axe](https://github.com/dylanb/react-axe) module to report these accessibility findings directly to the console while developing and debugging.
+ניתן להשתמש גם ב [react-axe](https://github.com/dylanb/react-axe) כדי ליצור דוחות על ממצאי נגישות ישירות ל console בזמן פיתוח ודיבאג
 
 #### WebAIM WAVE {#webaim-wave}
 
-The [Web Accessibility Evaluation Tool](https://wave.webaim.org/extension/) is another accessibility browser extension.
+[כלי בידוק הנגישות ברשת](https://wave.webaim.org/extension/) הוא תוסף דפדפן נוסף לבדיקת נגישות.
 
-#### Accessibility inspectors and the Accessibility Tree {#accessibility-inspectors-and-the-accessibility-tree}
+#### בודק הנגישות ועץ הנגישות {#accessibility-inspectors-and-the-accessibility-tree}
 
-[The Accessibility Tree](https://www.paciellogroup.com/blog/2015/01/the-browser-accessibility-tree/) is a subset of the DOM tree that contains accessible objects for every DOM element that should be exposed
-to assistive technology, such as screen readers.
+[עץ הנגישות](https://www.paciellogroup.com/blog/2015/01/the-browser-accessibility-tree/) הוא חלק מהDOM שמכיל עצמים נגישים כל אלמנט שחשוף לקוראי המסך או טכנולוגיות מסייעות אחרות.
 
-In some browsers we can easily view the accessibility information for each element in the accessibility tree:
+ֿֿבדפדפני מסוימים ניתן לראות מידע נגישות לכל אלמנט בעץ הנגישות:
 
-- [Using the Accessibility Inspector in Firefox](https://developer.mozilla.org/en-US/docs/Tools/Accessibility_inspector)
-- [Activate the Accessibility Inspector in Chrome](https://gist.github.com/marcysutton/0a42f815878c159517a55e6652e3b23a)
-- [Using the Accessibility Inspector in OS X Safari](https://developer.apple.com/library/content/documentation/Accessibility/Conceptual/AccessibilityMacOSX/OSXAXTestingApps.html)
+- [שימוש בבודק הנגישות של Firefox](https://developer.mozilla.org/en-US/docs/Tools/Accessibility_inspector)
+- [הפעלת בודקת הנגישות של Chrome](https://gist.github.com/marcysutton/0a42f815878c159517a55e6652e3b23a)
+- [שימוש בבודק הנגישות של OS X Safari](https://developer.apple.com/library/content/documentation/Accessibility/Conceptual/AccessibilityMacOSX/OSXAXTestingApps.html)
 
 ### Screen readers {#screen-readers}
 
