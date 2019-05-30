@@ -24,10 +24,10 @@ React מספקת תמיכה מלאה בבניית אתרים נגישים, בד�
 
 ### WAI-ARIA {#wai-aria}
 
-המסמך מ [Web Accessibility Initiative - Accessible Rich Internet Applications](https://www.w3.org/WAI/intro/aria) מכיל טכניקות לבניית ווידג׳טים נגישים ב Javascript.
+המסמך מ [Web Accessibility Initiative - Accessible Rich Internet Applications](https://www.w3.org/WAI/intro/aria) מכיל טכניקות לבניית ווידג׳טים נגישים ב JavaScript.
 
-שימו לב שJSX תומך לחלוטין בכל תכונות הHTML `aria-*`.
-בשונה מרוב תכונות הDOM בReact שנקראות בcamelCase, תכונות אלה נקראות בhyphen-cased (שמוכר גם בשמות אחרים כמו kebab-case, lisp-case וכו׳), בדיוק כמו בHTML רגיל:
+שימו לב ש JSX תומך לחלוטין בכל תכונות ה-HTML `aria-*`.
+בשונה מרוב תכונות ה-DOM ב-React שנקראות ב-camelCase, תכונות אלה נקראות ב-hyphen-cased (שמוכר גם בשמות אחרים כמו kebab-case, lisp-case וכו׳), בדיוק כמו ב-HTML רגיל:
 
 ```javascript{3,4}
 <input
@@ -46,7 +46,7 @@ HTML סמנטי (או דקדוקי) הוא הבסיס לנגישות באפלי�
 
 - [MDN HTML elements reference](https://developer.mozilla.org/en-US/docs/Web/HTML/Element)
 
-לפעמים הסמנטיקה נשברת כשאנחנו מוסיפים אלמנטים כמו `<div>` לJSX כדי לגרום לReact לעבוד כמו שצריך, בעיקר בזמן שימוש ברשימות וטבלאות (`<ol>`, `<ul>`, `<dl>`, `<table>` וכו׳)
+לפעמים הסמנטיקה נשברת כשאנחנו מוסיפים אלמנטים כמו `<div>` ל-JSX כדי לגרום לReact לעבוד כמו שצריך, בעיקר בזמן שימוש ברשימות וטבלאות (`<ol>`, `<ul>`, `<dl>`, `<table>` וכו׳)
 במקרים האלה ניתן להשתמש ב[פרגמנטים בReact](/docs/fragments.html) במקום `div`, כדי לאחד מספר אלמנטים.
 
 לדוגמא,
@@ -110,26 +110,26 @@ function ListItem({ item }) {
 
 ### תיוג {#labeling}
 
-כל אלמנט או form ב HTML, (כמו `<input>` ו `<textarea>`), צריכים לקבל תיוג נגיש. עלינו לספק תגיות שמתארות אותם בשביל קוראי המסך.
+כל אלמנט או form ב-HTML, (כמו `<input>` ו `<textarea>`), צריכים לקבל תיוג נגיש. עלינו לספק תגיות שמתארות אותם בשביל קוראי המסך.
 
 המשאבים הנ״ל מראים לנו איך לספק תגיות מתאימות:
 
-- [ה W3C מראה לנו איך לתייג אלמנטים](https://www.w3.org/WAI/tutorials/forms/labels/)
+- [ה-W3C מראה לנו איך לתייג אלמנטים](https://www.w3.org/WAI/tutorials/forms/labels/)
 - [WebAIM מראה לנו איך לתייג אלמנטים](https://webaim.org/techniques/forms/controls)
 - [Paciello Group מסבירים על שמות נגישים](https://www.paciellogroup.com/blog/2017/04/what-is-an-accessible-name/)
 
-למרות שבדרך כלל אנחנו יכולים להשתמש בסטנדרטים הנהוגים בHTML ישירות בReact, שימו לב שהתכונה `for` למשל נכתבת בJSX כ`htmlFor`:
+למרות שבדרך כלל אנחנו יכולים להשתמש בסטנדרטים הנהוגים ב-HTML ישירות ב-React, שימו לב שהתכונה `for` למשל נכתבת ב-JSX כ`htmlFor`:
 
 ```javascript{1}
 <label htmlFor="namedInput">Name:</label>
 <input id="namedInput" type="text" name="name"/>
 ```
 
-### ידוע המשתמש במקרה של שגיאות {#notifying-the-user-of-errors}
+### יידוע המשתמש במקרה של שגיאות {#notifying-the-user-of-errors}
 
 שגיאות צריכות להיות מובנות לכל משתמש. הלינק הבא מראה לנו איך להעביר את תוכן השגיאה גם לקורא המסך:
 
-- [הW3C מדגים הודעות למשתמש](https://www.w3.org/WAI/tutorials/forms/notifications/)
+- [ה-W3C מדגים הודעות למשתמש](https://www.w3.org/WAI/tutorials/forms/notifications/)
 - [WebAIM מסביר על ולידציה של דפים](https://webaim.org/techniques/formvalidation/)
 
 ## בקרת פוקוס {#focus-control}
@@ -140,7 +140,7 @@ function ListItem({ item }) {
 
 ### פוקוס מקלדת ומסגרת פוקוס {#keyboard-focus-and-focus-outline}
 
-פוקוס המקלדת מתאר את האלמנט בDOM שבחור ומוכן לקבל נתונים מהמקלדת. ניתן לראות את הפוקוס במסגרת או הדגש, כמו בתמונה הבאה:
+פוקוס המקלדת מתאר את האלמנט ב-DOM שנבחר ומוכן לקבל נתונים מהמקלדת. ניתן לראות את הפוקוס במסגרת או הדגש, כמו בתמונה הבאה:
 
 <img src="../images/docs/keyboard-focus.png" alt="Blue keyboard focus outline around a selected link." />
 
@@ -162,19 +162,19 @@ function ListItem({ item }) {
 
 ### שליטה מבוקרת בפוקוס {#programmatically-managing-focus}
 
-אפליקציות React משנות את הDOM בזמן ריצה באופן מתמשך, מה שגורם לפעמים למקלדת לאבד פוקוס או לפוקוס לעבור למקום בלתי צפוי. על מנת למנוע זאת, ביכולתנו להחזיר את פוקוס המקלדת למקום הנכון באופן תוכניתי. לדוגמא, ע״י החזרת הפוקוס לכפור שפתח טופס מודאלי, אחרי סגירתו.
+אפליקציות React משנות את ה-DOM בזמן ריצה באופן מתמשך, מה שגורם לפעמים למקלדת לאבד פוקוס או לפוקוס לעבור למקום בלתי צפוי. על מנת למנוע זאת, ביכולתנו להחזיר את פוקוס המקלדת למקום הנכון באופן תוכניתי. לדוגמא, ע״י החזרת הפוקוס לכפתור שפתח טופס מודאלי, אחרי סגירתו.
 
-התיעוד בMDN Web Docs מתאר איך לבנות [ניווט מקלדת בווידג׳טים ב JavaScript](https://developer.mozilla.org/en-US/docs/Web/Accessibility/Keyboard-navigable_JavaScript_widgets).
+התיעוד ב-MDN Web Docs מתאר איך לבנות [ניווט מקלדת בווידג׳טים ב-JavaScript](https://developer.mozilla.org/en-US/docs/Web/Accessibility/Keyboard-navigable_JavaScript_widgets).
 
-כדי לתת פוקוס בReact, אנחנו יכולים להשתמש ב[קישור לאלמנטים בDOM](/docs/refs-and-the-dom.html).
+כדי לתת פוקוס ב-React, אנחנו יכולים להשתמש ב[קישור לאלמנטים ב-DOM](/docs/refs-and-the-dom.html).
 
-נתחיל ביצירת קישור לאלמנט בJSX של מחלקת קומפוננטה:
+נתחיל ביצירת קישור לאלמנט ב-JSX של מחלקת קומפוננטה:
 
 ```javascript{4-5,8-9,13}
 class CustomTextInput extends React.Component {
   constructor(props) {
     super(props);
-    // DOM ב textInput צור קישור לאלמנט
+    // DOM-ב textInput צור קישור לאלמנט
     this.textInput = React.createRef();
   }
   render() {
@@ -194,14 +194,14 @@ class CustomTextInput extends React.Component {
 
  ```javascript
  focus() {
-   // DOMשל ה API שנה את הפוקוס של שדה הטקסט באופן מכוון בעזרת ה
-   // DOMכדי לקבל גישה לצומת ה "current" שימו לב שאנחנו משתמשים ב
+   // DOM-של ה API-שנה את הפוקוס של שדה הטקסט באופן מכוון בעזרת ה
+   // DOM-כדי לקבל גישה לצומת ה "current" שימו לב שאנחנו משתמשים ב
    this.textInput.current.focus();
  }
  ```
 
-לפעמים אלמנט אב צריך לשנות פוקוס לקומפוננטת ילד. ניתן לעזאת זאת ע״י [חשיפות הפנית הDOM לאלמנט האב](/docs/refs-and-the-dom.html#exposing-dom-refs-to-parent-components)
-בעזרת prop מיוחד בקומפוננטת הילד שמעבירה לאלמנט האב את צומת הDOM של הילד.
+לפעמים אלמנט אב צריך לשנות פוקוס לקומפוננטת ילד. ניתן לעשות זאת ע״י [חשיפות הפנית ה-DOM לאלמנט האב](/docs/refs-and-the-dom.html#exposing-dom-refs-to-parent-components)
+בעזרת prop מיוחד בקומפוננטת הילד שמעבירה לאלמנט האב את צומת ה-DOM של הילד.
 
 ```javascript{4,12,16}
 function CustomTextInput(props) {
@@ -228,7 +228,7 @@ class Parent extends React.Component {
 this.inputElement.current.focus();
 ```
 
-בזמן השימוש בHOC להרחבת קומפוננטות, מומלץ ל[העביר את ההפניה](/docs/forwarding-refs.html) לקומפוננטה הנעטפת בעזרת הפונקציה `forwardRef` של React.
+בזמן השימוש ב HOC להרחבת קומפוננטות, מומלץ ל[העביר את ההפניה](/docs/forwarding-refs.html) לקומפוננטה הנעטפת בעזרת הפונקציה `forwardRef` של React.
 במקרה וקומפוננטת HOC שלא בשליטתכם (צד שלישי) לא מממשת את ההעברת ההפניה, השיטה לעיל יכולה בכל זאת לעזור.
 
 דוגמא טובה לשליטה בפוקוס אפשר למצוא ב[react-aria-modal](https://github.com/davidtheclark/react-aria-modal). זאת דוגמא יחסית נדירה של חלון מודאלי נגיש לגמרי. לא רק שהוא שם פוקוס התחלתי בכפתור הביטול (כדי למנוע ממשתמש המקלדת להתחיל את פעולת האישור בטעות) ושומר את פוקוס המקלדת בתוך החלון, הוא גם מחזיר את הפוקוס לאלמנט שפתח את החלון מלכתחילה לאחר סגירתו.
@@ -301,7 +301,7 @@ constructor(props) {
 
 <img src="../images/docs/outerclick-with-keyboard.gif" alt="A toggle button opening a popover list implemented with the click outside pattern and operated with the keyboard showing the popover not being closed on blur and it obscuring other screen elements." />
 
-אפשר במקום זאת להגיע להתנהגות זהה בעזרת מטפלי אירועים כמו `onBlur` ו `onFocus`:
+אפשר במקום זאת להגיע להתנהגות זהה בעזרת מטפלי אירועים כמו `onBlur` -ו `onFocus`:
 
 ```javascript{19-29,31-34,37-38,40-41}
 class BlurExample extends React.Component {
@@ -325,7 +325,7 @@ class BlurExample extends React.Component {
 
   // setTimeout סוגרים את החלון הצץ בטיק הבא בעזרת.
   // זה חשוב כי אנחנו צריכים קודם כל לבדוק אם ילד אחר של האלמנט
-  // קורה לפני אירוע הפוקוס blurקיבל פוקוס, כיוון שהאירוע של ה
+  // קורה לפני אירוע הפוקוס blur-קיבל פוקוס, כיוון שהאירוע של ה
   onBlurHandler() {
     this.timeOutId = setTimeout(() => {
       this.setState({
@@ -341,7 +341,7 @@ class BlurExample extends React.Component {
   }
 
   render() {
-    // לאב focus וה blur עוזר לנו בהעלאת אירועי ה React
+    // לאב focus-וה blur-עוזר לנו בהעלאת אירועי ה React
     return (
       <div onBlur={this.onBlurHandler}
            onFocus={this.onFocusHandler}>
@@ -373,11 +373,11 @@ class BlurExample extends React.Component {
 
 ## ווידג׳טים מסובכים יותר {#more-complex-widgets}
 
-חוויית משתמש מסובכת יותר לא צריכה להיות פחות נגישה. הדרך הפשוטה ביותר לפתח אתר נגיש היא לפתח קוד קרוב ככל האפשר לHTML, אבל גם ווידג׳טים מסובכים יותר אפשר לפתח בצורה נגישה.
+חוויית משתמש מסובכת יותר לא צריכה להיות פחות נגישה. הדרך הפשוטה ביותר לפתח אתר נגיש היא לפתח קוד קרוב ככל האפשר ל HTML, אבל גם ווידג׳טים מסובכים יותר אפשר לפתח בצורה נגישה.
 
 כאן נדרשת הבנה של [ARIA Roles](https://www.w3.org/TR/wai-aria/#roles) ו[ARIA States and Properties](https://www.w3.org/TR/wai-aria/#states_and_properties).
 
-אלה מספקות ארגז כלים מלא בתכונות HTML עם תמיכה מלאה בJSX' שעוזרים לנו לבנות קומפוננטות React פונקציונאליות.
+אלה מספקות ארגז כלים מלא בתכונות HTML עם תמיכה מלאה ב-JSX' שעוזרים לנו לבנות קומפוננטות React פונקציונאליות.
 
 כל סוג ווידג׳ט ממומש בצורה ותבנית עיצוב שונה, אבל המשתמש וסוכני המשתמש מצפים ממנו להתנהגות מסוימת:
 
@@ -425,18 +425,18 @@ class BlurExample extends React.Component {
 הבדיקה הכי פשוטה וגם אחת מהחשובות, היא שהאתר מתפקד בצורה מוחלטת בשימוש במקלדת בלבד. אפשר לעשות זאת בצורה הזאת:
 
 1. נתק/י את העכבר.
-1. בעזרת שימוש במקש ה `Tab` ו `Shift+Tab` כדי לנווט.
+1. בעזרת שימוש במקש ה `Tab` ו- `Shift+Tab` כדי לנווט.
 1. בעזרת שימוש במקש ה `Enter` כדי להפעיל אלמנטים.
 1. שימוש בחצי המקלדת כדי לתפעל אלמנטים כמו תפריטים ורשימות לפי הצורך.
 
 ### עזרה בפיתוח {#development-assistance}
 
-אפשר לבדוק מספק תכונות נגישות באופן ישיר בקוד הJSX שלנו.
-לדוגמא בדיקות intellisense כמו ARIA roles, states and properties, מסופקות ישירות בIDE's שמכירים בJSX. בנוסף ניתן להשתמש בכלי להלן:
+אפשר לבדוק מספק תכונות נגישות באופן ישיר בקוד ה-JSX שלנו.
+לדוגמא בדיקות intellisense כמו ARIA roles, states and properties, מסופקות ישירות ב-IDE's שמכירים בJSX. בנוסף ניתן להשתמש בכלי להלן:
 
 #### eslint-plugin-jsx-a11y {#eslint-plugin-jsx-a11y}
 
-הכלי [eslint-plugin-jsx-a11y](https://github.com/evcohen/eslint-plugin-jsx-a11y) הוא תוסף לESLint שמספק יכולות AST linting מיוחדות לבדיקת נגישות בקוד. IDE's רבים גם מספקים אינטגרציה ישירה עם  כלים כאלה ישירות לחלון שבו נכתב הקוד לאחר כל שמירה.
+הכלי [eslint-plugin-jsx-a11y](https://github.com/evcohen/eslint-plugin-jsx-a11y) הוא תוסף ל-ESLint שמספק יכולות AST linting מיוחדות לבדיקת נגישות בקוד. IDE's רבים גם מספקים אינטגרציה ישירה עם  כלים כאלה ישירות לחלון שבו נכתב הקוד לאחר כל שמירה.
 
 [צור אפליקצית React](https://github.com/facebookincubator/create-react-app) כולל את התוסף הזה עם חלק מהחוקים מופעלים בצורה מובנית. כדי להפעיל חוקים אחרים, ניתן לצור קובץ `.eslintrc` בתקייה הראשית של הפרויקט עם התוכן:
 
@@ -449,9 +449,9 @@ class BlurExample extends React.Component {
 
 ### בדיקת נגישות בדפדפן {#testing-accessibility-in-the-browser}
 
-קיימים מספר כלים שבודקים נגישות על עמודי אינטרנט בדפדפן. כדאי להשתמש בהם בתוספת לכלים אחרים שצוינו קודם, כיוון שהם בודקים אך ורק את הנגישות הטכנית של קוד הHTML.
+קיימים מספר כלים שבודקים נגישות על עמודי אינטרנט בדפדפן. כדאי להשתמש בהם בתוספת לכלים אחרים שצוינו קודם, כיוון שהם בודקים אך ורק את הנגישות הטכנית של קוד ה- HTML.
 
-#### aXe-core, aXe ו react-axe {#axe-axe-core-and-react-axe}
+#### aXe-core, aXe ו- react-axe {#axe-axe-core-and-react-axe}
 
 Deque Systems מציעה את [aXe-core](https://github.com/dequelabs/axe-core) לבדיקות אוטומטיות של האפליקציה. הכלי עובד גם עם Selenium.
 
