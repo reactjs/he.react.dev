@@ -18,9 +18,9 @@ React מספקת תמיכה מלאה בבניית אתרים נגישים, בד�
 
 הרשימה הבאה מ WCAG מספקת סקירה כללית:
 
-- [WCAG checklist from Wuhcag](https://www.wuhcag.com/wcag-checklist/)
-- [WCAG checklist from WebAIM](https://webaim.org/standards/wcag/checklist)
-- [Checklist from The A11Y Project](https://a11yproject.com/checklist.html)
+- [רשימת WCAG מ-Wuchag](https://www.wuhcag.com/wcag-checklist/)
+- [רשימת WCAG מ-WebAIM](https://webaim.org/standards/wcag/checklist)
+- [הרשימה מפרויקט ה-A11y](https://a11yproject.com/checklist.html)
 
 ### WAI-ARIA {#wai-aria}
 
