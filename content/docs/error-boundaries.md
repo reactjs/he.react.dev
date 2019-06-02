@@ -70,22 +70,21 @@ class ErrorBoundary extends React.Component {
 שימו לב ל[דוגמא הבאה של הגדרה ושימוש בגובל שגיאות](https://codepen.io/gaearon/pen/wqvxGa?editors=0010) עם [גרסה 16 של React](/blog/2017/09/26/react-v16.0.html).
 
 
-## Where to Place Error Boundaries {#where-to-place-error-boundaries}
+## איפה למקם את גובל השגיאות {#where-to-place-error-boundaries}
 
-The granularity of error boundaries is up to you. You may wrap top-level route components to display a “Something went wrong” message to the user, just like server-side frameworks often handle crashes. You may also wrap individual widgets in an error boundary to protect them from crashing the rest of the application.
+אפשר להגדיר גובלי שגיאות ברמה גבוהה או נמוכה לפי הצורך או לפי ההעדפה אישית. לדוגמא, בשורש הצומת של עץ הקומפוננטות עם ממשק חלופי של ״משהו השתבש..״ (כמו שלרוב מנוהלות התרסקויות בצד השרת), או לחלופין לעטוף כל קומפוננטה או ווידג׳ט בגובל שגיאות אישי כדי למנוע התרסקות של שאר האפליקציה.
 
+## התנהגות חדשה לשגיאות שלא נתפסו {#new-behavior-for-uncaught-errors}
 
-## New Behavior for Uncaught Errors {#new-behavior-for-uncaught-errors}
+גרסה 16 של React מציגה שינוי בהתנהגות עם השלכות חשובות. **שגיאות של נתפסות על ידי גובל שגיאות יביאו לפירוק מוחלט של עץ הקומפוננטות הראשי**.
 
-This change has an important implication. **As of React 16, errors that were not caught by any error boundary will result in unmounting of the whole React component tree.**
+דנו בהחלטה זו לא מעט, אבל מנסיונינו תמיד כדאי שלא להשתמש בממשק מושחת, אלא להפטר ממנו לגמרי. לדוגמא, באפליקציה כמו מסנג׳ר, להשאיר ממשק שבור בצורה גלויה לעין יכול להוביל לשליחת הודעה לאדם הלא נכון. באותה מידה, באפליקציה שמנהלת כספים עדיף לא להציג כלום מאשר להציג סכום שגוי.
 
-We debated this decision, but in our experience it is worse to leave corrupted UI in place than to completely remove it. For example, in a product like Messenger leaving the broken UI visible could lead to somebody sending a message to the wrong person. Similarly, it is worse for a payments app to display a wrong amount than to render nothing.
+השינוי הזה אומר שכשמשדרגים לגרסה 16, בדרך כלל מגלים שגיאות באפליקציה שעד אז לא שמנו לב אליהן. הוספת גובלי שגיאות מאפשר לנו לספק חווית משתמש טובה יותר בכל מצב.
 
-This change means that as you migrate to React 16, you will likely uncover existing crashes in your application that have been unnoticed before. Adding error boundaries lets you provide better user experience when something goes wrong.
+לדוגמא, המסנג׳ר של Facebook עוטף תוכן מהסרגל הצידי, חלונית המידע, חלונית השיחה ושדה הקלט של ההודעה בגובלי שגיאות נפרדים. במקרה ואחד מהם קורס, האחרים נשארים זמינים ואינטרקטיביים.
 
-For example, Facebook Messenger wraps content of the sidebar, the info panel, the conversation log, and the message input into separate error boundaries. If some component in one of these UI areas crashes, the rest of them remain interactive.
-
-We also encourage you to use JS error reporting services (or build your own) so that you can learn about unhandled exceptions as they happen in production, and fix them.
+אנחנו ממליצים גם להשתמש בשירותי דיווח השגיאות של JavaScript (או לבנות שירותים דומים בעצמכם), על מנת למצוא בעיות בסביבת הייצור ולתקן אותן בקלות ובמהירות.
 
 
 ## Component Stack Traces {#component-stack-traces}
