@@ -12,16 +12,17 @@ permalink: docs/error-boundaries.html
 
 גובלי שגיאות הם בעצם קומפוננטות ש**תופסות שגיאות JavaScript שקורות בכל אחד מקומפוננטות הילד שלהן, מתעדות אותן ומציגות ממשק חלופי.** במקום להציג את הקומפוננטה השבורה. הן תופסות שגיאות בזמן רינדור, במתודות מחזור חיים ובבנאי הקומפוננטות עבור כל אחת מקומפוננטות הילד שלהן.
 
-> Note
+> הערה
 >
-> Error boundaries do **not** catch errors for:
+> גובלי שגיאות **לא** תופסים שגיאות ב:
 >
-> * Event handlers ([learn more](#how-about-event-handlers))
-> * Asynchronous code (e.g. `setTimeout` or `requestAnimationFrame` callbacks)
-> * Server side rendering
-> * Errors thrown in the error boundary itself (rather than its children)
+> * מטפלי אירועים ([מידע נוסף](#how-about-event-handlers))
+> * קוד אסינכרוני (לדוגמא `setTimeout` או `requestAnimationFrame`)
+> * רינדור בצד השרת
+> * שגיאות שקורות בגובל השגיאות עצמו
 
-A class component becomes an error boundary if it defines either (or both) of the lifecycle methods [`static getDerivedStateFromError()`](/docs/react-component.html#static-getderivedstatefromerror) or [`componentDidCatch()`](/docs/react-component.html#componentdidcatch). Use `static getDerivedStateFromError()` to render a fallback UI after an error has been thrown. Use `componentDidCatch()` to log error information.
+קומפוננטת מחלקה הופכת לגובל שגיאות אם היא מגדירה לפחות אחת ממתודות מחזור החיים [`static getDerivedStateFromError()`](/docs/react-component.html#static-getderivedstatefromerror) או [`componentDidCatch()`](/docs/react-component.html#componentdidcatch).
+המתודה `static getDerivedStateFromError()` משמשת לרנדור ממשק חלופי לאחר שגיאה שנתפסה, ו- `componentDidCatch()` עוזרת בתיעוד השגיאה.
 
 ```js{7-10,12-15,18-21}
 class ErrorBoundary extends React.Component {
@@ -31,18 +32,18 @@ class ErrorBoundary extends React.Component {
   }
 
   static getDerivedStateFromError(error) {
-    // Update state so the next render will show the fallback UI.
+    // כדי שהרינדור הבא יציג ממשק חלופי state מעדכנת את ה
     return { hasError: true };
   }
 
   componentDidCatch(error, info) {
-    // You can also log the error to an error reporting service
+    // אפשר גם לתעד את השגיאה לשירות לוגר
     logErrorToMyService(error, info);
   }
 
   render() {
     if (this.state.hasError) {
-      // You can render any custom fallback UI
+      // מגדירים ממשק חלופי מותאם
       return <h1>Something went wrong.</h1>;
     }
 
@@ -51,7 +52,7 @@ class ErrorBoundary extends React.Component {
 }
 ```
 
-Then you can use it as a regular component:
+השימוש בגובל השגיאות זהה לשימוש בכל קומפוננטה רגילה:
 
 ```js
 <ErrorBoundary>
@@ -59,13 +60,14 @@ Then you can use it as a regular component:
 </ErrorBoundary>
 ```
 
-Error boundaries work like a JavaScript `catch {}` block, but for components. Only class components can be error boundaries. In practice, most of the time you’ll want to declare an error boundary component once and use it throughout your application.
+גובלי שגיאות עובדים בצורה דומה לבלוק `catch {}` ב-JavaScript, אבל בתוך הקומפוננטה.
+רק קומפוננטות מחלקה יכולות לגבול שגיאות. בפועל, מגדירים בדרך כלל גובל שגיאות אחד ונשתמש בו בצורה אחידה בכל האפליקציה.
 
-Note that **error boundaries only catch errors in the components below them in the tree**. An error boundary can’t catch an error within itself. If an error boundary fails trying to render the error message, the error will propagate to the closest error boundary above it. This, too, is similar to how catch {} block works in JavaScript.
+שימו לב ש**גובלי שגיאות תופסים אך ורק שגיאות בקומפוננטות הילד שלהם**, ולא בתוך עצמם. אם מתרחשת שגיאה בקוד ה- `render` של גובל השגיאות לדוגמא, השגיאות תעלה לגובל השגיאות הבא מעליה, בדיוק כמצופה מההתנהגות של בלוק ה- `catch {}` ב-JavaScript.
 
-## Live Demo {#live-demo}
+## הדגמה חיה {#live-demo}
 
-Check out [this example of declaring and using an error boundary](https://codepen.io/gaearon/pen/wqvxGa?editors=0010) with [React 16](/blog/2017/09/26/react-v16.0.html).
+שימו לב ל[דוגמא הבאה של הגדרה ושימוש בגובל שגיאות](https://codepen.io/gaearon/pen/wqvxGa?editors=0010) עם [גרסה 16 של React](/blog/2017/09/26/react-v16.0.html).
 
 
 ## Where to Place Error Boundaries {#where-to-place-error-boundaries}
