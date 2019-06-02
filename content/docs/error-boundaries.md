@@ -103,9 +103,9 @@ class ErrorBoundary extends React.Component {
 > שמות הקומפוננטות שמוצגים במעקב הערימות תלוי בשם שהוגדר במאפיין [`Function.name`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/name). אם אתם צריכים לתמוך בדפדפנים או מכשירים ישנים יותר שלא תומכים בזה באופן סטנדרטי (כמו IE 11 למשל), תוכלו להוסיף את המאפיין כ- polyfill שיוכלל ב-bundle האפליקציה, כמו [`function.name-polyfill`](https://github.com/JamesMGreene/Function.name). דרך נוספת היא לספק באופן ישיר את המאפיין [`displayName`](/docs/react-component.html#displayname) בכל קומפוננטה.
 
 
-## How About try/catch? {#how-about-trycatch}
+## מה עם בלוק try/catch? {#how-about-trycatch}
 
-`try` / `catch` is great but it only works for imperative code:
+בלוק `try/catch` זה מצוין אבל עובד רק בקוד אימפרטיבי (קוד שמשנה את מצב האפליקציה):
 
 ```js
 try {
@@ -115,21 +115,22 @@ try {
 }
 ```
 
-However, React components are declarative and specify *what* should be rendered:
+לעומת זאת, קומפוננטות React הן דקלרטיביות ורק מציינות *מה* צריך לרנדר באפליקציה:
 
 ```js
 <Button />
 ```
 
-Error boundaries preserve the declarative nature of React, and behave as you would expect. For example, even if an error occurs in a `componentDidUpdate` method caused by a `setState` somewhere deep in the tree, it will still correctly propagate to the closest error boundary.
+גובלי שגיאות משמרים את האופן הדקלרטיבי של React ומספקים התנהגות דומה. לדוגמא, אפילו אם שגיאה צצה במתודת ה-`componentDidUpdate` שנגרמה איפשהו עמוק בתוך העץ בתוך `setState`, היא תוצף לגובל השגיאות הקרוב ביותר.
 
-## How About Event Handlers? {#how-about-event-handlers}
+## מה עם מטפלי אירועים? {#how-about-event-handlers}
 
-Error boundaries **do not** catch errors inside event handlers.
+גובלי שגיאות **לא** תופסים שגיאות מתוך מטפלי אירועים.
 
-React doesn't need error boundaries to recover from errors in event handlers. Unlike the render method and lifecycle methods, the event handlers don't happen during rendering. So if they throw, React still knows what to display on the screen.
+React לא צריך גובלי שגיאות כדי להתאושש משגיאות במטפלי אירועים. בשונה מהמתודת הרינדור ומתודות מחזור החיים, שגיאות שצצות במטפלי האירועים לא קורות בזמן הרינדור. אז אם צצה שגיאה, React עדיין ידע מה להציג.
 
-If you need to catch an error inside event handler, use the regular JavaScript `try` / `catch` statement:
+כשיש צורך לתפוס שגיאה במטפל האירועים, השתמשו בבלוק ה-`try` / `catch` כרגיל:
+
 
 ```js{9-13,17-20}
 class MyComponent extends React.Component {
@@ -141,7 +142,7 @@ class MyComponent extends React.Component {
 
   handleClick() {
     try {
-      // Do something that could throw
+      // קוד שזורק שגיאה
     } catch (error) {
       this.setState({ error });
     }
@@ -156,10 +157,10 @@ class MyComponent extends React.Component {
 }
 ```
 
-Note that the above example is demonstrating regular JavaScript behavior and doesn't use error boundaries.
+שימו לב שהדוגמא הנ״ל מדגימה קוד JavaScript סטנדרטי לטיפול בשגיאות ולא קשורה בשום אופן לגבולות שגיאות.
 
-## Naming Changes from React 15 {#naming-changes-from-react-15}
+## שינוי שם מגרסה 15 {#naming-changes-from-react-15}
 
-React 15 included a very limited support for error boundaries under a different method name: `unstable_handleError`. This method no longer works, and you will need to change it to `componentDidCatch` in your code starting from the first 16 beta release.
+גרסה 15 של React כללה תמיכה מוגבלת ביותר לגבולות שגיאות תחת מתודה בשם אחר: `unstable_handleError`. המתודה הזאת כבר לא נתמכת, ותאלצו לשנות אותה ל- `componentDidCatch` בקוד שלכם החל מגרסת הביתא הראשונה של React 16.
 
-For this change, we’ve provided a [codemod](https://github.com/reactjs/react-codemod#error-boundaries) to automatically migrate your code.
+בשביל השינוי הזה, כללנו [משנה קוד (codemod)](https://github.com/reactjs/react-codemod#error-boundaries) כדי לעדכן באופן אוטומטי את הקוד הרלוונטי.
