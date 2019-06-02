@@ -86,22 +86,21 @@ class ErrorBoundary extends React.Component {
 
 אנחנו ממליצים גם להשתמש בשירותי דיווח השגיאות של JavaScript (או לבנות שירותים דומים בעצמכם), על מנת למצוא בעיות בסביבת הייצור ולתקן אותן בקלות ובמהירות.
 
+## מעקבי ערימות לקומפוננטות {#component-stack-traces}
 
-## Component Stack Traces {#component-stack-traces}
+בגרסה 16 של React כל השגיאות שקורות בזמן הרינדור בסביבת הפיתוח מודפסות למסוף בדפדפן, אפילו אם האפליקציה בולעת אותם בטעות. בנוסף להודעת השגיאה ומעקב העירומת של JavaScript, מודפס גם מעקר הערימה של הקומפפוננטה. עכשיו אפשר לראות בדיוק איפה בקומפוננטה קרתה השגיאה:
 
-React 16 prints all errors that occurred during rendering to the console in development, even if the application accidentally swallows them. In addition to the error message and the JavaScript stack, it also provides component stack traces. Now you can see where exactly in the component tree the failure has happened:
+<img src="../images/docs/error-boundaries-stack-trace.png" style="max-width:100%" alt="שיגאה שנתפסה על ידי גובל השגיאות">
 
-<img src="../images/docs/error-boundaries-stack-trace.png" style="max-width:100%" alt="Error caught by Error Boundary component">
+אפשר גם לראות את שם הקובץ ומספר השורה בקוד הקומפוננטה בעזרת מעקב הערימות. זה עובד בברירת המחדל בפרויקטים שנוצרו עם [אפליקצית Create React](https://github.com/facebookincubator/create-react-app):
 
-You can also see the filenames and line numbers in the component stack trace. This works by default in [Create React App](https://github.com/facebookincubator/create-react-app) projects:
+<img src="../images/docs/error-boundaries-stack-trace-line-numbers.png" style="max-width:100%" alt="שגיאה שנתפסה על ידי גובל השגיאות עם מספר שורה">
 
-<img src="../images/docs/error-boundaries-stack-trace-line-numbers.png" style="max-width:100%" alt="Error caught by Error Boundary component with line numbers">
+אם לא יצרתם את הפרויקט עם אפליקצית Create React, תוכלו להשתמש [בתוסף הזה](https://www.npmjs.com/package/babel-plugin-transform-react-jsx-source) - הוסיפו אותו לתצורת ה-Babel בפרויקט. שימו לב שהוא מיועד רק לשימוש בסביבת הפיתוח ו**חובה לנטרל אותו בסביבת הייצור**.
 
-If you don’t use Create React App, you can add [this plugin](https://www.npmjs.com/package/babel-plugin-transform-react-jsx-source) manually to your Babel configuration. Note that it’s intended only for development and **must be disabled in production**.
-
-> Note
+> הערה
 >
-> Component names displayed in the stack traces depend on the [`Function.name`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/name) property. If you support older browsers and devices which may not yet provide this natively (e.g. IE 11), consider including a `Function.name` polyfill in your bundled application, such as [`function.name-polyfill`](https://github.com/JamesMGreene/Function.name). Alternatively, you may explicitly set the [`displayName`](/docs/react-component.html#displayname) property on all your components.
+> שמות הקומפוננטות שמוצגים במעקב הערימות תלוי בשם שהוגדר במאפיין [`Function.name`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/name). אם אתם צריכים לתמוך בדפדפנים או מכשירים ישנים יותר שלא תומכים בזה באופן סטנדרטי (כמו IE 11 למשל), תוכלו להוסיף את המאפיין כ- polyfill שיוכלל ב-bundle האפליקציה, כמו [`function.name-polyfill`](https://github.com/JamesMGreene/Function.name). דרך נוספת היא לספק באופן ישיר את המאפיין [`displayName`](/docs/react-component.html#displayname) בכל קומפוננטה.
 
 
 ## How About try/catch? {#how-about-trycatch}
