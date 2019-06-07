@@ -53,7 +53,7 @@ class MyComponent extends React.Component {
         },
         // שים לב: חשוב לטפל בשגיאות כאן
         // כדי שלא נפספס catch()-במקום הבלוק
-        // חריגות מבאגים בפועל בקומפוננטות שלנו.
+        // על מנת שלא "נבלע" חריגות מבאגים בקומפוננטות שלנו.
         (error) => {
           this.setState({
             isLoaded: true,
