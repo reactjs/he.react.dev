@@ -1,6 +1,6 @@
 ---
 id: faq-styling
-title: סגנון ו-CSS
+title: עיצוב ו-CSS
 permalink: docs/faq-styling.html
 layout: docs
 category: FAQ
@@ -12,7 +12,7 @@ category: FAQ
 
 ```jsx
 render() {
-  return <span className="menu navigation-menu">Menu</span>
+  return <span className="menu navigation-menu">תפריט</span>
 }
 ```
 
@@ -24,7 +24,7 @@ render() {
   if (this.props.isActive) {
     className += ' menu-active';
   }
-  return <span className={className}>Menu</span>
+  return <span className={className}>תפריט</span>
 }
 ```
 
@@ -32,19 +32,19 @@ render() {
 >
 >אם לעיתים קרובות אתה מוצא את עצמך כותב קוד כזה, ספריית [classnames](https://www.npmjs.com/package/classnames#usage-with-reactjs) יכולה לפשט זאת.
 
-### האם אני יכול לכתוב סגנון בשורה? {#can-i-use-inline-styles}
+### האם אני יכול לכתוב inline עיצוב? {#can-i-use-inline-styles}
 
-כן, ראה את התיעוד על סגנון [כאן](/docs/dom-elements.html#style).
+כן, ראה את התיעוד על עיצוב [כאן](/docs/dom-elements.html#style).
 
-### סגנון בשורה הוא רע? {#are-inline-styles-bad}
+### inline עיצוב הוא רע? {#are-inline-styles-bad}
 
-CSS classes בדרך כלל טובים יותר לביצועים מאשר סגנון בשורה.
+CSS classes בדרך כלל טובים יותר לביצועים מאשר inline עיצוב.
 
 ### מה זה CSS ב-JS? {#what-is-css-in-js}
 
-“CSS ב-JS” מתייחס לתבנית שבה CSS מורכב מ-JavaScript במקום קובץ שמוגדר חיצונית. קרא את ההשוואה של ספריות CSS ב-JS [כאן](https://github.com/MicheleBertoli/css-in-js).
+“CSS ב-JS” מתייחס לתבנית שבה CSS מורכב בעזרת JavaScript במקום להיות מוגדר בקובץ חיצוני. קרא את ההשוואה של ספריות CSS ב-JS [כאן](https://github.com/MicheleBertoli/css-in-js).
 
-_שים לב שהפונקציונאליות הזאת היא לא חלק מ-React, אך מסופקת מספריות צד שלישי._ ל-React אין דיעה על איך סגנון מוגדר; אם יש ספק, נקודת התחלה טובה היא להגדיר את הסגנון שלך קובץ `*.css` חיצוני כרגיל לפנות אלייהם באמצעות [`className`](/docs/dom-elements.html#classname).
+_שים לב שהפונקציונאליות הזאת היא לא חלק מ-React, אך מסופקת מספריות צד שלישי._ ל-React אין דיעה על איך עיצוב מוגדר; אם יש ספק, נקודת התחלה טובה היא להגדיר את העיצוב שלך קובץ `*.css` חיצוני כרגיל לפנות אלייהם באמצעות [`className`](/docs/dom-elements.html#classname).
 
 ### האם אני יכול לעשות אנימציות ב-React? {#can-i-do-animations-in-react}
 
