@@ -1,32 +1,32 @@
 ---
 id: faq-build
-title: Babel, JSX, and Build Steps
+title: JSX, Babel וצעדי בנייה
 permalink: docs/faq-build.html
 layout: docs
 category: FAQ
 ---
 
-### Do I need to use JSX with React? {#do-i-need-to-use-jsx-with-react}
+### האם אני צריך להשתמש ב-JSX עם React? {#do-i-need-to-use-jsx-with-react}
 
-No! Check out ["React Without JSX"](/docs/react-without-jsx.html) to learn more.
+לא! בדוק את ["React בלי JSX"](/docs/react-without-jsx.html) כדי ללמוד עוד.
 
-### Do I need to use ES6 (+) with React? {#do-i-need-to-use-es6--with-react}
+### האם אני צריך לכתוב ES6 (+) עם React? {#do-i-need-to-use-es6--with-react}
 
-No! Check out ["React Without ES6"](/docs/react-without-es6.html) to learn more.
+לא! בדוק את ["React בלי ES6"](/docs/react-without-es6.html) כדי ללמוד עוד.
 
-### How can I write comments in JSX? {#how-can-i-write-comments-in-jsx}
+### איך אני יכול לכתוב הערות ב-JSX? {#how-can-i-write-comments-in-jsx}
 
 ```jsx
 <div>
-  {/* Comment goes here */}
-  Hello, {name}!
+  {/* הערות כאן */}
+  שלום, {name}!
 </div>
 ```
 
 ```jsx
 <div>
-  {/* It also works 
-  for multi-line comments. */}
-  Hello, {name}! 
+  {/* זה עובד גם עבור
+  .הערות מרובות שורות */}
+  שלום, {name}! 
 </div>
 ```
