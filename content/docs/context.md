@@ -34,27 +34,29 @@ permalink: docs/context.html
 
 ## לפני השימוש בקונטקסט {#before-you-use-context}
 
-Context is primarily used when some data needs to be accessible by *many* components at different nesting levels. Apply it sparingly because it makes component reuse more difficult.
+השימוש בקונטקסט נועד בעיקר למצב שבו חלק מהמידע צריך להיות נגיש ל*הרבה* קומפוננטות בעומקים שונים.
+עדיף להשתמש בקונטקסט בחסכנות כי הוא יכול להקשות על שימוש חוזר בקומפוננטות.
 
-**If you only want to avoid passing some props through many levels, [component composition](/docs/composition-vs-inheritance.html) is often a simpler solution than context.**
+**אם המטרה היחידה שלך בשימוש בקונטקסט היא להמנע מהעברת props להרבה קומפוננטות, [הכלת קומפוננטות](/docs/composition-vs-inheritance.html) היא בדרך כלל פתרון פשוט יותר.**
 
-For example, consider a `Page` component that passes a `user` and `avatarSize` prop several levels down so that deeply nested `Link` and `Avatar` components can read it:
+לדוגמא, קומפוננטת `Page` שמעבירה את ה-props `user` ו- `avatarSize` לכמה רמות עומק, כדי שקומפוננטות ילד כמו `Link` ו- `Avatar` יוכלו להשתמש בהם:
 
 ```js
 <Page user={user} avatarSize={avatarSize} />
-// ... which renders ...
+// ... שמרנדרת ...
 <PageLayout user={user} avatarSize={avatarSize} />
-// ... which renders ...
+// ... שמרנדרת ...
 <NavigationBar user={user} avatarSize={avatarSize} />
-// ... which renders ...
+// ... שמרנדרת ...
 <Link href={user.permalink}>
   <Avatar user={user} size={avatarSize} />
 </Link>
 ```
 
-It might feel redundant to pass down the `user` and `avatarSize` props through many levels if in the end only the `Avatar` component really needs it. It's also annoying that whenever the `Avatar` component needs more props from the top, you have to add them at all the intermediate levels too.
+יכול להיות שהעברת ה-props `user` ו- `avatarSize` דרך כל כך הרבה רמות עומק תרגיש מיותר, בעיקר כי בסוף רק קומפוננטת ה- `Avatar` באמת משתמשת בהם. זה גם מעצבן שכל פעם שקומפוננטת ה- `Avatar` צריכה עוד props, צריך להעביר אותם דרך כל רכיבי הביניים.
 
-One way to solve this issue **without context** is to [pass down the `Avatar` component itself](/docs/composition-vs-inheritance.html#containment) so that the intermediate components don't need to know about the `user` or `avatarSize` props:
+דרך אחת לפתור את הבעיה **ללא שימוש בקונטקסט** היא [להעביר את קומפוננטת ה-`Avatar` עצמה](/docs/composition-vs-inheritance.html#containment) כדי שקומפוננטות הביניים לא יצטרכו לדעת על ה-props `user` או `avatarSize`:
+
 
 ```js
 function Page(props) {
@@ -67,21 +69,22 @@ function Page(props) {
   return <PageLayout userLink={userLink} />;
 }
 
-// Now, we have:
+// :עכשיו, יש לנו
 <Page user={user} avatarSize={avatarSize} />
-// ... which renders ...
+// ... שמרנדרת ...
 <PageLayout userLink={...} />
-// ... which renders ...
+// ... שמרנדרת ...
 <NavigationBar userLink={...} />
-// ... which renders ...
+// ... שמרנדרת ...
 {props.userLink}
 ```
 
-With this change, only the top-most Page component needs to know about the `Link` and `Avatar` components' use of `user` and `avatarSize`.
+עם השינוי הזה, רק הקומפוננטה העליונה `Page` צריכה לדעת על קומפוננטות ה- `Link` וה- `Avatar` ועל ה-props שהן דורשות.
 
-This *inversion of control* can make your code cleaner in many cases by reducing the amount of props you need to pass through your application and giving more control to the root components. However, this isn't the right choice in every case: moving more complexity higher in the tree makes those higher-level components more complicated and forces the lower-level components to be more flexible than you may want.
+תבנית העיצוב הזו נקראת *היפוך שליטה* והיא מאפשרת לכתוב קוד נקי יותר במקרים רבים, להפחית את מספר ה- props שצריך להעביר באפליקציה, ולהחזיר שליטה לקומפוננטה העליונה. עם זאת, היא לא תמיד הדרך הנכונה בכל מצב: העברת קוד מסובך למעלה בעץ הקומפוננטה יגרום לקומפוננטת השורש להיות יותר מסובכת ויכריח את קומפוננטות הילד להיות יותר מדי גמישות.
 
-You're not limited to a single child for a component. You may pass multiple children, or even have multiple separate "slots" for children, [as documented here](/docs/composition-vs-inheritance.html#containment):
+אין הגבלה של ילד יחיד לכל קומפוננטה. אפשר להעביר מספר ילדים, ואפילו מספר ״משבצות״ ("slots") לילדים, [כמתועד כאן](/docs/composition-vs-inheritance.html#containment):
+
 
 ```js
 function Page(props) {
@@ -103,9 +106,9 @@ function Page(props) {
 }
 ```
 
-This pattern is sufficient for many cases when you need to decouple a child from its immediate parents. You can take it even further with [render props](/docs/render-props.html) if the child needs to communicate with the parent before rendering.
+תבנית העיצוב הזאת מספיקה במקרים רבים כשרוצים להפריד קומפוננטת ילד מקומפוננטת האב שלה. אפשר להרחיב את הפתרון עוד יותר עם [render props](/docs/render-props.html) במקרים שקומפוננטת הילד צריכה לתקשר עם קומפוננטת האב לפני הרינדור.
 
-However, sometimes the same data needs to be accessible by many components in the tree, and at different nesting levels. Context lets you "broadcast" such data, and changes to it, to all components below. Common examples where using context might be simpler than the alternatives include managing the current locale, theme, or a data cache. 
+למרות זאת, לפעמים אותו המידע צריך להיות נגיש ע״י מספר קומפוננטות בערץ, ובעומקים שונים. במקרים כאלה, הקונטקסט מאפשר ״לשדר״ את המידע, ושינויים במידע, לכל הקומפוננטות בעץ. דוגמאות שכיחות שבן שימוש בקונטקסט פשוט יותר מהאלטרנטיבות הן כמתואר קודם - ערכות נושא, העדפות שפה או זכרון מטמון.
 
 ## ממשק תכנות {#api}
 
