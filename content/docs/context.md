@@ -228,20 +228,19 @@ class MyClass extends React.Component {
 
 ### שימוש ביותר מקונטקסט אחד {#consuming-multiple-contexts}
 
-To keep context re-rendering fast, React needs to make each context consumer a separate node in the tree. 
+כדי לודא שרינדור הקונטקסט מחדש יהיה מהיר, React צריך להפוך את כל אחד מצרכני הקונטקסט לצומת נפרדת בעץ.
 
 `embed:context/multiple-contexts.js`
 
-If two or more context values are often used together, you might want to consider creating your own render prop component that provides both.
+אם שני ערכי קונטקסט (או יותר) בדרך כלל משומשים ביחד, יכול להיות שתרצו לשקול יצירת קומפוננטת רינדור prop שתספק אותם ביחד.
 
 ## הסתיגויות {#caveats}
 
-Because context uses reference identity to determine when to re-render, there are some gotchas that could trigger unintentional renders in consumers when a provider's parent re-renders. For example, the code below will re-render all consumers every time the Provider re-renders because a new object is always created for `value`:
+בגלל שקונטקסט משתמש בזיהוי הפניה כדי להחליט מתי לעורר רינדור מחדש, יש כל מיני מקרי קצה שיכולים לגרום לרינדור הצרכנים בטעות, כשקומפוננטת האב של הספק מרנדרת את עצמה מחדש. לדוגמא, הקוד הנ״ל ירדנר את כל הצרכנים בכל פעם שהספק מרנדר את עצמו מחדש, כיוון ש-`value` הוא עצם שנוצר מחדש כל פעם:
 
 `embed:context/reference-caveats-problem.js`
 
-
-To get around this, lift the value into the parent's state:
+כדי לעקוף את הבעיה הזאת, אפשר להעביר את הערך ל-state של האב:
 
 `embed:context/reference-caveats-solution.js`
 
@@ -249,5 +248,5 @@ To get around this, lift the value into the parent's state:
 
 > הערה
 > 
-> React previously shipped with an experimental context API. The old API will be supported in all 16.x releases, but applications using it should migrate to the new version. The legacy API will be removed in a future major React version. Read the [legacy context docs here](/docs/legacy-context.html).
+> בעבר, React הוציאה ממשק תכנות נסיוני לקונטקסט. הממשק הישן ייתמך בכל גרסאות ה-16.x, אבל אפליקציות שמשתמשות בו צריכות לעבור לשימוש בגרסה החדשה. הממשק הישן יוסר בגרסה הראשית הבאה של React. עוד מידע על [ממשק הקונטקסט הישן](/docs/legacy-context.html).
  
