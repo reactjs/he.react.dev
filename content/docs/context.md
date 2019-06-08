@@ -1,28 +1,28 @@
 ---
 id: context
-title: Context
+title: קונטקסט
 permalink: docs/context.html
 ---
 
-Context provides a way to pass data through the component tree without having to pass props down manually at every level.
+קונטקסט מספק דרך להעביר מידע דרך עץ הקומפוננטות בלי להשתמש בprops באופן ידני לכל קומפוננטה.
 
-In a typical React application, data is passed top-down (parent to child) via props, but this can be cumbersome for certain types of props (e.g. locale preference, UI theme) that are required by many components within an application. Context provides a way to share values like these between components without having to explicitly pass a prop through every level of the tree.
+באפליקציית React טיפוסית, המידע מועבר למטה (מקומפוננטת אב לקומפוננטת ילד) דרך props, אבל עבור מידע שנדרש בהרבה קומפוננטות באפליקציה (כמו לדוגמא העדפות שפה או ערכת נושא של ממשק המשתמש) השימוש ב-props יכול להיות מסורבל. קונטקסט מספק דרך לשתף מידע כזה בין קומפוננטות בלי להעביר אותו באופן מפורש לכל קומפוננטה.
 
-- [When to Use Context](#when-to-use-context)
-- [Before You Use Context](#before-you-use-context)
-- [API](#api)
+- [מתי להשתמש בקונטקסט](#when-to-use-context)
+- [לפני השימוש בקונטקסט](#before-you-use-context)
+- [ממשק תכנות](#api)
   - [React.createContext](#reactcreatecontext)
   - [Context.Provider](#contextprovider)
   - [Class.contextType](#classcontexttype)
   - [Context.Consumer](#contextconsumer)
-- [Examples](#examples)
-  - [Dynamic Context](#dynamic-context)
-  - [Updating Context from a Nested Component](#updating-context-from-a-nested-component)
-  - [Consuming Multiple Contexts](#consuming-multiple-contexts)
-- [Caveats](#caveats)
-- [Legacy API](#legacy-api)
+- [דוגמאות](#examples)
+  - [קונטקסט דינאמי](#dynamic-context)
+  - [עדכון הקונטקסט מתוך קומפוננטה מקוננת](#updating-context-from-a-nested-component)
+  - [שימוש ביותר מקונטקסט אחד](#consuming-multiple-contexts)
+- [הסתיגויות](#caveats)
+- [ממשק תכנות מדור קודם](#legacy-api)
 
-## When to Use Context {#when-to-use-context}
+## מתי להשתמש בקונטקסט {#when-to-use-context}
 
 Context is designed to share data that can be considered "global" for a tree of React components, such as the current authenticated user, theme, or preferred language. For example, in the code below we manually thread through a "theme" prop in order to style the Button component:
 
@@ -32,7 +32,7 @@ Using context, we can avoid passing props through intermediate elements:
 
 `embed:context/motivation-solution.js`
 
-## Before You Use Context {#before-you-use-context}
+## לפני השימוש בקונטקסט {#before-you-use-context}
 
 Context is primarily used when some data needs to be accessible by *many* components at different nesting levels. Apply it sparingly because it makes component reuse more difficult.
 
@@ -107,7 +107,7 @@ This pattern is sufficient for many cases when you need to decouple a child from
 
 However, sometimes the same data needs to be accessible by many components in the tree, and at different nesting levels. Context lets you "broadcast" such data, and changes to it, to all components below. Common examples where using context might be simpler than the alternatives include managing the current locale, theme, or a data cache. 
 
-## API {#api}
+## ממשק תכנות {#api}
 
 ### `React.createContext` {#reactcreatecontext}
 
@@ -196,9 +196,9 @@ Requires a [function as a child](/docs/render-props.html#using-props-other-than-
 > 
 > For more information about the 'function as a child' pattern, see [render props](/docs/render-props.html).
 
-## Examples {#examples}
+## דוגמאות {#examples}
 
-### Dynamic Context {#dynamic-context}
+### קונטקסט דינאמי {#dynamic-context}
 
 A more complex example with dynamic values for the theme:
 
@@ -211,7 +211,7 @@ A more complex example with dynamic values for the theme:
 **app.js**
 `embed:context/theme-detailed-app.js`
 
-### Updating Context from a Nested Component {#updating-context-from-a-nested-component}
+### עדכון הקונטקסט מתוך קומפוננטה מקוננת {#updating-context-from-a-nested-component}
 
 It is often necessary to update the context from a component that is nested somewhere deeply in the component tree. In this case you can pass a function down through the context to allow consumers to update the context:
 
@@ -224,7 +224,7 @@ It is often necessary to update the context from a component that is nested some
 **app.js**
 `embed:context/updating-nested-context-app.js`
 
-### Consuming Multiple Contexts {#consuming-multiple-contexts}
+### שימוש ביותר מקונטקסט אחד {#consuming-multiple-contexts}
 
 To keep context re-rendering fast, React needs to make each context consumer a separate node in the tree. 
 
@@ -232,7 +232,7 @@ To keep context re-rendering fast, React needs to make each context consumer a s
 
 If two or more context values are often used together, you might want to consider creating your own render prop component that provides both.
 
-## Caveats {#caveats}
+## הסתיגויות {#caveats}
 
 Because context uses reference identity to determine when to re-render, there are some gotchas that could trigger unintentional renders in consumers when a provider's parent re-renders. For example, the code below will re-render all consumers every time the Provider re-renders because a new object is always created for `value`:
 
@@ -243,7 +243,7 @@ To get around this, lift the value into the parent's state:
 
 `embed:context/reference-caveats-solution.js`
 
-## Legacy API {#legacy-api}
+## ממשק תכנות מדור קודם {#legacy-api}
 
 > Note
 > 
