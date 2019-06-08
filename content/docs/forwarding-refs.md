@@ -1,12 +1,12 @@
 ---
 id: forwarding-refs
-title: Forwarding Refs
+title: העברת רפרנסים
 permalink: docs/forwarding-refs.html
 ---
 
-Ref forwarding is a technique for automatically passing a [ref](/docs/refs-and-the-dom.html) through a component to one of its children. This is typically not necessary for most components in the application. However, it can be useful for some kinds of components, especially in reusable component libraries. The most common scenarios are described below.
+העברת רפרנסים היא טכניקה להעברה אוטומטית של [רפרנס](/docs/refs-and-the-dom.html) דרך קומפוננטה לאחד מקומפוננטות הילד שלה. בדרך כלל, זאת טכניקה שלא נחוצה לרוב הקומפוננטות באפליקציה, אבל יכולה להיות שימושית במצבים מסוימים, בעיקר בספריות קומפוננטות רב פעמיות. התרחישים הנפוצים ביותר מתוארים פה.
 
-## Forwarding refs to DOM components {#forwarding-refs-to-dom-components}
+## העברת רפרנסים לקומפוננטות ב-DOM {#forwarding-refs-to-dom-components}
 
 Consider a `FancyButton` component that renders the native `button` DOM element:
 `embed:forwarding-refs/fancy-button-simple.js`
@@ -37,13 +37,13 @@ Here is a step-by-step explanation of what happens in the above example:
 >
 >Ref forwarding is not limited to DOM components. You can forward refs to class component instances, too.
 
-## Note for component library maintainers {#note-for-component-library-maintainers}
+## הערה למתחזקי ספריות קומפוננטות {#note-for-component-library-maintainers}
 
 **When you start using `forwardRef` in a component library, you should treat it as a breaking change and release a new major version of your library.** This is because your library likely has an observably different behavior (such as what refs get assigned to, and what types are exported), and this can break apps and other libraries that depend on the old behavior.
 
 Conditionally applying `React.forwardRef` when it exists is also not recommended for the same reasons: it changes how your library behaves and can break your users' apps when they upgrade React itself.
 
-## Forwarding refs in higher-order components {#forwarding-refs-in-higher-order-components}
+## העברת רפרנסים בקומפוננטות מסדר גבוה יותר {#forwarding-refs-in-higher-order-components}
 
 This technique can also be particularly useful with [higher-order components](/docs/higher-order-components.html) (also known as HOCs). Let's start with an example HOC that logs component props to the console:
 `embed:forwarding-refs/log-props-before.js`
@@ -59,7 +59,7 @@ This means that refs intended for our `FancyButton` component will actually be a
 Fortunately, we can explicitly forward refs to the inner `FancyButton` component using the `React.forwardRef` API. `React.forwardRef` accepts a render function that receives `props` and `ref` parameters and returns a React node. For example:
 `embed:forwarding-refs/log-props-after.js`
 
-## Displaying a custom name in DevTools {#displaying-a-custom-name-in-devtools}
+## הצגת שם מותאים בכלי פיתוח {#displaying-a-custom-name-in-devtools}
 
 `React.forwardRef` accepts a render function. React DevTools uses this function to determine what to display for the ref forwarding component.
 
