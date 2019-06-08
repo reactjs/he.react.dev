@@ -28,10 +28,10 @@ const AllBlogPosts = ({data, location}: Props) => (
     <Container>
       <div css={sharedStyles.articleLayout.container}>
         <div css={sharedStyles.articleLayout.content}>
-          <Header>All Posts</Header>
+          <Header>כל הפוסטים</Header>
           <TitleAndMetaTags
             canonicalUrl={`${urlRoot}/blog/all.html`}
-            title="React - All Posts"
+            title="React - כל הפוסטים"
           />
           <ul
             css={{
@@ -83,7 +83,7 @@ const AllBlogPosts = ({data, location}: Props) => (
                       color: colors.subtle,
                       marginTop: -5,
                     }}>
-                    by{' '}
+                    נכתב על ידי{' '}
                     {toCommaSeparatedList(node.frontmatter.author, author => (
                       <span key={author.frontmatter.name}>
                         {author.frontmatter.name}
