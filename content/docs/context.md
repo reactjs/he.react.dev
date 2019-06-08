@@ -202,7 +202,7 @@ class MyClass extends React.Component {
 
 ### קונטקסט דינאמי {#dynamic-context}
 
-A more complex example with dynamic values for the theme:
+דוגמא מורכבת יותר עם ערך דינאמי של ערכת הנושא:
 
 **theme-context.js**
 `embed:context/theme-detailed-theme-context.js`
@@ -215,7 +215,7 @@ A more complex example with dynamic values for the theme:
 
 ### עדכון הקונטקסט מתוך קומפוננטה מקוננת {#updating-context-from-a-nested-component}
 
-It is often necessary to update the context from a component that is nested somewhere deeply in the component tree. In this case you can pass a function down through the context to allow consumers to update the context:
+לפעמים יש צורך לעדכן את הקונטקסט מתוך קומפוננטה שמוגדרת עמוק בתוך עץ הקומפוננטות. במקרה הזה, אפשר להעביר פונקציה דרך הקונטקסט כדי לתת לצרכניו לעדכן אותו:
 
 **theme-context.js**
 `embed:context/updating-nested-context-context.js`
