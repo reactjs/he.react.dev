@@ -118,9 +118,9 @@ function Page(props) {
 const MyContext = React.createContext(defaultValue);
 ```
 
-Creates a Context object. When React renders a component that subscribes to this Context object it will read the current context value from the closest matching `Provider` above it in the tree.
+הקוד הזה יותר עצם קונטקסט. כש- React מרנדר את הקומפוננטות שמאזינות לקונטקסט, הוא קורא את ערך הקונטקסט מהספר הקרוב ביותר מעליו בעץ.
 
-The `defaultValue` argument is **only** used when a component does not have a matching Provider above it in the tree. This can be helpful for testing components in isolation without wrapping them. Note: passing `undefined` as a Provider value does not cause consuming components to use `defaultValue`.
+ערך ברירת המחדל נקרא **רק** כשאין ספק מעליו בעץ הקומפוננטות. זה יכול להיות שימושי בבדיקות אוטומטיות לקומפוננטה בבידוד - בלי צורך לעטוף אותן. הערה: העברת הערך `undefined` כערך לספק לא יגרום להחזרת ערך ברירת המחדל.
 
 ### `Context.Provider` {#contextprovider}
 
@@ -128,17 +128,16 @@ The `defaultValue` argument is **only** used when a component does not have a ma
 <MyContext.Provider value={/* some value */}>
 ```
 
-Every Context object comes with a Provider React component that allows consuming components to subscribe to context changes.
+כל עצם קונטקסט מגיע עם קומפוננטת ספק (Provider) שנותנת לקומפוננטות שצורכות אותו להקשיב לשינויים בקונטקסט.
+הספק מקבל prop `value` שיועבר לקומפוננטות ילד שצורכות את הספק בכל רמות העומק של העץ. ספק אחד יכול להתחבר לצרכנים רבים. אפשר להגדיר ספקים ברמות שונות של אותו העץ כדי לעקוף את הערכים המוגדרים בהם בעומקים שונים של עץ הקומפוננטות.
 
-Accepts a `value` prop to be passed to consuming components that are descendants of this Provider. One Provider can be connected to many consumers. Providers can be nested to override values deeper within the tree.
+כל צרכן שהוא צאצא של הספק ירנדר את עצמו מחדש כשה- prop `value` של הספק משתנה. התפשטות מהספק לצאצאים לא נתונה לחסות המתודה `shouldComponentUpdate`, ולכן הצרכנים מתעדכנים אפילו כשקומפוננטת אב לא מקשיבה לעדכון.
 
-All consumers that are descendants of a Provider will re-render whenever the Provider's `value` prop changes. The propagation from Provider to its descendant consumers is not subject to the `shouldComponentUpdate` method, so the consumer is updated even when an ancestor component bails out of the update.
+שינויים נקבעים ע״י השוואת הערכים החדשים מול הישנים בעזרת אותו האלגוריתם כמו [`Object.is`](//developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is#Description).
 
-Changes are determined by comparing the new and old values using the same algorithm as [`Object.is`](//developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is#Description). 
-
-> Note
+> הערה
 > 
-> The way changes are determined can cause some issues when passing objects as `value`: see [Caveats](#caveats).
+> הדרך שבה שינויים נקבעים יכולה ליצור בעיות כשמעבירים עצמים כערכים: ראה [הסתיגויות](#caveats).
 
 ### `Class.contextType` {#classcontexttype}
 
@@ -146,7 +145,7 @@ Changes are determined by comparing the new and old values using the same algori
 class MyClass extends React.Component {
   componentDidMount() {
     let value = this.context;
-    /* perform a side-effect at mount using the value of MyContext */
+    /* MyContext-בשימוש בערך ה mount-יגרום לתופעת לואי בזמן ה */
   }
   componentDidUpdate() {
     let value = this.context;
@@ -158,27 +157,27 @@ class MyClass extends React.Component {
   }
   render() {
     let value = this.context;
-    /* render something based on the value of MyContext */
+    /*MyContext-ירנדר משהו שמבוסס על ערך ה */
   }
 }
 MyClass.contextType = MyContext;
 ```
 
-The `contextType` property on a class can be assigned a Context object created by [`React.createContext()`](#reactcreatecontext). This lets you consume the nearest current value of that Context type using `this.context`. You can reference this in any of the lifecycle methods including the render function.
+מאפיין ה-`contextType` במחלקה מוקצה בעצם קונטקסט שנוצר על ידי המתודה [`React.createContext()`](#reactcreatecontext).זה נותן לנו לצרוך את ערך הקונטקסט הנוכחי הקרוב ביותר בעזרת `this.context`. אפשר להשתמש בהפניה זו בכל אחת ממתודות מחזור החיים כולל מתודת הרינדור.
 
-> Note:
+> הערה:
 >
-> You can only subscribe to a single context using this API. If you need to read more than one see [Consuming Multiple Contexts](#consuming-multiple-contexts).
+> אפשר לצרוך רק קונטקסט אחד בעזרת ממשק זה.
+> על מנת לצרוך יותר מאחד, ראו [שימוש ביותר מקונטקסט אחד](#consuming-multiple-contexts).
 >
-> If you are using the experimental [public class fields syntax](https://babeljs.io/docs/plugins/transform-class-properties/), you can use a **static** class field to initialize your `contextType`.
-
+> אם אתם משתמשים בסינטקסט הנסיוני של [מאפייני מחלקה ציבורית](https://babeljs.io/docs/plugins/transform-class-properties/), תוכלו להשתמש במאפיין מחלקה **סטטי** על מנת לאתחל את ה- `contextType`.
 
 ```js
 class MyClass extends React.Component {
   static contextType = MyContext;
   render() {
     let value = this.context;
-    /* render something based on the value */
+    /* רינדור משהו בהתאם לערך */
   }
 }
 ```
@@ -187,17 +186,17 @@ class MyClass extends React.Component {
 
 ```js
 <MyContext.Consumer>
-  {value => /* render something based on the context value */}
+  {value => /* רינדור משהו בהתאם לערך */}
 </MyContext.Consumer>
 ```
 
-A React component that subscribes to context changes. This lets you subscribe to a context within a [function component](/docs/components-and-props.html#function-and-class-components).
+קומפוננטת React שמקשיבה לשינויים בקונטקסט. מאפשרת לצרוך קונטקסט מתוך [קומפוננטת פונקציה](/docs/components-and-props.html#function-and-class-components).
 
-Requires a [function as a child](/docs/render-props.html#using-props-other-than-render). The function receives the current context value and returns a React node. The `value` argument passed to the function will be equal to the `value` prop of the closest Provider for this context above in the tree. If there is no Provider for this context above, the `value` argument will be equal to the `defaultValue` that was passed to `createContext()`.
+דורשת [פונקציה בתור ילד](/docs/render-props.html#using-props-other-than-render). הפונקציה הזאת מקבלת את ערך הקונטקסט הנוכחי ומחזירה צומת React. ערך הארגומנט שמועבר לפונקציה יהיה זהה ל- `value` prop של ספק הקונטקסט הקרוב ביותר מעלינו בעץ. אם אין ספק לקונטקס, הערך יהיה זהה לערך ברירת המחדל שנקבע בזמן יצירת הקונטקסט (עם `createContext()`).
 
 > הערה
 > 
-> For more information about the 'function as a child' pattern, see [render props](/docs/render-props.html).
+> למידע נוסף על ״פונקציות כילד״ בקרו בעמוד [render props](/docs/render-props.html).
 
 ## דוגמאות {#examples}
 
