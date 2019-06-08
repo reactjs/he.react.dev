@@ -24,11 +24,11 @@ permalink: docs/context.html
 
 ## מתי להשתמש בקונטקסט {#when-to-use-context}
 
-Context is designed to share data that can be considered "global" for a tree of React components, such as the current authenticated user, theme, or preferred language. For example, in the code below we manually thread through a "theme" prop in order to style the Button component:
+הקונטקסט נועה לשתף מידע שנחשב ״גלובאלי״ לכל הקומפוננטות בעץ, כמו מידע על המשתמש המאומת, ערכת הנושא או השפה המועדפת. בקוד הנ״ל אנחנו מעבירים את ה-prop של ״ערכת הנושא״ בשביל לעצב את קומפוננטת הכפתור:
 
 `embed:context/motivation-problem.js`
 
-Using context, we can avoid passing props through intermediate elements:
+בעזרת הקונטקסט, אפשר להמנע מלהעביר את ה-prop דרך רכיבי ביניים:
 
 `embed:context/motivation-solution.js`
 
@@ -192,7 +192,7 @@ A React component that subscribes to context changes. This lets you subscribe to
 
 Requires a [function as a child](/docs/render-props.html#using-props-other-than-render). The function receives the current context value and returns a React node. The `value` argument passed to the function will be equal to the `value` prop of the closest Provider for this context above in the tree. If there is no Provider for this context above, the `value` argument will be equal to the `defaultValue` that was passed to `createContext()`.
 
-> Note
+> הערה
 > 
 > For more information about the 'function as a child' pattern, see [render props](/docs/render-props.html).
 
@@ -245,7 +245,7 @@ To get around this, lift the value into the parent's state:
 
 ## ממשק תכנות מדור קודם {#legacy-api}
 
-> Note
+> הערה
 > 
 > React previously shipped with an experimental context API. The old API will be supported in all 16.x releases, but applications using it should migrate to the new version. The legacy API will be removed in a future major React version. Read the [legacy context docs here](/docs/legacy-context.html).
  
