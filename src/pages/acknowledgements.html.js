@@ -26,7 +26,7 @@ const Acknowlegements = ({data, location}) => (
           />
 
           <div css={sharedStyles.markdown}>
-            <p>We'd like to thank all of our contributors:</p>
+            <p>נשמח להודות לכל התורמים:</p>
 
             <ul
               css={{
@@ -44,38 +44,32 @@ const Acknowlegements = ({data, location}) => (
               ))}
             </ul>
 
-            <p>In addition, we're grateful to</p>
+            <p>בנוסף לכך, אנו אסירי תודה ל:</p>
             <ul>
               <li>
-                <a href="https://github.com/jeffbski">Jeff Barczewski</a> for
-                allowing us to use the{' '}
-                <a href="https://www.npmjs.com/package/react">react</a> package
-                name on npm.
+                ל<a href="https://github.com/jeffbski">ג'ף ברסווסקי</a> שאפשר לנו להשתמש בשם{' '}
+                <a href="https://www.npmjs.com/package/react">react</a> לחבילה בnpm
               </li>
               <li>
-                <a href="https://christopheraue.net/">Christopher Aue</a> for
-                letting us use the{' '}
-                <a href="https://reactjs.com/">reactjs.com</a> domain name and
-                the <a href="https://twitter.com/reactjs">@reactjs</a> username
-                on Twitter.
+                ל<a href="https://christopheraue.net/">קריסטופר יו</a> שאפשר לנו להשתמש בדומיין{' '}
+                <a href="https://reactjs.com/">reactjs.com</a> 
+                ובשם <a href="https://twitter.com/reactjs">@reactjs</a> בטוויטר.
               </li>
               <li>
-                <a href="https://github.com/ProjectMoon">ProjectMoon</a> for
-                letting us use the{' '}
-                <a href="https://www.npmjs.com/package/flux">flux</a> package
-                name on npm.
+                ל<a href="https://github.com/ProjectMoon">ProjectMoon</a> שנתנו לנו להשתמש בשם{' '}
+                <a href="https://www.npmjs.com/package/flux">flux</a> לחבילה בnpm
               </li>
               <li>
-                Shane Anderson for allowing us to use the{' '}
-                <a href="https://github.com/react">react</a> org on GitHub.
+                לשיין אנדרסון שאפשר לנו להשתמש בשם{' '}
+                <a href="https://github.com/react">react</a> בGitHub
               </li>
               <li>
-                <a href="https://github.com/voronianski">Dmitri Voronianski</a>{' '}
-                for letting us use the{' '}
+                ל<a href="https://github.com/voronianski">לדמטירי וורוניאנסקי</a>{' '}
+                שאפשר לנו להשתמש בסכמת הצבעים{' '}
                 <a href="https://labs.voronianski.com/oceanic-next-color-scheme/">
                   Oceanic Next
                 </a>{' '}
-                color scheme on this website.
+                שלו באתר שלנו.
               </li>
             </ul>
           </div>
