@@ -62,16 +62,16 @@ permalink: docs/forwarding-refs.html
 
 ## הצגת שם מותאים בכלי פיתוח {#displaying-a-custom-name-in-devtools}
 
-`React.forwardRef` accepts a render function. React DevTools uses this function to determine what to display for the ref forwarding component.
+`React.forwardRef` מקבל פונקציית רינדור. כלי הפיתוח של React משתמשים בפונקציה הזאת כדי להחליט מה להציג עבור קומפוננטת העברת הרפרנסים.
 
-For example, the following component will appear as "*ForwardRef*" in the DevTools:
+לדוגמא, הקומפוננטה הבאה תוצג כ: "*ForwardRef*" בכלי הפיתוח של React:
 
 `embed:forwarding-refs/wrapped-component.js`
 
-If you name the render function, DevTools will also include its name (e.g. "*ForwardRef(myFunction)*"):
+אם ניתן שם לפונקציית הרינדור, כלי הפיתוח יציגו גם אותו (לדוגמא "*ForwardRef(myFunction)*"):
 
 `embed:forwarding-refs/wrapped-component-with-function-name.js`
 
-You can even set the function's `displayName` property to include the component you're wrapping:
+אפשר לציין את ה-`displayName` של הפונקצייה בצורה שתכלול את הקומפוננטה העטופה:
 
 `embed:forwarding-refs/customized-display-name.js`
