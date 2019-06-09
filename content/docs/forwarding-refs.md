@@ -39,24 +39,25 @@ permalink: docs/forwarding-refs.html
 
 ## הערה למתחזקי ספריות קומפוננטות {#note-for-component-library-maintainers}
 
-**When you start using `forwardRef` in a component library, you should treat it as a breaking change and release a new major version of your library.** This is because your library likely has an observably different behavior (such as what refs get assigned to, and what types are exported), and this can break apps and other libraries that depend on the old behavior.
+**כשמתחילים להשתמש ב- `forwardRef` בספריית קומפוננטות, צריך להתייחס לשינוי כשינוי שובר ולשחרר גרסה ראשית חדשה של הספרייה.** הסיבה לכך היא שכעת לספרייה יש התנהגות נצפית שונה (כמו איזה רפרנסים מיושמים ואיזה סוגי אובייקטים מיוצאים), וזה יכול לשבור אפליקציות וספריות אחרות שהיו תלויות בהתנהגות הקודמת.
 
-Conditionally applying `React.forwardRef` when it exists is also not recommended for the same reasons: it changes how your library behaves and can break your users' apps when they upgrade React itself.
+השימוש המותנה ב- `React.forwardRef` כשהוא קיים גם כן לא מומלץ מאותה הסיבה: הוא משנה את התנהגות הספרייה ויכול לשבור את האפליקציות שמשתמשות בה כשהן משדגרות את גרסת ה-React עצמה.
 
 ## העברת רפרנסים בקומפוננטות מסדר גבוה יותר {#forwarding-refs-in-higher-order-components}
 
-This technique can also be particularly useful with [higher-order components](/docs/higher-order-components.html) (also known as HOCs). Let's start with an example HOC that logs component props to the console:
+הטכניקה הזאת יכולה להיות שימושית ביותר בשימוש עם [קומפוננטות מסדר גבוה יותר](/docs/higher-order-components.html) (שידועות גם כ-HOCs).
+נתחיל עם דוגמא של HOC שמתעדת props של קומפוננטות ל-console:
 `embed:forwarding-refs/log-props-before.js`
 
-The "logProps" HOC passes all `props` through to the component it wraps, so the rendered output will be the same. For example, we can use this HOC to log all props that get passed to our "fancy button" component:
+ה-HOC "logProps" מעביר את כל ה-`props` דרכו לקומפוננטה שהוא עוטף, ולכן הפלט יהיה זהה. לדוגמא, אפשר להשתמש ב-HOC הזה כדי לתעד את כל ה-props שמועברים לקומפוננטת כפתור ה-"fancy button" שלנו:
 `embed:forwarding-refs/fancy-button.js`
 
-There is one caveat to the above example: refs will not get passed through. That's because `ref` is not a prop. Like `key`, it's handled differently by React. If you add a ref to a HOC, the ref will refer to the outermost container component, not the wrapped component.
+יש הסתייגות אחת לדוגמא שהצגנו: רפרנסים לא יועברו הלאה. הסיבה היא ש-`ref` הוא לא prop. כמו `key`, React מתייחס אליו בצורה קצת שונה. אם תוסיפו את הרפרנס לקומפוננטה מסדר גבוה יותר, הרפרנס יתייחס לקונטיינר הקומפוננטה החיצוני, ולא לקומפוננטה העטופה.
 
-This means that refs intended for our `FancyButton` component will actually be attached to the `LogProps` component:
+זה אומר שרפרנסים שיועדו לקומפוננטת ה-`FancyButton` שלנו יהיו דווקא מקושרים לקומפוננטת ה- `LogProps`:
 `embed:forwarding-refs/fancy-button-ref.js`
 
-Fortunately, we can explicitly forward refs to the inner `FancyButton` component using the `React.forwardRef` API. `React.forwardRef` accepts a render function that receives `props` and `ref` parameters and returns a React node. For example:
+למזלנו, אפשר להעביר את הרפרנס בצורה מפורשת לקומפוננטה הפנימית `FancyButton` בעזרת הממשק `React.forwardRef`. `React.forwardRef` מקבל פונקציית רינדור עם פרמטרים `props` ו- `ref` ומחזיר צומת React. לדוגמא:
 `embed:forwarding-refs/log-props-after.js`
 
 ## הצגת שם מותאים בכלי פיתוח {#displaying-a-custom-name-in-devtools}
