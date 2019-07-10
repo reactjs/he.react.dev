@@ -476,7 +476,7 @@ Deque Systems מציעה את [aXe-core](https://github.com/dequelabs/axe-core) 
 
 <<<<<<< HEAD
 - [שימוש בבודק הנגישות של Firefox](https://developer.mozilla.org/en-US/docs/Tools/Accessibility_inspector)
-- [הפעלת בודקת הנגישות של Chrome](https://gist.github.com/marcysutton/0a42f815878c159517a55e6652e3b23a)
+- [הפעלת בודקת הנגישות של Chrome](https://developers.google.com/web/tools/chrome-devtools/accessibility/reference#pane)
 - [שימוש בבודק הנגישות של OS X Safari](https://developer.apple.com/library/content/documentation/Accessibility/Conceptual/AccessibilityMacOSX/OSXAXTestingApps.html)
 =======
 - [Using the Accessibility Inspector in Firefox](https://developer.mozilla.org/en-US/docs/Tools/Accessibility_inspector)
