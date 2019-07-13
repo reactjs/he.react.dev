@@ -1,22 +1,24 @@
 ---
 id: higher-order-components
-title: Higher-Order Components
+title: קומפוננטות מסדר גבוה יותר
 permalink: docs/higher-order-components.html
 ---
 
-A higher-order component (HOC) is an advanced technique in React for reusing component logic. HOCs are not part of the React API, per se. They are a pattern that emerges from React's compositional nature.
+קומפוננטה מסדר גבוה יותר (HOC) היא טכניקה מתקדמת של React שעוזרת למחזר קוד קומפוננטות.
+ה-HOC הן לא בדיוק חלק מהממשק של React, אלא תבנית עיצוב שהתפתחה מטבע ההרכבתיות של React.
 
-Concretely, **a higher-order component is a function that takes a component and returns a new component.**
+מבחינת היישום, **קומפוננטה מסדר גבוה יותר היא פונקציה שלוקחת קומפוננטה ומחזירה קומפוננטה אחרת**.
+
 
 ```js
 const EnhancedComponent = higherOrderComponent(WrappedComponent);
 ```
 
-Whereas a component transforms props into UI, a higher-order component transforms a component into another component.
+בשונה מקומפוננטה רגילה שמתרגמת מאפיינים לממשק משתמש, קומפוננטה מסדר גבוה יותר מתרגמת קומפוננטה לקומפוננטה אחרת.
 
-HOCs are common in third-party React libraries, such as Redux's [`connect`](https://github.com/reduxjs/react-redux/blob/master/docs/api/connect.md#connect) and Relay's [`createFragmentContainer`](http://facebook.github.io/relay/docs/en/fragment-container.html).
+ה-HOC שכיחות בספריות צד שלישי של React, כמו למשל ה- [`connect`](https://github.com/reduxjs/react-redux/blob/master/docs/api/connect.md#connect) של Redux וה- `createFragmentContainer`](http://facebook.github.io/relay/docs/en/fragment-container.html) של Relay.
 
-In this document, we'll discuss why higher-order components are useful, and how to write your own.
+כאן נסביר למה קומפוננטות מסדר גבוה יותר שימושיות, ואיך ליצור כאלה בעצמנו.
 
 ## Use HOCs For Cross-Cutting Concerns {#use-hocs-for-cross-cutting-concerns}
 
