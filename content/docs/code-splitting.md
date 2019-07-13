@@ -191,19 +191,13 @@ const MyComponent = () => (
 );
 ```
 
-## Route-based code splitting {#route-based-code-splitting}
+## פיצול קוד לפי route {#route-based-code-splitting}
 
-Deciding where in your app to introduce code splitting can be a bit tricky. You
-want to make sure you choose places that will split bundles evenly, but won't
-disrupt the user experience.
+ההחלטה איפה לפצל את הקוד יכולה להיות קצת בעייתית. תרצו לוודא מצד אחד שהבאנדלים יפוצלו באופן אחיד אבל גם שלא תפגע בחוויית המשתמש.
 
-A good place to start is with routes. Most people on the web are used to
-page transitions taking some amount of time to load. You also tend to be
-re-rendering the entire page at once so your users are unlikely to be
-interacting with other elements on the page at the same time.
+מקום טוב להתחיל בו הוא ה-routes. רוב האנשים ברשת רגילים שמעבר בין דפים לוקח זמן טעינה מסוים. בנוסף, הדף כולו מרונדר מחדש בבת אחת, ולכן המשתמשים לא יהיו באמצע אינטראקציה עם אלמנטים בדף בזמן הטעינה.
 
-Here's an example of how to setup route-based code splitting into your app using
-libraries like [React Router](https://reacttraining.com/react-router/) with `React.lazy`.
+הנה דוגמא של פיצול קוד לפי routes בעזרת ספריות כמו [React Router](https://reacttraining.com/react-router/) עם `React.lazy`.
 
 ```js
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
@@ -224,9 +218,9 @@ const App = () => (
 );
 ```
 
-## Named Exports {#named-exports}
+## ייצוא בשם {#named-exports}
 
-`React.lazy` currently only supports default exports. If the module you want to import uses named exports, you can create an intermediate module that reexports it as the default. This ensures that tree shaking keeps working and that you don't pull in unused components.
+נכון לעכשיו `React.lazy` תומך רק בייצוא ברירת מחדל. אם המודול שרציתם להשתמש בו משתמש בייצוא בשם, תוכלו ליצור מודול ביניים שמייצוא את המודול כברירת מחדל. זה מוודא שניעור עצים (tree shaking) ימשיך לעבוד ושקומפוננטות מיובאות רק כשהן בשימוש.
 
 ```js
 // ManyComponents.js
