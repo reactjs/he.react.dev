@@ -1,20 +1,17 @@
 ---
 id: code-splitting
-title: Code-Splitting
+title: פיצול-קוד
 permalink: docs/code-splitting.html
 ---
 
-## Bundling {#bundling}
+## איגוד {#bundling}
 
-Most React apps will have their files "bundled" using tools like
-[Webpack](https://webpack.js.org/) or [Browserify](http://browserify.org/).
-Bundling is the process of following imported files and merging them into a
-single file: a "bundle". This bundle can then be included on a webpage to load
-an entire app at once.
+בדרך כלל, הקבצים באפליקציות React ״מאוגדים״ באמצעות כלים כמו [Webpack](https://webpack.js.org/) או [Browserify](http://browserify.org/).
+איגוד הוא תהליך שעוקב אחרי קבצים מיובאים ומאחד אותם לקובץ יחיד: ״באנדל״. את הבאנדל אפשר לצרף לדף אינטרנט כדי לטעון אפליקציה שלמה בבת אחת.
 
-#### Example {#example}
+#### דוגמא {#example}
 
-**App:**
+**אפליקציה:**
 
 ```js
 // app.js
@@ -30,7 +27,7 @@ export function add(a, b) {
 }
 ```
 
-**Bundle:**
+**באנדל:**
 
 ```js
 function add(a, b) {
@@ -40,17 +37,14 @@ function add(a, b) {
 console.log(add(16, 26)); // 42
 ```
 
-> Note:
+> הערה:
 >
-> Your bundles will end up looking a lot different than this.
+> הדוגמא להמחשה בלבל, וקובץ הבאנדל במציאות נראה שונה לגמרי.
 
-If you're using [Create React App](https://github.com/facebookincubator/create-react-app), [Next.js](https://github.com/zeit/next.js/), [Gatsby](https://www.gatsbyjs.org/), or a similar tool, you will have a Webpack setup out of the box to bundle your
-app.
+אם יצרתם את האפליקציה בעזרת כלי כמו [Create React App](https://github.com/facebookincubator/create-react-app), [Next.js](https://github.com/zeit/next.js/), [Gatsby](https://www.gatsbyjs.org/) וכדומה, תוכלו להשתמש בהתקנה המובנית של Webpack כדי לאגד את האפליקציה.
 
-If you aren't, you'll need to setup bundling yourself. For example, see the
-[Installation](https://webpack.js.org/guides/installation/) and
-[Getting Started](https://webpack.js.org/guides/getting-started/) guides on the
-Webpack docs.
+אם לא, תצטרכו להתקין כלי איגוד בעצמכם. התיעוד הנ״ל לדוגמא, יעזור לכם [להתקין](https://webpack.js.org/guides/installation/) ו[להתחיל להשתמש](https://webpack.js.org/guides/getting-started/) ב- Webpack.
+
 
 ## Code Splitting {#code-splitting}
 
