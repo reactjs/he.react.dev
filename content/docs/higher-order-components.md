@@ -20,15 +20,18 @@ const EnhancedComponent = higherOrderComponent(WrappedComponent);
 
 כאן נסביר למה קומפוננטות מסדר גבוה יותר שימושיות, ואיך ליצור כאלה בעצמנו.
 
-## Use HOCs For Cross-Cutting Concerns {#use-hocs-for-cross-cutting-concerns}
+## שימוש ב-HOC לפעולות בשימוש נרחב {#use-hocs-for-cross-cutting-concerns}
 
-> **Note**
+> **הערה**
 >
-> We previously recommended mixins as a way to handle cross-cutting concerns. We've since realized that mixins create more trouble than they are worth. [Read more](/blog/2016/07/13/mixins-considered-harmful.html) about why we've moved away from mixins and how you can transition your existing components.
+> המלצנו בעבר על mixins כדרך לטפל בפעולות בשימוש נרחב.
+> מאז, הבנו שהן גורמות ליותר בעיות משהן מביאות תועלת.
+> [קראו כאן](/blog/2016/07/13/mixins-considered-harmful.html) למה עזבנו את השימוש ב-mixins ואיך תוכלו למגר את הקומפוננטות הקיימות שלכם.
 
-Components are the primary unit of code reuse in React. However, you'll find that some patterns aren't a straightforward fit for traditional components.
+קומפוננטות הן יחידות הקוד הכי ממוחזרות ב- React. למרות זאת, יש לא מעט תבניות עיצוב שקשה לממש בעזרת קומפוננטות מסורתיות.
 
-For example, say you have a `CommentList` component that subscribes to an external data source to render a list of comments:
+לדוגמא, נניח שיש לנו קומפוננטת `CommentList` שמתחברת למקור נתונים חיצוני כדי להציג רשימה של הערות:
+
 
 ```js
 class CommentList extends React.Component {
@@ -36,23 +39,23 @@ class CommentList extends React.Component {
     super(props);
     this.handleChange = this.handleChange.bind(this);
     this.state = {
-      // "DataSource" is some global data source
+      // הוא מקור נתונים חיצוני גלובאלי "DataSource"
       comments: DataSource.getComments()
     };
   }
 
   componentDidMount() {
-    // Subscribe to changes
+    // מקשיבים לשינויים במקור הנתונים
     DataSource.addChangeListener(this.handleChange);
   }
 
   componentWillUnmount() {
-    // Clean up listener
+    // מפסיקים להקשיב לשינויים
     DataSource.removeChangeListener(this.handleChange);
   }
 
   handleChange() {
-    // Update component state whenever the data source changes
+    // מעדכנים את רשימת הערות כשמתקבל שינוי
     this.setState({
       comments: DataSource.getComments()
     });
@@ -70,7 +73,7 @@ class CommentList extends React.Component {
 }
 ```
 
-Later, you write a component for subscribing to a single blog post, which follows a similar pattern:
+לאחר מכן, נכתוב קומפוננטה שתאזין לבלוג פוסט יחיד, שממומשת בצורה דומה:
 
 ```js
 class BlogPost extends React.Component {
@@ -102,15 +105,18 @@ class BlogPost extends React.Component {
 }
 ```
 
-`CommentList` and `BlogPost` aren't identical — they call different methods on `DataSource`, and they render different output. But much of their implementation is the same:
+`CommentList` ו- `BlogPost` לא זהות - הן משתמשות במתודות שונות במקור הנתונים ומציגות מידע שונה. אבל הרבה מהמימוש שלהן דומה:
 
-- On mount, add a change listener to `DataSource`.
-- Inside the listener, call `setState` whenever the data source changes.
-- On unmount, remove the change listener.
 
-You can imagine that in a large app, this same pattern of subscribing to `DataSource` and calling `setState` will occur over and over again. We want an abstraction that allows us to define this logic in a single place and share it across many components. This is where higher-order components excel.
+- אחרי ה-mount, מתחילים להאזין לשינויים במקור המידע
+- כשמתקבל שינוי, קוראים ל- `setState`
+- ב-unmount, מפסיקים להאזין לשינויים
 
-We can write a function that creates components, like `CommentList` and `BlogPost`, that subscribe to `DataSource`. The function will accept as one of its arguments a child component that receives the subscribed data as a prop. Let's call the function `withSubscription`:
+באפליקציה גדולה, התבנית הזאת של האזנה למקור נתונים ועדכון ה-state תחזור שוב ושוב. סביר להניח שנרצה ליצור הפשטה שתאפשר לנו להגדיר את הפעולה הזאת במקום אחד ולהשתמש בה במספר קומפוננטות שונות. קומפוננטות מסדר גבוה יותר מצוינות בדיוק במצבים כאלה.
+
+אפשר לכתוב פונקציה שיוצרת קומפוננטה כמו `CommentList` ו- `BlogPost`, שמאזינה למקור הנתונים `DataSource`.
+הפונקציה תקבל כאחד מהארגומנטים, קומפוננטת ילד שמקבלת את המידע המקושר כ-prop.
+נקרא לפונקציה `withSubscription`:
 
 ```js
 const CommentListWithSubscription = withSubscription(
@@ -124,14 +130,15 @@ const BlogPostWithSubscription = withSubscription(
 );
 ```
 
-The first parameter is the wrapped component. The second parameter retrieves the data we're interested in, given a `DataSource` and the current props.
+הפרמטר הראשון הוא הקומפוננטה העטופה. הפרמטר השני מחזיר את המידע שאנחנו צריכים, באמצעות מקור הנתונים וה-props הנוכחיים.
 
-When `CommentListWithSubscription` and `BlogPostWithSubscription` are rendered, `CommentList` and `BlogPost` will be passed a `data` prop with the most current data retrieved from `DataSource`:
+כשהקומפוננטות `CommentListWithSubscription` ו- `BlogPostWithSubscription` מרונדרות, `CommentList` ו- `BlogPost`יקבלו את ה-prop `data` עם המידע העדכני ביותר שהתקבל ממקור הנתונים:
+
 
 ```js
-// This function takes a component...
+// הפונקציה מקבלת קומפוננטה...
 function withSubscription(WrappedComponent, selectData) {
-  // ...and returns another component...
+  // ...ומחזירה קומפוננטה אחרת...
   return class extends React.Component {
     constructor(props) {
       super(props);
@@ -142,7 +149,7 @@ function withSubscription(WrappedComponent, selectData) {
     }
 
     componentDidMount() {
-      // ... that takes care of the subscription...
+      // ... שדואגת להאזנה למקור המידע...
       DataSource.addChangeListener(this.handleChange);
     }
 
@@ -157,8 +164,8 @@ function withSubscription(WrappedComponent, selectData) {
     }
 
     render() {
-      // ... and renders the wrapped component with the fresh data!
-      // Notice that we pass through any additional props
+      // ... ומרנדרת את הקומפוננטה העטופה עם המידע החדש!
+      // שימו לב שאנחנו מעבירים את כל ה-props הלאה
       return <WrappedComponent data={this.state.data} {...this.props} />;
     }
   };
