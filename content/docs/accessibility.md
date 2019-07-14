@@ -1,32 +1,33 @@
 ---
 id: accessibility
-title: Accessibility
+title: נגישות
 permalink: docs/accessibility.html
 ---
 
-## Why Accessibility? {#why-accessibility}
+## למה נגישות? {#why-accessibility}
 
-Web accessibility (also referred to as [**a11y**](https://en.wiktionary.org/wiki/a11y)) is the design and creation of websites that can be used by everyone. Accessibility support is necessary to allow assistive technology to interpret web pages.
+נגישות ברשת (ידועה גם כ [**a11y**](https://en.wiktionary.org/wiki/a11y)) היא יצירה ועיצוב אתרים שמתאימים לשימוש ע״י כולם. תמיכה בנגישות נדרשת ע״י טכנולוגית מסייעת כדי לפרש דפי אינטרנט.
 
-React fully supports building accessible websites, often by using standard HTML techniques.
+React מספקת תמיכה מלאה בבניית אתרים נגישים, בדרך כלל ע״י שימוש בטכניקות HTML סטנדרטיות.
 
-## Standards and Guidelines {#standards-and-guidelines}
+## סטנדרטים וקווים מנחים {#standards-and-guidelines}
 
 ### WCAG {#wcag}
 
-The [Web Content Accessibility Guidelines](https://www.w3.org/WAI/intro/wcag) provides guidelines for creating accessible web sites.
+ניתן למצוא קוים מנחים ליצירת אתרים נגישים ב[Web Content Accessibility Guidelines](https://www.w3.org/WAI/intro/wcag).
 
-The following WCAG checklists provide an overview:
+הרשימה הבאה מ WCAG מספקת סקירה כללית:
 
-- [WCAG checklist from Wuhcag](https://www.wuhcag.com/wcag-checklist/)
-- [WCAG checklist from WebAIM](https://webaim.org/standards/wcag/checklist)
-- [Checklist from The A11Y Project](https://a11yproject.com/checklist.html)
+- [רשימת WCAG מ-Wuchag](https://www.wuhcag.com/wcag-checklist/)
+- [רשימת WCAG מ-WebAIM](https://webaim.org/standards/wcag/checklist)
+- [הרשימה מפרויקט ה-A11y](https://a11yproject.com/checklist.html)
 
 ### WAI-ARIA {#wai-aria}
 
-The [Web Accessibility Initiative - Accessible Rich Internet Applications](https://www.w3.org/WAI/intro/aria) document contains techniques for building fully accessible JavaScript widgets.
+המסמך מ [Web Accessibility Initiative - Accessible Rich Internet Applications](https://www.w3.org/WAI/intro/aria) מכיל טכניקות לבניית ווידג׳טים נגישים ב JavaScript.
 
-Note that all `aria-*` HTML attributes are fully supported in JSX. Whereas most DOM properties and attributes in React are camelCased, these attributes should be hyphen-cased (also known as kebab-case, lisp-case, etc) as they are in plain HTML:
+שימו לב ש JSX תומך לחלוטין בכל תכונות ה-HTML `aria-*`.
+בשונה מרוב תכונות ה-DOM ב-React שנקראות ב-camelCase, תכונות אלה נקראות ב-hyphen-cased (שמוכר גם בשמות אחרים כמו kebab-case, lisp-case וכו׳), בדיוק כמו ב-HTML רגיל:
 
 ```javascript{3,4}
 <input
@@ -39,17 +40,16 @@ Note that all `aria-*` HTML attributes are fully supported in JSX. Whereas most 
 />
 ```
 
-## Semantic HTML {#semantic-html}
-Semantic HTML is the foundation of accessibility in a web application. Using the various HTML elements to reinforce the meaning of information
-in our websites will often give us accessibility for free.
+## סמנטי HTML {#semantic-html}
+HTML סמנטי (או דקדוקי) הוא הבסיס לנגישות באפליקציות ואתרי אינטרנט.
+השימוש באלמנטים שונים על מנת לחזק את המשמעות של המידע שמוצג באתרים, בדרך כלל יוביל לנגישות בפני עצמו.
 
 - [MDN HTML elements reference](https://developer.mozilla.org/en-US/docs/Web/HTML/Element)
 
-Sometimes we break HTML semantics when we add `<div>` elements to our JSX to make our React code work, especially when working with lists (`<ol>`, `<ul>` and `<dl>`) and the HTML `<table>`.
-In these cases we should rather use [React Fragments](/docs/fragments.html) to group together multiple elements.
+לפעמים הסמנטיקה נשברת כשאנחנו מוסיפים אלמנטים כמו `<div>` ל-JSX כדי לגרום לReact לעבוד כמו שצריך, בעיקר בזמן שימוש ברשימות וטבלאות (`<ol>`, `<ul>`, `<dl>`, `<table>` וכו׳)
+במקרים האלה ניתן להשתמש ב[פרגמנטים בReact](/docs/fragments.html) במקום `div`, כדי לאחד מספר אלמנטים.
 
-For example,
-
+לדוגמא,
 ```javascript{1,5,8}
 import React, { Fragment } from 'react';
 
@@ -73,14 +73,14 @@ function Glossary(props) {
 }
 ```
 
-You can map a collection of items to an array of fragments as you would any other type of element as well:
+ניתן כמובן למפות רשימת פריטים למערך של פרגמנטים באותה צורה שממפים כל אלמנט אחר:
 
 ```javascript{6,9}
 function Glossary(props) {
   return (
     <dl>
       {props.items.map(item => (
-        // Fragments should also have a `key` prop when mapping collections
+        // גם לפרגמנטים prop `key` בזמן מיפוי רשימות צריך להוסיף את ה
         <Fragment key={item.id}>
           <dt>{item.term}</dt>
           <dd>{item.description}</dd>
@@ -91,7 +91,7 @@ function Glossary(props) {
 }
 ```
 
-When you don't need any props on the Fragment tag you can use the [short syntax](/docs/fragments.html#short-syntax), if your tooling supports it:
+כשאין צורך בהוספת props ניתן להשתמש ב[סינטקס מקוצר](/docs/fragments.html#short-syntax), בהנחה ושאר הכלים תומכים בו:
 
 ```javascript{3,6}
 function ListItem({ item }) {
@@ -104,83 +104,82 @@ function ListItem({ item }) {
 }
 ```
 
-For more info, see [the Fragments documentation](/docs/fragments.html).
+לעוד מידע, ראו את עמוד [תיעוד הפרגמנטים](/docs/fragments.html).
 
-## Accessible Forms {#accessible-forms}
+## טפסים נגישים {#accessible-forms}
 
-### Labeling {#labeling}
-Every HTML form control, such as `<input>` and `<textarea>`, needs to be labeled accessibly. We need to provide descriptive labels that are also exposed to screen readers.
+### תיוג {#labeling}
 
-The following resources show us how to do this:
+כל אלמנט או form ב-HTML, (כמו `<input>` ו `<textarea>`), צריכים לקבל תיוג נגיש. עלינו לספק תגיות שמתארות אותם בשביל קוראי המסך.
 
-- [The W3C shows us how to label elements](https://www.w3.org/WAI/tutorials/forms/labels/)
-- [WebAIM shows us how to label elements](https://webaim.org/techniques/forms/controls)
-- [The Paciello Group explains accessible names](https://www.paciellogroup.com/blog/2017/04/what-is-an-accessible-name/)
+המשאבים הנ״ל מראים לנו איך לספק תגיות מתאימות:
 
-Although these standard HTML practices can be directly used in React, note that the `for` attribute is written as `htmlFor` in JSX:
+- [ה-W3C מראה לנו איך לתייג אלמנטים](https://www.w3.org/WAI/tutorials/forms/labels/)
+- [WebAIM מראה לנו איך לתייג אלמנטים](https://webaim.org/techniques/forms/controls)
+- [Paciello Group מסבירים על שמות נגישים](https://www.paciellogroup.com/blog/2017/04/what-is-an-accessible-name/)
+
+למרות שבדרך כלל אנחנו יכולים להשתמש בסטנדרטים הנהוגים ב-HTML ישירות ב-React, שימו לב שהתכונה `for` למשל נכתבת ב-JSX כ`htmlFor`:
 
 ```javascript{1}
 <label htmlFor="namedInput">Name:</label>
 <input id="namedInput" type="text" name="name"/>
 ```
 
-### Notifying the user of errors {#notifying-the-user-of-errors}
+### יידוע המשתמש במקרה של שגיאות {#notifying-the-user-of-errors}
 
-Error situations need to be understood by all users. The following link shows us how to expose error texts to screen readers as well:
+שגיאות צריכות להיות מובנות לכל משתמש. הלינק הבא מראה לנו איך להעביר את תוכן השגיאה גם לקורא המסך:
 
-- [The W3C demonstrates user notifications](https://www.w3.org/WAI/tutorials/forms/notifications/)
-- [WebAIM looks at form validation](https://webaim.org/techniques/formvalidation/)
+- [ה-W3C מדגים הודעות למשתמש](https://www.w3.org/WAI/tutorials/forms/notifications/)
+- [WebAIM מסביר על ולידציה של דפים](https://webaim.org/techniques/formvalidation/)
 
-## Focus Control {#focus-control}
+## בקרת פוקוס {#focus-control}
 
-Ensure that your web application can be fully operated with the keyboard only:
+חשוב לבנות אפליקציות שניתנות לשימוש בעזרת המקלדת בלבד (ללא עזרת העכבר):
 
-- [WebAIM talks about keyboard accessibility](https://webaim.org/techniques/keyboard/)
+- [WebAIM מסביר על נגישות מקלדת](https://webaim.org/techniques/keyboard/)
 
-### Keyboard focus and focus outline {#keyboard-focus-and-focus-outline}
+### פוקוס מקלדת ומסגרת פוקוס {#keyboard-focus-and-focus-outline}
 
-Keyboard focus refers to the current element in the DOM that is selected to accept input from the keyboard. We see it everywhere as a focus outline similar to that shown in the following image:
+פוקוס המקלדת מתאר את האלמנט ב-DOM שנבחר ומוכן לקבל נתונים מהמקלדת. ניתן לראות את הפוקוס במסגרת או הדגש, כמו בתמונה הבאה:
 
 <img src="../images/docs/keyboard-focus.png" alt="Blue keyboard focus outline around a selected link." />
 
-Only ever use CSS that removes this outline, for example by setting `outline: 0`, if you are replacing it with another focus outline implementation.
+מומלץ להסיר את ההדגש הנ״ל אך ורק בכדי להחליף אותו בצורת הדגש אחרת (לדוגמא בעזרת הקונפיגורציה `outline: 0`)
 
-### Mechanisms to skip to desired content {#mechanisms-to-skip-to-desired-content}
+### דילוג לתוכן מבוקש {#mechanisms-to-skip-to-desired-content}
 
-Provide a mechanism to allow users to skip past navigation sections in your application as this assists and speeds up keyboard navigation.
+על מנת שהשימוש באתר יהיה מהיר ואופטימלי עם המקלדת, ניתן לספק דרך לדלג בעזרת אזורי ניווט לתוכן מבוקש
 
-Skiplinks or Skip Navigation Links are hidden navigation links that only become visible when keyboard users interact with the page. They are very easy to implement with
-internal page anchors and some styling:
+לינקים לדילוג ניווט (SkipLinks) הם לינקים נסתרים שמתגלים בזמן אינטרקציה עם האתר באמצעות המקלדת בלבד. הם פשוטים לפיתוח בעצמאות קישורים עוגנים (anchors) וסגנונות עיצוב:
 
-- [WebAIM - Skip Navigation Links](https://webaim.org/techniques/skipnav/)
+- [WebAIM - לינקים לדילוג ניווט](https://webaim.org/techniques/skipnav/)
 
-Also use landmark elements and roles, such as `<main>` and `<aside>`, to demarcate page regions as assistive technology allow the user to quickly navigate to these sections.
+בנוסף, אפשר להשתמש באלמנטים לציון דרך כמו `<main>` ו `<aside>`, על מנת לציין אזורים בדף בשביל להרשות למשתמש לנווט אליהם בקלות ובמהירות בעזרת טכנולוגיה מסייעת.
 
-Read more about the use of these elements to enhance accessibility here:
+קרא עוד על אלמנטים לציון דרך לשיפור נגישות בלינק הבא:
 
-- [Accessible Landmarks](https://www.scottohara.me/blog/2018/03/03/landmarks.html)
+- [ציוני דרך נגישים](https://www.scottohara.me/blog/2018/03/03/landmarks.html)
 
-### Programmatically managing focus {#programmatically-managing-focus}
+### שליטה מבוקרת בפוקוס {#programmatically-managing-focus}
 
-Our React applications continuously modify the HTML DOM during runtime, sometimes leading to keyboard focus being lost or set to an unexpected element. In order to repair this,
-we need to programmatically nudge the keyboard focus in the right direction. For example, by resetting keyboard focus to a button that opened a modal window after that modal window is closed.
+אפליקציות React משנות את ה-DOM בזמן ריצה באופן מתמשך, מה שגורם לפעמים למקלדת לאבד פוקוס או לפוקוס לעבור למקום בלתי צפוי. על מנת למנוע זאת, ביכולתנו להחזיר את פוקוס המקלדת למקום הנכון באופן תוכניתי. לדוגמא, ע״י החזרת הפוקוס לכפתור שפתח טופס מודאלי, אחרי סגירתו.
 
-MDN Web Docs takes a look at this and describes how we can build [keyboard-navigable JavaScript widgets](https://developer.mozilla.org/en-US/docs/Web/Accessibility/Keyboard-navigable_JavaScript_widgets).
+התיעוד ב-MDN Web Docs מתאר איך לבנות [ניווט מקלדת בווידג׳טים ב-JavaScript](https://developer.mozilla.org/en-US/docs/Web/Accessibility/Keyboard-navigable_JavaScript_widgets).
 
-To set focus in React, we can use [Refs to DOM elements](/docs/refs-and-the-dom.html).
+כדי לתת פוקוס ב-React, אנחנו יכולים להשתמש ב[קישור לאלמנטים ב-DOM](/docs/refs-and-the-dom.html).
 
-Using this, we first create a ref to an element in the JSX of a component class:
+נתחיל ביצירת קישור לאלמנט ב-JSX של מחלקת קומפוננטה:
 
 ```javascript{4-5,8-9,13}
 class CustomTextInput extends React.Component {
   constructor(props) {
     super(props);
-    // Create a ref to store the textInput DOM element
+    // DOM-ב textInput צור קישור לאלמנט
     this.textInput = React.createRef();
   }
   render() {
-  // Use the `ref` callback to store a reference to the text input DOM
-  // element in an instance field (for example, this.textInput).
+  // על מנת לאחסן את ההפניה `ref` callback השתמש בפונקצית ה
+  // (this.textInput) בשדה מופע textInput לאלמנט
     return (
       <input
         type="text"
@@ -191,18 +190,18 @@ class CustomTextInput extends React.Component {
 }
 ```
 
-Then we can focus it elsewhere in our component when needed:
+לאחר מכן נוכל לשנות את הפוקוס למקום אחר בקומפוננטה לפי הצורך:
 
  ```javascript
  focus() {
-   // Explicitly focus the text input using the raw DOM API
-   // Note: we're accessing "current" to get the DOM node
+   // DOM-של ה API-שנה את הפוקוס של שדה הטקסט באופן מכוון בעזרת ה
+   // DOM-כדי לקבל גישה לצומת ה "current" שימו לב שאנחנו משתמשים ב
    this.textInput.current.focus();
  }
  ```
 
-Sometimes a parent component needs to set focus to an element in a child component. We can do this by [exposing DOM refs to parent components](/docs/refs-and-the-dom.html#exposing-dom-refs-to-parent-components)
-through a special prop on the child component that forwards the parent's ref to the child's DOM node.
+לפעמים אלמנט אב צריך לשנות פוקוס לקומפוננטת ילד. ניתן לעשות זאת ע״י [חשיפות הפנית ה-DOM לאלמנט האב](/docs/refs-and-the-dom.html#exposing-dom-refs-to-parent-components)
+בעזרת prop מיוחד בקומפוננטת הילד שמעבירה לאלמנט האב את צומת ה-DOM של הילד.
 
 ```javascript{4,12,16}
 function CustomTextInput(props) {
@@ -225,36 +224,34 @@ class Parent extends React.Component {
   }
 }
 
-// Now you can set focus when required.
+// עכשיו תוכלו להעביר פוקוס לפי הצורך
 this.inputElement.current.focus();
 ```
 
-When using a HOC to extend components, it is recommended to [forward the ref](/docs/forwarding-refs.html) to the wrapped component using the `forwardRef` function of React. If a third party HOC
-does not implement ref forwarding, the above pattern can still be used as a fallback.
+בזמן השימוש ב HOC להרחבת קומפוננטות, מומלץ ל[העביר את ההפניה](/docs/forwarding-refs.html) לקומפוננטה הנעטפת בעזרת הפונקציה `forwardRef` של React.
+במקרה וקומפוננטת HOC שלא בשליטתכם (צד שלישי) לא מממשת את ההעברת ההפניה, השיטה לעיל יכולה בכל זאת לעזור.
 
-A great focus management example is the [react-aria-modal](https://github.com/davidtheclark/react-aria-modal). This is a relatively rare example of a fully accessible modal window. Not only does it set initial focus on
-the cancel button (preventing the keyboard user from accidentally activating the success action) and trap keyboard focus inside the modal, it also resets focus back to the element that
-initially triggered the modal.
+דוגמא טובה לשליטה בפוקוס אפשר למצוא ב[react-aria-modal](https://github.com/davidtheclark/react-aria-modal). זאת דוגמא יחסית נדירה של חלון מודאלי נגיש לגמרי. לא רק שהוא שם פוקוס התחלתי בכפתור הביטול (כדי למנוע ממשתמש המקלדת להתחיל את פעולת האישור בטעות) ושומר את פוקוס המקלדת בתוך החלון, הוא גם מחזיר את הפוקוס לאלמנט שפתח את החלון מלכתחילה לאחר סגירתו.
 
->Note:
+>הערה:
 >
->While this is a very important accessibility feature, it is also a technique that should be used judiciously. Use it to repair the keyboard focus flow when it is disturbed, not to try and anticipate how
->users want to use applications.
+>למרות שזאת תכונת נגישות חשובה מאוד, חשוב להשתמש בשיפוט בזמן השימוש בטכניקה. המטרה צריכה להיות החזרת הפוקוס למקלדת, ולא לנסות לחזות את דרישות המשתמש
+>ואופן השימוש שלו/ה באתר.
 
-## Mouse and pointer events {#mouse-and-pointer-events}
+## אירועי עכבר וסמן {#mouse-and-pointer-events}
 
-Ensure that all functionality exposed through a mouse or pointer event can also be accessed using the keyboard alone. Depending only on the pointer device will lead to many cases where
-keyboard users cannot use your application.
+יש לדאוג שכל פונקציונאליות שזמינה דרך שימוש בעכבר, נגישה באותה מידה בשימוש במקלדת בלבד.
+תלות בסמן (דרך עכבר או משטח מגע) מובילה להרבה מקרים לא נגישים למשתמשי מקלדת, שכותצאה מכך לא יוכלו להשתמש באפליקציה.
 
-To illustrate this, let's look at a prolific example of broken accessibility caused by click events. This is the outside click pattern, where a user can disable an opened popover by clicking outside the element.
+כדוגמא, נציג מקרה שכיח ביותר של נגישות שבורה כתוצאה מאירועי לחיצה - כשהמשתמש יכול לסגור חלון צץ באמצעות לחיצה מחוץ לחלון.
 
 <img src="../images/docs/outerclick-with-mouse.gif" alt="A toggle button opening a popover list implemented with the click outside pattern and operated with a mouse showing that the close action works." />
 
-This is typically implemented by attaching a `click` event to the `window` object that closes the popover:
+בדרך כלל התנהגות זו מיושמת ע״י קישור אירוע הלחיצה `click` לעצם החלון `window` שסוגר את החלון הצץ:
 
 ```javascript{12-14,26-30}
 class OuterClickExample extends React.Component {
-constructor(props) {
+  constructor(props) {
     super(props);
 
     this.state = { isOpen: false };
@@ -288,25 +285,27 @@ constructor(props) {
     return (
       <div ref={this.toggleContainer}>
         <button onClick={this.onClickHandler}>Select an option</button>
-        {this.state.isOpen ? (
+        {this.state.isOpen && (
           <ul>
             <li>Option 1</li>
             <li>Option 2</li>
             <li>Option 3</li>
           </ul>
-        ) : null}
+        )}
       </div>
     );
   }
 }
 ```
-
-This may work fine for users with pointer devices, such as a mouse, but operating this with the keyboard alone leads to broken functionality when tabbing to the next element
-as the `window` object never receives a `click` event. This can lead to obscured functionality which blocks users from using your application.
+למרות שהתנהגות זו לא מהווה בעיה למשתמשים שיכולים להעזר בסמן, היא מובילה להתנהלות שבורה למשתמשים שתלוים במקלדת כדי לנווט בין אלמנטים, כי עצם החלון לא מקבל את אירוע הלחיצה. ובסופו של דבר גם מונעת ממשתמשים גישה לפונקציונאליות באתר.
 
 <img src="../images/docs/outerclick-with-keyboard.gif" alt="A toggle button opening a popover list implemented with the click outside pattern and operated with the keyboard showing the popover not being closed on blur and it obscuring other screen elements." />
 
-The same functionality can be achieved by using an appropriate event handlers instead, such as `onBlur` and `onFocus`:
+<<<<<<< HEAD
+אפשר במקום זאת להגיע להתנהגות זהה בעזרת מטפלי אירועים כמו `onBlur` -ו `onFocus`:
+=======
+The same functionality can be achieved by using appropriate event handlers instead, such as `onBlur` and `onFocus`:
+>>>>>>> c93286c071bca17ecba91cd130908fe2e33a4766
 
 ```javascript{19-29,31-34,37-38,40-41}
 class BlurExample extends React.Component {
@@ -327,10 +326,10 @@ class BlurExample extends React.Component {
     }));
   }
 
-  // We close the popover on the next tick by using setTimeout.
-  // This is necessary because we need to first check if
-  // another child of the element has received focus as
-  // the blur event fires prior to the new focus event.
+
+  // setTimeout סוגרים את החלון הצץ בטיק הבא בעזרת.
+  // זה חשוב כי אנחנו צריכים קודם כל לבדוק אם ילד אחר של האלמנט
+  // קורה לפני אירוע הפוקוס blur-קיבל פוקוס, כיוון שהאירוע של ה
   onBlurHandler() {
     this.timeOutId = setTimeout(() => {
       this.setState({
@@ -339,14 +338,14 @@ class BlurExample extends React.Component {
     });
   }
 
-  // If a child receives focus, do not close the popover.
+  // כדי לא לסגור Timeout מסירים את ה
+  // את החלון הצץ כשילד אחר מקבל פוקוס
   onFocusHandler() {
     clearTimeout(this.timeOutId);
   }
 
   render() {
-    // React assists us by bubbling the blur and
-    // focus events to the parent.
+    // לאב focus-וה blur-עוזר לנו בהעלאת אירועי ה React
     return (
       <div onBlur={this.onBlurHandler}
            onFocus={this.onFocusHandler}>
@@ -355,99 +354,96 @@ class BlurExample extends React.Component {
                 aria-expanded={this.state.isOpen}>
           Select an option
         </button>
-        {this.state.isOpen ? (
+        {this.state.isOpen && (
           <ul>
             <li>Option 1</li>
             <li>Option 2</li>
             <li>Option 3</li>
           </ul>
-        ) : null}
+        )}
       </div>
     );
   }
 }
 ```
 
-This code exposes the functionality to both pointer device and keyboard users. Also note the added `aria-*` props to support screen-reader users. For simplicity's sake
-the keyboard events to enable `arrow key` interaction of the popover options have not been implemented.
+הקוד הזה חושף פונקציונאליות למשתמשי המקלדת בלי להפקיר את הסמן. בנוסף, שימו לב לתוספת ה`aria-*` props שתומכים במשתמשים שנעזרים בקוראי מסך.
+על מנת להשאיר את הדוגמא פשוטה, לא כללנו את אירועי המקלדת שמאפשרים אינטרקציית `arrow key` עם החלון הצץ.
 
 <img src="../images/docs/blur-popover-close.gif" alt="A popover list correctly closing for both mouse and keyboard users." />
 
-This is one example of many cases where depending on only pointer and mouse events will break functionality for keyboard users. Always testing with the keyboard will immediately
-highlight the problem areas which can then be fixed by using keyboard aware event handlers.
+זאת דוגמא שבה מספר מקרים שתלויים רק בסמן מונעים ממשתמשים שתלויים במקלדת נגישות לפונקציונאליות.
+תמיד בדקו את האתר עם המקלדת כדי למצוא את האזורים הבעיתיים ולתקן אותם בעזרת מטפלי אירועים שזמינים למקלדת.
 
-## More Complex Widgets {#more-complex-widgets}
+## ווידג׳טים מסובכים יותר {#more-complex-widgets}
 
-A more complex user experience should not mean a less accessible one. Whereas accessibility is most easily achieved by coding as close to HTML as possible,
-even the most complex widget can be coded accessibly.
+חוויית משתמש מסובכת יותר לא צריכה להיות פחות נגישה. הדרך הפשוטה ביותר לפתח אתר נגיש היא לפתח קוד קרוב ככל האפשר ל HTML, אבל גם ווידג׳טים מסובכים יותר אפשר לפתח בצורה נגישה.
 
-Here we require knowledge of [ARIA Roles](https://www.w3.org/TR/wai-aria/#roles) as well as [ARIA States and Properties](https://www.w3.org/TR/wai-aria/#states_and_properties).
-These are toolboxes filled with HTML attributes that are fully supported in JSX and enable us to construct fully accessible, highly functional React components.
+כאן נדרשת הבנה של [ARIA Roles](https://www.w3.org/TR/wai-aria/#roles) ו[ARIA States and Properties](https://www.w3.org/TR/wai-aria/#states_and_properties).
 
-Each type of widget has a specific design pattern and is expected to function in a certain way by users and user agents alike:
+אלה מספקות ארגז כלים מלא בתכונות HTML עם תמיכה מלאה ב-JSX' שעוזרים לנו לבנות קומפוננטות React פונקציונאליות.
 
-- [WAI-ARIA Authoring Practices - Design Patterns and Widgets](https://www.w3.org/TR/wai-aria-practices/#aria_ex)
-- [Heydon Pickering - ARIA Examples](https://heydonworks.com/practical_aria_examples/)
-- [Inclusive Components](https://inclusive-components.design/)
+כל סוג ווידג׳ט ממומש בצורה ותבנית עיצוב שונה, אבל המשתמש וסוכני המשתמש מצפים ממנו להתנהגות מסוימת:
 
-## Other Points for Consideration {#other-points-for-consideration}
+- [WAI-ARIA Authoring Practices - תבניות עיצוב ווידג׳טים](https://www.w3.org/TR/wai-aria-practices/#aria_ex)
+- [Heydon Pickering - ARIA דוגמאות](https://heydonworks.com/practical_aria_examples/)
+- [קומפוננטות אינקלוסיביות](https://inclusive-components.design/)
 
-### Setting the language {#setting-the-language}
+## עוד נקודות למחשבה {#other-points-for-consideration}
 
-Indicate the human language of page texts as screen reader software uses this to select the correct voice settings:
+### קביעת שפה {#setting-the-language}
 
-- [WebAIM - Document Language](https://webaim.org/techniques/screenreader/#language)
+ציין את השפה שבה כתובים הטקסטים בדף על מנת לאפשר לקוראי המסך לבחור את הגדרות הקול בהתאים:
 
-### Setting the document title {#setting-the-document-title}
+- [WebAIM - תיעוד שפה](https://webaim.org/techniques/screenreader/#language)
 
-Set the document `<title>` to correctly describe the current page content as this ensures that the user remains aware of the current page context:
+### קביעת כותרת הדף {#setting-the-document-title}
 
-- [WCAG - Understanding the Document Title Requirement](https://www.w3.org/TR/UNDERSTANDING-WCAG20/navigation-mechanisms-title.html)
+דאג לציין את כותרת הדף בעזרת האלמנט `<title>` על מנת לתאר את תוכן ומטרת הדף המוצג באופן מדויק למשתמש:
 
-We can set this in React using the [React Document Title Component](https://github.com/gaearon/react-document-title).
+- [WCAG - הבנת דרישות כותרת הדף](https://www.w3.org/TR/UNDERSTANDING-WCAG20/navigation-mechanisms-title.html)
 
-### Color contrast {#color-contrast}
+אנחנו יכולים לציין זאת בReact בעזרת [קומפוננטת כותרת הדף](https://github.com/gaearon/react-document-title)
 
-Ensure that all readable text on your website has sufficient color contrast to remain maximally readable by users with low vision:
+### ניגוד צבעים {#color-contrast}
 
-- [WCAG - Understanding the Color Contrast Requirement](https://www.w3.org/TR/UNDERSTANDING-WCAG20/visual-audio-contrast-contrast.html)
-- [Everything About Color Contrast And Why You Should Rethink It](https://www.smashingmagazine.com/2014/10/color-contrast-tips-and-tools-for-accessibility/)
-- [A11yProject - What is Color Contrast](https://a11yproject.com/posts/what-is-color-contrast/)
+ודאו שלכל הטקסטים באתר יש ניגוד צבעים מספק, על מנת להקל על משתמשים עם יכולות ראייה פחותות לקרוא אותם:
 
-It can be tedious to manually calculate the proper color combinations for all cases in your website so instead, you can [calculate an entire accessible color palette with Colorable](https://jxnblk.com/colorable/).
+- [WCAG - הבנת דרישות ניגוד צבעים](https://www.w3.org/TR/UNDERSTANDING-WCAG20/visual-audio-contrast-contrast.html)
+- [כל מה שתרצו לדעת על ניגוד צבעים וסיבות לחשוב עליהם שוב](https://www.smashingmagazine.com/2014/10/color-contrast-tips-and-tools-for-accessibility/)
+- [A11yProject - מה הוא ניגוד צבעים](https://a11yproject.com/posts/what-is-color-contrast/)
 
-Both the aXe and WAVE tools mentioned below also include color contrast tests and will report on contrast errors.
+חישוב הניגוד לכל קומבינצית צבעים באתר יכול לקחת הרבה זמן. דרך יותר פשוטה היא לחשב באופן אוטומטי [פלטת צבעים מלאה לאתר בעזרת Colorable](https://jxnblk.com/colorable/).
 
-If you want to extend your contrast testing abilities you can use these tools:
+הכלים המצוין להלן (aXe ו WAVE) מספקים בדיקות אוטומטיות ומדווחים על שגיאות בניגודי צבעים:
 
-- [WebAIM - Color Contrast Checker](https://webaim.org/resources/contrastchecker/)
-- [The Paciello Group - Color Contrast Analyzer](https://www.paciellogroup.com/resources/contrastanalyser/)
+- [WebAIM - בודק ניגודי צבעים](https://webaim.org/resources/contrastchecker/)
+- [The Paciello Group - מוודא ניגודי צבעים](https://www.paciellogroup.com/resources/contrastanalyser/)
 
-## Development and Testing Tools {#development-and-testing-tools}
+## כלים לפיתוח ובדק {#development-and-testing-tools}
 
-There are a number of tools we can use to assist in the creation of accessible web applications.
+יש מספר כלים שיכולים לעזור ביצירת אפליקציות נגישות.
 
-### The keyboard {#the-keyboard}
+### המקלדת {#the-keyboard}
 
-By far the easiest and also one of the most important checks is to test if your entire website can be reached and used with the keyboard alone. Do this by:
+הבדיקה הכי פשוטה וגם אחת מהחשובות, היא שהאתר מתפקד בצורה מוחלטת בשימוש במקלדת בלבד. אפשר לעשות זאת בצורה הזאת:
 
-1. Plugging out your mouse.
-1. Using `Tab` and `Shift+Tab` to browse.
-1. Using `Enter` to activate elements.
-1. Where required, using your keyboard arrow keys to interact with some elements, such as menus and dropdowns.
 
-### Development assistance {#development-assistance}
+1. נתק/י את העכבר.
+1. בעזרת שימוש במקש ה `Tab` ו- `Shift+Tab` כדי לנווט.
+1. בעזרת שימוש במקש ה `Enter` כדי להפעיל אלמנטים.
+1. שימוש בחצי המקלדת כדי לתפעל אלמנטים כמו תפריטים ורשימות לפי הצורך.
 
-We can check some accessibility features directly in our JSX code. Often intellisense checks are already provided in JSX aware IDE's for the ARIA roles, states and properties. We also
-have access to the following tool:
+### עזרה בפיתוח {#development-assistance}
+
+אפשר לבדוק מספק תכונות נגישות באופן ישיר בקוד ה-JSX שלנו.
+לדוגמא בדיקות intellisense כמו ARIA roles, states and properties, מסופקות ישירות ב-IDE's שמכירים בJSX. בנוסף ניתן להשתמש בכלי להלן:
 
 #### eslint-plugin-jsx-a11y {#eslint-plugin-jsx-a11y}
 
-The [eslint-plugin-jsx-a11y](https://github.com/evcohen/eslint-plugin-jsx-a11y) plugin for ESLint provides AST linting feedback regarding accessibility issues in your JSX. Many
-IDE's allow you to integrate these findings directly into code analysis and source code windows.
+הכלי [eslint-plugin-jsx-a11y](https://github.com/evcohen/eslint-plugin-jsx-a11y) הוא תוסף ל-ESLint שמספק יכולות AST linting מיוחדות לבדיקת נגישות בקוד. IDE's רבים גם מספקים אינטגרציה ישירה עם  כלים כאלה ישירות לחלון שבו נכתב הקוד לאחר כל שמירה.
 
-[Create React App](https://github.com/facebookincubator/create-react-app) has this plugin with a subset of rules activated. If you want to enable even more accessibility rules,
-you can create an `.eslintrc` file in the root of your project with this content:
+[צור אפליקצית React](https://github.com/facebookincubator/create-react-app) כולל את התוסף הזה עם חלק מהחוקים מופעלים בצורה מובנית. כדי להפעיל חוקים אחרים, ניתן לצור קובץ `.eslintrc` בתקייה הראשית של הפרויקט עם התוכן:
 
   ```json
   {
@@ -456,77 +452,81 @@ you can create an `.eslintrc` file in the root of your project with this content
   }
   ```
 
-### Testing accessibility in the browser {#testing-accessibility-in-the-browser}
+### בדיקת נגישות בדפדפן {#testing-accessibility-in-the-browser}
 
-A number of tools exist that can run accessibility audits on web pages in your browser. Please use them in combination with other accessibility checks mentioned here as they can only
-test the technical accessibility of your HTML.
+קיימים מספר כלים שבודקים נגישות על עמודי אינטרנט בדפדפן. כדאי להשתמש בהם בתוספת לכלים אחרים שצוינו קודם, כיוון שהם בודקים אך ורק את הנגישות הטכנית של קוד ה- HTML.
 
-#### aXe, aXe-core and react-axe {#axe-axe-core-and-react-axe}
+#### aXe-core, aXe ו- react-axe {#axe-axe-core-and-react-axe}
 
-Deque Systems offers [aXe-core](https://github.com/dequelabs/axe-core) for automated and end-to-end accessibility tests of your applications. This module includes integrations for Selenium.
+Deque Systems מציעה את [aXe-core](https://github.com/dequelabs/axe-core) לבדיקות אוטומטיות של האפליקציה. הכלי עובד גם עם Selenium.
 
-[The Accessibility Engine](https://www.deque.com/products/axe/) or aXe, is an accessibility inspector browser extension built on `aXe-core`.
+[מנוע הנגישות](https://www.deque.com/products/axe/) שנקרא גם aXe, הוא תוסף לדפדפן שבודק נגישות ומרחיב את `aXe-core`.
 
-You can also use the [react-axe](https://github.com/dylanb/react-axe) module to report these accessibility findings directly to the console while developing and debugging.
+ניתן להשתמש גם ב [react-axe](https://github.com/dylanb/react-axe) כדי ליצור דוחות על ממצאי נגישות ישירות ל console בזמן פיתוח ודיבאג
 
 #### WebAIM WAVE {#webaim-wave}
 
-The [Web Accessibility Evaluation Tool](https://wave.webaim.org/extension/) is another accessibility browser extension.
+[כלי בידוק הנגישות ברשת](https://wave.webaim.org/extension/) הוא תוסף דפדפן נוסף לבדיקת נגישות.
 
-#### Accessibility inspectors and the Accessibility Tree {#accessibility-inspectors-and-the-accessibility-tree}
+#### בודק הנגישות ועץ הנגישות {#accessibility-inspectors-and-the-accessibility-tree}
 
-[The Accessibility Tree](https://www.paciellogroup.com/blog/2015/01/the-browser-accessibility-tree/) is a subset of the DOM tree that contains accessible objects for every DOM element that should be exposed
-to assistive technology, such as screen readers.
+[עץ הנגישות](https://www.paciellogroup.com/blog/2015/01/the-browser-accessibility-tree/) הוא חלק מהDOM שמכיל עצמים נגישים כל אלמנט שחשוף לקוראי המסך או טכנולוגיות מסייעות אחרות.
 
-In some browsers we can easily view the accessibility information for each element in the accessibility tree:
+ֿֿבדפדפני מסוימים ניתן לראות מידע נגישות לכל אלמנט בעץ הנגישות:
 
+<<<<<<< HEAD
+- [שימוש בבודק הנגישות של Firefox](https://developer.mozilla.org/en-US/docs/Tools/Accessibility_inspector)
+- [הפעלת בודקת הנגישות של Chrome](https://developers.google.com/web/tools/chrome-devtools/accessibility/reference#pane)
+- [שימוש בבודק הנגישות של OS X Safari](https://developer.apple.com/library/content/documentation/Accessibility/Conceptual/AccessibilityMacOSX/OSXAXTestingApps.html)
+=======
 - [Using the Accessibility Inspector in Firefox](https://developer.mozilla.org/en-US/docs/Tools/Accessibility_inspector)
-- [Activate the Accessibility Inspector in Chrome](https://gist.github.com/marcysutton/0a42f815878c159517a55e6652e3b23a)
+- [Using the Accessibility Inspector in Chrome](https://developers.google.com/web/tools/chrome-devtools/accessibility/reference#pane)
 - [Using the Accessibility Inspector in OS X Safari](https://developer.apple.com/library/content/documentation/Accessibility/Conceptual/AccessibilityMacOSX/OSXAXTestingApps.html)
+>>>>>>> e1abbdecfd1a5a804bd38852e88373f54ddde014
 
-### Screen readers {#screen-readers}
+### קוראי מסך {#screen-readers}
 
-Testing with a screen reader should form part of your accessibility tests.
+חשוב להשתמש בקורא מסך כחלק מבדיקות הנגישות באתר.
 
-Please note that browser / screen reader combinations matter. It is recommended that you test your application in the browser best suited to your screen reader of choice.
+שימו לב שהשילוב בין סוג הדפדפן וקורא המסוך חשוב יחסית, ומומלץ לבדוק את האפליקציה בדפדפן המתאים ביותר לקורא המסך שבחרתם.
 
-### Commonly Used Screen Readers {#commonly-used-screen-readers}
+### קוראי מסך מוכרים ונפוצים {#commonly-used-screen-readers}
 
-#### NVDA in Firefox {#nvda-in-firefox}
+#### NVDA ב Firefox {#nvda-in-firefox}
 
-[NonVisual Desktop Access](https://www.nvaccess.org/) or NVDA is an open source Windows screen reader that is widely used.
+[NonVisual Desktop Access](https://www.nvaccess.org/) או בקיצור NVDA הוא קורא מסך פתוח לWindows שרבים משתמשים בו.
 
-Refer to the following guides on how to best use NVDA:
+הקישורים הבאים מסבירים על שימוש נכון בNVDA:
 
-- [WebAIM - Using NVDA to Evaluate Web Accessibility](https://webaim.org/articles/nvda/)
-- [Deque - NVDA Keyboard Shortcuts](https://dequeuniversity.com/screenreaders/nvda-keyboard-shortcuts)
+- [WebAIM - שימוש בNVDA לבדיקת נגישות באתר](https://webaim.org/articles/nvda/)
+- [Deque - קיצורי מקלדת בNVDA](https://dequeuniversity.com/screenreaders/nvda-keyboard-shortcuts)
 
-#### VoiceOver in Safari {#voiceover-in-safari}
+#### VoiceOver ב Safari {#voiceover-in-safari}
 
-VoiceOver is an integrated screen reader on Apple devices.
+VoiceOver הוא קורא מסך מובנה במכשירים של Apple.
 
-Refer to the following guides on how activate and use VoiceOver:
+הקישורים הבאים מסבירים איך להפעיל ולהשתמש בVoiceOver:
 
-- [WebAIM - Using VoiceOver to Evaluate Web Accessibility](https://webaim.org/articles/voiceover/)
-- [Deque - VoiceOver for OS X Keyboard Shortcuts](https://dequeuniversity.com/screenreaders/voiceover-keyboard-shortcuts)
-- [Deque - VoiceOver for iOS Shortcuts](https://dequeuniversity.com/screenreaders/voiceover-ios-shortcuts)
+- [WebAIM - שימוש בVoiceOver לבדיקת נגישות](https://webaim.org/articles/voiceover/)
+- [Deque - קיצורי מקלדת ל VoiceOver ב OS X](https://dequeuniversity.com/screenreaders/voiceover-keyboard-shortcuts)
+- [Deque - קיצורי מקלדת ל VoiceOver ב iOS](https://dequeuniversity.com/screenreaders/voiceover-ios-shortcuts)
 
-#### JAWS in Internet Explorer {#jaws-in-internet-explorer}
+#### JAWS ב Internet Explorer {#jaws-in-internet-explorer}
 
-[Job Access With Speech](https://www.freedomscientific.com/Products/software/JAWS/) or JAWS, is a prolifically used screen reader on Windows.
+[Job Access With Speech](https://www.freedomscientific.com/Products/software/JAWS/) או בקיצור JAWS, הוא קורא מסך נפוץ ל Windows.
 
-Refer to the following guides on how to best use JAWS:
+הקישורים הבאים מסבירים איך להשתמש ב JAWS:
 
-- [WebAIM - Using JAWS to Evaluate Web Accessibility](https://webaim.org/articles/jaws/)
-- [Deque - JAWS Keyboard Shortcuts](https://dequeuniversity.com/screenreaders/jaws-keyboard-shortcuts)
+- [WebAIM - בדיקת נגישות אתר עם JAWS](https://webaim.org/articles/jaws/)
+- [Deque - קיצורי מקלדת עם JAWS](https://dequeuniversity.com/screenreaders/jaws-keyboard-shortcuts)
 
-### Other Screen Readers {#other-screen-readers}
+### קוראי מסך אחרים {#other-screen-readers}
 
-#### ChromeVox in Google Chrome {#chromevox-in-google-chrome}
+#### ChromeVox ב Google Chrome {#chromevox-in-google-chrome}
 
-[ChromeVox](https://www.chromevox.com/) is an integrated screen reader on Chromebooks and is available [as an extension](https://chrome.google.com/webstore/detail/chromevox/kgejglhpjiefppelpmljglcjbhoiplfn?hl=en) for Google Chrome.
+[ChromeVox](https://www.chromevox.com/) הוא קורא מסך מובנה ב Chromebooks שאפשר להוריד כ [תוסף](https://chrome.google.com/webstore/detail/chromevox/kgejglhpjiefppelpmljglcjbhoiplfn?hl=en) ל Google Chrome.
 
-Refer to the following guides on how best to use ChromeVox:
+הקישורים הבאים מסבירים איך להשתמש ב ChromeVox:
 
-- [Google Chromebook Help - Use the Built-in Screen Reader](https://support.google.com/chromebook/answer/7031755?hl=en)
-- [ChromeVox Classic Keyboard Shortcuts Reference](https://www.chromevox.com/keyboard_shortcuts.html)
+- [Google Chromebook Help - שימוש בקורא מסך מובנה](https://support.google.com/chromebook/answer/7031755?hl=en)
+- [קיצורי מקלדת קלאסיים בChromeVox](https://www.chromevox.com/keyboard_shortcuts.html)

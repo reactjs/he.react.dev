@@ -1,24 +1,25 @@
 ---
 id: faq-ajax
-title: AJAX and APIs
+title: AJAX ו-APIs
 permalink: docs/faq-ajax.html
 layout: docs
 category: FAQ
 ---
 
-### How can I make an AJAX call? {#how-can-i-make-an-ajax-call}
+### איך אני יכול ליצור בקשת ?AJAX {#how-can-i-make-an-ajax-call}
 
-You can use any AJAX library you like with React. Some popular ones are [Axios](https://github.com/axios/axios), [jQuery AJAX](https://api.jquery.com/jQuery.ajax/), and the browser built-in [window.fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API).
+אתה יכול להשתמש בכל ספריית AJAX שבחר עם React. כמה פופלאריות הן [Axios](https://github.com/axios/axios), [jQuery AJAX](https://api.jquery.com/jQuery.ajax/) והמובנית בדפדפן [window.fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API).
 
-### Where in the component lifecycle should I make an AJAX call? {#where-in-the-component-lifecycle-should-i-make-an-ajax-call}
+### איפה במחזור החיים של הקומפוננטה אני צריך ליצור בקשת AJAX? {#where-in-the-component-lifecycle-should-i-make-an-ajax-call}
 
-You should populate data with AJAX calls in the [`componentDidMount`](/docs/react-component.html#mounting) lifecycle method. This is so you can use `setState` to update your component when the data is retrieved.
+אתה צריך לאכלס נתונים ובקשות AJAX במתודה [`componentDidMount`](/docs/react-component.html#mounting) במחזור החיים.
+זה בשביל שתוכל להשתמש ב-`setState` כדי לעדכן את הקומפוננטה שלך מתי שהנתונים חוזרים.
 
-### Example: Using AJAX results to set local state {#example-using-ajax-results-to-set-local-state}
+### דוגמא: שימוש כתוצאה מ-AJAX כדי להגדיר state מקומי {#example-using-ajax-results-to-set-local-state}
 
-The component below demonstrates how to make an AJAX call in `componentDidMount` to populate local component state. 
+הקומפוננטה למטה מדגימה איך ליצור בקשת AJAX ב-`componentDidMount` לאכלס state מקומי בקומפוננטה.
 
-The example API returns a JSON object like this:
+דוגמת ה-API מחזירה אובייקט JSON כזה:
 
 ```
 {
@@ -50,9 +51,9 @@ class MyComponent extends React.Component {
             items: result.items
           });
         },
-        // Note: it's important to handle errors here
-        // instead of a catch() block so that we don't swallow
-        // exceptions from actual bugs in components.
+        // שים לב: חשוב לטפל בשגיאות כאן
+        // כדי שלא נפספס catch()-במקום הבלוק
+        // על מנת שלא "נבלע" חריגות מבאגים בקומפוננטות שלנו.
         (error) => {
           this.setState({
             isLoaded: true,

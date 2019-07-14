@@ -12,11 +12,15 @@ redirect_from:
   - "docs/tutorial-zh-CN.html"
 ---
 
-מדריך זה לא מניח שום ידע קודם ב-React.
+מדריך זה לא מחייב שום ידע קודם ב-React.
 
 ## לפני שאנחנו מתחילים במדריך {#before-we-start-the-tutorial}
 
+<<<<<<< HEAD
 במהלך מדריך זה אנחנו נבנה משחק קטן. **יתכן שתתפתו לדלג עליו מכיוון שאינכם בונים משחקים -- אבל תנו לו סיכוי.** הטכניקות שתלמדו במדריך הן הבסיס לבניית כל אפליקציית React, ושליטה בהן תיתן לכם הבנה עמוקה של React.
+=======
+We will build a small game during this tutorial. **You might be tempted to skip it because you're not building games -- but give it a chance.** The techniques you'll learn in the tutorial are fundamental to building any React app, and mastering it will give you a deep understanding of React.
+>>>>>>> ed9d73105a93239f94d84c619e84ae8adec43483
 
 >טיפ
 >
@@ -525,7 +529,7 @@ class Board extends React.Component {
 
 ### מהי החשיבות של אי-יכולת השתנות  {#why-immutability-is-important}
 
-בדוגמת הקוד הקודמת, הצענו להשתמש באופרטור `.slice()` כדי ליצור עותק של מערך `squares` על מנת לשנותו במקום לשנות את המערך הקיים. כעת נדון באי-יכולת השתנות (Immutability) ומדוע חשוב ללמוד על אי-יכולת השתנות.
+בדוגמת הקוד הקודמת, הצענו להשתמש במתודה `.slice()` כדי ליצור עותק של מערך `squares` על מנת לשנותו במקום לשנות את המערך הקיים. כעת נדון באי-יכולת השתנות (Immutability) ומדוע חשוב ללמוד על אי-יכולת השתנות.
 
 יש בדרך כלל שתי גישות לשינוי נתונים. הגישה הראשונה היא *לשנות* את הנתונים על ידי שינוי ישיר של ערכי הנתונים. הגישה השנייה היא להחליף את הנתונים עם עותק חדש שבו יש את השינויים הרצויים.
 
