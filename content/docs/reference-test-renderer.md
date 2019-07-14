@@ -38,8 +38,7 @@ console.log(testRenderer.toJSON());
 //   children: [ 'Facebook' ] }
 ```
 
-ניתן להשתמש בתכונת בדיקות תצלום של Jest כדי לשמור באופן אוטומטי עותק של עץ ה-JSON לקובץ ולבדוק בתוך הטסטים שלך שהוא לא השתנה: [למידע נוסף על כך](https://facebook.github.io/jest/blog/2016/07/27/jest-14.html).
-You can use Jest's snapshot testing feature to automatically save a copy of the JSON tree to a file and check in your tests that it hasn't changed: [Learn more about it](https://jestjs.io/docs/en/snapshot-testing).
+ניתן להשתמש בתכונת בדיקות תצלום של Jest כדי לשמור באופן אוטומטי עותק של עץ ה-JSON לקובץ ולבדוק בתוך הטסטים שלך שהוא לא השתנה: [למידע נוסף על כך](https://jestjs.io/docs/en/snapshot-testing).
 
 אתם יכולים גם לעבור על הפלט כדי למצוא צמתים ספציפיים ולבצע בדיקות לגביהם.
 
