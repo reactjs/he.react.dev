@@ -252,57 +252,56 @@ render() {
 
 המוסכמה הזאת עוזרת לוודא שה- HOCs נשארות גמישות כדי שנוכל למחזר אותן במקומות רבים באפליקציה.
 
-## Convention: Maximizing Composability {#convention-maximizing-composability}
+## מוסכמה למקסום קומפוזיציה {#convention-maximizing-composability}
 
-Not all HOCs look the same. Sometimes they accept only a single argument, the wrapped component:
+לא כל ה- HOCs נראות אותו הדבר. לפעמים הן מקבלות ארגומנט אחד בלבד, הקומפוננטה העטופה:
 
 ```js
 const NavbarWithRouter = withRouter(Navbar);
 ```
 
-Usually, HOCs accept additional arguments. In this example from Relay, a config object is used to specify a component's data dependencies:
+בדרך כלל הן מקבלות ארגומנטים נוספים. בדוגמא הזאת מ- Relay, מועבר אובייקט קונפיגורציה שמציין את המידע שהקומפוננטה תלויה בו:
 
 ```js
 const CommentWithRelay = Relay.createContainer(Comment, config);
 ```
 
-The most common signature for HOCs looks like this:
+החתימה השכיחה ביותר ל- HOCs נראית כך:
 
 ```js
-// React Redux's `connect`
+// React Redux של `connect`-פונקציית ה
 const ConnectedComment = connect(commentSelector, commentActions)(CommentList);
 ```
 
-*What?!* If you break it apart, it's easier to see what's going on.
+*מה?!* פשוט יותר להבין מה קורה כאן כשמפצלים את שני החלקים.
 
 ```js
-// connect is a function that returns another function
+// היא פונקציה שמחזירה פונקציה אחרת connect
 const enhance = connect(commentListSelector, commentListActions);
-// The returned function is a HOC, which returns a component that is connected
-// to the Redux store
+// Redux store-שמחזירה קומפוננטה שמחוברת ל ,HOC הפונקציה המוחזרת היא
 const ConnectedComment = enhance(CommentList);
 ```
-In other words, `connect` is a higher-order function that returns a higher-order component!
+במילים אחרות, `connect` היא פונקצייה מסדר גבוה יותר שמחזירה קומפוננטה מסדר גבוה יותר!
 
-This form may seem confusing or unnecessary, but it has a useful property. Single-argument HOCs like the one returned by the `connect` function have the signature `Component => Component`. Functions whose output type is the same as its input type are really easy to compose together.
+יכול להיות שזה נראה מבלבל או לא נחוץ, אבל יש בזה מאפיינים שימושיים. HOCs עם ארגומנט אחד כמו זה שמוחזר על ידי פונקציית ה- `connect` משתמש בחתימה `Component => Component`. קל מאוד לשלב פונקציות שיש להן פלט מסוג זהה לסוג הקלט שלהן.
 
 ```js
-// Instead of doing this...
+// במקום זה...
 const EnhancedComponent = withRouter(connect(commentSelector)(WrappedComponent))
 
-// ... you can use a function composition utility
-// compose(f, g, h) is the same as (...args) => f(g(h(...args)))
+// ... תוכלו להשתמש בפונקציית שירות קומפוזיציה
+// compose(f, g, h) -זהה ל (...args) => f(g(h(...args)))
 const enhance = compose(
-  // These are both single-argument HOCs
+  // עם ארגומנט יחיד HOC שתי אלה הן
   withRouter,
   connect(commentSelector)
 )
 const EnhancedComponent = enhance(WrappedComponent)
 ```
 
-(This same property also allows `connect` and other enhancer-style HOCs to be used as decorators, an experimental JavaScript proposal.)
+(המאפיין הזה מרשה לנו להשתמש ב- `connect` ו- HOCs מסוג דומה כ-`decorators` - עוד הצעה נסיונית של JavaScript.)
 
-The `compose` utility function is provided by many third-party libraries including lodash (as [`lodash.flowRight`](https://lodash.com/docs/#flowRight)), [Redux](https://redux.js.org/api/compose), and [Ramda](https://ramdajs.com/docs/#compose).
+פונקציית השירות `compose` מסופקת על ידי ספריות צד שלישי רבות כגון lodash (כ- [`lodash.flowRight`](https://lodash.com/docs/#flowRight)), [Redux](https://redux.js.org/api/compose) ו- [Ramda](https://ramdajs.com/docs/#compose).
 
 ## Convention: Wrap the Display Name for Easy Debugging {#convention-wrap-the-display-name-for-easy-debugging}
 
