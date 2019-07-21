@@ -182,10 +182,9 @@ function withSubscription(WrappedComponent, selectData) {
 כמו קומפוננטות, ה״חוזה״ בין הפונקציה `withSubscription` והקומפוננטה העטופה נשלט לגמרי על ידי props.
 כך ניתן להחליף מימוש HOC אחת באחרת בקלות, כל עוד הן מספקות את אותם ה- props לקומפוננטה העטופה. תכונה שמאוד מועילה כשמשנים ספרייה לטעינת מידע, לדוגמא.
 
+## השתמשו בקומפוזיציה במקום מוטציה של הקומפוננטה המקורית. {#dont-mutate-the-original-component-use-composition}
 
-## Don't Mutate the Original Component. Use Composition. {#dont-mutate-the-original-component-use-composition}
-
-Resist the temptation to modify a component's prototype (or otherwise mutate it) inside a HOC.
+עמדו בפני הפיתוי לשנות את ה- prototype של הקומפוננטה (וכל מוטציה אחרת) בתוך ה- HOC.
 
 ```js
 function logProps(InputComponent) {
@@ -193,20 +192,19 @@ function logProps(InputComponent) {
     console.log('Current props: ', this.props);
     console.log('Next props: ', nextProps);
   };
-  // The fact that we're returning the original input is a hint that it has
-  // been mutated.
+  // עצם זה שאנחנו מחזירים את הקלט כפלט מראה שהקלט עבר מוטציה כלשהי.
   return InputComponent;
 }
 
-// EnhancedComponent will log whenever props are received
+// שמתקבל prop יתעד כל EnhancedComponent
 const EnhancedComponent = logProps(InputComponent);
 ```
 
-There are a few problems with this. One is that the input component cannot be reused separately from the enhanced component. More crucially, if you apply another HOC to `EnhancedComponent` that *also* mutates `componentWillReceiveProps`, the first HOC's functionality will be overridden! This HOC also won't work with function components, which do not have lifecycle methods.
+יש כמה בעיות עם מוטציה. הבעיה הראשונה היא שאי אפשר להשתמש בקומפוננטה שהועברה כקלט בנפרד. מעבר לזה, אם תיישמו HOC נוספת ל- `EnhancedComponent` ש*גם* משנה את `componentWillReceiveProps`, התפקוד של ה-HOC הראשונה יירמס! ה- HOC גם לא יעבוד עם קומפוננטות פונקציה ללא מתודות מחזור חיים.
 
-Mutating HOCs are a leaky abstraction—the consumer must know how they are implemented in order to avoid conflicts with other HOCs.
+מוטציה ב- HOCs יוצרת הפשטה דולפת - המשתמש צריך לדעת איך מה קורה בתוך הקוד כדי להמנע מעימות עם HOCs אחרות.
 
-Instead of mutation, HOCs should use composition, by wrapping the input component in a container component:
+במקום מוטציה, עדיף לכתוב HOCs שמשתמשות בקומפוזיציה, ע״י עטיפת קומפוננטת הקלט בקומפוננטה מכילה:
 
 ```js
 function logProps(WrappedComponent) {
@@ -216,16 +214,17 @@ function logProps(WrappedComponent) {
       console.log('Next props: ', nextProps);
     }
     render() {
-      // Wraps the input component in a container, without mutating it. Good!
+      // עוטפים את קומפוננטת הקלט בקומפוננטה מכילה, בלי מוטציה. מעולה!
       return <WrappedComponent {...this.props} />;
     }
   }
 }
 ```
 
-This HOC has the same functionality as the mutating version while avoiding the potential for clashes. It works equally well with class and function components. And because it's a pure function, it's composable with other HOCs, or even with itself.
+ה-HOC בדוגמא מספקת את אותה הפונקציונאליות של הגרסה שעברה מוטציה שהצגנו קודם, בלי הפוטנציאל ליצור עימותים עם קומפוננטות אחרות. בנוסף, היא תעבוד כמו שצריך גם עם קומפוננטות פונקציה וקומפוננטות מחלקה. כיוון שהיא פונקציה טהורה, אפשר לשלב אותה עם HOCs אחרות או אפילו עם עצמה.
 
-You may have noticed similarities between HOCs and a pattern called **container components**. Container components are part of a strategy of separating responsibility between high-level and low-level concerns. Containers manage things like subscriptions and state, and pass props to components that handle things like rendering UI. HOCs use containers as part of their implementation. You can think of HOCs as parameterized container component definitions.
+יכול להיות ששמתם לב לדמיון בין HOCs ותבנית עיצוב בשם **קומפוננטות מכילות** (container components).
+קומפוננטות מכילות הן חלק מאסטרטגיית פיצול אחריות בין פעולות ברמה גבוהה וברמה נמוכה. הן מנהלות דברים כמו האזנה ו- state, ומעבירות props לקומפוננטות שמטפלות בדברים כמו רינדור ממשק משתמש. HOCs משתמשות בקומפוננטות מכילות כחלק מהמימוש שלהן. אפשר לחשוב עליהן כקומפוננטות מכילות עם פרמטרים.
 
 ## Convention: Pass Unrelated Props Through to the Wrapped Component {#convention-pass-unrelated-props-through-to-the-wrapped-component}
 
