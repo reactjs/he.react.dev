@@ -226,23 +226,21 @@ function logProps(WrappedComponent) {
 יכול להיות ששמתם לב לדמיון בין HOCs ותבנית עיצוב בשם **קומפוננטות מכילות** (container components).
 קומפוננטות מכילות הן חלק מאסטרטגיית פיצול אחריות בין פעולות ברמה גבוהה וברמה נמוכה. הן מנהלות דברים כמו האזנה ו- state, ומעבירות props לקומפוננטות שמטפלות בדברים כמו רינדור ממשק משתמש. HOCs משתמשות בקומפוננטות מכילות כחלק מהמימוש שלהן. אפשר לחשוב עליהן כקומפוננטות מכילות עם פרמטרים.
 
-## Convention: Pass Unrelated Props Through to the Wrapped Component {#convention-pass-unrelated-props-through-to-the-wrapped-component}
+## מוסכמות לגבי העברת props לא קשורים לקומפוננטות עטופות {#convention-pass-unrelated-props-through-to-the-wrapped-component}
 
-HOCs add features to a component. They shouldn't drastically alter its contract. It's expected that the component returned from a HOC has a similar interface to the wrapped component.
+קומפוננטות מסדר גבוה יותר מוסיפות פיצ׳רים לקומפוננטה. הן לא אמורות לשנות את התפקוד של הקומפוננטה באופן משמעותי. ניתן לצפות שקומפוננטה המוחזרת מ-HOC תספק ממשק דומה לקומפוננטה העטופה.
 
-HOCs should pass through props that are unrelated to its specific concern. Most HOCs contain a render method that looks something like this:
+ה- HOC צריכה להעביר props שלא בהכרח קשורים אליה הלאה לקומפוננטה העטופה. בדרך כלל ניתן למצוא בהן מתודת render שנראית פחות או יותר ככה:
 
 ```js
 render() {
-  // Filter out extra props that are specific to this HOC and shouldn't be
-  // passed through
+  // שלא אמורים לעבור הלאה לקומפוננטה העטופה HOC-הקשורים ל props-קודם כל נמצא את ה
   const { extraProp, ...passThroughProps } = this.props;
 
-  // Inject props into the wrapped component. These are usually state values or
-  // instance methods.
+  // instance או מתודות state-שנעביר לקומפוננטה העטופה. בדרך כלל אלה ערכים מה props נכין
   const injectedProp = someStateOrInstanceMethod;
 
-  // Pass props to wrapped component
+  // לקומפוננטה העטופה props-ועכשיו נוכל להעביר את ה
   return (
     <WrappedComponent
       injectedProp={injectedProp}
@@ -252,7 +250,7 @@ render() {
 }
 ```
 
-This convention helps ensure that HOCs are as flexible and reusable as possible.
+המוסכמה הזאת עוזרת לוודא שה- HOCs נשארות גמישות כדי שנוכל למחזר אותן במקומות רבים באפליקציה.
 
 ## Convention: Maximizing Composability {#convention-maximizing-composability}
 
