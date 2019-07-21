@@ -164,21 +164,24 @@ function withSubscription(WrappedComponent, selectData) {
     }
 
     render() {
-      // ... ומרנדרת את הקומפוננטה העטופה עם המידע החדש!
-      // שימו לב שאנחנו מעבירים את כל ה-props הלאה
+      // ... ומרנדרת את הקומפוננטה העטופה עם המידע החדש
+      // הלאה props-שימו לב שאנחנו מעבירים את כל ה
       return <WrappedComponent data={this.state.data} {...this.props} />;
     }
   };
 }
 ```
 
-Note that a HOC doesn't modify the input component, nor does it use inheritance to copy its behavior. Rather, a HOC *composes* the original component by *wrapping* it in a container component. A HOC is a pure function with zero side-effects.
+שימו לב שה-HOC לא משנה את קלט הקומפוננטה, וגם לא מעתיקה את ההתנהגות שלה באמצעות הורשה. במקום זאת, ה-HOC *עוטפת* את הקומפוננטה המקורית בקומפוננטה מכילה. ה-HOC היא פונקציה טהורה שלא גורמת לשום תופעות לוואי.
 
-And that's it! The wrapped component receives all the props of the container, along with a new prop, `data`, which it uses to render its output. The HOC isn't concerned with how or why the data is used, and the wrapped component isn't concerned with where the data came from.
+וזהו! הקומפוננטה העטופה מקבלת את כל ה- props מהקומפוננטה המכילה, וגם prop חדש בשם `data` שבעזרתו היא מרנדרת את הפלט שלה. כך ה-HOC לא צריכה לדעת מה ולמה עושים עם המידע, והקומפוננטה העטופה לא צריכה לדעת מאיפה המידע הגיע.
 
-Because `withSubscription` is a normal function, you can add as many or as few arguments as you like. For example, you may want to make the name of the `data` prop configurable, to further isolate the HOC from the wrapped component. Or you could accept an argument that configures `shouldComponentUpdate`, or one that configures the data source. These are all possible because the HOC has full control over how the component is defined.
+כיוון שהפונקציה `withSubscription` היא פונקציה רגילה, תוכלו להעביר לה יותר או פחות ארגומנטים לפי הצורך.
+לדוגמא, תוכלו לשנות את השם של ה-prop `data` כדי להפריד את ה- HOC עוד יותר מתוכן הקומפוננטה העטופה. או שתוכלו לקבל ארגומנט שמשנה את התצורה של `shouldComponentUpdate` או של מקור הנתונים. כל השינויים האלה אפשריים כי ל-HOC יש שליטה מלאה על הגדרת הקומפוננטה העטופה.
 
-Like components, the contract between `withSubscription` and the wrapped component is entirely props-based. This makes it easy to swap one HOC for a different one, as long as they provide the same props to the wrapped component. This may be useful if you change data-fetching libraries, for example.
+כמו קומפוננטות, ה״חוזה״ בין הפונקציה `withSubscription` והקומפוננטה העטופה נשלט לגמרי על ידי props.
+כך ניתן להחליף מימוש HOC אחת באחרת בקלות, כל עוד הן מספקות את אותם ה- props לקומפוננטה העטופה. תכונה שמאוד מועילה כשמשנים ספרייה לטעינת מידע, לדוגמא.
+
 
 ## Don't Mutate the Original Component. Use Composition. {#dont-mutate-the-original-component-use-composition}
 
