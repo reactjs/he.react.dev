@@ -252,7 +252,7 @@ render() {
 
 המוסכמה הזאת עוזרת לוודא שה- HOCs נשארות גמישות כדי שנוכל למחזר אותן במקומות רבים באפליקציה.
 
-## מוסכמה למקסום קומפוזיציה {#convention-maximizing-composability}
+## מוסכמות למקסום קומפוזיציה {#convention-maximizing-composability}
 
 לא כל ה- HOCs נראות אותו הדבר. לפעמים הן מקבלות ארגומנט אחד בלבד, הקומפוננטה העטופה:
 
@@ -303,11 +303,12 @@ const EnhancedComponent = enhance(WrappedComponent)
 
 פונקציית השירות `compose` מסופקת על ידי ספריות צד שלישי רבות כגון lodash (כ- [`lodash.flowRight`](https://lodash.com/docs/#flowRight)), [Redux](https://redux.js.org/api/compose) ו- [Ramda](https://ramdajs.com/docs/#compose).
 
-## Convention: Wrap the Display Name for Easy Debugging {#convention-wrap-the-display-name-for-easy-debugging}
+## מוסכמות לעיטוף השם המוצג בשביל דיבאגינג {#convention-wrap-the-display-name-for-easy-debugging}
 
-The container components created by HOCs show up in the [React Developer Tools](https://github.com/facebook/react-devtools) like any other component. To ease debugging, choose a display name that communicates that it's the result of a HOC.
+הקומפוננטות המכילות שמיוצרות על ידי HOCs מוצגות ב- [React Developer Tools](https://github.com/facebook/react-devtools) כמו כל קומפוננטה אחרת. בשביל להקל על דיבאגינג, כדאי לתת לקומפוננטה שם שמסביר שהיא נוצרה כתוצאה משימוש ב- HOC.
 
-The most common technique is to wrap the display name of the wrapped component. So if your higher-order component is named `withSubscription`, and the wrapped component's display name is `CommentList`, use the display name `WithSubscription(CommentList)`:
+הטכניקה הנפוצה ביותר היא לעטוף את השם (displayName) של הקומפוננטה העטופה. לדוגמא, אם הקומפוננטה מסדר גבוה יותר נקראת `withSubscription`, והקומפוננטה העטופה נקראת `CommentList`, נעטוף את השם המוצג ונחזיר `WithSubscription(CommentList)`:
+
 
 ```js
 function withSubscription(WrappedComponent) {
