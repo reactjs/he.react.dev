@@ -323,60 +323,60 @@ function getDisplayName(WrappedComponent) {
 ```
 
 
-## Caveats {#caveats}
+## הסתיגויות {#caveats}
 
-Higher-order components come with a few caveats that aren't immediately obvious if you're new to React.
+קומפוננטות מסדר גבוה יותר באות עם מספר הסתיגויות שלא מובנות מאליו, במיוחד לאלה שחדשים ל- React.
 
-### Don't Use HOCs Inside the render Method {#dont-use-hocs-inside-the-render-method}
+### אל תשמשו ב- HOCs בתוך מתודת ה- render {#dont-use-hocs-inside-the-render-method}
 
-React's diffing algorithm (called reconciliation) uses component identity to determine whether it should update the existing subtree or throw it away and mount a new one. If the component returned from `render` is identical (`===`) to the component from the previous render, React recursively updates the subtree by diffing it with the new one. If they're not equal, the previous subtree is unmounted completely.
+אלגוריתם ההבדלה של React (שנקרא reconciliation) משתמש בזהות קומפוננטה כדי להחליט אם לעדכן את עץ הקומפוננטות או לזרוק אותו וליצור חדש במקומו. אם הקומפוננטה המוחזרת מ- `render` זהה (`===`) לקומפוננטה מהרינדור הקודם, React יעדכן באופן רקורסיבי את עץ הקומפוננטות על ידי השוואתו עם העץ החדש. אם הם לא זהים, עץ הקומפוננטות הקיים יזרק.
 
-Normally, you shouldn't need to think about this. But it matters for HOCs because it means you can't apply a HOC to a component within the render method of a component:
+בדרך כלל, לא צריך לחשוב על זה. אבל זה חשוב בזמן שימוש בקומפוננטות מסדר גבוה יותר כי זה אומר שאי אפשר לשים HOC בקומפוננטה בעזרת מתודת ה- render:
 
 ```js
 render() {
-  // A new version of EnhancedComponent is created on every render
+  // נוצרות בכל רינדור EnhancedComponent גרסה חדשה של
   // EnhancedComponent1 !== EnhancedComponent2
   const EnhancedComponent = enhance(MyComponent);
-  // That causes the entire subtree to unmount/remount each time!
+  // זה גורם לכל עץ הקומפוננטה להזרק ולהווצר מחדש כל פעם!
   return <EnhancedComponent />;
 }
 ```
 
-The problem here isn't just about performance — remounting a component causes the state of that component and all of its children to be lost.
+הבעיה היא לא רק ביצועית - היא גם תגרום ל- state של הקומפוננטות ושל כל קומפוננטות הילד שלה להעלם.
 
-Instead, apply HOCs outside the component definition so that the resulting component is created only once. Then, its identity will be consistent across renders. This is usually what you want, anyway.
+במקום זאת, הגדירו את ה- HOCs מחוץ להגדרת הקומפוננטות כך שהקומפוננטה תווצר רק פעם אחת. לאחר מכן, הזהות שלה תשאר עקבית עם כל רינדור, שזה מה שבדרך כלל נרצה בכל מקרה.
 
-In those rare cases where you need to apply a HOC dynamically, you can also do it inside a component's lifecycle methods or its constructor.
+במקרים הנדירים שהם תרצו ליצור קומפוננטה מסדר גבוה יותר באופן דינאמי, תוכלו לעשות זאת מתוך אחת ממתודות מחזור החיים של הקומפוננטה, או ה- constructor שלה.
 
-### Static Methods Must Be Copied Over {#static-methods-must-be-copied-over}
+### חובה להעתיק מתודות סטאטיות {#static-methods-must-be-copied-over}
 
-Sometimes it's useful to define a static method on a React component. For example, Relay containers expose a static method `getFragment` to facilitate the composition of GraphQL fragments.
+לפעמים יש צורך בהגדרת מתודה סטאטית בקומפוננטת React. לדוגמא, קומפוננטות מכילות של Relay חופשות מתודה סטאטית בשם `getFragment` כדי לאפשר קומפוזיציה של פרגמנטית של GraphQL.
 
-When you apply a HOC to a component, though, the original component is wrapped with a container component. That means the new component does not have any of the static methods of the original component.
+כשמשתמשים ב- HOC על קומפוננטה, הקומפוננטה המקורית נעטפת על ידי הקומפוננטה המכילה. זאת אומרת שהקומפוננטה החדשה לא כוללת את המתודות הסטאטיות של הקומפוננטה המקורית.
 
 ```js
-// Define a static method
+// נגדיר מתודה סטאטית
 WrappedComponent.staticMethod = function() {/*...*/}
-// Now apply a HOC
+// על הקומפוננטה HOC-עכשיו נשתמש ב
 const EnhancedComponent = enhance(WrappedComponent);
 
-// The enhanced component has no static method
+// הקומפוננטה שנקבל לא מגדירה את המתודה הסטאטית
 typeof EnhancedComponent.staticMethod === 'undefined' // true
 ```
 
-To solve this, you could copy the methods onto the container before returning it:
+כדי לפתור את הבעיה הזאת, ניתן להעתיק את המתודות לתוך הקומפוננטה המכילה לפני שמחזירים אותה:
 
 ```js
 function enhance(WrappedComponent) {
   class Enhance extends React.Component {/*...*/}
-  // Must know exactly which method(s) to copy :(
+  // נאלץ לדעת בדיוק איזה מתודות להעתיק :(
   Enhance.staticMethod = WrappedComponent.staticMethod;
   return Enhance;
 }
 ```
 
-However, this requires you to know exactly which methods need to be copied. You can use [hoist-non-react-statics](https://github.com/mridgway/hoist-non-react-statics) to automatically copy all non-React static methods:
+החסרון הוא שנאלץ לדעת בדיוק איזה מתודות להעתיק. אפשר להשתמש ב- [hoist-non-react-statics](https://github.com/mridgway/hoist-non-react-statics) כדי להעתיק באופן אוטומטי את כל המתודות הסטאטיות (מלבד אלה שמוגדרות על ידי React):
 
 ```js
 import hoistNonReactStatic from 'hoist-non-react-statics';
@@ -387,22 +387,22 @@ function enhance(WrappedComponent) {
 }
 ```
 
-Another possible solution is to export the static method separately from the component itself.
+פתרון נוסף הוא לייצא את המתודות הסטאטיות בנפרד מתוך הקומפוננטה עצמה.
 
 ```js
-// Instead of...
+// במקום...
 MyComponent.someFunction = someFunction;
 export default MyComponent;
 
-// ...export the method separately...
+// ...נייצא את המתודות בנפרד...
 export { someFunction };
 
-// ...and in the consuming module, import both
+// ...ואז נייבא את שתיהן כדי לשלב אותן
 import MyComponent, { someFunction } from './MyComponent.js';
 ```
 
-### Refs Aren't Passed Through {#refs-arent-passed-through}
+### הרפרנסים לא מועברים {#refs-arent-passed-through}
 
-While the convention for higher-order components is to pass through all props to the wrapped component, this does not work for refs. That's because `ref` is not really a prop — like `key`, it's handled specially by React. If you add a ref to an element whose component is the result of a HOC, the ref refers to an instance of the outermost container component, not the wrapped component.
+למרות שהמוסכמה לקומפוננטות מסדר גבוה יותר היא להעביר את כל ה- props הלאה לקומפוננטה העטופה, זה לא עובד עבור רפרנסים (refs). הסיבה לכך היא שה- `ref` הוא לא בדיוק prop - כמו `key`, React מטפלת בו באופן מיוחד. אם תוסיפו רפרנס לאלמנט שהקומפוננטה שלו נוצרה על ידי HOC, הרפרנס מתייחס למופע הקומפוננטה המכילה החיצונית ביותר, ולא לקומפוננטה העטופה.
 
-The solution for this problem is to use the `React.forwardRef` API (introduced with React 16.3). [Learn more about it in the forwarding refs section](/docs/forwarding-refs.html).
+הפתרון לבעיה הזאת הוא להשתמש בממשק `React.forwardRef` (שניתן לשימוש החל מגרסה 16.3). [תוכלו למצוא עוד מידע בעמוד העברת רפרנסים](/docs/forwarding-refs.html).
