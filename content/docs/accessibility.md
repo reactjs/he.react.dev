@@ -285,13 +285,13 @@ class OuterClickExample extends React.Component {
     return (
       <div ref={this.toggleContainer}>
         <button onClick={this.onClickHandler}>Select an option</button>
-        {this.state.isOpen ? (
+        {this.state.isOpen && (
           <ul>
             <li>Option 1</li>
             <li>Option 2</li>
             <li>Option 3</li>
           </ul>
-        ) : null}
+        )}
       </div>
     );
   }
@@ -354,13 +354,13 @@ class BlurExample extends React.Component {
                 aria-expanded={this.state.isOpen}>
           Select an option
         </button>
-        {this.state.isOpen ? (
+        {this.state.isOpen && (
           <ul>
             <li>Option 1</li>
             <li>Option 2</li>
             <li>Option 3</li>
           </ul>
-        ) : null}
+        )}
       </div>
     );
   }
@@ -474,9 +474,15 @@ Deque Systems מציעה את [aXe-core](https://github.com/dequelabs/axe-core) 
 
 ֿֿבדפדפני מסוימים ניתן לראות מידע נגישות לכל אלמנט בעץ הנגישות:
 
+<<<<<<< HEAD
 - [שימוש בבודק הנגישות של Firefox](https://developer.mozilla.org/en-US/docs/Tools/Accessibility_inspector)
-- [הפעלת בודקת הנגישות של Chrome](https://gist.github.com/marcysutton/0a42f815878c159517a55e6652e3b23a)
+- [הפעלת בודקת הנגישות של Chrome](https://developers.google.com/web/tools/chrome-devtools/accessibility/reference#pane)
 - [שימוש בבודק הנגישות של OS X Safari](https://developer.apple.com/library/content/documentation/Accessibility/Conceptual/AccessibilityMacOSX/OSXAXTestingApps.html)
+=======
+- [Using the Accessibility Inspector in Firefox](https://developer.mozilla.org/en-US/docs/Tools/Accessibility_inspector)
+- [Using the Accessibility Inspector in Chrome](https://developers.google.com/web/tools/chrome-devtools/accessibility/reference#pane)
+- [Using the Accessibility Inspector in OS X Safari](https://developer.apple.com/library/content/documentation/Accessibility/Conceptual/AccessibilityMacOSX/OSXAXTestingApps.html)
+>>>>>>> e1abbdecfd1a5a804bd38852e88373f54ddde014
 
 ### קוראי מסך {#screen-readers}
 
