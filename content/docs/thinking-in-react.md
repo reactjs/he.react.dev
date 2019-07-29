@@ -75,11 +75,7 @@ Since you're often displaying a JSON data model to a user, you'll find that if y
 
 ### הפוגה קצרה:  props ו- state {#a-brief-interlude-props-vs-state}
 
-<<<<<<< HEAD
-יש שני סוגים של 'מודלי' מידע בReact : props וstate. זה חשוב להבין את ההבדלים בין השניים. קרא עוד  [בתיעוד של ריאקט](/docs/interactivity-and-dynamic-uis.html) אם אתה לא בטוח מה ההבדל.
-=======
-There are two types of "model" data in React: props and state. It's important to understand the distinction between the two; skim [the official React docs](/docs/state-and-lifecycle.html) if you aren't sure what the difference is. See also [FAQ: What is the difference between state and props?](/docs/faq-state.html#what-is-the-difference-between-state-and-props)
->>>>>>> eef56ffdcfa995e3478f85cd9d02f4be01f65b79
+יש שני סוגים של 'מודלי' מידע בReact : props וstate. זה חשוב להבין את ההבדלים בין השניים. קרא עוד  [בתיעוד של ריאקט](/docs/state-and-lifecycle.html) אם אתה לא בטוח מה ההבדל. ראה גם [שאלות נפוצות: מה ההבדל בין state ו-props?]( /docs/faq-state.html#what-is-the-difference-between-state-and-props)
 
 ## שלב שלישי: זיהוי הייצוג המינימלי( אך מלא ) של הstate  של ממשק המשתמש {#step-3-identify-the-minimal-but-complete-representation-of-ui-state}
 
