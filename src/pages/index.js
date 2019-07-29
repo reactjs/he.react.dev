@@ -50,7 +50,7 @@ class Home extends Component {
     return (
       <Layout location={location}>
         <TitleAndMetaTags
-          title="React &ndash; A JavaScript library for building user interfaces"
+          title="React &ndash; ספריית JavaScript לבניית ממשקי משתמש."
           canonicalUrl={createCanonicalUrl('/')}
         />
         <div dir="rtl" css={{width: '100%'}}>

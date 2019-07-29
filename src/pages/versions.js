@@ -25,7 +25,7 @@ const Versions = ({location}: Props) => (
     <Container>
       <div css={sharedStyles.articleLayout.container}>
         <div css={sharedStyles.articleLayout.content}>
-          <Header>React Versions</Header>
+          <Header>גרסאות React</Header>
           <TitleAndMetaTags
             canonicalUrl={`${urlRoot}/versions/`}
             title="React - Versions"

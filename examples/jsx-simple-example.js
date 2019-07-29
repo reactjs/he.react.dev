@@ -1,3 +1,3 @@
 function hello() {
-  return <div>Hello world!</div>;
+  return <div>שלום עולם!</div>;
 }
