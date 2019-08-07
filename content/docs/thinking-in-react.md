@@ -34,11 +34,7 @@ React, לפי דעתנו, היא ספריית הג'וואה-סקריפט המו�
 
 ## השלב הראשון: פיצול ממשק המשתמש להיררכיית קומפוננטות {#step-1-break-the-ui-into-a-component-hierarchy}
 
-<<<<<<< HEAD
 הדבר הראשון שנעשה הוא להקיף כל קומפוננטה(ותת קומפוננטה) בקופסה, ולתת לכל אחת שם. אם אתם עובדים עם מעצב/ת , יכול להיות שהוא/היא כבר עשו את זה.
-=======
-Since you're often displaying a JSON data model to a user, you'll find that if your model was built correctly, your UI (and therefore your component structure) will map nicely. That's because UI and data models tend to adhere to the same *information architecture*. Separate your UI into components, where each component matches one piece of your data model.
->>>>>>> cb5a61cdbfa5e72646cfb954056c6a4fde490a8c
 
 אבל איך יודעים מה צריך להיות קומפוננטה משלו? משתמשים באותה טכניקה שבה מחליטים אם ליצור מתודה או עצם.
 אחת השיטות היא [עיקרון האחריות הבודדת](https://en.wikipedia.org/wiki/Single_responsibility_principle), שאומר, שאופן אידיאלי כל קומפוננטה אמורה לעשות דבר אחד בלבד. אם הקומפוננטה גדלה, נצטרך לפצל אותה לתת-קומפוננטות.
@@ -47,15 +43,11 @@ Since you're often displaying a JSON data model to a user, you'll find that if y
 
 נראה כאן שיש לנו חמישה קומפוננטות ביישום שלנו. המידע שכל קומפוננטה מייצגת הוא בפונט italic
 
-<<<<<<< HEAD
   1. **`FilterableProductTable` (כתום):** מכיל את כל תכולת הדוגמה
   2. **`SearchBar` (כחול):** *קלט המשתמש*
   3. **`ProductTable` (ירוק):** מציג ומסנן את *המידע* על סמך *קלט המשתמש*
   4. **`ProductCategoryRow` (טורקיז):** מציג כותרת לכל *קטגוריה*
   5. **`ProductRow` (אדום):** מציג שורה לכל *מוצר*
-=======
-If you look at `ProductTable`, you'll see that the table header (containing the "Name" and "Price" labels) isn't its own component. This is a matter of preference, and there's an argument to be made either way. For this example, we left it as part of `ProductTable` because it is part of rendering the *data collection* which is `ProductTable`'s responsibility. However, if this header grows to be complex (e.g., if we were to add affordances for sorting), it would certainly make sense to make this its own `ProductTableHeader` component.
->>>>>>> 986381c56879983269c52863d9c205c7a7ba0174
 
 אם נסתכל על ProductTable, נראה שכותרת הטבלה( שמכילה את כותרות השם והמחיר ) היא לא קומפוננטה משלה. אפשר להפוך אותה לקומפוננטה משלה ואפשר גם שלא, זה עניין של בחירה.
 בדוגמה זאת, השארנו אותו חלק מProductTable  בגלל שזה חלק מרינדור *המידע*, שהוא עבודת הקומפוננטה ProductTable.
