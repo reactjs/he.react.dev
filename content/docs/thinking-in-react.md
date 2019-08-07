@@ -34,11 +34,7 @@ React, לפי דעתנו, היא ספריית הג'וואה-סקריפט המו�
 
 ## השלב הראשון: פיצול ממשק המשתמש להיררכיית קומפוננטות {#step-1-break-the-ui-into-a-component-hierarchy}
 
-<<<<<<< HEAD
 הדבר הראשון שנעשה הוא להקיף כל קומפוננטה(ותת קומפוננטה) בקופסה, ולתת לכל אחת שם. אם אתם עובדים עם מעצב/ת , יכול להיות שהוא/היא כבר עשו את זה.
-=======
-Since you're often displaying a JSON data model to a user, you'll find that if your model was built correctly, your UI (and therefore your component structure) will map nicely. That's because UI and data models tend to adhere to the same *information architecture*. Separate your UI into components, where each component matches one piece of your data model.
->>>>>>> cb5a61cdbfa5e72646cfb954056c6a4fde490a8c
 
 אבל איך יודעים מה צריך להיות קומפוננטה משלו? משתמשים באותה טכניקה שבה מחליטים אם ליצור מתודה או עצם.
 אחת השיטות היא [עיקרון האחריות הבודדת](https://en.wikipedia.org/wiki/Single_responsibility_principle), שאומר, שאופן אידיאלי כל קומפוננטה אמורה לעשות דבר אחד בלבד. אם הקומפוננטה גדלה, נצטרך לפצל אותה לתת-קומפוננטות.
