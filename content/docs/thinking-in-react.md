@@ -47,11 +47,15 @@ Since you're often displaying a JSON data model to a user, you'll find that if y
 
 נראה כאן שיש לנו חמישה קומפוננטות ביישום שלנו. המידע שכל קומפוננטה מייצגת הוא בפונט italic
 
+<<<<<<< HEAD
   1. **`FilterableProductTable` (כתום):** מכיל את כל תכולת הדוגמה
   2. **`SearchBar` (כחול):** *קלט המשתמש*
   3. **`ProductTable` (ירוק):** מציג ומסנן את *המידע* על סמך *קלט המשתמש*
   4. **`ProductCategoryRow` (טורקיז):** מציג כותרת לכל *קטגוריה*
   5. **`ProductRow` (אדום):** מציג שורה לכל *מוצר*
+=======
+If you look at `ProductTable`, you'll see that the table header (containing the "Name" and "Price" labels) isn't its own component. This is a matter of preference, and there's an argument to be made either way. For this example, we left it as part of `ProductTable` because it is part of rendering the *data collection* which is `ProductTable`'s responsibility. However, if this header grows to be complex (e.g., if we were to add affordances for sorting), it would certainly make sense to make this its own `ProductTableHeader` component.
+>>>>>>> 986381c56879983269c52863d9c205c7a7ba0174
 
 אם נסתכל על ProductTable, נראה שכותרת הטבלה( שמכילה את כותרות השם והמחיר ) היא לא קומפוננטה משלה. אפשר להפוך אותה לקומפוננטה משלה ואפשר גם שלא, זה עניין של בחירה.
 בדוגמה זאת, השארנו אותו חלק מProductTable  בגלל שזה חלק מרינדור *המידע*, שהוא עבודת הקומפוננטה ProductTable.
