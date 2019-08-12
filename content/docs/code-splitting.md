@@ -6,8 +6,17 @@ permalink: docs/code-splitting.html
 
 ## איגוד {#bundling}
 
+<<<<<<< HEAD
 בדרך כלל, הקבצים באפליקציות React ״מאוגדים״ באמצעות כלים כמו [Webpack](https://webpack.js.org/) או [Browserify](http://browserify.org/).
 איגוד הוא תהליך שעוקב אחרי קבצים מיובאים ומאחד אותם לקובץ יחיד: ״באנדל״. את הבאנדל אפשר לצרף לדף אינטרנט כדי לטעון אפליקציה שלמה בבת אחת.
+=======
+Most React apps will have their files "bundled" using tools like
+[Webpack](https://webpack.js.org/), [Rollup](https://rollupjs.org/) or 
+[Browserify](http://browserify.org/).
+Bundling is the process of following imported files and merging them into a
+single file: a "bundle". This bundle can then be included on a webpage to load
+an entire app at once.
+>>>>>>> ddbd064d41d719f9ec0c2f6a4227f797a5828310
 
 #### דוגמא {#example}
 
