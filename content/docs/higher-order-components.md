@@ -5,7 +5,7 @@ permalink: docs/higher-order-components.html
 ---
 
 קומפוננטה מסדר גבוה יותר (HOC) היא טכניקה מתקדמת של React שעוזרת למחזר קוד קומפוננטות.
-ה-HOC הן לא בדיוק חלק מהממשק של React, אלא תבנית עיצוב שהתפתחה מטבע ההרכבתיות של React.
+ה-HOCs הן לא בדיוק חלק מהממשק של React, אלא תבנית עיצוב שהתפתחה מהטבע הקומפוזיציוני של React.
 
 מבחינת היישום, **קומפוננטה מסדר גבוה יותר היא פונקציה שלוקחת קומפוננטה ומחזירה קומפוננטה אחרת**.
 
@@ -16,11 +16,11 @@ const EnhancedComponent = higherOrderComponent(WrappedComponent);
 
 בשונה מקומפוננטה רגילה שמתרגמת מאפיינים לממשק משתמש, קומפוננטה מסדר גבוה יותר מתרגמת קומפוננטה לקומפוננטה אחרת.
 
-ה-HOC שכיחות בספריות צד שלישי של React, כמו למשל ה- [`connect`](https://github.com/reduxjs/react-redux/blob/master/docs/api/connect.md#connect) של Redux וה- `createFragmentContainer`](http://facebook.github.io/relay/docs/en/fragment-container.html) של Relay.
+ה-HOCs שכיחות בספריות צד שלישי של React, כמו למשל ה- [`connect`](https://github.com/reduxjs/react-redux/blob/master/docs/api/connect.md#connect) של Redux וה- `createFragmentContainer`](http://facebook.github.io/relay/docs/en/fragment-container.html) של Relay.
 
 כאן נסביר למה קומפוננטות מסדר גבוה יותר שימושיות, ואיך ליצור כאלה בעצמנו.
 
-## שימוש ב-HOC לפעולות בשימוש נרחב {#use-hocs-for-cross-cutting-concerns}
+## שימוש ב-HOCs לפעולות בשימוש נרחב {#use-hocs-for-cross-cutting-concerns}
 
 > **הערה**
 >
@@ -105,7 +105,7 @@ class BlogPost extends React.Component {
 }
 ```
 
-`CommentList` ו- `BlogPost` לא זהות - הן משתמשות במתודות שונות במקור הנתונים ומציגות מידע שונה. אבל הרבה מהמימוש שלהן דומה:
+`CommentList` ו- `BlogPost` לא זהות - הן משתמשות במתודות שונות במקור הנתונים ומציגות מידע שונה. אבל רוב השימוש שלהן דומה:
 
 
 - אחרי ה-mount, מתחילים להאזין לשינויים במקור המידע
@@ -132,8 +132,7 @@ const BlogPostWithSubscription = withSubscription(
 
 הפרמטר הראשון הוא הקומפוננטה העטופה. הפרמטר השני מחזיר את המידע שאנחנו צריכים, באמצעות מקור הנתונים וה-props הנוכחיים.
 
-כשהקומפוננטות `CommentListWithSubscription` ו- `BlogPostWithSubscription` מרונדרות, `CommentList` ו- `BlogPost`יקבלו את ה-prop `data` עם המידע העדכני ביותר שהתקבל ממקור הנתונים:
-
+כשהקומפוננטות CommentListWithSubscription ו- BlogPostWithSubscription מרונדרות, CommentList ו-  BlogPostיקבלו את ה-prop data עם המידע העדכני ביותר שהתקבל ממקור הנתונים:
 
 ```js
 // הפונקציה מקבלת קומפוננטה...
@@ -281,7 +280,7 @@ const enhance = connect(commentListSelector, commentListActions);
 // Redux store-שמחזירה קומפוננטה שמחוברת ל ,HOC הפונקציה המוחזרת היא
 const ConnectedComment = enhance(CommentList);
 ```
-במילים אחרות, `connect` היא פונקצייה מסדר גבוה יותר שמחזירה קומפוננטה מסדר גבוה יותר!
+במילים אחרות, `connect` היא פונקציה מסדר גבוה יותר שמחזירה קומפוננטה מסדר גבוה יותר!
 
 יכול להיות שזה נראה מבלבל או לא נחוץ, אבל יש בזה מאפיינים שימושיים. HOCs עם ארגומנט אחד כמו זה שמוחזר על ידי פונקציית ה- `connect` משתמש בחתימה `Component => Component`. קל מאוד לשלב פונקציות שיש להן פלט מסוג זהה לסוג הקלט שלהן.
 
@@ -292,7 +291,7 @@ const EnhancedComponent = withRouter(connect(commentSelector)(WrappedComponent))
 // ... תוכלו להשתמש בפונקציית שירות קומפוזיציה
 // compose(f, g, h) -זהה ל (...args) => f(g(h(...args)))
 const enhance = compose(
-  // עם ארגומנט יחיד HOC שתי אלה הן
+  // עם ארגומנט יחיד HOCs שתי אלה הן
   withRouter,
   connect(commentSelector)
 )
@@ -338,14 +337,14 @@ render() {
   // נוצרות בכל רינדור EnhancedComponent גרסה חדשה של
   // EnhancedComponent1 !== EnhancedComponent2
   const EnhancedComponent = enhance(MyComponent);
-  // זה גורם לכל עץ הקומפוננטה להזרק ולהווצר מחדש כל פעם!
+  // זה גורם לכל עץ הקומפוננטה להיזרק ולהיווצר מחדש כל פעם!
   return <EnhancedComponent />;
 }
 ```
 
 הבעיה היא לא רק ביצועית - היא גם תגרום ל- state של הקומפוננטות ושל כל קומפוננטות הילד שלה להעלם.
 
-במקום זאת, הגדירו את ה- HOCs מחוץ להגדרת הקומפוננטות כך שהקומפוננטה תווצר רק פעם אחת. לאחר מכן, הזהות שלה תשאר עקבית עם כל רינדור, שזה מה שבדרך כלל נרצה בכל מקרה.
+במקום זאת, הגדירו את ה- HOCs מחוץ להגדרת הקומפוננטות כך שהקומפוננטה תווצר רק פעם אחת. לאחר מכן, הזהות שלה תישאר עקבית עם כל רינדור, שזה מה שבדרך כלל נרצה בכל מקרה.
 
 במקרים הנדירים שהם תרצו ליצור קומפוננטה מסדר גבוה יותר באופן דינאמי, תוכלו לעשות זאת מתוך אחת ממתודות מחזור החיים של הקומפוננטה, או ה- constructor שלה.
 
@@ -376,7 +375,7 @@ function enhance(WrappedComponent) {
 }
 ```
 
-החסרון הוא שנאלץ לדעת בדיוק איזה מתודות להעתיק. אפשר להשתמש ב- [hoist-non-react-statics](https://github.com/mridgway/hoist-non-react-statics) כדי להעתיק באופן אוטומטי את כל המתודות הסטאטיות (מלבד אלה שמוגדרות על ידי React):
+החיסרון הוא שנאלץ לדעת בדיוק איזה מתודות להעתיק. אפשר להשתמש ב- [hoist-non-react-statics](https://github.com/mridgway/hoist-non-react-statics) כדי להעתיק באופן אוטומטי את כל המתודות הסטאטיות (מלבד אלה שמוגדרות על ידי React):
 
 ```js
 import hoistNonReactStatic from 'hoist-non-react-statics';
