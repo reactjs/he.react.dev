@@ -236,7 +236,7 @@ render() {
   // שלא אמורים לעבור הלאה לקומפוננטה העטופה HOC-הקשורים ל props-קודם כל נמצא את ה
   const { extraProp, ...passThroughProps } = this.props;
 
-  // instance או מתודות state-שנעביר לקומפוננטה העטופה. בדרך כלל אלה ערכים מה props נכין
+  // instance או מתודות state-לתוך הקומפוננטה העטופה. בדרך כלל אלו ערכים מה props נעביר
   const injectedProp = someStateOrInstanceMethod;
 
   // לקומפוננטה העטופה props-ועכשיו נוכל להעביר את ה
@@ -357,7 +357,7 @@ render() {
 ```js
 // נגדיר מתודה סטאטית
 WrappedComponent.staticMethod = function() {/*...*/}
-// על הקומפוננטה HOC-עכשיו נשתמש ב
+// על הקומפוננטה HOC -עכשיו נשתמש ב
 const EnhancedComponent = enhance(WrappedComponent);
 
 // הקומפוננטה שנקבל לא מגדירה את המתודה הסטאטית
