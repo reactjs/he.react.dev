@@ -50,7 +50,7 @@
     - id: fragments
       title: מקטעים
     - id: higher-order-components
-      title: קומפוננטות מסדר-גבוהה
+      title: קומפוננטות מסדר גבוה יותר
     - id: integrating-with-other-libraries
       title: אינטגרציה עם ספריות אחרות
     - id: jsx-in-depth
