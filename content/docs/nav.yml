@@ -59,6 +59,8 @@
       title: אופטימיזציה של ביצועים
     - id: portals
       title: פורטלים
+    - id: profiler
+      title: Profiler
     - id: react-without-es6
       title: React בלי ES6
     - id: react-without-jsx

@@ -36,9 +36,9 @@ class ErrorBoundary extends React.Component {
     return { hasError: true };
   }
 
-  componentDidCatch(error, info) {
+  componentDidCatch(error, errorInfo) {
     // אפשר גם לתעד את השגיאה לשירות לוגר
-    logErrorToMyService(error, info);
+    logErrorToMyService(error, errorInfo);
   }
 
   render() {

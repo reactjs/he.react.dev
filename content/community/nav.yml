@@ -34,8 +34,6 @@
       title: ניהול מודל
     - id: data-fetching
       title: השגת מידע
-    - id: testing
-      title: בדיקות
     - id: ui-components
       title: קומפוננטות UI
     - id: misc

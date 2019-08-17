@@ -48,4 +48,4 @@ _שים לב שהפונקציונאליות הזאת היא לא חלק מ-React
 
 ### האם אני יכול לעשות אנימציות ב-React? {#can-i-do-animations-in-react}
 
-ניתן להשתמש ב-React להנפשת אנימציות. ראה [React Transition Group](https://reactcommunity.org/react-transition-group/) ו-[React Motion](https://github.com/chenglou/react-motion) לדוגמא.
+ניתן להשתמש ב-React להנפשת אנימציות. ראה [React Transition Group](https://reactcommunity.org/react-transition-group/) ו-[React Motion](https://github.com/chenglou/react-motion) או [React Spring](https://github.com/react-spring/react-spring), לדוגמא.

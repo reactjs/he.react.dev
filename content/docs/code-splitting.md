@@ -6,7 +6,7 @@ permalink: docs/code-splitting.html
 
 ## איגוד {#bundling}
 
-בדרך כלל, הקבצים באפליקציות React ״מאוגדים״ באמצעות כלים כמו [Webpack](https://webpack.js.org/) או [Browserify](http://browserify.org/).
+בדרך כלל, הקבצים באפליקציות React ״מאוגדים״ באמצעות כלים כמו [Webpack](https://webpack.js.org/) , [Browserify](http://browserify.org/) או [Browserify](http://browserify.org/).
 איגוד הוא תהליך שעוקב אחרי קבצים מיובאים ומאחד אותם לקובץ יחיד: ״באנדל״. את הבאנדל אפשר לצרף לדף אינטרנט כדי לטעון אפליקציה שלמה בבת אחת.
 
 #### דוגמא {#example}
