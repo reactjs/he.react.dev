@@ -123,6 +123,14 @@
         title: Hooks API Reference
       - id: hooks-faq
         title: שאלות נפוצות על Hooks
+- title: Testing
+  items:
+    - id: testing 
+      title: סקירה כללית של בדיקות
+    - id: testing-recipes
+      title: דפוסי בדיקות
+    - id: testing-environments
+      title: סביבות בדיקה
 - title: תרומה
   items:
   - id: how-to-contribute
