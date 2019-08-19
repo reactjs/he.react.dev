@@ -124,7 +124,11 @@ it('can render and update a counter', () => {
 
 אסור לשכוח ששיגור אירועי DOM עובד רק כשקונטיינר ה-DOM נוסף ל-`document`.  ניתן להשתמש בעזר כמו [`react-testing-library`](https://github.com/kentcdodds/react-testing-library) על מנת להפחית קוד תבנית קבועה.
 
+<<<<<<< HEAD
 המסמך [`recipes`](/docs/testing-recipes.html) מכיל עוד מידע על ההתנהגות של `()act`, עם דוגמאות ודרכי שימוש.
+=======
+- The [`recipes`](/docs/testing-recipes.html) document contains more details on how `act()` behaves, with examples and usage.
+>>>>>>> de497e250340ff597ce4964279369f16315b8b4b
 
 * * *
 
