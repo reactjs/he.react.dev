@@ -103,11 +103,7 @@ expect(testInstance.findByProps({className: "sub"}).children).toEqual(['תחתי
 TestRenderer.create(element, options);
 ```
 
-<<<<<<< HEAD
-צור מופע `TestRenderer` עם קומפוננטת ה-React שהועברה. הוא לא משתמש ב-DOM האמיתי, אך הוא עדיין מרנדר את עץ הקומפוננטה לזיכרון באופן מלא, כך שתוכלו לבצע השוואות לגביו. המופע המוחזר כולל את המתודות והמאפיינים הבאים.
-=======
-Create a `TestRenderer` instance with the passed React element. It doesn't use the real DOM, but it still fully renders the component tree into memory so you can make assertions about it. Returns a [TestRenderer instance](#testrenderer-instance).
->>>>>>> de497e250340ff597ce4964279369f16315b8b4b
+צור מופע `TestRenderer` עם קומפוננטת ה-React שהועברה. הוא לא משתמש ב-DOM האמיתי, אך הוא עדיין מרנדר את עץ הקומפוננטה לזיכרון באופן מלא, כך שתוכלו לבצע השוואות לגביו. מחזיר [מופע TestRenderer](#testrenderer-instance).
 
 ### `TestRenderer.act()` {#testrendereract}
 
