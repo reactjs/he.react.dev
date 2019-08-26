@@ -31,7 +31,8 @@ function Example() {
 
 >הערה
 >
->React 16.8.0 היא הגרסא הראשונה שתומכת ב-Hooks. בעת שדרוג, לא לשכוח לעדכן את כל הספריות, כולל React Native .React Dom יתמוך ב-Hooks בגרסא היציבה הבאה.
+>React 16.8.0 היא הגרסה הראשונה שתומכת ב-Hooks. בעת שדרוג, אל תשכח לעדכן את כל הספריות, כולל React DOM.
+>React Native תומכת ב-Hooks מאז [שחרור גרסה 0.59]( https://facebook.github.io/react-native/blog/2019/03/12/releasing-react-native-059).
 
 ## מבוא וידאו {#video-introduction}
 
