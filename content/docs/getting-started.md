@@ -119,7 +119,11 @@ React תוכננה מלכתחילה לאימוץ הדרגתי, ו**אתם יכו
 
 ## גרסאות תיעוד {#versioned-documentation}
 
+<<<<<<< HEAD
 תיעוד זה משקף תמיד את הגרסה היציבה האחרונה של React. מאז React 16, ניתן למצוא גרסאות ישנות יותר של התיעוד [בדף נפרד](/versions). שימו לב כי תיעוד עבור גרסאות קודמות הוא הקפאה ושמירה בזמן השחרור, והוא לא מתעדכן באופן רציף.
+=======
+This documentation always reflects the latest stable version of React. Since React 16, you can find older versions of the documentation on a [separate page](/versions). Note that documentation for past versions is snapshotted at the time of the release, and isn't being continuously updated.
+>>>>>>> 941f54180ef5e652221f54ef6d1f6f2e9e063597
 
 ## משהו חסר? {#something-missing}
 
