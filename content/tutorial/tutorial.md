@@ -1,4 +1,3 @@
-
 ---
 id: tutorial
 title: "מדריך: מבוא ל-React"
@@ -15,11 +14,10 @@ redirect_from:
 
 מדריך זה לא מחייב שום ידע קודם ב-React.
 
-## לפני שאנחנו מתחילים במדריך {#before-we-start-the-tutorial}
+## לפני שאנחנו מתחילים במדריך {#before-we-start-the-tutorial} 
 
-במהלך מדריך זה אנחנו נבנה משחק קטן. **יתכן שתתפתו לדלג עליו מכיוון שאינכם בונים משחקים -- אבל תנו לו סיכוי.** הטכניקות שתלמדו במדריך הן הבסיס לבניית כל אפליקציית React, ושליטה בהן תיתן לכם הבנה עמוקה של React.
-=======
-We will build a small game during this tutorial. **You might be tempted to skip it because you're not building games -- but give it a chance.** The techniques you'll learn in the tutorial are fundamental to building any React app, and mastering it will give you a deep understanding of React.
+במהלך מדריך זה אנחנו נבנה משחק קטן , **יתכן שתתפתו לדלג עליו מכיוון שאינכם בונים משחקים -- אבל תנו לו סיכוי.** הטכניקות שתלמדו במדריך הם הבסיס לבניית ריאקט , והשליטה בהן תיתן לכם 
+.הבנה עמוקה של ריאקט
 
 >טיפ
 >
