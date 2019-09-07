@@ -65,11 +65,7 @@ const Footer = ({layoutHasSidebar = false}: {layoutHasSidebar: boolean}) => (
             },
           }}>
           <FooterNav layoutHasSidebar={layoutHasSidebar}>
-<<<<<<< HEAD
             <MetaTitle onDark={true}>תיעוד</MetaTitle>
-=======
-            <MetaTitle onDark={true}>{navFooter.docs.title}</MetaTitle>
->>>>>>> 941f54180ef5e652221f54ef6d1f6f2e9e063597
             {sectionListDocs.map(section => {
               const defaultItem = section.items[0];
               return (
@@ -82,7 +78,6 @@ const Footer = ({layoutHasSidebar = false}: {layoutHasSidebar: boolean}) => (
             })}
           </FooterNav>
           <FooterNav layoutHasSidebar={layoutHasSidebar}>
-<<<<<<< HEAD
             <MetaTitle onDark={true}>ערוצים</MetaTitle>
             <ExternalFooterLink
               href="https://github.com/facebook/react"
@@ -129,7 +124,6 @@ const Footer = ({layoutHasSidebar = false}: {layoutHasSidebar: boolean}) => (
           </FooterNav>
           <FooterNav layoutHasSidebar={layoutHasSidebar}>
             <MetaTitle onDark={true}>קהילה</MetaTitle>
-=======
             <MetaTitle onDark={true}>{navFooter.channels.title}</MetaTitle>
             <SectionLinks links={navFooter.channels.items} />
           </FooterNav>
@@ -137,9 +131,8 @@ const Footer = ({layoutHasSidebar = false}: {layoutHasSidebar: boolean}) => (
             <MetaTitle onDark={true}>{navFooter.community.title}</MetaTitle>
             <ExternalFooterLink
               href={`https://github.com/facebook/react/blob/master/CODE_OF_CONDUCT.md`}>
-              Code of Conduct
+              קוד התנהגות
             </ExternalFooterLink>
->>>>>>> 941f54180ef5e652221f54ef6d1f6f2e9e063597
             {sectionListCommunity.map(section => (
               <FooterLink
                 to={`/community/${section.items[0].id}.html`}
@@ -149,7 +142,6 @@ const Footer = ({layoutHasSidebar = false}: {layoutHasSidebar: boolean}) => (
             ))}
           </FooterNav>
           <FooterNav layoutHasSidebar={layoutHasSidebar}>
-<<<<<<< HEAD
             <MetaTitle onDark={true}>עוד</MetaTitle>
             <FooterLink to="/tutorial/tutorial.html">מדריך</FooterLink>
             <FooterLink to="/blog/">בלוג</FooterLink>
@@ -160,10 +152,6 @@ const Footer = ({layoutHasSidebar = false}: {layoutHasSidebar: boolean}) => (
               rel="noopener">
               React Native
             </ExternalFooterLink>
-=======
-            <MetaTitle onDark={true}>{navFooter.more.title}</MetaTitle>
-            <SectionLinks links={navFooter.more.items} />
->>>>>>> 941f54180ef5e652221f54ef6d1f6f2e9e063597
           </FooterNav>
         </div>
         <section
