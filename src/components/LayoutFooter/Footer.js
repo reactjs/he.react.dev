@@ -10,9 +10,13 @@ import ExternalFooterLink from './ExternalFooterLink';
 import FooterLink from './FooterLink';
 import FooterNav from './FooterNav';
 import MetaTitle from 'templates/components/MetaTitle';
+import SectionLinks from './SectionLinks';
 import React from 'react';
 import {colors, media} from 'theme';
 import {sectionListCommunity, sectionListDocs} from 'utils/sectionList';
+
+// $FlowFixMe
+import navFooter from '../../../content/footerNav.yml';
 
 import ossLogoPng from 'images/oss_logo.png';
 
@@ -120,6 +124,15 @@ const Footer = ({layoutHasSidebar = false}: {layoutHasSidebar: boolean}) => (
           </FooterNav>
           <FooterNav layoutHasSidebar={layoutHasSidebar}>
             <MetaTitle onDark={true}>קהילה</MetaTitle>
+            <MetaTitle onDark={true}>{navFooter.channels.title}</MetaTitle>
+            <SectionLinks links={navFooter.channels.items} />
+          </FooterNav>
+          <FooterNav layoutHasSidebar={layoutHasSidebar}>
+            <MetaTitle onDark={true}>{navFooter.community.title}</MetaTitle>
+            <ExternalFooterLink
+              href={`https://github.com/facebook/react/blob/master/CODE_OF_CONDUCT.md`}>
+              קוד התנהגות
+            </ExternalFooterLink>
             {sectionListCommunity.map(section => (
               <FooterLink
                 to={`/community/${section.items[0].id}.html`}
