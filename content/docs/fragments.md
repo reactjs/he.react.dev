@@ -4,7 +4,7 @@ title: Fragments
 permalink: docs/fragments.html
 ---
 
-A common pattern in React is for a component to return multiple elements. Fragments let you group a list of children without adding extra nodes to the DOM.
+תבנית נפוצה ב-React עבור קומפוננטה שמחזירה אלמנטים מרובים. Fragments נותנים לך לאחד רשימה של ילדים מבלי להוסיף nodes נוספים ל-DOM.
 
 ```js
 render() {
@@ -18,11 +18,11 @@ render() {
 }
 ```
 
-There is also a new [short syntax](#short-syntax) for declaring them, but it isn't supported by all popular tools yet.
+קיים גם [תחביר קצר](#short-syntax) להצהרתם, אבל זה עדיין לא תומך בכלים פופולארים.
 
-## Motivation {#motivation}
+## מוטיבציה {#motivation}
 
-A common pattern is for a component to return a list of children. Take this example React snippet:
+תבנית נפוצה עבור קומפוננטה שמחזירה רשימה של ילדים. קח לדוגמא את הקטע הזה של React:
 
 ```jsx
 class Table extends React.Component {
@@ -38,7 +38,7 @@ class Table extends React.Component {
 }
 ```
 
-`<Columns />` would need to return multiple `<td>` elements in order for the rendered HTML to be valid. If a parent div was used inside the `render()` of `<Columns />`, then the resulting HTML will be invalid.
+`<Columns />` יצטרך להחזיר אלמנטים `<td>` מרובים כדי שהרנדור של ה-HTML יהיה חוקי. אם ה-div ישמש כהורה ב-`render()` של `<Columns />`, אז התוצאה של ה-HTML תהיה איינה חוקית.
 
 ```jsx
 class Columns extends React.Component {
@@ -53,7 +53,7 @@ class Columns extends React.Component {
 }
 ```
 
-results in a `<Table />` output of:
+התוצאה בפלט של ה-`<Table />`:
 
 ```jsx
 <table>
@@ -66,9 +66,9 @@ results in a `<Table />` output of:
 </table>
 ```
 
-Fragments solve this problem.
+Fragments פותרים את הבעיה הזו.
 
-## Usage {#usage}
+## שימוש {#usage}
 
 ```jsx{4,7}
 class Columns extends React.Component {
@@ -83,7 +83,7 @@ class Columns extends React.Component {
 }
 ```
 
-which results in a correct `<Table />` output of:
+מה שמביא את `<Table />` לפלט תקין.
 
 ```jsx
 <table>
@@ -94,9 +94,9 @@ which results in a correct `<Table />` output of:
 </table>
 ```
 
-### Short Syntax {#short-syntax}
+### תחביר קצר {#short-syntax}
 
-There is a new, shorter syntax you can use for declaring fragments. It looks like empty tags:
+קיים תחביר חדש וקצר יותר שתוכל להשתמש בו להצהרת fragments. הוא נראה כמו תגיות ריקות.
 
 ```jsx{4,7}
 class Columns extends React.Component {
@@ -111,13 +111,11 @@ class Columns extends React.Component {
 }
 ```
 
-You can use `<></>` the same way you'd use any other element except that it doesn't support keys or attributes.
-
-Note that **[many tools don't support it yet](/blog/2017/11/28/react-v16.2.0-fragment-support.html#support-for-fragment-syntax)** so you might want to explicitly write `<React.Fragment>` until the tooling catches up.
+אתה יכול להשתמש `<></>` באותו אופן שהשתמשת בכל אלמנט אחר, אך הוא איינו תוך ב-keys או תכונות.
 
 ### Keyed Fragments {#keyed-fragments}
 
-Fragments declared with the explicit `<React.Fragment>` syntax may have keys. A use case for this is mapping a collection to an array of fragments -- for example, to create a description list:
+Fragments מוצהר `<React.Fragment>` עם התחבר המפורש יכול להכיר keys. מקרה שימושי הוא כאשר ממפים אוסף למערך של fragments - לדוגמא, ליצירת רשימה של תיאור.
 
 ```jsx
 function Glossary(props) {
@@ -135,8 +133,8 @@ function Glossary(props) {
 }
 ```
 
-`key` is the only attribute that can be passed to `Fragment`. In the future, we may add support for additional attributes, such as event handlers.
+`key` הוא התכונה היחידה שאפשר להעביר ל-`Fragment`, בעתיד, אנו נוסיף תמיכה לתכונות נוספות, כגון event handlers.
 
-### Live Demo {#live-demo}
+### דוגמא חיה {#live-demo}
 
-You can try out the new JSX fragment syntax with this [CodePen](https://codepen.io/reactjs/pen/VrEbjE?editors=1000).
+אתה יכול לנסות את התחביר החדש של ה-JSX fragment עם [CodePen](https://codepen.io/reactjs/pen/VrEbjE?editors=1000) הזה.
