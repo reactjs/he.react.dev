@@ -22,7 +22,7 @@ class DocSearch extends Component<{}, State> {
     // eslint-disable-next-line no-undef
     if (window.docsearch) {
       window.docsearch({
-        apiKey: '36221914cce388c46d0420343e0bb32e',
+        apiKey: '7024bfdd231882f6429c597eea8ab9b5',
         indexName: 'react',
         inputSelector: '#algolia-doc-search',
       });
@@ -42,28 +42,28 @@ class DocSearch extends Component<{}, State> {
           flex: '0 0 auto',
           flexDirection: 'row',
           alignItems: 'center',
-          paddingLeft: '0.5rem',
-          paddingRight: '0.5rem',
+          paddingLeft: '0.25rem',
+          paddingRight: '0.25rem',
 
-          [media.lessThan('small')]: {
+          [media.lessThan('expandedSearch')]: {
             justifyContent: 'flex-end',
           },
           [media.lessThan('large')]: {
             marginLeft: 10,
           },
-          [media.between('small', 'medium')]: {
-            width: 'calc(100% / 3)',
-          },
-          [media.between('medium', 'xlarge')]: {
-            width: 'calc(100% / 6)',
-          },
-          [media.greaterThan('small')]: {
-            minWidth: 120,
+          // TODO: Something like this could show the full search box in more cases
+          // but it currently breaks its expanding animation.
+          // [media.between('mediumSearch', 'largerSearch')]: {
+          //   width: 'calc(100% / 8)',
+          // },
+          [media.greaterThan('expandedSearch')]: {
+            minWidth: 100,
           },
         }}>
         <input
           dir="rtl"
           css={{
+            width: '100%',
             appearance: 'none',
             background: 'transparent',
             border: 0,
@@ -85,13 +85,8 @@ class DocSearch extends Component<{}, State> {
               borderRadius: '0.25rem',
             },
 
-            [media.lessThan('large')]: {
+            [media.lessThan('expandedSearch')]: {
               fontSize: 16,
-            },
-            [media.greaterThan('small')]: {
-              width: '100%',
-            },
-            [media.lessThan('small')]: {
               width: '16px',
               transition: 'width 0.2s ease, padding 0.2s ease',
               paddingRight: '16px',

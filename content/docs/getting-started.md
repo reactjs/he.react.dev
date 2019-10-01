@@ -1,6 +1,6 @@
 ---
 id: getting-started
-title: Getting Started
+title: מתחילים
 permalink: docs/getting-started.html
 next: add-react-to-a-website.html
 redirect_from:
@@ -18,109 +18,109 @@ redirect_from:
   - "docs/environments.html"
 ---
 
-This page is an overview of the React documentation and related resources.
+דף זה הוא סקירה כללית של התיעוד של React ומשאבים קשורים.
 
-**React** is a JavaScript library for building user interfaces. Learn what React is all about on [our homepage](/) or [in the tutorial](/tutorial/tutorial.html).
+**React** היא ספריית JavaScript לבניית ממשקי משתמש. למדו הכל אודות React [בדף הבית שלנו](/) או [במדריך](/tutorial/tutorial.html).
 
 ---
 
-- [Try React](#try-react)
-- [Learn React](#learn-react)
-- [Staying Informed](#staying-informed)
-- [Versioned Documentation](#versioned-documentation)
-- [Something Missing?](#something-missing)
+- [לנסות את React](#try-react)
+- [ללמוד React](#learn-react)
+- [להישאר מעודכנים](#staying-informed)
+- [גרסאות תיעוד](#versioned-documentation)
+- [משהו חסר?](#something-missing)
 
-## Try React {#try-react}
+## לנסות את React {#try-react}
 
-React has been designed from the start for gradual adoption, and **you can use as little or as much React as you need.** Whether you want to get a taste of React, add some interactivity to a simple HTML page, or start a complex React-powered app, the links in this section will help you get started.
+React תוכננה מלכתחילה לאימוץ הדרגתי, ו**אתם יכולים להשתמש ב-React מעט או יותר לפי צרכיכם.** בין אם אתם רוצים לקבל טעימה של React, להוסיף קצת אינטראקטיביות לדף HTML פשוט, או להתחיל יישום מורכב מופעל React, הקישורים בסעיף זה יעזור לכם להתחיל.
 
-### Online Playgrounds {#online-playgrounds}
+### מגרש משחקים אונליין {#online-playgrounds}
 
-If you're interested in playing around with React, you can use an online code playground. Try a Hello World template on [CodePen](codepen://hello-world) or [CodeSandbox](https://codesandbox.io/s/new).
+אם אתם מעוניינים לשחק עם React, תוכלו להשתמש במגרש משחקים של קוד אונליין. נסו את תבנית שלום עולם ב-[CodePen](codepen://hello-world), [CodeSandbox](https://codesandbox.io/s/new), או [Glitch](https://glitch.com/edit/#!/remix/starter-react-template).
 
-If you prefer to use your own text editor, you can also [download this HTML file](https://raw.githubusercontent.com/reactjs/reactjs.org/master/static/html/single-file-example.html), edit it, and open it from the local filesystem in your browser. It does a slow runtime code transformation, so we'd only recommend using this for simple demos.
+אם אתם מעדיפים להשתמש בעורך הטקסט שלכם, תוכלו גם [להוריד קובץ HTML זה](https://raw.githubusercontent.com/reactjs/reactjs.org/master/static/html/single-file-example.html), לערוך אותו, ולפתוח אותו ממערכת הקבצים המקומית בדפדפן שלכם. זה מאט את הטרנספורמציה של הקוד בזמן הריצה, אז היינו ממליצים להשתמש בזה רק עבור הדגמות פשוטות.
 
-### Add React to a Website {#add-react-to-a-website}
+### הוספת React לאתר {#add-react-to-a-website}
 
-You can [add React to an HTML page in one minute](/docs/add-react-to-a-website.html). You can then either gradually expand its presence, or keep it contained to a few dynamic widgets.
+תוכלו [להוסיף את React לדף HTML תוך דקה אחת](/docs/add-react-to-a-website.html). לאחר מכן תוכלו להרחיב בהדרגה את נוכחותה, או לשמור אותה תחומה לכמה ווידג'טים דינמיים בודדים.
 
-### Create a New React App {#create-a-new-react-app}
+### יצירת אפליקציית React חדשה {#create-a-new-react-app}
 
-When starting a React project, [a simple HTML page with script tags](/docs/add-react-to-a-website.html) might still be the best option. It only takes a minute to set up!
+בעת התחלת פרוייקט React, [דף HTML פשוט עם תגי Script](/docs/add-react-to-a-website.html) עדיין עשוי להיות האפשרות הטובה ביותר. לוקח רק דקה להגדיר את זה!
 
-As your application grows, you might want to consider a more integrated setup. There are [several JavaScript toolchains](/docs/create-a-new-react-app.html) we recommend for larger applications. Each of them can work with little to no configuration and lets you take full advantage of the rich React ecosystem.
+ככל שהאפליקצייה שלכם גדלה, ייתכן שתרצו לשקול התקנה יותר מורכבת. ישנם [מספר כלי עבודה של JavaScript](/docs/create-a-new-react-app.html) שאנו ממליצים עבור יישומים גדולים יותר. כל אחד מהם יכול לעבוד עם הגדרה קטנה או ללא הגדרות בכלל ומאפשר לכם לנצל את מלוא היתרונות של האקוסיסטם העשיר של React.
 
-## Learn React {#learn-react}
+## ללמוד React {#learn-react}
 
-People come to React from different backgrounds and with different learning styles. Whether you prefer a more theoretical or a practical approach, we hope you'll find this section helpful.
+אנשים מגיעים ל-React מרקעים שונים ועם סגנונות למידה שונים. בין אם אתם מעדיפים גישה תיאורטית יותר או גישה מעשית יותר, אנו מקווים שתמצאו את החלק הזה מועיל.
 
-* If you prefer to **learn by doing**, start with our [practical tutorial](/tutorial/tutorial.html).
-* If you prefer to **learn concepts step by step**, start with our [guide to main concepts](/docs/hello-world.html).
+* אם אתם מעדיפים ללמוד **על ידי עשייה**, התחילו עם [המדריך המעשי](/tutorial/tutorial.html).
+* אם אתם מעדיפים **ללמוד קונספטים צעד אחר צעד**, התחילו עם [המדריך שלנו לקונספטים העיקריים](/docs/hello-world.html).
 
-Like any unfamiliar technology, React does have a learning curve. With practice and some patience, you *will* get the hang of it.
+כמו כל טכנולוגיה לא מוכרת, ל-React יש עקומת למידה. עם תרגול ומעט סבלנות, אתם *תתפסו* את העניין.
 
-### First Examples {#first-examples}
+### דוגמאות ראשונות {#first-examples}
 
-The [React homepage](/) contains a few small React examples with a live editor. Even if you don't know anything about React yet, try changing their code and see how it affects the result.
+[דף הבית של React](/) מכיל מספר דוגמאות קטנות של React עם עורך חי. גם אם אינכם יודעים עדיין דבר על React, נסו לשנות את הקוד שלהן ולראות כיצד זה משפיע על התוצאה.
 
-### React for Beginners {#react-for-beginners}
+### React למתחילים {#react-for-beginners}
 
-If you feel that the React documentation goes at a faster pace than you're comfortable with, check out [this overview of React by Tania Rascia](https://www.taniarascia.com/getting-started-with-react/). It introduces the most important React concepts in a detailed, beginner-friendly way. Once you're done, give the documentation another try!
+אם אתם מרגישים שהתיעוד של React הולך בקצב מהיר יותר ממה שאתם חשים בו בנוח, בדקו את [הסקירה הכללית הזו של React שכתבה Tania Rascia](https://www.taniarascia.com/getting-started-with-react/). היא מציגה את הקונספטים החשובים ביותר של React בצורה מפורטת, וידידותית למתחילים. לאחר שתסיימו, תנו לתיעוד עוד ניסיון!
 
-### React for Designers {#react-for-designers}
+### React למעצבים {#react-for-designers}
 
-If you're coming from a design background, [these resources](https://reactfordesigners.com/) are a great place to get started.
+אם אתם מגיעים מרקע עיצובי, [משאבים אלה](https://reactfordesigners.com/) הם מקום מצוין להתחיל בו.
 
-### JavaScript Resources {#javascript-resources}
+### משאבי JavaScript {#javascript-resources}
 
-The React documentation assumes some familiarity with programming in the JavaScript language. You don't have to be an expert, but it's harder to learn both React and JavaScript at the same time.
+תיעוד React מניח היכרות כלשהי עם תכנות בשפת JavaScript. אתם לא צריכים להיות מומחים, אבל קשה יותר ללמוד גם React וגם JavaScript באותו זמן.
 
-We recommend going through [this JavaScript overview](https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript) to check your knowledge level. It will take you between 30 minutes and an hour but you will feel more confident learning React.
+אנו ממליצים לעבור על [סקירה כללית זו של JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript) כדי לבדוק את רמת הידע שלך. זה ייקח לכם בין 30 דקות לשעה אבל תרגישו יותר בטחון בעת למידת React.
 
->Tip
+>טיפ
 >
->Whenever you get confused by something in JavaScript, [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript) and [javascript.info](https://javascript.info/) are great websites to check. There are also [community support forums](/community/support.html) where you can ask for help.
+>בכל פעם שאתם מרגישים מבולבלים בגלל משהו שקשור ב- JavaScript, [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript) ו-[javascript.info](https://javascript.info/) הם אתרי אינטרנט מצויינים לקבלת מידע. יש גם את [פורום תמיכת הקהילה](/community/support.html) שבו אתם יכולים לבקש עזרה.
 
-### Practical Tutorial {#practical-tutorial}
+### מדריך מעשי {#practical-tutorial}
 
-If you prefer to **learn by doing,** check out our [practical tutorial](/tutorial/tutorial.html). In this tutorial, we build a tic-tac-toe game in React. You might be tempted to skip it because you're not building games -- but give it a chance. The techniques you'll learn in the tutorial are fundamental to building *any* React apps, and mastering it will give you a much deeper understanding.
+אם אתם מעדיפים ללמוד **על ידי עשייה,** בדקו את [המדריך המעשי](/tutorial/tutorial.html) שלנו. במדריך זה, אנו בונים משחק איקס-עיגול ב-React. אתם עלולים להתפתות לדלג על זה כי אתם לא בונים משחקים -- אבל תנו לו סיכוי. הטכניקות שתלמדו במדריך הם היסוד לבניית *כל* אפליקציית React, ושליטה בהן תיתן לכם הבנה הרבה יותר עמוקה.
 
-### Step-by-Step Guide {#step-by-step-guide}
+### מדריך צעד-אחר-צעד {#step-by-step-guide}
 
-If you prefer to **learn concepts step by step,** our [guide to main concepts](/docs/hello-world.html) is the best place to start. Every next chapter in it builds on the knowledge introduced in the previous chapters so you won't miss anything as you go along.
+אם אתם מעדיפים **ללמוד קונספטים צעד אחר צעד,** [מדריך המושגים העיקריים](/docs/hello-world.html) שלנו הוא המקום הטוב ביותר להתחיל. כל פרק בו מסתמך על הידע שהוצג בפרקים הקודמים, כך שלא תחמיצו שום דבר כל עוד אתם מתקדמים לפי הסדר.
 
-### Thinking in React {#thinking-in-react}
+### לחשוב ב-React {#thinking-in-react}
 
-Many React users credit reading [Thinking in React](/docs/thinking-in-react.html) as the moment React finally "clicked" for them. It's probably the oldest React walkthrough but it's still just as relevant.
+הרבה משתמשי React נותנים קרדיט ל[לחשוב ב-React](/docs/thinking-in-react.html) כרגע שבו React סוף סוף "עשה קליק" עבורם. זה כנראה מדריך ה-React הישן ביותר אבל הוא עדיין רלוונטי בדיוק באותה מידה.
 
-### Recommended Courses {#recommended-courses}
+### קורסים מומלצים {#recommended-courses}
 
-Sometimes people find third-party books and video courses more helpful than the official documentation. We maintain [a list of commonly recommended resources](/community/courses.html), some of which are free.
+לפעמים אנשים מוצאים ספרי צד-שלישי וקורסי וידאו מועילים יותר מהתיעוד הרשמי. אנו מתחזקים [רשימה של משאבים מומלצים בדרך כלל](/community/courses.html), חלקם חינמיים.
 
-### Advanced Concepts {#advanced-concepts}
+### קונספטים מתקדמים {#advanced-concepts}
 
-Once you're comfortable with the [main concepts](#main-concepts) and played with React a little bit, you might be interested in more advanced topics. This section will introduce you to the powerful, but less commonly used React features like [context](/docs/context.html) and [refs](/docs/refs-and-the-dom.html).
+ברגע שאתם מרגישים בנוח עם [הקונספטים העיקריים](/docs/hello-world.html) ושיחקתם קצת עם React, אתם עשויים להתעניין בנושאים מתקדמים יותר. חלק זה יציג בפניכם את התכונות החזקות, אך פחות נפוצות לשימוש, של React כגון [context](/docs/context.html) ו- [refs](/docs/refs-and-the-dom.html).
 
 ### API Reference {#api-reference}
 
-This documentation section is useful when you want to learn more details about a particular React API. For example, [`React.Component` API reference](/docs/react-component.html) can provide you with details on how `setState()` works, and what different lifecycle methods are useful for.
+חלק זה בתיעוד שימושי כאשר ברצונכם לקבל פרטים נוספים על ממשק API ספציפי של React. לדוגמה, [`React.Component` API reference](/docs/react-component.html) יכול לספק לכם פרטים על אופן הפעולה של `setState()`, ולאילו שימושים מתודות מחזור חיים שונות שימושיות.
 
-### Glossary and FAQ {#glossary-and-faq}
+### מילון מונחים ושאלות נפוצות {#glossary-and-faq}
 
-The [glossary](/docs/glossary.html) contains an overview of the most common terms you'll see in the React documentation. There is also a FAQ section dedicated to short questions and answers about common topics, including [making AJAX requests](/docs/faq-ajax.html), [component state](/docs/faq-state.html), and [file structure](/docs/faq-structure.html).
+[מילון המונחים](/docs/glossary.html) מכיל סקירה של המונחים הנפוצים ביותר שתראו בתיעוד של React. יש גם חלק שאלות נפוצות המוקדש לשאלות ותשובות קצרות על נושאים נפוצים, כולל [ביצוע בקשות AJAX](/docs/faq-ajax.html), [state של קומפוננטה](/docs/faq-state.html) ו[מבנה קובץ](/docs/faq-structure.html).
 
-## Staying Informed {#staying-informed}
+## להישאר מעודכנים {#staying-informed}
 
-The [React blog](/blog/) is the official source for the updates from the React team. Anything important, including release notes or deprecation notices, will be posted there first.
+ה[בלוג של React](/blog/) הוא המקור הרשמי לעדכונים מצוות React. כל דבר חשוב, כולל הערות שחרור גירסאות או הודעות על הפסקת תמיכה בפיצ'רים, יפורסמו שם כמקור ראשון.
 
-You can also follow the [@reactjs account](https://twitter.com/reactjs) on Twitter, but you won't miss anything essential if you only read the blog.
+תוכלו גם לעקוב אחר [חשבון @reactjs](https://twitter.com/reactjs) ב- Twitter, אך לא תחמיצו שום דבר חיוני אם תקראו את הבלוג בלבד.
 
-Not every React release deserves its own blog post, but you can find a detailed changelog for every release [in the `CHANGELOG.md` file in the React repository](https://github.com/facebook/react/blob/master/CHANGELOG.md), as well as on the [Releases](https://github.com/facebook/react) page.
+לא כל גירסת React ראויה לבלוג פוסט משל עצמה, אך תוכלו למצוא קובץ שינויים מפורט עבור כל גירסה [בקובץ CHANGELOG.md` בריפוזיטורי של React](https://github.com/facebook/react/blob/master/CHANGELOG.md), וכן בדף ה[שיחרורים](https://github.com/facebook/react/releases).
 
-## Versioned Documentation {#versioned-documentation}
+## גרסאות תיעוד {#versioned-documentation}
 
-This documentation always reflects the latest stable version of React. Since React 16, you can find older versions of the documentation [on a separate page](/versions). Note that documentation for past versions is snapshotted at the time of the release, and isn't being continuously updated.
+תיעוד זה משקף תמיד את הגרסה היציבה האחרונה של React. מאז React 16, ניתן למצוא גרסאות ישנות יותר של התיעוד [בדף נפרד](/versions). שימו לב כי תיעוד עבור גרסאות קודמות הוא הקפאה ושמירה בזמן השחרור, והוא לא מתעדכן באופן רציף.
 
-## Something Missing? {#something-missing}
+## משהו חסר? {#something-missing}
 
-If something is missing in the documentation or if you found some part confusing, please [file an issue for the documentation repository](https://github.com/reactjs/reactjs.org/issues/new) with your suggestions for improvement, or tweet at the [@reactjs account](https://twitter.com/reactjs). We love hearing from you!
+אם חסר משהו בתיעוד או אם מצאתם חלק כלשהו מבלבל, אנא [הגישו בעיה לריפוזיטורי של התיעוד](https://github.com/reactjs/reactjs.org/issues/new) עם ההצעות שלכם לשיפור, או צייצו ל[חשבון @reactjs](https://twitter.com/reactjs) ב-Twitter. אנחנו אוהבים לשמוע מכם!

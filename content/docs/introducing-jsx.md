@@ -1,40 +1,40 @@
 ---
 id: introducing-jsx
-title: Introducing JSX
+title: היכרות עם JSX
 permalink: docs/introducing-jsx.html
 prev: hello-world.html
 next: rendering-elements.html
 ---
 
-Consider this variable declaration:
+הביטו על הצהרת משתנה זו:
 
 ```js
-const element = <h1>Hello, world!</h1>;
+const element = <h1>שלום, עולם!</h1>;
 ```
 
-This funny tag syntax is neither a string nor HTML.
+תחביר התג המצחיק הזה הוא לא מחרוזת ולא HTML.
 
-It is called JSX, and it is a syntax extension to JavaScript. We recommend using it with React to describe what the UI should look like. JSX may remind you of a template language, but it comes with the full power of JavaScript.
+הוא נקרא JSX, והוא הרחבת תחביר עבור JavaScript. אנו ממליצים להשתמש בו עם React כדי לתאר כיצד ממשק המשתמש אמור להיראות. JSX עשוי להזכיר לך שפת תבנית, אבל הוא מגיע עם מלוא העוצמה של JavaScript.
 
-JSX produces React "elements". We will explore rendering them to the DOM in the [next section](/docs/rendering-elements.html). Below, you can find the basics of JSX necessary to get you started.
+JSX מייצר "אלמנטים" של React. אנחנו נחקור כיצד לרנדר אותם ל-DOM ב[חלק הבא](/docs/rendering-elements.html). למטה, תוכלו למצוא את היסודות של JSX הדרושים על מנת שתוכלו להתחיל.
 
-### Why JSX? {#why-jsx}
+### למה JSX? {#why-jsx}
 
-React embraces the fact that rendering logic is inherently coupled with other UI logic: how events are handled, how the state changes over time, and how the data is prepared for display.
+React מאמצת את העובדה כי לוגיקת הרידור משולבת מיסודה עם יתר לוגיקת ממשק המשתמש: איך אירועים מטופלים, איך ה-state משתנה לאורך זמן, וכיצד מכינים את הנתונים לתצוגה.
 
-Instead of artificially separating *technologies* by putting markup and logic in separate files, React [separates *concerns*](https://en.wikipedia.org/wiki/Separation_of_concerns) with loosely coupled units called "components" that contain both. We will come back to components in a [further section](/docs/components-and-props.html), but if you're not yet comfortable putting markup in JS, [this talk](https://www.youtube.com/watch?v=x7cQ3mrcKaY) might convince you otherwise.
+במקום להפריד באופן מלאכותי בין *טכנולוגיות* על ידי השמת ה-markup והלוגיקה בקבצים נפרדים, React [מבצעת הפרדת *אחריות*](https://en.wikipedia.org/wiki/Separation_of_concerns) בעזרת יחידות המקושרות בצורה רופפת הנקראות "קומפוננטות" אשר מכילות את שניהם. נחזור לקומפוננטות ב[חלק אחר](/docs/components-and-props.html), אבל אם עדיין לא נוח לכם לשים את ה-markup ב-JS, [ההרצאה הזאת](https://www.youtube.com/watch?v=x7cQ3mrcKaY) עשויה לשכנע אתכם.
 
-React [doesn't require](/docs/react-without-jsx.html) using JSX, but most people find it helpful as a visual aid when working with UI inside the JavaScript code. It also allows React to show more useful error and warning messages.
+React [לא דורשת](/docs/react-without-jsx.html) שימוש ב-JSX, אבל רוב האנשים מוצאים את זה מועיל בתור סיוע ויזואלי בעת עבודה עם ממשקי משתמש בתוך קוד JavaScript. זה גם מאפשר ל-React להראות הודעות שגיאה והתרעה יותר שימושיות.
 
-With that out of the way, let's get started!
+עכשיו שהסרנו את זה מהדרך, בואו נתחיל!
 
-### Embedding Expressions in JSX {#embedding-expressions-in-jsx}
+### הטמעת ביטויים ב-JSX {#embedding-expressions-in-jsx}
 
-In the example below, we declare a variable called `name` and then use it inside JSX by wrapping it in curly braces:
+בדוגמה הבאה, אנו מכריזים על משתנה הנקרא `name` (שם) ולאחר מכן משתמשים בו בתוך JSX על ידי עטיפתו בסוגריים מסולסלים:
 
 ```js{1,2}
-const name = 'Josh Perez';
-const element = <h1>Hello, {name}</h1>;
+const name = 'גיא פרץ';
+const element = <h1>שלום, {name}</h1>;
 
 ReactDOM.render(
   element,
@@ -42,9 +42,9 @@ ReactDOM.render(
 );
 ```
 
-You can put any valid [JavaScript expression](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Expressions_and_Operators#Expressions) inside the curly braces in JSX. For example, `2 + 2`, `user.firstName`, or `formatName(user)` are all valid JavaScript expressions.
+ניתן לשים כל [ביטוי JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Expressions_and_Operators#Expressions) חוקי בתוך סוגריים מסולסלים ב-JSX. לדוגמה, `2 + 2`, `user.firstName`, או `formatName(user)` הם כולם ביטויים חוקיים ב-JavaScript.
 
-In the example below, we embed the result of calling a JavaScript function, `formatName(user)`, into an `<h1>` element.
+בדוגמה הבאה, אנו מטמיעים את התוצאה של קריאה לפונקציית ה-JavaScript, `formatName(user)`, לתוך אלמנט `<h1>`.
 
 ```js{12}
 function formatName(user) {
@@ -52,8 +52,8 @@ function formatName(user) {
 }
 
 const user = {
-  firstName: 'Harper',
-  lastName: 'Perez'
+  firstName: 'הדר',
+  lastName: 'פרץ'
 };
 
 const element = (
@@ -70,13 +70,13 @@ ReactDOM.render(
 
 [](codepen://introducing-jsx)
 
-We split JSX over multiple lines for readability. While it isn't required, when doing this, we also recommend wrapping it in parentheses to avoid the pitfalls of [automatic semicolon insertion](https://stackoverflow.com/q/2846283).
+אנו מפצלים את JSX על מספר שורות עבור הקריאות. אף על פי שזה לא נדרש, כאשר עושים זאת, אנו ממליצים גם לעטוף אותו בסוגריים כדי למנוע את החסרונות של [הכנסת נקודה-פסיק אוטומטית](https://stackoverflow.com/q/2846283).
 
-### JSX is an Expression Too {#jsx-is-an-expression-too}
+### JSX גם הוא ביטוי {#jsx-is-an-expression-too}
 
-After compilation, JSX expressions become regular JavaScript function calls and evaluate to JavaScript objects.
+לאחר ההידור, ביטויים של JSX הופכים לקריאות רגילות של פונקציות JavaScript והם מחושבים לאובייקטים של JavaScript.
 
-This means that you can use JSX inside of `if` statements and `for` loops, assign it to variables, accept it as arguments, and return it from functions:
+זה אומר שאתם יכולים להשתמש ב-JSX בתוך הצהרות `if` ולולאות `for`, להקצות אותו למשתנים, לקבל אותו כארגומנטים, ולהחזיר אותו מפונקציות:
 
 ```js{3,5}
 function getGreeting(user) {
@@ -87,69 +87,69 @@ function getGreeting(user) {
 }
 ```
 
-### Specifying Attributes with JSX {#specifying-attributes-with-jsx}
+### ציון מאפיינים עם JSX {#specifying-attributes-with-jsx}
 
-You may use quotes to specify string literals as attributes:
+ניתן להשתמש בגרשיים כדי לציין מחרוזות כמאפיינים:
 
 ```js
 const element = <div tabIndex="0"></div>;
 ```
 
-You may also use curly braces to embed a JavaScript expression in an attribute:
+תוכלו גם להשתמש בסוגריים מסולסלים כדי להטמיע ביטוי ב-JavaScript במאפיין:
 
 ```js
 const element = <img src={user.avatarUrl}></img>;
 ```
 
-Don't put quotes around curly braces when embedding a JavaScript expression in an attribute. You should either use quotes (for string values) or curly braces (for expressions), but not both in the same attribute.
+אל תוסיפו גרשיים סביב סוגריים מסולסלים בעת הטמעת ביטוי JavaScript במאפיין. עליכם להשתמש בגרשיים (עבור ערכי מחרוזת) או בסוגריים מסולסלים (עבור ביטויים), אך לא בשניהם באותו המאפיין.
 
->**Warning:**
+>**אזהרה:**
 >
->Since JSX is closer to JavaScript than to HTML, React DOM uses `camelCase` property naming convention instead of HTML attribute names.
+>מכיוון ש- JSX קרוב יותר ל- JavaScript מאשר ל- HTML, React DOM משתמש בקונבנציית שמות מאפיינים בצורת `camelCase` במקום בשמות של תכונות HTML.
 >
->For example, `class` becomes [`className`](https://developer.mozilla.org/en-US/docs/Web/API/Element/className) in JSX, and `tabindex` becomes [`tabIndex`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/tabIndex).
+>לדוגמה, `class` הופך ל-[`className`](https://developer.mozilla.org/en-US/docs/Web/API/Element/className) ב-JSX, ו-`tabindex` הופך ל-[`tabIndex`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/tabIndex).
 
-### Specifying Children with JSX {#specifying-children-with-jsx}
+### ציון ילדים עם JSX {#specifying-children-with-jsx}
 
-If a tag is empty, you may close it immediately with `/>`, like XML:
+אם תגית כלשהי ריקה, באפשרותכם לסגור אותה מיידית עם `/>`, כמו ב-XML:
 
 ```js
 const element = <img src={user.avatarUrl} />;
 ```
 
-JSX tags may contain children:
+תגיות JSX יכולות להכיל ילדים:
 
 ```js
 const element = (
   <div>
-    <h1>Hello!</h1>
-    <h2>Good to see you here.</h2>
+    <h1>שלום!</h1>
+    <h2>טוב לראות אותך כאן.</h2>
   </div>
 );
 ```
 
-### JSX Prevents Injection Attacks {#jsx-prevents-injection-attacks}
+### JSX מונע התקפות הזרקה {#jsx-prevents-injection-attacks}
 
-It is safe to embed user input in JSX:
+זה בטוח להטמיע קלט משתמש ב-JSX:
 
 ```js
 const title = response.potentiallyMaliciousInput;
-// This is safe:
+// זה בטוח:
 const element = <h1>{title}</h1>;
 ```
 
-By default, React DOM [escapes](https://stackoverflow.com/questions/7381974/which-characters-need-to-be-escaped-on-html) any values embedded in JSX before rendering them. Thus it ensures that you can never inject anything that's not explicitly written in your application. Everything is converted to a string before being rendered. This helps prevent [XSS (cross-site-scripting)](https://en.wikipedia.org/wiki/Cross-site_scripting) attacks.
+כברירת מחדל, React DOM [מבצע escape](https://stackoverflow.com/questions/7381974/which-characters-need-to-be-escaped-on-html) עבור ערכים מוטמעים ב-JSX לפני שהוא מרנדר אותם. דבר זה מבטיח שאף פעם לא תוכלו להזריק שום דבר שלא כתוב במפורש באפליקציה שלכם. כל דבר מומר למחרוזת לפני שהוא מרונדר. זה עוזר למנוע התקפות [XSS (cross-site-scripting)](https://en.wikipedia.org/wiki/Cross-site_scripting).
 
-### JSX Represents Objects {#jsx-represents-objects}
+### JSX מייצג אובייקטים {#jsx-represents-objects}
 
-Babel compiles JSX down to `React.createElement()` calls.
+Babel מקמפל JSX לקריאות ל-`React.createElement()`.
 
-These two examples are identical:
+שתי הדוגמות הבאות זהות:
 
 ```js
 const element = (
   <h1 className="greeting">
-    Hello, world!
+    שלום, עולם!
   </h1>
 );
 ```
@@ -158,11 +158,11 @@ const element = (
 const element = React.createElement(
   'h1',
   {className: 'greeting'},
-  'Hello, world!'
+  'שלום, עולם!'
 );
 ```
 
-`React.createElement()` performs a few checks to help you write bug-free code but essentially it creates an object like this:
+`React.createElement()` מבצעת כמה בדיקות כדי לעזור לכם לכתוב קוד ללא באגים אבל בעיקרון היא יוצרת אובייקט כזה:
 
 ```js
 // Note: this structure is simplified
@@ -170,15 +170,15 @@ const element = {
   type: 'h1',
   props: {
     className: 'greeting',
-    children: 'Hello, world!'
+    children: 'שלום, עולם!'
   }
 };
 ```
 
-These objects are called "React elements". You can think of them as descriptions of what you want to see on the screen. React reads these objects and uses them to construct the DOM and keep it up to date.
+אובייקטים אלה נקראים "אלמנטים של React". אתם יכולים לחשוב עליהם כמו תיאורים של מה שאתם רוצים לראות על המסך. React קוראת את האובייקטים האלה ומשתמשת בהם כדי לבנות את ה-DOM ולשמור אותו מעודכן.
 
-We will explore rendering React elements to the DOM in the next section.
+אנו נחקור את תהליך רינדור האלמנטים של React ל-DOM בחלק הבא.
 
->**Tip:**
+>**טיפ:**
 >
->We recommend using the ["Babel" language definition](https://babeljs.io/docs/editors) for your editor of choice so that both ES6 and JSX code is properly highlighted. This website uses the [Oceanic Next](https://labs.voronianski.com/oceanic-next-color-scheme/) color scheme which is compatible with it.
+>אנו ממליצים להשתמש ב[הגדרת השפה של "Babel"](https://babeljs.io/docs/editors) עבור העורך שלך כך שגם קוד ES6 וגם קוד JSX מודגשים כראוי. אתר זה משתמש בסכמת הצבעים [Oceanic Next](https://labs.voronianski.com/oceanic-next-color-scheme/) אשר מכילה תאימות לצרכים אלו.

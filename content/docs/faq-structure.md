@@ -1,18 +1,18 @@
 ---
 id: faq-structure
-title: File Structure
+title: מבנה קבצים
 permalink: docs/faq-structure.html
 layout: docs
 category: FAQ
 ---
 
-### Is there a recommended way to structure React projects? {#is-there-a-recommended-way-to-structure-react-projects}
+### האם ישנה דרך מומלצת לבנות פרויקטי React? {#is-there-a-recommended-way-to-structure-react-projects}
 
-React doesn't have opinions on how you put files into folders. That said there are a few common approaches popular in the ecosystem you may want to consider.
+ל-React אין דעה לדרך שבה אתה מסדר קבצים בתיקיות. עם זאת ישנם כמה דרכים נפוצות שאולי תרצה לקחת בחשבון.
 
-#### Grouping by features or routes {#grouping-by-features-or-routes}
+#### קיבוץ לפי פיצ'רים או routes {#grouping-by-features-or-routes}
 
-One common way to structure projects is locate CSS, JS, and tests together inside folders grouped by feature or route.
+דרך נפוצה אחת בבניית פרויקטים היא לקבץ קבצי CSS, JS ובדיקות ביחד בתוך תיקיות לפי פיצ'רים או נתיבים.
 
 ```
 common/
@@ -35,11 +35,11 @@ profile/
   ProfileAPI.js
 ```
 
-The definition of a "feature" is not universal, and it is up to you to choose the granularity. If you can't come up with a list of top-level folders, you can ask the users of your product what major parts it consists of, and use their mental model as a blueprint.
+ההגדרה של "פיצ'ר" היא לא אוניברסלית, ובחירת רמת הפירוט תלויה בך. אם אתה לא יכול לחשוב על רשימה של תיקיות ברמה עליונה, אתה יכול לשאול את משתמשי המוצר שלך מה הם החלקים העיקריים מהם המוצר שלך מורכב, ולהשתמש בתשובה שלהם כבסיס לפרויקט.
 
-#### Grouping by file type {#grouping-by-file-type}
+#### קיבוץ לפי סוג קובץ {#grouping-by-file-type}
 
-Another popular way to structure projects is to group similar files together, for example:
+דרך פופולרית נוספת לבנית פרויקטים היא קיבוץ קבצים מסוג דומה יחדיו, לדוגמה: 
 
 ```
 api/
@@ -59,16 +59,16 @@ components/
   ProfileHeader.css
 ```
 
-Some people also prefer to go further, and separate components into different folders depending on their role in the application. For example, [Atomic Design](http://bradfrost.com/blog/post/atomic-web-design/) is a design methodology built on this principle. Remember that it's often more productive to treat such methodologies as helpful examples rather than strict rules to follow.
+ישנם אנשים שמעדיפים ללכת רחוק יותר, ולהפריד קומפוננטות לתוך תיקיות על פי התפקיד שלהן ביישום. לדוגמה, [Atomic Design](http://bradfrost.com/blog/post/atomic-web-design/) היא מתודולוגיית עיצוב שנבנתה על עיקרון זה. זכור שזה לעיתים יותר פרודוקטיבי להתייחס למתודולוגיות כאלה כדוגמאות שיכולות לעזור מאשר כחוקים שצריך לציית להם.
 
-#### Avoid too much nesting {#avoid-too-much-nesting}
+#### הימנע מעודף קינון {#avoid-too-much-nesting}
 
-There are many pain points associated with deep directory nesting in JavaScript projects. It becomes harder to write relative imports between them, or to update those imports when the files are moved. Unless you have a very compelling reason to use a deep folder structure, consider limiting yourself to a maximum of three or four nested folders within a single project. Of course, this is only a recommendation, and it may not be relevant to your project.
+ישנן כמה בעיות שקשורות עם קינון עמוק בפרויקטי JavaScript. זה נהיה קשה יותר לכתוב relative imports ביניהם, או לעדכן את ה imports הללו כשהקבצים זזים. אלא אם יש לך סיבה מוצדקת להשתמש במבנה תיקיות עמוק, עדיף שיהיה עומק של מקסימום שלוש או ארבע רמות קינון לתיקיות בפרויקט אחד. עם זאת, זוהי רק המלצה, ויכול להיות שהיא לא רלוונטית לפרויקט שלך.
 
-#### Don't overthink it {#dont-overthink-it}
+#### אין צורך להשקיע מחשבה מיותרת בנושא {#dont-overthink-it}
 
-If you're just starting a project, [don't spend more than five minutes](https://en.wikipedia.org/wiki/Analysis_paralysis) on choosing a file structure. Pick any of the above approaches (or come up with your own) and start writing code! You'll likely want to rethink it anyway after you've written some real code.
+אם אתה רק מתחיל פרויקט, [אל תבזבז יותר מחמש דקות](https://en.wikipedia.org/wiki/Analysis_paralysis) על בחירת מבנה הפרויקט. בחר אחת מהגישות שלמעלה (או שתחשוב על אחת משלך) ותתחיל לכתוב קוד! אתה כנראה תרצה לחשוב על זה מחדש אחרי שתכתוב קוד אמיתי.
 
-If you feel completely stuck, start by keeping all files in a single folder. Eventually it will grow large enough that you will want to separate some files from the rest. By that time you'll have enough knowledge to tell which files you edit together most often. In general, it is a good idea to keep files that often change together close to each other. This principle is called "colocation".
+אם אתה מרגיש תקוע לגמרי, תתחיל בלהשאיר את כל הקבצים בתיקייה אחת. בסופו של דבר היא תגדל מספיק עד שתרגיש את הצורך להפריד כמה קבצים מהתיקייה. בעת ההיא יהיה לך מספיק ידע על אילו קבצים אתה עורך בתדירות הכי גבוהה. באופן כללי, זה רעיון טוב להשאיר קבצים שמשתנים בתדירות גבוהה קרובים אחד לשני. עיקרון זה נקרא "קולוקציה".
 
-As projects grow larger, they often use a mix of both of the above approaches in practice. So choosing the "right" one in the beginning isn't very important.
+כשפרויקטים גדלים, רוב הזמן הם משלבים את שתי הגישות שהראנו מקודם. מכאן נובע שבחירת הגישה ה"נכונה" בתחילת הפרויקט היא לא חשובה במיוחד.

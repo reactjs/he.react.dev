@@ -1,38 +1,38 @@
 ---
 id: hooks-rules
-title: Rules of Hooks
+title: חוקי Hooks
 permalink: docs/hooks-rules.html
 next: hooks-custom.html
 prev: hooks-effect.html
 ---
 
-*Hooks* are a new addition in React 16.8. They let you use state and other React features without writing a class.
+*Hooks* הם תוספת חדשה ב- React 16.8. הם נותנים לנו להשתמש ב- state ופיצ'רים אחרים של ריאקט מבלי לכתוב מחלקה.
 
-Hooks are JavaScript functions, but you need to follow two rules when using them. We provide a [linter plugin](https://www.npmjs.com/package/eslint-plugin-react-hooks) to enforce these rules automatically:
+Hooks הם פונקציות ג'אווהסקריפט, אבל אתה צריך לנהוג על פי שני חוקים כשאתה משתמש בהם. אנו מספקים [פלאגין linting](https://www.npmjs.com/package/eslint-plugin-react-hooks) שאוכף חוקים אלו אוטומטית:
 
-### Only Call Hooks at the Top Level {#only-call-hooks-at-the-top-level}
+### ניתן לקרוא ל- Hooks רק ברמה העליונה {#only-call-hooks-at-the-top-level}
 
-**Don't call Hooks inside loops, conditions, or nested functions.** Instead, always use Hooks at the top level of your React function. By following this rule, you ensure that Hooks are called in the same order each time a component renders. That's what allows React to correctly preserve the state of Hooks between multiple `useState` and `useEffect` calls. (If you're curious, we'll explain this in depth [below](#explanation).)
+**אל תקרא ל- Hooks בתוך לופים, conditions כמו if או פונקציות מקוננות.** במקום זאת, תמיד השתמש ב- Hooks ברמה העליונה של פונקציית הריאקט שלך. על ידי ביצוע כלל זה, אתה מבטיח ש- Hooks נקראים באותו סדר כל פעם שקומפוננטה מתרנדרת. זה מה שמאפשר לריאקט לשמור את ה- state של Hooks בין קריאות מרובות של `useState` ו- `useEffect`. (אם אתה סקרן, נסביר זאת לעומק [למטה](#explanation).)
 
-### Only Call Hooks from React Functions {#only-call-hooks-from-react-functions}
+###ניתן לקרוא ל- Hooks רק מתוך פונקציות ריאקט{#only-call-hooks-from-react-functions}
 
-**Don't call Hooks from regular JavaScript functions.** Instead, you can:
+**אל תקרא ל- Hooks מתוך פונקציות ג'אווהסקריפט רגילות.** במקום זאת, אתה יכול:
 
-* ✅ Call Hooks from React function components.
-* ✅ Call Hooks from custom Hooks (we'll learn about them [on the next page](/docs/hooks-custom.html)).
+* ✅ לקרוא ל- Hooks מתוך קומפוננטות פונקציה של ריאקט.
+* ✅ לקרוא ל- Hooks מתוך Hooks מותאמים אישית( נלמד עליהם [בעמוד הבא](/docs/hooks-custom.html)).
 
-By following this rule, you ensure that all stateful logic in a component is clearly visible from its source code.
+על ידי ביצוע כלל זה, אתה מבטיח שכל לוגיקה שהיא stateful בתוך קומפוננטה היא ברורה לעין מקוד המקור שלה.
 
-## ESLint Plugin {#eslint-plugin}
+## פלאגין ESLint {#eslint-plugin}
 
-We released an ESLint plugin called [`eslint-plugin-react-hooks`](https://www.npmjs.com/package/eslint-plugin-react-hooks) that enforces these two rules. You can add this plugin to your project if you'd like to try it:
+שחררנו פלאגין ESLint שנקרא [`eslint-plugin-react-hooks`](https://www.npmjs.com/package/eslint-plugin-react-hooks) האוכף אוטומטית שני חוקים אלה. אתה יכול להוסיף את הפלאגין הזה לפרויקט שלך אם תרצה לנסות אותו:
 
 ```bash
-npm install eslint-plugin-react-hooks
+npm install eslint-plugin-react-hooks --save-dev
 ```
 
 ```js
-// Your ESLint configuration
+// קונפיגורציית ה- ESLint שלך
 {
   "plugins": [
     // ...
@@ -40,22 +40,23 @@ npm install eslint-plugin-react-hooks
   ],
   "rules": {
     // ...
-    "react-hooks/rules-of-hooks": "error"
+    "react-hooks/rules-of-hooks": "error", // בודק חוקי Hooks
+    "react-hooks/exhaustive-deps": "warn" // בודק effect dependencies
   }
 }
 ```
 
-In the future, we intend to include this plugin by default into Create React App and similar toolkits.
+בעתיד, אנחנו מתכוונים לכלול את פלאגין זה בתוך Create React App וערכות כלים דומות.
 
-**You can skip to the next page explaining how to write [your own Hooks](/docs/hooks-custom.html) now.** On this page, we'll continue by explaining the reasoning behind these rules.
+**אתה יכול לדלג לעמוד הבא שמסביר איך לכתוב [Hooks משלך](/docs/hooks-custom.html) עכשיו.** בעמוד זה, נמשיך בלהסביר את הסיבות שמאחורי חוקים אלה.
 
-## Explanation {#explanation}
+## הסבר {#explanation}
 
-As we [learned earlier](/docs/hooks-state.html#tip-using-multiple-state-variables), we can use multiple State or Effect Hooks in a single component:
+כמו [שלמדנו מקודם](/docs/hooks-state.html#tip-using-multiple-state-variables), אנחנו יכולים להשתמש במספר State או Effect Hooks בתוך קומפוננטה יחידה:
 
 ```js
 function Form() {
-  // 1. Use the name state variable
+  // 1.	שימוש במשתנה name ב- state
   const [name, setName] = useState('Mary');
 
   // 2. Use an effect for persisting the form
@@ -63,10 +64,10 @@ function Form() {
     localStorage.setItem('formData', name);
   });
 
-  // 3. Use the surname state variable
+  // 3.	שימוש במשתנה surname ב- state
   const [surname, setSurname] = useState('Poppins');
 
-  // 4. Use an effect for updating the title
+  // 4.	שימוש באפקט על מנת לעדכן את הכותרת
   useEffect(function updateTitle() {
     document.title = name + ' ' + surname;
   });
@@ -75,32 +76,32 @@ function Form() {
 }
 ```
 
-So how does React know which state corresponds to which `useState` call? The answer is that **React relies on the order in which Hooks are called**. Our example works because the order of the Hook calls is the same on every render:
+אז איך ריאקט יודע איזה state מתאים לאיזו קריאת `useState`? התשובה היא **שריאקט מסתמך על סדר קריאת ה- Hooks.** הדוגמה שלנו עובדת בגלל שסדר קריאות ה- Hooks הוא אותו דבר בכל רינדור:
 
 ```js
 // ------------
-// First render
+// רינדור ראשון
 // ------------
-useState('Mary')           // 1. Initialize the name state variable with 'Mary'
+useState('Mary')           // 1. איתחול המשתנה name ב- state עם 'Mary'
 useEffect(persistForm)     // 2. Add an effect for persisting the form
-useState('Poppins')        // 3. Initialize the surname state variable with 'Poppins'
-useEffect(updateTitle)     // 4. Add an effect for updating the title
+useState('Poppins')        // 3. איתחול המשתנה surname ב- state עם 'Poppins'
+useEffect(updateTitle)     // 4. הוספת אפקט על מנת לעדכן את הכותרת
 
 // -------------
 // Second render
 // -------------
-useState('Mary')           // 1. Read the name state variable (argument is ignored)
+useState('Mary')           // 1. קריאת המשתנה name ב- state (מתעלמים מהקלט)
 useEffect(persistForm)     // 2. Replace the effect for persisting the form
-useState('Poppins')        // 3. Read the surname state variable (argument is ignored)
-useEffect(updateTitle)     // 4. Replace the effect for updating the title
+useState('Poppins')        // 3. קוראים את המשתנה surname ב- state (מתעלמים מהקלט)
+useEffect(updateTitle)     // 4. מחליפים את האפקט על מנת לעדכן את הכותרת
 
 // ...
 ```
 
-As long as the order of the Hook calls is the same between renders, React can associate some local state with each of them. But what happens if we put a Hook call (for example, the `persistForm` effect) inside a condition?
+כל עוד הסדר של קריאות Hook הוא שווה בין רינדורים, ריאקט יכול לצרף state מקומי עם כל אחד מהם. אבל מה קורה אם אנחנו שמים קריאת Hook (לדוגמה, האקפט `persistForm`) בתוך condition?
 
 ```js
-  // 🔴 We're breaking the first rule by using a Hook in a condition
+  // 🔴 אנחנו עוברים על החוק הראשון על ידי שימוש ב- Hook בתוך condition
   if (name !== '') {
     useEffect(function persistForm() {
       localStorage.setItem('formData', name);
@@ -108,30 +109,30 @@ As long as the order of the Hook calls is the same between renders, React can as
   }
 ```
 
-The `name !== ''` condition is `true` on the first render, so we run this Hook. However, on the next render the user might clear the form, making the condition `false`. Now that we skip this Hook during rendering, the order of the Hook calls becomes different:
+ה- condition `name !== ' '` הוא `true` ברינדור הראשון, אז אנחנו מריצים Hook זה. למרות זאת, יכול להיות שברינדור הבא המשתמש ינקה את הטופס, וכתוצאה מכך ה- condition יהפוך ל- `false`. עכשיו שאנחנו מדלגים על Hook זה בזמן רינדור, הסדר של קריאות Hook משתנה:
 
 ```js
-useState('Mary')           // 1. Read the name state variable (argument is ignored)
-// useEffect(persistForm)  // 🔴 This Hook was skipped!
-useState('Poppins')        // 🔴 2 (but was 3). Fail to read the surname state variable
-useEffect(updateTitle)     // 🔴 3 (but was 4). Fail to replace the effect
+useState('Mary')           // 1. קריאת המשתנה name ב- state (מתעלמים מהקלט)
+// useEffect(persistForm)  // 🔴 דילגנו על Hook זה!
+useState('Poppins')        // 🔴 2 (אבל היה 3). נכשל בלקרוא את המשתנה surname
+useEffect(updateTitle)     // 🔴 3 (אבל היה 4). נכשל בלהחליף את האפקט
 ```
 
-React wouldn't know what to return for the second `useState` Hook call. React expected that the second Hook call in this component corresponds to the `persistForm` effect, just like during the previous render, but it doesn't anymore. From that point, every next Hook call after the one we skipped would also shift by one, leading to bugs.
+ריאקט לא ידע מה להחזיר לקריאה השנייה של ה- Hook `useState`. ריאקט ציפה שקריאת ה- Hook השנייה בקומפוננטה הזו תהיה תואמת לאפקט `persistForm`, בדיוק כמו ברינדור הקודם, אבל זה לא דומה יותר. מנקודה זו, כל קריאת Hook אחרי האחת שדילגנו עליה תזוז באחד, דבר שיוביל לבאגים.
 
-**This is why Hooks must be called on the top level of our components.** If we want to run an effect conditionally, we can put that condition *inside* our Hook:
+**זאת הסיבה שחייב לקרוא ל- Hooks ברמה העליונה של הקומפוננטות שלנו.** אם אנחנו רוצים להריץ אפקט מותנה, אנחנו יכולים לשים תנאי זה *בתוך* ה- Hook שלנו:
 
 ```js
   useEffect(function persistForm() {
-    // 👍 We're not breaking the first rule anymore
+    // 👍 אנחנו לא עוברים על החוק הראשון יותר
     if (name !== '') {
       localStorage.setItem('formData', name);
     }
   });
 ```
 
-**Note that you don't need to worry about this problem if you use the [provided lint rule](https://www.npmjs.com/package/eslint-plugin-react-hooks).** But now you also know *why* Hooks work this way, and which issues the rule is preventing.
+**שים לב שאתה לא צריך לדאוג מבעיה זו אם אתה משתמש [בחוק lint](https://www.npmjs.com/package/eslint-plugin-react-hooks).** אבל עכשיו אתה גם יודע *למה* Hooks עובדים בדרך זו, ואילו בעיות החוק הזה מונע.
 
-## Next Steps {#next-steps}
+## הצעדים הבאים {#next-steps}
 
-Finally, we're ready to learn about [writing your own Hooks](/docs/hooks-custom.html)! Custom Hooks let you combine Hooks provided by React into your own abstractions, and reuse common stateful logic between different components.
+סוף כל סוף, אנו מוכנים ללמוד על כתיבת [Hooks משלנו](/docs/hooks-custom.html)! Hooks מותאמים אישית נותנים לך לשלב Hooks שמסופקים על ידי ריאקט לתוך האבסטרקציות שלך, ולעשות שימוש חוזר בלוגיקה שהיא stateful בין קומפוננטות שונות.

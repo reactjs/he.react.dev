@@ -1,6 +1,6 @@
 ---
 id: lifting-state-up
-title: Lifting State Up
+title: הרמת ה-State למעלה
 permalink: docs/lifting-state-up.html
 prev: forms.html
 next: composition-vs-inheritance.html
@@ -9,24 +9,24 @@ redirect_from:
   - "docs/flux-todo-list.html"
 ---
 
-Often, several components need to reflect the same changing data. We recommend lifting the shared state up to their closest common ancestor. Let's see how this works in action.
+לעתים קרובות, מספר קומפוננטות צריכות לשקף את אותם נתונים משתנים. אנו ממליצים להרים את ה-state המשותף עד לאב הקדמון הקרוב ביותר. בואו נראה איך זה עובד.
 
-In this section, we will create a temperature calculator that calculates whether the water would boil at a given temperature.
+בחלק זה, ניצור מחשבון טמפרטורה המחשב אם המים ירתחו בטמפרטורה נתונה.
 
-We will start with a component called `BoilingVerdict`. It accepts the `celsius` temperature as a prop, and prints whether it is enough to boil the water:
+נתחיל עם קומפוננטה שנקראת `BoilingVerdict`. היא מקבלת את הטמפרטורה ב-`celsius` בתור props, ומדפיסה אם הטמפרטורה מספיקה כדי להרתיח את המים:
 
 ```js{3,5}
 function BoilingVerdict(props) {
   if (props.celsius >= 100) {
-    return <p>The water would boil.</p>;
+    return <p>המים ירתחו.</p>;
   }
-  return <p>The water would not boil.</p>;
+  return <p>המים לא ירתחו.</p>;
 }
 ```
 
-Next, we will create a component called `Calculator`. It renders an `<input>` that lets you enter the temperature, and keeps its value in `this.state.temperature`.
+לאחר מכן, ניצור קומפוננטה שנקראת `Calculator`. היא מרנדרת `<input>` המאפשר לכם להזין את הטמפרטורה, ושומר על הערך שלה ב-`this.state.temperature`.
 
-Additionally, it renders the `BoilingVerdict` for the current input value.
+בנוסף, היא מרנדרת את `BoilingVerdict` עבור ערך הקלט הנוכחי.
 
 ```js{5,9,13,17-21}
 class Calculator extends React.Component {
@@ -44,7 +44,7 @@ class Calculator extends React.Component {
     const temperature = this.state.temperature;
     return (
       <fieldset>
-        <legend>Enter temperature in Celsius:</legend>
+        <legend>הכנס טמפרטורה בצלזיוס:</legend>
         <input
           value={temperature}
           onChange={this.handleChange} />
@@ -56,18 +56,18 @@ class Calculator extends React.Component {
 }
 ```
 
-[**Try it on CodePen**](https://codepen.io/gaearon/pen/ZXeOBm?editors=0010)
+[**נסו זאת ב-CodePen**](https://codepen.io/gaearon/pen/ZXeOBm?editors=0010)
 
-## Adding a Second Input {#adding-a-second-input}
+## הוספת קלט שני {#adding-a-second-input}
 
-Our new requirement is that, in addition to a Celsius input, we provide a Fahrenheit input, and they are kept in sync.
+הדרישה החדשה שלנו היא, בנוסף לקלט בצלזיוס, אנו מספקים קלט בפרנהייט, והם נשארים מסונכרנים.
 
-We can start by extracting a `TemperatureInput` component from `Calculator`. We will add a new `scale` prop to it that can either be `"c"` or `"f"`:
+אנחנו יכולים להתחיל על ידי חילוץ קומפוננטת `TemperatureInput` מתוך `Calculator`. אנו נוסיף אליה prop חדש `scale` שיכול להיות `"c"` או `"f"`:
 
 ```js{1-4,19,22}
 const scaleNames = {
-  c: 'Celsius',
-  f: 'Fahrenheit'
+  c: 'צלזיוס',
+  f: 'פרנהייט'
 };
 
 class TemperatureInput extends React.Component {
@@ -86,7 +86,7 @@ class TemperatureInput extends React.Component {
     const scale = this.props.scale;
     return (
       <fieldset>
-        <legend>Enter temperature in {scaleNames[scale]}:</legend>
+        <legend>הכנס טמפרטורה ב{scaleNames[scale]}:</legend>
         <input value={temperature}
                onChange={this.handleChange} />
       </fieldset>
@@ -95,7 +95,7 @@ class TemperatureInput extends React.Component {
 }
 ```
 
-We can now change the `Calculator` to render two separate temperature inputs:
+כעת אנו יכולים לשנות את `Calculator` כדי שירנדר שתי קלטי טמפרטורה נפרדים:
 
 ```js{5,6}
 class Calculator extends React.Component {
@@ -110,15 +110,15 @@ class Calculator extends React.Component {
 }
 ```
 
-[**Try it on CodePen**](https://codepen.io/gaearon/pen/jGBryx?editors=0010)
+[**נסו זאת ב-CodePen**](https://codepen.io/gaearon/pen/jGBryx?editors=0010)
 
-We have two inputs now, but when you enter the temperature in one of them, the other doesn't update. This contradicts our requirement: we want to keep them in sync.
+יש לנו שני קלטים עכשיו, אבל כאשר אתם מכניסים את הטמפרטורה באחד מהם, השני אינו מתעדכן. זה סותר את הדרישה שלנו: אנחנו רוצים לשמור אותם מסונכרנים.
 
-We also can't display the `BoilingVerdict` from `Calculator`. The `Calculator` doesn't know the current temperature because it is hidden inside the `TemperatureInput`.
+אנחנו גם לא יכולים להציג את `BoilingVerdict` מ-`Calculator`. ה-`Calculator` אינו יודע את הטמפרטורה הנוכחית משום שהיא מוסתרת בתוך ה-`TemperatureInput`.
 
-## Writing Conversion Functions {#writing-conversion-functions}
+## כתיבת פונקציית המרה {#writing-conversion-functions}
 
-First, we will write two functions to convert from Celsius to Fahrenheit and back:
+ראשית, נכתוב שתי פונקציות כדי להמיר מצלזיוס לפרנהייט ובחזרה:
 
 ```js
 function toCelsius(fahrenheit) {
@@ -130,9 +130,9 @@ function toFahrenheit(celsius) {
 }
 ```
 
-These two functions convert numbers. We will write another function that takes a string `temperature` and a converter function as arguments and returns a string. We will use it to calculate the value of one input based on the other input.
+שתי הפונקציות ממירות מספרים. נכתוב פונקציה אחרת שלוקחת מחרוזת `temperature` ופונקציית המרה כארגומנטים ומחזירה מחרוזת. נשתמש בה כדי לחשב את הערך של קלט אחד על סמך קלט אחר.
 
-It returns an empty string on an invalid `temperature`, and it keeps the output rounded to the third decimal place:
+היא מחזירה מחרוזת ריקה עבור טמפרטורה (`temperature`) לא חוקית, והיא שומרת את הפלט מעוגל לספרה העשרונית השלישית לאחר הנקודה:
 
 ```js
 function tryConvert(temperature, convert) {
@@ -146,11 +146,11 @@ function tryConvert(temperature, convert) {
 }
 ```
 
-For example, `tryConvert('abc', toCelsius)` returns an empty string, and `tryConvert('10.22', toFahrenheit)` returns `'50.396'`.
+לדוגמה, `tryConvert('abc', toCelsius)` מחזיר מחרוזת ריקה, ו-`tryConvert('10.22', toFahrenheit)` מחזיר `'50.396'`.
 
-## Lifting State Up {#lifting-state-up}
+## הרמת ה-State למעלה {#lifting-state-up}
 
-Currently, both `TemperatureInput` components independently keep their values in the local state:
+כרגע, שני קומפוננטות ה-`TemperatureInput` מחזיקות את הערך שלהן באופן עצמאי ב-state מקומי:
 
 ```js{5,9,13}
 class TemperatureInput extends React.Component {
@@ -169,43 +169,43 @@ class TemperatureInput extends React.Component {
     // ...  
 ```
 
-However, we want these two inputs to be in sync with each other. When we update the Celsius input, the Fahrenheit input should reflect the converted temperature, and vice versa.
+למרות זאת, אנחנו רוצים ששני הקלטים האלו יהיו מסונכרנים אחד עם השני. כאשר אנו מעדכנים את קלט צלזיוס, קלט פרנהייט צריך לשקף את הטמפרטורה המומרת, ואותו דבר בכיוון השני.
 
-In React, sharing state is accomplished by moving it up to the closest common ancestor of the components that need it. This is called "lifting state up". We will remove the local state from the `TemperatureInput` and move it into the `Calculator` instead.
+ב-React, שיתוף ה-state נעשה על ידי העברתו אל האב הקדמון המשותף הקרוב ביותר של הקומפוננטות הזקוקות לו. זה נקרא "הרמת ה-state למעלה". אנו נסיר את ה-state המקומי מ-`TemperatureInput` ולנעביר אותו לתוך `Calculator` במקום.
 
-If the `Calculator` owns the shared state, it becomes the "source of truth" for the current temperature in both inputs. It can instruct them both to have values that are consistent with each other. Since the props of both `TemperatureInput` components are coming from the same parent `Calculator` component, the two inputs will always be in sync.
+אם `Calculator` הוא הבעלים של ה-state המשותף, הוא הופך להיות "מקור האמת" ("source of truth") לטמפרטורה הנוכחית בשני הקלטים. זה יכול להנחות את שניהם להשתמש בערכים כך שיהיו עקביים אחד עם השני. מכיוון שה-props של שתי קומפוננטות `TemperatureInput` מגיעים מאותה קומפוננטת אב `Calculator`, שני הקלטים יהיו תמיד מסונכרנים.
 
-Let's see how this works step by step.
+בואו נראה איך זה עובד צעד אחר צעד.
 
-First, we will replace `this.state.temperature` with `this.props.temperature` in the `TemperatureInput` component. For now, let's pretend `this.props.temperature` already exists, although we will need to pass it from the `Calculator` in the future:
+ראשית, אנו מחליפים את `this.state.temperature` עם `this.props.temperature` בקומפוננטת `TemperatureInput`. לעת עתה, בואו נמשיך להעמיד פנים ש`this.props.temperature` כבר קיים, למרות שנצטרך להעביר אותו מ-`Calculator` בעתיד:
 
 ```js{3}
   render() {
-    // Before: const temperature = this.state.temperature;
+    // קודם לכן: const temperature = this.state.temperature;
     const temperature = this.props.temperature;
     // ...
 ```
 
-We know that [props are read-only](/docs/components-and-props.html#props-are-read-only). When the `temperature` was in the local state, the `TemperatureInput` could just call `this.setState()` to change it. However, now that the `temperature` is coming from the parent as a prop, the `TemperatureInput` has no control over it.
+אנחנו יודעים ש-[props הם לקריאה בלבד](/docs/components-and-props.html#props-are-read-only). כאשר ה-`temperature` היה ב-state המקומי, ה-`TemperatureInput` יכל פשוט לקרוא ל-`this.setState()` כדי לשנות אותו. למרות זאת, עכשיו כאשר `temperature` מגיע מההורה בתור prop, ל-`TemperatureInput` אין שליטה עליו.
 
-In React, this is usually solved by making a component "controlled". Just like the DOM `<input>` accepts both a `value` and an `onChange` prop, so can the custom `TemperatureInput` accept both `temperature` and `onTemperatureChange` props from its parent `Calculator`.
+ב-React, זה בדרך כלל נעשה על ידי הפיכת קומפוננטה ל-"נשלטת". בדיוק כמו ב-DOM `<input>` מקבל גם `value` וגם prop של `onChange`, כך יכול גם ה-`TemperatureInput` המותאם אישית לקבל גם `temperature` וגם props של `onTemperatureChange` מההורה שלו `Calculator`.
 
-Now, when the `TemperatureInput` wants to update its temperature, it calls `this.props.onTemperatureChange`:
+עכשיו, שה-`TemperatureInput` רוצה לעדכן את הטמפרטורה שלו, הוא יקרא ל-`this.props.onTemperatureChange`:
 
 ```js{3}
   handleChange(e) {
-    // Before: this.setState({temperature: e.target.value});
+    // קודם לכן: this.setState({temperature: e.target.value});
     this.props.onTemperatureChange(e.target.value);
     // ...
 ```
 
->Note:
+>שימו לב:
 >
->There is no special meaning to either `temperature` or `onTemperatureChange` prop names in custom components. We could have called them anything else, like name them `value` and `onChange` which is a common convention.
+>אין משמעות מיוחדת לשמות ה-props `temperature` או `onTemperatureChange` בקומפוננטות מותאמות אישית. יכולנו לקרוא להם כל דבר אחר, כמו לקרוא להם `value` ו-`onChange` שהיא קונבנציה נפוצה.
 
-The `onTemperatureChange` prop will be provided together with the `temperature` prop by the parent `Calculator` component. It will handle the change by modifying its own local state, thus re-rendering both inputs with the new values. We will look at the new `Calculator` implementation very soon.
+ה-prop `onTemperatureChange` יועבר יחד עם ה-prop `temperature` על ידי קומפוננטת ההורה `Calculator`. היא תטפל בשינוי על ידי שינוי ה-state המקומי שלה, ובכך תרנדר מחדש רת שני הקלטים עם ערכים חדשים. אנו נסתכל על המימוש החדש של `Calculator` בקרוב מאוד.
 
-Before diving into the changes in the `Calculator`, let's recap our changes to the `TemperatureInput` component. We have removed the local state from it, and instead of reading `this.state.temperature`, we now read `this.props.temperature`. Instead of calling `this.setState()` when we want to make a change, we now call `this.props.onTemperatureChange()`, which will be provided by the `Calculator`:
+לפני שנצלול לתוך השינויים ב-`Calculator`, בואו נסכם את השינויים שלנו לקומפוננטת `TemperatureInput`. הסרנו ממנו את ה-state המקומי, ובמקום לקרוא את `this.state.temperature`, אנחנו קוראים עכשיו את `this.props.temperature`. במקום לקרוא ל-`this.setState()` כאשר אנחנו רוצים לעשות שינוי, עכשיו אנחנו קוראים ל-`this.props.onTemperatureChange()`, אשר יסופק על ידי `Calculator`:
 
 ```js{8,12}
 class TemperatureInput extends React.Component {
@@ -223,7 +223,7 @@ class TemperatureInput extends React.Component {
     const scale = this.props.scale;
     return (
       <fieldset>
-        <legend>Enter temperature in {scaleNames[scale]}:</legend>
+        <legend>הכנס טמפרטורה ב{scaleNames[scale]}:</legend>
         <input value={temperature}
                onChange={this.handleChange} />
       </fieldset>
@@ -232,11 +232,11 @@ class TemperatureInput extends React.Component {
 }
 ```
 
-Now let's turn to the `Calculator` component.
+עכשיו בואו נפנה לקומפוננטת `Calculator`.
 
-We will store the current input's `temperature` and `scale` in its local state. This is the state we "lifted up" from the inputs, and it will serve as the "source of truth" for both of them. It is the minimal representation of all the data we need to know in order to render both inputs.
+אנו נשמור את הקלטים הנוכחיים `temperature` ו-`scale` ב-state המקומי שלה. זהו ה-state ש-"הרמנו" מהקלטים, והוא ישמש "מקור האמת" עבור שניהם. זהו ייצוג מינימלי של כל הנתונים שאנחנו צריכים לדעת על מנת לרנדר את שני הקלטים.
 
-For example, if we enter 37 into the Celsius input, the state of the `Calculator` component will be:
+לדוגמה, אם נכניס 37 לתוך הקלט של צלזיוס, ה-state של קומפוננטת `Calculator` יהיה:
 
 ```js
 {
@@ -245,7 +245,7 @@ For example, if we enter 37 into the Celsius input, the state of the `Calculator
 }
 ```
 
-If we later edit the Fahrenheit field to be 212, the state of the `Calculator` will be:
+אם מאוחר יותר נערוך את השדה פרנהייט כך שיהיה 212, ה-state של `Calculator` יהיה:
 
 ```js
 {
@@ -254,9 +254,9 @@ If we later edit the Fahrenheit field to be 212, the state of the `Calculator` w
 }
 ```
 
-We could have stored the value of both inputs but it turns out to be unnecessary. It is enough to store the value of the most recently changed input, and the scale that it represents. We can then infer the value of the other input based on the current `temperature` and `scale` alone.
+היינו יכולים לאחסן את הערך של שני הקלטים אבל מסתבר שזה יהיה מיותר. זה מספיק לאחסן את הערך של הקלט האחרון שהשתנה, ואת המדד שהוא מייצג. לאחר מכן אנו יכולים להסיק את הערך של הקלט האחר בהתבסס על ערכי `temperature` ו-`scale` הנוכחיים בלבד.
 
-The inputs stay in sync because their values are computed from the same state:
+הקלטים נשארים מסונכרנים מכיוון שהערכים שלהם מחושבים מאותו state:
 
 ```js{6,10,14,18-21,27-28,31-32,34}
 class Calculator extends React.Component {
@@ -299,32 +299,32 @@ class Calculator extends React.Component {
 }
 ```
 
-[**Try it on CodePen**](https://codepen.io/gaearon/pen/WZpxpz?editors=0010)
+[**נסו זאת ב-CodePen**](https://codepen.io/gaearon/pen/WZpxpz?editors=0010)
 
-Now, no matter which input you edit, `this.state.temperature` and `this.state.scale` in the `Calculator` get updated. One of the inputs gets the value as is, so any user input is preserved, and the other input value is always recalculated based on it.
+עכשיו, לא משנה איזה קלט אתם עורכים, `this.state.temperature` ו-`this.state.scale` ב-`Calculator` מתעדכנים. אחד הקלטים מקבל את הערך כפי שהוא, ולכן כל קלט משתמש נשמר, וערך הקלט האחר תמיד מחושב מחדש על בסיס הערך.
 
-Let's recap what happens when you edit an input:
+בואו נסכם את מה שקורה בעת עריכת קלט:
 
-* React calls the function specified as `onChange` on the DOM `<input>`. In our case, this is the `handleChange` method in the `TemperatureInput` component.
-* The `handleChange` method in the `TemperatureInput` component calls `this.props.onTemperatureChange()` with the new desired value. Its props, including `onTemperatureChange`, were provided by its parent component, the `Calculator`.
-* When it previously rendered, the `Calculator` has specified that `onTemperatureChange` of the Celsius `TemperatureInput` is the `Calculator`'s `handleCelsiusChange` method, and `onTemperatureChange` of the Fahrenheit `TemperatureInput` is the `Calculator`'s `handleFahrenheitChange` method. So either of these two `Calculator` methods gets called depending on which input we edited.
-* Inside these methods, the `Calculator` component asks React to re-render itself by calling `this.setState()` with the new input value and the current scale of the input we just edited.
-* React calls the `Calculator` component's `render` method to learn what the UI should look like. The values of both inputs are recomputed based on the current temperature and the active scale. The temperature conversion is performed here.
-* React calls the `render` methods of the individual `TemperatureInput` components with their new props specified by the `Calculator`. It learns what their UI should look like.
-* React calls the `render` method of the `BoilingVerdict` component, passing the temperature in Celsius as its props.
-* React DOM updates the DOM with the boiling verdict and to match the desired input values. The input we just edited receives its current value, and the other input is updated to the temperature after conversion.
+* React קוראת לפונקציה שצוינה כ-`onChange` על ה-`<input>` ב-DOM. במקרה שלנו, זוהי המתודה `handleChange` בקומפוננטה `TemperatureInput`.
+* המתודה `handleChange` בקומפוננטה `TemperatureInput` קוראת ל-`this.props.onTemperatureChange()` עם הערך הרצוי החדש. ה-props שלה, כולל `onTemperatureChange`, סופקו על ידי רכיב האב שלה, `Calculator`.
+* כאשר הוא רונדר קודם לכן, `Calculator` ציין כי `onTemperatureChange` של `TemperatureInput` צלזיוס היא המתודה `handleCelsiusChange` של `Calculator`, ו-`onTemperatureChange` של `TemperatureInput` פרנהייט היא המתודה `handleFahrenheitChange` של `Calculator`. אז אחת משתי מתודות אלה של `Calculator` תקרא כתלות בקלט אשר ערכנו.
+* בתוך המתודות הללו, הקומפוננטה `Calculator` מבקשת מ-React לרנדר מחדש את עצמה על ידי קריאה ל-`this.setState()` עם ערך הקלט החדש והמדד הנוכחי של הקלט שערכנו זה עתה.
+* React קוראת למתודת `render` של קומפוננטת `Calculator`כדי ללמוד איך ממשק המשתמש צריך להיראות. הערכים של שני הקלטים מחושבים מחדש בהתאם לטמפרטורה הנוכחית ולמדד הפעיל. ההמרה של הטמפרטורה מבוצעת כאן.
+* React קוראת למתודות `render` של כל אחת מקומפוננטות `TemperatureInput` עם ה-props החדשים שלהן שמצויינים על ידי `Calculator`. היא לומדת איך ממשק המשתמש שלהם צריך להיראות.
+* React קוראת למתודת `render` של קומפוננטת `BoilingVerdict`, כשהיא מעבירה את הטמפרטורה בצלזיוס כ-props שלה.
+* React DOM מעדכן את ה-DOM עם הכרעת מצב הרתיחה ועם התאמת הערכים הרצויים בקלט. הקלט שערכנו זה עתה מקבל את הערך הנוכחי שלו, והקלט האחר מתעדכן לטמפרטורה לאחר ההמרה.
 
-Every update goes through the same steps so the inputs stay in sync.
+כל עדכון עובר את אותם השלבים כך שהקלטים יישארו מסונכרנים.
 
-## Lessons Learned {#lessons-learned}
+## לקחים שנלמדו {#lessons-learned}
 
-There should be a single "source of truth" for any data that changes in a React application. Usually, the state is first added to the component that needs it for rendering. Then, if other components also need it, you can lift it up to their closest common ancestor. Instead of trying to sync the state between different components, you should rely on the [top-down data flow](/docs/state-and-lifecycle.html#the-data-flows-down).
+צריך להיות "מקור אמת" יחיד עבור כל נתון המשתנה באפליקציית React. בדרך כלל, ה-state מתווסף לראשונה לקומפוננטה הזקוקה לו. לאחר מכן, אם קומפוננטות אחרות גם צריכות אותו, אתם יכולים להרים אותו אל האב הקדמון המשותף הקרוב ביותר. במקום לנסות לסנכרן את ה-state בין קומפוננטות שונות, עליכם להסתמך על [זרימת הנתונים מלמעלה למטה](/docs/state-and-lifecycle.html#the-data-flows-down).
 
-Lifting state involves writing more "boilerplate" code than two-way binding approaches, but as a benefit, it takes less work to find and isolate bugs. Since any state "lives" in some component and that component alone can change it, the surface area for bugs is greatly reduced. Additionally, you can implement any custom logic to reject or transform user input.
+הרמת ה-state כרוכה יותר בכתיבת קוד "boilerplate" מאשר בגישות binding דו-כיווני, אך הרווח הוא שנדרשת פחות עבודה כדי לאתר ולבודד באגים. מאחר שכל state "חי" בתוך איזשהי קומפוננטה וקומפוננטה זו בלבד יכולה לשנות אותו, שטח הפנים לבאגים מופחת באופן משמעותי. בנוסף, באפשרותכם לממש כל לוגיקה מותאמת אישית כדי לדחות או לשנות קלט משתמש.
 
-If something can be derived from either props or state, it probably shouldn't be in the state. For example, instead of storing both `celsiusValue` and `fahrenheitValue`, we store just the last edited `temperature` and its `scale`. The value of the other input can always be calculated from them in the `render()` method. This lets us clear or apply rounding to the other field without losing any precision in the user input.
+אם אנחנו יכולים לגזור משהו מה-props או מה-state, זה כנראה לא צריך להיות ב-state. לדוגמה, במקום לאחסן גם את `celsiusValue` וגם את `fahrenheitValue`, אנו מאחסנים רק את הטמפרטורה (`temperature`) האחרונה ואת המדד (`scale`) שלה. הערך של הקלט האחר יכול תמיד להיות מחושב מהם במתודה `render()`. זה מאפשר לנו לנקות או להחיל עיגול לשדה האחר מבלי לאבד כל דיוק בקלט המשתמש.
 
-When you see something wrong in the UI, you can use [React Developer Tools](https://github.com/facebook/react-devtools) to inspect the props and move up the tree until you find the component responsible for updating the state. This lets you trace the bugs to their source:
+כאשר אתם רואים משהו שגוי בממשק המשתמש, תוכלו להשתמש ב[כלי הפיתוח של React](https://github.com/facebook/react-devtools) כדי לבדוק את ה-props ולעבור למעלה בעץ עד שתמצאו את הקומפוננטה האחראית לעדכון ה-state. זה מאפשר לכם לעקוב אחר הבאגים עד למקור שלהם:
 
-<img src="../images/docs/react-devtools-state.gif" alt="Monitoring State in React DevTools" max-width="100%" height="100%">
+<img src="../images/docs/react-devtools-state.gif" alt="מעקב אחר State ב-React DevTools" max-width="100%" height="100%">
 

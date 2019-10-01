@@ -1,60 +1,62 @@
 ---
 id: context
-title: Context
+title: קונטקסט
 permalink: docs/context.html
 ---
 
-Context provides a way to pass data through the component tree without having to pass props down manually at every level.
+קונטקסט מספק דרך להעביר מידע דרך עץ הקומפוננטות בלי להשתמש ב-props באופן ידני לכל קומפוננטה.
 
-In a typical React application, data is passed top-down (parent to child) via props, but this can be cumbersome for certain types of props (e.g. locale preference, UI theme) that are required by many components within an application. Context provides a way to share values like these between components without having to explicitly pass a prop through every level of the tree.
+באפליקציית React טיפוסית, המידע מועבר למטה (מקומפוננטת אב לקומפוננטת ילד) דרך props, אבל עבור מידע שנדרש בהרבה קומפוננטות באפליקציה (כמו לדוגמא העדפות שפה או ערכת נושא של ממשק המשתמש) השימוש ב-props יכול להיות מסורבל. קונטקסט מספק דרך לשתף מידע כזה בין קומפוננטות בלי להעביר אותו באופן מפורש לכל קומפוננטה.
 
-- [When to Use Context](#when-to-use-context)
-- [Before You Use Context](#before-you-use-context)
-- [API](#api)
+- [מתי להשתמש בקונטקסט](#when-to-use-context)
+- [לפני השימוש בקונטקסט](#before-you-use-context)
+- [ממשק תכנות](#api)
   - [React.createContext](#reactcreatecontext)
   - [Context.Provider](#contextprovider)
   - [Class.contextType](#classcontexttype)
   - [Context.Consumer](#contextconsumer)
-- [Examples](#examples)
-  - [Dynamic Context](#dynamic-context)
-  - [Updating Context from a Nested Component](#updating-context-from-a-nested-component)
-  - [Consuming Multiple Contexts](#consuming-multiple-contexts)
-- [Caveats](#caveats)
-- [Legacy API](#legacy-api)
+- [דוגמאות](#examples)
+  - [קונטקסט דינאמי](#dynamic-context)
+  - [עדכון הקונטקסט מתוך קומפוננטה מקוננת](#updating-context-from-a-nested-component)
+  - [שימוש ביותר מקונטקסט אחד](#consuming-multiple-contexts)
+- [הסתיגויות](#caveats)
+- [ממשק תכנות מדור קודם](#legacy-api)
 
-## When to Use Context {#when-to-use-context}
+## מתי להשתמש בקונטקסט {#when-to-use-context}
 
-Context is designed to share data that can be considered "global" for a tree of React components, such as the current authenticated user, theme, or preferred language. For example, in the code below we manually thread through a "theme" prop in order to style the Button component:
+הקונטקסט נועה לשתף מידע שנחשב ״גלובאלי״ לכל הקומפוננטות בעץ, כמו מידע על המשתמש המאומת, ערכת הנושא או השפה המועדפת. בקוד הנ״ל אנחנו מעבירים את ה-prop של ״ערכת הנושא״ בשביל לעצב את קומפוננטת הכפתור:
 
 `embed:context/motivation-problem.js`
 
-Using context, we can avoid passing props through intermediate elements:
+בעזרת הקונטקסט, אפשר להמנע מלהעביר את ה-prop דרך רכיבי ביניים:
 
 `embed:context/motivation-solution.js`
 
-## Before You Use Context {#before-you-use-context}
+## לפני השימוש בקונטקסט {#before-you-use-context}
 
-Context is primarily used when some data needs to be accessible by *many* components at different nesting levels. Apply it sparingly because it makes component reuse more difficult.
+השימוש בקונטקסט נועד בעיקר למצב שבו חלק מהמידע צריך להיות נגיש ל*הרבה* קומפוננטות בעומקים שונים.
+עדיף להשתמש בקונטקסט בחסכנות כי הוא יכול להקשות על שימוש חוזר בקומפוננטות.
 
-**If you only want to avoid passing some props through many levels, [component composition](/docs/composition-vs-inheritance.html) is often a simpler solution than context.**
+**אם המטרה היחידה שלך בשימוש בקונטקסט היא להמנע מהעברת props להרבה קומפוננטות, [הכלת קומפוננטות](/docs/composition-vs-inheritance.html) היא בדרך כלל פתרון פשוט יותר.**
 
-For example, consider a `Page` component that passes a `user` and `avatarSize` prop several levels down so that deeply nested `Link` and `Avatar` components can read it:
+לדוגמא, קומפוננטת `Page` שמעבירה את ה-props `user` ו- `avatarSize` לכמה רמות עומק, כדי שקומפוננטות ילד כמו `Link` ו- `Avatar` יוכלו להשתמש בהם:
 
 ```js
 <Page user={user} avatarSize={avatarSize} />
-// ... which renders ...
+// ... שמרנדרת ...
 <PageLayout user={user} avatarSize={avatarSize} />
-// ... which renders ...
+// ... שמרנדרת ...
 <NavigationBar user={user} avatarSize={avatarSize} />
-// ... which renders ...
+// ... שמרנדרת ...
 <Link href={user.permalink}>
   <Avatar user={user} size={avatarSize} />
 </Link>
 ```
 
-It might feel redundant to pass down the `user` and `avatarSize` props through many levels if in the end only the `Avatar` component really needs it. It's also annoying that whenever the `Avatar` component needs more props from the top, you have to add them at all the intermediate levels too.
+יכול להיות שהעברת ה-props `user` ו- `avatarSize` דרך כל כך הרבה רמות עומק תרגיש מיותר, בעיקר כי בסוף רק קומפוננטת ה- `Avatar` באמת משתמשת בהם. זה גם מעצבן שכל פעם שקומפוננטת ה- `Avatar` צריכה עוד props, צריך להעביר אותם דרך כל רכיבי הביניים.
 
-One way to solve this issue **without context** is to [pass down the `Avatar` component itself](/docs/composition-vs-inheritance.html#containment) so that the intermediate components don't need to know about the `user` prop:
+דרך אחת לפתור את הבעיה **ללא שימוש בקונטקסט** היא [להעביר את קומפוננטת ה-`Avatar` עצמה](/docs/composition-vs-inheritance.html#containment) כדי שקומפוננטות הביניים לא יצטרכו לדעת על ה-props `user` או `avatarSize`:
+
 
 ```js
 function Page(props) {
@@ -67,21 +69,22 @@ function Page(props) {
   return <PageLayout userLink={userLink} />;
 }
 
-// Now, we have:
-<Page user={user} />
-// ... which renders ...
+// :עכשיו, יש לנו
+<Page user={user} avatarSize={avatarSize} />
+// ... שמרנדרת ...
 <PageLayout userLink={...} />
-// ... which renders ...
+// ... שמרנדרת ...
 <NavigationBar userLink={...} />
-// ... which renders ...
+// ... שמרנדרת ...
 {props.userLink}
 ```
 
-With this change, only the top-most Page component needs to know about the `Link` and `Avatar` components' use of `user` and `avatarSize`.
+עם השינוי הזה, רק הקומפוננטה העליונה `Page` צריכה לדעת על קומפוננטות ה- `Link` וה- `Avatar` ועל ה-props שהן דורשות.
 
-This *inversion of control* can make your code cleaner in many cases by reducing the amount of props you need to pass through your application and giving more control to the root components. However, this isn't the right choice in every case: moving more complexity higher in the tree makes those higher-level components more complicated and forces the lower-level components to be more flexible than you may want.
+תבנית העיצוב הזו נקראת *היפוך שליטה* והיא מאפשרת לכתוב קוד נקי יותר במקרים רבים, להפחית את מספר ה- props שצריך להעביר באפליקציה, ולהחזיר שליטה לקומפוננטה העליונה. עם זאת, היא לא תמיד הדרך הנכונה בכל מצב: העברת קוד מסובך למעלה בעץ הקומפוננטה יגרום לקומפוננטת השורש להיות יותר מסובכת ויכריח את קומפוננטות הילד להיות יותר מדי גמישות.
 
-You're not limited to a single child for a component. You may pass multiple children, or even have multiple separate "slots" for children, [as documented here](/docs/composition-vs-inheritance.html#containment):
+אין הגבלה של ילד יחיד לכל קומפוננטה. אפשר להעביר מספר ילדים, ואפילו מספר ״משבצות״ ("slots") לילדים, [כמתועד כאן](/docs/composition-vs-inheritance.html#containment):
+
 
 ```js
 function Page(props) {
@@ -103,11 +106,11 @@ function Page(props) {
 }
 ```
 
-This pattern is sufficient for many cases when you need to decouple a child from its immediate parents. You can take it even further with [render props](/docs/render-props.html) if the child needs to communicate with the parent before rendering.
+תבנית העיצוב הזאת מספיקה במקרים רבים כשרוצים להפריד קומפוננטת ילד מקומפוננטת האב שלה. אפשר להרחיב את הפתרון עוד יותר עם [render props](/docs/render-props.html) במקרים שקומפוננטת הילד צריכה לתקשר עם קומפוננטת האב לפני הרינדור.
 
-However, sometimes the same data needs to be accessible by many components in the tree, and at different nesting levels. Context lets you "broadcast" such data, and changes to it, to all components below. Common examples where using context might be simpler than the alternatives include managing the current locale, theme, or a data cache. 
+למרות זאת, לפעמים אותו המידע צריך להיות נגיש ע״י מספר קומפוננטות בערץ, ובעומקים שונים. במקרים כאלה, הקונטקסט מאפשר ״לשדר״ את המידע, ושינויים במידע, לכל הקומפוננטות בעץ. דוגמאות שכיחות שבן שימוש בקונטקסט פשוט יותר מהאלטרנטיבות הן כמתואר קודם - ערכות נושא, העדפות שפה או זכרון מטמון.
 
-## API {#api}
+## ממשק תכנות {#api}
 
 ### `React.createContext` {#reactcreatecontext}
 
@@ -115,9 +118,9 @@ However, sometimes the same data needs to be accessible by many components in th
 const MyContext = React.createContext(defaultValue);
 ```
 
-Creates a Context object. When React renders a component that subscribes to this Context object it will read the current context value from the closest matching `Provider` above it in the tree.
+הקוד הזה יותר עצם קונטקסט. כש- React מרנדר את הקומפוננטות שמאזינות לקונטקסט, הוא קורא את ערך הקונטקסט מהספר הקרוב ביותר מעליו בעץ.
 
-The `defaultValue` argument is **only** used when a component does not have a matching Provider above it in the tree. This can be helpful for testing components in isolation without wrapping them. Note: passing `undefined` as a Provider value does not cause consuming components to use `defaultValue`.
+ערך ברירת המחדל נקרא **רק** כשאין ספק מעליו בעץ הקומפוננטות. זה יכול להיות שימושי בבדיקות אוטומטיות לקומפוננטה בבידוד - בלי צורך לעטוף אותן. הערה: העברת הערך `undefined` כערך לספק לא יגרום להחזרת ערך ברירת המחדל.
 
 ### `Context.Provider` {#contextprovider}
 
@@ -125,17 +128,16 @@ The `defaultValue` argument is **only** used when a component does not have a ma
 <MyContext.Provider value={/* some value */}>
 ```
 
-Every Context object comes with a Provider React component that allows consuming components to subscribe to context changes.
+כל עצם קונטקסט מגיע עם קומפוננטת ספק (Provider) שנותנת לקומפוננטות שצורכות אותו להקשיב לשינויים בקונטקסט.
+הספק מקבל prop `value` שיועבר לקומפוננטות ילד שצורכות את הספק בכל רמות העומק של העץ. ספק אחד יכול להתחבר לצרכנים רבים. אפשר להגדיר ספקים ברמות שונות של אותו העץ כדי לעקוף את הערכים המוגדרים בהם בעומקים שונים של עץ הקומפוננטות.
 
-Accepts a `value` prop to be passed to consuming components that are descendants of this Provider. One Provider can be connected to many consumers. Providers can be nested to override values deeper within the tree.
+כל צרכן שהוא צאצא של הספק ירנדר את עצמו מחדש כשה- prop `value` של הספק משתנה. התפשטות מהספק לצאצאים לא נתונה לחסות המתודה `shouldComponentUpdate`, ולכן הצרכנים מתעדכנים אפילו כשקומפוננטת אב לא מקשיבה לעדכון.
 
-All consumers that are descendants of a Provider will re-render whenever the Provider's `value` prop changes. The propagation from Provider to its descendant consumers is not subject to the `shouldComponentUpdate` method, so the consumer is updated even when an ancestor component bails out of the update.
+שינויים נקבעים ע״י השוואת הערכים החדשים מול הישנים בעזרת אותו האלגוריתם כמו [`Object.is`](//developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is#Description).
 
-Changes are determined by comparing the new and old values using the same algorithm as [`Object.is`](//developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is#Description). 
-
-> Note
+> הערה
 > 
-> The way changes are determined can cause some issues when passing objects as `value`: see [Caveats](#caveats).
+> הדרך שבה שינויים נקבעים יכולה ליצור בעיות כשמעבירים עצמים כערכים: ראה [הסתיגויות](#caveats).
 
 ### `Class.contextType` {#classcontexttype}
 
@@ -143,7 +145,7 @@ Changes are determined by comparing the new and old values using the same algori
 class MyClass extends React.Component {
   componentDidMount() {
     let value = this.context;
-    /* perform a side-effect at mount using the value of MyContext */
+    /* MyContext-בשימוש בערך ה mount-יגרום לתופעת לואי בזמן ה */
   }
   componentDidUpdate() {
     let value = this.context;
@@ -155,27 +157,27 @@ class MyClass extends React.Component {
   }
   render() {
     let value = this.context;
-    /* render something based on the value of MyContext */
+    /*MyContext-ירנדר משהו שמבוסס על ערך ה */
   }
 }
 MyClass.contextType = MyContext;
 ```
 
-The `contextType` property on a class can be assigned a Context object created by [`React.createContext()`](#reactcreatecontext). This lets you consume the nearest current value of that Context type using `this.context`. You can reference this in any of the lifecycle methods including the render function.
+מאפיין ה-`contextType` במחלקה מוקצה בעצם קונטקסט שנוצר על ידי המתודה [`React.createContext()`](#reactcreatecontext).זה נותן לנו לצרוך את ערך הקונטקסט הנוכחי הקרוב ביותר בעזרת `this.context`. אפשר להשתמש בהפניה זו בכל אחת ממתודות מחזור החיים כולל מתודת הרינדור.
 
-> Note:
+> הערה:
 >
-> You can only subscribe to a single context using this API. If you need to read more than one see [Consuming Multiple Contexts](#consuming-multiple-contexts).
+> אפשר לצרוך רק קונטקסט אחד בעזרת ממשק זה.
+> על מנת לצרוך יותר מאחד, ראו [שימוש ביותר מקונטקסט אחד](#consuming-multiple-contexts).
 >
-> If you are using the experimental [public class fields syntax](https://babeljs.io/docs/plugins/transform-class-properties/), you can use a **static** class field to initialize your `contextType`.
-
+> אם אתם משתמשים בסינטקסט הנסיוני של [מאפייני מחלקה ציבורית](https://babeljs.io/docs/plugins/transform-class-properties/), תוכלו להשתמש במאפיין מחלקה **סטטי** על מנת לאתחל את ה- `contextType`.
 
 ```js
 class MyClass extends React.Component {
   static contextType = MyContext;
   render() {
     let value = this.context;
-    /* render something based on the value */
+    /* רינדור משהו בהתאם לערך */
   }
 }
 ```
@@ -184,23 +186,23 @@ class MyClass extends React.Component {
 
 ```js
 <MyContext.Consumer>
-  {value => /* render something based on the context value */}
+  {value => /* רינדור משהו בהתאם לערך */}
 </MyContext.Consumer>
 ```
 
-A React component that subscribes to context changes. This lets you subscribe to a context within a [function component](/docs/components-and-props.html#function-and-class-components).
+קומפוננטת React שמקשיבה לשינויים בקונטקסט. מאפשרת לצרוך קונטקסט מתוך [קומפוננטת פונקציה](/docs/components-and-props.html#function-and-class-components).
 
-Requires a [function as a child](/docs/render-props.html#using-props-other-than-render). The function receives the current context value and returns a React node. The `value` argument passed to the function will be equal to the `value` prop of the closest Provider for this context above in the tree. If there is no Provider for this context above, the `value` argument will be equal to the `defaultValue` that was passed to `createContext()`.
+דורשת [פונקציה בתור ילד](/docs/render-props.html#using-props-other-than-render). הפונקציה הזאת מקבלת את ערך הקונטקסט הנוכחי ומחזירה צומת React. ערך הארגומנט שמועבר לפונקציה יהיה זהה ל- `value` prop של ספק הקונטקסט הקרוב ביותר מעלינו בעץ. אם אין ספק לקונטקס, הערך יהיה זהה לערך ברירת המחדל שנקבע בזמן יצירת הקונטקסט (עם `createContext()`).
 
-> Note
+> הערה
 > 
-> For more information about the 'function as a child' pattern, see [render props](/docs/render-props.html).
+> למידע נוסף על ״פונקציות כילד״ בקרו בעמוד [render props](/docs/render-props.html).
 
-## Examples {#examples}
+## דוגמאות {#examples}
 
-### Dynamic Context {#dynamic-context}
+### קונטקסט דינאמי {#dynamic-context}
 
-A more complex example with dynamic values for the theme:
+דוגמא מורכבת יותר עם ערך דינאמי של ערכת הנושא:
 
 **theme-context.js**
 `embed:context/theme-detailed-theme-context.js`
@@ -211,9 +213,9 @@ A more complex example with dynamic values for the theme:
 **app.js**
 `embed:context/theme-detailed-app.js`
 
-### Updating Context from a Nested Component {#updating-context-from-a-nested-component}
+### עדכון הקונטקסט מתוך קומפוננטה מקוננת {#updating-context-from-a-nested-component}
 
-It is often necessary to update the context from a component that is nested somewhere deeply in the component tree. In this case you can pass a function down through the context to allow consumers to update the context:
+לפעמים יש צורך לעדכן את הקונטקסט מתוך קומפוננטה שמוגדרת עמוק בתוך עץ הקומפוננטות. במקרה הזה, אפשר להעביר פונקציה דרך הקונטקסט כדי לתת לצרכניו לעדכן אותו:
 
 **theme-context.js**
 `embed:context/updating-nested-context-context.js`
@@ -224,28 +226,27 @@ It is often necessary to update the context from a component that is nested some
 **app.js**
 `embed:context/updating-nested-context-app.js`
 
-### Consuming Multiple Contexts {#consuming-multiple-contexts}
+### שימוש ביותר מקונטקסט אחד {#consuming-multiple-contexts}
 
-To keep context re-rendering fast, React needs to make each context consumer a separate node in the tree. 
+כדי לודא שרינדור הקונטקסט מחדש יהיה מהיר, React צריך להפוך את כל אחד מצרכני הקונטקסט לצומת נפרדת בעץ.
 
 `embed:context/multiple-contexts.js`
 
-If two or more context values are often used together, you might want to consider creating your own render prop component that provides both.
+אם שני ערכי קונטקסט (או יותר) בדרך כלל משומשים ביחד, יכול להיות שתרצו לשקול יצירת קומפוננטת רינדור prop שתספק אותם ביחד.
 
-## Caveats {#caveats}
+## הסתיגויות {#caveats}
 
-Because context uses reference identity to determine when to re-render, there are some gotchas that could trigger unintentional renders in consumers when a provider's parent re-renders. For example, the code below will re-render all consumers every time the Provider re-renders because a new object is always created for `value`:
+בגלל שקונטקסט משתמש בזיהוי הפניה כדי להחליט מתי לעורר רינדור מחדש, יש כל מיני מקרי קצה שיכולים לגרום לרינדור הצרכנים בטעות, כשקומפוננטת האב של הספק מרנדרת את עצמה מחדש. לדוגמא, הקוד הנ״ל ירדנר את כל הצרכנים בכל פעם שהספק מרנדר את עצמו מחדש, כיוון ש-`value` הוא עצם שנוצר מחדש כל פעם:
 
 `embed:context/reference-caveats-problem.js`
 
-
-To get around this, lift the value into the parent's state:
+כדי לעקוף את הבעיה הזאת, אפשר להעביר את הערך ל-state של האב:
 
 `embed:context/reference-caveats-solution.js`
 
-## Legacy API {#legacy-api}
+## ממשק תכנות מדור קודם {#legacy-api}
 
-> Note
+> הערה
 > 
-> React previously shipped with an experimental context API. The old API will be supported in all 16.x releases, but applications using it should migrate to the new version. The legacy API will be removed in a future major React version. Read the [legacy context docs here](/docs/legacy-context.html).
+> בעבר, React הוציאה ממשק תכנות נסיוני לקונטקסט. הממשק הישן ייתמך בכל גרסאות ה-16.x, אבל אפליקציות שמשתמשות בו צריכות לעבור לשימוש בגרסה החדשה. הממשק הישן יוסר בגרסה הראשית הבאה של React. עוד מידע על [ממשק הקונטקסט הישן](/docs/legacy-context.html).
  

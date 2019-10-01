@@ -1,6 +1,6 @@
 ---
 id: rendering-elements
-title: Rendering Elements
+title: ציור אלמנטים
 permalink: docs/rendering-elements.html
 redirect_from:
   - "docs/displaying-data.html"
@@ -8,68 +8,68 @@ prev: introducing-jsx.html
 next: components-and-props.html
 ---
 
-Elements are the smallest building blocks of React apps.
+אלמנטים הם אבן הבניין הקטנה ביותר של אפליקציות ריאקט
 
-An element describes what you want to see on the screen:
+אלמנט מתאר מה רוצים להציג במסך:
 
 ```js
 const element = <h1>Hello, world</h1>;
 ```
 
 Unlike browser DOM elements, React elements are plain objects, and are cheap to create. React DOM takes care of updating the DOM to match the React elements.
+שלא כמו אלמנט DOM, אלמנטי ריאקט הם אובייקטים פשוטים וזולים ליצירה. React DOM מטפל בעדכון הDOM על מנת להתאים אותם לאלמנטים של ריאקט.
 
->**Note:**
+>**:הערה**
 >
->One might confuse elements with a more widely known concept of "components". We will introduce components in the [next section](/docs/components-and-props.html). Elements are what components are "made of", and we encourage you to read this section before jumping ahead.
+>ניתן להתבלבל בין אלמנטים לבין הקונספט הידוע של קומפוננטות. נציג את רעיון הקומפוננטות [בפרק הבא](/docs/components-and-props.html). אלמנטים הם המרכיבים שמהם עשויות קומפוננטות ואנחנו מעודדים לקרוא פרק זה לפני שממשיכים הלאה.
 
-## Rendering an Element into the DOM {#rendering-an-element-into-the-dom}
-
-Let's say there is a `<div>` somewhere in your HTML file:
+## ציור אלמנטים לתוך הDOM {#rendering-an-element-into-the-dom}
+נניח שיש `<div>` במקום כלשהו בקובץ HTML:
 
 ```html
 <div id="root"></div>
 ```
 
-We call this a "root" DOM node because everything inside it will be managed by React DOM.
+אנחנו מכנים זאת כקודקוד DOM שורשי מכיוון שכל מה שהוא מכיל ינוהל על ידי React DOM.
 
-Applications built with just React usually have a single root DOM node. If you are integrating React into an existing app, you may have as many isolated root DOM nodes as you like.
+בדרך כלל, אפליקציות הנבנות עם ריאקט הן בעלות קודקוד DOM שורשי אחד. במידה ואתה משלב את ריאקט לתוך אפליקציה קיימת, אתה יכול להשתמש בכמות בלתי מוגבלת של קודקודי DOM שורשיים.
 
-To render a React element into a root DOM node, pass both to `ReactDOM.render()`:
+על מנת לצייר אלמנט ריאקטי לתוך קודקוד DOM שורשי, העבר אותם אל הפונקציה `ReactDOM.render()`:
 
 `embed:rendering-elements/render-an-element.js`
 
 [](codepen://rendering-elements/render-an-element)
 
-It displays "Hello, world" on the page.
+דוגמא זו מציגה "Hello, world" בעמוד.
 
-## Updating the Rendered Element {#updating-the-rendered-element}
+## עדכון אלמנטים שצוירו {#updating-the-rendered-element}
 
-React elements are [immutable](https://en.wikipedia.org/wiki/Immutable_object). Once you create an element, you can't change its children or attributes. An element is like a single frame in a movie: it represents the UI at a certain point in time.
+אלמנטי ריאקט [אינם משתנים](https://en.wikipedia.org/wiki/Immutable_object). במידה ויצרת אלמנט, לא ניתן לשנות את ילדיו או מאפייניו. אלמנט הוא כמו פרים יחיד בסרט: הוא מייצג את ממשק המשתמש בנקודה מסויימת בזמן.
 
-With our knowledge so far, the only way to update the UI is to create a new element, and pass it to `ReactDOM.render()`.
+עם הידע שלמדנו על כה, הדרך היחידה לעדכן את ממשק המשתמש הוא על ידי יצירה של אלמנט חדש והעברה שלו ל`ReactDOM.render()`.
 
-Consider this ticking clock example:
+בהתחשב בדוגמת השעון המתקתק:
 
 `embed:rendering-elements/update-rendered-element.js`
 
 [](codepen://rendering-elements/update-rendered-element)
 
-It calls `ReactDOM.render()` every second from a [`setInterval()`](https://developer.mozilla.org/en-US/docs/Web/API/WindowTimers/setInterval) callback.
+דוגמא זו קוראת ל`ReactDOM.render()` בכל שניה על ידי הפונקציה הנקראת על ידי [`setInterval()`](https://developer.mozilla.org/en-US/docs/Web/API/WindowTimers/setInterval).
 
->**Note:**
+>**הערה:**
 >
->In practice, most React apps only call `ReactDOM.render()` once. In the next sections we will learn how such code gets encapsulated into [stateful components](/docs/state-and-lifecycle.html).
+>בפועל, רוב אפליקציות ריאקט קוראות ל`ReactDOM.render()` פעם אחת בלבד. בפרקים הבאים נלמד איך קוד כזה מוכמס ל[קומפוננטות בעלות state](/docs/state-and-lifecycle.html).
 >
->We recommend that you don't skip topics because they build on each other.
+>אנו ממליצים לא לדלג על נושאים מכיוון שהם נבנו אחד על השני.
 
-## React Only Updates What's Necessary {#react-only-updates-whats-necessary}
+## ריאקט מעדכן רק מה שנחוץ לעדכן {#react-only-updates-whats-necessary}
 
-React DOM compares the element and its children to the previous one, and only applies the DOM updates necessary to bring the DOM to the desired state.
+React DOM משווה את האלמנט וילדיו למצב הקודם שלו ומחיל אך ורק שינויים נדרשים בDOM על מנת להביא אותו למצב הרצוי.
 
-You can verify by inspecting the [last example](codepen://rendering-elements/update-rendered-element) with the browser tools:
+אתה יכול לאמת זאת על ידי התבוננות [בדוגמא](codepen://rendering-elements/update-rendered-element) באמצעות כלי הדפדפן:
 
-![DOM inspector showing granular updates](../images/docs/granular-dom-updates.gif)
+![DOM inspector המציג את העדכונים הפרטניים](../images/docs/granular-dom-updates.gif)
 
-Even though we create an element describing the whole UI tree on every tick, only the text node whose contents has changed gets updated by React DOM.
+אפילו כשאנחנו יוצרים אלמנט המתאר את עץ ממשק המשתמש המלא בכל תקתוק של השעון, רק קודקוד הטקסט שתוכנו השתנה יעודכן על ידי React DOM.
 
-In our experience, thinking about how the UI should look at any given moment rather than how to change it over time eliminates a whole class of bugs.
+מהניסיון שלנו, חשיבה על איך ממשק המשתמש צריך להראות בכל רגע נתון לעומת איך לשנות אותו לאורך זמן מבטל כמות נכבדת של באגים.

@@ -1,6 +1,6 @@
 ---
 id: composition-vs-inheritance
-title: Composition vs Inheritance
+title: הכלה לעומת הורשה
 permalink: docs/composition-vs-inheritance.html
 redirect_from:
   - "docs/multiple-components.html"
@@ -8,15 +8,15 @@ prev: lifting-state-up.html
 next: thinking-in-react.html
 ---
 
-React has a powerful composition model, and we recommend using composition instead of inheritance to reuse code between components.
+React היא בעלת מודל הכלה רב עוצמה ואנו ממליצים להשתמש בהכלה במקום הורשה על מנת לבצע שימוש חוזר בקוד בין קומפוננטות.
 
-In this section, we will consider a few problems where developers new to React often reach for inheritance, and show how we can solve them with composition.
+בפרק זה נעסוק במספר בעיות שקורות כאשר מתכנתי React חדשים בוחרים לעיתים קרובות להשתמש בהורשה ונציג איך ניתן לפתור בעיות אלו באמצעות הכלה.
 
 ## Containment {#containment}
 
-Some components don't know their children ahead of time. This is especially common for components like `Sidebar` or `Dialog` that represent generic "boxes".
+ישנן קומפוננטות אשר אינן מכירות את ילדיהן מראש. מצב זה נפוץ בעיקר בקומפוננטות כמו `Sidebar` או `Dialog` אשר מציגות קופסאות גנריות.
 
-We recommend that such components use the special `children` prop to pass children elements directly into their output:
+אנו ממליצים שקומפוננטות כאלו יעשו שימוש בprop `children` על מנת להעביר אלמנטי ילדים ישירות כפלט שלהן:
 
 ```js{4}
 function FancyBorder(props) {
@@ -28,7 +28,7 @@ function FancyBorder(props) {
 }
 ```
 
-This lets other components pass arbitrary children to them by nesting the JSX:
+דבר זה מאפשר לקומפוננטות אחרות להעביר אלמנטי ילדים שרירותיים על ידי קינון ה-JSX:
 
 ```js{4-9}
 function WelcomeDialog() {
@@ -45,11 +45,11 @@ function WelcomeDialog() {
 }
 ```
 
-**[Try it on CodePen](https://codepen.io/gaearon/pen/ozqNOV?editors=0010)**
+**[נסה זאת ב-CodePen](https://codepen.io/gaearon/pen/ozqNOV?editors=0010)**
 
-Anything inside the `<FancyBorder>` JSX tag gets passed into the `FancyBorder` component as a `children` prop. Since `FancyBorder` renders `{props.children}` inside a `<div>`, the passed elements appear in the final output.
+כל דבר בתוך תגית ה-JSX של `<FancyBorder>` מועבר לקומפוננטה `FancyBorder`-כprop בשם `children`.-מכיוון ש`FancyBorder` מרנדר `{props.children}` בתוך אלמנט ה-`<div>`, האלמנטים המועברים מופיעים בפלט הסופי.
 
-While this is less common, sometimes you might need multiple "holes" in a component. In such cases you may come up with your own convention instead of using `children`:
+לעיתים באופן פחות נפוץ נדרשים מספר ״חורים״ בקומפוננטה. במקרים הללו אתה יכול לבחור בקונבנציה שלך במקום להשתמש ב-`children`:
 
 ```js{5,8,18,21}
 function SplitPane(props) {
@@ -78,15 +78,15 @@ function App() {
 }
 ```
 
-[**Try it on CodePen**](https://codepen.io/gaearon/pen/gwZOJp?editors=0010)
+[**נסה זאת ב-CodePen**](https://codepen.io/gaearon/pen/gwZOJp?editors=0010)
 
-React elements like `<Contacts />` and `<Chat />` are just objects, so you can pass them as props like any other data. This approach may remind you of "slots" in other libraries but there are no limitations on what you can pass as props in React.
+אלמנטי React כמו `<Contacts />` ו`<Chat />` הם פשוט אובייקטים, אז אתה יכול להעביר אותם כ-props כמו כל מידע אחר. גישה זאת יכולה להזכיר ״slots" בספריות אחרות, אבל אין הגבלות לגבי מה שניתן להעביר כ-props -בReact.
 
 ## Specialization {#specialization}
 
-Sometimes we think about components as being "special cases" of other components. For example, we might say that a `WelcomeDialog` is a special case of `Dialog`.
+לעיתים אנו חושבים על קומפוננטות כ״מקרים מיוחדים״ של קומפוננטות אחרות. לדוגמא, אנחנו יכולים להגיד ש-`WelcomeDialog` הוא מקרה מיוחד של `Dialog`.
 
-In React, this is also achieved by composition, where a more "specific" component renders a more "generic" one and configures it with props:
+-בReact, זה מושג גם על ידי הכלה, היכן שקומפוננטה ״ספציפית״ מרנדרת קומפוננטה ״גנרית״ יותר ומקנפגת אותה עם props:
 
 ```js{5,8,16-18}
 function Dialog(props) {
@@ -111,9 +111,9 @@ function WelcomeDialog() {
 }
 ```
 
-[**Try it on CodePen**](https://codepen.io/gaearon/pen/kkEaOZ?editors=0010)
+[**נסה זאת ב-CodePen**](https://codepen.io/gaearon/pen/kkEaOZ?editors=0010)
 
-Composition works equally well for components defined as classes:
+הכלה עובדת טוב בצורה שווה עבור קומפוננטות המוגדרות כמחלקות:
 
 ```js{10,27-31}
 function Dialog(props) {
@@ -161,12 +161,12 @@ class SignUpDialog extends React.Component {
 }
 ```
 
-[**Try it on CodePen**](https://codepen.io/gaearon/pen/gwZbYa?editors=0010)
+[**נסה זאת ב-CodePen**](https://codepen.io/gaearon/pen/gwZbYa?editors=0010)
 
-## So What About Inheritance? {#so-what-about-inheritance}
+## אז מה לגבי הורשה? {#so-what-about-inheritance}
 
-At Facebook, we use React in thousands of components, and we haven't found any use cases where we would recommend creating component inheritance hierarchies.
+בפייסבוק אנחנו משתמשים ב-React באלפי קומפוננטות, ולא מצאנו שימושים כלשהם בהם אנו ממליצים על יצירת היררכיית הורשת קומפוננטות.
 
-Props and composition give you all the flexibility you need to customize a component's look and behavior in an explicit and safe way. Remember that components may accept arbitrary props, including primitive values, React elements, or functions.
+Props והכלה נותנים את כל הגמישות שצריך על מנת להתאים נראות והתנהגות של קומפוננטה בצורה מפורשת ובטוחה יותר. זכור כי קומפוננטות יכולות לקבל props שרירותיים, כולל ערכים פרימיטיביים, אלמנטי React או פונקציות.
 
-If you want to reuse non-UI functionality between components, we suggest extracting it into a separate JavaScript module. The components may import it and use that function, object, or a class, without extending it.
+אם ברצונך לבצע שימוש חוזר בפונקציונליות, שאינה של ממשק משתמש, אנו מציעים להוציא אותה למודול JavaScript נפרד. הקומפוננטות יכולות לייבא זאת ולהשתמש בפונקציה, באובייקט או במחלקה מבלי להרחיב אותם.

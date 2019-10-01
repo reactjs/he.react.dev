@@ -15,11 +15,11 @@ redirect_from:
   - "tips/use-react-with-other-libraries.html"
 ---
 
-This page contains a detailed API reference for the React component class definition. It assumes you're familiar with fundamental React concepts, such as [Components and Props](/docs/components-and-props.html), as well as [State and Lifecycle](/docs/state-and-lifecycle.html). If you're not, read them first.
+הדף הזה מכיל הפניית API מפורטת עבור ההגדרה של קומפוננטת מחלקה ב-React. הוא מניח שאתם מכירים קונספטים בסיסיים ב-React, כדוגמת [קומפוננטות ו-Props](/docs/components-and-props.html), בנוסף גם [State ומעגל-חיים](/docs/state-and-lifecycle.html). אם אתם לא, קראו אותם תחילה.
 
-## Overview {#overview}
+## סקירה-כללית {#overview}
 
-React lets you define components as classes or functions. Components defined as classes currently provide more features which are described in detail on this page. To define a React component class, you need to extend `React.Component`:
+React מאפשרת להגדיר קומפוננטות כמחלקות או כפונקציות. קומפוננטות המוגדרות כמחלקות כרגע מספקות יותר אפשרויות אשר מתוארות בפירוט בדף זה. כדי להגדיר קומפוננטת מחלקה ב-React, נדרש להרחיב ל-`React.Component`:
 
 ```js
 class Welcome extends React.Component {
@@ -29,36 +29,36 @@ class Welcome extends React.Component {
 }
 ```
 
-The only method you *must* define in a `React.Component` subclass is called [`render()`](#render). All the other methods described on this page are optional.
+המתודה היחידה *שחייב* להגדיר בתת-מחלקה מסוג `React.Component` נקראת [`render()`](#render). כל שאר המתודות המתוארות בדף זה הן אופציונליות.
 
-**We strongly recommend against creating your own base component classes.** In React components, [code reuse is primarily achieved through composition rather than inheritance](/docs/composition-vs-inheritance.html).
+**אנחנו ממליצים בחום נגד יצירת קומפוננטות-בסיס משלכם.** בקומפוננטות React, [שימוש חוזר בקוד מושג בעיקר על-ידי קומפוזיציה מאשר על-ידי הורשה](/docs/composition-vs-inheritance.html).
 
->Note:
+>הערה:
 >
->React doesn't force you to use the ES6 class syntax. If you prefer to avoid it, you may use the `create-react-class` module or a similar custom abstraction instead. Take a look at [Using React without ES6](/docs/react-without-es6.html) to learn more.
+>React לא כופה על שימוש בתחביר מחלקות של גרסת ES6. אם אתם מעדיפים להימנע ממנו, אתם רשאיים להשתמש במודול `create-react-class` או הרחבה מותאמת דומה, במקום. העיפו מבט ב-[שימוש ב-React ללא גרסת ES6](/docs/react-without-es6.html) כדי ללמוד עוד.
 
-### The Component Lifecycle {#the-component-lifecycle}
+### קומפוננטת מעגל-החיים {#the-component-lifecycle}
 
-Each component has several "lifecycle methods" that you can override to run code at particular times in the process. **You can use [this lifecycle diagram](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/) as a cheat sheet.** In the list below, commonly used lifecycle methods are marked as **bold**. The rest of them exist for relatively rare use cases.
+לכל קומפוננטה קיימות מספר "מתודות של מעגל חיים" שניתן לדרוס כדי להריץ קוד בזמנים מסוימים בתהליך. **אתם יכולים להשתמש [בדיאגרמת מעגל-החיים הזו](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/) כשליף.** ברשימה מטה, מתודות מעגל-חיים שבשימוש נפוץ יותר, מסומנות **במודגש**. שאר המתודות קיימות עבור שימושים נדירים יותר.
 
-#### Mounting {#mounting}
+#### עיגון (Mounting) {#mounting}
 
-These methods are called in the following order when an instance of a component is being created and inserted into the DOM:
+קריאה למתודות הבאות מתבצעות בסדר הזה כאשר מופע של קומפוננטה נוצר ומוכנס לתוך ה-DOM:
 
 - [**`constructor()`**](#constructor)
 - [`static getDerivedStateFromProps()`](#static-getderivedstatefromprops)
 - [**`render()`**](#render)
 - [**`componentDidMount()`**](#componentdidmount)
 
->Note:
+>הערה:
 >
->These methods are considered legacy and you should [avoid them](/blog/2018/03/27/update-on-async-rendering.html) in new code:
->
->- [`UNSAFE_componentWillMount()`](#unsafe_componentwillmount)
+>המתודות האלו נחשבות לישנות וכדאי [להימנע מהן](/blog/2018/03/27/update-on-async-rendering.html) בקוד חדש:
+>- [`UNSAFE_componentWillUpdate()`](#unsafe_componentwillupdate)
+>- [`UNSAFE_componentWillReceiveProps()`](#unsafe_componentwillreceiveprops)
 
-#### Updating {#updating}
+#### עדכון {#updating}
 
-An update can be caused by changes to props or state. These methods are called in the following order when a component is being re-rendered:
+עדכון יכול להיגרם על ידי שינוי props או state. המתודות האלו נקראות בסדר להלן כאשר קומפוננטה מרונדרת מחדש:
 
 - [`static getDerivedStateFromProps()`](#static-getderivedstatefromprops)
 - [`shouldComponentUpdate()`](#shouldcomponentupdate)
@@ -66,50 +66,51 @@ An update can be caused by changes to props or state. These methods are called i
 - [`getSnapshotBeforeUpdate()`](#getsnapshotbeforeupdate)
 - [**`componentDidUpdate()`**](#componentdidupdate)
 
->Note:
+
+>הערה:
 >
->These methods are considered legacy and you should [avoid them](/blog/2018/03/27/update-on-async-rendering.html) in new code:
+>המתודות להלן נחשבות ישנות ועדיף [להמנע משימוש בהן](/blog/2018/03/27/update-on-async-rendering.html) בקוד חדש:
 >
 >- [`UNSAFE_componentWillUpdate()`](#unsafe_componentwillupdate)
 >- [`UNSAFE_componentWillReceiveProps()`](#unsafe_componentwillreceiveprops)
 
-#### Unmounting {#unmounting}
+#### הסרה (Unmounting) {#unmounting}
 
-This method is called when a component is being removed from the DOM:
+קריאה למתודה הזו מתבצעת כאשר קומפוננטה מוסרת מה-DOM:
 
 - [**`componentWillUnmount()`**](#componentwillunmount)
 
-#### Error Handling {#error-handling}
+#### ניהול שגיאות {#error-handling}
 
-These methods are called when there is an error during rendering, in a lifecycle method, or in the constructor of any child component.
+קריאה למתודות האלו מתבצעת כאשר קיימת שגיאה ברינדור, במתודת מעגל-חיים, או בבנאי של קומפוננטת ילד כלשהי.
 
 - [`static getDerivedStateFromError()`](#static-getderivedstatefromerror)
 - [`componentDidCatch()`](#componentdidcatch)
 
-### Other APIs {#other-apis}
+### API-ים אחרים {#other-apis}
 
-Each component also provides some other APIs:
+כל קומפוננטה מספקת בנוסף מספר API-ים אחרים.
 
   - [`setState()`](#setstate)
   - [`forceUpdate()`](#forceupdate)
 
-### Class Properties {#class-properties}
+### Properties של מחלקה {#class-properties}
 
   - [`defaultProps`](#defaultprops)
   - [`displayName`](#displayname)
 
-### Instance Properties {#instance-properties}
-
+### Properties של מופע {#instance-properties}
+  
   - [`props`](#props)
   - [`state`](#state)
 
 * * *
 
-## Reference {#reference}
+## עיון {#reference}
 
-### Commonly Used Lifecycle Methods {#commonly-used-lifecycle-methods}
+### מתודות מעגל-חיים שבשימוש נפוץ {#commonly-used-lifecycle-methods}
 
-The methods in this section cover the vast majority of use cases you'll encounter creating React components. **For a visual reference, check out [this lifecycle diagram](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/).**
+המתודות בחלק הזה מכסות את החלק הנרחב של שימושים שתתקלו בהם כאשר תיצרו קומפוננטות ב-React. **להפנייה ויזואלית, בידקו [את דיאגרת מעגל-החיים הזו](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/).**
 
 ### `render()` {#render}
 
@@ -117,23 +118,23 @@ The methods in this section cover the vast majority of use cases you'll encounte
 render()
 ```
 
-The `render()` method is the only required method in a class component.
+מתודת ה-`render()` היא המתודה הנדרשת היחידה בשימוש של קומפוננטת מחלקה.
 
-When called, it should examine `this.props` and `this.state` and return one of the following types:
+בקריאה אליה, המתודה תבחן את `this.props` ואת `this.state` ותחזיר את אחד הסוגים הבאים:
 
-- **React elements.** Typically created via [JSX](/docs/introducing-jsx.html). For example, `<div />` and `<MyComponent />` are React elements that instruct React to render a DOM node, or another user-defined component, respectively.
-- **Arrays and fragments.** Let you return multiple elements from render. See the documentation on [fragments](/docs/fragments.html) for more details.
-- **Portals**. Let you render children into a different DOM subtree. See the documentation on [portals](/docs/portals.html) for more details.
-- **String and numbers.** These are rendered as text nodes in the DOM.
-- **Booleans or `null`**. Render nothing. (Mostly exists to support `return test && <Child />` pattern, where `test` is boolean.)
+- **אלמנטים של React.** בדרך כלל נוצרים על ידי [JSX](/docs/introducing-jsx.html). לדוגמא, `<div />` ו- `<MyComponent />` הם אלמנטים של React שמנחים את React לרנדר צומת של DOM, או קומפוננטת משתמש אחרת, בהתאמה.
+- **מערכים ו-Fragments.** מאפשרים להחזיר אלמנטים מרובים מ-render. קראו את התיעוד ב-[fragments](/docs/fragments.html) מידע נוסף.
+- **Portals**. מאפשרים לרנדר ילדים לתוך תת-עץ DOM שונה. קראו את התיעוד ב-[portals](/docs/portals.html) למידע נוסף. 
+- **מחרוזות ומספרים.** מרונדרים כצמתי טקסט בתוך ה-DOM.
+- **משתנים בולאנים או `null`**. מרנדר כלום. (בעיקר קיים כדי לתמוך בתבנית `return test && <Child />`, כאשר `test` הוא משתנה בולאני.)
+  
+הפונקציה `render()` צריכה להיות טהורה, כלומר היא לא משנה את ה-state של הקומפוננטה, היא מחזירה את אותה התוצאה בכל פעם שהיא מתבצעת, והיא לא מדברת ישירות עם הדפדפן.
 
-The `render()` function should be pure, meaning that it does not modify component state, it returns the same result each time it's invoked, and it does not directly interact with the browser.
+כאשר יש צורך לדבר עם הדפדפן, יש להשתמש ב- `componentDidMount()` או במתודות האחרות של מעגל-החיים במקום. שמירה על כך ש- `render` תשמר טהורה, הופכת את החשיבה על קומפוננות ליותר קלה.
 
-If you need to interact with the browser, perform your work in `componentDidMount()` or the other lifecycle methods instead. Keeping `render()` pure makes components easier to think about.
-
-> Note
+> הערה
 >
-> `render()` will not be invoked if [`shouldComponentUpdate()`](#shouldcomponentupdate) returns false.
+> `render()` לא תתבצע אם [`shouldComponentUpdate()`](#shouldcomponentupdate) מחזירה 'false'.
 
 * * *
 
@@ -143,47 +144,47 @@ If you need to interact with the browser, perform your work in `componentDidMoun
 constructor(props)
 ```
 
-**If you don't initialize state and you don't bind methods, you don't need to implement a constructor for your React component.**
+**אם אין צורך באתחול state ו-binding עבור מתודות, אין צורך לממש בנאי עבור קומפוננטת ה-React שלכם.**
 
-The constructor for a React component is called before it is mounted. When implementing the constructor for a `React.Component` subclass, you should call `super(props)` before any other statement. Otherwise, `this.props` will be undefined in the constructor, which can lead to bugs.
+קריאה לבנאי של קומפוננטת ה-React שלכם מתבצעת לפני ה-Mounting של הקומפוננטה. כאשר מממשים את הבנאי עבור תת-מחלקה מסוג `React.Component`, נדרשת קריאה ל- `super(props)` לפני כל ביטוי אחר. אחרת, `this.props` יהפוך להיות לא-מוגדר (undefined) בבנאי, מה שיכול להוביל לבאגים.
 
-Typically, in React constructors are only used for two purposes:
+בדרך כלל ב-React, בנאים נכתבים עבור שתי מטרות בלבד:
+ 
+* איתחול [local state](/docs/state-and-lifecycle.html) על ידי הקצאת אוביקט ל- `this.state`.
+* Binding [event handler](/docs/handling-events.html) של מתודות למופע כלשהו.
 
-* Initializing [local state](/docs/state-and-lifecycle.html) by assigning an object to `this.state`.
-* Binding [event handler](/docs/handling-events.html) methods to an instance.
-
-You **should not call `setState()`** in the `constructor()`. Instead, if your component needs to use local state, **assign the initial state to `this.state`** directly in the constructor:
+**לא אמורה להתבצע קריאה ל- `setState()`** בתוך ה- `constructor()`. במקום זאת, אם קומפוננטה צריכה להשתמש ב-state מקומי, **עליכם להקצות את ה-state הראשוני ל- `this.state`** ישירות בתוך הבנאי:
 
 ```js
 constructor(props) {
   super(props);
-  // Don't call this.setState() here!
+  // לא לקרוא ל-this.setState() כאן!
   this.state = { counter: 0 };
   this.handleClick = this.handleClick.bind(this);
 }
 ```
 
-Constructor is the only place where you should assign `this.state` directly. In all other methods, you need to use `this.setState()` instead.
+הבנאי הוא המקום היחידי שאמורה להתבצע בו הקצאה ישירה ל- `this.state`. בכל שאר המתודות, צריך להתבצע שימוש ב- `this.setState()` במקום.
 
-Avoid introducing any side-effects or subscriptions in the constructor. For those use cases, use `componentDidMount()` instead.
+יש להימנע מהצהרה ראשונית על side-effects כלשהן או מינויים (subscriptions) בתוך הבנאי. עבור שימושים אלו, יש להשתמש ב- `componentDidMount()` במקום.
 
->Note
+>הערה
 >
->**Avoid copying props into state! This is a common mistake:**
+>**יש להימנע מהעתקת props לתוך state!, זוהי טעות נפוצה:**
 >
 >```js
 >constructor(props) {
 >  super(props);
->  // Don't do this!
+>  // אל תעשו זאת!
 >  this.state = { color: props.color };
 >}
 >```
 >
->The problem is that it's both unnecessary (you can use `this.props.color` directly instead), and creates bugs (updates to the `color` prop won't be reflected in the state).
+>הבעיה היא שזה גם לא נחוץ (אפשר להשתמש ב- `this.props.color` ישירות במקום), וגם יוצר באגים (עדכונים ל- `color` prop לא ישוקפו ב-state).
 >
->**Only use this pattern if you intentionally want to ignore prop updates.** In that case, it makes sense to rename the prop to be called `initialColor` or `defaultColor`. You can then force a component to "reset" its internal state by [changing its `key`](/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-uncontrolled-component-with-a-key) when necessary.
+>**השתמשו בתבנית הזו אם רוצים באופן מכוון להתעלם מעדכוני prop.** במקרים האלו, הגיוני יותר לשנות את שם ה-prop ל- `initialColor` או `defaultColor`. אז תוכלו לגרום לקומפוננטה לבצע "איפוס" ל-state הפנימי באופן כפוי על-ידי [שינוי `המהפתח` שלו](/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-uncontrolled-component-with-a-key) כאשר יש צורך בכך.
 >
->Read our [blog post on avoiding derived state](/blog/2018/06/07/you-probably-dont-need-derived-state.html) to learn about what to do if you think you need some state to depend on the props.
+>קראו את [הפוסט בבלוג שלנו על הימנעות מ- derived state](/blog/2018/06/07/you-probably-dont-need-derived-state.html) כדי ללמוד על מה לעשות אם אתם חושבים שאתם צריכים state שיהיה תלוי ב-props.
 
 
 * * *
@@ -194,11 +195,11 @@ Avoid introducing any side-effects or subscriptions in the constructor. For thos
 componentDidMount()
 ```
 
-`componentDidMount()` is invoked immediately after a component is mounted (inserted into the tree). Initialization that requires DOM nodes should go here. If you need to load data from a remote endpoint, this is a good place to instantiate the network request.
+המתודה `componentDidMount()` מתבצעת מידית לאחר ה-Mounting של הקומפוננטה (כאשר היא מוכנסת לתוך העץ). איתחול שדורש צמתי DOM יתאים להיות כאן. אם יש צורך לטעון מידע מקצה מרוחק, זה מקום טוב ליצור את בקשת הרשת.
 
-This method is a good place to set up any subscriptions. If you do that, don't forget to unsubscribe in `componentWillUnmount()`.
+המתודה הזו היא מקום טוב להגדיר מינויים (subscription). אם אכן אתם מבצעים זאת, לא לשכוח לבטל מינוי ב- `componentWillUnmount()`.
 
-You **may call `setState()` immediately** in `componentDidMount()`. It will trigger an extra rendering, but it will happen before the browser updates the screen. This guarantees that even though the `render()` will be called twice in this case, the user won't see the intermediate state. Use this pattern with caution because it often causes performance issues. In most cases, you should be able to assign the initial state in the `constructor()` instead. It can, however, be necessary for cases like modals and tooltips when you need to measure a DOM node before rendering something that depends on its size or position.
+אתם יכולים **לקרוא ל- `setState()` באופן מידי** ב- `componentDidMount()`. זה יגרום לרינדור נוסף, אבל הוא יקרה לפני שהדפדפן יעדכן את המסך. זה מבטיח שאפילו למרות שקריאה ל- `render()` תתבצע פעמיים במקרה זה, המשתמש לא יוכל לראות את state הביניים. השתמשו בתבנית זו עם יתר זהירות מכיוון שלעתים היא יוצרת בעיות בביצועים. ברוב המקרים, ניתן לבצע הקצאה ל-state ההתחלתי בתוך ה- `constructor()` במקום. עם זאת, יכול להיות שהתבנית הזו תהיה הכרחית במקרים כמו modals ו-tooltips כאשר יש צורך למדוד צומת ב-DOM לפני רינדור משהו שתלוי בגודלו או מיקומו.
 
 * * *
 
@@ -208,26 +209,26 @@ You **may call `setState()` immediately** in `componentDidMount()`. It will trig
 componentDidUpdate(prevProps, prevState, snapshot)
 ```
 
-`componentDidUpdate()` is invoked immediately after updating occurs. This method is not called for the initial render.
+המתודה `componentDidUpdate()` מתבצעת מידית לאחר שהעידכון קורה. אין קריאה למתודה הזו ברינדור הראשוני.
 
-Use this as an opportunity to operate on the DOM when the component has been updated. This is also a good place to do network requests as long as you compare the current props to previous props (e.g. a network request may not be necessary if the props have not changed).
+השתמשו בזה כהזדמנות לנהל את ה-DOM כאשר הקומפוננטה עודכנה. זה גם מקום טוב לבצע בקשות רשת כל עוד אתם משווים את ה-props הנוכחיים ל-props הקודמים (לדוגמא, יכול להיות שבקשת רשת אינה הכרחית אם ה-props לא השתנו).
 
 ```js
 componentDidUpdate(prevProps) {
-  // Typical usage (don't forget to compare props):
+  // שימוש טיפוסי (לא לשכוח להשוות את ה-props):
   if (this.props.userID !== prevProps.userID) {
     this.fetchData(this.props.userID);
   }
 }
 ```
 
-You **may call `setState()` immediately** in `componentDidUpdate()` but note that **it must be wrapped in a condition** like in the example above, or you'll cause an infinite loop. It would also cause an extra re-rendering which, while not visible to the user, can affect the component performance. If you're trying to "mirror" some state to a prop coming from above, consider using the prop directly instead. Read more about [why copying props into state causes bugs](/blog/2018/06/07/you-probably-dont-need-derived-state.html).
+ניתן **לקרוא באופן מידי ל- `setState()`** ב- `componentDidUpdate()` אבל שימו לב שקריאה כזו **מחויבת להיות עטופה במשפט תנאי** כמו בדוגמא מעלה, אחרת תהיה לולאה אינסופית. בנוסף, רינדור נוסף יתבצע, שלמרות שלא יהיה גלוי לעינו של המשתמש, יוכל להשפיע על ביצועיה של הקומפוננטה. אם אתם מנסים "לשקף" state ל- prop, שיקלו שימוש ב- prop ישירות, במקום. קראו עוד על [למה העתקת props לתוך state גורם לבאגים](/blog/2018/06/07/you-probably-dont-need-derived-state.html).
 
-If your component implements the `getSnapshotBeforeUpdate()` lifecycle (which is rare), the value it returns will be passed as a third "snapshot" parameter to `componentDidUpdate()`. Otherwise this parameter will be undefined.
-
-> Note
+אם הקומפוננטה שלכם מממשת את מתודת מעגל-החיים `getSnapshotBeforeUpdate()` (שזה מקרה נדיר),  הערך שהיא תחזיר יועבר כפרמטר "תמונת-מצב" שלישי ל- `componentDidUpdate()`. אחרת, הפרמטר הזה יהיה לא-מוגדר.
+ 
+> הערה
 >
-> `componentDidUpdate()` will not be invoked if [`shouldComponentUpdate()`](#shouldcomponentupdate) returns false.
+> המתודה `componentDidUpdate()` לא תתבצע אם [`shouldComponentUpdate()`](#shouldcomponentupdate) תחזיר 'false'.
 
 * * *
 
@@ -237,34 +238,34 @@ If your component implements the `getSnapshotBeforeUpdate()` lifecycle (which is
 componentWillUnmount()
 ```
 
-`componentWillUnmount()` is invoked immediately before a component is unmounted and destroyed. Perform any necessary cleanup in this method, such as invalidating timers, canceling network requests, or cleaning up any subscriptions that were created in `componentDidMount()`.
+המתודה `componentWillUnmount()` מתבצעת באופן מידי לפני Unmounting של קומפוננטה והריסתה. בצעו כל ניקוי חיוני במתודה הזו, כדוגמת ביטול טיימרים, ביטול בקשות רשת, או ניקוי של כל מינוי שנוצר ב- `componentDidMount()`. 
 
-You **should not call `setState()`** in `componentWillUnmount()` because the component will never be re-rendered. Once a component instance is unmounted, it will never be mounted again.
+**קריאה ל- `setState()` לא אמורה להתבצע** ב- `componentWillUnmount` מכיוון שהקומפוננטה לעולם לא תרונדר שוב. ברגע שמופע של קומפוננטה ביצע Unmounting, הוא לעולם לא יבצע Mounting שוב.
 
 * * *
 
-### Rarely Used Lifecycle Methods {#rarely-used-lifecycle-methods}
+### מתודות מעגל-חיים שבשימוש נדיר {#rarely-used-lifecycle-methods}
 
-The methods in this section correspond to uncommon use cases. They're handy once in a while, but most of your components probably don't need any of them. **You can see most of the methods below on [this lifecycle diagram](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/) if you click the "Show less common lifecycles" checkbox at the top of it.**
+המתודות בחלק הזה מתכתבות עם שימושים פחות נפוצים. הן נוחות לשימוש לעתים, אבל רוב הקומפוננטות ככל הנראה לא זקוקות להן. **אתם יכולים לראות את רוב המתודות להלן [בדיאגרמת מעגל-החיים הזו](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/) על ידי לחיצה על תיבת הסימון - "הראה מתודות מעגל-חיים פחות נפוצות" בראשה.**
 
-
+ 
 ### `shouldComponentUpdate()` {#shouldcomponentupdate}
 
 ```javascript
 shouldComponentUpdate(nextProps, nextState)
 ```
 
-Use `shouldComponentUpdate()` to let React know if a component's output is not affected by the current change in state or props. The default behavior is to re-render on every state change, and in the vast majority of cases you should rely on the default behavior.
+השתמשו ב- `shouldComponentUpdate` כדי לגרום ל-React לדעת אם פלט של קומפוננטה לא מושפע על ידי השינוי הנוכחי ב-state או props. התנהגות ברירת המחדל היא לרנדר שוב בכל שינוי של state, וברוב המקרים עליכם להסתמך על התנהגות זו.
 
-`shouldComponentUpdate()` is invoked before rendering when new props or state are being received. Defaults to `true`. This method is not called for the initial render or when `forceUpdate()` is used.
+המתודה `shouldComponentUpdate()` מתבצעת לפני רינדור בעקבות קבלת props או state חדשים. ברירת המחדל היא `true`. לא מתבצעת קריאה למתודה זו ברינדור הראשוני או כאשר יש שימוש ב- `forceUpdate()`.
 
-This method only exists as a **[performance optimization](/docs/optimizing-performance.html).** Do not rely on it to "prevent" a rendering, as this can lead to bugs. **Consider using the built-in [`PureComponent`](/docs/react-api.html#reactpurecomponent)** instead of writing `shouldComponentUpdate()` by hand. `PureComponent` performs a shallow comparison of props and state, and reduces the chance that you'll skip a necessary update.
+המתודה הזו קיימת רק כ-**[אופטימיזציה בביצועים](/docs/optimizing-performance.html).** אל תסתמכו עליה כדי "למנוע" רינדור, זה יכול להוביל לבאגים. **שיקלו להשתמש ב-[`PureComponent`](/docs/react-api.html#reactpurecomponent)** במקום לכתוב את `shouldComponentUpdate()` בעצמכם. `PureComponent` מבצע השוואה רדודה של props ו-state, ומפחית את הסיכוי שנדלג על עדכון הכרחי.
 
-If you are confident you want to write it by hand, you may compare `this.props` with `nextProps` and `this.state` with `nextState` and return `false` to tell React the update can be skipped. Note that returning `false` does not prevent child components from re-rendering when *their* state changes.
+אם אתם בטוחים בעצמכם שאתם רוצים לכתוב אותה בעצמכם, רצוי שתשוו את `this.props` עם `nextProps` ואת `this.state` עם `nextState` ולהחזיר `ביטוי שקר` וכך בעצם לומר ל-React שאפשר לדלג על העידכון. שימו לב שהחזרת `false` לא מונע מקומפוננטות-ילד לבצע רינדור חוזר, כאשר ה-state *שלהם* משתנה.
 
-We do not recommend doing deep equality checks or using `JSON.stringify()` in `shouldComponentUpdate()`. It is very inefficient and will harm performance.
+אנחנו לא ממליצים לבצע בדיקות איכות עמוקות או שימוש ב- `JSON.stringify()` ב- `shouldComponentUpdate()`. זה מאוד לא יעיל ויכול לגרוע בביצועים.
 
-Currently, if `shouldComponentUpdate()` returns `false`, then [`UNSAFE_componentWillUpdate()`](#unsafe_componentwillupdate), [`render()`](#render), and [`componentDidUpdate()`](#componentdidupdate) will not be invoked. In the future React may treat `shouldComponentUpdate()` as a hint rather than a strict directive, and returning `false` may still result in a re-rendering of the component.
+כרגע, אם `shouldComponentUpdate()` מחזירה `false`, אז [`UNSAFE_componentWillUpdate()`](#unsafe_componentwillupdate), [`render()`](#render), ו- [`componentDidUpdate()`](#componentdidupdate) לא יתבצעו. בעתיד React אולי תתייחס ל- `shouldComponentUpdate()` כאל רמז, מאשר כאל directive נוקשה, והחזרת `false` אולי תוביל לרינדור נוסף של הקומפוננטה.
 
 * * *
 
@@ -274,22 +275,22 @@ Currently, if `shouldComponentUpdate()` returns `false`, then [`UNSAFE_component
 static getDerivedStateFromProps(props, state)
 ```
 
-`getDerivedStateFromProps` is invoked right before calling the render method, both on the initial mount and on subsequent updates. It should return an object to update the state, or null to update nothing.
+המתודה `getDerivedStateFromProps` מתבצעת רגע לפני הקריאה למתודת הרינדור, גם ב-mount הראשוני וגם על עדכונים מאוחרים. עליה להחזיר אובייקט לעדכן את ה-state, או null כדי לעדכן כלום.
 
-This method exists for [rare use cases](/blog/2018/06/07/you-probably-dont-need-derived-state.html#when-to-use-derived-state) where the state depends on changes in props over time. For example, it might be handy for implementing a `<Transition>` component that compares its previous and next children to decide which of them to animate in and out.
+המתודה הזו קיימת [לשימושים נדירים](/blog/2018/06/07/you-probably-dont-need-derived-state.html#when-to-use-derived-state) בהם ה-state תלוי בשינויים ב-props במהלך הזמן. לדוגמא, ייתכן שיהיה זה שימושי לשימוש במימוש של קומפוננטת `<Transition>` שמשווה את הילדים הקודמים והבאים שלה כדי להחליט איזה מהם להנפיש.
 
-Deriving state leads to verbose code and makes your components difficult to think about.  
-[Make sure you're familiar with simpler alternatives:](/blog/2018/06/07/you-probably-dont-need-derived-state.html)
+שימוש ב- deriving state מוביל לקוד ארוך ומקשה על חשיבה על הקומפוננטות שלכם.
+[ודאו שאתם מכירים מימוש עם אלטרנטיבות פשוטות יותר:](/blog/2018/06/07/you-probably-dont-need-derived-state.html)
 
-* If you need to **perform a side effect** (for example, data fetching or an animation) in response to a change in props, use [`componentDidUpdate`](#componentdidupdate) lifecycle instead.
+* אם אתם צריכים **ליצור side-effect** (לדוגמא, קבלת מידע או הנפשה) כתגובה לשינוי ב-props, השתמשו ב- [`componentDidUpdate`](#componentdidupdate) מעגל-החיים במקום.
 
-* If you want to **re-compute some data only when a prop changes**, [use a memoization helper instead](/blog/2018/06/07/you-probably-dont-need-derived-state.html#what-about-memoization).
+* אם אתם רוצים **לחשב מחדש מידע מסוים רק כאשר prop משתנה**, [השתמשו ב-memoization helper במקום](/blog/2018/06/07/you-probably-dont-need-derived-state.html#what-about-memoization).
 
-* If you want to **"reset" some state when a prop changes**, consider either making a component [fully controlled](/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-controlled-component) or [fully uncontrolled with a `key`](/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-uncontrolled-component-with-a-key) instead.
+* אם אתם רוצים **לאפס state כלשהו כאשר prop משתנה**, שקלו לייצר קומפוננטה [fully controlled](/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-controlled-component) או [fully uncontrolled with a `key`](/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-uncontrolled-component-with-a-key) במקום.
 
-This method doesn't have access to the component instance. If you'd like, you can reuse some code between `getDerivedStateFromProps()` and the other class methods by extracting pure functions of the component props and state outside the class definition.
+למתודה הזו אין גישה למופעים של קומפוננטות. אם תרצו, אתם יכולים לעשות שימוש חוזר בקוד בין `getDerivedStateFromProps()` ושאר המתודות במחלקה על-ידי חילוץ פונקציות טהורות מתוך ה-props וה-state של הקומפוננטה מחוץ להגדרת המחלקה.
 
-Note that this method is fired on *every* render, regardless of the cause. This is in contrast to `UNSAFE_componentWillReceiveProps`, which only fires when the parent causes a re-render and not as a result of a local `setState`.
+שימו לב שהמתודה הזו מתבצעת בכל רינדור, ללא קשר לסיבה שהיא הופעלה. זה בניגוד ל- `UNSAFE_componentWillReceiveProps`, שמתבצעת רק כאשר ההורה גורם לרינדור מחדש ולא כתוצאה של `setState` מקומי.
 
 * * *
 
@@ -299,41 +300,41 @@ Note that this method is fired on *every* render, regardless of the cause. This 
 getSnapshotBeforeUpdate(prevProps, prevState)
 ```
 
-`getSnapshotBeforeUpdate()` is invoked right before the most recently rendered output is committed to e.g. the DOM. It enables your component to capture some information from the DOM (e.g. scroll position) before it is potentially changed. Any value returned by this lifecycle will be passed as a parameter to `componentDidUpdate()`.
+המתודה `getSnapshotBeforeUpdate()` מתבצעת רגע לפני שהפלט של הרינדור האחרון ביותר הועבר ל-DOM לדוגמא. זה מאפשר לקומפוננטה ללכוד מידע מסוים מה-DOM (לדוגמא, מיקום הגלילה) לפני שלכאורה ישתנה. כל ערך שיוחזר על-ידי מעגל-החיים הזה יועבר כפרמטר ל- `componentDidUpdate()`.
 
-This use case is not common, but it may occur in UIs like a chat thread that need to handle scroll position in a special way.
+השימוש הזה לא נפוץ, אבל יכול להתרחש ב-UI-ים כמו גדיל של צ'אט שצריך לנהל מיקום גלילה בדרך מיוחדת.
 
-A snapshot value (or `null`) should be returned.
+ערך של תמונת-מצב (או `null`) אמור להיות מוחזר 
 
-For example:
+לדוגמא:
 
 `embed:react-component-reference/get-snapshot-before-update.js`
 
-In the above examples, it is important to read the `scrollHeight` property in `getSnapshotBeforeUpdate` because there may be delays between "render" phase lifecycles (like `render`) and "commit" phase lifecycles (like `getSnapshotBeforeUpdate` and `componentDidUpdate`).
+בדוגמאות למעלה, חשוב לקרוא את ה- `scrollHeight` property ב- `getSnapshotBeforeUpdate` בגלל שיכולים להיות עיכובים בין שלב "הרינדור" במעגל-החיים (כמו `render`) לבין שלב ה- "commit" במעגל-החיים (כמו ב- `getSnapshotBeforeUpdate` וב- `componentDidUpdate`).
 
 * * *
 
 ### Error boundaries {#error-boundaries}
 
-[Error boundaries](/docs/error-boundaries.html) are React components that catch JavaScript errors anywhere in their child component tree, log those errors, and display a fallback UI instead of the component tree that crashed. Error boundaries catch errors during rendering, in lifecycle methods, and in constructors of the whole tree below them.
+[Error boundaries](/docs/error-boundaries.html) הם קומפוננטות של React שתופסות שגיאות של JavaScript בכל מקום בעץ קומפוננטות הילד שלהם, מתעדת את השגיאות האלו, ומציגה UI מגובה של עץ הקומפוננטה שהתרסקה. Error boundaries תופסת שגיאות במהלך רינדור, במתודות מעגל-החיים, ובבנאים של כל העץ שמתחתיהם.
 
-A class component becomes an error boundary if it defines either (or both) of the lifecycle methods `static getDerivedStateFromError()` or `componentDidCatch()`. Updating state from these lifecycles lets you capture an unhandled JavaScript error in the below tree and display a fallback UI.
+קומפוננטת מחלקה הופכת ל- error boundary אם היא מגדירה את אחת המתודות הבאות של מעגל-החיים (או שתיהן): `static getDerivedStateFromError()`, `componentDidCatch()`. עדכון של state ממעגל-החיים הזה מאפשר לנו ללכוד שגיאת JavaScript לא מטופלת בעץ מתחת ולהציג UI מגובה.
 
-Only use error boundaries for recovering from unexpected exceptions; **don't try to use them for control flow.**
+השתמשו ב-error boundaries להתאושש מחריגות לא צפויות בלבד; **אל תנסו להשתמש בהם עבור בקרת זרימה.**
 
-For more details, see [*Error Handling in React 16*](/blog/2017/07/26/error-handling-in-react-16.html).
+לפרטים נוספים, הסתכלו ב- [*טיפול בשגיאות ב-React 16*](/blog/2017/07/26/error-handling-in-react-16.html).
 
-> Note
-> 
-> Error boundaries only catch errors in the components **below** them in the tree. An error boundary can’t catch an error within itself.
+> הערה
+>
+> Error boundaries תופסים שגיאות בקומפוננטות **מתחתיהם** בעץ בלבד. error boundary לא יכול לתפוס שגיאה בתוך עצמו.
 
 ### `static getDerivedStateFromError()` {#static-getderivedstatefromerror}
 ```javascript
 static getDerivedStateFromError(error)
 ```
 
-This lifecycle is invoked after an error has been thrown by a descendant component.
-It receives the error that was thrown as a parameter and should return a value to update state.
+מעגל-חיים זה מתבצע לאחר ששגיאה נזרקה על ידי קומפוננטת-צאצא.
+הוא מקבל את השגיאה שנזרקה כפרמטר ואמור להחזיר ערך כדי לעדכן את state.
 
 ```js{7-10,13-16}
 class ErrorBoundary extends React.Component {
@@ -343,13 +344,13 @@ class ErrorBoundary extends React.Component {
   }
 
   static getDerivedStateFromError(error) {
-    // Update state so the next render will show the fallback UI.
+    // מעדכן את ה-state כדי שהרינדור הבא יראה את ה-UI המגובה.
     return { hasError: true };
   }
 
   render() {
     if (this.state.hasError) {
-      // You can render any custom fallback UI
+      // ניתן לרנדר כל גיבוי UI מותאם.
       return <h1>Something went wrong.</h1>;
     }
 
@@ -358,10 +359,10 @@ class ErrorBoundary extends React.Component {
 }
 ```
 
-> Note
->
-> `getDerivedStateFromError()` is called during the "render" phase, so side-effects are not permitted.
-For those use cases, use `componentDidCatch()` instead.
+> הערה
+> 
+> המתודה `getDerivedStateFromError()` נקראת במהלך שלב "הרינדור", לכן side-effects לא מורשים.
+בשביל מקרים כאלו, השתמשו ב- `componentDidCatch()` במקום.
 
 * * *
 
@@ -371,15 +372,15 @@ For those use cases, use `componentDidCatch()` instead.
 componentDidCatch(error, info)
 ```
 
-This lifecycle is invoked after an error has been thrown by a descendant component.
-It receives two parameters:
+מתודת מעגל-החיים הזו מתבצעת לאחר ששגיאה נזרקה על-ידי קומפוננת צאצא.
+היא מקבל שני פרמטרים:
 
-1. `error` - The error that was thrown.
-2. `info` - An object with a `componentStack` key containing [information about which component threw the error](/docs/error-boundaries.html#component-stack-traces).
+1. `שגיאה (error)` - השגיאה שנזרקה.
+2. `מידע (info)` - אובייקט עם מפתח `componentStack` המכיל [מידע לגבי איזו קומפוננטה זרקה את השגיאה](/docs/error-boundaries.html#component-stack-traces).
 
 
-`componentDidCatch()` is called during the "commit" phase, so side-effects are permitted.
-It should be used for things like logging errors:
+קריאה ל- `componentDidCatch()` מתבצעת במהלך שלב ה-"commit", לכן side-effects מורשים.
+רצוי להשתמש בה לדברים כמו תיעוד שגיאות:
 
 ```js{12-19}
 class ErrorBoundary extends React.Component {
@@ -389,23 +390,23 @@ class ErrorBoundary extends React.Component {
   }
 
   static getDerivedStateFromError(error) {
-    // Update state so the next render will show the fallback UI.
+    // מעדכן את ה-state כדי שהרינדור הבא יראה את ה-UI המגובה.
     return { hasError: true };
   }
 
   componentDidCatch(error, info) {
-    // Example "componentStack":
-    //   in ComponentThatThrows (created by App)
-    //   in ErrorBoundary (created by App)
-    //   in div (created by App)
-    //   in App
+    // דוגמה ל-"componentStack":
+    //   ב-ComponentThatThrows (נוצר על-ידי App)
+    //   ב-ErrorBoundary (נוצר על-ידי App)
+    //   ב-div (נוצר על-ידי App)
+    //   ב-App
     logComponentStackToMyService(info.componentStack);
   }
 
   render() {
     if (this.state.hasError) {
-      // You can render any custom fallback UI
-      return <h1>Something went wrong.</h1>;
+      // ניתן לרנדר כל UI גיבוי מותאם.
+      return <h1>משהו השתבש.<h1/>;
     }
 
     return this.props.children; 
@@ -413,16 +414,16 @@ class ErrorBoundary extends React.Component {
 }
 ```
 
-> Note
-> 
-> In the event of an error, you can render a fallback UI with `componentDidCatch()` by calling `setState`, but this will be deprecated in a future release.
-> Use `static getDerivedStateFromError()` to handle fallback rendering instead.
+> הערה
+>
+> באירוע השגיאה, ניתו לרנדר גיבוי UI עם `componentDidCatch()` על ידי קריאה ל- `setState`, אבל תכונה זו תצא משימוש בגרסא עתידית.
+> השתמשו ב- `static getDerivedStateFromError()` על מנת לטפל ברינדור מגובה במקום.
 
 * * *
 
 ### Legacy Lifecycle Methods {#legacy-lifecycle-methods}
 
-The lifecycle methods below are marked as "legacy". They still work, but we don't recommend using them in the new code. You can learn more about migrating away from legacy lifecycle methods in [this blog post](/blog/2018/03/27/update-on-async-rendering.html).
+מתודות מעגל-החיים להלן מסומן כ"ישנות". הן עדיין יעבדו, אבל אנחנו לא ממליצים להשתמש בהם בקוד חדש. אתם יכולים ללמוד עוד על מעבר ממתודות מעגל-חיים המוגדרות כ"מורשת" ב-[פוסט הזה](/blog/2018/03/27/update-on-async-rendering.html).
 
 ### `UNSAFE_componentWillMount()` {#unsafe_componentwillmount}
 
@@ -430,15 +431,15 @@ The lifecycle methods below are marked as "legacy". They still work, but we don'
 UNSAFE_componentWillMount()
 ```
 
-> Note
->
-> This lifecycle was previously named `componentWillMount`. That name will continue to work until version 17. Use the [`rename-unsafe-lifecycles` codemod](https://github.com/reactjs/react-codemod#rename-unsafe-lifecycles) to automatically update your components.
+> הערה
+> 
+> 
 
-`UNSAFE_componentWillMount()` is invoked just before mounting occurs. It is called before `render()`, therefore calling `setState()` synchronously in this method will not trigger an extra rendering. Generally, we recommend using the `constructor()` instead for initializing state.
+`UNSAFE_componentWillMount()` מתבצעת רגע לפני שה-mounting מתרחש. היא נקראת לפני `render()`, לכן קריאה ל- `setState()` סנכרונית במתודה הזו לא תייצר רינדור נוסף. בכלליות, אנחנו ממליצים על שימוש ב- `constructor()` במקום בשביל איתחול state.
 
-Avoid introducing any side-effects or subscriptions in this method. For those use cases, use `componentDidMount()` instead.
+המנעו מהגדרת כל side-effects או מינויים במתודה הזו. למקרים האלו, השתמשו ב- `componentDidMount()` במקום.
 
-This is the only lifecycle method called on server rendering.
+זו מתודת מעגל-החיים היחידה שנקראת ברינדור שרת.
 
 * * *
 
@@ -448,25 +449,25 @@ This is the only lifecycle method called on server rendering.
 UNSAFE_componentWillReceiveProps(nextProps)
 ```
 
-> Note
->
-> This lifecycle was previously named `componentWillReceiveProps`. That name will continue to work until version 17. Use the [`rename-unsafe-lifecycles` codemod](https://github.com/reactjs/react-codemod#rename-unsafe-lifecycles) to automatically update your components.
+> הערה
+> 
+> מעגל-החיים הזה נקרא בעבר `componentWillReceiveProps`. השם הזה ימשיך לעבוד עד גרסא 17. השתמשו ב-[`rename-unsafe-lifecycles` codemod](https://github.com/reactjs/react-codemod#rename-unsafe-lifecycles) כדי לעדכן את הקומפוננטות שלכם אוטומטית.
 
-> Note:
+> הערה:
 >
-> Using this lifecycle method often leads to bugs and inconsistencies
+> שימוש במתודת מעגל-החיים הזו לעתים תכופות מוביל לבאגים ולחוסר עקביות.
 >
-> * If you need to **perform a side effect** (for example, data fetching or an animation) in response to a change in props, use [`componentDidUpdate`](#componentdidupdate) lifecycle instead.
-> * If you used `componentWillReceiveProps` for **re-computing some data only when a prop changes**, [use a memoization helper instead](/blog/2018/06/07/you-probably-dont-need-derived-state.html#what-about-memoization).
-> * If you used `componentWillReceiveProps` to **"reset" some state when a prop changes**, consider either making a component [fully controlled](/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-controlled-component) or [fully uncontrolled with a `key`](/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-uncontrolled-component-with-a-key) instead.
+> * אם אתם צריכים **ליצור side-effect** (לדוגמא, קבלת מידע או הנפשה) כתגובה לשינוי ב-props, השתמשו ב-[`componentDidUpdate`](#componentdidupdate) במקום.
+> * אם השתמשתם ב- `componentWillReceiveProps` עבור **חישוב מחדש של מידע כלשהו רק כאשר prop השתנה**, [השתמשו ב-memoization helper במקום](/blog/2018/06/07/you-probably-dont-need-derived-state.html#what-about-memoization).
+> * אם השתמשתם ב- `componentWillReceiveProps` על מנת **"לאפס" state כאשר prop השתנה**, שיקלו ליצור קומפוננטה [fully controlled](/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-controlled-component) או [fully uncontrolled with a `key`](/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-uncontrolled-component-with-a-key) במקום.
 >
-> For other use cases, [follow the recommendations in this blog post about derived state](/blog/2018/06/07/you-probably-dont-need-derived-state.html).
+> למקרים אחרים, [עקבו אחר ההמלצות בפוסט הזה מתוך הבלוג על derived state](/blog/2018/06/07/you-probably-dont-need-derived-state.html).
 
-`UNSAFE_componentWillReceiveProps()` is invoked before a mounted component receives new props. If you need to update the state in response to prop changes (for example, to reset it), you may compare `this.props` and `nextProps` and perform state transitions using `this.setState()` in this method.
+`UNSAFE_componentWillReceiveProps()` מתבצעת לפני שקומפוננטה שעברה mounting מקבלת props חדשים. אם אתם צריכים לעדכן את ה-state כתגובה לשינוי props (לדוגמא, כדי לאפס אותו), אתם יכולים להשוות את `this.props` ואת `nextProps` ולבצע חילופי state באמצעות `this.setState()` במתודה הזו.
 
-Note that if a parent component causes your component to re-render, this method will be called even if props have not changed. Make sure to compare the current and next values if you only want to handle changes.
+שימו לב שאם קומפוננטת הורה גורמת לקומפוננטה שלכם להתרנדר מחדש, תתבצע קריאה למתודה הזו אפילו אם props לא השתנו. ודאו להשוות את הערכים הנוכחיים והבאים אם אתם רוצים רק לטפל בשינויים.
 
-React doesn't call `UNSAFE_componentWillReceiveProps()` with initial props during [mounting](#mounting). It only calls this method if some of component's props may update. Calling `this.setState()` generally doesn't trigger `UNSAFE_componentWillReceiveProps()`.
+React לא קוראת ל- `UNSAFE_componentWillReceiveProps()` עם props התחלתיים במהלך [mounting](#mounting). היא קוראת למתודה הזו רק אם מספר props של הקומפוננטה עשויים להתעדכן. קריאה ל- `this.setState()` בדרך כלל לא מעוררת קריאה ל- `UNSAFE_componentWillReceiveProps()`.
 
 * * *
 
@@ -476,27 +477,27 @@ React doesn't call `UNSAFE_componentWillReceiveProps()` with initial props durin
 UNSAFE_componentWillUpdate(nextProps, nextState)
 ```
 
-> Note
+> הערה
 >
-> This lifecycle was previously named `componentWillUpdate`. That name will continue to work until version 17. Use the [`rename-unsafe-lifecycles` codemod](https://github.com/reactjs/react-codemod#rename-unsafe-lifecycles) to automatically update your components.
+> מתודת מעגל-החיים הזו נקרא בעבר `componentWillUpdate`. השם הזה ימשיך לעבוד עד לגרסא 17. השתמשו ב-[`rename-unsafe-lifecycles` codemod](https://github.com/reactjs/react-codemod#rename-unsafe-lifecycles) לעדכון אוטומטי של הקומפוננטות שלכם.
 
-`UNSAFE_componentWillUpdate()` is invoked just before rendering when new props or state are being received. Use this as an opportunity to perform preparation before an update occurs. This method is not called for the initial render.
+`UNSAFE_componentWillUpdate()` מתבצעת רגע לפני רינדור כתוצאה מקבלת props או state חדשים. השתמשו בה כהזדמנות לבצע הכנות לפני שעדכון מתבצע. המתודה הזו לא נקראת ברינדור הראשוני.
 
-Note that you cannot call `this.setState()` here; nor should you do anything else (e.g. dispatch a Redux action) that would trigger an update to a React component before `UNSAFE_componentWillUpdate()` returns.
+שימו לב שאתם לא יכולים לקרוא ל- `this.setState()` כאן; גם אתם לא אמורים לעשות דבר שיגרום לעדכון קומפוננטה ב-React לפני ש- `UNSAFE_componentWillUpdate()` חוזרת.
 
-Typically, this method can be replaced by `componentDidUpdate()`. If you were reading from the DOM in this method (e.g. to save a scroll position), you can move that logic to `getSnapshotBeforeUpdate()`.
+בדרך כלל, המתודה הזו יכולה להיות מוחלפת על-ידי `componentDidUpdate()`. אם קראתם מה-DOM במתודה הזו (לדוגמא, כדי לשמור מיקום גלילה), אתם יכולים להעביר את הלוגיקה הזו ל-`getSnapshotBeforeUpdate()`.
 
-> Note
+> הערה
 >
-> `UNSAFE_componentWillUpdate()` will not be invoked if [`shouldComponentUpdate()`](#shouldcomponentupdate) returns false.
+> `UNSAFE_componentWillUpdate()` לא תתבצע אם [`shouldComponentUpdate()`](#shouldcomponentupdate) מחזירה false.
 
 * * *
 
-## Other APIs {#other-apis-1}
+## API-ים אחרים {#other-apis-1}
 
-Unlike the lifecycle methods above (which React calls for you), the methods below are the methods *you* can call from your components.
+לא כמו מתודות מעגל-החיים למעלה (אשר React קוראת להן עבורנו), המתודות להלן הן מתודות *שאנחנו* יכולים לקרוא להן מהקומפוננטות שאנו יוצרים.
 
-There are just two of them: `setState()` and `forceUpdate()`.
+יש רק שניים כאלו: `setState()` ו- `forceUpdate()`.
 
 ### `setState()` {#setstate}
 
@@ -504,21 +505,21 @@ There are just two of them: `setState()` and `forceUpdate()`.
 setState(updater[, callback])
 ```
 
-`setState()` enqueues changes to the component state and tells React that this component and its children need to be re-rendered with the updated state. This is the primary method you use to update the user interface in response to event handlers and server responses.
+`setState()` מכניסה לתור שינויים ב-state של הקומפוננטה ואומרת ל-React שהקומפוננטה הזו והילדים שלה צריכים להיות מרונדרים מחדש עם ה-state המעודכן. זו המתודה הראשית שבה משתמשים כדי לעדכן את ממשק המשתמש בתגובה למנהלי אירועים ותגובות שרת.
 
-Think of `setState()` as a *request* rather than an immediate command to update the component. For better perceived performance, React may delay it, and then update several components in a single pass. React does not guarantee that the state changes are applied immediately.
+חישבו על `setState()` כאל *בקשה* מאשר כאל פקודה מידית לעדכון הקומפוננטה. למען ביצועים טובים יותר, React עשויה לעכב את ביצועה של הפקודה, ואז לעדכן מספר קומפוננטות במעבר אחד. React לא מבטיחה ששינוי ה-state יתבצעו מידית.
 
-`setState()` does not always immediately update the component. It may batch or defer the update until later. This makes reading `this.state` right after calling `setState()` a potential pitfall. Instead, use `componentDidUpdate` or a `setState` callback (`setState(updater, callback)`), either of which are guaranteed to fire after the update has been applied. If you need to set the state based on the previous state, read about the `updater` argument below.
+`setState()` לא תמיד מעדכנת באופן מידי את הקומפוננטה. היא עשויה לדחות את העידכון לאחר כך. זה גורם לכך שקריאה מ- `this.state` ישר אחרי קריאה ל-`setState()` למלכודת פוטנציאלית. במקום, השתמשו ב- `componentDidUpdate` או בפונקצית ה-callback ב-`setState` (`setState(updater, callback)`), בכל אחד מהמקרים מובטח כי יתבצע לאחד שהעדכון יקרה. אם יש צורך להגדיר את ה-state בהתבסס על ה-state הקודם, קראו על הארגומנט `updater` מטה.
 
-`setState()` will always lead to a re-render unless `shouldComponentUpdate()` returns `false`. If mutable objects are being used and conditional rendering logic cannot be implemented in `shouldComponentUpdate()`, calling `setState()` only when the new state differs from the previous state will avoid unnecessary re-renders.
+`setState()` תמיד יוביל לרינדור מחדש אלא אם `shouldComponentUpdate()` תחזיר `false`. אם אובייקטים שניתנים לשינוי (mutable) נמצאים בשימוש ולוגיקת רינדור מותנה לא יכולה להיות ממומשת ב- `shouldComponentUpdate()`, קריאה ל- `setState()` רק כאשר ה-state החדש שונה מהקודם תמנע רינדור מחדש מיותר.
 
-The first argument is an `updater` function with the signature:
+הארגומנט הראשון הוא פונקציית `updater` עם החתימה:
 
 ```javascript
 (state, props) => stateChange
 ```
 
-`state` is a reference to the component state at the time the change is being applied. It should not be directly mutated. Instead, changes should be represented by building a new object based on the input from `state` and `props`. For instance, suppose we wanted to increment a value in state by `props.step`:
+`state` הוא הפנייה ל-state של הקומפוננטה בזמן שהשינוי היה מבוצע. לא אמורים לבצע שינויים ישירות. במקום, שינויים צריכים להיות מיוצגים על ידי בניית אוביקט חדש המבוסס על הקלט מ-`state` ו-`props`. למשל, נניח שרצינו להגדיל ערך ב-state על-ידי `props.step`:
 
 ```javascript
 this.setState((state, props) => {
@@ -526,23 +527,23 @@ this.setState((state, props) => {
 });
 ```
 
-Both `state` and `props` received by the updater function are guaranteed to be up-to-date. The output of the updater is shallowly merged with `state`.
+גם `state` וגם `props` שהתקבלו על ידי פונציית העדכון מובטחים להיות מעודכנים. הפלט של העדכון מתאחד באופן רדוד עם `state`.
 
-The second parameter to `setState()` is an optional callback function that will be executed once `setState` is completed and the component is re-rendered. Generally we recommend using `componentDidUpdate()` for such logic instead.
+הפרמטר השני ל- `setState()` הוא פונקציית callback אופציונלית שתתבצע ברגע ש- `setState` תושלם והקומפוננטה תרונדר מחדש. בכלליות, אנחנו ממליצים על שימוש ב- `componentDidUpdate()` ללוגיקות כאלו, במקום.
 
-You may optionally pass an object as the first argument to `setState()` instead of a function:
+אופציונלית, ניתן להעביר אובייקט כארגומנט הראשון ל- `setState()` במקום פונקציה:
 
 ```javascript
 setState(stateChange[, callback])
 ```
 
-This performs a shallow merge of `stateChange` into the new state, e.g., to adjust a shopping cart item quantity:
+דרך זו מבצעת איחוד רדוד של `stateChange` לתוך ה-state החדש, לדוגמא כדי לשנות כמות של פריט בעגלת קניות:
 
 ```javascript
 this.setState({quantity: 2})
 ```
 
-This form of `setState()` is also asynchronous, and multiple calls during the same cycle may be batched together. For example, if you attempt to increment an item quantity more than once in the same cycle, that will result in the equivalent of:
+הצורה הזו של `setState()` היא גם אסינכרונית, וקריאות מרובות במהלך אותו מעגל-חיים עלולים להתנגש. לדוגמא, אם ננסה להגדיל כמות של פריט יותר מפעם אחת באותו מעגל, זה יגרום לתוצאה השקולה ל:
 
 ```javaScript
 Object.assign(
@@ -553,7 +554,7 @@ Object.assign(
 )
 ```
 
-Subsequent calls will override values from previous calls in the same cycle, so the quantity will only be incremented once. If the next state depends on the current state, we recommend using the updater function form, instead:
+קריאות עוקבות יגרמו לדריסה של ערכים מקריאות קודמות באותו מעגל, לכן הכמות תגדל פעם אחת בלבד. אם ה-state הבא תלוי ב-state הנוכחי, אנחנו ממליצים להשתמש בצורה של פונקציית עדכון, במקום:
 
 ```js
 this.setState((state) => {
@@ -561,7 +562,7 @@ this.setState((state) => {
 });
 ```
 
-For more detail, see:
+למידע נוסף, עיינו:
 
 * [State and Lifecycle guide](/docs/state-and-lifecycle.html)
 * [In depth: When and why are `setState()` calls batched?](https://stackoverflow.com/a/48610973/458193)
@@ -575,19 +576,19 @@ For more detail, see:
 component.forceUpdate(callback)
 ```
 
-By default, when your component's state or props change, your component will re-render. If your `render()` method depends on some other data, you can tell React that the component needs re-rendering by calling `forceUpdate()`.
+בתור ברירת מחדל, כאשר ה-state או ה-props של הקומפוננטה שלכם משתנים, הקומפוננטה שלכם תרונדר מחדש. אם מתודת ה- `render()` שלכם תלויה במידע נוסף אחר, אתם יכולים להגיד ל-React שהקומפוננטה זקוקה לרינדור מחדש על-ידי קריאה ל- `forceUpdate()`.
 
-Calling `forceUpdate()` will cause `render()` to be called on the component, skipping `shouldComponentUpdate()`. This will trigger the normal lifecycle methods for child components, including the `shouldComponentUpdate()` method of each child. React will still only update the DOM if the markup changes.
+קריאה ל- `forceUpdate()` תגרום לכך שתתבצע קריאה ל- `render()` בקומפוננטה, תוך כדי דילוג על `shouldComponentUpdate()`. זה יעורר תגובה של מתודות מעגל-החיים הרגיל לקומפוננטות ילד, לרבות מתודת ה- `shouldComponentUpdate()` של כל ילד. React עדיין רק תעדכן את ה-DOM ה-markup ישתנה.
 
-Normally you should try to avoid all uses of `forceUpdate()` and only read from `this.props` and `this.state` in `render()`.
+הדרך הנכונה היא לנסות להמנע משימוש ב- `forceUpdate()` ורק לקרוא מ- `this.props` ו- `this.state` ב- `render()`.
 
 * * *
 
-## Class Properties {#class-properties-1}
+## Properties של מחלקות (Class Properties) {#class-properties-1}
 
 ### `defaultProps` {#defaultprops}
 
-`defaultProps` can be defined as a property on the component class itself, to set the default props for the class. This is used for undefined props, but not for null props. For example:
+`defaultProps` יכול להיות מוגדר כ-property במחלקה של הקומפוננטה עצמה, כדי להגדיר את props ברירת-המחדל עבור המחלקה.
 
 ```js
 class CustomButton extends React.Component {
@@ -599,19 +600,19 @@ CustomButton.defaultProps = {
 };
 ```
 
-If `props.color` is not provided, it will be set by default to `'blue'`:
-
+אם אין ערך ל-`props.color`, ערכו ייקבע לפי ברירת המחדל `'blue'`:
+ 
 ```js
   render() {
-    return <CustomButton /> ; // props.color will be set to blue
+    return <CustomButton /> ; // props.color ייקבע להיות כחול
   }
 ```
 
-If `props.color` is set to null, it will remain null:
+אם `props.color` מוגדר להיות null, הוא יישאר null:
 
 ```js
   render() {
-    return <CustomButton color={null} /> ; // props.color will remain null
+    return <CustomButton color={null} /> ; // props.color ישאר null
   }
 ```
 
@@ -619,24 +620,24 @@ If `props.color` is set to null, it will remain null:
 
 ### `displayName` {#displayname}
 
-The `displayName` string is used in debugging messages. Usually, you don't need to set it explicitly because it's inferred from the name of the function or class that defines the component. You might want to set it explicitly if you want to display a different name for debugging purposes or when you create a higher-order component, see [Wrap the Display Name for Easy Debugging](/docs/higher-order-components.html#convention-wrap-the-display-name-for-easy-debugging) for details.
+המחרוזת `displayName` בשימוש בהודעות דיבאגינג. בדרך כלל, אנחנו לא צריכים להגדיר אותה באופן מפורש בגלל שהשם שלה נגזר מהשם של הפונקציה או המחלקה שמגדירה את הקומפוננטה. ייתכן שנרצה להגדיר אותה מפורשות אם נרצה להציג שם אחר עבור מטרות דיבאגינג או כאשר ניצור קומפוננטה מסדר גבוה יותר, עיינו ב-[לעטוף את שם התצוגה עבור דיבאגינג פשוט](/docs/higher-order-components.html#convention-wrap-the-display-name-for-easy-debugging) בשביל מידע נוסף.
 
 * * *
 
-## Instance Properties {#instance-properties-1}
+## Properties של מופע (Instance Properties) {#instance-properties-1}
 
 ### `props` {#props}
 
-`this.props` contains the props that were defined by the caller of this component. See [Components and Props](/docs/components-and-props.html) for an introduction to props.
+`this.props` מכין את ה-props שהוגדרו על ידי המפעיל של הקומפוננטה הזו. עיינו ב-[קומפוננטות ו-props](/docs/components-and-props.html) עבור הקדמה ל-props.
 
-In particular, `this.props.children` is a special prop, typically defined by the child tags in the JSX expression rather than in the tag itself.
+`this.props.children` הוא prop מיוחד, בדרך כלל מוגדר על ידי הטאגים של הילד בביטוי ה-JSX  מאשר בטאג עצמו.
 
 ### `state` {#state}
 
-The state contains data specific to this component that may change over time. The state is user-defined, and it should be a plain JavaScript object.
+ה-state מכיל מידע ספציפי לקומפוננטה הזאת שעשוי להשתנות במהלך הזמן. ה-state מוגדר על-ידי המשתמש, והוא אמור להיות אוביקט JavaScript פשוט.
 
-If some value isn't used for rendering or data flow (for example, a timer ID), you don't have to put it in the state. Such values can be defined as fields on the component instance.
+אם ערך כלשהו לא בשימוש עבור רינדור או עבור זרימת מידע (לדוגמא, timer ID), אין חובה לשים אותו בתוך ה-state. ערכים כאלו יכולים להיות מוגדרים כשדות בקומפוננטת המופע.
 
-See [State and Lifecycle](/docs/state-and-lifecycle.html) for more information about the state.
+עיינו ב-[State ומחזור חיים](/docs/state-and-lifecycle.html) עבור מידע נוסף על ה-state.
 
-Never mutate `this.state` directly, as calling `setState()` afterwards may replace the mutation you made. Treat `this.state` as if it were immutable.
+לעולם אל תשנו את `this.state` ישירות, מכיוון שקריאה ל- `setState()` לאחר מכן עלולה להחליף את השינוי שביצעתם. התייחסו ל- `this.state` כאילו היה אימיוטבל.

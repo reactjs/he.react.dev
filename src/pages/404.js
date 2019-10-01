@@ -22,12 +22,11 @@ const PageNotFound = ({location}: Props) => (
       <div css={sharedStyles.articleLayout.container}>
         <div css={sharedStyles.articleLayout.content}>
           <Header>Page Not Found</Header>
-          <TitleAndMetaTags title="React - Page Not Found" />
+          <TitleAndMetaTags title="React - הדף אינו נמצא" />
           <div css={sharedStyles.markdown}>
-            <p>We couldn't find what you were looking for.</p>
+            <p>לא יכולנו למצוא את הדף שאתה מחפש</p>
             <p>
-              Please contact the owner of the site that linked you to the
-              original URL and let them know their link is broken.
+              אנא פנה לבעל האתר שסיפק לך את הקישור, והודע לו שהכתובת שגויה.
             </p>
           </div>
         </div>

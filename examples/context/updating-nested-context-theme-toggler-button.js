@@ -2,8 +2,8 @@ import {ThemeContext} from './theme-context';
 
 function ThemeTogglerButton() {
   // highlight-range{1-2,5}
-  // The Theme Toggler Button receives not only the theme
-  // but also a toggleTheme function from the context
+  // מקבל לא רק את ערכת הנושא Theme Toggler-כפתור ה
+  // מהקונטקסט כדי לעדכן את ערכה toggleTheme אלא גם את הפונקציה
   return (
     <ThemeContext.Consumer>
       {({theme, toggleTheme}) => (

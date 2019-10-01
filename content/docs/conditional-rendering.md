@@ -1,6 +1,6 @@
 ---
 id: conditional-rendering
-title: Conditional Rendering
+title: רינדור מותנה
 permalink: docs/conditional-rendering.html
 prev: handling-events.html
 next: lists-and-keys.html
@@ -8,23 +8,23 @@ redirect_from:
   - "tips/false-in-jsx.html"
 ---
 
-In React, you can create distinct components that encapsulate behavior you need. Then, you can render only some of them, depending on the state of your application.
+ב-React, אתם יכולים ליצור קומפוננטות יחודיות אשר מכמסות את ההתנהגות שאתם מחפשים. לאחר מכן, אתם יכולים לרנדר רק חלק מהן, על פי תלות ב-state של האפליקציה שלכם.
 
-Conditional rendering in React works the same way conditions work in JavaScript. Use JavaScript operators like [`if`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/if...else) or the [conditional operator](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Conditional_Operator) to create elements representing the current state, and let React update the UI to match them.
+רינדור מותנה ב-React פועל באותו אופן שבו עובדים תנאים ב-JavaScript. השתמשו באופרטורים של JavaScript כמו [`if`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/if...else) או [האופרטו המותנה](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Conditional_Operator) כדי ליצור אלמנטים המייצגים את ה-state הנוכחי, ותנו ל-React לעדכן את ממשק המשתמש כדי שיהיה תואם אליהם.
 
-Consider these two components:
+הביטו בשתי הקומפוננטות האלו:
 
 ```js
 function UserGreeting(props) {
-  return <h1>Welcome back!</h1>;
+  return <h1>ברוך הבא!</h1>;
 }
 
 function GuestGreeting(props) {
-  return <h1>Please sign up.</h1>;
+  return <h1>אנא הירשם.</h1>;
 }
 ```
 
-We'll create a `Greeting` component that displays either of these components depending on whether a user is logged in:
+ניצור קומפוננטת `Greeting` שמציגה אחת מהקומפוננטות האלו כתלות באם משתמש מחובר:
 
 ```javascript{3-7,11,12}
 function Greeting(props) {
@@ -42,21 +42,21 @@ ReactDOM.render(
 );
 ```
 
-[**Try it on CodePen**](https://codepen.io/gaearon/pen/ZpVxNq?editors=0011)
+[**נסו זאת ב-CodePen**](https://codepen.io/gaearon/pen/ZpVxNq?editors=0011)
 
-This example renders a different greeting depending on the value of `isLoggedIn` prop.
+דוגמא זו מרנדרת ברכה שונה כתלות בערך של ה-prop `isLoggedIn`.
 
-### Element Variables {#element-variables}
+### משתני אלמנט {#element-variables}
 
-You can use variables to store elements. This can help you conditionally render a part of the component while the rest of the output doesn't change.
+אתם יכולים להשתמש במשתנים כדי לשמור אלמנטים. זה יכול לעזור לכם לרנדר חלק מהקומפוננטה באופן מותנה בעוד ששאר הפלט אינו משתנה.
 
-Consider these two new components representing Logout and Login buttons:
+הביטו בשתי הקומפוננטות החדשות המייצגות כפתורי התנתקות והתחברות:
 
 ```js
 function LoginButton(props) {
   return (
     <button onClick={props.onClick}>
-      Login
+      התחבר
     </button>
   );
 }
@@ -64,15 +64,15 @@ function LoginButton(props) {
 function LogoutButton(props) {
   return (
     <button onClick={props.onClick}>
-      Logout
+      התנתק
     </button>
   );
 }
 ```
 
-In the example below, we will create a [stateful component](/docs/state-and-lifecycle.html#adding-local-state-to-a-class) called `LoginControl`.
+בדוגמה הבאה, ניצור [קומפוננטה התלויה ב-state](/docs/state-and-lifecycle.html#adding-local-state-to-a-class) שנקראת `LoginControl`.
 
-It will render either `<LoginButton />` or `<LogoutButton />` depending on its current state. It will also render a `<Greeting />` from the previous example:
+היא תרנדר `<LoginButton />` או `<LogoutButton />` כתלות ב-state הנוכחי שלה. בנוסף היא תרנדר `<Greeting />` מהדוגמה הקודמת:
 
 ```javascript{20-25,29,30}
 class LoginControl extends React.Component {
@@ -116,13 +116,13 @@ ReactDOM.render(
 );
 ```
 
-[**Try it on CodePen**](https://codepen.io/gaearon/pen/QKzAgB?editors=0010)
+[**נסו זאת ב-CodePen**](https://codepen.io/gaearon/pen/QKzAgB?editors=0010)
 
-While declaring a variable and using an `if` statement is a fine way to conditionally render a component, sometimes you might want to use a shorter syntax. There are a few ways to inline conditions in JSX, explained below.
+בעוד שהכרזה על משתנה ושימוש בהצהרה `if` היא דרך מצוינת להתנות רינדור קומפוננטה, לפעמים ייתכן שתרצו להשתמש בתחביר קצר יותר. ישנן מספר דרכים להטמיע תנאים ב-JSX, שמוסברות בהמשך.
 
-### Inline If with Logical && Operator {#inline-if-with-logical--operator}
+### הטמעת תנאי If עם אופרטור && לוגי {#inline-if-with-logical--operator}
 
-You may [embed any expressions in JSX](/docs/introducing-jsx.html#embedding-expressions-in-jsx) by wrapping them in curly braces. This includes the JavaScript logical `&&` operator. It can be handy for conditionally including an element:
+ייתכן שתרצו [להטמיע כל ביטוי ב-JSX](/docs/introducing-jsx.html#embedding-expressions-in-jsx) על ידי עטיפתם בסוגריים מסולסלים. זה כולל את האופרטור הלוגי `&&` של JavaScript. זה יכול להיות שימושי עבור הוספה מותנית של אלמנט:
 
 ```js{6-10}
 function Mailbox(props) {
@@ -132,7 +132,7 @@ function Mailbox(props) {
       <h1>Hello!</h1>
       {unreadMessages.length > 0 &&
         <h2>
-          You have {unreadMessages.length} unread messages.
+          יש לך {unreadMessages.length} הודעות שלא נקראו.
         </h2>
       }
     </div>
@@ -146,30 +146,30 @@ ReactDOM.render(
 );
 ```
 
-[**Try it on CodePen**](https://codepen.io/gaearon/pen/ozJddz?editors=0010)
+[**נסו זאת ב-CodePen**](https://codepen.io/gaearon/pen/ozJddz?editors=0010)
 
-It works because in JavaScript, `true && expression` always evaluates to `expression`, and `false && expression` always evaluates to `false`.
+זה עובד בגלל שב-JavaScript, `true && expression` תמיד שווה ערך ל-`expression`, ו-`false && expression` תמיד שווה ערך ל-`false`.
 
-Therefore, if the condition is `true`, the element right after `&&` will appear in the output. If it is `false`, React will ignore and skip it.
+לכן, אם התנאי הוא `true`, האלמנט מימין אחרי `&&` יופיע בפלט. אם הוא `false`, React תתעלם ממנו ותדלג עליו.
 
-### Inline If-Else with Conditional Operator {#inline-if-else-with-conditional-operator}
+### הטמעת If-Else עם אופרטור ההתנייה {#inline-if-else-with-conditional-operator}
 
-Another method for conditionally rendering elements inline is to use the JavaScript conditional operator [`condition ? true : false`](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Conditional_Operator).
+שיטה נוספת להטמעת רינדור אלמנטים מותנה היא להשתמש באופרטור ההתנייה של JavaScript [`condition ? true : false`](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Conditional_Operator).
 
-In the example below, we use it to conditionally render a small block of text.
+בדוגמה הבאה, אנו משתמשים בו כדי לרנדר באופן מותנה בלוק קטן של טקסט.
 
 ```javascript{5}
 render() {
   const isLoggedIn = this.state.isLoggedIn;
   return (
     <div>
-      The user is <b>{isLoggedIn ? 'currently' : 'not'}</b> logged in.
+      המשתמש <b>{isLoggedIn ? 'כרגע' : 'לא'}</b> מחובר.
     </div>
   );
 }
 ```
 
-It can also be used for larger expressions although it is less obvious what's going on:
+זה יכול לשמש גם עבור ביטויים גדולים יותר למרות שכך פחות ברור מה קורה:
 
 ```js{5,7,9}
 render() {
@@ -186,13 +186,13 @@ render() {
 }
 ```
 
-Just like in JavaScript, it is up to you to choose an appropriate style based on what you and your team consider more readable. Also remember that whenever conditions become too complex, it might be a good time to [extract a component](/docs/components-and-props.html#extracting-components).
+בדיוק כמו ב-JavaScript, זה באחריותכם לבחור סגנון מתאים על סמך מה שאתם והצוות שלכם מחשיבים יותר קריא. כמו כן זכרו שבכל פעם שתנאים נהיים מורכבים מדי, זה יכול להיות זמן טוב [לחלץ קומפוננטה](/docs/components-and-props.html#extracting-components).
 
-### Preventing Component from Rendering {#preventing-component-from-rendering}
+### מניעת רינדור של קומפוננטה {#preventing-component-from-rendering}
 
-In rare cases you might want a component to hide itself even though it was rendered by another component. To do this return `null` instead of its render output.
+במקרים נדירים ייתכן שתרצו שקומפוננטה תסתיר את עצמה למרות שהיא רונדרה על ידי קומפוננטה אחרת. כדי לעשות זאת החזירו `null` במקום את הפלט שאותו היא אמורה לרנדר.
 
-In the example below, the `<WarningBanner />` is rendered depending on the value of the prop called `warn`. If the value of the prop is `false`, then the component does not render:
+בדוגמה הבאה, ה-`<WarningBanner />` מרונדר בהתאם לערך של ה-prop שנקרא `warn`. אם ערך ה-prop הוא `false`, אזי הרכיב אינו מתרנדר:
 
 ```javascript{2-4,29}
 function WarningBanner(props) {
@@ -202,7 +202,7 @@ function WarningBanner(props) {
 
   return (
     <div className="warning">
-      Warning!
+      אזהרה!
     </div>
   );
 }
@@ -225,7 +225,7 @@ class Page extends React.Component {
       <div>
         <WarningBanner warn={this.state.showWarning} />
         <button onClick={this.handleToggleClick}>
-          {this.state.showWarning ? 'Hide' : 'Show'}
+          {this.state.showWarning ? 'הסתר' : 'הצג'}
         </button>
       </div>
     );
@@ -238,6 +238,6 @@ ReactDOM.render(
 );
 ```
 
-[**Try it on CodePen**](https://codepen.io/gaearon/pen/Xjoqwm?editors=0010)
+[**נסו זאת ב-CodePen**](https://codepen.io/gaearon/pen/Xjoqwm?editors=0010)
 
-Returning `null` from a component's `render` method does not affect the firing of the component's lifecycle methods. For instance `componentDidUpdate` will still be called.
+החזרת `null` ממתודת `render` של קומפוננטה לא משפיעה על הרצת מתודות מחזור החיים של קומפוננטה. למשל `componentDidUpdate` עדיין יקרא.

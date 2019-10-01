@@ -16,7 +16,7 @@ class MarkdownEditor extends React.Component {
 
   render() {
     return (
-      <div className="MarkdownEditor">
+      <div className="MarkdownEditor" dir='rtl'>
         <h3>קלט</h3>
         <label htmlFor="markdown-content">
           הקלד איזשהו markdown

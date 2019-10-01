@@ -6,7 +6,7 @@ category: Reference
 permalink: docs/react-dom-server.html
 ---
 
-The `ReactDOMServer` object enables you to render components to static markup. Typically, it's used on a Node server:
+האובייקט `ReactDOMServer` מאפשר לעבד קומפוננטות ל-markup סטטי. בדרך כלל, נעשה בו שימוש בשרת Node:
 
 ```js
 // ES modules
@@ -15,21 +15,21 @@ import ReactDOMServer from 'react-dom/server';
 var ReactDOMServer = require('react-dom/server');
 ```
 
-## Overview {#overview}
+## סקירה כללית {#overview}
 
-The following methods can be used in both the server and browser environments:
+ניתן להשתמש במתודות הבאות הן בסביבת השרת והן בסביבות דפדפן:
 
 - [`renderToString()`](#rendertostring)
 - [`renderToStaticMarkup()`](#rendertostaticmarkup)
 
-These additional methods depend on a package (`stream`) that is **only available on the server**, and won't work in the browser.
+מתודות נוספות אלה תלויות בחבילה (`stream`) אשר **זמינה בשרת בלבד**, ולא יפעלו בדפדפן.
 
 - [`renderToNodeStream()`](#rendertonodestream)
 - [`renderToStaticNodeStream()`](#rendertostaticnodestream)
 
 * * *
 
-## Reference {#reference}
+## סימוכין {#reference}
 
 ### `renderToString()` {#rendertostring}
 
@@ -37,9 +37,9 @@ These additional methods depend on a package (`stream`) that is **only available
 ReactDOMServer.renderToString(element)
 ```
 
-Render a React element to its initial HTML. React will return an HTML string. You can use this method to generate HTML on the server and send the markup down on the initial request for faster page loads and to allow search engines to crawl your pages for SEO purposes.
+מרנדר קומפוננטת React ל-HTML הראשוני שלה. React יחזיר מחרוזת HTML. ניתן להשתמש בשיטה זו כדי ליצור HTML בשרת ולשלוח את ה-markup על הבקשה הראשונית עבור טעינות דף מהירות יותר ועל מנת לאפשר למנועי חיפוש לסרוק את הדפים שלכם למטרות SEO.
 
-If you call [`ReactDOM.hydrate()`](/docs/react-dom.html#hydrate) on a node that already has this server-rendered markup, React will preserve it and only attach event handlers, allowing you to have a very performant first-load experience.
+אם תקראו ל-[`ReactDOM.hydrate()`](/docs/react-dom.html#hydrate) על איבר שכבר כולל את ה-markup שרונדר על-ידי השרת, React תשמר אותו ורק תצמיד מטפלי אירועים, דבר המאפשר לכם לבצע חוויית טעינה-ראשונה עם ביצועים טובים מאוד.
 
 * * *
 
@@ -49,9 +49,9 @@ If you call [`ReactDOM.hydrate()`](/docs/react-dom.html#hydrate) on a node that 
 ReactDOMServer.renderToStaticMarkup(element)
 ```
 
-Similar to [`renderToString`](#rendertostring), except this doesn't create extra DOM attributes that React uses internally, such as `data-reactroot`. This is useful if you want to use React as a simple static page generator, as stripping away the extra attributes can save some bytes.
+דומה ל-[`renderToString`](#rendertostring), מלבד העובדה שאינה יוצרת מאפייני DOM נוספים ש-React משתמשת בהם באופן פנימי, כגון `data-reactroot`. אפשרות זו שימושית אם ברצונך להשתמש ב-React כמחולל של דפים סטטיים פשוטים, שכן הסרת המאפיינים הנוספים יכולה לחסוך כמה בתים.
 
-If you plan to use React on the client to make the markup interactive, do not use this method. Instead, use [`renderToString`](#rendertostring) on the server and [`ReactDOM.hydrate()`](/docs/react-dom.html#hydrate) on the client.
+אם אתם מתכננים להשתמש ב-React על מנת להפוך את ה-markup לאינטראקטיבי, אל תשתמשו במתודה זו. במקום זאת, השתמשו ב-[`renderToString`](#rendertostring) בצד השרת וב-[`ReactDOM.hydrate()`](/docs/react-dom.html#hydrate) בצד הלקוח.
 
 * * *
 
@@ -61,15 +61,17 @@ If you plan to use React on the client to make the markup interactive, do not us
 ReactDOMServer.renderToNodeStream(element)
 ```
 
-Render a React element to its initial HTML. Returns a [Readable stream](https://nodejs.org/api/stream.html#stream_readable_streams) that outputs an HTML string. The HTML output by this stream is exactly equal to what [`ReactDOMServer.renderToString`](#rendertostring) would return. You can use this method to generate HTML on the server and send the markup down on the initial request for faster page loads and to allow search engines to crawl your pages for SEO purposes.
+מרנדר קומפוננטת React ל-HTML הראשוני שלה. מחזירה [זרם קריא (Readable stream)](https://nodejs.org/api/stream.html#stream_readable_streams) שמיצא מחרוזת HTML. פלט ה-HTML מזרם זה שווה בדיוק למה ש-[`ReactDOMServer.renderToString`](#rendertostring) יחזיר. ניתן להשתמש במתודה זו כדי ליצור HTML בשרת ולשלוח את ה-markup על הבקשה הראשונית עבור טעינות דף מהירות יותר ועל מנת לאפשר למנועי חיפוש לסרוק את הדפים שלכם למטרות SEO.
 
-If you call [`ReactDOM.hydrate()`](/docs/react-dom.html#hydrate) on a node that already has this server-rendered markup, React will preserve it and only attach event handlers, allowing you to have a very performant first-load experience.
+אם תקראו ל-[`ReactDOM.hydrate()`](/docs/react-dom.html#hydrate) על איבר שכבר כולל את ה-markup שרונדר על-ידי השרת, React תשמר אותו ורק תצמיד מטפלי אירועים, דבר המאפשר לכם לבצע חוויית טעינה-ראשונה עם ביצועים טובים מאוד.
 
-> Note:
+> שימו לב:
 >
-> Server-only. This API is not available in the browser.
+> שרת בלבד. ממשק API זה אינו זמין בדפדפן.
 >
-> The stream returned from this method will return a byte stream encoded in utf-8. If you need a stream in another encoding, take a look at a project like [iconv-lite](https://www.npmjs.com/package/iconv-lite), which provides transform streams for transcoding text.
+> הזרם המוחזר ממתודה זו יחזיר זרם בתים מקודד ב-utf-8. אם תזדקקו לזרם בקידוד אחר, הסתכלו על פרויקט כמו [iconv-lite](https://www.npmjs.com/package/iconv-lite), המספק זרמי טרנספורמציה עבור קידוד טקסט.
+
+
 
 * * *
 
@@ -79,14 +81,14 @@ If you call [`ReactDOM.hydrate()`](/docs/react-dom.html#hydrate) on a node that 
 ReactDOMServer.renderToStaticNodeStream(element)
 ```
 
-Similar to [`renderToNodeStream`](#rendertonodestream), except this doesn't create extra DOM attributes that React uses internally, such as `data-reactroot`. This is useful if you want to use React as a simple static page generator, as stripping away the extra attributes can save some bytes.
+דומה ל-[`renderToNodeStream`](#rendertonodestream), מלבד העובדה שאינה יוצרת מאפייני DOM נוספים ש-React משתמשת בהם באופן פנימי, כגון `data-reactroot`. אפשרות זו שימושית אם ברצונך להשתמש ב-React כמחולל של דפים סטטיים פשוטים, שכן הסרת המאפיינים הנוספים יכולה לחסוך כמה בתים.
 
-The HTML output by this stream is exactly equal to what [`ReactDOMServer.renderToStaticMarkup`](#rendertostaticmarkup) would return.
+פלט ה-HTML המוחזר מזרם זה זהה למה ש-[`ReactDOMServer.renderToStaticMarkup`](#rendertostaticmarkup) תחזיר.
 
-If you plan to use React on the client to make the markup interactive, do not use this method. Instead, use [`renderToNodeStream`](#rendertonodestream) on the server and [`ReactDOM.hydrate()`](/docs/react-dom.html#hydrate) on the client.
+אם אתם מתכננים להשתמש ב-React על מנת להפוך את ה-markup לאינטראקטיבי, אל תשתמשו במתודה זו. במקום זאת, השתמשו ב-[`renderToNodeStream`](#rendertonodestream) בצד השרת וב-[`ReactDOM.hydrate()`](/docs/react-dom.html#hydrate) בצד הלקוח.
 
-> Note:
+> שימו לב:
 >
-> Server-only. This API is not available in the browser.
+> שרת בלבד. ממשק API זה אינו זמין בדפדפן.
 >
-> The stream returned from this method will return a byte stream encoded in utf-8. If you need a stream in another encoding, take a look at a project like [iconv-lite](https://www.npmjs.com/package/iconv-lite), which provides transform streams for transcoding text.
+> הזרם המוחזר ממתודה זו יחזיר זרם בתים מקודד ב-utf-8. אם תזדקקו לזרם בקידוד אחר, הסתכלו על פרויקט כמו [iconv-lite](https://www.npmjs.com/package/iconv-lite), המספק זרמי טרנספורמציה עבור קידוד טקסט.

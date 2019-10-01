@@ -1,6 +1,6 @@
 ---
 id: components-and-props
-title: Components and Props
+title: קומפוננטות ו-Props
 permalink: docs/components-and-props.html
 redirect_from:
   - "docs/reusable-components.html"
@@ -16,13 +16,13 @@ prev: rendering-elements.html
 next: state-and-lifecycle.html
 ---
 
-Components let you split the UI into independent, reusable pieces, and think about each piece in isolation. This page provides an introduction to the idea of components. You can find a [detailed component API reference here](/docs/react-component.html).
+קומפוננטות מאפשרות לכם לפצל את ממשק המשתמש לחתיכות עצמאיות המאפשרות שימוש חוזר, ולחשוב על כל חתיכה בנפרד. דף זה מספק מבוא לרעיון של קומפוננטות. תוכלו למצוא [הסבר מפורט של ה-API של קומפוננטות כאן](/docs/react-component.html).
 
-Conceptually, components are like JavaScript functions. They accept arbitrary inputs (called "props") and return React elements describing what should appear on the screen.
+מבחינה תפיסתית, קומפוננטות הן כמו פונקציות JavaScript. הן מקבלות קלט שרירותי (נקרא "props") ומחזירות אלמנטים של React המתארים מה אמור להופיע על המסך.
 
-## Function and Class Components {#function-and-class-components}
+## קומפוננטות מסוגי פונקציות ומחלקות {#function-and-class-components}
 
-The simplest way to define a component is to write a JavaScript function:
+הדרך הפשוטה ביותר להגדיר קומפוננטה היא לכתוב פונקציית JavaScript:
 
 ```js
 function Welcome(props) {
@@ -30,9 +30,9 @@ function Welcome(props) {
 }
 ```
 
-This function is a valid React component because it accepts a single "props" (which stands for properties) object argument with data and returns a React element. We call such components "function components" because they are literally JavaScript functions.
+פונקציה זו היא קומפוננטת React חוקית משום שהיא מקבלת ארגומנט אובייקט נתונים יחיד מסוג "props" (קיצור של המילה תכונות, properties באנגלית) ומחזירה אלמנט React. אנו מכנים קומפוננטות כאלה "קומפוננטת פונקציה" משום שהם פשוט פונקציות JavaScript.
 
-You can also use an [ES6 class](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes) to define a component:
+תוכלו גם להשתמש ב[מחלקה של ES6](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes) כדי להגדיר קומפוננטה:
 
 ```js
 class Welcome extends React.Component {
@@ -42,25 +42,25 @@ class Welcome extends React.Component {
 }
 ```
 
-The above two components are equivalent from React's point of view.
+שתי הקומפוננטות מעלה הן זהות מנקודת המבט של React.
 
-Classes have some additional features that we will discuss in the [next sections](/docs/state-and-lifecycle.html). Until then, we will use function components for their conciseness.
+למחלקות יש כמה תכונות נוספות שנדון בהן [בחלק הבא](/docs/state-and-lifecycle.html). עד אז, נשתמש בקומפוננטות פונקציה בשל היותן קצרות יותר.
 
-## Rendering a Component {#rendering-a-component}
+## רינדור של קומפוננטה {#rendering-a-component}
 
-Previously, we only encountered React elements that represent DOM tags:
+עד כה, נתקלנו רק ברכיבי React שמייצגים תגי DOM:
 
 ```js
 const element = <div />;
 ```
 
-However, elements can also represent user-defined components:
+עם זאת, אלמנטים יכולים גם לייצג קומפוננטות המוגדרות על ידי המשתמש:
 
 ```js
 const element = <Welcome name="Sara" />;
 ```
 
-When React sees an element representing a user-defined component, it passes JSX attributes to this component as a single object. We call this object "props".
+כאשר React רואה אלמנט המייצג קומפוננטה שהודגרה על ידי המשתמש, היא מעבירה את המאפיינים שהוגדרו ב-JSX לקומפוננטה זו כאובייקט יחיד. אנו קוראים לאובייקט זה "props".
 
 For example, this code renders "Hello, Sara" on the page:
 
@@ -78,24 +78,24 @@ ReactDOM.render(
 
 [](codepen://components-and-props/rendering-a-component)
 
-Let's recap what happens in this example:
+בואו נסכם מה קורה בדוגמה זו:
 
-1. We call `ReactDOM.render()` with the `<Welcome name="Sara" />` element.
-2. React calls the `Welcome` component with `{name: 'Sara'}` as the props.
-3. Our `Welcome` component returns a `<h1>Hello, Sara</h1>` element as the result.
-4. React DOM efficiently updates the DOM to match `<h1>Hello, Sara</h1>`.
+1. אנחנו קוראים ל-`ReactDOM.render()` עם האלמנט `<Welcome name="Sara" />`.
+2. React קוראת לקומפוננטת `Welcome` עם `{name: 'Sara'}` בתור ה-props.
+3. קומפוננטת `Welcome` שלנו מחזירה אלמנט `<h1>Hello, Sara</h1>` בתור התוצאה שלה.
+4. React DOM מעדכן ביעילות את ה-DOM להיות תואם ל-`<h1>Hello, Sara</h1>`.
 
->**Note:** Always start component names with a capital letter.
+>**הערה:** התחילו תמיד שמות קומפוננטות עם אות גדולה.
 >
->React treats components starting with lowercase letters as DOM tags. For example, `<div />` represents an HTML div tag, but `<Welcome />` represents a component and requires `Welcome` to be in scope.
+>React מתייחסת לקומפוננטות המתחילות באותיות קטנות בתור תגי DOM. לדוגמה, `<div />` מייצג תג div של HTML, אך `<Welcome />` מייצג קומפוננטה ומחייב את `Welcome` להיות ב-scope.
 >
->To learn more about the reasoning behind this convention, please read [JSX In Depth](/docs/jsx-in-depth.html#user-defined-components-must-be-capitalized).
+>כדי ללמוד עוד על הסיבות מאחורי קונבנציה זו, אנא קראו את [JSX באופן מעמיק](/docs/jsx-in-depth.html#user-defined-components-must-be-capitalized).
 
-## Composing Components {#composing-components}
+## יצירת קומפוננטות {#composing-components}
 
-Components can refer to other components in their output. This lets us use the same component abstraction for any level of detail. A button, a form, a dialog, a screen: in React apps, all those are commonly expressed as components.
+קומפוננטות יכולות להתייחס לקומפוננטות אחרות בפלט שלהם. דבר זה מאפשר לנו להשתמש באותה הפשטת קומפוננטות עבור כל רמה של פירוט. לחצן, טופס, תיבת דו-שיח, מסך: באפליקציות React, כל אלה בדרך כלל באים לידי ביטוי כקומפוננטות.
 
-For example, we can create an `App` component that renders `Welcome` many times:
+למשל, אנו יכולים ליצור קומפוננטת `App` שמרנדרת את `Welcome` הרבה פעמים:
 
 ```js{8-10}
 function Welcome(props) {
@@ -120,13 +120,13 @@ ReactDOM.render(
 
 [](codepen://components-and-props/composing-components)
 
-Typically, new React apps have a single `App` component at the very top. However, if you integrate React into an existing app, you might start bottom-up with a small component like `Button` and gradually work your way to the top of the view hierarchy.
+בדרך כלל, אפליקציות React חדשות כוללות קומפוננטת `App` אחת בראש האפליקציה. עם זאת, אם תשלבו את React באפליקציה קיימת, תוכלו להתחיל מלמטה למעלה באמצעות קומפוננטה קטנה כגון `Button`, ובהדרגה להגיע לחלק העליון ביותר של הירארכיית התצוגה.
 
-## Extracting Components {#extracting-components}
+## חילוץ קומפוננטות {#extracting-components}
 
-Don't be afraid to split components into smaller components.
+אל תפחדו לפצל קומפוננטות לקומפוננטות קטנות יותר.
 
-For example, consider this `Comment` component:
+למשל, הביטו בקומפוננטת `Comment` הבאה:
 
 ```js
 function Comment(props) {
@@ -154,11 +154,11 @@ function Comment(props) {
 
 [](codepen://components-and-props/extracting-components)
 
-It accepts `author` (an object), `text` (a string), and `date` (a date) as props, and describes a comment on a social media website.
+היא מקבלת את `author` (אובייקט), `text` (מחרוזת) ו-`date` (תאריך) בתור props, ומתארת תגובה באתר אינטרנט של מדיה חברתית.
 
-This component can be tricky to change because of all the nesting, and it is also hard to reuse individual parts of it. Let's extract a few components from it.
+קומפוננטה זו יכולה להיות מסובכת לשינוי בגלל כל הקינון שבה, ובנוסף קשה לעשות שימוש חוזר בחלקים אינדיבידואלים שלה. בואו נחלץ מספר קומפוננטות ממנה.
 
-First, we will extract `Avatar`:
+ראשית, נחלץ את `Avatar`:
 
 ```js{3-6}
 function Avatar(props) {
@@ -171,11 +171,11 @@ function Avatar(props) {
 }
 ```
 
-The `Avatar` doesn't need to know that it is being rendered inside a `Comment`. This is why we have given its prop a more generic name: `user` rather than `author`.
+ה-`Avatar` לא צריך לדעת שהוא מתרנדר בתוך `Comment`. זו הסיבה שבגללה נתנו ל-prop שלו שם גנרי יותר: `user` (משתמש) ולא `author` (מחבר).
 
-We recommend naming props from the component's own point of view rather than the context in which it is being used.
+אנו ממליצים על מתן שמות ל-props מנקודת המבט של הקומפוננטה עצמה ולא על סמך הקונטקסט שבו הם נמצאים בשימוש.
 
-We can now simplify `Comment` a tiny bit:
+אנו יכולים כעת לפשט `Comment` מעט:
 
 ```js{5}
 function Comment(props) {
@@ -198,7 +198,7 @@ function Comment(props) {
 }
 ```
 
-Next, we will extract a `UserInfo` component that renders an `Avatar` next to the user's name:
+בשלב הבא, נחלץ את קומפוננטת `UserInfo` שמרנדרת `Avatar` לצד שם המשתמש:
 
 ```js{3-8}
 function UserInfo(props) {
@@ -213,7 +213,7 @@ function UserInfo(props) {
 }
 ```
 
-This lets us simplify `Comment` even further:
+זה מאפשר לנו לפשט את `Comment` אפילו יותר:
 
 ```js{4}
 function Comment(props) {
@@ -233,11 +233,11 @@ function Comment(props) {
 
 [](codepen://components-and-props/extracting-components-continued)
 
-Extracting components might seem like grunt work at first, but having a palette of reusable components pays off in larger apps. A good rule of thumb is that if a part of your UI is used several times (`Button`, `Panel`, `Avatar`), or is complex enough on its own (`App`, `FeedStory`, `Comment`), it is a good candidate to be a reusable component.
+חילוץ קומפוננטות אולי נראה כמו עבודה שחורה בהתחלה, אבל בעלות על מגוון קומפוננטות לשימוש חוזר משתלמת בטפליקציות גדולות יותר. כלל אצבע טוב הוא שאם חלק מממשק המשתמש שלכם נמצא בשימוש מספר פעמים (`Button`, `Panel`, `Avatar`), או שהוא מורכב מספיק בכוחות עצמו (`App`, `FeedStory`, `Comment`), הוא מועמד טוב להיות קומפוננטה לשימוש חוזר.
 
-## Props are Read-Only {#props-are-read-only}
+## Props הם לקריאה בלבד {#props-are-read-only}
 
-Whether you declare a component [as a function or a class](#function-and-class-components), it must never modify its own props. Consider this `sum` function:
+בין אם אתם מצהירים על קומפוננטה [כפונקציה או כמחלקה](#function-and-class-components), אסור לה לעולם לשנות את ה-props שלה. הביטו בפונקציה `sum` הבאה:
 
 ```js
 function sum(a, b) {
@@ -245,9 +245,9 @@ function sum(a, b) {
 }
 ```
 
-Such functions are called ["pure"](https://en.wikipedia.org/wiki/Pure_function) because they do not attempt to change their inputs, and always return the same result for the same inputs.
+פונקציות אלה נקראות ["טהורות"](https://en.wikipedia.org/wiki/Pure_function) מכיוון שהן לא מנסות לשנות את הקלטים שלהן, ותמיד מחזירות את אותה התוצאה עבור אותם קלטים.
 
-In contrast, this function is impure because it changes its own input:
+לעומת זאת, פונקציה זו אינה טהורה משום שהיא משנה את הקלט שלה:
 
 ```js
 function withdraw(account, amount) {
@@ -255,8 +255,8 @@ function withdraw(account, amount) {
 }
 ```
 
-React is pretty flexible but it has a single strict rule:
+React היא די גמישה אבל יש לה כלל אחד נוקשה:
 
-**All React components must act like pure functions with respect to their props.**
+**כל קומפוננטות React חייבות לפעול כמו פונקציות טהורות ביחס ל-props שלהן.**
 
-Of course, application UIs are dynamic and change over time. In the [next section](/docs/state-and-lifecycle.html), we will introduce a new concept of "state". State allows React components to change their output over time in response to user actions, network responses, and anything else, without violating this rule.
+כמובן, ממשקי המשתמש של אפליקציות הם דינמיים ומשתנים עם הזמן. ב[חלק הבא](/docs/state-and-lifecycle.html), נציג את הקונספט החדש של "state" (מצב). ה-state מאפשר לקומפוננטות React לשנות את הפלט שלהן לאורך הזמן בתגובה לפעולות משתמש, תשובות מהרשת, וכל דבר אחר, מבלי להפר כלל זה.
