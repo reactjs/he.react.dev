@@ -14,7 +14,7 @@ const Header = ({children}: {children: Node}) => (
   <h1
     css={{
       color: colors.dark,
-      marginRight: '5%',
+      marginLeft: '5%',
       ...fonts.header,
     }}>
     {children}

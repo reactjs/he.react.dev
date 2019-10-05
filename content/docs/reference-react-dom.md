@@ -6,11 +6,11 @@ category: Reference
 permalink: docs/react-dom.html
 ---
 
-If you load React from a `<script>` tag, these top-level APIs are available on the `ReactDOM` global. If you use ES6 with npm, you can write `import ReactDOM from 'react-dom'`. If you use ES5 with npm, you can write `var ReactDOM = require('react-dom')`.
+אם אתם טוענים את React מתגית `<script>`, ה-APIs מהרמה העליונה הבאים זמינים תחת המשתנה הגלובלי `ReactDOM`. אם אתם משתמשים ב-ES6 עם npm, אתם יכולים לכתוב `import ReactDOM from 'react-dom'`. אם אתם משתמשים ב-ES5 עם npm, תוכלו לכתוב `var ReactDOM = require('react-dom')`.
 
-## Overview {#overview}
+## סקירה כללית {#overview}
 
-The `react-dom` package provides DOM-specific methods that can be used at the top level of your app and as an escape hatch to get outside of the React model if you need to. Most of your components should not need to use this module.
+החבילה `react-dom` מספקת מתודות ספציפיות ל-DOM שניתן להשתמש בהן ברמה העליונה של האפליקציה שלכם וכפתח מילוט כדי להגיע אל מחוץ למודל React אם יש לכם צורך בכך. לרוב הקומפוננטות שלכם לא אמור להיות צורך להשתמש במודול זה.
 
 - [`render()`](#render)
 - [`hydrate()`](#hydrate)
@@ -18,17 +18,17 @@ The `react-dom` package provides DOM-specific methods that can be used at the to
 - [`findDOMNode()`](#finddomnode)
 - [`createPortal()`](#createportal)
 
-### Browser Support {#browser-support}
+### תמיכה בדפדפנים {#browser-support}
 
-React supports all popular browsers, including Internet Explorer 9 and above, although [some polyfills are required](/docs/javascript-environment-requirements.html) for older browsers such as IE 9 and IE 10.
+React תומכת בכל הדפדפנים הפופולריים, כולל Internet Explorer 9 ומעלה, אם כי [כמה polyfills נדרשים](/docs/javascript-environment-requirements.html) עבור דפדפנים ישנים יותר כגון IE 9 ו-IE 10.
 
-> Note
+> הערה
 >
-> We don't support older browsers that don't support ES5 methods, but you may find that your apps do work in older browsers if polyfills such as [es5-shim and es5-sham](https://github.com/es-shims/es5-shim) are included in the page. You're on your own if you choose to take this path.
+> אנו לא תומכים בדפדפנים ישנים יותר שאינם תומכים במתודות ES5, אך ייתכן שתגלו שהאפליקציות שלכם פועלות בדפדפנים ישנים יותר אם תכללו בעמוד polyfills כגון [es5-shim ו- es5-sham](https://github.com/es-shims/es5-shim). אתם לבדכם במערכה אם תבחרו לקחת את הנתיב הזה.
 
 * * *
 
-## Reference {#reference}
+## סימוכין {#reference}
 
 ### `render()` {#render}
 
@@ -36,23 +36,25 @@ React supports all popular browsers, including Internet Explorer 9 and above, al
 ReactDOM.render(element, container[, callback])
 ```
 
-Render a React element into the DOM in the supplied `container` and return a [reference](/docs/more-about-refs.html) to the component (or returns `null` for [stateless components](/docs/components-and-props.html#functional-and-class-components)).
+מרנדרת אלמנטי React לתוך ה-DOM ב-`container` שסופק ומחזירה [הפנייה (reference)](/docs/more-about-refs.html) לקומפוננטה (או מחזירה `null` עבור [קומפוננטות חסרות state](/docs/components-and-props.html#functional-and-class-components)).
 
-If the React element was previously rendered into `container`, this will perform an update on it and only mutate the DOM as necessary to reflect the latest React element.
+אם קומפוננטת ה-React רונדרה קודם לכן ל-`container`, פעולה זו תבצע עדכון עבורה ורק תשנה את ה-DOM לפי הצורך כדי לשקף את אלמנט ה-React האחרון.
 
-If the optional callback is provided, it will be executed after the component is rendered or updated.
+אם ארגומנט ה-callback האופציונלי מסופק, הוא יורץ לאחר שהקומפוננטה רונדרה או עודכנה.
 
-> Note:
+
+
+> הערה:
 >
-> `ReactDOM.render()` controls the contents of the container node you pass in. Any existing DOM elements inside are replaced when first called. Later calls use React’s DOM diffing algorithm for efficient updates.
+> `ReactDOM.render()` שולטת בתוכן של הצומת המכיל שאתם מעבירים. כל אלמנטי ה-DOM הקיימים בתוכו מוחלפים בקריאה הראשונה. קריאות מאוחרות יותר משתמשות באלגוריתם הבדלת ה-DOM של React לביצוע עדכונים יעילים.
 >
-> `ReactDOM.render()` does not modify the container node (only modifies the children of the container). It may be possible to insert a component to an existing DOM node without overwriting the existing children.
+> `ReactDOM.render()` לא משנה את הצומת המכיל (רק משנה את הילדים של המכיל). ייתכן שיהיה אפשר להכניס קומפוננטה לצומת DOM קיים מבלי לדרוס את הילדים הקיימים.
 >
-> `ReactDOM.render()` currently returns a reference to the root `ReactComponent` instance. However, using this return value is legacy
-> and should be avoided because future versions of React may render components asynchronously in some cases. If you need a reference to the root `ReactComponent` instance, the preferred solution is to attach a
-> [callback ref](/docs/more-about-refs.html#the-ref-callback-attribute) to the root element.
+> `ReactDOM.render()` כרגע מחזירה הפניה למופע השורש `ReactComponent`. עם זאת, שימוש בערך מוחזר זה הוא שאריות מורשת
+> ויש להימנע מכך משום שגירסאות עתידיות של React עשויות לרנדר קומפוננטות באופן אסינכרוני במקרים מסוימים. אם אתם צריכים התייחסות למופע השורש `ReactComponent`, הפתרון המועדף הוא לצרף
+> [הפנייה ל-callback](/docs/more-about-refs.html#the-ref-callback-attribute) לאלמנט השורש.
 >
-> Using `ReactDOM.render()` to hydrate a server-rendered container is deprecated and will be removed in React 17. Use [`hydrate()`](#hydrate) instead.
+> שימוש ב-`ReactDOM.render()` כדי לנקות תוכן אלמנט שנשלח על-ידי השרת הוצא משימוש והאפשרות תוסר ב-React 17. השתמשו ב-[`hydrate()`](#hydrate) במקום.
 
 * * *
 
@@ -62,15 +64,15 @@ If the optional callback is provided, it will be executed after the component is
 ReactDOM.hydrate(element, container[, callback])
 ```
 
-Same as [`render()`](#render), but is used to hydrate a container whose HTML contents were rendered by [`ReactDOMServer`](/docs/react-dom-server.html). React will attempt to attach event listeners to the existing markup.
+כמו [`render()`](#render), אבל משמשת לניקוי של צומת מכיל שתוכן ה-HTML שלו רונדר על-ידי [`ReactDOMServer`](/docs/react-dom-server.html). React תנסה לצרף מנהלי אירועים ל-markup הקיים.
 
-React expects that the rendered content is identical between the server and the client. It can patch up differences in text content, but you should treat mismatches as bugs and fix them. In development mode, React warns about mismatches during hydration. There are no guarantees that attribute differences will be patched up in case of mismatches. This is important for performance reasons because in most apps, mismatches are rare, and so validating all markup would be prohibitively expensive.
+React מצפה שהתוכן המרונדר יהיה זהה בין השרת לבין הלקוח. היא יכולה לתקן את ההבדלים בתוכן טקסט, אבל אתם צריכים לטפל באי-התאמות כפי שאתם מטפלים בבאגים ולתקן אותם. במצב פיתוח, React מזהירה מפני אי התאמות במהלך הניקוי. אין הבטחות כי הבדלי מאפיינים יתוקנו במקרה של אי-התאמה. זה חשוב מסיבות של ביצועים כי ברוב האפליקציות, אי-התאמות הן דבר נדיר, ולכן אימות כל ה-markup יהיה יקר מדי כך שנרצה להמנע ממנו.
 
-If a single element's attribute or text content is unavoidably different between the server and the client (for example, a timestamp), you may silence the warning by adding `suppressHydrationWarning={true}` to the element. It only works one level deep, and is intended to be an escape hatch. Don't overuse it. Unless it's text content, React still won't attempt to patch it up, so it may remain inconsistent until future updates.
+אם מאפיין או תוכן טקסט של אלמנט בודד שונה באופן בלתי נמנע בין השרת לבין הלקוח (לדוגמה, חותמת זמן), תוכלו להשתיק את האזהרה על ידי הוספת `suppressHydrationWarning={true}` לאלמנט. זה עובד רק עבור רמת עומק אחת, ונועד להיות רק כפתח מילוט. אל תשתמשו בזה יותר מדי. אלא אם כן מדובר בתוכן טקסט, React עדיין לא תנסה לתקן אותו, לכן ייתכן שהוא יישאר בלתי עקבי עד לעדכונים עתידיים.
 
-If you intentionally need to render something different on the server and the client, you can do a two-pass rendering. Components that render something different on the client can read a state variable like `this.state.isClient`, which you can set to `true` in `componentDidMount()`. This way the initial render pass will render the same content as the server, avoiding mismatches, but an additional pass will happen synchronously right after hydration. Note that this approach will make your components slower because they have to render twice, so use it with caution.
+אם אתם בכוונה צריכים לרנדר משהו שונה בצד השרת ובצד הלקוח, אתם יכולים לבצע רינדור בשני מעברים. קומפוננטות המרנדרות משהו אחר בצד הלקוח יכולות לקרוא משתנה מה-state כמו `this.state.isClient`, שאותו תוכלו להגדיר ל-`true` ב-`componentDidMount()`. בדרך זו מעבר הרינדור הראשוני ירנדר את אותו תוכן כמו השרת, תוך הימנעות מאי-התאמות, אבל מעבר נוסף יקרה באופן סינכרוני מיד לאחר הניקוי. שימו לב כי גישה זו תהפוך את הקומפוננטות שלכם לאיטיות יותר כי הן צריכות להתרנדר פעמיים, אז השתמשו בה בזהירות.
 
-Remember to be mindful of user experience on slow connections. The JavaScript code may load significantly later than the initial HTML render, so if you render something different in the client-only pass, the transition can be jarring. However, if executed well, it may be beneficial to render a "shell" of the application on the server, and only show some of the extra widgets on the client. To learn how to do this without getting the markup mismatch issues, refer to the explanation in the previous paragraph.
+זכרו להיות מודעים לחוויית המשתמש על חיבורים איטיים. קוד ה-JavaScript עלול להטען מאוחר יותר באופן משמעותי מאשר רינדור ה-HTML הראשוני, כך שאם אתם מרנדרים משהו שונה ברינדור אצל הלקוח בלבד, המעבר יכול להיות צורם. עם זאת, אם מבוצע היטב, זה עשוי להיות מועיל לרנדר "מעטפת" של האפליקציה בשרת, ורק להראות כמה ווידג'טים נוספים אצל הלקוח. כדי ללמוד כיצד לעשות זאת מבלי לקבל בעיות אי-ההתאמה ב-markup, עיינו בהסבר בפסקה הקודמת.
 
 * * *
 
@@ -80,28 +82,30 @@ Remember to be mindful of user experience on slow connections. The JavaScript co
 ReactDOM.unmountComponentAtNode(container)
 ```
 
-Remove a mounted React component from the DOM and clean up its event handlers and state. If no component was mounted in the container, calling this function does nothing. Returns `true` if a component was unmounted and `false` if there was no component to unmount.
+מסירה קומפונטה React מתופעלת מה-DOM ומנקה את מנהלי האירועים ואת ה-state. אם הקומפוננטה לא הופעלה על ה-container, קריאה לפונקציה זו אינה עושה דבר. מחזירה `true` אם ביטול תפעול הקומפוננטה צלח ו-`false` אם לא היתה קומפוננטה כדי לבטל את הפעלתה.
 
 * * *
 
 ### `findDOMNode()` {#finddomnode}
 
-> Note:
+> הערה:
 >
-> `findDOMNode` is an escape hatch used to access the underlying DOM node. In most cases, use of this escape hatch is discouraged because it pierces the component abstraction. [It has been deprecated in `StrictMode`.](/docs/strict-mode.html#warning-about-deprecated-finddomnode-usage)
+> `findDOMNode` היא פתח מילוט המשמשת כדי לגשת לצומת ה-DOM הבסיסי. ברוב המקרים, שימוש בפתח מילוט זה הוא לא מומלץ מכיוון שזה חודר את האבסטרקציה של הקומפוננטה. [היא הוצאה משימוש ב-`StrictMode`.](/docs/strict-mode.html#warning-about-deprecated-finddomnode-usage)
+
+
 
 ```javascript
 ReactDOM.findDOMNode(component)
 ```
-If this component has been mounted into the DOM, this returns the corresponding native browser DOM element. This method is useful for reading values out of the DOM, such as form field values and performing DOM measurements. **In most cases, you can attach a ref to the DOM node and avoid using `findDOMNode` at all.**
+אם קומפוננטה זו כבר הופעלה לתוך ה-DOM, קריאה זו מחזירה את אלמנט ה-DOM התואם המקורי של הדפדפן. מתודה זו שימושית עבור קריאת ערכים מתוך ה-DOM, כגון ערכי שדות טופס וביצוע מדידות DOM. **ברוב המקרים, ניתן לצרף הפנייה לצומת DOM ולהימנע לגמרי משימוש ב-`findDOMNode`.**
 
-When a component renders to `null` or `false`, `findDOMNode` returns `null`. When a component renders to a string, `findDOMNode` returns a text DOM node containing that value. As of React 16, a component may return a fragment with multiple children, in which case `findDOMNode` will return the DOM node corresponding to the first non-empty child.
+כאשר קומפוננטה מרונדרת ל-`null` או `false`, `findDOMNode` מחזירה `null`. כאשר קומפוננטה מרונדרת למחרוזת, `findDOMNode` מחזירה צומת DOM מסוג טקסט המכילה את הערך. החל מ-React 16, קומפוננטה יכולה להחזיר קטע עם מספר ילדים, ובמקרה כזה `findDOMNode` תחזיר את צומת ה-DOM התואם לילד הראשון שאינו ריק.
 
-> Note:
+> הערה:
 >
-> `findDOMNode` only works on mounted components (that is, components that have been placed in the DOM). If you try to call this on a component that has not been mounted yet (like calling `findDOMNode()` in `render()` on a component that has yet to be created) an exception will be thrown.
+> `findDOMNode` עובדת רק על קומפוננטות שהופעלו (כלומר, קומפוננטות שכבר הוכנסו ל-DOM). אם אתם מנסים לקרוא לה על קומפוננטות שעדיין לא הופעלו (כמו קריאה ל-`findDOMNode()` מתוך `render()` על קומפוננטה שעדיין לא נוצרה) תזרק שגיאה.
 >
-> `findDOMNode` cannot be used on function components.
+> `findDOMNode` לא יכולה להקרא על קומפוננטות פונקציה.
 
 * * *
 
@@ -111,4 +115,4 @@ When a component renders to `null` or `false`, `findDOMNode` returns `null`. Whe
 ReactDOM.createPortal(child, container)
 ```
 
-Creates a portal. Portals provide a way to [render children into a DOM node that exists outside the hierarchy of the DOM component](/docs/portals.html).
+מייצרת פורטל. פורטלים מספקים דרך [לרנדר ילדים לתוך צומת DOM שקיים מחוץ להיררכיה של קומפוננטת ה-DOM](/docs/portals.html).

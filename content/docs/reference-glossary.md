@@ -1,106 +1,111 @@
 ---
 id: glossary
-title: Glossary of React Terms
+title: רשימת מונחי React
 layout: docs
 category: Reference
 permalink: docs/glossary.html
 
 ---
 
-## Single-page Application {#single-page-application}
+## אפליקציית Single-page {#single-page-application}
 
-A single-page application is an application that loads a single HTML page and all the necessary assets (such as JavaScript and CSS) required for the application to run. Any interactions with the page or subsequent pages do not require a round trip to the server which means the page is not reloaded.
+אפליקציית single-page היא אפליקצייה שטוענת עמוד HTML אחד ואת כל הנכסים (כגון קבצי JavaScript ו-CSS) הדרושים כדי שהאפליקצייה תרוץ. כל אינטראקציה עם הדף או עם הדפים הבאים אינה דורשת נסיעה הלוך ושוב לשרת, כלומר הדף אינו נטען מחדש.
 
-Though you may build a single-page application in React, it is not a requirement. React can also be used for enhancing small parts of existing websites with additional interactivity. Code written in React can coexist peacefully with markup rendered on the server by something like PHP, or with other client-side libraries. In fact, this is exactly how React is being used at Facebook.
+למרות שאתם יכולים לבנות אפליקציית single-page ב-React, זוהי אינה דרישה. React יכולה לשמש גם לשיפור חלקים קטנים של אתרים קיימים עם אינטראקטיביות נוספת. קוד שנכתב ב-React יכול להתקיים בשלום עם markup שרונדר בשרת על ידי משהו כמו PHP, או עם ספריות אחרות בצד הלקוח. למעשה, זה בדיוק האופן בו React נמצאת בשימוש בפייסבוק.
 
-## ES6, ES2015, ES2016, etc {#es6-es2015-es2016-etc}
+## ES6, ES2015, ES2016, וכו' {#es6-es2015-es2016-etc}
 
-These acronyms all refer to the most recent versions of the ECMAScript Language Specification standard, which the JavaScript language is an implementation of. The ES6 version (also known as ES2015) includes many additions to the previous versions such as: arrow functions, classes, template literals, `let` and `const` statements. You can learn more about specific versions [here](https://en.wikipedia.org/wiki/ECMAScript#Versions).
+ראשי תיבות אלה מתייחסים לגרסאות העדכניות ביותר של תקן מפרט השפה ECMAScript, אשר שפת JavaScript היא יישום שלה. גרסת ES6 (הידועה גם בשם ES2015) כוללת תוספות רבות לגרסאות הקודמות כגון: פונקציות חץ, מחלקות, תבניות שגיאת דפוס, הצהרות `let` ו-` const`. תוכלו ללמוד עוד על גרסאות ספציפיות [כאן]
 
-## Compilers {#compilers}
+ראשי תיבות אלה מתייחסים לגרסאות העדכניות ביותר של תקן מפרט השפה ECMAScript, אשר שפת JavaScript היא יישום שלה. גרסת ES6 (הידועה גם בשם ES2015) כוללת תוספות רבות לגרסאות הקודמות כגון: פונקציות חץ, מחלקות, תבניות שגיאת דפוס, הצהרות `let` ו-` const`. תוכלו ללמוד עוד על גרסאות ספציפיות [כאן](https://en.wikipedia.org/wiki/ECMAScript#Versions).
 
-A JavaScript compiler takes JavaScript code, transforms it and returns JavaScript code in a different format. The most common use case is to take ES6 syntax and transform it into syntax that older browsers are capable of interpreting. [Babel](https://babeljs.io/) is the compiler most commonly used with React.
+## מהדרים {#compilers}
 
-## Bundlers {#bundlers}
 
-Bundlers take JavaScript and CSS code written as separate modules (often hundreds of them), and combine them together into a few files better optimized for the browsers. Some bundlers commonly used in React applications include [Webpack](https://webpack.js.org/) and [Browserify](http://browserify.org/).
 
-## Package Managers {#package-managers}
+מהדר JavaScript לוקח קוד JavaScript, משנה אותו ומחזיר קוד JavaScript בפורמט אחר. מקרה השימוש הנפוץ ביותר הוא לקחת תחביר ES6 ולהפוך אותו לתחביר שדפדפנים ישנים מסוגלים לפרש. [Babel](https://babeljs.io/) הוא המהדר הנפוץ ביותר בשימוש עם React.
 
-Package managers are tools that allow you to manage dependencies in your project. [npm](https://www.npmjs.com/) and [Yarn](https://yarnpkg.com/) are two package managers commonly used in React applications. Both of them are clients for the same npm package registry.
+## מאגדים {#bundlers}
+
+
+מאגדים לוקחים קוד JavaScript ו-CSS שנכתב בתור מודולים נפרדים (לעתים קרובות מאות מהם), ומאגדים אותם יחד לתוך כמה קבצים בעלי אופטימיזציה טובה יותר עבור הדפדפנים. כמה מאגדים בשימוש נפוץ באפליקציות React כוללים יישומים כוללים את [Webpack](https://webpack.js.org/) ו-[Browserify](http://browserify.org/).
+
+## מנהלי חבילות {#package-managers}
+
+מנהלי חבילות הם כלים המאפשרים לך לנהל תלויות בפרויקט שלך. [npm](https://www.npmjs.com/) ו-[Yarn](https://yarnpkg.com/) הם שני מנהלי חבילות בשימוש נפוץ באפליקציות React. שניהם לקוחות עבור אותו מרשם חבילות npm.
 
 ## CDN {#cdn}
 
-CDN stands for Content Delivery Network. CDNs deliver cached, static content from a network of servers across the globe. 
+CDN מייצג Content Delivery Network (רשת אספקת תוכן). CDN-ים מספקים מטמון תוכן סטאטי מתוך רשת של שרתים ברחבי העולם. 
 
 ## JSX {#jsx}
 
-JSX is a syntax extension to JavaScript. It is similar to a template language, but it has full power of JavaScript. JSX gets compiled to `React.createElement()` calls which return plain JavaScript objects called "React elements". To get a basic introduction to JSX [see the docs here](/docs/introducing-jsx.html) and find a more in-depth tutorial on JSX [here](/docs/jsx-in-depth.html).
+JSX היא תוספת תחביר עבור JavaScript. היא דומה לשפת תבנית, אבל יש לה את מלוא העוצמה של JavaScript. JSX מתקמפלת לקריאות `React.createElement()` שמחזירות אובייקטי JavaScript פשוטים הנקראים "אלמנטיי React". כדי לקבל מבוא בסיסי ל-JSX [צפו בתיעוד כאן](/docs/introducing-jsx.html) ותוכלו למצוא הדרכה מעמיקה יותר על JSX [כאן](/docs/jsx-in-depth.html).
 
-React DOM uses camelCase property naming convention instead of HTML attribute names. For example, `tabindex` becomes `tabIndex` in JSX. The attribute `class` is also written as `className` since `class` is a reserved word in JavaScript:
+React DOM משתמשת בקונבנצית מתן שמות של מאפיינים ב-camelCase במקום בשמות של תכונות HTML. לדוגמה, `tabindex` הופך ל-`tabIndex` ב-JSX. המאפיין `class` גם נכתב בשם `className` מכיוון ש-`class` היא מילה שמורה ב-JavaScript:
 
 ```js
-const name = 'Clementine';
+const name = 'תפוזינה';
 ReactDOM.render(
-  <h1 className="hello">My name is {name}!</h1>,
+  <h1 className="hello">השם שלי הוא {name}!</h1>,
   document.getElementById('root')
 );
 ```  
 
-## [Elements](/docs/rendering-elements.html) {#elements}
+## [אלמנטים](/docs/rendering-elements.html) {#elements}
 
-React elements are the building blocks of React applications. One might confuse elements with a more widely known concept of "components". An element describes what you want to see on the screen. React elements are immutable.
+אלמנטים של React הם אבני הבניין של אפליקציות React. אפשר לבלבל אלמנטים עם קונספט נרחב יותר של "קומפוננטות". אלמנט מתאר את מה שאתם רוצים לראות על המסך. אלמנטים של React אינם ניתנים לשינוי (הם immutable).
 
 ```js
-const element = <h1>Hello, world</h1>;
+const element = <h1>שלום, עולם</h1>;
 ```
 
-Typically, elements are not used directly, but get returned from components.
+בדרך כלל, אלמנטים אינם נמצאים בשימוש ישיר, אלא מוחזרים מקומפוננטות.
 
-## [Components](/docs/components-and-props.html) {#components}
+## [קומפוננטות](/docs/components-and-props.html) {#components}
 
-React components are small, reusable pieces of code that return a React element to be rendered to the page. The simplest version of React component is a plain JavaScript function that returns a React element:
+קומפוננטות React הם חלקי קוד קטנים, הניתנים לשימוש חוזר המחזירים אלמנט React שירונדר לדף. הגרסה הפשוטה ביותר של קומפוננטות React היא פונקציית JavaScript פשוטה שמחזירה אלמנט React:
 
 ```js
 function Welcome(props) {
-  return <h1>Hello, {props.name}</h1>;
+  return <h1>שלום, {props.name}</h1>;
 }
 ```
 
-Components can also be ES6 classes:
+קומפוננטות יכולות גם להיות מחלקות ES6:
 
 ```js
 class Welcome extends React.Component {
   render() {
-    return <h1>Hello, {this.props.name}</h1>;
+    return <h1>שלום, {this.props.name}</h1>;
   }
 }
 ```
 
-Components can be broken down into distinct pieces of functionality and used within other components. Components can return other components, arrays, strings and numbers. A good rule of thumb is that if a part of your UI is used several times (Button, Panel, Avatar), or is complex enough on its own (App, FeedStory, Comment), it is a good candidate to be a reusable component. Component names should also always start with a capital letter (`<Wrapper/>` **not** `<wrapper/>`). See [this documentation](/docs/components-and-props.html#rendering-a-component) for more information on rendering components. 
+ניתן לפצל קומפוננטות לחלקים שונים של פונקציונליות ולהשתמש בהן בתוך קומפוננטות אחרות. קומפוננטות יכולות להחזיר קומפוננטות אחרות, מערכים, מחרוזות ומספרים. כלל אצבע טוב הוא שאם חלק ממשק המשתמש שלכם נמצא בשימוש מספר פעמים (כפתור, פאנל, אווטר), או שהוא מורכב מספיק בפני עצמו (אפליקציה, פיד סיפורים, תגובה), הוא מועמד טוב להיות רכיב לשימוש חוזר . שמות רכיבים צריכים תמיד להתחיל עם אות רישית (`<Wrapper/>` **ולא** `<wrapper/>`). ראה [תיעוד זה](/docs/components-and-props.html#rendering-a-component) לקבלת מידע נוסף על רינדור קומפוננטות.
 
 ### [`props`](/docs/components-and-props.html) {#props}
 
-`props` are inputs to a React component. They are data passed down from a parent component to a child component.
+`props` הם קלטים לקומפוננטות React. הם נתונים המועברים למטה מקומפוננטת הורה לקומפוננטת ילד.
 
-Remember that `props` are readonly. They should not be modified in any way:
+זכרו ש-`props` הם לקריאה-בלבד. הם לא צריכים להשתנות בשום דרך שהיא:
 
 ```js
-// Wrong!
+// טעות!
 props.number = 42;
 ```
 
-If you need to modify some value in response to user input or a network response, use `state` instead.
+אם עליכם לשנות ערך כלשהו בתגובה לקלט משתמש או לתגובת רשת, השתמשו ב-`state` במקום זאת.
 
 ### `props.children` {#propschildren}
 
-`props.children` is available on every component. It contains the content between the opening and closing tags of a component. For example:
+`props.children` זמין בכל קומפוננטה. הוא מכיל את התוכן בין תגי הפתיחה והסגירה של קומפוננטה. לדוגמה:
 
 ```js
-<Welcome>Hello world!</Welcome>
+<Welcome>שלום עולם!</Welcome>
 ```
 
-The string `Hello world!` is available in `props.children` in the `Welcome` component:
+המחרוזת `Hello world!` זמינה ב-`props.children` בקומפוננטת `Welcome`:
 
 ```js
 function Welcome(props) {
@@ -108,7 +113,7 @@ function Welcome(props) {
 }
 ```
 
-For components defined as classes, use `this.props.children`:
+עבור קומפוננטות המוגדרות כמחלקות, השתמשו ב-`this.props.children`:
 
 ```js
 class Welcome extends React.Component {
@@ -120,47 +125,47 @@ class Welcome extends React.Component {
 
 ### [`state`](/docs/state-and-lifecycle.html#adding-local-state-to-a-class) {#state}
 
-A component needs `state` when some data associated with it changes over time. For example, a `Checkbox` component might need `isChecked` in its state, and a `NewsFeed` component might want to keep track of `fetchedPosts` in its state.
+קומפוננטה צריכה `state` כאשר נתונים כלשהם המשויכים אליה משתנים עם הזמן. לדוגמה, קומפוננטת `Checkbox` עשויה להזדקק ל-`isChecked` ב-`state` שלה, וקומפוננטת `NewsFeed` עשויה לרצות לעקוב אחרי `fetchedPosts` ב-`state` שלה.
 
-The most important difference between `state` and `props` is that `props` are passed from a parent component, but `state` is managed by the component itself. A component cannot change its `props`, but it can change its `state`. To do so, it must call `this.setState()`. Only components defined as classes can have state.
+ההבדל החשוב ביותר בין `state` ל-`props` הוא ש-`props` מועברים מקומפוננטת הורה, אבל `state` מנוהל על ידי הקומפוננטה עצמה. קומפוננטה לא יכולה לשנות את ה-`props` שלה, אבל היא כן יכולה לשנות את ה-`state` שלה.
 
-For each particular piece of changing data, there should be just one component that "owns" it in its state. Don't try to synchronize states of two different components. Instead, [lift it up](/docs/lifting-state-up.html) to their closest shared ancestor, and pass it down as props to both of them.
+עבור כל פיסה מסוימת של נתונים משתנים, צריך להיות רק קומפוננטה אחת שתהיה "הבעלים" של אותו מידע ב-`state` שלה. אל תנסו לסנכרן `state` של שני קומפוננטות שונות. במקום זאת, [הרימו אותו למעלה](/docs/lifting-state-up.html) אל האב הקדמון המשותף הקרוב ביותר שלהם, והעבירו אותו למטה בתור `props` לשתי הקומפוננטות.
 
-## [Lifecycle Methods](/docs/state-and-lifecycle.html#adding-lifecycle-methods-to-a-class) {#lifecycle-methods}
+## [מתודות מעגל חיים](/docs/state-and-lifecycle.html#adding-lifecycle-methods-to-a-class) {#lifecycle-methods}
 
-Lifecycle methods are custom functionality that gets executed during the different phases of a component. There are methods available when the component gets created and inserted into the DOM ([mounting](/docs/react-component.html#mounting)), when the component updates, and when the component gets unmounted or removed from the DOM.
+מתודות מעגל חיים הן פונקציונליות מותאמת אישית המורצת במהלך השלבים השונים של קומפוננטה. ישנן מתודות זמינות כאשר הקומפוננטה נוצרת ונוספת ל-DOM ([mounting](/docs/react-component.html#mounting)), כאשר הקומפוננטה מתעדכנת, וכאשר הקומפוננטה נהיית unmounted או מוסרת מה-DOM.
 
- ## [Controlled](/docs/forms.html#controlled-components) vs. [Uncontrolled Components](/docs/uncontrolled-components.html)
+ ## [קומפוננטות מבוקרות](/docs/forms.html#controlled-components) נגד [בלתי-מבוקרות](/docs/uncontrolled-components.html)
 
-React has two different approaches to dealing with form inputs. 
+ל-React יש שתי גישות שונות להתמודד עם קלטי טופס.
 
-An input form element whose value is controlled by React is called a *controlled component*. When a user enters data into a controlled component a change event handler is triggered and your code decides whether the input is valid (by re-rendering with the updated value). If you do not re-render then the form element will remain unchanged.
+אלמנט קלט של טופס שערכו נשלט על ידי React נקרא *קומפוננטה מבוקרת*. כאשר משתמש מזין נתונים לקומפוננטה מבוקרת, מופעל מטפל של אירוע שינוי והקוד שלכם מחליט אם הקלט וולידי (על-ידי רינדור מחדש עם הערך המעודכן). אם לא תרנדרו מחדש, אלמנט הטופס יישאר ללא שינוי.
 
-An *uncontrolled component* works like form elements do outside of React. When a user inputs data into a form field (an input box, dropdown, etc) the updated information is reflected without React needing to do anything. However, this also means that you can't force the field to have a certain value.
+*קומפוננטה בלתי מבוקרת* עובדת כמו שאלמנטים של טופס עובדים מחוץ ל-React. כאשר משתמש מכניס נתונים לתוך שדה טופס (תיבת קלט, תפריט נפתח וכו') המידע המעודכן משתקף ללא צורך ש-React תעשה שום דבר. עם זאת, זה גם אומר שאתם לא יכולים להכריח את השדה שיכיל ערך מסוים.
 
-In most cases you should use controlled components.
+ברוב המקרים יהיה עליכם להשתמש בקומפוננטות מבוקרות.
 
-## [Keys](/docs/lists-and-keys.html) {#keys}
+## [מפתחות](/docs/lists-and-keys.html) {#keys}
 
-A "key" is a special string attribute you need to include when creating arrays of elements. Keys help React identify which items have changed, are added, or are removed. Keys should be given to the elements inside an array to give the elements a stable identity.
+"מפתח" הוא מאפיין מחרוזת מיוחדת שעליכם לכלול בעת יצירת מערכים של אלמנטים. מפתחות עוזרים ל-React לזהות אילו פריטים השתנו, נוספו או הוסרו. המפתחות צריכים להינתן לאלמנטים בתוך מערך על מנת לתת לאלמנטים זהות קבועה.
 
-Keys only need to be unique among sibling elements in the same array. They don't need to be unique across the whole application or even a single component.
+מפתחות צריכים להיות ייחודיים רק בין אלמנטים אחים באותו מערך. הם לא צריכים להיות ייחודיים על פני האפליקציה כולה או אפילו קומפוננטה אחת.
 
-Don't pass something like `Math.random()` to keys. It is important that keys have a "stable identity" across re-renders so that React can determine when items are added, removed, or re-ordered. Ideally, keys should correspond to unique and stable identifiers coming from your data, such as `post.id`.
+אל תעביר משהו כמו `Math.random()` למפתחות. חשוב שלמפתחות תהיה "זהות קבועה" על פני רינדורים מחדש כך ש-React תוכל לקבוע מתי פריטים מתווספים, מוסרים, או מאורגנים מחדש. באופן אידיאלי, מפתחות צריכים להתאים למזהים ייחודיים וקבועים שמקורם בנתונים שלכם, כגון `post.id`.
 
 ## [Refs](/docs/refs-and-the-dom.html) {#refs}
 
-React supports a special attribute that you can attach to any component. The `ref` attribute can be an object created by [`React.createRef()` function](/docs/react-api.html#reactcreateref) or a callback function, or a string (in legacy API). When the `ref` attribute is a callback function, the function receives the underlying DOM element or class instance (depending on the type of element) as its argument. This allows you to have direct access to the DOM element or component instance.
+React תומכת במאפיין מיוחד שניתן לצרף לכל קומפוננטה. התכונה `ref` יכולה להיות אובייקט שנוצר על ידי [פונקציית `React.createRef()`](/docs/react-api.html#reactcreateref) או פונקציית callback, או מחרוזת (ב-API מגירסאות קודמות). כאשר התכונה `ref` היא פונקציית callback, הפונקציה מקבלת את אלמנט ה-DOM הבסיסי או את מופע המחלקה (בהתאם לסוג האלמנט) כארגומנט שלה. זה מאפשר לכם גישה ישירה לאלמנט ה-DOM או מופע הקומפוננטה.
 
-Use refs sparingly. If you find yourself often using refs to "make things happen" in your app, consider getting more familiar with [top-down data flow](/docs/lifting-state-up.html).
+השתמשו ב-refs בואפן חסכני. אם אתם מוצאים את עצמכם משתמשים ב-refs לעתים קרובות כדי "לגרום לדברים לקרות" באפליקציה שלכם, שקלו לבצע היכרות טובה יותר עם [זרימת נתונים מלמעלה-למטה](/docs/lifting-state-up.html).
 
-## [Events](/docs/handling-events.html) {#events}
+## [אירועים](/docs/handling-events.html) {#events}
 
-Handling events with React elements has some syntactic differences:
+לטיפול באירועים עם אלמנטי React יש כמה הבדלים תחביריים:
 
-* React event handlers are named using camelCase, rather than lowercase.
-* With JSX you pass a function as the event handler, rather than a string.
+* מטפלי אירועים של React נקראים באמצעות camelCase, במקום באותיות קטנות.
+* עם JSX אתם מעבירים פונקציה כמטפל האירוע, ולא מחרוזת.
 
-## [Reconciliation](/docs/reconciliation.html) {#reconciliation}
+## [התאמה](/docs/reconciliation.html) {#reconciliation}
 
-When a component's props or state change, React decides whether an actual DOM update is necessary by comparing the newly returned element with the previously rendered one. When they are not equal, React will update the DOM. This process is called "reconciliation".
+כאשר ה-props או ה-state של קומפוננטה או משתנים, React מחליטה אם יש צורך בעדכון DOM בפועל על-ידי השוואת האלמנט החדש שהוחזר עם האלמנט הקודם שרונדר. כאשר הם לא זהים, React יעדכן את ה-DOM. תהליך זה נקרא "התאמה".

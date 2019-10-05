@@ -50,7 +50,7 @@
     - id: fragments
       title: מקטעים
     - id: higher-order-components
-      title: קומפוננטות מסדר-גבוהה
+      title: קומפוננטות מסדר גבוה יותר
     - id: integrating-with-other-libraries
       title: אינטגרציה עם ספריות אחרות
     - id: jsx-in-depth
@@ -59,6 +59,8 @@
       title: אופטימיזציה של ביצועים
     - id: portals
       title: פורטלים
+    - id: profiler
+      title: Profiler
     - id: react-without-es6
       title: React בלי ES6
     - id: react-without-jsx

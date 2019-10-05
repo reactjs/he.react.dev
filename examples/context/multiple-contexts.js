@@ -1,7 +1,7 @@
-// Theme context, default to light theme
+// קונטקסט ערכת הנושא עם ברירת מחדל בהירה
 const ThemeContext = React.createContext('light');
 
-// Signed-in user context
+// קונטקסט המשתמש המאומת
 const UserContext = React.createContext({
   name: 'Guest',
 });
@@ -10,7 +10,7 @@ class App extends React.Component {
   render() {
     const {signedInUser, theme} = this.props;
 
-    // App component that provides initial context values
+    // קומפוננטה שמספקת ערכי ברירת מחדל לקונטקסט
     // highlight-range{2-3,5-6}
     return (
       <ThemeContext.Provider value={theme}>
@@ -31,7 +31,7 @@ function Layout() {
   );
 }
 
-// A component may consume multiple contexts
+// קומפוננטה יכולה לצרוך יותר מקונטקסט אחד
 function Content() {
   // highlight-range{2-10}
   return (

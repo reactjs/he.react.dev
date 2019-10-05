@@ -1,25 +1,25 @@
 ---
 id: test-renderer
-title: Test Renderer
+title: מרנדר טסטים
 permalink: docs/test-renderer.html
 layout: docs
 category: Reference
 ---
 
-**Importing**
+**יבוא**
 
 ```javascript
 import TestRenderer from 'react-test-renderer'; // ES6
 const TestRenderer = require('react-test-renderer'); // ES5 with npm
 ```
 
-## Overview {#overview}
+## סקירה כללית {#overview}
 
-This package provides a React renderer that can be used to render React components to pure JavaScript objects, without depending on the DOM or a native mobile environment.
+חבילה זו מספקת מרנדר React שניתן להשתמש בו כדי לעבד קומפוננטות React לאובייקטי JavaScript טהורים, ללא תלות ב-DOM או בסביבת מובייל טבעית.
 
-Essentially, this package makes it easy to grab a snapshot of the platform view hierarchy (similar to a DOM tree) rendered by a React DOM or React Native component without using a browser or [jsdom](https://github.com/tmpvar/jsdom).
+בעיקרו של דבר, חבילה זו מאפשרת לנו לתפוס תצלום של היררכיית תצוגת הפלטפורמה (הדומה לעץ DOM) בקלות שמרונדרת על ידי React DOM או קומפוננטת React Native ללא שימוש בדפדפן או [jsdom](https://github.com/tmpvar/jsdom).
 
-Example:
+דוגמה:
 
 ```javascript
 import TestRenderer from 'react-test-renderer';
@@ -38,9 +38,9 @@ console.log(testRenderer.toJSON());
 //   children: [ 'Facebook' ] }
 ```
 
-You can use Jest's snapshot testing feature to automatically save a copy of the JSON tree to a file and check in your tests that it hasn't changed: [Learn more about it](https://facebook.github.io/jest/blog/2016/07/27/jest-14.html).
+ניתן להשתמש בתכונת בדיקות תצלום של Jest כדי לשמור באופן אוטומטי עותק של עץ ה-JSON לקובץ ולבדוק בתוך הטסטים שלך שהוא לא השתנה: [למידע נוסף על כך](https://jestjs.io/docs/en/snapshot-testing).
 
-You can also traverse the output to find specific nodes and make assertions about them.
+אתם יכולים גם לעבור על הפלט כדי למצוא צמתים ספציפיים ולבצע בדיקות לגביהם.
 
 ```javascript
 import TestRenderer from 'react-test-renderer';
@@ -49,14 +49,14 @@ function MyComponent() {
   return (
     <div>
       <SubComponent foo="bar" />
-      <p className="my">Hello</p>
+      <p className="my">שלום</p>
     </div>
   )
 }
 
 function SubComponent() {
   return (
-    <p className="sub">Sub</p>
+    <p className="sub">תחתית</p>
   );
 }
 
@@ -64,14 +64,15 @@ const testRenderer = TestRenderer.create(<MyComponent />);
 const testInstance = testRenderer.root;
 
 expect(testInstance.findByType(SubComponent).props.foo).toBe('bar');
-expect(testInstance.findByProps({className: "sub"}).children).toEqual(['Sub']);
+expect(testInstance.findByProps({className: "sub"}).children).toEqual(['תחתית']);
 ```
 
 ### TestRenderer {#testrenderer}
 
 * [`TestRenderer.create()`](#testrenderercreate)
+* [`TestRenderer.act()`](#testrendereract)
 
-### TestRenderer instance {#testrenderer-instance}
+### מופע TestRenderer {#testrenderer-instance}
 
 * [`testRenderer.toJSON()`](#testrenderertojson)
 * [`testRenderer.toTree()`](#testrenderertotree)
@@ -94,7 +95,7 @@ expect(testInstance.findByProps({className: "sub"}).children).toEqual(['Sub']);
 * [`testInstance.parent`](#testinstanceparent)
 * [`testInstance.children`](#testinstancechildren)
 
-## Reference {#reference}
+## סימוכין {#reference}
 
 ### `TestRenderer.create()` {#testrenderercreate}
 
@@ -102,7 +103,37 @@ expect(testInstance.findByProps({className: "sub"}).children).toEqual(['Sub']);
 TestRenderer.create(element, options);
 ```
 
-Create a `TestRenderer` instance with the passed React element. It doesn't use the real DOM, but it still fully renders the component tree into memory so you can make assertions about it. The returned instance has the following methods and properties.
+צור מופע `TestRenderer` עם קומפוננטת ה-React שהועברה. הוא לא משתמש ב-DOM האמיתי, אך הוא עדיין מרנדר את עץ הקומפוננטה לזיכרון באופן מלא, כך שתוכלו לבצע השוואות לגביו. מחזיר [מופע TestRenderer](#testrenderer-instance).
+
+### `TestRenderer.act()` {#testrendereract}
+
+```javascript
+TestRenderer.act(callback);
+```
+
+Similar to the [`act()` helper from `react-dom/test-utils`](/docs/test-utils.html#act), `TestRenderer.act` prepares a component for assertions. Use this version of `act()` to wrap calls to `TestRenderer.create` and `testRenderer.update`.
+
+```javascript
+import {create, act} from 'react-test-renderer';
+import App from './app.js'; // The component being tested
+
+// render the component
+let root; 
+act(() => {
+  root = create(<App value={1}/>)
+});
+
+// make assertions on root 
+expect(root.toJSON()).toMatchSnapshot();
+
+// update with some different props
+act(() => {
+  root = root.update(<App value={2}/>);
+})
+
+// make assertions on root 
+expect(root.toJSON()).toMatchSnapshot();
+```
 
 ### `testRenderer.toJSON()` {#testrenderertojson}
 
@@ -110,7 +141,7 @@ Create a `TestRenderer` instance with the passed React element. It doesn't use t
 testRenderer.toJSON()
 ```
 
-Return an object representing the rendered tree. This tree only contains the platform-specific nodes like `<div>` or `<View>` and their props, but doesn't contain any user-written components. This is handy for [snapshot testing](https://facebook.github.io/jest/docs/en/snapshot-testing.html#snapshot-testing-with-jest).
+החזר אובייקט המייצג את העץ שרונדר. עץ זה מכיל רק את הצמתים הספציפיים לפלטפורמה כגון `<div>` או `<View>` ואת ה-props שלהם, אך אינו מכיל קומפוננטות שנכתבו על ידי המשתמש. זה שימושי עבור [בדיקות תמונת מצב](https://facebook.github.io/jest/docs/en/snapshot-testing.html#snapshot-testing-with-jest).
 
 ### `testRenderer.toTree()` {#testrenderertotree}
 
@@ -118,7 +149,7 @@ Return an object representing the rendered tree. This tree only contains the pla
 testRenderer.toTree()
 ```
 
-Return an object representing the rendered tree. Unlike `toJSON()`, the representation is more detailed than the one provided by `toJSON()`, and includes the user-written components. You probably don't need this method unless you're writing your own assertion library on top of the test renderer.
+החזר אובייקט המייצג את העץ שרונדר.  הייצוג מפורט יותר מזה שניתן על ידי `toJSON()`, והוא כולל את הקומפוננטות שנכתבו על ידי המשתמש. אתם כנראה לא תצטרכו להשתמש במתודה זו, אלא אם אתם כותבים ספריית בדיקות משלכם הטענה הפועלת מעל מרנדר הטסטים.
 
 ### `testRenderer.update()` {#testrendererupdate}
 
@@ -126,7 +157,7 @@ Return an object representing the rendered tree. Unlike `toJSON()`, the represen
 testRenderer.update(element)
 ```
 
-Re-render the in-memory tree with a new root element. This simulates a React update at the root. If the new element has the same type and key as the previous element, the tree will be updated; otherwise, it will re-mount a new tree.
+מרנדר מחדש את העץ בתוך הזיכרון עם אלמנט שורש חדש. פעולה זו מדמה עדכון React בשורש. אם לאלמנט החדש יש את אותו סוג ואותו מפתח כמו האלמנט הקודם, העץ יעודכן; אחרת, הוא יעשה mount מחדש לעץ חדש.
 
 ### `testRenderer.unmount()` {#testrendererunmount}
 
@@ -134,7 +165,7 @@ Re-render the in-memory tree with a new root element. This simulates a React upd
 testRenderer.unmount()
 ```
 
-Unmount the in-memory tree, triggering the appropriate lifecycle events.
+בטל את טעינת העץ בזיכרון, תוך הפעלת אירועי מחזור החיים המתאימים.
 
 ### `testRenderer.getInstance()` {#testrenderergetinstance}
 
@@ -142,7 +173,7 @@ Unmount the in-memory tree, triggering the appropriate lifecycle events.
 testRenderer.getInstance()
 ```
 
-Return the instance corresponding to the root element, if available. This will not work if the root element is a function component because they don't have instances.
+החזר את המופע התואם לאלמנט השורש, אם זמין. פעולה זו לא תעבוד אם אלמנט השורש הוא קומפוננטת פונקציה מכיוון שאין להם מופעים.
 
 ### `testRenderer.root` {#testrendererroot}
 
@@ -150,7 +181,7 @@ Return the instance corresponding to the root element, if available. This will n
 testRenderer.root
 ```
 
-Returns the root "test instance" object that is useful for making assertions about specific nodes in the tree. You can use it to find other "test instances" deeper below.
+מחזיר את אובייקט השורש "test instance" שהינו שימושי להכנת השוואות לגבי צמתים ספציפיים בעץ. אתם יכולים להשתמש בו כדי למצוא "test instances" אחרים עמוק יותר בעץ.
 
 ### `testInstance.find()` {#testinstancefind}
 
@@ -158,7 +189,7 @@ Returns the root "test instance" object that is useful for making assertions abo
 testInstance.find(test)
 ```
 
-Find a single descendant test instance for which `test(testInstance)` returns `true`. If `test(testInstance)` does not return `true` for exactly one test instance, it will throw an error.
+מצא מופע צאצא של טסט בודד שעבורו `test(testInstance)` מחזירה `true`. אם `test(testInstance)` אינה מחזירה `true` עבור מופע בדיקה אחד בדיוק, תזרק שגיאה.
 
 ### `testInstance.findByType()` {#testinstancefindbytype}
 
@@ -166,7 +197,7 @@ Find a single descendant test instance for which `test(testInstance)` returns `t
 testInstance.findByType(type)
 ```
 
-Find a single descendant test instance with the provided `type`. If there is not exactly one test instance with the provided `type`, it will throw an error.
+מצא מופע צאצא של טסט בודד עם ה-`type` שסופק. אם אין בדיוק מופע מבחן אחד עם ה-`type` שסופק, תזרק שגיאה.
 
 ### `testInstance.findByProps()` {#testinstancefindbyprops}
 
@@ -174,7 +205,7 @@ Find a single descendant test instance with the provided `type`. If there is not
 testInstance.findByProps(props)
 ```
 
-Find a single descendant test instance with the provided `props`. If there is not exactly one test instance with the provided `props`, it will throw an error.
+מצא מופע צאצא של טסט בודד עם ה-`props` שסופק. אם אין בדיוק מופע מבחן אחד עם ה-`props` שסופק, תזרק שגיאה.
 
 ### `testInstance.findAll()` {#testinstancefindall}
 
@@ -182,7 +213,7 @@ Find a single descendant test instance with the provided `props`. If there is no
 testInstance.findAll(test)
 ```
 
-Find all descendant test instances for which `test(testInstance)` returns `true`.
+מצא את כל צאצאי מופע הטסט שעבורם `test(testInstance)` מחזירה `true`.
 
 ### `testInstance.findAllByType()` {#testinstancefindallbytype}
 
@@ -190,7 +221,7 @@ Find all descendant test instances for which `test(testInstance)` returns `true`
 testInstance.findAllByType(type)
 ```
 
-Find all descendant test instances with the provided `type`.
+מצא את כל צאצאי מופע הטסט עם ה-`type` שסופק.
 
 ### `testInstance.findAllByProps()` {#testinstancefindallbyprops}
 
@@ -198,7 +229,7 @@ Find all descendant test instances with the provided `type`.
 testInstance.findAllByProps(props)
 ```
 
-Find all descendant test instances with the provided `props`.
+מצא את כל צאצאי מופע הטסט עם ה-`props` שסופק.
 
 ### `testInstance.instance` {#testinstanceinstance}
 
@@ -206,7 +237,7 @@ Find all descendant test instances with the provided `props`.
 testInstance.instance
 ```
 
-The component instance corresponding to this test instance. It is only available for class components, as function components don't have instances. It matches the `this` value inside the given component.
+מופע הקומפוננטה התואמת למופע טסט זה. זמין רק עבור קומפוננטות מחלקה, מכיוון שלקומפוננטות פונקציה אין מופעים. כמו כן, מתאים את הערך של `this` בתוך הקומפוננטה שניתנה.
 
 ### `testInstance.type` {#testinstancetype}
 
@@ -214,7 +245,7 @@ The component instance corresponding to this test instance. It is only available
 testInstance.type
 ```
 
-The component type corresponding to this test instance. For example, a `<Button />` component has a type of `Button`.
+סוג הקומפוננטה התואם למופע טסט זה. לדוגמה, לקומפוננטת `<Button />` יהיה ערך סוג `Button`.
 
 ### `testInstance.props` {#testinstanceprops}
 
@@ -222,7 +253,7 @@ The component type corresponding to this test instance. For example, a `<Button 
 testInstance.props
 ```
 
-The props corresponding to this test instance. For example, a `<Button size="small" />` component has `{size: 'small'}` as props.
+ה-props המתאימים למופע טסט זה. לדוגמה, לקומפוננטה `<Button size="small" />` יש `{size: 'small'}` בתור props.
 
 ### `testInstance.parent` {#testinstanceparent}
 
@@ -230,7 +261,7 @@ The props corresponding to this test instance. For example, a `<Button size="sma
 testInstance.parent
 ```
 
-The parent test instance of this test instance.
+מופע טסט האב של מופע טסט זה.
 
 ### `testInstance.children` {#testinstancechildren}
 
@@ -238,13 +269,13 @@ The parent test instance of this test instance.
 testInstance.children
 ```
 
-The children test instances of this test instance.
+מופעי ילדי הטסטים של מופע טסט זה.
 
-## Ideas {#ideas}
+## רעיונות {#ideas}
 
-You can pass `createNodeMock` function to `TestRenderer.create` as the option, which allows for custom mock refs.
-`createNodeMock` accepts the current element and should return a mock ref object.
-This is useful when you test a component that relies on refs.
+ניתן להעביר את הפונקציה `createNodeMock` ל-`TestRenderer.create` בתור option, המאפשרת שימוש בהפניות מדומות מותאמים אישית.
+`createNodeMock` מקבלת את האלמנט הנוכחי ואמורה להחזיר אובייקט הפנייה מדומה.
+אפשרות זו שימושית בעת בדיקת קומפוננטה המסתמכת על הפניות.
 
 ```javascript
 import TestRenderer from 'react-test-renderer';

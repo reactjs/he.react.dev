@@ -1,20 +1,17 @@
 ---
 id: code-splitting
-title: Code-Splitting
+title: פיצול-קוד
 permalink: docs/code-splitting.html
 ---
 
-## Bundling {#bundling}
+## איגוד {#bundling}
 
-Most React apps will have their files "bundled" using tools like
-[Webpack](https://webpack.js.org/) or [Browserify](http://browserify.org/).
-Bundling is the process of following imported files and merging them into a
-single file: a "bundle". This bundle can then be included on a webpage to load
-an entire app at once.
+בדרך כלל, הקבצים באפליקציות React ״מאוגדים״ באמצעות כלים כמו [Webpack](https://webpack.js.org/) , [Browserify](http://browserify.org/) או [Browserify](http://browserify.org/).
+איגוד הוא תהליך שעוקב אחרי קבצים מיובאים ומאחד אותם לקובץ יחיד: ״באנדל״. את הבאנדל אפשר לצרף לדף אינטרנט כדי לטעון אפליקציה שלמה בבת אחת.
 
-#### Example {#example}
+#### דוגמא {#example}
 
-**App:**
+**אפליקציה:**
 
 ```js
 // app.js
@@ -30,7 +27,7 @@ export function add(a, b) {
 }
 ```
 
-**Bundle:**
+**באנדל:**
 
 ```js
 function add(a, b) {
@@ -40,44 +37,29 @@ function add(a, b) {
 console.log(add(16, 26)); // 42
 ```
 
-> Note:
+> הערה:
 >
-> Your bundles will end up looking a lot different than this.
+> הדוגמא להמחשה בלבד, וקובץ הבאנדל במציאות נראה שונה לגמרי.
 
-If you're using [Create React App](https://github.com/facebookincubator/create-react-app), [Next.js](https://github.com/zeit/next.js/), [Gatsby](https://www.gatsbyjs.org/), or a similar tool, you will have a Webpack setup out of the box to bundle your
-app.
+אם יצרתם את האפליקציה בעזרת כלי כמו [Create React App](https://github.com/facebookincubator/create-react-app), [Next.js](https://github.com/zeit/next.js/), [Gatsby](https://www.gatsbyjs.org/) וכדומה, תוכלו להשתמש בהתקנה המובנית של Webpack כדי לאגד את האפליקציה.
 
-If you aren't, you'll need to setup bundling yourself. For example, see the
-[Installation](https://webpack.js.org/guides/installation/) and
-[Getting Started](https://webpack.js.org/guides/getting-started/) guides on the
-Webpack docs.
+אם לא, תצטרכו להתקין כלי איגוד בעצמכם. התיעוד הנ״ל לדוגמא, יעזור לכם [להתקין](https://webpack.js.org/guides/installation/) ו[להתחיל להשתמש](https://webpack.js.org/guides/getting-started/) ב- Webpack.
 
-## Code Splitting {#code-splitting}
 
-Bundling is great, but as your app grows, your bundle will grow too. Especially
-if you are including large third-party libraries. You need to keep an eye on
-the code you are including in your bundle so that you don't accidentally make
-it so large that your app takes a long time to load.
+## פיצול קוד {#code-splitting}
 
-To avoid winding up with a large bundle, it's good to get ahead of the problem
-and start "splitting" your bundle.
- [Code-Splitting](https://webpack.js.org/guides/code-splitting/) is a feature
-supported by bundlers like Webpack and Browserify (via
-[factor-bundle](https://github.com/browserify/factor-bundle)) which can create
-multiple bundles that can be dynamically loaded at runtime.
+איגוד הוא תהליך נחמד, אבל כשהאפליקציה שלכם גדלה, קובץ הבאנדל גדל איתה. בעיקר אם אתם משתמשים בספריות צד שלישי גדולות. תצטרכו לשים עין על הקוד שכלול בבאנדל כדי שהקובץ לא יגיע לגודל שיגרום לאפליקציה שלכם להטען לאט מדי.
 
-Code-splitting your app can help you "lazy-load" just the things that are
-currently needed by the user, which can dramatically improve the performance of
-your app. While you haven't reduced the overall amount of code in your app,
-you've avoided loading code that the user may never need, and reduced the amount
-of code needed during the initial load.
+כדי שלא נגיע למצב שהבאנדל שלנו גדול מדי, כדאי להקדים את הבעיה ולהתחיל ״לפצל״ את הבאנדל.
+[פיצול קוד](https://webpack.js.org/guides/code-splitting/) הוא פיצ׳ר שנתמך על ידי באנדלרים כמו Weback ו- Browserify (בעזרת [factor-bundle](https://github.com/browserify/factor-bundle)), שמאפשר ליצור מספר קבצי באנדל שיטענו באופן דינאמי בזמן ריצה.
+
+פיצול קוד יכול לעזור לנו לממש ״טעינה עצלה״ של הדברים באפליקציה שהמשתמש צריך, וטעינה כזאת יכולה לשפר באופן משמעותי את הביצועים של האפליקציה. בצורה כזאת לא נאלץ להפחית את כמות הקוד, רק לא לטעון קוד שהמשתמש אולי לא יצטרך לעולם, ונפחית את כמות הקוד שנדרשת בזמן הטעינה הראשונה של האפליקציה.
 
 ## `import()` {#import}
 
-The best way to introduce code-splitting into your app is through the dynamic
-`import()` syntax.
+הדרך הטובה ביותר לפצל קוד באפליקציה היא דרך סינטקס ה- `import()` הדינאמי.
 
-**Before:**
+**לפני:**
 
 ```js
 import { add } from './math';
@@ -85,7 +67,7 @@ import { add } from './math';
 console.log(add(16, 26));
 ```
 
-**After:**
+**אחרי:**
 
 ```js
 import("./math").then(math => {
@@ -93,33 +75,30 @@ import("./math").then(math => {
 });
 ```
 
-> Note:
+> הערה:
 >
-> The dynamic `import()` syntax is a ECMAScript (JavaScript)
-> [proposal](https://github.com/tc39/proposal-dynamic-import) not currently
-> part of the language standard. It is expected to be accepted in the
-> near future.
+> סינטקס ה- `import()` הדינאמי הוא [הצעת](https://github.com/tc39/proposal-dynamic-import)
+> ECMAScript
+> ונכון לעכשיו לא חלק סטנדרטי של השפה. סביר להניח שהיא תתקבל בעתיד הקרוב.
 
-When Webpack comes across this syntax, it automatically starts code-splitting
-your app. If you're using Create React App, this is already configured for you
-and you can [start using it](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md#code-splitting) immediately. It's also supported
-out of the box in [Next.js](https://github.com/zeit/next.js/#dynamic-import).
+כש- Webpack מוצא סינטקס כזה, הוא מתחיל לפצל את הקוד באפליקציה באופן אוטומטי.
+אם השתמשתם ב- Create React App, תוכלו [להתחיל להשתמש בפיצול קוד](https://facebook.github.io/create-react-app/docs/code-splitting) באופן מיידי. זה נתמך גם באופן מובנה ב- [Next.js](https://github.com/zeit/next.js/#dynamic-import).
 
-If you're setting up Webpack yourself, you'll probably want to read Webpack's
-[guide on code splitting](https://webpack.js.org/guides/code-splitting/). Your Webpack config should look vaguely [like this](https://gist.github.com/gaearon/ca6e803f5c604d37468b0091d9959269).
+אם התקנתם Webpack בעצמכם, כנראה תרצו לקרוא את [המדריך לפיצול קוד](https://webpack.js.org/guides/code-splitting/). קובץ קונפיגורציית ה- Webpack שלכם אמור להראות בערך [ככה](https://gist.github.com/gaearon/ca6e803f5c604d37468b0091d9959269).
 
-When using [Babel](https://babeljs.io/), you'll need to make sure that Babel can
-parse the dynamic import syntax but is not transforming it. For that you will need [babel-plugin-syntax-dynamic-import](https://yarnpkg.com/en/package/babel-plugin-syntax-dynamic-import).
+בזמן השימוש ב- [Babel](https://babeljs.io/), תצטרכו לוודא ש- Babel יכול לפרסר את סינטקס ה- import הדינאמי בלי לתרגם אותו. בשביל זה, תצטרכו להוסיף את החבילה [babel-plugin-syntax-dynamic-import](https://yarnpkg.com/en/package/babel-plugin-syntax-dynamic-import).
 
 ## `React.lazy` {#reactlazy}
 
-> Note:
+> הערה:
 >
-> `React.lazy` and Suspense is not yet available for server-side rendering. If you want to do code-splitting in a server rendered app, we recommend [Loadable Components](https://github.com/smooth-code/loadable-components). It has a nice [guide for bundle splitting with server-side rendering](https://github.com/smooth-code/loadable-components/blob/master/packages/server/README.md).
+> `React.lazy` ו- Suspense לא זמינים בינתיים למימוש בצד השרת.
+> אם תרצו לפצל קוד שמרונדר בצד השרת, מומלץ להשתמש ב- [קומפוננטות נטענות](https://github.com/smooth-code/loadable-components).
+> הנה [מדריך נחמד לשימוש בפיצול קוד בצד השרת](https://github.com/smooth-code/loadable-components/blob/master/packages/server/README.md).
 
-The `React.lazy` function lets you render a dynamic import as a regular component.
+פונקצית ה- `React.lazy` עוזרת לרנדר יבוא דינאמי כקומפוננטה רגילה
 
-**Before:**
+**לפני:**
 
 ```js
 import OtherComponent from './OtherComponent';
@@ -133,43 +112,27 @@ function MyComponent() {
 }
 ```
 
-**After:**
+**אחרי:**
 
 ```js
 const OtherComponent = React.lazy(() => import('./OtherComponent'));
-
-function MyComponent() {
-  return (
-    <div>
-      <OtherComponent />
-    </div>
-  );
-}
 ```
 
-This will automatically load the bundle containing the `OtherComponent` when this component gets rendered.
+הקוד יטען את הבאנדל שמכיל אל הקומפוננטה `OtherComponent` בצורה אוטומטית כשהקומפוננטה מרונדרת לראשונה.
 
-`React.lazy` takes a function that must call a dynamic `import()`. This must return a `Promise` which resolves to a module with a `default` export containing a React component.
+`React.lazy` מקבל פונקציה שחייבת לקרוא ל-`import()` דינאמי. הוא חייב להחזיר `Promise` שמתפרשת למודול עם `default export` שמכיל קומפוננטת React.
 
 ### Suspense {#suspense}
 
-If the module containing the `OtherComponent` is not yet loaded by the time `MyComponent` renders, we must show some fallback content while we're waiting for it to load - such as a loading indicator. This is done using the `Suspense` component.
+הקומפוננטה צריכה להתרנדר בתוך קומפוננטת `Suspense`, שמאפשרת לנו להציג תוכן בסיס(כגון מחון טעינה) בזמן שאנו מחכים לקומפוננטה שתטען.
+
+אם המודול שמכיל את הקומפוננטה `OtherComponent` עדיין לא נטען כשהקומפוננטה `MyComponent` מרונדרת, צריך להראות תוכן חלופי עד שהיא תהיה מוכנה - כמו מחוון טעינה. אפשר לעשות זאת בעזרת קומפוננטת `Suspense`.
 
 ```js
 const OtherComponent = React.lazy(() => import('./OtherComponent'));
-
-function MyComponent() {
-  return (
-    <div>
-      <Suspense fallback={<div>Loading...</div>}>
-        <OtherComponent />
-      </Suspense>
-    </div>
-  );
-}
 ```
 
-The `fallback` prop accepts any React elements that you want to render while waiting for the component to load. You can place the `Suspense` component anywhere above the lazy component. You can even wrap multiple lazy components with a single `Suspense` component.
+ה-`fallback` prop מקבל אלמנט React כלשהו שירונדר עד לטעינת הקומפוננטה. ניתן לשים את קומפוננטת ה-`Suspense` בכל מקום מעל לקומפוננטה העצלה. אפשר אפילו לעטוף מספר קומפוננטות עצלות עם קומפוננטת `Suspense` אחת.
 
 ```js
 const OtherComponent = React.lazy(() => import('./OtherComponent'));
@@ -189,9 +152,9 @@ function MyComponent() {
 }
 ```
 
-### Error boundaries {#error-boundaries}
+### גבולות שגיאה {#error-boundaries}
 
-If the other module fails to load (for example, due to network failure), it will trigger an error. You can handle these errors to show a nice user experience and manage recovery with [Error Boundaries](/docs/error-boundaries.html). Once you've created your Error Boundary, you can use it anywhere above your lazy components to display an error state when there's a network error.
+במקרה והמודול לא נטען בהצלחה (בגלל תקלה ברשת לדוגמא) תתקבל שגיאה. תוכלו לטפל בשגיאות כאלו באמצעות [גבולות שגיאה](/docs/error-boundaries.html) כדי לספק חווית משתמש טובה יותר. ניתן להגדיר ולהשתמש בגבול שגיאה בכל מקום מעל הקומפוננטה העצלה כדי להציג מצב שגיאה בזמן תקלה ברשת.
 
 ```js
 import MyErrorBoundary from './MyErrorBoundary';
@@ -212,19 +175,13 @@ const MyComponent = () => (
 );
 ```
 
-## Route-based code splitting {#route-based-code-splitting}
+## פיצול קוד לפי route {#route-based-code-splitting}
 
-Deciding where in your app to introduce code splitting can be a bit tricky. You
-want to make sure you choose places that will split bundles evenly, but won't
-disrupt the user experience.
+ההחלטה איפה לפצל את הקוד יכולה להיות קצת בעייתית. תרצו לוודא מצד אחד שהבאנדלים יפוצלו באופן אחיד אבל גם שלא תפגע בחוויית המשתמש.
 
-A good place to start is with routes. Most people on the web are used to
-page transitions taking some amount of time to load. You also tend to be
-re-rendering the entire page at once so your users are unlikely to be
-interacting with other elements on the page at the same time.
+מקום טוב להתחיל בו הוא ה-routes. רוב האנשים ברשת רגילים שמעבר בין דפים לוקח זמן טעינה מסוים. בנוסף, הדף כולו מרונדר מחדש בבת אחת, ולכן המשתמשים לא יהיו באמצע אינטראקציה עם אלמנטים בדף בזמן הטעינה.
 
-Here's an example of how to setup route-based code splitting into your app using
-libraries like [React Router](https://reacttraining.com/react-router/) with `React.lazy`.
+הנה דוגמא של פיצול קוד לפי routes בעזרת ספריות כמו [React Router](https://reacttraining.com/react-router/) עם `React.lazy`.
 
 ```js
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
@@ -245,9 +202,9 @@ const App = () => (
 );
 ```
 
-## Named Exports {#named-exports}
+## ייצוא בשם {#named-exports}
 
-`React.lazy` currently only supports default exports. If the module you want to import uses named exports, you can create an intermediate module that reexports it as the default. This ensures that treeshaking keeps working and that you don't pull in unused components.
+נכון לעכשיו `React.lazy` תומך רק בייצוא ברירת מחדל. אם המודול שרציתם להשתמש בו משתמש בייצוא בשם, תוכלו ליצור מודול ביניים שמייצוא את המודול כברירת מחדל. זה מוודא שניעור עצים (tree shaking) ימשיך לעבוד ושקומפוננטות מיובאות רק כשהן בשימוש.
 
 ```js
 // ManyComponents.js

@@ -14,6 +14,9 @@ import {version} from 'site-constants';
 import ExternalLinkSvg from 'templates/components/ExternalLinkSvg';
 import DocSearch from './DocSearch';
 
+// $FlowFixMe
+import navHeader from '../../../content/headerNav.yml';
+
 import logoSvg from 'icons/logo.svg';
 
 const Header = ({location}: {location: Location}) => (
@@ -93,6 +96,7 @@ const Header = ({location}: {location: Location}) => (
 
         <nav
           css={{
+            flex: '1',
             display: 'flex',
             flexDirection: 'row',
             alignItems: 'stretch',
@@ -100,7 +104,13 @@ const Header = ({location}: {location: Location}) => (
             overflowY: 'hidden',
             WebkitOverflowScrolling: 'touch',
             height: '100%',
-            width: '60%',
+
+            // Hide horizontal scrollbar
+            scrollbarWidth: 'none',
+            msOverflowStyle: 'none',
+            '::-webkit-scrollbar': {
+              display: 'none',
+            },
 
             [media.size('xsmall')]: {
               flexGrow: '1',
@@ -114,39 +124,87 @@ const Header = ({location}: {location: Location}) => (
                 'linear-gradient(to right, transparent, black 20px, black 90%, transparent)',
             },
           }}>
-          <HeaderLink
-            isActive={location.pathname.includes('/docs/')}
-            title="תיעוד"
-            to="/docs/getting-started.html"
-          />
-          <HeaderLink
-            isActive={location.pathname.includes('/tutorial/')}
-            title="מדריך"
-            to="/tutorial/tutorial.html"
-          />
-          <HeaderLink
-            isActive={location.pathname.includes('/community/')}
-            title="קהילה"
-            to="/community/support.html"
-          />
-          <HeaderLink
-            isActive={location.pathname.includes('/blog')}
-            title="בלוג"
-            to="/blog/"
-          />
+          {navHeader.items.map(link => (
+            <HeaderLink
+              key={link.title}
+              isActive={location.pathname.includes(link.activeSelector)}
+              title={link.title}
+              to={link.to}
+            />
+          ))}
         </nav>
 
         <DocSearch />
 
         <div
           css={{
-            [media.lessThan('medium')]: {
-              display: 'none',
-            },
-            [media.greaterThan('large')]: {
-              width: 'calc(100% / 6)',
-            },
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'flex-end',
+            width: 'auto',
+
+            //[media.lessThan('medium')]: {
+            //width: 'auto',
+            //},
+            //[media.greaterThan('large')]: {
+            //width: 'calc(100% / 4)',
+            //},
           }}>
+          <Link
+            css={{
+              padding: '5px 10px',
+              marginRight: 10,
+              whiteSpace: 'nowrap',
+              ...fonts.small,
+
+              ':hover': {
+                color: colors.brand,
+              },
+
+              ':focus': {
+                outline: 0,
+                backgroundColor: colors.lighter,
+                borderRadius: 15,
+              },
+
+              [media.lessThan('medium')]: {
+                display: 'none',
+              },
+            }}
+            to="/versions">
+            v{version}
+          </Link>
+          <Link
+            css={{
+              display: 'flex',
+              alignItems: 'center',
+              padding: '5px 10px',
+              whiteSpace: 'nowrap',
+              ...fonts.small,
+
+              ':hover': {
+                color: colors.brand,
+              },
+
+              ':focus': {
+                outline: 0,
+                backgroundColor: colors.lighter,
+                borderRadius: 15,
+              },
+            }}
+            to="/languages">
+            <LanguagesIcon />{' '}
+            <span
+              css={{
+                marginRight: '0.5rem',
+
+                [media.lessThan('medium')]: {
+                  display: 'none',
+                },
+              }}>
+              שפות
+            </span>
+          </Link>
           <a
             css={{
               padding: '5px 10px',
@@ -163,6 +221,10 @@ const Header = ({location}: {location: Location}) => (
                 backgroundColor: colors.lighter,
                 borderRadius: 15,
               },
+
+              [media.lessThan('medium')]: {
+                display: 'none',
+              },
             }}
             href="https://github.com/facebook/react/"
             target="_blank"
@@ -170,35 +232,35 @@ const Header = ({location}: {location: Location}) => (
             GitHub
             <ExternalLinkSvg
               cssProps={{
-                marginLeft: 5,
+                marginRight: 5,
                 verticalAlign: -2,
                 color: colors.subtle,
               }}
             />
           </a>
-          <Link
-            css={{
-              padding: '5px 10px',
-              whiteSpace: 'nowrap',
-              ...fonts.small,
-
-              ':hover': {
-                color: colors.brand,
-              },
-
-              ':focus': {
-                outline: 0,
-                backgroundColor: colors.lighter,
-                borderRadius: 15,
-              },
-            }}
-            to="/versions">
-            v{version}
-          </Link>
         </div>
       </div>
     </Container>
   </header>
+);
+
+const LanguagesIcon = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="24"
+    height="24"
+    viewBox="0 0 24 24">
+    <path d="M0 0h24v24H0z" fill="none" />
+    <path
+      css={{fill: 'currentColor'}}
+      d="
+        M12.87 15.07l-2.54-2.51.03-.03c1.74-1.94 2.98-4.17 3.71-6.53H17V4h-7V2H8v2H1v1.99h11.17C11.5
+        7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09
+        5.02L4 19l5-5 3.11 3.11.76-2.04zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12zm-2.62
+        7l1.62-4.33L19.12 17h-3.24z
+      "
+    />
+  </svg>
 );
 
 export default Header;

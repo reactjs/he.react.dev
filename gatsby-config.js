@@ -9,7 +9,7 @@
 module.exports = {
   siteMetadata: {
     title: 'React: A JavaScript library for building user interfaces',
-    siteUrl: 'https://reactjs.org',
+    siteUrl: 'https://he.reactjs.org',
     rssFeedTitle: 'React',
     rssFeedDescription: 'A JavaScript library for building user interfaces',
   },
@@ -55,11 +55,12 @@ module.exports = {
               maxWidth: 840,
             },
           },
+          'gatsby-remark-external-links',
           'gatsby-remark-header-custom-ids',
           {
             resolve: 'gatsby-remark-code-repls',
             options: {
-              defaultText: '<b>Try it on CodePen</b>',
+              defaultText: '<b>נסו זאת ב-CodePen</b>',
               directory: `${__dirname}/examples/`,
               externals: [
                 `//unpkg.com/react/umd/react.development.js`,

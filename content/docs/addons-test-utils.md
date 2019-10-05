@@ -1,27 +1,27 @@
 ---
 id: test-utils
-title: Test Utilities
+title: כלי בדיקה
 permalink: docs/test-utils.html
 layout: docs
 category: Reference
 ---
 
-**Importing**
+**ייבוא**
 
 ```javascript
 import ReactTestUtils from 'react-dom/test-utils'; // ES6
-var ReactTestUtils = require('react-dom/test-utils'); // ES5 with npm
+var ReactTestUtils = require('react-dom/test-utils'); // ES5 עם npm
 ```
 
-## Overview {#overview}
+## סקירה כללית {#overview}
 
-`ReactTestUtils` makes it easy to test React components in the testing framework of your choice. At Facebook we use [Jest](https://facebook.github.io/jest/) for painless JavaScript testing. Learn how to get started with Jest through the Jest website's [React Tutorial](https://jestjs.io/docs/tutorial-react).
+`ReactTestUtils` מקל על תהליך בדיקת קומפוננטות React בכל פריימוורק בדיקה שתבחר. ב-Facebook אנו משתמשים ב-[Jest](https://facebook.github.io/jest/) לבדיקות JavaScript בצורה קלה. למד איך להתחיל עם Jest דרך [מדריך React](https://jestjs.io/docs/tutorial-react) באתר האינטרנט של Jest.
 
-> Note:
+> הערה:
 >
-> We recommend using [`react-testing-library`](https://git.io/react-testing-library) which is designed to enable and encourage writing tests that use your components as the end users do.
+> אנו ממליצים להשתמש ב-[React Testing Library](https://testing-library.com/react) שתוכננה לאפשר ולעודד כתיבת בדיקות שמשתמשות בקומפוננטות שלך בצורה זהה למשתמשי הקצה.
 >
-> Alternatively, Airbnb has released a testing utility called [Enzyme](https://airbnb.io/enzyme/), which makes it easy to assert, manipulate, and traverse your React Components' output.
+> לחלופין, Airbnb שחררו כלי בדיקה שנקרא [Enzyme](https://airbnb.io/enzyme/), שמקל על ווידוא, מניפולציה ומעבר על פלט קומפוננטות ה-React שלך.
 
  - [`act()`](#act)
  - [`mockComponent()`](#mockcomponent)
@@ -40,20 +40,20 @@ var ReactTestUtils = require('react-dom/test-utils'); // ES5 with npm
  - [`renderIntoDocument()`](#renderintodocument)
  - [`Simulate`](#simulate)
 
-## Reference {#reference}
+## סימוכין {#reference}
 
 ### `act()` {#act}
 
-To prepare a component for assertions, wrap the code rendering it and performing updates inside an `act()` call. This makes your test run closer to how React works in the browser.
+כדי להכין קומפוננטה לווידוא, עטוף את הקוד שמרנדר אותה ומבצע עליה עדכונים בתוך קריאת `act()`. פעולה זו גורמת לבדיקה שלך לרוץ באופן דומה לצורה שבה React עובדת בדפדפן.
 
->Note
+>הערה
 >
->If you use `react-test-renderer`, it also provides an `act` export that behaves the same way.
+>אם אתה משתמש ב-`react-test-renderer`, הספרייה גם מספקת מתודת `act` שמתנהגת באותה צורה.
 
-For example, let's say we have this `Counter` component:
+לדוגמה, נגיד שיש לנו את קומפוננטת `Counter` הבאה:
 
 ```js
-class App extends React.Component {
+class Counter extends React.Component {
   constructor(props) {
     super(props);
     this.state = {count: 0};
@@ -83,7 +83,7 @@ class App extends React.Component {
 }
 ```
 
-Here is how we can test it:
+ככה נוכל לבדוק אותה:
 
 ```js{3,20-22,29-31}
 import React from 'react';
@@ -104,7 +104,7 @@ afterEach(() => {
 });
 
 it('can render and update a counter', () => {
-  // Test first render and componentDidMount
+  // בדיקת רינדור ראשון ו-componentDidMount
   act(() => {
     ReactDOM.render(<Counter />, container);
   });
@@ -113,7 +113,7 @@ it('can render and update a counter', () => {
   expect(label.textContent).toBe('You clicked 0 times');
   expect(document.title).toBe('You clicked 0 times');
 
-  // Test second render and componentDidUpdate
+  // בדיקת רינדור שני ו-componentDidUpdate
   act(() => {
     button.dispatchEvent(new MouseEvent('click', {bubbles: true}));
   });
@@ -122,7 +122,13 @@ it('can render and update a counter', () => {
 });
 ```
 
-Don't forget that dispatching DOM events only works when the DOM container is added to the `document`. You can use a helper like [`react-testing-library`](https://github.com/kentcdodds/react-testing-library) to reduce the boilerplate code.
+אסור לשכוח ששיגור אירועי DOM עובד רק כשקונטיינר ה-DOM נוסף ל-`document`.  ניתן להשתמש בעזר כמו [`react-testing-library`](https://github.com/kentcdodds/react-testing-library) על מנת להפחית קוד תבנית קבועה.
+
+<<<<<<< HEAD
+המסמך [`recipes`](/docs/testing-recipes.html) מכיל עוד מידע על ההתנהגות של `()act`, עם דוגמאות ודרכי שימוש.
+=======
+- The [`recipes`](/docs/testing-recipes.html) document contains more details on how `act()` behaves, with examples and usage.
+>>>>>>> 519a3aec91a426b0c8c9ae59e292d064df48c66a
 
 * * *
 
@@ -135,11 +141,15 @@ mockComponent(
 )
 ```
 
-Pass a mocked component module to this method to augment it with useful methods that allow it to be used as a dummy React component. Instead of rendering as usual, the component will become a simple `<div>` (or other tag if `mockTagName` is provided) containing any provided children.
+העבר מודול קומפוננטה "מזוייפת" למתודה זו על מנת להרחיב אותה עם מתודות שימושיות שנותנות את האפשרות להשתמש בה כקומפוננטת React מדומה. במקום לרנדר כרגיל, הקומפוננטה תהפוך ל-`<div>` פשוט (או תג אחר אם סופק גם `mockTagName`) שמכיל את הילדים שסופקו.
 
-> Note:
+> הערה:
 >
-> `mockComponent()` is a legacy API. We recommend using [shallow rendering](/docs/shallow-renderer.html) or [`jest.mock()`](https://facebook.github.io/jest/docs/en/tutorial-react-native.html#mock-native-modules-using-jestmock) instead.
+<<<<<<< HEAD
+> `mockComponent()` הוא API ישן. אנו ממליצים להשתמש ב-[רינדור רדוד](/docs/shallow-renderer.html) או ב-[`jest.mock()`](https://facebook.github.io/jest/docs/en/tutorial-react-native.html#mock-native-modules-using-jestmock) במקום.
+=======
+> `mockComponent()` is a legacy API. We recommend using [`jest.mock()`](https://facebook.github.io/jest/docs/en/tutorial-react-native.html#mock-native-modules-using-jestmock) instead.
+>>>>>>> ddbd064d41d719f9ec0c2f6a4227f797a5828310
 
 * * *
 
@@ -149,7 +159,7 @@ Pass a mocked component module to this method to augment it with useful methods 
 isElement(element)
 ```
 
-Returns `true` if `element` is any React element.
+מחזיר `true` אם `element` הוא אלמנט React כלשהו.
 
 * * *
 
@@ -162,7 +172,7 @@ isElementOfType(
 )
 ```
 
-Returns `true` if `element` is a React element whose type is of a React `componentClass`.
+מחזיר `true` אם `element` הוא אלמנט React מסוג `componentClass` של React.
 
 * * *
 
@@ -172,7 +182,7 @@ Returns `true` if `element` is a React element whose type is of a React `compone
 isDOMComponent(instance)
 ```
 
-Returns `true` if `instance` is a DOM component (such as a `<div>` or `<span>`).
+מחזיר `true` אם `instance` הוא קומפוננטת DOM (כמו `<div>` או `<span>`).
 
 * * *
 
@@ -182,7 +192,7 @@ Returns `true` if `instance` is a DOM component (such as a `<div>` or `<span>`).
 isCompositeComponent(instance)
 ```
 
-Returns `true` if `instance` is a user-defined component, such as a class or a function.
+מחזיר `true` אם `instance` הוא קומפוננטה שהוגדרה על ידי המשתמש, לדוגמה מחלקה או פונקצייה.
 
 * * *
 
@@ -195,7 +205,7 @@ isCompositeComponentWithType(
 )
 ```
 
-Returns `true` if `instance` is a component whose type is of a React `componentClass`.
+מחזיר `true` אם `instance` הוא קומפוננטה מסוג `componentClass` של React.
 
 * * *
 
@@ -208,7 +218,7 @@ findAllInRenderedTree(
 )
 ```
 
-Traverse all components in `tree` and accumulate all components where `test(component)` is `true`. This is not that useful on its own, but it's used as a primitive for other test utils.
+חוצה את כל הקומפוננטות ב-`tree` וצובר את כל הקומפוננטות שבהן `test(component)` הוא `true`. זה לא כל כך שימושי בפני עצמו, אבל זה משמש כבסיס לכלי בדיקה אחרים.
 
 * * *
 
@@ -221,7 +231,7 @@ scryRenderedDOMComponentsWithClass(
 )
 ```
 
-Finds all DOM elements of components in the rendered tree that are DOM components with the class name matching `className`.
+מאתר את כל אלמנטי ה-DOM של קומפוננטות בעץ המרונדר שהן קומפוננטות DOM עם שם המחלקה התואם `className`.
 
 * * *
 
@@ -234,7 +244,7 @@ findRenderedDOMComponentWithClass(
 )
 ```
 
-Like [`scryRenderedDOMComponentsWithClass()`](#scryrendereddomcomponentswithclass) but expects there to be one result, and returns that one result, or throws exception if there is any other number of matches besides one.
+כמו [`scryRenderedDOMComponentsWithClass()`](#scryrendereddomcomponentswithclass) אבל מצפה שתהיה תוצאה אחת, ומחזיר את התוצאה האחת הזו, או זורק שגיאה אם יש מספר אחר של תוצאות מעבר לאחת.
 
 * * *
 
@@ -247,7 +257,7 @@ scryRenderedDOMComponentsWithTag(
 )
 ```
 
-Finds all DOM elements of components in the rendered tree that are DOM components with the tag name matching `tagName`.
+מאתר את כל אלמנטי ה-DOM של קומפוננטות בעץ המרונדר שהן קומפוננטות DOM עם שם תג התואם את `tagName`.
 
 * * *
 
@@ -260,7 +270,7 @@ findRenderedDOMComponentWithTag(
 )
 ```
 
-Like [`scryRenderedDOMComponentsWithTag()`](#scryrendereddomcomponentswithtag) but expects there to be one result, and returns that one result, or throws exception if there is any other number of matches besides one.
+כמו [`scryRenderedDOMComponentsWithTag()`](#scryrendereddomcomponentswithtag) אבל מצפה לתוצאה אחת, ומחזיר את התוצאה האחת הזו, או זורק שגיאה אם יש מספר אחר של תוצאות מעבר לאחת.
 
 * * *
 
@@ -273,7 +283,7 @@ scryRenderedComponentsWithType(
 )
 ```
 
-Finds all instances of components with type equal to `componentClass`.
+מאתר את כל מופעי הקומפוננטות שהסוג שלהן שווה ל-`componentClass`.
 
 * * *
 
@@ -286,7 +296,7 @@ findRenderedComponentWithType(
 )
 ```
 
-Same as [`scryRenderedComponentsWithType()`](#scryrenderedcomponentswithtype) but expects there to be one result and returns that one result, or throws exception if there is any other number of matches besides one.
+כמו [`scryRenderedComponentsWithType()`](#scryrenderedcomponentswithtype) אבל מצפה לתוצאה אחת, ומחזיר את התוצאה האחת הזו, או זורק שגיאה אם יש מספר אחר של תוצאות מעבר לאחת.
 
 ***
 
@@ -296,20 +306,20 @@ Same as [`scryRenderedComponentsWithType()`](#scryrenderedcomponentswithtype) bu
 renderIntoDocument(element)
 ```
 
-Render a React element into a detached DOM node in the document. **This function requires a DOM.** It is effectively equivalent to:
+מרנדר אלמנט React לצומת DOM מנותקת בדף. **פונקצייה זו דורשת DOM נוכח.** זה שווה ערך ל:
 
 ```js
 const domContainer = document.createElement('div');
 ReactDOM.render(element, domContainer);
 ```
 
-> Note:
+> הערה:
 >
-> You will need to have `window`, `window.document` and `window.document.createElement` globally available **before** you import `React`. Otherwise React will think it can't access the DOM and methods like `setState` won't work.
+> יש צורך ב-`window`, `window.document` ו-`window.document.createElement` זמינים באופן גלובלי **לפני** שמייבאים את `React`. אחרת React תחשוב שאין לה גישה ל-DOM ומתודות כמו `setState` לא יעבדו.
 
 * * *
 
-## Other Utilities {#other-utilities}
+## כלים אחרים {#other-utilities}
 
 ### `Simulate` {#simulate}
 
@@ -320,11 +330,11 @@ Simulate.{eventName}(
 )
 ```
 
-Simulate an event dispatch on a DOM node with optional `eventData` event data.
+מדמה שיגור אירוע על צומת DOM עם נתוני אירוע `eventData` אופציונאליים.
 
-`Simulate` has a method for [every event that React understands](/docs/events.html#supported-events).
+ל-`Simulate` יש מתודה ל[כל אירוע שReact מבינה](/docs/events.html#supported-events).
 
-**Clicking an element**
+**לחיצה על אלמנט**
 
 ```javascript
 // <button ref={(node) => this.button = node}>...</button>
@@ -332,7 +342,7 @@ const node = this.button;
 ReactTestUtils.Simulate.click(node);
 ```
 
-**Changing the value of an input field and then pressing ENTER.**
+**שינוי ערך של שדה קלט ואז לחיצת ENTER.**
 
 ```javascript
 // <input ref={(node) => this.textInput = node} />
@@ -342,8 +352,8 @@ ReactTestUtils.Simulate.change(node);
 ReactTestUtils.Simulate.keyDown(node, {key: "Enter", keyCode: 13, which: 13});
 ```
 
-> Note
+> הערה
 >
-> You will have to provide any event property that you're using in your component (e.g. keyCode, which, etc...) as React is not creating any of these for you.
+> תצטרך לספק כל מאפיין אירוע שאתה משתמש בו בקומפוננטה שלך (כמו keyCode, which וכו') מכיון ש-React לא יוצרת אף אחד מהם עבורך.
 
 * * *

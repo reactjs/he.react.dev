@@ -11,6 +11,12 @@ import {LiveEditor, LiveProvider} from 'react-live';
 import {colors, media} from 'theme';
 import MetaTitle from 'templates/components/MetaTitle';
 
+// Replace unicode to text for other languages
+const unicodeToText = text =>
+  text.replace(/\\u([\dA-F]{4})/gi, (_, p1) =>
+    String.fromCharCode(parseInt(p1, 16)),
+  );
+
 const compileES5 = (
   code, // eslint-disable-next-line no-undef
 ) => Babel.transform(code, {presets: ['es2015', 'react']}).code;
@@ -43,7 +49,7 @@ class CodeEditor extends Component {
   }
 
   render() {
-    const {children, containerNodeID} = this.props;
+    const {containerNodeID} = this.props;
     const {
       compiledES6,
       code,
@@ -56,12 +62,11 @@ class CodeEditor extends Component {
     if (showBabelErrorMessage) {
       errorMessage = (
         <span>
-          Babel could not be loaded.
+          Babel אינו יכול להטען.
           <br />
           <br />
-          This can be caused by an ad blocker. If you're using one, consider
-          adding reactjs.org to the whitelist so the live code examples will
-          work.
+          זה יכול להיגרם מחוסם הפרסומות, אם אתה משתמש באחד, שקול להוסיף את
+          reactjs.org לרשימת ההיתרים כדי שדוגמת הקוד החי תוכל לעבוד
         </span>
       );
     } else if (error != null) {
@@ -100,7 +105,7 @@ class CodeEditor extends Component {
                 color: colors.white,
               }}>
               <MetaTitle onDark={true}>
-                Live JSX Editor
+                עורך JSX
                 <label
                   css={{
                     fontSize: 14,
@@ -170,7 +175,7 @@ class CodeEditor extends Component {
                   cssProps={{
                     color: colors.white,
                   }}>
-                  Error
+                  שגיאה
                 </MetaTitle>
               </div>
               <pre
@@ -201,7 +206,7 @@ class CodeEditor extends Component {
                   padding: '0 10px',
                   backgroundColor: colors.divider,
                 }}>
-                <MetaTitle>Result</MetaTitle>
+                <MetaTitle>תוצאה</MetaTitle>
               </div>
               <div
                 id={containerNodeID}
@@ -265,14 +270,14 @@ class CodeEditor extends Component {
 
   _updateState(code, showJSX = true) {
     try {
-      let newState = {
+      const newState = {
         compiled: compileES5(code),
         error: null,
       };
 
       if (showJSX) {
         newState.code = code;
-        newState.compiledES6 = compileES6(code);
+        newState.compiledES6 = unicodeToText(compileES6(code));
       } else {
         newState.compiledES6 = code;
       }

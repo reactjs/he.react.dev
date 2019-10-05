@@ -14,27 +14,27 @@ redirect_from:
   - "tips/dangerously-set-inner-html.html"
 ---
 
-React implements a browser-independent DOM system for performance and cross-browser compatibility. We took the opportunity to clean up a few rough edges in browser DOM implementations.
+React מיישמת מערכת DOM ללא-תלות בדפדפן עבור ביצועים ותאימות לדפדפנים שונים. ניצלנו את ההזדמנות על מנת לנקות מספר בעיות במימוש ה-DOM של הדפדפן.
 
-In React, all DOM properties and attributes (including event handlers) should be camelCased. For example, the HTML attribute `tabindex` corresponds to the attribute `tabIndex` in React. The exception is `aria-*` and `data-*` attributes, which should be lowercased. For example, you can keep `aria-label` as `aria-label`.
+ב-React, כל המאפיינים (properties) והתכונות (attributes) של ה-DOM (כולל מנהלי אירועים) צריכים להיות camelCased. לדוגמה, תכונת ה-`tabindex` של HTML מקבילה לתכונה `tabIndex` ב-React. המקרים היוצאים מן הכלל הם `aria-*` ו-`data-*`, שצריכים להיות באותיות קטנות. לדוגמה, נוכל להשאיר את `aria-label` בתור `aria-label`.
 
-## Differences In Attributes {#differences-in-attributes}
+## הבדלים בתכונות {#differences-in-attributes}
 
-There are a number of attributes that work differently between React and HTML:
+ישנן מספר תכונות שעובדות בצורה שונה בין HTML ו-React:
 
 ### checked {#checked}
 
-The `checked` attribute is supported by `<input>` components of type `checkbox` or `radio`. You can use it to set whether the component is checked. This is useful for building controlled components. `defaultChecked` is the uncontrolled equivalent, which sets whether the component is checked when it is first mounted.
+התכונה `checked` נתמכת בקומפוננטות `<input>` מסוג `checkbox` או `radio`. אתה יכול להשתמש בה על מנת לקבוע האם הקומפוננטה מסומנת. דבר זה שימושי לבניית קומפוננטות נשלטות. `defaultChecked` היא המקבילה הלא נשלטת, שקובעת האם הקומפוננטה מסומנת בזמן שהיא mounted בפעם הראשונה.
 
 ### className {#classname}
 
-To specify a CSS class, use the `className` attribute. This applies to all regular DOM and SVG elements like `<div>`, `<a>`, and others.
+כדי להוסיף מחלקת CSS, נשתמש בתכונת ה-`className`. העניין נוגע לכל אלמנטי ה-DOM וה-SVG הרגילים כמו `<div>`, `<a>` ואחרים.
 
-If you use React with Web Components (which is uncommon), use the `class` attribute instead.
+אם אתה משתמש ב-React עם Web Components (דבר שאיננו נפוץ כל כך), השתמש בתכונת ה-`class` במקום.
 
 ### dangerouslySetInnerHTML {#dangerouslysetinnerhtml}
 
-`dangerouslySetInnerHTML` is React's replacement for using `innerHTML` in the browser DOM. In general, setting HTML from code is risky because it's easy to inadvertently expose your users to a [cross-site scripting (XSS)](https://en.wikipedia.org/wiki/Cross-site_scripting) attack. So, you can set HTML directly from React, but you have to type out `dangerouslySetInnerHTML` and pass an object with a `__html` key, to remind yourself that it's dangerous. For example:
+`dangerouslySetInnerHTML` היא החלופה של React לשימוש ב-`innerHTML` ב-DOM של הדפדפן. באופן כללי, קביעת HTML מהקוד היא מסוכנת מכיוון שזה קל בטעות לחשוף את המשתמשים שלך ל[מתקפת XSS](https://en.wikipedia.org/wiki/Cross-site_scripting) .לעומת זאת, אפשר לכתוב HTML ישירות מ-React, אבל אתה צריך לכתוב `dangerouslySetInnerHTML` ולהעביר אובייקט עם מפתח `__html`, על מנת להזכיר לעצמך שזה מסוכן. לדוגמה:
 
 ```js
 function createMarkup() {
@@ -48,23 +48,23 @@ function MyComponent() {
 
 ### htmlFor {#htmlfor}
 
-Since `for` is a reserved word in JavaScript, React elements use `htmlFor` instead.
+מאחר ו-`for` היא מילה שמורה ב-JavaScript, אלמנטי React משתמשים ב-`htmlFor` במקום.
 
 ### onChange {#onchange}
 
-The `onChange` event behaves as you would expect it to: whenever a form field is changed, this event is fired. We intentionally do not use the existing browser behavior because `onChange` is a misnomer for its behavior and React relies on this event to handle user input in real time.
+אירוע ה-`onChange` מתנהג כמו שהיית מצפה: בכל פעם ששדה טופס משתנה, אירוע זה נורה. אנחנו בכוונה לא משתמשים בהתנהגות המובנית בדפדפן בגלל ש-`onChange` לא מתנהג כמו שהוא אמור להתנהג, ו-React מסתמכת על אירוע זה שיטפל בקלטי משתמש בזמן אמת.
 
 ### selected {#selected}
 
-The `selected` attribute is supported by `<option>` components. You can use it to set whether the component is selected. This is useful for building controlled components.
+התכונה `selected` נתמכת על ידי קומפוננטות `<option>`. ניתן להשתמש בה על מנת לקבוע האם הקומפוננטה נבחרה. דבר זה שימושי לבניית קומפוננטות נשלטות.
 
 ### style {#style}
 
->Note
+>שימו לב:
 >
->Some examples in the documentation use `style` for convenience, but **using the `style` attribute as the primary means of styling elements is generally not recommended.** In most cases, [`className`](#classname) should be used to reference classes defined in an external CSS stylesheet. `style` is most often used in React applications to add dynamically-computed styles at render time. See also [FAQ: Styling and CSS](/docs/faq-styling.html).
+>כמה דוגמאות בתיעוד משתמשות ב-`style` מטעמי נוחות, אבל **שימוש בתכונה `style` בתור האפשרות העיקרית לעיצוב קומפוננטות איננה מומלצת באופן כללי.** ברוב המקרים, [`className`](#classname) צריכה להיות בשימוש כדי להתייחס למחלקות CSS שהוגדרו בקבצי CSS חיצוניים. ברוב המקרים שמשתמשים ב-`style` באפליקציות React המטרה היא להוסיף עיצובים שחושבו באופן דינמי בזמן הרינדור. ראה [FAQ: עיצוב ו-CSS](/docs/faq-styling.html).
 
-The `style` attribute accepts a JavaScript object with camelCased properties rather than a CSS string. This is consistent with the DOM `style` JavaScript property, is more efficient, and prevents XSS security holes. For example:
+תכונת ה-`style` מקבלת אובייקט JavaScript עם מאפייני camelCased במקום מחרוזת CSS. התנהגות התכונה עקבית עם מאפיין `style` של ה-DOM ב-JavaScript, אך היא יותר יעילה, ומונעת חורי אבטחת XSS. לדוגמה:
 
 ```js
 const divStyle = {
@@ -77,66 +77,66 @@ function HelloWorldComponent() {
 }
 ```
 
-Note that styles are not autoprefixed. To support older browsers, you need to supply corresponding style properties:
+הערה:  styles הם לא autoprefixed. על מנת לתמוך בדפדפנים ישנים, אתה צריך לספק  style properties מקבילים:
 
 ```js
 const divStyle = {
-  WebkitTransition: 'all', // note the capital 'W' here
-  msTransition: 'all' // 'ms' is the only lowercase vendor prefix
+  WebkitTransition: 'all', // שים לב לאות 'W' הגדולה
+  msTransition: 'all' // 'ms' הוא ה-prefix היחיד באותיות קטנות
 };
 
 function ComponentWithTransition() {
-  return <div style={divStyle}>This should work cross-browser</div>;
+  return <div style={divStyle}>זה צריך לעבוד בין דפדפנים</div>;
 }
 ```
 
-Style keys are camelCased in order to be consistent with accessing the properties on DOM nodes from JS (e.g. `node.style.backgroundImage`). Vendor prefixes [other than `ms`](https://www.andismith.com/blogs/2012/02/modernizr-prefixed/) should begin with a capital letter. This is why `WebkitTransition` has an uppercase "W".
+מפתחות עיצוב הם camelCased על מנת להיות עקביים עם גישה למאפיינים על צמתי ה-DOM מ-JavaScript (לדוגמה `node.style.backgroundImage`). קדימויות של ספקים [ששונים מ-`ms`](https://www.andismith.com/blogs/2012/02/modernizr-prefixed/) צריכים להתחיל עם אות גדולה. זו הסיבה ש-`WebkitTransition` מתחיל עם אות גדולה.
 
-React will automatically append a "px" suffix to certain numeric inline style properties. If you want to use units other than "px", specify the value as a string with the desired unit. For example:
+React תוסיף באופן אוטומטי סיומת  "px" לכמה מאפייני סגנון. אם אתה רוצה להשתמש ביחידות מידה אחרות חוץ מ-"px", נקוב בערך כמחרוזת עם יחידת המידה הרצויה. לדוגמה:
 
 ```js
-// Result style: '10px'
+// תוצאה: '10px'
 <div style={{ height: 10 }}>
-  Hello World!
+  שלום עולם!
 </div>
 
-// Result style: '10%'
+// תוצאה: '10%'
 <div style={{ height: '10%' }}>
-  Hello World!
+  שלום עולם!
 </div>
 ```
 
-Not all style properties are converted to pixel strings though. Certain ones remain unitless (eg `zoom`, `order`, `flex`). A complete list of unitless properties can be seen [here](https://github.com/facebook/react/blob/4131af3e4bf52f3a003537ec95a1655147c81270/src/renderers/dom/shared/CSSProperty.js#L15-L59).
+לא כל מאפייני העיצוב מומרים למחרוזות פיקסלים. כמה מהם נשארים ללא יחידת מידה (לדוגמה `zoom`, `order`, `flex`). רשימה מלאה של מאפיינים ללא יחידות מידה נמצאת [כאן](https://github.com/facebook/react/blob/4131af3e4bf52f3a003537ec95a1655147c81270/src/renderers/dom/shared/CSSProperty.js#L15-L59).
 
 ### suppressContentEditableWarning {#suppresscontenteditablewarning}
 
-Normally, there is a warning when an element with children is also marked as `contentEditable`, because it won't work. This attribute suppresses that warning. Don't use this unless you are building a library like [Draft.js](https://facebook.github.io/draft-js/) that manages `contentEditable` manually.
+בדרך כלל, ישנה אזהרה כשאלמנט עם ילדים מסומן כ-`contentEditable`, בגלל שזה לא יעבוד. תכונה זו עוצרת את האזהרה. אל תשתמש בזה אלא אם אתה בונה ספרייה כמו [Draft.js](https://facebook.github.io/draft-js/) שמנהלת `contentEditable` באופן ידני.
 
 ### suppressHydrationWarning {#suppresshydrationwarning}
 
-If you use server-side React rendering, normally there is a warning when the server and the client render different content. However, in some rare cases, it is very hard or impossible to guarantee an exact match. For example, timestamps are expected to differ on the server and on the client.
+אם אתה משתמש ברינדור בצד-שרת ב-React, בדרך כלל יש אזהרה כשהשרת והלקוח מרנדרים תוכן שונה. לעומת זאת, במקרים נדירים, זה קשה מאוד עד בלתי אפשרי להבטיח תוצאה זהה. לדוגמה, חותמות זמן אמורות להיות שונות בשרת ובלקוח.
 
-If you set `suppressHydrationWarning` to `true`, React will not warn you about mismatches in the attributes and the content of that element. It only works one level deep, and is intended to be used as an escape hatch. Don't overuse it. You can read more about hydration in the [`ReactDOM.hydrate()` documentation](/docs/react-dom.html#hydrate).
+אם אתה קובע את `suppressHydrationWarning` כ-`true`, React לא תזהיר אותך לגבי אי התאמה בתכונות ובתוכן של האלמנט. דבר זה עובד בעומק של רמה אחת בלבד, ומיועד לשימוש כפתח מילוט. אל תשתמש בזה יותר מדי. ניתן לקרוא עוד על hydration ב-[`ReactDOM.hydrate()` documentation](/docs/react-dom.html#hydrate).
 
 ### value {#value}
 
-The `value` attribute is supported by `<input>` and `<textarea>` components. You can use it to set the value of the component. This is useful for building controlled components. `defaultValue` is the uncontrolled equivalent, which sets the value of the component when it is first mounted.
+תכונת ה-`value` נתמכת על ידי הקומפוננטות `<input>` ו-`<textarea>`. ניתן להשתמש בה כדי לקבוע את ערך הקומפוננטה. זה שימושי לבניית קומפוננטות נשלטות. `defaultValue` הוא המקביל הבלתי נשלט, שקובע את ערך הקומפוננטה כשהיא mounted לראשונה.
 
-## All Supported HTML Attributes {#all-supported-html-attributes}
+## כל תכונות ה-HTML הנתמכות: {#all-supported-html-attributes}
 
-As of React 16, any standard [or custom](/blog/2017/09/08/dom-attributes-in-react-16.html) DOM attributes are fully supported.
+החל מ-React 16, כל תכונת DOM סטנדרטית או [מותאמת אישית](/blog/2017/09/08/dom-attributes-in-react-16.html), נתמכת באופן מלא.
 
-React has always provided a JavaScript-centric API to the DOM. Since React components often take both custom and DOM-related props, React uses the `camelCase` convention just like the DOM APIs:
+React תמיד סיפקה ממשק משתמש ממוקד JavaScript ל-DOM. מכיוון שקומפוננטות React בדרך כלל מקבלות גם props מותאמות אישית וגם כאלה שקשורות ל-DOM, React משתמשת במוסכמת ה-`camelCase` בדיוק כמו ממשקי המשתמש של ה-DOM:
 
 ```js
-<div tabIndex="-1" />      // Just like node.tabIndex DOM API
-<div className="Button" /> // Just like node.className DOM API
-<input readOnly={true} />  // Just like node.readOnly DOM API
+<div tabIndex="-1" />      // כמו node.tabIndex DOM API
+<div className="Button" /> // כמו node.className DOM API
+<input readOnly={true} />  // כמו node.readOnly DOM API
 ```
 
-These props work similarly to the corresponding HTML attributes, with the exception of the special cases documented above.
+ה-props הללו עובדים באופן דומה לתכונות ה-HTML המקבילות, עם הוצאה מן הכלל של המקרים המיוחדים המתועדים לעיל.
 
-Some of the DOM attributes supported by React include:
+חלק מתכונות ה-DOM הנתמכות על ידי React כוללות:
 
 ```
 accept acceptCharset accessKey action allowFullScreen alt async autoComplete
@@ -154,7 +154,7 @@ sizes span spellCheck src srcDoc srcLang srcSet start step style summary
 tabIndex target title type useMap value width wmode wrap
 ```
 
-Similarly, all SVG attributes are fully supported:
+באופן דומה, כל תכונות ה-SVG נתמכות באופן מלא:
 
 ```
 accentHeight accumulate additive alignmentBaseline allowReorder alphabetic
@@ -193,4 +193,4 @@ xlinkHref xlinkRole xlinkShow xlinkTitle xlinkType xmlns xmlnsXlink xmlBase
 xmlLang xmlSpace y y1 y2 yChannelSelector z zoomAndPan
 ```
 
-You may also use custom attributes as long as they're fully lowercase.
+ניתן גם להשתמש בתכונות שמותאמות באופן אישי, כל עוד הן באותיות קטנות. 
