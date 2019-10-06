@@ -1,22 +1,22 @@
 ---
 id: hooks-reference
-title: Hooks API Reference
+title: עיון ב-Hooks API
 permalink: docs/hooks-reference.html
 prev: hooks-custom.html
 next: hooks-faq.html
 ---
 
-*Hooks* are a new addition in React 16.8. They let you use state and other React features without writing a class.
+*Hooks* הם תוספת חדשה ב-React 16.8. הם נותנים לנו להשתמש ב-state ופיצ'רים אחרים של React מבלי לכתוב מחלקה.
 
-This page describes the APIs for the built-in Hooks in React.
+עמוד זה מתאר את ה-APIs של ה-Hooks המובנים בתוך React.
 
-If you're new to Hooks, you might want to check out [the overview](/docs/hooks-overview.html) first. You may also find useful information in the [frequently asked questions](/docs/hooks-faq.html) section.
+אם הנושא של Hooks חדש לך, יכול להיות שתרצה לקרוא את [הסקירה הכללית](/docs/hooks-overview.html) קודם. יכול להיות שתמצא מידע שימושי [בסעיף שאלות נפוצות](/docs/hooks-faq.html).
 
-- [Basic Hooks](#basic-hooks)
+- [Hooks בסיסיים](#basic-hooks)
   - [`useState`](#usestate)
   - [`useEffect`](#useeffect)
   - [`useContext`](#usecontext)
-- [Additional Hooks](#additional-hooks)
+- [Hooks נוספים](#additional-hooks)
   - [`useReducer`](#usereducer)
   - [`useCallback`](#usecallback)
   - [`useMemo`](#usememo)
@@ -25,7 +25,7 @@ If you're new to Hooks, you might want to check out [the overview](/docs/hooks-o
   - [`useLayoutEffect`](#uselayouteffect)
   - [`useDebugValue`](#usedebugvalue)
 
-## Basic Hooks {#basic-hooks}
+## Hooks בסיסיים {#basic-hooks}
 
 ### `useState` {#usestate}
 
@@ -33,25 +33,25 @@ If you're new to Hooks, you might want to check out [the overview](/docs/hooks-o
 const [state, setState] = useState(initialState);
 ```
 
-Returns a stateful value, and a function to update it.
+מחזיר ערך stateful, ופונקציה על מנת לעדכן אותו.
 
-During the initial render, the returned state (`state`) is the same as the value passed as the first argument (`initialState`).
+בזמן הרינדור הראשוני, ה-state המוחזר (`state`) הוא שווה ערך לערך המועבר כארגומנט הראשון (`initialState`).
 
-The `setState` function is used to update the state. It accepts a new state value and enqueues a re-render of the component.
+פונקציית ה-`setState` משמשת לעדכון ה-state. היא מקבלת ערך state חדש וקובעת רינדור מחדש של הקומפוננטה.
 
 ```js
 setState(newState);
 ```
 
-During subsequent re-renders, the first value returned by `useState` will always be the most recent state after applying updates.
+בזמן הרינדורים העוקבים, הערך הראשון שמוחזר על ידי `useState` תמיד יהיה ה-state האחרון לאחר יישום העדכונים.
 
->Note
+>הערה
 >
->React guarantees that `setState` function identity is stable and won't change on re-renders. This is why it's safe to omit from the `useEffect` or `useCallback` dependency list.
+>React מבטיח שזהות פונקציית ה-`setState` יציבה ולא תשתנה בין רינדורים. זאת הסיבה שזה בטוח להשמיט
 
-#### Functional updates {#functional-updates}
+#### עדכונים פונקציונליים {#functional-updates}
 
-If the new state is computed using the previous state, you can pass a function to `setState`. The function will receive the previous value, and return an updated value. Here's an example of a counter component that uses both forms of `setState`:
+אם ה-state החדש חושב באמצעות ה-state הקודם, ניתן להעביר פונקציה ל-`setState`. הפונקציה תקבל את הערך הקודם, ותחזיר ערך מעודכן. הנה דוגמה של קומפוננטת counter שמשתמשת בשתי הצורות של `setState`:
 
 ```js
 function Counter({initialCount}) {
@@ -67,24 +67,24 @@ function Counter({initialCount}) {
 }
 ```
 
-The "+" and "-" buttons use the functional form, because the updated value is based on the previous value. But the "Reset" button uses the normal form, because it always sets the count back to the initial value.
+כפתורי ה-"+" וה-"-" משתמשים בצורה הפונקציונלית, בגלל שהערך המעודכן מבוסס על הערך הקודם. אבל כפתור ה"Reset" משתמש בצורה הרגילה, בגלל שהוא תמיד מעדכן את הספירה חזרה לערך ההתחלתי.
 
-> Note
+> הערה
 >
-> Unlike the `setState` method found in class components, `useState` does not automatically merge update objects. You can replicate this behavior by combining the function updater form with object spread syntax:
+> בשונה ממתודת ה-`setState` שנמצאת בקומפוננטות מחלקה, `useState` לא ממזגת עדכוני אובייקטים באופן אוטומטי. ניתן לחקות התנהגות זו על ידי שילוב של מעדכן פונקציה עם אופן הכתיבה של object spread(שלוש נקודות '...'):
 >
 > ```js
 > setState(prevState => {
->   // Object.assign would also work
+>   // Object.assign גם יעבוד
 >   return {...prevState, ...updatedValues};
 > });
 > ```
 >
-> Another option is `useReducer`, which is more suited for managing state objects that contain multiple sub-values.
+> אופציה נוספת היא `useReducer`, שמתאים יותר לניהול אובייקטי(objects) state שמכילים מספר רב של תת-ערכים.
 
-#### Lazy initial state {#lazy-initial-state}
+#### Initial state עצלן {#lazy-initial-state}
 
-The `initialState` argument is the state used during the initial render. In subsequent renders, it is disregarded. If the initial state is the result of an expensive computation, you may provide a function instead, which will be executed only on the initial render:
+הארגומנט `initialState` הוא ה-state שהשתמשנו בו ברינדור הראשון. ברינדורים עוקבים, מתעלמים ממנו. אם ה-state ההתחלתי הוא התוצאה של חישוב יקר, ניתן לספק פונקציה במקום, שתרוץ רק ברינדור ההתחלתי:
 
 ```js
 const [state, setState] = useState(() => {
@@ -93,11 +93,11 @@ const [state, setState] = useState(() => {
 });
 ```
 
-#### Bailing out of a state update {#bailing-out-of-a-state-update}
+#### יציאה מעדכון state {#bailing-out-of-a-state-update}
 
-If you update a State Hook to the same value as the current state, React will bail out without rendering the children or firing effects. (React uses the [`Object.is` comparison algorithm](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is#Description).)
+אם אתה מעדכן State Hook לערך ששווה לערך הנוכחי, React יצא מהפעולה מבלי רינדור הילדים או יריית אפקטים. (React משתמש [באלגוריתם ההשוואה `Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is#Description).)
 
-Note that React may still need to render that specific component again before bailing out. That shouldn't be a concern because React won't unnecessarily go "deeper" into the tree. If you're doing expensive calculations while rendering, you can optimize them with `useMemo`.
+שים לב שיכול להיות ש-React יצטרך לרנדר את הקומפוננטה הספציפית הזו לפני יציאה מהפעולה. זה לא אמור להיות מדאיג בגלל ש-React לא ילך שלא כצורך "עמוק" לתוך העץ. אם אתה מבצע חישובים יקרים בזמן רינדור, ניתן למטב אותם עם `useMemo`.
 
 ### `useEffect` {#useeffect}
 
@@ -105,45 +105,45 @@ Note that React may still need to render that specific component again before ba
 useEffect(didUpdate);
 ```
 
-Accepts a function that contains imperative, possibly effectful code.
+מקבלת פונקציה שמכילה קוד חיוני, שכנראה גורם לאפקט כלשהו.
 
-Mutations, subscriptions, timers, logging, and other side effects are not allowed inside the main body of a function component (referred to as React's _render phase_). Doing so will lead to confusing bugs and inconsistencies in the UI.
+Mutations, subscriptions, טיימרים, לוגים, ותופעות לוואי אחרים לא מורשים בתוך ה-main body של קומפוננטת פונקציה (המכונה _שלב הרינדור_ של React). אי ציות לכך יגרום לבאגים מבלבלים ואי עקביות בממשק המשתמש.
 
-Instead, use `useEffect`. The function passed to `useEffect` will run after the render is committed to the screen. Think of effects as an escape hatch from React's purely functional world into the imperative world.
+במקום זאת, השתמש ב-`useEffect`. הפונקציה המועברת ל-`useEffect` תרוץ אחרי שהרינדור מופיע על המסך. ניתן לחשוב על אפקטים כפתח מילוט מהעולם הפונקציונלי של React לתוך העולם האימפרטיבי.
 
-By default, effects run after every completed render, but you can choose to fire it [only when certain values have changed](#conditionally-firing-an-effect).
+כברירת מחדל, אפקטים רצים אחרי כל רינדור שמסתיים, אבל ניתן לבחור להריץ אותם [רק כשערכים מסוימים שונו](#conditionally-firing-an-effect).
 
-#### Cleaning up an effect {#cleaning-up-an-effect}
+#### ניקוי אפקט {#cleaning-up-an-effect}
 
-Often, effects create resources that need to be cleaned up before the component leaves the screen, such as a subscription or timer ID. To do this, the function passed to `useEffect` may return a clean-up function. For example, to create a subscription:
+לעיתים קרובות, אפקטים יוצרים משאבים שדורשים ניקוי לפני שהקומפוננטה עוזבת את המסך, כמו subscription או timer ID. על מנת לעשות זאת, הפונקציה המועברת ל-`useEffect` תחזיר פונקציית נקיון. לדוגמה, על מנת ליצור subscription:
 
 ```js
 useEffect(() => {
   const subscription = props.source.subscribe();
   return () => {
-    // Clean up the subscription
+    // ניקוי ה-subscription
     subscription.unsubscribe();
   };
 });
 ```
 
-The clean-up function runs before the component is removed from the UI to prevent memory leaks. Additionally, if a component renders multiple times (as they typically do), the **previous effect is cleaned up before executing the next effect**. In our example, this means a new subscription is created on every update. To avoid firing an effect on every update, refer to the next section.
+פונקציית הנקיון רצה לפני הסרת הקומפוננטה מממשק המשתמש על מנת למנוע דליפות זיכרון. בנוסף לכך, אם קומפוננטה מתרנדרת מספר רב של פעמים (כמו שבדרך כלל קורה), **האפקט הקודם מנוקה לפני הרצת האפקט הבא**. בדוגמה שלנו, זה אומר ש-subscription חדש נוצר בכל עדכון. על מנת להימנע מיריית אפקט על כל עדכון, קרא את החלק הבא.
 
-#### Timing of effects {#timing-of-effects}
+#### תזמון אפקטים {#timing-of-effects}
 
-Unlike `componentDidMount` and `componentDidUpdate`, the function passed to `useEffect` fires **after** layout and paint, during a deferred event. This makes it suitable for the many common side effects, like setting up subscriptions and event handlers, because most types of work shouldn't block the browser from updating the screen.
+בשונה מ-`componentDidMount` ו-`componentDidUpdate`, הפונקציה שמועברת ל-`useEffect` נורה **לאחר** פריסה וצביעה(layout and paint), בזמן אירוע נדחה. זה עושה את זה מתאים להרבה תופעות לוואי, כמו הכנת subscriptions ו- event handlers, בגלל שרוב סוגי העבודה לא חוסמים את הדפדפן מלעדכן את המסך.
 
-However, not all effects can be deferred. For example, a DOM mutation that is visible to the user must fire synchronously before the next paint so that the user does not perceive a visual inconsistency. (The distinction is conceptually similar to passive versus active event listeners.) For these types of effects, React provides one additional Hook called [`useLayoutEffect`](#uselayouteffect). It has the same signature as `useEffect`, and only differs in when it is fired.
+למרות זאת, לא ניתן לעכב את כל האפקטים. לדוגמה, מוטציית DOM שגלויה למשתמש צריכה להיות נורה באופן סינכרוני לפני הצבע הבא כך שהמשתמש לא יבחין בחוסר עקביות חזותי. (ההבחנה דומה מבחינה קונספטואלית למאזינים לאירועים פסיביים לעומת פעילים). בשביל סוגי האפקטים האלה, React מספק Hook נוסף שנקרא [`useLayoutEffect`](#uselayouteffect). יש לו את אותה חתימה כ-`useEffect`, ושונה ממנו כשהוא נורה.
 
-Although `useEffect` is deferred until after the browser has painted, it's guaranteed to fire before any new renders. React will always flush a previous render's effects before starting a new update.
+אף על פי ש-`useEffect` מתעכב על שהדפדפן נצבע, זה מובטח שהוא נורה לפני רינדורים חדשים. React תמיד ינקה אפקטים של רינדורים קודמים לפני החלת עדכון חדש.
 
-#### Conditionally firing an effect {#conditionally-firing-an-effect}
+#### יריית אפקט לפי תנאי {#conditionally-firing-an-effect}
 
-The default behavior for effects is to fire the effect after every completed render. That way an effect is always recreated if one of its dependencies changes.
+ההתנהגות הרגילה של אפקטים היא לירות את האפקט לאחר כל רינדור שהושלם. בדרך זו אפקט תמיד נוצר מחדש אם אחד מה-dependencies שלו משתנה.
 
-However, this may be overkill in some cases, like the subscription example from the previous section. We don't need to create a new subscription on every update, only if the `source` props has changed.
+למרות זאת, זה יכול להיות יותר מדי במקרים מסוימים, כמו דוגמת ה-subscription מהקטע הקודם. אנחנו לא צריכים ליצור subscription חדש על כל עדכון, רק אם ה-prop `source` שונה.
 
-To implement this, pass a second argument to `useEffect` that is the array of values that the effect depends on. Our updated example now looks like this:
+על מנת ליישם זאת, העבר ארגומנט שני ל-`useEffect` שהוא מערך של ערכים שהאפקט תלוי בהם. הדוגמה המעודכנת שלנו נראית כמו זה:
 
 ```js
 useEffect(
@@ -157,20 +157,20 @@ useEffect(
 );
 ```
 
-Now the subscription will only be recreated when `props.source` changes.
+עכשיו ה-subscription ייווצר מחדש רק כש-`props.source` משתנה.
 
->Note
+>הערה
 >
->If you use this optimization, make sure the array includes **all values from the component scope (such as props and state) that change over time and that are used by the effect**. Otherwise, your code will reference stale values from previous renders. Learn more about [how to deal with functions](/docs/hooks-faq.html#is-it-safe-to-omit-functions-from-the-list-of-dependencies) and what to do when the [array values change too often](/docs/hooks-faq.html#what-can-i-do-if-my-effect-dependencies-change-too-often).
+>אם אתה משתמש באופטימיזציה זו, וודא כי המערך מכיל **את כל הערכים מ-scope הקומפוננטה (כמו props ו-state) שמשתנים לאורך זמן ושהאפקט משתמש בהם**. אחרת, הקוד שלך יתייחס לערכים ישנים מרינדורים קודמים. למד עוד על [על איך לטפל בפונקציות](/docs/hooks-faq.html#is-it-safe-to-omit-functions-from-the-list-of-dependencies) ומה לעשות [כשערכי המערך משתנים בתדירות גבוהה מדי](/docs/hooks-faq.html#what-can-i-do-if-my-effect-dependencies-change-too-often).
 >
->If you want to run an effect and clean it up only once (on mount and unmount), you can pass an empty array (`[]`) as a second argument. This tells React that your effect doesn't depend on *any* values from props or state, so it never needs to re-run. This isn't handled as a special case -- it follows directly from how the dependencies array always works.
+>אם אתה רוצה להריץ אפקט ולנקות אותו רק פעם אחת (ב-mount ו-unmount), תוכל להעביר מערך ריק ( [] ) כארגומנט שני. זה אומר ל-React שהאפקט שלך לא תלוי *בשום* ערך מה-props או state, כך שהוא לא צריך לרוץ מחדש. זה לא מטופל כמקרה מיוחד – זה עובד כמו שמערך ה-dependencies תמיד עובד.
 >
->If you pass an empty array (`[]`), the props and state inside the effect will always have their initial values. While passing `[]` as the second argument is closer to the familiar `componentDidMount` and `componentWillUnmount` mental model, there are usually [better](/docs/hooks-faq.html#is-it-safe-to-omit-functions-from-the-list-of-dependencies) [solutions](/docs/hooks-faq.html#what-can-i-do-if-my-effect-dependencies-change-too-often) to avoid re-running effects too often. Also, don't forget that React defers running `useEffect` until after the browser has painted, so doing extra work is less of a problem.
+>אם אתה מעביר מערך ריק ( [] ), ה-props ו-state בתוך האפקט תמיד יכילו את הערכים ההתחלתיים שלהם. בזמן שהעברת `[]` כארגומנט שני יותר קרוב ל-`componentDidMount` ו-`componentWillUnmount` כמודל מנטלי, יש פתרונות [טובים](/docs/hooks-faq.html#is-it-safe-to-omit-functions-from-the-list-of-dependencies) [יותר](/docs/hooks-faq.html#what-can-i-do-if-my-effect-dependencies-change-too-often) שעוזרים להימנע מהרצה מחדש של אפקטים בתדירות גבוהה מדי. בנוסף, אסור לשכוח ש-React מעכב הרצה של `useEffect` עד לאחר שהדפדפן נצבע, אז עשיית עבודה נוספת היא פחות בעיה.
 >
 >
->We recommend using the [`exhaustive-deps`](https://github.com/facebook/react/issues/14920) rule as part of our [`eslint-plugin-react-hooks`](https://www.npmjs.com/package/eslint-plugin-react-hooks#installation) package. It warns when dependencies are specified incorrectly and suggests a fix.
+>אנו ממליצים על שימוש בחוק [`exhaustive-deps`](https://github.com/facebook/react/issues/14920) כחלק מחבילת ה- [`eslint-plugin-react-hooks`](https://www.npmjs.com/package/eslint-plugin-react-hooks#installation) שלנו. הוא מזהיר מפני dependencies שמוגדרים לא נכון ומציע תיקון.
 
-The array of dependencies is not passed as arguments to the effect function. Conceptually, though, that's what they represent: every value referenced inside the effect function should also appear in the dependencies array. In the future, a sufficiently advanced compiler could create this array automatically.
+מערך ה-dependencies לא מועבר כארגומנטים לפונקציית האפקט. אבל באופן עקרוני, זה מה שהם מייצגים: כל ערך שמצוין בתוך פונקציית האפקט צריך להופיע במערך ה-dependencies. בעתיד, קומפיילר מתקדם יוכל ליצור את המערך באופן אוטומטי.
 
 ### `useContext` {#usecontext}
 
@@ -178,27 +178,27 @@ The array of dependencies is not passed as arguments to the effect function. Con
 const value = useContext(MyContext);
 ```
 
-Accepts a context object (the value returned from `React.createContext`) and returns the current context value for that context. The current context value is determined by the `value` prop of the nearest `<MyContext.Provider>` above the calling component in the tree.
+מקבל אובייקט context (הערך המוחזר מ-`React.createContext`) ומחזיר את ערך ה-context הנוכחי לאותו context. ערך ה-context הנוכחי נקבע על ידי ה-prop `value` של `<MyContext.Provider` מעל הקומפוננטה הקוראת בעץ.
 
-When the nearest `<MyContext.Provider>` above the component updates, this Hook will trigger a rerender with the latest context `value` passed to that `MyContext` provider.
+כש-`<MyContext.Provider>` מעל הקומפוננטה מתעדכן, ה-Hook מפעיל מרנדר עם `value` האחרון של ה-context, ואותו ערך מועבר ל- `MyContext` Provider.
 
-Don't forget that the argument to `useContext` must be the *context object itself*:
+אל תשכח שהארגומנט של `useContext` צריך להיות *אובייקט ה-context עצמו*:
 
- * **Correct:** `useContext(MyContext)`
- * **Incorrect:** `useContext(MyContext.Consumer)`
- * **Incorrect:** `useContext(MyContext.Provider)`
+**נכון:** `useContext(MyContext)`
+**לא נכון:** `useContext(MyContext.Consumer)`
+**לא נכון:** `useContext(MyContext.Provider)`
 
-A component calling `useContext` will always re-render when the context value changes. If re-rendering the component is expensive, you can [optimize it by using memoization](https://github.com/facebook/react/issues/15156#issuecomment-474590693).
+קומפוננטה שקוראת ל-`useContext` תמיד תתרנדר מחדש כשערך ה-context ישתנה. אם רינדור מחדש של הקומפוננטה הוא יקר, ניתן [למטב אותו על ידי שימוש ב-memoization](https://github.com/facebook/react/issues/15156#issuecomment-474590693).
 
->Tip
+>טיפ
 >
->If you're familiar with the context API before Hooks, `useContext(MyContext)` is equivalent to `static contextType = MyContext` in a class, or to `<MyContext.Consumer>`.
+>אם אתה מכיר את ה-context API לפני Hooks, `useContext(MyContext)` הוא שווה ל-`static contextType = MyContext` במחלקה, או ל-`<MyContext.Consumer>`.
 >
->`useContext(MyContext)` only lets you *read* the context and subscribe to its changes. You still need a `<MyContext.Provider>` above in the tree to *provide* the value for this context.
+>`useContext(MyContext)` נותן לנו רק *לקרוא* את ה-context ולעשות subscribe לשינויים שלו. נצטרך עדיין `<MyContext.Provider>` מעל בעץ על מנת *לספק* את הערך ל-context זה.
 
-## Additional Hooks {#additional-hooks}
+## Hooks נוספים {#additional-hooks}
 
-The following Hooks are either variants of the basic ones from the previous section, or only needed for specific edge cases. Don't stress about learning them up front.
+ה-Hooks הבאים הם או צורות אחרות של הבסיסיים מהסעיף הקודם, או כאלה שנצטרך רק במקרי קצה ספציפיים. לא צריך להילחץ מללמוד אותם בהתחלה.
 
 ### `useReducer` {#usereducer}
 
@@ -206,11 +206,11 @@ The following Hooks are either variants of the basic ones from the previous sect
 const [state, dispatch] = useReducer(reducer, initialArg, init);
 ```
 
-An alternative to [`useState`](#usestate). Accepts a reducer of type `(state, action) => newState`, and returns the current state paired with a `dispatch` method. (If you're familiar with Redux, you already know how this works.)
+אלטרנטיבה ל-[`useState`](#usestate). מקבל reducer מסוג `(state, action) => newState`, ומחזיר את ה-state הנוכחי ביחד עם מתודת `dispatch`. (אם התעסקת בעבר עם Redux, זה כבר מוכר לך).
 
-`useReducer` is usually preferable to `useState` when you have complex state logic that involves multiple sub-values or when the next state depends on the previous one. `useReducer` also lets you optimize performance for components that trigger deep updates because [you can pass `dispatch` down instead of callbacks](/docs/hooks-faq.html#how-to-avoid-passing-callbacks-down).
+בדרך כלל `useReducer` עדיף על `useState` כשיש לך לוגיקת state מורכבת שמערבת מספר רב של תת-ערכים או כשה-state הבה תלוי ב-state הקודם. `useReducer` גם נותן לנו למטב ביצועים לקומפוננטות שמפעילות עדכונים עמוקים בגלל שניתן [להעביר את dispatch מטה במקום callbacks](/docs/hooks-faq.html#how-to-avoid-passing-callbacks-down).
 
-Here's the counter example from the [`useState`](#usestate) section, rewritten to use a reducer:
+הנה דוגמת ה-counter מהקטע הקודם על [`useState`](#usestate), נכתב מחדש עם שימוש ב-reducer:
 
 ```js
 const initialState = {count: 0};
@@ -238,13 +238,13 @@ function Counter() {
 }
 ```
 
->Note
+>הערה
 >
->React guarantees that `dispatch` function identity is stable and won't change on re-renders. This is why it's safe to omit from the `useEffect` or `useCallback` dependency list.
+>React מבטיח שזהות פונקציית `dispatch` היא קבועה ולא תשתנה ברינדורים חוזרים. זאת הסיבה שזה בטוח להשמיט מרשימת ה-dependency של `useEffect` או `useCallback`.
 
-#### Specifying the initial state {#specifying-the-initial-state}
+#### ציון ה-state ההתחלתי {#specifying-the-initial-state}
 
-There are two different ways to initialize `useReducer` state. You may choose either one depending on the use case. The simplest way is to pass the initial state as a second argument:
+ישנם שתי דרכים שונות לאתחל `useReducer` state. ניתן לבחור אחד מהם תלוי בשימוש. הדרך הפשוטה ביותר היא להעביר את ה-state ההתחלתי כארגומנט שני:
 
 ```js{3}
   const [state, dispatch] = useReducer(
@@ -253,15 +253,15 @@ There are two different ways to initialize `useReducer` state. You may choose ei
   );
 ```
 
->Note
+>הערה
 >
->React doesn’t use the `state = initialState` argument convention popularized by Redux. The initial value sometimes needs to depend on props and so is specified from the Hook call instead. If you feel strongly about this, you can call `useReducer(reducer, undefined, reducer)` to emulate the Redux behavior, but it's not encouraged.
+>React לא משתמש במוסכמת הארגומנט `state = intialState` בניגוד ל-Redux. הערך ההתחלתי לפעמים תלוי ב-props ומכאן שהוא מוגדר בקריאת ה-Hook. אם זה לא לטעמך, ניתן לקרוא ל-`useReducer(reducer, undefined, reducer)` על מנת לחקות את התנהגות Redux, אבל זה לא מומלץ.
 
-#### Lazy initialization {#lazy-initialization}
+#### אתחול עצלן {#lazy-initialization}
 
-You can also create the initial state lazily. To do this, you can pass an `init` function as the third argument. The initial state will be set to `init(initialArg)`.
+ניתן גם ליצור state התחלתי בעצלתיים. על מנת לעשות זאת, ניתן להעביר פונקציית `init` כארגומנט שלישי. ה-state ההתחלתי ייקבע ל-`init(initialArg)`.
 
-It lets you extract the logic for calculating the initial state outside the reducer. This is also handy for resetting the state later in response to an action:
+זה נותן לנו לחלץ את הלוגיקה לחישוב ה-state ההתחלתי מחוץ ל-reducer. זה גם שימושי לאיפוס ה-state לאחר מכן כתגובה לפעולה(action):
 
 ```js{1-3,11-12,19,24}
 function init(initialCount) {
@@ -297,11 +297,11 @@ function Counter({initialCount}) {
 }
 ```
 
-#### Bailing out of a dispatch {#bailing-out-of-a-dispatch}
+#### יציאה מ-dispatch {#bailing-out-of-a-dispatch}
 
-If you return the same value from a Reducer Hook as the current state, React will bail out without rendering the children or firing effects. (React uses the [`Object.is` comparison algorithm](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is#Description).)
+אם אתה מעדכן State Hook לערך ששווה לערך הנוכחי, React יצא מהפעולה מבלי רינדור הילדים או יריית אפקטים. (React משתמש [באלגוריתם ההשוואה `Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is#Description).)
 
-Note that React may still need to render that specific component again before bailing out. That shouldn't be a concern because React won't unnecessarily go "deeper" into the tree. If you're doing expensive calculations while rendering, you can optimize them with `useMemo`.
+שים לב שיכול להיות ש-React יצטרך לרנדר את הקומפוננטה הספציפית הזו לפני יציאה מהפעולה. זה לא אמור להיות מדאיג בגלל ש-React לא ילך שלא כצורך "עמוק" לתוך העץ. אם אתה מבצע חישובים יקרים בזמן רינדור, ניתן למטב אותם עם `useMemo`.
 
 ### `useCallback` {#usecallback}
 
@@ -314,17 +314,17 @@ const memoizedCallback = useCallback(
 );
 ```
 
-Returns a [memoized](https://en.wikipedia.org/wiki/Memoization) callback.
+מחזיר [memoized callback](https://en.wikipedia.org/wiki/Memoization).
 
-Pass an inline callback and an array of dependencies. `useCallback` will return a memoized version of the callback that only changes if one of the dependencies has changed. This is useful when passing callbacks to optimized child components that rely on reference equality to prevent unnecessary renders (e.g. `shouldComponentUpdate`).
+העבר callback ומערך של dependencies. `useCallback` תחזיר גרסה memorized של ה-callback שמשתנה רק אם אחד מה-dependencies משתנה. זה שימושי כשמעבירים callbacks לקומפוננטות ילדים ממוטבות שמסתמכות על השוואה לפי אזכור על מנת למנוע רינדורים מיותרים (לדוגמה `shouldComponentUpdate`).
 
-`useCallback(fn, deps)` is equivalent to `useMemo(() => fn, deps)`.
+`useCallback(fn, deps)` שווה ל-`useMemo(() => fn, deps)`.
 
-> Note
+> הערה
 >
-> The array of dependencies is not passed as arguments to the callback. Conceptually, though, that's what they represent: every value referenced inside the callback should also appear in the dependencies array. In the future, a sufficiently advanced compiler could create this array automatically.
+> מערך ה-dependencies לא מועבר כארגומנטים לפונקציית האפקט. אבל באופן עקרוני, זה מה שהם מייצגים: כל ערך שמצוין בתוך פונקציית האפקט צריך להופיע במערך ה-dependencies. בעתיד, קומפיילר מתקדם יוכל ליצור את המערך באופן אוטומטי.
 >
-> We recommend using the [`exhaustive-deps`](https://github.com/facebook/react/issues/14920) rule as part of our [`eslint-plugin-react-hooks`](https://www.npmjs.com/package/eslint-plugin-react-hooks#installation) package. It warns when dependencies are specified incorrectly and suggests a fix.
+>אנו ממליצים על שימוש בחוק [`exhaustive-deps`](https://github.com/facebook/react/issues/14920) כחלק מחבילת ה- [`eslint-plugin-react-hooks`](https://www.npmjs.com/package/eslint-plugin-react-hooks#installation) שלנו. הוא מזהיר מפני dependencies שמוגדרים לא נכון ומציע תיקון.
 
 ### `useMemo` {#usememo}
 
@@ -332,21 +332,21 @@ Pass an inline callback and an array of dependencies. `useCallback` will return 
 const memoizedValue = useMemo(() => computeExpensiveValue(a, b), [a, b]);
 ```
 
-Returns a [memoized](https://en.wikipedia.org/wiki/Memoization) value.
+מחזיר [ערך memoized](https://en.wikipedia.org/wiki/Memoization).
 
-Pass a "create" function and an array of dependencies. `useMemo` will only recompute the memoized value when one of the dependencies has changed. This optimization helps to avoid expensive calculations on every render.
+העבר פונקציית "create" ומערך של dependencies. `useMemo` תחשב מחדש רק את הערך ה-memoized כשאחד מה-dependencies שונה. מיטוב זה עוזר להימנע מחישובים יקרים בכל רינדור.
 
-Remember that the function passed to `useMemo` runs during rendering. Don't do anything there that you wouldn't normally do while rendering. For example, side effects belong in `useEffect`, not `useMemo`.
+זכור כי הפונקציה שמועברת ל-`useMemo` רצה בזמן רינדור. אל תעשה דברים בתוכה שלא היית עושה בדרך כלל בזמן רינדור. לדוגמה, side effects שייכים ל-`useEffect`, לא `useMemo`.
 
-If no array is provided, a new value will be computed on every render.
+אם סופק מערך כלשהו, ערך חדש יחושב בכל רינדור.
 
-**You may rely on `useMemo` as a performance optimization, not as a semantic guarantee.** In the future, React may choose to "forget" some previously memoized values and recalculate them on next render, e.g. to free memory for offscreen components. Write your code so that it still works without `useMemo` — and then add it to optimize performance.
+**ניתן להסתמך על `useMemo` כמיטוב ביצועים, לא כערבות סמנטית.** בעתיד, יכול להיות ש-React יבחר "לשכוח" חלק מהערכים ה-memoized ויחשב אותם מחדש ברינדור הבא, לדוגמה, על מנת לשחרר זיכרון לקומפוננטות offscreen. כתוב את הקוד שלך כך שהוא יעבוד בלי `useMemo` -- ואז תוסיף אותו על מנת למטב ביצועים.
 
-> Note
+> הערה
 >
-> The array of dependencies is not passed as arguments to the function. Conceptually, though, that's what they represent: every value referenced inside the function should also appear in the dependencies array. In the future, a sufficiently advanced compiler could create this array automatically.
+> מערך ה-dependencies לא מועבר כארגומנטים לפונקציית האפקט. אבל באופן עקרוני, זה מה שהם מייצגים: כל ערך שמצוין בתוך פונקציית האפקט צריך להופיע במערך ה-dependencies. בעתיד, קומפיילר מתקדם יוכל ליצור את המערך באופן אוטומטי.
 >
-> We recommend using the [`exhaustive-deps`](https://github.com/facebook/react/issues/14920) rule as part of our [`eslint-plugin-react-hooks`](https://www.npmjs.com/package/eslint-plugin-react-hooks#installation) package. It warns when dependencies are specified incorrectly and suggests a fix.
+> אנו ממליצים על שימוש בחוק [`exhaustive-deps`](https://github.com/facebook/react/issues/14920) כחלק מחבילת ה- [`eslint-plugin-react-hooks`](https://www.npmjs.com/package/eslint-plugin-react-hooks#installation) שלנו. הוא מזהיר מפני dependencies שמוגדרים לא נכון ומציע תיקון.
 
 ### `useRef` {#useref}
 
@@ -354,15 +354,15 @@ If no array is provided, a new value will be computed on every render.
 const refContainer = useRef(initialValue);
 ```
 
-`useRef` returns a mutable ref object whose `.current` property is initialized to the passed argument (`initialValue`). The returned object will persist for the full lifetime of the component.
+`useRef` מחזיר אובייקט ref שניתן לשינוי שמאפיין ה-`.current` שלו מאותחל לארגומנט המועבר (`intialValue`). האובייקט המוחזר יתמיד לכל מחזור החיים של הקומפוננטה.
 
-A common use case is to access a child imperatively:
+מקרה שימוש נפוץ הוא לגשת לילד כשרוצים:
 
 ```js
 function TextInputWithFocusButton() {
   const inputEl = useRef(null);
   const onButtonClick = () => {
-    // `current` points to the mounted text input element
+    // `current` מצביע על אלמנט ה-text input 
     inputEl.current.focus();
   };
   return (
@@ -374,15 +374,15 @@ function TextInputWithFocusButton() {
 }
 ```
 
-Essentially, `useRef` is like a "box" that can hold a mutable value in its `.current` property.
+במהותו, `useRef` הוא כמו "קופסה" שיכולה להחזיק ערך שניתן לשינוי בתוך מאפיין ה-`.current`.
 
-You might be familiar with refs primarily as a way to [access the DOM](/docs/refs-and-the-dom.html). If you pass a ref object to React with `<div ref={myRef} />`, React will set its `.current` property to the corresponding DOM node whenever that node changes.
+אולי אתה מכיר refs בעיקר כדרך [לגשת ל-DOM](/docs/refs-and-the-dom.html). אם אתה מעביר אובייקט ref ל-React עם `<div ref={myRef}`, React יקבע את מאפיין ה-`.current` ל-DOM node המקביל כשאותו node משתנה.
 
-However, `useRef()` is useful for more than the `ref` attribute. It's [handy for keeping any mutable value around](/docs/hooks-faq.html#is-there-something-like-instance-variables) similar to how you'd use instance fields in classes.
+למרות זאת, `useRef()` שימושי ליותר מתכונת ה-`ref`. הוא [שימושי לשמירת כל ערך שניתן לשינוי](/docs/hooks-faq.html#is-there-something-like-instance-variables) בדומה לדרך שהיית משתמש ב-instance fields במחלקות.
 
-This works because `useRef()` creates a plain JavaScript object. The only difference between `useRef()` and creating a `{current: ...}` object yourself is that `useRef` will give you the same ref object on every render.
+זה עובד בגלל ש`useRef()` יוצר אובייקט ג'אווהסקריפט פשוט. ההבדל היחיד בין `useRef()` ויצירת אובייקט `{current: …}` בעצמך היא ש-`useRef()` ייתן לך את אותו אובייקט ref בכל רינדור.
 
-Keep in mind that `useRef` *doesn't* notify you when its content changes. Mutating the `.current` property doesn't cause a re-render. If you want to run some code when React attaches or detaches a ref to a DOM node, you may want to use a [callback ref](/docs/hooks-faq.html#how-can-i-measure-a-dom-node) instead.
+זכור ש-`useRef()` *לא* מודיע לך כשהתוכן שלו משתנה. שינוי של המאפיין `.current` לא גורם לרינדור מחדש. אם אתה רוצה להריץ קוד כש-React מצרף או מנתק ref מ-DOM node, אולי תרצה להשתמש ב-[callback ref](/docs/hooks-faq.html#how-can-i-measure-a-dom-node) במקום.
 
 
 ### `useImperativeHandle` {#useimperativehandle}
@@ -391,7 +391,7 @@ Keep in mind that `useRef` *doesn't* notify you when its content changes. Mutati
 useImperativeHandle(ref, createHandle, [deps])
 ```
 
-`useImperativeHandle` customizes the instance value that is exposed to parent components when using `ref`. As always, imperative code using refs should be avoided in most cases. `useImperativeHandle` should be used with `forwardRef`:
+`useImperativeHandle` מתאים אישית את הערך ה-instance שנחשף לקומפוננטות הורה בשימוש `ref`. כמו תמיד, כדאי להימנע מקוד אימפרטיבי בשימוש refs ברוב המקרים. כדאי להשתמש ב-`useImperativeHandle` עם `forwardRef`:
 
 ```js
 function FancyInput(props, ref) {
@@ -406,21 +406,21 @@ function FancyInput(props, ref) {
 FancyInput = forwardRef(FancyInput);
 ```
 
-In this example, a parent component that renders `<FancyInput ref={fancyInputRef} />` would be able to call `fancyInputRef.current.focus()`.
+בדוגמה זו, קומפוננטת הורה שמרנדרת `<FancyInput ref={fancyInputRef} />` צריכה להיות מסוגלת לקרוא ל-`fancyInputRef.current.focus()`.
 
 ### `useLayoutEffect` {#uselayouteffect}
 
-The signature is identical to `useEffect`, but it fires synchronously after all DOM mutations. Use this to read layout from the DOM and synchronously re-render. Updates scheduled inside `useLayoutEffect` will be flushed synchronously, before the browser has a chance to paint.
+מאפיין זה זהה ל-`useEffect`, אבל הוא יורה באופן סינכרוני לאחר כל שינויי DOM. השתמש בזה על מנת לקרוא layout מתוך ה-DOM ולרנדר מחדש באופן סינכרוני. עדכונים מתוזמנים בתוך `useLayoutEffect` ישטפו באופן סינכרוני, לפני שלדפדפן יש הזדמנות לצבוע.
 
-Prefer the standard `useEffect` when possible to avoid blocking visual updates.
+העדף את `useEffect` הסטנדרטי מתי שאפשר על מנת להימנע מחסימת עדכונים ויזואליים. 
 
-> Tip
+> טיפ
 >
-> If you're migrating code from a class component, note `useLayoutEffect` fires in the same phase as `componentDidMount` and `componentDidUpdate`. However, **we recommend starting with `useEffect` first** and only trying `useLayoutEffect` if that causes a problem.
+> אם אתה מזיז קוד מקומפוננטת מחלקה, שים לב ש-`useLayoutEffect` יורה באותו קצב כמו `componentDidMount` ו-`componentDidUpdate`. לעומת זאת, **אנו ממליצים להתחיל עם `useEffect` קודם** ולנסות את `useLayoutEffect` רק אם זה יוצר בעיה.
 >
->If you use server rendering, keep in mind that *neither* `useLayoutEffect` nor `useEffect` can run until the JavaScript is downloaded. This is why React warns when a server-rendered component contains `useLayoutEffect`. To fix this, either move that logic to `useEffect` (if it isn't necessary for the first render), or delay showing that component until after the client renders (if the HTML looks broken until `useLayoutEffect` runs).
+>אם אתה משתמש ב-server rendering, שים לב *שגם* `useLayoutEffect` וגם `useEffect` יכולים לרוץ עד שהג'אווהסקריפט הורד. זאת הסיבה ש-React מזהיר כשקומפוננטה שהיא server-rendered מכילה `useLayoutEffect`. על מנת לתקן זאת, או שתעביר את הלוגיקה ל-`useEffect` (אם זה לא נחוץ לרינדור הראשון), או המתן עם הצגת הקומפוננטה עד לאחר רינדור הקליינט (אם ה-HTML נראה שבור עד ש-`useLayoutEffect` רץ).
 >
->To exclude a component that needs layout effects from the server-rendered HTML, render it conditionally with `showChild && <Child />` and defer showing it with `useEffect(() => { setShowChild(true); }, [])`. This way, the UI doesn't appear broken before hydration.
+>על מנת להדיר קומפוננטה שצריכה layout effects מ-server-rendered HTML, רנדר אותה בתנאי עם `showChild && <Child />` ועכב את הצגתה עם `useEffect(() => { setShowChild(true); }, [])`. בדרך זו, ממשק המשתמש לא מופיע שבור לפני הידרציה.
 
 ### `useDebugValue` {#usedebugvalue}
 
@@ -428,9 +428,9 @@ Prefer the standard `useEffect` when possible to avoid blocking visual updates.
 useDebugValue(value)
 ```
 
-`useDebugValue` can be used to display a label for custom hooks in React DevTools.
+ניתן להשתמש ב-`useDebugValue` על מנת להציג label ל-hooks מותאמים אישית ב-React DevTools.
 
-For example, consider the `useFriendStatus` custom Hook described in ["Building Your Own Hooks"](/docs/hooks-custom.html):
+לדוגמה, שקול את ה-hook `useFriendStatus` שמתואר [ב"בניית Hooks משלך"](/docs/hooks-custom.html):
 
 ```js{6-8}
 function useFriendStatus(friendID) {
@@ -438,25 +438,25 @@ function useFriendStatus(friendID) {
 
   // ...
 
-  // Show a label in DevTools next to this Hook
-  // e.g. "FriendStatus: Online"
+  // הראה label ב-DevTools ליד ה-Hook הזה
+  // לדוגמה "FriendStatus: Online"
   useDebugValue(isOnline ? 'Online' : 'Offline');
 
   return isOnline;
 }
 ```
 
-> Tip
+> טיפ
 >
-> We don't recommend adding debug values to every custom Hook. It's most valuable for custom Hooks that are part of shared libraries.
+> אנו לא ממליצים להוסיף ערכי debug לכל Hook מותאם אישית. זה נחוץ במיוחד ל-Hooks מותאמים אישית שחלק מספריות משותפות.
 
-#### Defer formatting debug values {#defer-formatting-debug-values}
+#### דחה formatting של ערכי debug {#defer-formatting-debug-values}
 
-In some cases formatting a value for display might be an expensive operation. It's also unnecessary unless a Hook is actually inspected.
+במקרים מסוימים לבצע formatting לערך יכול להיות פעולה יקרה. זה גם לא נחוץ אלא אם ה-Hook נבדק.
 
-For this reason `useDebugValue` accepts a formatting function as an optional second parameter. This function is only called if the Hooks are inspected. It receives the debug value as a parameter and should return a formatted display value.
+מסיבה זו `useDebugValue` מקבל פונקציית formatting כפרמטר שני אופציונלי. קוראים לפונקציה זו רק אם ה-Hooks נבדקים. היא מקבלת את ערך ה-debug כפרמטר וצריכה להחזיר ערך הצגה שעבר formatting.
 
-For example a custom Hook that returned a `Date` value could avoid calling the `toDateString` function unnecessarily by passing the following formatter:
+לדוגמה Hook מותאם אישית שמחזיר ערך `Date` יוכל להימנע מלקרוא לפונקציית `toDateString` באופן לא נחוץ על ידי העברת ה-formatter הבא:
 
 ```js
 useDebugValue(date, date => date.toDateString());
