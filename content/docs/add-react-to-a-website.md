@@ -69,13 +69,21 @@ React הונדסה מההתחלה לאימוץ הדרגתי, ו**אנו יכול
 
 צור קובץ בשם `like_button.js` בצמוד לדף ה-HTML שלך.
 
+<<<<<<< HEAD
 פתח את **[הקוד ההתחלתי הזה](https://cdn.rawgit.com/gaearon/0b180827c190fe4fd98b4c7f570ea4a8/raw/b9157ce933c79a4559d2aa9ff3372668cce48de7/LikeButton.js)** והדבק אותו בקובץ שיצרת.
+=======
+Open **[this starter code](https://gist.github.com/gaearon/0b180827c190fe4fd98b4c7f570ea4a8/raw/b9157ce933c79a4559d2aa9ff3372668cce48de7/LikeButton.js)** and paste it into the file you created.
+>>>>>>> 5c371e5e3fd8f92e1d06dfdf1f28edc50fb5d83f
 
 >טיפ
 >
 >קוד זה מגדיר קומפוננטת React שנקראת `LikeButton`. אל תדאג אם אתה לא מבין את זה עדיין -- אנו נכסה את היסודות של React מאוחר יותר ב[מדריך המעשי](/tutorial/tutorial.html) וב[מדריך הקונספטים העיקריים](/docs/hello-world.html). בינתיים, בוא רק נדאג שזה יוצג על המסך!
 
+<<<<<<< HEAD
 אחרי **[הקוד ההתחלתי](https://cdn.rawgit.com/gaearon/0b180827c190fe4fd98b4c7f570ea4a8/raw/b9157ce933c79a4559d2aa9ff3372668cce48de7/LikeButton.js)**, הוסף שתי שורות לתחתית הקובץ `like_button.js`:
+=======
+After **[the starter code](https://gist.github.com/gaearon/0b180827c190fe4fd98b4c7f570ea4a8/raw/b9157ce933c79a4559d2aa9ff3372668cce48de7/LikeButton.js)**, add two lines to the bottom of `like_button.js`:
+>>>>>>> 5c371e5e3fd8f92e1d06dfdf1f28edc50fb5d83f
 
 ```js{3,4}
 // ... the starter code you pasted ...
@@ -195,7 +203,11 @@ npx babel --watch src --out-dir . --presets react-app/prod
 
 אל תחכה שהתהליך יסתיים -- פקודה זאת מתחילה צופה אוטומטי ל-JSX.
 
+<<<<<<< HEAD
 אם עכשיו תיצור קובץ שנקרא `src/like_button.js` עם **[קוד ה-JSX הבסיסי הזה](https://cdn.rawgit.com/gaearon/c8e112dc74ac44aac4f673f2c39d19d1/raw/09b951c86c1bf1116af741fa4664511f2f179f0a/like_button.js)**, הצופה יצור קובץ `like_button.js` מעובד עם קוד ה-JavaScript שמתאים לדפדפן. כשאתה עורך את קוד המקור עם JSX, שינוי הצורה ירוץ שוב באופן אוטומטי.
+=======
+If you now create a file called `src/like_button.js` with this **[JSX starter code](https://gist.github.com/gaearon/c8e112dc74ac44aac4f673f2c39d19d1/raw/09b951c86c1bf1116af741fa4664511f2f179f0a/like_button.js)**, the watcher will create a preprocessed `like_button.js` with the plain JavaScript code suitable for the browser. When you edit the source file with JSX, the transform will re-run automatically.
+>>>>>>> 5c371e5e3fd8f92e1d06dfdf1f28edc50fb5d83f
 
 כבונוס, זה נותן לך להשתמש בקוד JavaScript מודרני כגון מחלקות בלי לדאוג לגבי שבירת גרסאות דפדפן קודמות. הכלי שהשתמשנו בו הרגע נקרא Babel, ותוכל ללמוד עוד לגביו [מהדוקומנטציה שלו](https://babeljs.io/docs/en/babel-cli/).
 
