@@ -15,6 +15,7 @@ permalink: docs/context.html
   - [Context.Provider](#contextprovider)
   - [Class.contextType](#classcontexttype)
   - [Context.Consumer](#contextconsumer)
+  - [Context.displayName](#contextdisplayname)
 - [דוגמאות](#examples)
   - [קונטקסט דינאמי](#dynamic-context)
   - [עדכון הקונטקסט מתוך קומפוננטה מקוננת](#updating-context-from-a-nested-component)
@@ -197,6 +198,20 @@ class MyClass extends React.Component {
 > הערה
 > 
 > למידע נוסף על ״פונקציות כילד״ בקרו בעמוד [render props](/docs/render-props.html).
+
+### `Context.displayName` {#contextdisplayname}
+
+אובייקט context מקבל מאפיין `displayName` מסוג מחרוזת. React DevTools משתמש במחרוזת זו על מנת לקבוע מה להציג ל-context.
+
+לדוגמה, הקומפוננטה הבאה תופיע כ-MyDisplayName ב-DevTools:
+
+```js{2}
+const MyContext = React.createContext(/* ערך מסויים */);
+MyContext.displayName = 'MyDisplayName';
+
+<MyContext.Provider> // "MyDisplayName.Provider" ב-DevTools
+<MyContext.Consumer> // "MyDisplayName.Consumer" ב-DevTools
+```
 
 ## דוגמאות {#examples}
 
