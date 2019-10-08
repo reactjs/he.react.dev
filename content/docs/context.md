@@ -203,7 +203,7 @@ class MyClass extends React.Component {
 
 אובייקט context מקבל מאפיין `displayName` מסוג מחרוזת. React DevTools משתמש במחרוזת זו על מנת לקבוע מה להציג ל-context.
 
-לדוגמה, הקומפוננטה הבאה תופיע כ-MyContext ב-DevTools:
+לדוגמה, הקומפוננטה הבאה תופיע כ-MyDisplayName ב-DevTools:
 
 ```js{2}
 const MyContext = React.createContext(/* ערך מסויים */);
