@@ -6,7 +6,7 @@ permalink: docs/code-splitting.html
 
 ## איגוד {#bundling}
 
-בדרך כלל, הקבצים באפליקציות React ״מאוגדים״ באמצעות כלים כמו [Webpack](https://webpack.js.org/) , [Browserify](http://browserify.org/) או [Browserify](http://browserify.org/).
+בדרך כלל, הקבצים באפליקציות React ״מאוגדים״ באמצעות כלים כמו [Webpack](https://webpack.js.org/) , [Rollup](https://rollupjs.org/guide/en/#code-splitting) ו-[Browserify](http://browserify.org/) או [Browserify](http://browserify.org/).
 איגוד הוא תהליך שעוקב אחרי קבצים מיובאים ומאחד אותם לקובץ יחיד: ״באנדל״. את הבאנדל אפשר לצרף לדף אינטרנט כדי לטעון אפליקציה שלמה בבת אחת.
 
 #### דוגמא {#example}
@@ -51,7 +51,7 @@ console.log(add(16, 26)); // 42
 איגוד הוא תהליך נחמד, אבל כשהאפליקציה שלכם גדלה, קובץ הבאנדל גדל איתה. בעיקר אם אתם משתמשים בספריות צד שלישי גדולות. תצטרכו לשים עין על הקוד שכלול בבאנדל כדי שהקובץ לא יגיע לגודל שיגרום לאפליקציה שלכם להטען לאט מדי.
 
 כדי שלא נגיע למצב שהבאנדל שלנו גדול מדי, כדאי להקדים את הבעיה ולהתחיל ״לפצל״ את הבאנדל.
-[פיצול קוד](https://webpack.js.org/guides/code-splitting/) הוא פיצ׳ר שנתמך על ידי באנדלרים כמו Weback ו- Browserify (בעזרת [factor-bundle](https://github.com/browserify/factor-bundle)), שמאפשר ליצור מספר קבצי באנדל שיטענו באופן דינאמי בזמן ריצה.
+פיצול קוד הוא פיצ׳ר שנתמך על ידי באנדלרים כמו [Webpack](https://webpack.js.org/guides/code-splitting/) ו- Browserify (בעזרת [factor-bundle](https://github.com/browserify/factor-bundle)), שמאפשר ליצור מספר קבצי באנדל שיטענו באופן דינאמי בזמן ריצה.
 
 פיצול קוד יכול לעזור לנו לממש ״טעינה עצלה״ של הדברים באפליקציה שהמשתמש צריך, וטעינה כזאת יכולה לשפר באופן משמעותי את הביצועים של האפליקציה. בצורה כזאת לא נאלץ להפחית את כמות הקוד, רק לא לטעון קוד שהמשתמש אולי לא יצטרך לעולם, ונפחית את כמות הקוד שנדרשת בזמן הטעינה הראשונה של האפליקציה.
 

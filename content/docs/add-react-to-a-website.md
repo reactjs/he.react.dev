@@ -69,13 +69,13 @@ React הונדסה מההתחלה לאימוץ הדרגתי, ו**אנו יכול
 
 צור קובץ בשם `like_button.js` בצמוד לדף ה-HTML שלך.
 
-פתח את **[הקוד ההתחלתי הזה](https://cdn.rawgit.com/gaearon/0b180827c190fe4fd98b4c7f570ea4a8/raw/b9157ce933c79a4559d2aa9ff3372668cce48de7/LikeButton.js)** והדבק אותו בקובץ שיצרת.
+פתח את **[הקוד ההתחלתי הזה](https://gist.github.com/gaearon/0b180827c190fe4fd98b4c7f570ea4a8/raw/b9157ce933c79a4559d2aa9ff3372668cce48de7/LikeButton.js)** והדבק אותו בקובץ שיצרת.
 
 >טיפ
 >
 >קוד זה מגדיר קומפוננטת React שנקראת `LikeButton`. אל תדאג אם אתה לא מבין את זה עדיין -- אנו נכסה את היסודות של React מאוחר יותר ב[מדריך המעשי](/tutorial/tutorial.html) וב[מדריך הקונספטים העיקריים](/docs/hello-world.html). בינתיים, בוא רק נדאג שזה יוצג על המסך!
 
-אחרי **[הקוד ההתחלתי](https://cdn.rawgit.com/gaearon/0b180827c190fe4fd98b4c7f570ea4a8/raw/b9157ce933c79a4559d2aa9ff3372668cce48de7/LikeButton.js)**, הוסף שתי שורות לתחתית הקובץ `like_button.js`:
+אחרי **[הקוד ההתחלתי](https://gist.github.com/gaearon/0b180827c190fe4fd98b4c7f570ea4a8/raw/b9157ce933c79a4559d2aa9ff3372668cce48de7/LikeButton.js)**, הוסף שתי שורות לתחתית הקובץ `like_button.js`:
 
 ```js{3,4}
 // ... the starter code you pasted ...
@@ -195,7 +195,7 @@ npx babel --watch src --out-dir . --presets react-app/prod
 
 אל תחכה שהתהליך יסתיים -- פקודה זאת מתחילה צופה אוטומטי ל-JSX.
 
-אם עכשיו תיצור קובץ שנקרא `src/like_button.js` עם **[קוד ה-JSX הבסיסי הזה](https://cdn.rawgit.com/gaearon/c8e112dc74ac44aac4f673f2c39d19d1/raw/09b951c86c1bf1116af741fa4664511f2f179f0a/like_button.js)**, הצופה יצור קובץ `like_button.js` מעובד עם קוד ה-JavaScript שמתאים לדפדפן. כשאתה עורך את קוד המקור עם JSX, שינוי הצורה ירוץ שוב באופן אוטומטי.
+אם עכשיו תיצור קובץ שנקרא `src/like_button.js` עם **[קוד ה-JSX הבסיסי הזה](https://gist.github.com/gaearon/c8e112dc74ac44aac4f673f2c39d19d1/raw/09b951c86c1bf1116af741fa4664511f2f179f0a/like_button.js)**, הצופה יצור קובץ `like_button.js` מעובד עם קוד ה-JavaScript שמתאים לדפדפן. כשאתה עורך את קוד המקור עם JSX, שינוי הצורה ירוץ שוב באופן אוטומטי.
 
 כבונוס, זה נותן לך להשתמש בקוד JavaScript מודרני כגון מחלקות בלי לדאוג לגבי שבירת גרסאות דפדפן קודמות. הכלי שהשתמשנו בו הרגע נקרא Babel, ותוכל ללמוד עוד לגביו [מהדוקומנטציה שלו](https://babeljs.io/docs/en/babel-cli/).
 
