@@ -15,22 +15,13 @@ permalink: docs/context.html
   - [Context.Provider](#contextprovider)
   - [Class.contextType](#classcontexttype)
   - [Context.Consumer](#contextconsumer)
-<<<<<<< HEAD
+  - [Context.displayName](#contextdisplayname)
 - [דוגמאות](#examples)
   - [קונטקסט דינאמי](#dynamic-context)
   - [עדכון הקונטקסט מתוך קומפוננטה מקוננת](#updating-context-from-a-nested-component)
   - [שימוש ביותר מקונטקסט אחד](#consuming-multiple-contexts)
 - [הסתיגויות](#caveats)
 - [ממשק תכנות מדור קודם](#legacy-api)
-=======
-  - [Context.displayName](#contextdisplayname)
-- [Examples](#examples)
-  - [Dynamic Context](#dynamic-context)
-  - [Updating Context from a Nested Component](#updating-context-from-a-nested-component)
-  - [Consuming Multiple Contexts](#consuming-multiple-contexts)
-- [Caveats](#caveats)
-- [Legacy API](#legacy-api)
->>>>>>> 5c371e5e3fd8f92e1d06dfdf1f28edc50fb5d83f
 
 ## מתי להשתמש בקונטקסט {#when-to-use-context}
 
@@ -208,25 +199,21 @@ class MyClass extends React.Component {
 > 
 > למידע נוסף על ״פונקציות כילד״ בקרו בעמוד [render props](/docs/render-props.html).
 
-<<<<<<< HEAD
-## דוגמאות {#examples}
-=======
 ### `Context.displayName` {#contextdisplayname}
 
-Context object accepts a `displayName` string property. React DevTools uses this string to determine what to display for the context.
+אובייקט context מקבל מאפיין `displayName` מסוג מחרוזת. React DevTools משתמש במחרוזת זו על מנת לקבוע מה להציג ל-context.
 
-For example, the following component will appear as MyDisplayName in the DevTools:
+לדוגמה, הקומפוננטה הבאה תופיע כ-MyDisplayName ב-DevTools:
 
 ```js{2}
-const MyContext = React.createContext(/* some value */);
+const MyContext = React.createContext(/* ערך מסויים */);
 MyContext.displayName = 'MyDisplayName';
 
-<MyContext.Provider> // "MyDisplayName.Provider" in DevTools
-<MyContext.Consumer> // "MyDisplayName.Consumer" in DevTools
+<MyContext.Provider> // "MyDisplayName.Provider" ב-DevTools
+<MyContext.Consumer> // "MyDisplayName.Consumer" ב-DevTools
 ```
 
-## Examples {#examples}
->>>>>>> 5c371e5e3fd8f92e1d06dfdf1f28edc50fb5d83f
+## דוגמאות {#examples}
 
 ### קונטקסט דינאמי {#dynamic-context}
 

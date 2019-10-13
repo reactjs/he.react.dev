@@ -119,11 +119,7 @@ import './index.css';
 
 ### הצילו, אני תקוע! {#help-im-stuck}
 
-<<<<<<< HEAD
-אם אתם נתקעים, בדקו את [משאבי התמיכה בקהילה](/community/support.html). בפרט, [צ'אט Reactiflux](https://discord.gg/0ZcbPKXt5bZjGY5n) הוא דרך מצוינת לקבל עזרה במהירות. אם אתם לא מקבלים תשובה, או אם נשארתם תקועים, אנא שלחו לנו את הבעיה בה נתקלתם, ואנו נעזור לכם.
-=======
-If you get stuck, check out the [community support resources](/community/support.html). In particular, [Reactiflux Chat](https://discord.gg/reactiflux) is a great way to get help quickly. If you don't receive an answer, or if you remain stuck, please file an issue, and we'll help you out.
->>>>>>> 5c371e5e3fd8f92e1d06dfdf1f28edc50fb5d83f
+אם אתם נתקעים, בדקו את [משאבי התמיכה בקהילה](/community/support.html). בפרט, [צ'אט Reactiflux](https://discord.gg/reactiflux) הוא דרך מצוינת לקבל עזרה במהירות. אם אתם לא מקבלים תשובה, או אם נשארתם תקועים, אנא שלחו לנו את הבעיה בה נתקלתם, ואנו נעזור לכם.
 
 ## סקירה כללית {#overview}
 
