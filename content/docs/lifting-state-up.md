@@ -324,7 +324,11 @@ class Calculator extends React.Component {
 
 אם אנחנו יכולים לגזור משהו מה-props או מה-state, זה כנראה לא צריך להיות ב-state. לדוגמה, במקום לאחסן גם את `celsiusValue` וגם את `fahrenheitValue`, אנו מאחסנים רק את הטמפרטורה (`temperature`) האחרונה ואת המדד (`scale`) שלה. הערך של הקלט האחר יכול תמיד להיות מחושב מהם במתודה `render()`. זה מאפשר לנו לנקות או להחיל עיגול לשדה האחר מבלי לאבד כל דיוק בקלט המשתמש.
 
+<<<<<<< HEAD
 כאשר אתם רואים משהו שגוי בממשק המשתמש, תוכלו להשתמש ב[כלי הפיתוח של React](https://github.com/facebook/react-devtools) כדי לבדוק את ה-props ולעבור למעלה בעץ עד שתמצאו את הקומפוננטה האחראית לעדכון ה-state. זה מאפשר לכם לעקוב אחר הבאגים עד למקור שלהם:
+=======
+When you see something wrong in the UI, you can use [React Developer Tools](https://github.com/facebook/react/tree/master/packages/react-devtools) to inspect the props and move up the tree until you find the component responsible for updating the state. This lets you trace the bugs to their source:
+>>>>>>> d2ade76cce133af47ab198188fa2de03fa51834b
 
 <img src="../images/docs/react-devtools-state.gif" alt="מעקב אחר State ב-React DevTools" max-width="100%" height="100%">
 

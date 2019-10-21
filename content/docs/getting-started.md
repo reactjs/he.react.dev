@@ -46,7 +46,11 @@ React תוכננה מלכתחילה לאימוץ הדרגתי, ו**אתם יכו
 
 ### יצירת אפליקציית React חדשה {#create-a-new-react-app}
 
+<<<<<<< HEAD
 בעת התחלת פרוייקט React, [דף HTML פשוט עם תגי Script](/docs/add-react-to-a-website.html) עדיין עשוי להיות האפשרות הטובה ביותר. לוקח רק דקה להגדיר את זה!
+=======
+When starting a React project, a [simple HTML page with script tags](/docs/add-react-to-a-website.html) might still be the best option. It only takes a minute to set up!
+>>>>>>> d2ade76cce133af47ab198188fa2de03fa51834b
 
 ככל שהאפליקצייה שלכם גדלה, ייתכן שתרצו לשקול התקנה יותר מורכבת. ישנם [מספר כלי עבודה של JavaScript](/docs/create-a-new-react-app.html) שאנו ממליצים עבור יישומים גדולים יותר. כל אחד מהם יכול לעבוד עם הגדרה קטנה או ללא הגדרות בכלל ומאפשר לכם לנצל את מלוא היתרונות של האקוסיסטם העשיר של React.
 
@@ -115,7 +119,11 @@ React תוכננה מלכתחילה לאימוץ הדרגתי, ו**אתם יכו
 
 תוכלו גם לעקוב אחר [חשבון @reactjs](https://twitter.com/reactjs) ב- Twitter, אך לא תחמיצו שום דבר חיוני אם תקראו את הבלוג בלבד.
 
+<<<<<<< HEAD
 לא כל גירסת React ראויה לבלוג פוסט משל עצמה, אך תוכלו למצוא קובץ שינויים מפורט עבור כל גירסה [בקובץ CHANGELOG.md` בריפוזיטורי של React](https://github.com/facebook/react/blob/master/CHANGELOG.md), וכן בדף ה[שיחרורים](https://github.com/facebook/react/releases).
+=======
+Not every React release deserves its own blog post, but you can find a detailed changelog for every release in the [`CHANGELOG.md` file in the React repository](https://github.com/facebook/react/blob/master/CHANGELOG.md), as well as on the [Releases](https://github.com/facebook/react/releases) page.
+>>>>>>> d2ade76cce133af47ab198188fa2de03fa51834b
 
 ## גרסאות תיעוד {#versioned-documentation}
 
