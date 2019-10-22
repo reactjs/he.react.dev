@@ -4,11 +4,7 @@ title: קומפוננטות לא מבוקרות
 permalink: docs/uncontrolled-components.html
 ---
 
-<<<<<<< HEAD
-ברוב המקרים, אנו ממליצים להשתמש [בקומפוננטות מבוקרות](/docs/forms.html) למימוש טפסים. בקומפוננטה מבוקרת, נתוני הטופס מנוהלים על ידי קומפוננטת React. האלטרנטיבה היא קומפוננטה לא מבוקרת, איפה שנתוני הטופס מנוהלים על ידי ה-DOM עצמו.
-=======
-In most cases, we recommend using [controlled components](/docs/forms.html#controlled-components) to implement forms. In a controlled component, form data is handled by a React component. The alternative is uncontrolled components, where form data is handled by the DOM itself.
->>>>>>> d2ade76cce133af47ab198188fa2de03fa51834b
+ברוב המקרים, אנו ממליצים להשתמש [בקומפוננטות מבוקרות](/docs/forms.html#controlled-components) למימוש טפסים. בקומפוננטה מבוקרת, נתוני הטופס מנוהלים על ידי קומפוננטת React. האלטרנטיבה היא קומפוננטה לא מבוקרת, איפה שנתוני הטופס מנוהלים על ידי ה-DOM עצמו.
 
 כדי לכתוב קומפוננטה לא מבוקרת, במקום לרשום event handler לכל עדכון state, אתה יכול [להשתמש ב-ref](/docs/refs-and-the-dom.html) כדי לקבל את ערכי הטופס מה-DOM.
 
