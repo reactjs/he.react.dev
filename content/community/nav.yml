@@ -17,6 +17,7 @@
     - id: videos
       title: סרטונים
     - id: external-resources
+<<<<<<< HEAD
       title: משאבים חיצוניים
 - title: כלים
   items:
@@ -38,3 +39,6 @@
       title: קומפוננטות UI
     - id: misc
       title: שונות
+=======
+      title: External Resources
+>>>>>>> 72775e97f9a5f26d93153f58e650eb8c604d207f

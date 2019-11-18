@@ -199,6 +199,7 @@ class Board extends React.Component {
   renderSquare(i) {
     return <Square value={i} />;
   }
+}
 ```
 
 שנו את מתודת `render` של ריבוע כדי להציג את הערך על-ידי החלפת `{/* TODO */}` עם `{this.props.value}`:
