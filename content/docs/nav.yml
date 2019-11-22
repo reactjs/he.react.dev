@@ -106,6 +106,19 @@
       title: דרישות סביבת JS
     - id: glossary
       title: מילון מונחים
+- title: מצב Concurrent (בשלבי ניסוי)
+  isOrdered: true
+  items:
+    - id: concurrent-mode-intro
+      title: הצגת Concurrent Mode
+    - id: concurrent-mode-suspense
+      title: Suspense ל- Data Fetching
+    - id: concurrent-mode-patterns
+      title: תבניות ממשק משתמש Concurrent
+    - id: concurrent-mode-adoption
+      title: אימוץ מצב Concurrent
+    - id: concurrent-mode-reference
+      title: עיון בסימוכין של מצב Concurrent
 - title: Hooks (חדש)
   isOrdered: true
   items:
