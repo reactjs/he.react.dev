@@ -8,6 +8,8 @@
       title: יצירת אפליקציית React חדשה
     - id: cdn-links
       title: קישורי CDN
+    - id: release-channels
+      title: Release Channels
 - title: קונספטים עיקריים
   isOrdered: true
   items:
@@ -138,6 +140,14 @@
         title: Hooks API Reference
       - id: hooks-faq
         title: שאלות נפוצות על Hooks
+- title: בדיקות
+  items:
+  - id: testing
+    title: סקירה כללית על בדיקות
+  - id: testing-recipes
+    title: דרכי בדיקות
+  - id: testing-environments
+    title: סביבות בדיקה
 - title: תרומה
   items:
   - id: how-to-contribute
