@@ -17,24 +17,4 @@
     - id: videos
       title: סרטונים
     - id: external-resources
-      title: משאבים חיצוניים
-- title: כלים
-  items:
-    - id: debugging-tools
-      title: דיבאגינג
-    - id: component-workbenches
-      title: ארגז כלים לקומפוננטות
-    - id: jsx-integrations
-      title: אינטגרציה עם JSX
-    - id: starter-kits
-      title: כלים למתחילים
-    - id: routing
-      title: ראוטינג
-    - id: model-management
-      title: ניהול מודל
-    - id: data-fetching
-      title: השגת מידע
-    - id: ui-components
-      title: קומפוננטות UI
-    - id: misc
-      title: שונות
+      title: External Resources
