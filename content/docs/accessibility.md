@@ -505,7 +505,11 @@ Deque Systems מציעה את [aXe-core](https://github.com/dequelabs/axe-core) 
 
 VoiceOver הוא קורא מסך מובנה במכשירים של Apple.
 
+<<<<<<< HEAD
 הקישורים הבאים מסבירים איך להפעיל ולהשתמש בVoiceOver:
+=======
+Refer to the following guides on how to activate and use VoiceOver:
+>>>>>>> 99b790188735016c72a9265a42dbfc87c3221729
 
 - [WebAIM - שימוש בVoiceOver לבדיקת נגישות](https://webaim.org/articles/voiceover/)
 - [Deque - קיצורי מקלדת ל VoiceOver ב OS X](https://dequeuniversity.com/screenreaders/voiceover-keyboard-shortcuts)
