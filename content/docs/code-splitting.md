@@ -75,21 +75,8 @@ import("./math").then(math => {
 });
 ```
 
-<<<<<<< HEAD
-> הערה:
->
-> סינטקס ה- `import()` הדינאמי הוא [הצעת](https://github.com/tc39/proposal-dynamic-import)
-> ECMAScript
-> ונכון לעכשיו לא חלק סטנדרטי של השפה. סביר להניח שהיא תתקבל בעתיד הקרוב.
-
 כש- Webpack מוצא סינטקס כזה, הוא מתחיל לפצל את הקוד באפליקציה באופן אוטומטי.
 אם השתמשתם ב- Create React App, תוכלו [להתחיל להשתמש בפיצול קוד](https://facebook.github.io/create-react-app/docs/code-splitting) באופן מיידי. זה נתמך גם באופן מובנה ב- [Next.js](https://github.com/zeit/next.js/#dynamic-import).
-=======
-When Webpack comes across this syntax, it automatically starts code-splitting
-your app. If you're using Create React App, this is already configured for you
-and you can [start using it](https://facebook.github.io/create-react-app/docs/code-splitting) immediately. It's also supported
-out of the box in [Next.js](https://github.com/zeit/next.js/#dynamic-import).
->>>>>>> 99b790188735016c72a9265a42dbfc87c3221729
 
 אם התקנתם Webpack בעצמכם, כנראה תרצו לקרוא את [המדריך לפיצול קוד](https://webpack.js.org/guides/code-splitting/). קובץ קונפיגורציית ה- Webpack שלכם אמור להראות בערך [ככה](https://gist.github.com/gaearon/ca6e803f5c604d37468b0091d9959269).
 
