@@ -474,15 +474,9 @@ Deque Systems מציעה את [aXe-core](https://github.com/dequelabs/axe-core) 
 
 ֿֿבדפדפני מסוימים ניתן לראות מידע נגישות לכל אלמנט בעץ הנגישות:
 
-<<<<<<< HEAD
 - [שימוש בבודק הנגישות של Firefox](https://developer.mozilla.org/en-US/docs/Tools/Accessibility_inspector)
 - [הפעלת בודקת הנגישות של Chrome](https://developers.google.com/web/tools/chrome-devtools/accessibility/reference#pane)
 - [שימוש בבודק הנגישות של OS X Safari](https://developer.apple.com/library/content/documentation/Accessibility/Conceptual/AccessibilityMacOSX/OSXAXTestingApps.html)
-=======
-- [Using the Accessibility Inspector in Firefox](https://developer.mozilla.org/en-US/docs/Tools/Accessibility_inspector)
-- [Using the Accessibility Inspector in Chrome](https://developers.google.com/web/tools/chrome-devtools/accessibility/reference#pane)
-- [Using the Accessibility Inspector in OS X Safari](https://developer.apple.com/library/content/documentation/Accessibility/Conceptual/AccessibilityMacOSX/OSXAXTestingApps.html)
->>>>>>> e1abbdecfd1a5a804bd38852e88373f54ddde014
 
 ### קוראי מסך {#screen-readers}
 
@@ -505,11 +499,7 @@ Deque Systems מציעה את [aXe-core](https://github.com/dequelabs/axe-core) 
 
 VoiceOver הוא קורא מסך מובנה במכשירים של Apple.
 
-<<<<<<< HEAD
-הקישורים הבאים מסבירים איך להפעיל ולהשתמש בVoiceOver:
-=======
-Refer to the following guides on how to activate and use VoiceOver:
->>>>>>> 99b790188735016c72a9265a42dbfc87c3221729
+הקישורים הבאים מסבירים איך להפעיל ולהשתמש ב-VoiceOver:
 
 - [WebAIM - שימוש בVoiceOver לבדיקת נגישות](https://webaim.org/articles/voiceover/)
 - [Deque - קיצורי מקלדת ל VoiceOver ב OS X](https://dequeuniversity.com/screenreaders/voiceover-keyboard-shortcuts)
