@@ -86,13 +86,9 @@ import("./math").then(math => {
 
 > הערה:
 >
-<<<<<<< HEAD
 > `React.lazy` ו- Suspense לא זמינים בינתיים למימוש בצד השרת.
-> אם תרצו לפצל קוד שמרונדר בצד השרת, מומלץ להשתמש ב- [קומפוננטות נטענות](https://github.com/smooth-code/loadable-components).
-> הנה [מדריך נחמד לשימוש בפיצול קוד בצד השרת](https://www.smooth-code.com/open-source/loadable-components/docs/server-side-rendering/).
-=======
-> `React.lazy` and Suspense are not yet available for server-side rendering. If you want to do code-splitting in a server rendered app, we recommend [Loadable Components](https://github.com/gregberge/loadable-components). It has a nice [guide for bundle splitting with server-side rendering](https://loadable-components.com/docs/server-side-rendering/).
->>>>>>> 401b97e9591ac573eaf35c7cf57e5f145276d140
+> אם תרצו לפצל קוד שמרונדר בצד השרת, מומלץ להשתמש ב- [קומפוננטות נטענות](https://github.com/gregberge/loadable-components).
+> הנה [מדריך נחמד לשימוש בפיצול קוד בצד השרת](https://loadable-components.com/docs/server-side-rendering/).
 
 פונקצית ה- `React.lazy` עוזרת לרנדר יבוא דינאמי כקומפוננטה רגילה
 
