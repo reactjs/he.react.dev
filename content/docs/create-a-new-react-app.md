@@ -73,8 +73,6 @@ Create React App לא מטפל בלוגיקת backend או במסדי נתוני
 
 - **[Neutrino](https://neutrinojs.org/)** משלב את הכוח של [webpack](https://webpack.js.org/) עם הפשטות של presets, ומכיל preset [לאפליקציות React](https://neutrinojs.org/packages/react/) [וקומפוננטות React](https://neutrinojs.org/packages/react-components/).
 
-- **[nwb](https://github.com/insin/nwb)** מעולה במיוחד [להעלאת קומפוננטות React ל-npm](https://github.com/insin/nwb/blob/master/docs/guides/ReactComponents.md#developing-react-components-and-libraries-with-nwb). [הוא יכול לשמש](https://github.com/insin/nwb/blob/master/docs/guides/ReactApps.md#developing-react-apps-with-nwb) ליצירת אפליקציות React גם. 
-
 - **[Parcel](https://parceljs.org/)** הוא אפליקציית ווב מהירה, נטולת קונפיגורציות שמשמשת כ-bundler [שעובד עם React](https://parceljs.org/recipes.html#react).
 
 - **[Razzle](https://github.com/jaredpalmer/razzle)** הוא פרייוורק שמשמש לרינדור צד-שרת ולא דורש שום קונפיגורציה, אך מציע יותר גמישות מ-Next.js.
