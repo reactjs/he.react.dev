@@ -36,11 +36,7 @@ React תומכת בכל הדפדפנים הפופולריים, כולל Internet
 ReactDOM.render(element, container[, callback])
 ```
 
-<<<<<<< HEAD
-מרנדרת אלמנטי React לתוך ה-DOM ב-`container` שסופק ומחזירה [הפנייה (reference)](/docs/more-about-refs.html) לקומפוננטה (או מחזירה `null` עבור [קומפוננטות חסרות state](/docs/components-and-props.html#functional-and-class-components)).
-=======
-Render a React element into the DOM in the supplied `container` and return a [reference](/docs/more-about-refs.html) to the component (or returns `null` for [stateless components](/docs/components-and-props.html#function-and-class-components)).
->>>>>>> 1dd4e325f070ce198aed69fd9cc5467563679e54
+מרנדרת אלמנטי React לתוך ה-DOM ב-`container` שסופק ומחזירה [הפנייה (reference)](/docs/more-about-refs.html) לקומפוננטה (או מחזירה `null` עבור [קומפוננטות חסרות state](/docs/components-and-props.html#function-and-class-components)).
 
 אם קומפוננטת ה-React רונדרה קודם לכן ל-`container`, פעולה זו תבצע עדכון עבורה ורק תשנה את ה-DOM לפי הצורך כדי לשקף את אלמנט ה-React האחרון.
 
