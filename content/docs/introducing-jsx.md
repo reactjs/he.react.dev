@@ -181,4 +181,8 @@ const element = {
 
 >**טיפ:**
 >
+<<<<<<< HEAD
 >אנו ממליצים להשתמש ב[הגדרת השפה של "Babel"](https://babeljs.io/docs/editors) עבור העורך שלך כך שגם קוד ES6 וגם קוד JSX מודגשים כראוי. אתר זה משתמש בסכמת הצבעים [Oceanic Next](https://labs.voronianski.com/oceanic-next-color-scheme/) אשר מכילה תאימות לצרכים אלו.
+=======
+>We recommend using the ["Babel" language definition](https://babeljs.io/docs/editors) for your editor of choice so that both ES6 and JSX code is properly highlighted. This website uses the [Oceanic Next](https://github.com/voronianski/oceanic-next-color-scheme) color scheme which is compatible with it.
+>>>>>>> 5b6ad388804aaa5cf5504ccd04329f52960e17ae
