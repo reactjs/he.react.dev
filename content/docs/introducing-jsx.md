@@ -181,4 +181,4 @@ const element = {
 
 >**טיפ:**
 >
->אנו ממליצים להשתמש ב[הגדרת השפה של "Babel"](https://babeljs.io/docs/editors) עבור העורך שלך כך שגם קוד ES6 וגם קוד JSX מודגשים כראוי. אתר זה משתמש בסכמת הצבעים [Oceanic Next](https://labs.voronianski.com/oceanic-next-color-scheme/) אשר מכילה תאימות לצרכים אלו.
+>אנו ממליצים להשתמש ב[הגדרת השפה של "Babel"](https://babeljs.io/docs/editors) עבור העורך שלך כך שגם קוד ES6 וגם קוד JSX מודגשים כראוי. אתר זה משתמש בסכמת הצבעים [Oceanic Next](https://github.com/voronianski/oceanic-next-color-scheme) אשר מכילה תאימות לצרכים אלו.
