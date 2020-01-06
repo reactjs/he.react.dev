@@ -48,7 +48,11 @@ React תוכננה מלכתחילה לאימוץ הדרגתי, ו**אתם יכו
 
 בעת התחלת פרוייקט React, [דף HTML פשוט עם תגי Script](/docs/add-react-to-a-website.html) עדיין עשוי להיות האפשרות הטובה ביותר. לוקח רק דקה להגדיר את זה!
 
+<<<<<<< HEAD
 ככל שהאפליקצייה שלכם גדלה, ייתכן שתרצו לשקול התקנה יותר מורכבת. ישנם [מספר כלי עבודה של JavaScript](/docs/create-a-new-react-app.html) שאנו ממליצים עבור יישומים גדולים יותר. כל אחד מהם יכול לעבוד עם הגדרה קטנה או ללא הגדרות בכלל ומאפשר לכם לנצל את מלוא היתרונות של האקוסיסטם העשיר של React.
+=======
+As your application grows, you might want to consider a more integrated setup. There are several JavaScript toolchains we recommend for larger applications. Each of them can work with little to no configuration and lets you take full advantage of the rich React ecosystem. [Learn how.](/docs/create-a-new-react-app.html)
+>>>>>>> 071f5b0e1622465fb6fe5cf6c1cbd2aaef7c5ef4
 
 ## ללמוד React {#learn-react}
 
