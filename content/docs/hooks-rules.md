@@ -46,7 +46,7 @@ npm install eslint-plugin-react-hooks --save-dev
 }
 ```
 
-בעתיד, אנחנו מתכוונים לכלול את פלאגין זה בתוך Create React App וערכות כלים דומות.
+פלאגין זה כלול כברירת מחדל ב-[Create React App](/docs/create-a-new-react-app.html#create-react-app)
 
 **אתה יכול לדלג לעמוד הבא שמסביר איך לכתוב [Hooks משלך](/docs/hooks-custom.html) עכשיו.** בעמוד זה, נמשיך בלהסביר את הסיבות שמאחורי חוקים אלה.
 
