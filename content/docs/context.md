@@ -109,11 +109,7 @@ function Page(props) {
 
 תבנית העיצוב הזאת מספיקה במקרים רבים כשרוצים להפריד קומפוננטת ילד מקומפוננטת האב שלה. אפשר להרחיב את הפתרון עוד יותר עם [render props](/docs/render-props.html) במקרים שקומפוננטת הילד צריכה לתקשר עם קומפוננטת האב לפני הרינדור.
 
-<<<<<<< HEAD
 למרות זאת, לפעמים אותו המידע צריך להיות נגיש ע״י מספר קומפוננטות בערץ, ובעומקים שונים. במקרים כאלה, הקונטקסט מאפשר ״לשדר״ את המידע, ושינויים במידע, לכל הקומפוננטות בעץ. דוגמאות שכיחות שבן שימוש בקונטקסט פשוט יותר מהאלטרנטיבות הן כמתואר קודם - ערכות נושא, העדפות שפה או זכרון מטמון.
-=======
-However, sometimes the same data needs to be accessible by many components in the tree, and at different nesting levels. Context lets you "broadcast" such data, and changes to it, to all components below. Common examples where using context might be simpler than the alternatives include managing the current locale, theme, or a data cache.
->>>>>>> 071f5b0e1622465fb6fe5cf6c1cbd2aaef7c5ef4
 
 ## ממשק תכנות {#api}
 
@@ -136,23 +132,13 @@ const MyContext = React.createContext(defaultValue);
 כל עצם קונטקסט מגיע עם קומפוננטת ספק (Provider) שנותנת לקומפוננטות שצורכות אותו להקשיב לשינויים בקונטקסט.
 הספק מקבל prop `value` שיועבר לקומפוננטות ילד שצורכות את הספק בכל רמות העומק של העץ. ספק אחד יכול להתחבר לצרכנים רבים. אפשר להגדיר ספקים ברמות שונות של אותו העץ כדי לעקוף את הערכים המוגדרים בהם בעומקים שונים של עץ הקומפוננטות.
 
-<<<<<<< HEAD
-כל צרכן שהוא צאצא של הספק ירנדר את עצמו מחדש כשה- prop `value` של הספק משתנה. התפשטות מהספק לצאצאים לא נתונה לחסות המתודה `shouldComponentUpdate`, ולכן הצרכנים מתעדכנים אפילו כשקומפוננטת אב לא מקשיבה לעדכון.
+כל צרכן שהוא צאצא של הספק ירנדר את עצמו מחדש כשה- prop `value` של הספק משתנה. התפשטות מהספק לצאצאים(כולל [`.contextType`](#classcontexttype) ו-[`useContext`](/docs/hooks-reference.html#usecontext)) לא נתונה לחסות המתודה `shouldComponentUpdate`, ולכן הצרכנים מתעדכנים אפילו כשקומפוננטת אב מדלגת על עדכון.
 
 שינויים נקבעים ע״י השוואת הערכים החדשים מול הישנים בעזרת אותו האלגוריתם כמו [`Object.is`](//developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is#Description).
 
 > הערה
 > 
 > הדרך שבה שינויים נקבעים יכולה ליצור בעיות כשמעבירים עצמים כערכים: ראה [הסתיגויות](#caveats).
-=======
-All consumers that are descendants of a Provider will re-render whenever the Provider's `value` prop changes. The propagation from Provider to its descendant consumers (including [`.contextType`](#classcontexttype) and [`useContext`](/docs/hooks-reference.html#usecontext)) is not subject to the `shouldComponentUpdate` method, so the consumer is updated even when an ancestor component skips an update.
-
-Changes are determined by comparing the new and old values using the same algorithm as [`Object.is`](//developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is#Description).
-
-> Note
->
-> The way changes are determined can cause some issues when passing objects as `value`: see [Caveats](#caveats).
->>>>>>> 071f5b0e1622465fb6fe5cf6c1cbd2aaef7c5ef4
 
 ### `Class.contextType` {#classcontexttype}
 
