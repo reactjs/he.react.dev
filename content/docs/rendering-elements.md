@@ -70,6 +70,10 @@ React DOM משווה את האלמנט וילדיו למצב הקודם שלו �
 
 ![DOM inspector המציג את העדכונים הפרטניים](../images/docs/granular-dom-updates.gif)
 
+<<<<<<< HEAD
 אפילו כשאנחנו יוצרים אלמנט המתאר את עץ ממשק המשתמש המלא בכל תקתוק של השעון, רק קודקוד הטקסט שתוכנו השתנה יעודכן על ידי React DOM.
+=======
+Even though we create an element describing the whole UI tree on every tick, only the text node whose contents have changed gets updated by React DOM.
+>>>>>>> 821e20726266bc8113353d0c2b6d885f82e584a8
 
 מהניסיון שלנו, חשיבה על איך ממשק המשתמש צריך להראות בכל רגע נתון לעומת איך לשנות אותו לאורך זמן מבטל כמות נכבדת של באגים.
