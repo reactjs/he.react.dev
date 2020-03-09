@@ -44,7 +44,11 @@ class Welcome extends React.Component {
 
 שתי הקומפוננטות מעלה הן זהות מנקודת המבט של React.
 
+<<<<<<< HEAD
 למחלקות יש כמה תכונות נוספות שנדון בהן [בחלק הבא](/docs/state-and-lifecycle.html). עד אז, נשתמש בקומפוננטות פונקציה בשל היותן קצרות יותר.
+=======
+Function and Class components both have some additional features that we will discuss in the [next sections](/docs/state-and-lifecycle.html).
+>>>>>>> fb382ccb13e30e0d186b88ec357bb51e91de6504
 
 ## רינדור של קומפוננטה {#rendering-a-component}
 
@@ -60,7 +64,11 @@ const element = <div />;
 const element = <Welcome name="Sara" />;
 ```
 
+<<<<<<< HEAD
 כאשר React רואה אלמנט המייצג קומפוננטה שהודגרה על ידי המשתמש, היא מעבירה את המאפיינים שהוגדרו ב-JSX לקומפוננטה זו כאובייקט יחיד. אנו קוראים לאובייקט זה "props".
+=======
+When React sees an element representing a user-defined component, it passes JSX attributes and children to this component as a single object. We call this object "props".
+>>>>>>> fb382ccb13e30e0d186b88ec357bb51e91de6504
 
 For example, this code renders "Hello, Sara" on the page:
 
