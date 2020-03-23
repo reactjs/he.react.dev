@@ -8,7 +8,11 @@ redirect_from:
   - "docs/events-ko-KR.html"
 ---
 
+<<<<<<< HEAD
 טיפול באירועים עם אלמנטים של React דומה מאוד לטיפול באירועים באלמנטים של DOM. ישנם כמה הבדלים תחביריים:
+=======
+Handling events with React elements is very similar to handling events on DOM elements. There are some syntax differences:
+>>>>>>> 7e4f503d86bee08b88eed77a6c9d06077863a27c
 
 * שמות אירועים של React נכתבים באמצעות תחביר camelCase (כל תחילת מילה באות גדולה פרט לראשונה), ולא באותיות קטנות.
 * ב-JSX מעבירים פונקציה כמטפל האירוע, ולא מחרוזת.
@@ -133,7 +137,7 @@ class LoggingButton extends React.Component {
   render() {
     // תחביר זה מבטיח ש-`this` הוא bound בתוך handleClick
     return (
-      <button onClick={(e) => this.handleClick(e)}>
+      <button onClick={() => this.handleClick()}>
         Click me
       </button>
     );

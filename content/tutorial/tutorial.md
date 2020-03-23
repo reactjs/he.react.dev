@@ -297,7 +297,11 @@ class Square extends React.Component {
 
 >שימו לב
 >
+<<<<<<< HEAD
 >ב-[מחלקות של JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes), עליכם תמיד לקרוא לפונקציה `super` בעת הגדרת בנאי של תת-מחלקה. בכל מחלקה של קומפוננטת React שיש לה `constructor` עליו להתחיל עם קריאה ל-`super(props)`.
+=======
+>In [JavaScript classes](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes), you need to always call `super` when defining the constructor of a subclass. All React component classes that have a `constructor` should start with a `super(props)` call.
+>>>>>>> 7e4f503d86bee08b88eed77a6c9d06077863a27c
 
 כעת נשנה את מתודת `render` של ריבוע כך שתציג את הערך שמוגדר ב-state בעת לחיצה:
 

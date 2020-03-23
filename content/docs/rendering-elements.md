@@ -34,7 +34,11 @@ Unlike browser DOM elements, React elements are plain objects, and are cheap to 
 
 בדרך כלל, אפליקציות הנבנות עם ריאקט הן בעלות קודקוד DOM שורשי אחד. במידה ואתה משלב את ריאקט לתוך אפליקציה קיימת, אתה יכול להשתמש בכמות בלתי מוגבלת של קודקודי DOM שורשיים.
 
+<<<<<<< HEAD
 על מנת לצייר אלמנט ריאקטי לתוך קודקוד DOM שורשי, העבר אותם אל הפונקציה `ReactDOM.render()`:
+=======
+To render a React element into a root DOM node, pass both to [`ReactDOM.render()`](/docs/react-dom.html#render):
+>>>>>>> 7e4f503d86bee08b88eed77a6c9d06077863a27c
 
 `embed:rendering-elements/render-an-element.js`
 
@@ -46,7 +50,11 @@ Unlike browser DOM elements, React elements are plain objects, and are cheap to 
 
 אלמנטי ריאקט [אינם משתנים](https://en.wikipedia.org/wiki/Immutable_object). במידה ויצרת אלמנט, לא ניתן לשנות את ילדיו או מאפייניו. אלמנט הוא כמו פרים יחיד בסרט: הוא מייצג את ממשק המשתמש בנקודה מסויימת בזמן.
 
+<<<<<<< HEAD
 עם הידע שלמדנו על כה, הדרך היחידה לעדכן את ממשק המשתמש הוא על ידי יצירה של אלמנט חדש והעברה שלו ל`ReactDOM.render()`.
+=======
+With our knowledge so far, the only way to update the UI is to create a new element, and pass it to [`ReactDOM.render()`](/docs/react-dom.html#render).
+>>>>>>> 7e4f503d86bee08b88eed77a6c9d06077863a27c
 
 בהתחשב בדוגמת השעון המתקתק:
 
@@ -54,11 +62,19 @@ Unlike browser DOM elements, React elements are plain objects, and are cheap to 
 
 [](codepen://rendering-elements/update-rendered-element)
 
+<<<<<<< HEAD
 דוגמא זו קוראת ל`ReactDOM.render()` בכל שניה על ידי הפונקציה הנקראת על ידי [`setInterval()`](https://developer.mozilla.org/en-US/docs/Web/API/WindowTimers/setInterval).
+=======
+It calls [`ReactDOM.render()`](/docs/react-dom.html#render) every second from a [`setInterval()`](https://developer.mozilla.org/en-US/docs/Web/API/WindowTimers/setInterval) callback.
+>>>>>>> 7e4f503d86bee08b88eed77a6c9d06077863a27c
 
 >**הערה:**
 >
+<<<<<<< HEAD
 >בפועל, רוב אפליקציות ריאקט קוראות ל`ReactDOM.render()` פעם אחת בלבד. בפרקים הבאים נלמד איך קוד כזה מוכמס ל[קומפוננטות בעלות state](/docs/state-and-lifecycle.html).
+=======
+>In practice, most React apps only call [`ReactDOM.render()`](/docs/react-dom.html#render) once. In the next sections we will learn how such code gets encapsulated into [stateful components](/docs/state-and-lifecycle.html).
+>>>>>>> 7e4f503d86bee08b88eed77a6c9d06077863a27c
 >
 >אנו ממליצים לא לדלג על נושאים מכיוון שהם נבנו אחד על השני.
 
@@ -76,4 +92,8 @@ React DOM משווה את האלמנט וילדיו למצב הקודם שלו �
 Even though we create an element describing the whole UI tree on every tick, only the text node whose contents have changed gets updated by React DOM.
 >>>>>>> 821e20726266bc8113353d0c2b6d885f82e584a8
 
+<<<<<<< HEAD
 מהניסיון שלנו, חשיבה על איך ממשק המשתמש צריך להראות בכל רגע נתון לעומת איך לשנות אותו לאורך זמן מבטל כמות נכבדת של באגים.
+=======
+In our experience, thinking about how the UI should look at any given moment, rather than how to change it over time, eliminates a whole class of bugs.
+>>>>>>> 7e4f503d86bee08b88eed77a6c9d06077863a27c

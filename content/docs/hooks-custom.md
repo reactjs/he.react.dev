@@ -74,7 +74,7 @@ function FriendListItem(props) {
 **Hook מותאם אישית הוא פונקציית ג'אווהסקריפט ששמה מתחיל עם "use" והיא יכולה לקרוא ל-Hooks אחרים.** לדוגמה, `useFriendStatus` היא ה-Hook המותאם אישית הראשון שלנו:
 
 ```js{3}
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 function useFriendStatus(friendID) {
   const [isOnline, setIsOnline] = useState(null);
