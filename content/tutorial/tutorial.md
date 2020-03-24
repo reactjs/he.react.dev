@@ -38,11 +38,7 @@ redirect_from:
 
 תוכלו לראות מה נבנה כאן: **[תוצאה סופית](https://codepen.io/gaearon/pen/gWWZgR?editors=0010)**. אם הקוד אינו עושה לכם הגיון, או אם אינכם מכירים את תחביר הקוד, אל תדאגו! מטרתו של מדריך זה היא לעזור לכם להבין את React ואת התחביר שלה.
 
-<<<<<<< HEAD
 אנו ממליצים לכם לבדוק את משחק איקס-עיגול לפני שתמשיך עם הדרכה. אחת התכונות בהן תבחינו היא שיש רשימה ממוספרת בצד ימין של לוח המשחק. רשימה זו נותנת לכם היסטוריה של כל המהלכים שהתרחשו במשחק, והיא מתעדכנת עם התקדמות המשחק.
-=======
-We recommend that you check out the tic-tac-toe game before continuing with the tutorial. One of the features that you'll notice is that there is a numbered list to the right of the game's board. This list gives you a history of all of the moves that have occurred in the game, and it is updated as the game progresses.
->>>>>>> 4367566bddd06ed9dfbd6b1c3f45f9925e60b2c3
 
 תוכלו לסגור את משחק האיקס-עיגול ברגע שאתם מבינים אותו. אנו מתחילים מתבנית פשוטה יותר במדריך זה. השלב הבא שלנו הוא לארגן אתכם כך שתוכלו להתחיל לבנות את המשחק.
 
@@ -297,11 +293,7 @@ class Square extends React.Component {
 
 >שימו לב
 >
-<<<<<<< HEAD
 >ב-[מחלקות של JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes), עליכם תמיד לקרוא לפונקציה `super` בעת הגדרת בנאי של תת-מחלקה. בכל מחלקה של קומפוננטת React שיש לה `constructor` עליו להתחיל עם קריאה ל-`super(props)`.
-=======
->In [JavaScript classes](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes), you need to always call `super` when defining the constructor of a subclass. All React component classes that have a `constructor` should start with a `super(props)` call.
->>>>>>> 7e4f503d86bee08b88eed77a6c9d06077863a27c
 
 כעת נשנה את מתודת `render` של ריבוע כך שתציג את הערך שמוגדר ב-state בעת לחיצה:
 
