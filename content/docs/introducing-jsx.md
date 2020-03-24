@@ -177,11 +177,7 @@ const element = {
 
 אובייקטים אלה נקראים "אלמנטים של React". אתם יכולים לחשוב עליהם כמו תיאורים של מה שאתם רוצים לראות על המסך. React קוראת את האובייקטים האלה ומשתמשת בהם כדי לבנות את ה-DOM ולשמור אותו מעודכן.
 
-<<<<<<< HEAD
-אנו נחקור את תהליך רינדור האלמנטים של React ל-DOM בחלק הבא.
-=======
-We will explore rendering React elements to the DOM in the [next section](/docs/rendering-elements.html).
->>>>>>> 7e4f503d86bee08b88eed77a6c9d06077863a27c
+אנו נחקור את תהליך רינדור האלמנטים של React ל-DOM [בחלק הבא](/docs/rendering-elements.html).
 
 >**טיפ:**
 >
