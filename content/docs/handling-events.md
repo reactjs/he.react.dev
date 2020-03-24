@@ -56,11 +56,7 @@ function ActionLink() {
 
 כאן, `e` הוא אירוע סינתטי. React מגדיר אירועים סינתטיים אלה בהתאם ל[מפרט W3C](https://www.w3.org/TR/DOM-Level-3-Events/), כך שאתם לא צריכים לדאוג לתאימות בין דפדפנים. עיינו בהפנייה למדריך [`SyntheticEvent`](/docs/events.html) כדי ללמוד עוד.
 
-<<<<<<< HEAD
 בעת שימוש ב-React אתם בדרך כלל לא צריכים לקרוא ל-`addEventListener` כדי להוסיף מאזינים לאלמנט DOM לאחר שנוצר. במקום זאת, רק ספקו מאזין כאשר האלמנט רונדר בהתחלה.
-=======
-When using React, you generally don't need to call `addEventListener` to add listeners to a DOM element after it is created. Instead, just provide a listener when the element is initially rendered.
->>>>>>> 5b6ad388804aaa5cf5504ccd04329f52960e17ae
 
 כאשר אתם מגדירים קומפוננטה באמצעות [מחלקת ES6](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes), זהו דפוס נפוץ שמטפל אירוע הוא מתודה במחלקה. למשל, רכיב `Toggle` זה מרנדר כפתור המאפשר למשתמש לעבור בין מצבי "ON" ו-"OFF":
 
@@ -133,7 +129,7 @@ class LoggingButton extends React.Component {
   render() {
     // תחביר זה מבטיח ש-`this` הוא bound בתוך handleClick
     return (
-      <button onClick={(e) => this.handleClick(e)}>
+      <button onClick={() => this.handleClick()}>
         Click me
       </button>
     );
@@ -145,11 +141,7 @@ class LoggingButton extends React.Component {
 
 ## העברת ארגומנטים למטפלי אירועים {#passing-arguments-to-event-handlers}
 
-<<<<<<< HEAD
 בתוך לולאה זהו דבר נפוץ לרצות להעביר פרמטר נוסף למטפל האירוע. לדוגמה, אם `id` הוא מזהה השורה, כל אחת מהאפשרויות הבאות תעבוד:
-=======
-Inside a loop, it is common to want to pass an extra parameter to an event handler. For example, if `id` is the row ID, either of the following would work:
->>>>>>> 5b6ad388804aaa5cf5504ccd04329f52960e17ae
 
 ```js
 <button onClick={(e) => this.deleteRow(id, e)}>מחק שורה</button>

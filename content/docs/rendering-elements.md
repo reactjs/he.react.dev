@@ -34,7 +34,7 @@ Unlike browser DOM elements, React elements are plain objects, and are cheap to 
 
 בדרך כלל, אפליקציות הנבנות עם ריאקט הן בעלות קודקוד DOM שורשי אחד. במידה ואתה משלב את ריאקט לתוך אפליקציה קיימת, אתה יכול להשתמש בכמות בלתי מוגבלת של קודקודי DOM שורשיים.
 
-על מנת לצייר אלמנט ריאקטי לתוך קודקוד DOM שורשי, העבר אותם אל הפונקציה `ReactDOM.render()`:
+על מנת לצייר אלמנט ריאקטי לתוך קודקוד DOM שורשי, העבר אותם אל הפונקציה [`ReactDOM.render()`](/docs/react-dom.html#render):
 
 `embed:rendering-elements/render-an-element.js`
 
@@ -46,7 +46,7 @@ Unlike browser DOM elements, React elements are plain objects, and are cheap to 
 
 אלמנטי ריאקט [אינם משתנים](https://en.wikipedia.org/wiki/Immutable_object). במידה ויצרת אלמנט, לא ניתן לשנות את ילדיו או מאפייניו. אלמנט הוא כמו פרים יחיד בסרט: הוא מייצג את ממשק המשתמש בנקודה מסויימת בזמן.
 
-עם הידע שלמדנו על כה, הדרך היחידה לעדכן את ממשק המשתמש הוא על ידי יצירה של אלמנט חדש והעברה שלו ל`ReactDOM.render()`.
+עם הידע שלמדנו על כה, הדרך היחידה לעדכן את ממשק המשתמש הוא על ידי יצירה של אלמנט חדש והעברה שלו ל[`ReactDOM.render()`](/docs/react-dom.html#render).
 
 בהתחשב בדוגמת השעון המתקתק:
 
@@ -54,11 +54,12 @@ Unlike browser DOM elements, React elements are plain objects, and are cheap to 
 
 [](codepen://rendering-elements/update-rendered-element)
 
-דוגמא זו קוראת ל`ReactDOM.render()` בכל שניה על ידי הפונקציה הנקראת על ידי [`setInterval()`](https://developer.mozilla.org/en-US/docs/Web/API/WindowTimers/setInterval).
+דוגמא זו קוראת ל[`ReactDOM.render()`](/docs/react-dom.html#render) בכל שניה על ידי הפונקציה הנקראת על ידי [`setInterval()`](https://developer.mozilla.org/en-US/docs/Web/API/WindowTimers/setInterval).
 
 >**הערה:**
 >
->בפועל, רוב אפליקציות ריאקט קוראות ל`ReactDOM.render()` פעם אחת בלבד. בפרקים הבאים נלמד איך קוד כזה מוכמס ל[קומפוננטות בעלות state](/docs/state-and-lifecycle.html).
+>בפועל, רוב אפליקציות ריאקט קוראות ל[`ReactDOM.render()`](/docs/react-dom.html#render) פעם אחת בלבד. בפרקים הבאים נלמד איך קוד כזה מוכמס ל[קומפוננטות בעלות state](/docs/state-and-lifecycle.html).
+
 >
 >אנו ממליצים לא לדלג על נושאים מכיוון שהם נבנו אחד על השני.
 
@@ -70,10 +71,7 @@ React DOM משווה את האלמנט וילדיו למצב הקודם שלו �
 
 ![DOM inspector המציג את העדכונים הפרטניים](../images/docs/granular-dom-updates.gif)
 
-<<<<<<< HEAD
 אפילו כשאנחנו יוצרים אלמנט המתאר את עץ ממשק המשתמש המלא בכל תקתוק של השעון, רק קודקוד הטקסט שתוכנו השתנה יעודכן על ידי React DOM.
-=======
-Even though we create an element describing the whole UI tree on every tick, only the text node whose contents have changed gets updated by React DOM.
->>>>>>> 821e20726266bc8113353d0c2b6d885f82e584a8
+
 
 מהניסיון שלנו, חשיבה על איך ממשק המשתמש צריך להראות בכל רגע נתון לעומת איך לשנות אותו לאורך זמן מבטל כמות נכבדת של באגים.

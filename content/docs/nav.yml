@@ -100,8 +100,6 @@
       title: SyntheticEvent
     - id: test-utils
       title: כלים לבדיקות
-    - id: shallow-renderer
-      title: מרנדר רדוד
     - id: test-renderer
       title: מרנדר בדיקות
     - id: javascript-environment-requirements

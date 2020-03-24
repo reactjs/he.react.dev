@@ -27,6 +27,8 @@ Hooks הם פונקציות ג'אווהסקריפט, אבל אתה צריך לנ
 
 שחררנו פלאגין ESLint שנקרא [`eslint-plugin-react-hooks`](https://www.npmjs.com/package/eslint-plugin-react-hooks) האוכף אוטומטית שני חוקים אלה. אתה יכול להוסיף את הפלאגין הזה לפרויקט שלך אם תרצה לנסות אותו:
 
+פלאגין זה כלול כברירת מחדל ב-[Create React App](/docs/create-a-new-react-app.html#create-react-app).
+
 ```bash
 npm install eslint-plugin-react-hooks --save-dev
 ```
@@ -45,8 +47,6 @@ npm install eslint-plugin-react-hooks --save-dev
   }
 }
 ```
-
-פלאגין זה כלול כברירת מחדל ב-[Create React App](/docs/create-a-new-react-app.html#create-react-app)
 
 **אתה יכול לדלג לעמוד הבא שמסביר איך לכתוב [Hooks משלך](/docs/hooks-custom.html) עכשיו.** בעמוד זה, נמשיך בלהסביר את הסיבות שמאחורי חוקים אלה.
 
