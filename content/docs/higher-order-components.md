@@ -199,11 +199,7 @@ function logProps(InputComponent) {
 const EnhancedComponent = logProps(InputComponent);
 ```
 
-<<<<<<< HEAD
-יש כמה בעיות עם מוטציה. הבעיה הראשונה היא שאי אפשר להשתמש בקומפוננטה שהועברה כקלט בנפרד. מעבר לזה, אם תיישמו HOC נוספת ל- `EnhancedComponent` ש*גם* משנה את `componentWillReceiveProps`, התפקוד של ה-HOC הראשונה יירמס! ה- HOC גם לא יעבוד עם קומפוננטות פונקציה ללא מתודות מחזור חיים.
-=======
-There are a few problems with this. One is that the input component cannot be reused separately from the enhanced component. More crucially, if you apply another HOC to `EnhancedComponent` that *also* mutates `componentDidUpdate`, the first HOC's functionality will be overridden! This HOC also won't work with function components, which do not have lifecycle methods.
->>>>>>> 7e4f503d86bee08b88eed77a6c9d06077863a27c
+יש כמה בעיות עם מוטציה. הבעיה הראשונה היא שאי אפשר להשתמש בקומפוננטה שהועברה כקלט בנפרד. מעבר לזה, אם תיישמו HOC נוספת ל- `EnhancedComponent` ש*גם* משנה את `componentDidUpdate`, התפקוד של ה-HOC הראשונה יירמס! ה- HOC גם לא יעבוד עם קומפוננטות פונקציה ללא מתודות מחזור חיים.
 
 מוטציה ב- HOCs יוצרת הפשטה דולפת - המשתמש צריך לדעת איך מה קורה בתוך הקוד כדי להמנע מעימות עם HOCs אחרות.
 
