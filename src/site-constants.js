@@ -9,7 +9,7 @@
 // the SSR part in node.js we won't have a proper location.
 <<<<<<< HEAD
 const urlRoot = 'https://he.reactjs.org';
-const version = '16.12.0';
+const version = '16.13.1';
 =======
 const urlRoot = 'https://reactjs.org';
 const version = '16.13.1';
