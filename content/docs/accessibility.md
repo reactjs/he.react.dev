@@ -385,15 +385,9 @@ class BlurExample extends React.Component {
 
 כל סוג ווידג׳ט ממומש בצורה ותבנית עיצוב שונה, אבל המשתמש וסוכני המשתמש מצפים ממנו להתנהגות מסוימת:
 
-<<<<<<< HEAD
 - [WAI-ARIA Authoring Practices - תבניות עיצוב ווידג׳טים](https://www.w3.org/TR/wai-aria-practices/#aria_ex)
-- [Heydon Pickering - ARIA דוגמאות](https://heydonworks.com/practical_aria_examples/)
+- [Heydon Pickering - ARIA דוגמאות](https://heydonworks.com/article/practical-aria-examples/)
 - [קומפוננטות אינקלוסיביות](https://inclusive-components.design/)
-=======
-- [WAI-ARIA Authoring Practices - Design Patterns and Widgets](https://www.w3.org/TR/wai-aria-practices/#aria_ex)
-- [Heydon Pickering - ARIA Examples](https://heydonworks.com/article/practical-aria-examples/)
-- [Inclusive Components](https://inclusive-components.design/)
->>>>>>> 7e4f503d86bee08b88eed77a6c9d06077863a27c
 
 ## עוד נקודות למחשבה {#other-points-for-consideration}
 
