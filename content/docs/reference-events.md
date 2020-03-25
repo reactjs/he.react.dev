@@ -26,6 +26,7 @@ void preventDefault()
 boolean isDefaultPrevented()
 void stopPropagation()
 boolean isPropagationStopped()
+void persist()
 DOMEventTarget target
 number timeStamp
 string type
@@ -76,6 +77,7 @@ React מנרמלת אירועים כך שיהיו להם מאפיינים עקב
 - [אירועי מקלדת](#keyboard-events)
 - [אירועי פוקוס](#focus-events)
 - [אירועי טפסים](#form-events)
+- [אירועים גנריים](#generic-events)
 - [אירועי עכבר](#mouse-events)
 - [אירועי מצביע](#pointer-events)
 - [אירועי בחירה](#selection-events)
@@ -177,12 +179,23 @@ DOMEventTarget relatedTarget
 שמות אירועים:
 
 ```
-onChange onInput onInvalid onSubmit
+onChange onInput onInvalid onReset onSubmit 
 ```
 
 לקבלת מידע נוסף על אירוע ה-onChange, ראה [טפסים](/docs/forms.html).
 
 * * *
+
+### אירועיים גנריים {#generic-events}
+
+Event names:
+
+```
+onError onLoad
+```
+
+* * *
+
 
 ### אירועי עכבר {#mouse-events}
 

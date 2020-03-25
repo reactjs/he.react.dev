@@ -119,7 +119,7 @@ import './index.css';
 
 ### הצילו, אני תקוע! {#help-im-stuck}
 
-אם אתם נתקעים, בדקו את [משאבי התמיכה בקהילה](/community/support.html). בפרט, [צ'אט Reactiflux](https://discord.gg/0ZcbPKXt5bZjGY5n) הוא דרך מצוינת לקבל עזרה במהירות. אם אתם לא מקבלים תשובה, או אם נשארתם תקועים, אנא שלחו לנו את הבעיה בה נתקלתם, ואנו נעזור לכם.
+אם אתם נתקעים, בדקו את [משאבי התמיכה בקהילה](/community/support.html). בפרט, [צ'אט Reactiflux](https://discord.gg/reactiflux) הוא דרך מצוינת לקבל עזרה במהירות. אם אתם לא מקבלים תשובה, או אם נשארתם תקועים, אנא שלחו לנו את הבעיה בה נתקלתם, ואנו נעזור לכם.
 
 ## סקירה כללית {#overview}
 
@@ -199,6 +199,7 @@ class Board extends React.Component {
   renderSquare(i) {
     return <Square value={i} />;
   }
+}
 ```
 
 שנו את מתודת `render` של ריבוע כדי להציג את הערך על-ידי החלפת `{/* TODO */}` עם `{this.props.value}`:

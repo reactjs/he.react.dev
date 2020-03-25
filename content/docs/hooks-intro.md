@@ -32,7 +32,7 @@ function Example() {
 >הערה
 >
 >React 16.8.0 היא הגרסה הראשונה שתומכת ב-Hooks. בעת שדרוג, אל תשכח לעדכן את כל הספריות, כולל React DOM.
->React Native תומכת ב-Hooks מאז [שחרור גרסה 0.59]( https://facebook.github.io/react-native/blog/2019/03/12/releasing-react-native-059).
+>React Native תומכת ב-Hooks מאז [שחרור גרסה 0.59](reactnative.de/blog/2019/03/12/releasing-react-native-059).
 
 ## מבוא וידאו {#video-introduction}
 
@@ -108,4 +108,4 @@ React אינו מציע דרך ״לצרף״ התנהגות חוזרת לקומפ
 
 ## הצעדים הבאים {#next-steps}
 
-בסופו של דף זה, צריך להיות לך מושג מה הבעיה ש-Hooks פותר, אבל פרטים רבים עדיין לא ברורים, אל דאגה! **בואו נמשיך [לעמוד הבא](/docs/hooks-overview.html), בו אנו נתחיל ללמוד על Hooks על פי דוגמאות.**
+בסופו של דף זה, צריך להיות לך מושג מה הבעיה ש-Hooks פותרים, אבל פרטים רבים עדיין לא ברורים, אל דאגה! **בואו נמשיך [לעמוד הבא](/docs/hooks-overview.html), בו אנו נתחיל ללמוד על Hooks על פי דוגמאות.**

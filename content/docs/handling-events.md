@@ -129,7 +129,7 @@ class LoggingButton extends React.Component {
   render() {
     // תחביר זה מבטיח ש-`this` הוא bound בתוך handleClick
     return (
-      <button onClick={(e) => this.handleClick(e)}>
+      <button onClick={() => this.handleClick()}>
         Click me
       </button>
     );

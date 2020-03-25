@@ -60,8 +60,8 @@ function Counter({initialCount}) {
     <>
       Count: {count}
       <button onClick={() => setCount(initialCount)}>Reset</button>
-      <button onClick={() => setCount(prevCount => prevCount + 1)}>+</button>
       <button onClick={() => setCount(prevCount => prevCount - 1)}>-</button>
+      <button onClick={() => setCount(prevCount => prevCount + 1)}>+</button>
     </>
   );
 }
@@ -70,6 +70,7 @@ function Counter({initialCount}) {
 כפתורי ה-"+" וה-"-" משתמשים בצורה הפונקציונלית, בגלל שהערך המעודכן מבוסס על הערך הקודם. אבל כפתור ה"Reset" משתמש בצורה הרגילה, בגלל שהוא תמיד מעדכן את הספירה חזרה לערך ההתחלתי.
 
 > הערה
+אם הפונקציה מחזירה ערך שווה לזה שקיים ב-state הנוכחי, הרינדור הבא ידולג לגמרי.
 >
 > בשונה ממתודת ה-`setState` שנמצאת בקומפוננטות מחלקה, `useState` לא ממזגת עדכוני אובייקטים באופן אוטומטי. ניתן לחקות התנהגות זו על ידי שילוב של מעדכן פונקציה עם אופן הכתיבה של object spread(שלוש נקודות '...'):
 >
@@ -231,8 +232,8 @@ function Counter() {
   return (
     <>
       Count: {state.count}
-      <button onClick={() => dispatch({type: 'increment'})}>+</button>
       <button onClick={() => dispatch({type: 'decrement'})}>-</button>
+      <button onClick={() => dispatch({type: 'increment'})}>+</button>
     </>
   );
 }
@@ -290,8 +291,8 @@ function Counter({initialCount}) {
         onClick={() => dispatch({type: 'reset', payload: initialCount})}>
         Reset
       </button>
-      <button onClick={() => dispatch({type: 'increment'})}>+</button>
       <button onClick={() => dispatch({type: 'decrement'})}>-</button>
+      <button onClick={() => dispatch({type: 'increment'})}>+</button>
     </>
   );
 }

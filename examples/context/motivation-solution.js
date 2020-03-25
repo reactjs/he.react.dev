@@ -21,7 +21,7 @@ class App extends React.Component {
 // highlight-range{1,2}
 // קומפוננטת ביניים כבר לא צריכה להעביר
 // את ערכת הנושא.
-function Toolbar(props) {
+function Toolbar() {
   return (
     <div>
       <ThemedButton />

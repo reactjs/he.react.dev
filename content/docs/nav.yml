@@ -8,6 +8,8 @@
       title: יצירת אפליקציית React חדשה
     - id: cdn-links
       title: קישורי CDN
+    - id: release-channels
+      title: Release Channels
 - title: קונספטים עיקריים
   isOrdered: true
   items:
@@ -98,14 +100,25 @@
       title: SyntheticEvent
     - id: test-utils
       title: כלים לבדיקות
-    - id: shallow-renderer
-      title: מרנדר רדוד
     - id: test-renderer
       title: מרנדר בדיקות
     - id: javascript-environment-requirements
       title: דרישות סביבת JS
     - id: glossary
       title: מילון מונחים
+- title: מצב Concurrent (בשלבי ניסוי)
+  isOrdered: true
+  items:
+    - id: concurrent-mode-intro
+      title: הצגת Concurrent Mode
+    - id: concurrent-mode-suspense
+      title: Suspense ל- Data Fetching
+    - id: concurrent-mode-patterns
+      title: תבניות ממשק משתמש Concurrent
+    - id: concurrent-mode-adoption
+      title: אימוץ מצב Concurrent
+    - id: concurrent-mode-reference
+      title: עיון בסימוכין של מצב Concurrent
 - title: Hooks (חדש)
   isOrdered: true
   items:
@@ -125,6 +138,14 @@
         title: Hooks API Reference
       - id: hooks-faq
         title: שאלות נפוצות על Hooks
+- title: בדיקות
+  items:
+  - id: testing
+    title: סקירה כללית על בדיקות
+  - id: testing-recipes
+    title: דרכי בדיקות
+  - id: testing-environments
+    title: סביבות בדיקה
 - title: תרומה
   items:
   - id: how-to-contribute

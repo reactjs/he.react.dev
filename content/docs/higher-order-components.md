@@ -187,9 +187,9 @@ function withSubscription(WrappedComponent, selectData) {
 
 ```js
 function logProps(InputComponent) {
-  InputComponent.prototype.componentWillReceiveProps = function(nextProps) {
+  InputComponent.prototype.componentDidUpdate = function(prevProps) {
     console.log('Current props: ', this.props);
-    console.log('Next props: ', nextProps);
+    console.log('Previous props: ', prevProps);
   };
   // עצם זה שאנחנו מחזירים את הקלט כפלט מראה שהקלט עבר מוטציה כלשהי.
   return InputComponent;
@@ -199,7 +199,7 @@ function logProps(InputComponent) {
 const EnhancedComponent = logProps(InputComponent);
 ```
 
-יש כמה בעיות עם מוטציה. הבעיה הראשונה היא שאי אפשר להשתמש בקומפוננטה שהועברה כקלט בנפרד. מעבר לזה, אם תיישמו HOC נוספת ל- `EnhancedComponent` ש*גם* משנה את `componentWillReceiveProps`, התפקוד של ה-HOC הראשונה יירמס! ה- HOC גם לא יעבוד עם קומפוננטות פונקציה ללא מתודות מחזור חיים.
+יש כמה בעיות עם מוטציה. הבעיה הראשונה היא שאי אפשר להשתמש בקומפוננטה שהועברה כקלט בנפרד. מעבר לזה, אם תיישמו HOC נוספת ל- `EnhancedComponent` ש*גם* משנה את `componentDidUpdate`, התפקוד של ה-HOC הראשונה יירמס! ה- HOC גם לא יעבוד עם קומפוננטות פונקציה ללא מתודות מחזור חיים.
 
 מוטציה ב- HOCs יוצרת הפשטה דולפת - המשתמש צריך לדעת איך מה קורה בתוך הקוד כדי להמנע מעימות עם HOCs אחרות.
 
@@ -208,9 +208,9 @@ const EnhancedComponent = logProps(InputComponent);
 ```js
 function logProps(WrappedComponent) {
   return class extends React.Component {
-    componentWillReceiveProps(nextProps) {
+    componentDidUpdate(prevProps) {
       console.log('Current props: ', this.props);
-      console.log('Next props: ', nextProps);
+      console.log('Previous props: ', prevProps);
     }
     render() {
       // עוטפים את קומפוננטת הקלט בקומפוננטה מכילה, בלי מוטציה. מעולה!

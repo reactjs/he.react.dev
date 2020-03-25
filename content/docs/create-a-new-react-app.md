@@ -39,7 +39,7 @@ next: cdn-links.html
 
 [Create React App](https://github.com/facebookincubator/create-react-app) יוצר סביבה נוחה למטרת **למידה של ריאקט**, והוא הדרך הטובה ביותר להתחיל לבנות **אפליקציית [דף-יחיד](/docs/glossary.html#single-page-application) חדשה** ב-React.
 
-הוא מארגן לך את סביבת העבודה כך שתוכל להשתמש בפיצ'רים החדשים ביותר של JavaScript, מספק חווית מפתח נוחה, ועושה אופטימיזציה על האפליקצייה שלך עבור פרודקשן. תצטרך להתקין את Node בגרסה 8.1 ומעלה ו-npm בגרסה 5.6 ומעלה. על מנת ליצור פרויקט, הרץ:
+הוא מארגן לך את סביבת העבודה כך שתוכל להשתמש בפיצ'רים החדשים ביותר של JavaScript, מספק חווית מפתח נוחה, ועושה אופטימיזציה על האפליקצייה שלך עבור פרודקשן. תצטרך להתקין את Node [בגרסה](https://nodejs.org/en/) 8.1 ומעלה ו-npm בגרסה 5.6 ומעלה. על מנת ליצור פרויקט, הרץ:
 
 ```bash
 npx create-react-app my-app
@@ -72,8 +72,6 @@ Create React App לא מטפל בלוגיקת backend או במסדי נתוני
 סט הכלים הבאים מציע יותר גמישות ובחירה. אנו ממליצים עליהם למשתמשים מתקדמים יותר:
 
 - **[Neutrino](https://neutrinojs.org/)** משלב את הכוח של [webpack](https://webpack.js.org/) עם הפשטות של presets, ומכיל preset [לאפליקציות React](https://neutrinojs.org/packages/react/) [וקומפוננטות React](https://neutrinojs.org/packages/react-components/).
-
-- **[nwb](https://github.com/insin/nwb)** מעולה במיוחד [להעלאת קומפוננטות React ל-npm](https://github.com/insin/nwb/blob/master/docs/guides/ReactComponents.md#developing-react-components-and-libraries-with-nwb). [הוא יכול לשמש](https://github.com/insin/nwb/blob/master/docs/guides/ReactApps.md#developing-react-apps-with-nwb) ליצירת אפליקציות React גם. 
 
 - **[Parcel](https://parceljs.org/)** הוא אפליקציית ווב מהירה, נטולת קונפיגורציות שמשמשת כ-bundler [שעובד עם React](https://parceljs.org/recipes.html#react).
 

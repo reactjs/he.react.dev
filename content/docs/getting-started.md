@@ -36,7 +36,7 @@ React תוכננה מלכתחילה לאימוץ הדרגתי, ו**אתם יכו
 
 ### מגרש משחקים אונליין {#online-playgrounds}
 
-אם אתם מעוניינים לשחק עם React, תוכלו להשתמש במגרש משחקים של קוד אונליין. נסו את תבנית שלום עולם ב-[CodePen](codepen://hello-world), [CodeSandbox](https://codesandbox.io/s/new), או [Glitch](https://glitch.com/edit/#!/remix/starter-react-template).
+אם אתם מעוניינים לשחק עם React, תוכלו להשתמש במגרש משחקים של קוד אונליין. נסו את תבנית שלום עולם ב-[CodePen](codepen://hello-world), [CodeSandbox](https://codesandbox.io/s/new), או [Glitch](https://glitch.com/edit/#!/remix/starter-react-template) או [Stackblitz](https://stackblitz.com/fork/react)..
 
 אם אתם מעדיפים להשתמש בעורך הטקסט שלכם, תוכלו גם [להוריד קובץ HTML זה](https://raw.githubusercontent.com/reactjs/reactjs.org/master/static/html/single-file-example.html), לערוך אותו, ולפתוח אותו ממערכת הקבצים המקומית בדפדפן שלכם. זה מאט את הטרנספורמציה של הקוד בזמן הריצה, אז היינו ממליצים להשתמש בזה רק עבור הדגמות פשוטות.
 
@@ -48,7 +48,7 @@ React תוכננה מלכתחילה לאימוץ הדרגתי, ו**אתם יכו
 
 בעת התחלת פרוייקט React, [דף HTML פשוט עם תגי Script](/docs/add-react-to-a-website.html) עדיין עשוי להיות האפשרות הטובה ביותר. לוקח רק דקה להגדיר את זה!
 
-ככל שהאפליקצייה שלכם גדלה, ייתכן שתרצו לשקול התקנה יותר מורכבת. ישנם [מספר כלי עבודה של JavaScript](/docs/create-a-new-react-app.html) שאנו ממליצים עבור יישומים גדולים יותר. כל אחד מהם יכול לעבוד עם הגדרה קטנה או ללא הגדרות בכלל ומאפשר לכם לנצל את מלוא היתרונות של האקוסיסטם העשיר של React.
+ככל שהאפליקצייה שלכם גדלה, ייתכן שתרצו לשקול התקנה יותר מורכבת. ישנם מספר כלי עבודה של JavaScript שאנו ממליצים עבור יישומים גדולים יותר. כל אחד מהם יכול לעבוד עם הגדרה קטנה או ללא הגדרות בכלל ומאפשר לכם לנצל את מלוא היתרונות של האקוסיסטם העשיר של React. [למד איך](/docs/create-a-new-react-app.html)
 
 ## ללמוד React {#learn-react}
 
