@@ -66,19 +66,7 @@ class NameForm extends React.Component {
 
 [**נסו זאת ב-CodePen**](https://codepen.io/gaearon/pen/VmmPgp?editors=0010)
 
-מאחר שהתכונה `value` מוגדרת על אלמנט הטופס שלנו, הערך המוצג תמיד יהיה `this.state.value`, מה שהופך את ה-state של React ל-source of truth (מקור האמת). מכיוון ש-`handleChange` פועל על כל הקשה כדי לעדכן את ה-state של React, הערך המוצג יעודכן בזמן שהמשתמש מקליד.
-
-<<<<<<< HEAD
-עם קומפוננטה מבוקרת, לכל שינוי של ה-state תהיה פונקציה מטפלת מקושרת אליו. זה הופך את זה לממש פשוט לשנות או לאמת קלט משתמש. לדוגמה, אם רצינו לאכוף את השמות כך שיהיו כתובים באותיות גדולות, נוכל לכתוב את `handleChange` כך:
-
-```javascript{2}
-handleChange(event) {
-  this.setState({value: event.target.value.toUpperCase()});
-}
-```
-=======
-With a controlled component, the input's value is always driven by the React state. While this means you have to type a bit more code, you can now pass the value to other UI elements too, or reset it from other event handlers.
->>>>>>> fa5e6e7a988b4cb465601e4c3beece321edeb812
+עם קומפוננטה נשלטת, ערך הקלט תמיד מונע על ידי ה-state. למרות שזה אומר שיש צורך בכתיבת יותר קוד, עכשיו ניתן להעביר את הערך לאלמנטי UI אחרים גם, או לאתחל אותו מ-event handlers אחרים.
 
 ## תגית ה-textarea {#the-textarea-tag}
 
