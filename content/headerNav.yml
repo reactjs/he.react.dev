@@ -1,13 +1,13 @@
 items:
-  - title: Docs
+  - title: דוקומנטציה
     to: /docs/getting-started.html
     activeSelector: /docs/
-  - title: Tutorial
+  - title: מדריך
     to: /tutorial/tutorial.html
     activeSelector: /tutorial
-  - title: Blog
+  - title: בלוג
     to: /blog/
     activeSelector: /blog
-  - title: Community
+  - title: קהילה
     to: /community/support.html
     activeSelector: /community
