@@ -185,8 +185,7 @@ function NumberList(props) {
   const numbers = props.numbers;
   const listItems = numbers.map((number) =>
     // נכון! יש לציין את המפתח בתוך המערך
-    <ListItem key={number.toString()}
-              value={number} />
+    <ListItem key={number.toString()} value={number} />
   );
   return (
     <ul>

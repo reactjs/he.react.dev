@@ -73,6 +73,8 @@ Create React App לא מטפל בלוגיקת backend או במסדי נתוני
 
 - **[Neutrino](https://neutrinojs.org/)** משלב את הכוח של [webpack](https://webpack.js.org/) עם הפשטות של presets, ומכיל preset [לאפליקציות React](https://neutrinojs.org/packages/react/) [וקומפוננטות React](https://neutrinojs.org/packages/react-components/).
 
+- **[Nx](https://nx.dev/react)** הוא ערכת כלים לפיתוח monorepo פול-סטאק, עם תמיכה מובנית לריאקט, Next.js, [Express](https://expressjs.com/) ועוד.
+
 - **[Parcel](https://parceljs.org/)** הוא אפליקציית ווב מהירה, נטולת קונפיגורציות שמשמשת כ-bundler [שעובד עם React](https://parceljs.org/recipes.html#react).
 
 - **[Razzle](https://github.com/jaredpalmer/razzle)** הוא פרייוורק שמשמש לרינדור צד-שרת ולא דורש שום קונפיגורציה, אך מציע יותר גמישות מ-Next.js.
