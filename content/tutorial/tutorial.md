@@ -1203,7 +1203,11 @@ class Game extends React.Component {
 * שומר הסטוריית משחק ככל שהמשחק מתקדם,
 * מאפשר לשחקנים לסקור את היסטוריית המשחק ולראות גרסאות קודמות של לוח המשחק.
 
+<<<<<<< HEAD
 עבודה טובה! אנו מקווים כי עכשיו אתם מרגישים שיש לכם הבנה טובה על איך עובדת React.
+=======
+Nice work! We hope you now feel like you have a decent grasp of how React works.
+>>>>>>> b4b59062e59d56da37274c6de1fa4a134d2d8f49
 
 בדקו את התוצאה הסופית כאן: **[תוצאה סופית](https://codepen.io/gaearon/pen/gWWZgR?editors=0010)**.
 
