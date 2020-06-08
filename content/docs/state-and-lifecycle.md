@@ -422,12 +422,15 @@ this.setState(function(state, props) {
 קומפוננטה יכולה לבחור להעביר את ה-state שלה למטה בתור props לקומפוננטות הילדים שלה:
 
 ```js
+<<<<<<< HEAD
 <h2>It is {this.state.date.toLocaleTimeString()}.</h2>
 ```
 
 זה עובד גם עבור קומפוננטות המוגדרות על ידי המשתמש:
 
 ```js
+=======
+>>>>>>> c9b990070fc35d31b56957263e1ea9fe2fe67b40
 <FormattedDate date={this.state.date} />
 ```
 
