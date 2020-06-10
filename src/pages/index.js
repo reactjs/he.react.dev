@@ -53,15 +53,11 @@ class Home extends Component {
           title="React &ndash; A JavaScript library for building user interfaces"
           canonicalUrl={createCanonicalUrl('/')}
         />
-<<<<<<< HEAD
-        <div dir="rtl" css={{width: '100%'}}>
-=======
         <div
           css={{
             width: '100%',
             marginTop: 60, // BLM
           }}>
->>>>>>> c9b990070fc35d31b56957263e1ea9fe2fe67b40
           <header
             css={{
               backgroundColor: colors.dark,
@@ -141,7 +137,7 @@ class Home extends Component {
                         fontSize: 30,
                       },
                     }}>
-                    ספריית JavaScript לבניית ממשקי משתמש
+                    A JavaScript library for building user interfaces
                   </p>
                   <Flex
                     valign="center"
@@ -150,6 +146,7 @@ class Home extends Component {
                       paddingTop: 40,
                       flexWrap: 'wrap',
                       justifyContent: 'center',
+
                       [media.greaterThan('xlarge')]: {
                         paddingTop: 65,
                       },
@@ -158,12 +155,12 @@ class Home extends Component {
                       <ButtonLink
                         to="/docs/getting-started.html"
                         type="primary">
-                        התחל כעת
+                        Get Started
                       </ButtonLink>
                     </CtaItem>
                     <CtaItem>
                       <ButtonLink to="/tutorial/tutorial.html" type="secondary">
-                        בדוק את המדריך
+                        Take the Tutorial
                       </ButtonLink>
                     </CtaItem>
                   </Flex>
@@ -207,23 +204,23 @@ class Home extends Component {
                         display: 'flex',
                         flexDirection: 'column',
                         flex: '0 1 33%',
-                        marginRight: 40,
+                        marginLeft: 40,
 
                         '&:first-of-type': {
-                          marginRight: 0,
+                          marginLeft: 0,
 
                           [media.lessThan('medium')]: {
-                            marginRight: 10,
+                            marginLeft: 10,
                           },
                         },
 
                         [media.lessThan('medium')]: {
                           display: 'inline-block',
                           verticalAlign: 'top',
-                          marginRight: 0,
+                          marginLeft: 0,
                           whiteSpace: 'normal',
                           width: '75%',
-                          marginLeft: 20,
+                          marginRight: 20,
                           paddingBottom: 40,
 
                           '&:first-of-type': {
@@ -301,12 +298,12 @@ class Home extends Component {
                 }}>
                 <CtaItem>
                   <ButtonLink to="/docs/getting-started.html" type="primary">
-                    התחל כעת
+                    Get Started
                   </ButtonLink>
                 </CtaItem>
                 <CtaItem>
                   <ButtonLink to="/tutorial/tutorial.html" type="secondary">
-                    בדוק את המדריך
+                    Take the Tutorial
                   </ButtonLink>
                 </CtaItem>
               </Flex>
@@ -328,18 +325,16 @@ Home.propTypes = {
 const CtaItem = ({children, primary = false}) => (
   <div
     css={{
-      width: '50%',
-
       [media.between('small', 'large')]: {
         paddingLeft: 20,
       },
 
       [media.greaterThan('xlarge')]: {
-        paddingRight: 40,
+        paddingLeft: 40,
       },
 
       '&:first-child': {
-        textAlign: 'left',
+        textAlign: 'right',
         paddingRight: 7,
         paddingLeft: 7,
         [media.lessThan('small')]: {
@@ -351,7 +346,7 @@ const CtaItem = ({children, primary = false}) => (
         paddingRight: 7,
         paddingLeft: 7,
         [media.greaterThan('small')]: {
-          paddingRight: 15,
+          paddingLeft: 15,
         },
         [media.lessThan('small')]: {
           marginBottom: 10,
@@ -373,7 +368,6 @@ export const pageQuery = graphql`
         }
       }
     }
-
     examples: allMarkdownRemark(
       filter: {fileAbsolutePath: {regex: "//home/examples//"}}
       sort: {fields: [frontmatter___order], order: ASC}
