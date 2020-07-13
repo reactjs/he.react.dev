@@ -145,7 +145,6 @@ const Footer = ({layoutHasSidebar = false}: {layoutHasSidebar: boolean}) => (
             ))}
           </FooterNav>
           <FooterNav layoutHasSidebar={layoutHasSidebar}>
-<<<<<<< HEAD
             <MetaTitle onDark={true}>עוד</MetaTitle>
             <FooterLink to="/tutorial/tutorial.html">מדריך</FooterLink>
             <FooterLink to="/blog/">בלוג</FooterLink>
@@ -155,15 +154,13 @@ const Footer = ({layoutHasSidebar = false}: {layoutHasSidebar: boolean}) => (
               target="_blank"
               rel="noopener">
               React Native
-=======
-            <MetaTitle onDark={true}>{navFooter.more.title}</MetaTitle>
+            <MetaTitle onDark={true}>פרטיות</MetaTitle>
             <SectionLinks links={navFooter.more.items} />
             <ExternalFooterLink href="https://opensource.facebook.com/legal/privacy">
-              Privacy
+              פרטיות
             </ExternalFooterLink>
             <ExternalFooterLink href="https://opensource.facebook.com/legal/terms">
               Terms
->>>>>>> dea363ed7d8ce06b7ecc1ccfe43c888217827a64
             </ExternalFooterLink>
           </FooterNav>
         </div>
