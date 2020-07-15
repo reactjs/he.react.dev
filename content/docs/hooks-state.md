@@ -232,7 +232,7 @@ function Example() {
   const [fruit, setFruit] = useState('banana');
 ```
 
-Syntax ג'אווהסקריפט זה נקרא ["array destructuring"](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment#Array_destructuring). זה אומר שאנחנו מכינים שני משתנים חדשים `fruit` ו- `setFruit`, ו- `fruit` יהיה שווה לערך הראשון שמוחזר מ- `useState`, ו- `setFruit` הוא השני. זה מקביל לקוד הבא:
+Syntax JavaScript זה נקרא ["array destructuring"](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment#Array_destructuring). זה אומר שאנחנו מכינים שני משתנים חדשים `fruit` ו- `setFruit`, ו- `fruit` יהיה שווה לערך הראשון שמוחזר מ- `useState`, ו- `setFruit` הוא השני. זה מקביל לקוד הבא:
 
 ```js
   var fruitStateVariable = useState('banana'); // מחזיר זוג

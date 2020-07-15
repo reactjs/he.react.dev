@@ -381,7 +381,7 @@ function TextInputWithFocusButton() {
 
 למרות זאת, `useRef()` שימושי ליותר מתכונת ה-`ref`. הוא [שימושי לשמירת כל ערך שניתן לשינוי](/docs/hooks-faq.html#is-there-something-like-instance-variables) בדומה לדרך שהיית משתמש ב-instance fields במחלקות.
 
-זה עובד בגלל ש`useRef()` יוצר אובייקט ג'אווהסקריפט פשוט. ההבדל היחיד בין `useRef()` ויצירת אובייקט `{current: …}` בעצמך היא ש-`useRef()` ייתן לך את אותו אובייקט ref בכל רינדור.
+זה עובד בגלל ש`useRef()` יוצר אובייקט JavaScript פשוט. ההבדל היחיד בין `useRef()` ויצירת אובייקט `{current: …}` בעצמך היא ש-`useRef()` ייתן לך את אותו אובייקט ref בכל רינדור.
 
 זכור ש-`useRef()` *לא* מודיע לך כשהתוכן שלו משתנה. שינוי של המאפיין `.current` לא גורם לרינדור מחדש. אם אתה רוצה להריץ קוד כש-React מצרף או מנתק ref מ-DOM node, אולי תרצה להשתמש ב-[callback ref](/docs/hooks-faq.html#how-can-i-measure-a-dom-node) במקום.
 
@@ -419,7 +419,7 @@ FancyInput = forwardRef(FancyInput);
 >
 > אם אתה מזיז קוד מקומפוננטת מחלקה, שים לב ש-`useLayoutEffect` יורה באותו קצב כמו `componentDidMount` ו-`componentDidUpdate`. לעומת זאת, **אנו ממליצים להתחיל עם `useEffect` קודם** ולנסות את `useLayoutEffect` רק אם זה יוצר בעיה.
 >
->אם אתה משתמש ב-server rendering, שים לב *שגם* `useLayoutEffect` וגם `useEffect` יכולים לרוץ עד שהג'אווהסקריפט הורד. זאת הסיבה ש-React מזהיר כשקומפוננטה שהיא server-rendered מכילה `useLayoutEffect`. על מנת לתקן זאת, או שתעביר את הלוגיקה ל-`useEffect` (אם זה לא נחוץ לרינדור הראשון), או המתן עם הצגת הקומפוננטה עד לאחר רינדור הקליינט (אם ה-HTML נראה שבור עד ש-`useLayoutEffect` רץ).
+>אם אתה משתמש ב-server rendering, שים לב *שגם* `useLayoutEffect` וגם `useEffect` יכולים לרוץ עד שה-Javascript הורד. זאת הסיבה ש-React מזהיר כשקומפוננטה שהיא server-rendered מכילה `useLayoutEffect`. על מנת לתקן זאת, או שתעביר את הלוגיקה ל-`useEffect` (אם זה לא נחוץ לרינדור הראשון), או המתן עם הצגת הקומפוננטה עד לאחר רינדור הקליינט (אם ה-HTML נראה שבור עד ש-`useLayoutEffect` רץ).
 >
 >על מנת להדיר קומפוננטה שצריכה layout effects מ-server-rendered HTML, רנדר אותה בתנאי עם `showChild && <Child />` ועכב את הצגתה עם `useEffect(() => { setShowChild(true); }, [])`. בדרך זו, ממשק המשתמש לא מופיע שבור לפני הידרציה.
 
