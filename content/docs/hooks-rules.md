@@ -8,7 +8,7 @@ prev: hooks-effect.html
 
 *Hooks* הם תוספת חדשה ב- React 16.8. הם נותנים לנו להשתמש ב- state ופיצ'רים אחרים של ריאקט מבלי לכתוב מחלקה.
 
-Hooks הם פונקציות ג'אווהסקריפט, אבל אתה צריך לנהוג על פי שני חוקים כשאתה משתמש בהם. אנו מספקים [פלאגין linting](https://www.npmjs.com/package/eslint-plugin-react-hooks) שאוכף חוקים אלו אוטומטית:
+JavaScript הם פונקציות Hooks, אבל אתה צריך לנהוג על פי שני חוקים כשאתה משתמש בהם. אנו מספקים [פלאגין linting](https://www.npmjs.com/package/eslint-plugin-react-hooks) שאוכף חוקים אלו אוטומטית:
 
 ### ניתן לקרוא ל- Hooks רק ברמה העליונה {#only-call-hooks-at-the-top-level}
 
@@ -16,7 +16,7 @@ Hooks הם פונקציות ג'אווהסקריפט, אבל אתה צריך לנ
 
 ###ניתן לקרוא ל- Hooks רק מתוך פונקציות ריאקט{#only-call-hooks-from-react-functions}
 
-**אל תקרא ל- Hooks מתוך פונקציות ג'אווהסקריפט רגילות.** במקום זאת, אתה יכול:
+**אל תקרא ל- Hooks מתוך פונקציות JavaScript רגילות.** במקום זאת, אתה יכול:
 
 * ✅ לקרוא ל- Hooks מתוך קומפוננטות פונקציה של ריאקט.
 * ✅ לקרוא ל- Hooks מתוך Hooks מותאמים אישית( נלמד עליהם [בעמוד הבא](/docs/hooks-custom.html)).
