@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2013-present, Facebook, Inc.
+ * Copyright (c) Facebook, Inc. and its affiliates.
  *
  * @emails react-core
  * @flow
@@ -69,7 +69,7 @@ const Footer = ({layoutHasSidebar = false}: {layoutHasSidebar: boolean}) => (
           }}>
           <FooterNav layoutHasSidebar={layoutHasSidebar}>
             <MetaTitle onDark={true}>תיעוד</MetaTitle>
-            {sectionListDocs.map(section => {
+            {sectionListDocs.map((section) => {
               const defaultItem = section.items[0];
               return (
                 <FooterLink
@@ -136,7 +136,7 @@ const Footer = ({layoutHasSidebar = false}: {layoutHasSidebar: boolean}) => (
               href={`https://github.com/facebook/react/blob/master/CODE_OF_CONDUCT.md`}>
               קוד התנהגות
             </ExternalFooterLink>
-            {sectionListCommunity.map(section => (
+            {sectionListCommunity.map((section) => (
               <FooterLink
                 to={`/community/${section.items[0].id}.html`}
                 key={section.title}>
@@ -154,6 +154,14 @@ const Footer = ({layoutHasSidebar = false}: {layoutHasSidebar: boolean}) => (
               target="_blank"
               rel="noopener">
               React Native
+              <MetaTitle onDark={true}>פרטיות</MetaTitle>
+              <SectionLinks links={navFooter.more.items} />
+              <ExternalFooterLink href="https://opensource.facebook.com/legal/privacy">
+                פרטיות
+              </ExternalFooterLink>
+              <ExternalFooterLink href="https://opensource.facebook.com/legal/terms">
+                Terms
+              </ExternalFooterLink>
             </ExternalFooterLink>
           </FooterNav>
         </div>
