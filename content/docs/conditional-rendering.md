@@ -122,7 +122,7 @@ ReactDOM.render(
 
 ### הטמעת תנאי If עם אופרטור && לוגי {#inline-if-with-logical--operator}
 
-ייתכן שתרצו [להטמיע כל ביטוי ב-JSX](/docs/introducing-jsx.html#embedding-expressions-in-jsx) על ידי עטיפתם בסוגריים מסולסלים. זה כולל את האופרטור הלוגי `&&` של JavaScript. זה יכול להיות שימושי עבור הוספה מותנית של אלמנט:
+ביכולתכם [להטמיע ביטויים ב-JSX](/docs/introducing-jsx.html#embedding-expressions-in-jsx) על ידי עטיפתם בסוגריים מסולסלים. זה כולל את האופרטור הלוגי `&&` של JavaScript. זה יכול להיות שימושי עבור הוספה מותנית של אלמנט:
 
 ```js{6-10}
 function Mailbox(props) {
