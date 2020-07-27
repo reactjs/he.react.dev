@@ -563,7 +563,11 @@ var newPlayer = Object.assign({}, player, {score: 2});
 
 #### ההחלטה מתי לרנדר מחדש ב-React {#determining-when-to-re-render-in-react}
 
+<<<<<<< HEAD
 היתרון העיקרי של אי-יכולת השתנות הוא שהיא עוזר לנו לבנות _קומפוננטות טהורות (pure components)_ ב-React. נתונים בלתי ניתנים לשינוי מאפשרים לקבוע בקלות אם בוצעו שינויים, דבר אשר מסייע לקבוע מתי קומפוננטה דורשת רינדור מחדש.
+=======
+The main benefit of immutability is that it helps you build _pure components_ in React. Immutable data can easily determine if changes have been made, which helps to determine when a component requires re-rendering.
+>>>>>>> 63332462bb5afa18ac7a716975b679f4c23cc8a1
 
 אתם יכולים ללמוד עוד על `shouldComponentUpdate()` וכיצד ניתן לבנות *קומפוננטות טהורות* על ידי קריאת [אופטימיזציה של ביצועים](/docs/optimizing-performance.html#examples).
 
