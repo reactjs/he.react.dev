@@ -228,12 +228,7 @@ function FriendListItem(props) {
   );
 }
 ```
-
-<<<<<<< HEAD
-ה-state של קומפוננטות אלה הוא עצמאי לחלוטין. Hooks הם דרך לעשות שימוש חוזר ב*לוגיקה שהיא stateful*, לא ב-state עצמו. למעשה, לכל *קריאה* ל-Hook יש state מבודד לגמרי -- כך שניתן להשתמש באותו Hook מותאם אישית פעמיים בקומפוננטה אחת.
-=======
-The state of each component is completely independent. Hooks are a way to reuse *stateful logic*, not state itself. In fact, each *call* to a Hook has a completely isolated state -- so you can even use the same custom Hook twice in one component.
->>>>>>> c89c38241278804b48bf34b1d8d9ee0b9f1b6e8c
+ה-state של כל קומפוננטה הוא עצמאי לחלוטין. Hooks הם דרך לעשות שימוש חוזר ב*לוגיקה שהיא stateful*, לא ב-state עצמו. למעשה, לכל *קריאה* ל-Hook יש state מבודד לגמרי -- כך שניתן להשתמש באותו Hook מותאם אישית פעמיים בקומפוננטה אחת.
 
 Hooks מותאמים אישית הם יותר מוסכמה מאשר פיצ'ר. אם שם של פונקציה מתחיל עם "`use`" והיא קוראת ל-Hooks אחרים, אנחנו אומרים שהיא Hook מותאם אישית. המוסכמה של לתת שמות כמו `useSomething` היא הסיבה שתוסף ה- linting שלנו מסוגל לאתר באגים בקוד שמשתמש ב-Hooks.
 
