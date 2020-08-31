@@ -42,7 +42,11 @@ CSS classes בדרך כלל טובים יותר לביצועים מאשר inline
 
 ### מה זה CSS ב-JS? {#what-is-css-in-js}
 
+<<<<<<< HEAD
 “CSS ב-JS” מתייחס לתבנית שבה CSS מורכב בעזרת JavaScript במקום להיות מוגדר בקובץ חיצוני. קרא את ההשוואה של ספריות CSS ב-JS [כאן](https://github.com/MicheleBertoli/css-in-js).
+=======
+"CSS-in-JS" refers to a pattern where CSS is composed using JavaScript instead of defined in external files.
+>>>>>>> 25cc703d1f23f1782ff96c5c7882a806f8741ec4
 
 _שים לב שהפונקציונאליות הזאת היא לא חלק מ-React, אך מסופקת מספריות צד שלישי._ ל-React אין דיעה על איך עיצוב מוגדר; אם יש ספק, נקודת התחלה טובה היא להגדיר את העיצוב שלך קובץ `*.css` חיצוני כרגיל לפנות אלייהם באמצעות [`className`](/docs/dom-elements.html#classname).
 

@@ -2,6 +2,8 @@
 id: fragments
 title: Fragments
 permalink: docs/fragments.html
+prev: context.html
+next: portals.html
 ---
 
 תבנית נפוצה ב-React עבור קומפוננטה שמחזירה אלמנטים מרובים. Fragments נותנים לך לאחד רשימה של ילדים מבלי להוסיף nodes נוספים ל-DOM.
