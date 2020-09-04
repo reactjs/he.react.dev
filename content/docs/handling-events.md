@@ -54,11 +54,7 @@ function ActionLink() {
 }
 ```
 
-<<<<<<< HEAD
-כאן, `e` הוא אירוע סינתטי. React מגדיר אירועים סינתטיים אלה בהתאם ל[מפרט W3C](https://www.w3.org/TR/DOM-Level-3-Events/), כך שאתם לא צריכים לדאוג לתאימות בין דפדפנים. עיינו בהפנייה למדריך [`SyntheticEvent`](/docs/events.html) כדי ללמוד עוד.
-=======
-Here, `e` is a synthetic event. React defines these synthetic events according to the [W3C spec](https://www.w3.org/TR/DOM-Level-3-Events/), so you don't need to worry about cross-browser compatibility. React events do not work exactly the same as native events. See the [`SyntheticEvent`](/docs/events.html) reference guide to learn more.
->>>>>>> 25cc703d1f23f1782ff96c5c7882a806f8741ec4
+כאן, `e` הוא אירוע סינתטי. React מגדיר אירועים סינתטיים אלה בהתאם ל[מפרט W3C](https://www.w3.org/TR/DOM-Level-3-Events/), כך שאתם לא צריכים לדאוג לתאימות בין דפדפנים. events בריאקט לא עובדים בדיוק כמו native events. עיינו בהפנייה למדריך [`SyntheticEvent`](/docs/events.html) כדי ללמוד עוד.
 
 בעת שימוש ב-React אתם בדרך כלל לא צריכים לקרוא ל-`addEventListener` כדי להוסיף מאזינים לאלמנט DOM לאחר שנוצר. במקום זאת, רק ספקו מאזין כאשר האלמנט רונדר בהתחלה.
 
