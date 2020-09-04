@@ -56,12 +56,8 @@ function MyComponent() {
 
 ### selected {#selected}
 
-<<<<<<< HEAD
-התכונה `selected` נתמכת על ידי קומפוננטות `<option>`. ניתן להשתמש בה על מנת לקבוע האם הקומפוננטה נבחרה. דבר זה שימושי לבניית קומפוננטות נשלטות.
-=======
-If you want to mark an `<option>` as selected, reference the value of that option in the `value` of its `<select>` instead.
-Check out ["The select Tag"](/docs/forms.html#the-select-tag) for detailed instructions.
->>>>>>> 25cc703d1f23f1782ff96c5c7882a806f8741ec4
+אם אתה רוצה לסמן `<option>` כמסומן, התייחס לערך של האופציה ב- `<value>` של ה`<select>` שלו במקום.
+ראה ["The select Tag"](/docs/forms.html#the-select-tag) לקבלת מידע מפורט
 
 ### style {#style}
 
@@ -125,11 +121,7 @@ React תוסיף באופן אוטומטי סיומת  "px" לכמה מאפיי�
 
 ### value {#value}
 
-<<<<<<< HEAD
-תכונת ה-`value` נתמכת על ידי הקומפוננטות `<input>` ו-`<textarea>`. ניתן להשתמש בה כדי לקבוע את ערך הקומפוננטה. זה שימושי לבניית קומפוננטות נשלטות. `defaultValue` הוא המקביל הבלתי נשלט, שקובע את ערך הקומפוננטה כשהיא mounted לראשונה.
-=======
-The `value` attribute is supported by `<input>`, `<select>` and `<textarea>` components. You can use it to set the value of the component. This is useful for building controlled components. `defaultValue` is the uncontrolled equivalent, which sets the value of the component when it is first mounted.
->>>>>>> 25cc703d1f23f1782ff96c5c7882a806f8741ec4
+תכונת ה-`value` נתמכת על ידי הקומפוננטות `<input>`,  `<select>` ו-`<textarea>`. ניתן להשתמש בה כדי לקבוע את ערך הקומפוננטה. זה שימושי לבניית קומפוננטות נשלטות. `defaultValue` הוא המקביל הבלתי נשלט, שקובע את ערך הקומפוננטה כשהיא mounted לראשונה.
 
 ## כל תכונות ה-HTML הנתמכות: {#all-supported-html-attributes}
 
