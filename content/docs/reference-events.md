@@ -10,9 +10,15 @@ category: Reference
 
 ## סקירה כללית {#overview}
 
+<<<<<<< HEAD
 מטפלי האירועים שלך מקבלים מופעים של `SyntheticEvent`, מעטפת תאימות בין דפדפנים מסביב לאירוע המקורי של הדפדפן. יש לה את אותו ממשק כמו האירוע המקורי, כולל `stopPropagation()` ו-`preventDefault()`, למעט זה שהאירועים עובדים באופן זהה בין כל הדפדפנים.
 
 אם אתה מגלה שאתה זקוק לאירוע הדפדפן הבסיסי מסיבה כלשהי, פשוט השתמש במאפיין `nativeEvent` על מנת לקבל אותו. כל אובייקט `SyntheticEvent` מכיל את התכונות הבאות:
+=======
+Your event handlers will be passed instances of `SyntheticEvent`, a cross-browser wrapper around the browser's native event. It has the same interface as the browser's native event, including `stopPropagation()` and `preventDefault()`, except the events work identically across all browsers. 
+
+If you find that you need the underlying browser event for some reason, simply use the `nativeEvent` attribute to get it. The synthetic events are different from, and do not map directly to, the browser's native events. For example in `onMouseLeave` `event.nativeEvent` will point to a `mouseout` event. The specific mapping is not part of the public API and may change at any time. Every `SyntheticEvent` object has the following attributes:
+>>>>>>> 657658aa1f19c65e35055ddca4452c98d569552f
 
 ```javascript
 boolean bubbles

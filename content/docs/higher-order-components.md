@@ -2,6 +2,8 @@
 id: higher-order-components
 title: קומפוננטות מסדר גבוה יותר
 permalink: docs/higher-order-components.html
+prev: web-components.html
+next: render-props.html
 ---
 
 קומפוננטה מסדר גבוה יותר (HOC) היא טכניקה מתקדמת של React שעוזרת למחזר קוד קומפוננטות.
