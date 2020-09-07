@@ -2,6 +2,8 @@
 id: error-boundaries
 title: גבולות שגיאה
 permalink: docs/error-boundaries.html
+prev: portals.html
+next: web-components.html
 ---
 
 בעבר, שגיאות בתוך קומפוננטות ב-JavaScript הובילו להשחתת המצב הפנימי של React וגרמו ל[פליטת](https://github.com/facebook/react/issues/4026) [שגיאות](https://github.com/facebook/react/issues/6895) [אניגמטיות](https://github.com/facebook/react/issues/8579) ברינדור המסך הבא. מקור הבעיה תמיד נבע משגיאות קודמות בקוד האפליקציה, אבל React לא סיפק דרך לטפל בהם בחן בתוך הקומפוננטות, ולא מצא דרך להתאושש מהם.
@@ -96,7 +98,7 @@ class ErrorBoundary extends React.Component {
 
 <img src="../images/docs/error-boundaries-stack-trace-line-numbers.png" style="max-width:100%" alt="שגיאה שנתפסה על ידי גבולות שגיאה עם מספר שורה">
 
-אם לא יצרתם את הפרויקט עם אפליקצית Create React, תוכלו להשתמש [בתוסף הזה](https://www.npmjs.com/package/babel-plugin-transform-react-jsx-source) - הוסיפו אותו לתצורת ה-Babel בפרויקט. שימו לב שהוא מיועד רק לשימוש בסביבת הפיתוח ו**חובה לנטרל אותו בסביבת הייצור**.
+אם לא יצרתם את הפרויקט עם אפליקצית Create React, תוכלו להשתמש [בתוסף הזה](https://www.npmjs.com/package/@babel/plugin-transform-react-jsx-source) - הוסיפו אותו לתצורת ה-Babel בפרויקט. שימו לב שהוא מיועד רק לשימוש בסביבת הפיתוח ו**חובה לנטרל אותו בסביבת הייצור**.
 
 > הערה
 >
