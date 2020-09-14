@@ -275,7 +275,11 @@ shouldComponentUpdate(nextProps, nextState)
 static getDerivedStateFromProps(props, state)
 ```
 
+<<<<<<< HEAD
 המתודה `getDerivedStateFromProps` מתבצעת רגע לפני הקריאה למתודת הרינדור, גם ב-mount הראשוני וגם על עדכונים מאוחרים. עליה להחזיר אובייקט לעדכן את ה-state, או null כדי לעדכן כלום.
+=======
+`getDerivedStateFromProps` is invoked right before calling the render method, both on the initial mount and on subsequent updates. It should return an object to update the state, or `null` to update nothing.
+>>>>>>> 954a16f1d358009505ae881afaefe463dc6388a5
 
 המתודה הזו קיימת [לשימושים נדירים](/blog/2018/06/07/you-probably-dont-need-derived-state.html#when-to-use-derived-state) בהם ה-state תלוי בשינויים ב-props במהלך הזמן. לדוגמא, ייתכן שיהיה זה שימושי לשימוש במימוש של קומפוננטת `<Transition>` שמשווה את הילדים הקודמים והבאים שלה כדי להחליט איזה מהם להנפיש.
 
@@ -588,7 +592,11 @@ component.forceUpdate(callback)
 
 ### `defaultProps` {#defaultprops}
 
+<<<<<<< HEAD
 `defaultProps` יכול להיות מוגדר כ-property במחלקה של הקומפוננטה עצמה, כדי להגדיר את props ברירת-המחדל עבור המחלקה.
+=======
+`defaultProps` can be defined as a property on the component class itself, to set the default props for the class. This is used for `undefined` props, but not for `null` props. For example:
+>>>>>>> 954a16f1d358009505ae881afaefe463dc6388a5
 
 ```js
 class CustomButton extends React.Component {
@@ -608,7 +616,11 @@ CustomButton.defaultProps = {
   }
 ```
 
+<<<<<<< HEAD
 אם `props.color` מוגדר להיות null, הוא יישאר null:
+=======
+If `props.color` is set to `null`, it will remain `null`:
+>>>>>>> 954a16f1d358009505ae881afaefe463dc6388a5
 
 ```js
   render() {
