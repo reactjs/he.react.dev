@@ -275,7 +275,7 @@ shouldComponentUpdate(nextProps, nextState)
 static getDerivedStateFromProps(props, state)
 ```
 
-המתודה `getDerivedStateFromProps` מתבצעת רגע לפני הקריאה למתודת הרינדור, גם ב-mount הראשוני וגם על עדכונים מאוחרים. עליה להחזיר אובייקט לעדכן את ה-state, או null כדי לעדכן כלום.
+המתודה `getDerivedStateFromProps` מופעלת רגע לפני הקריאה למתודת הרינדור, גם ב-mount הראשוני וגם על עדכונים לאחר מכן. עליה להחזיר אובייקט על מנת לעדכן את ה-state, או `null` כדי לא לעדכן כלום.
 
 המתודה הזו קיימת [לשימושים נדירים](/blog/2018/06/07/you-probably-dont-need-derived-state.html#when-to-use-derived-state) בהם ה-state תלוי בשינויים ב-props במהלך הזמן. לדוגמא, ייתכן שיהיה זה שימושי לשימוש במימוש של קומפוננטת `<Transition>` שמשווה את הילדים הקודמים והבאים שלה כדי להחליט איזה מהם להנפיש.
 
@@ -588,7 +588,7 @@ component.forceUpdate(callback)
 
 ### `defaultProps` {#defaultprops}
 
-`defaultProps` יכול להיות מוגדר כ-property במחלקה של הקומפוננטה עצמה, כדי להגדיר את props ברירת-המחדל עבור המחלקה.
+`defaultProps` יכול להיות מוגדר כ-property במחלקת הקומפוננטה עצמה, כדי להגדיר את props ברירת-המחדל עבור המחלקה. השימוש בזה הוא עבור props שהם `undefined`, אבל לא עבור props שהם `null`. לדוגמא:
 
 ```js
 class CustomButton extends React.Component {
@@ -608,7 +608,7 @@ CustomButton.defaultProps = {
   }
 ```
 
-אם `props.color` מוגדר להיות null, הוא יישאר null:
+אם `props.color` מוגדר להיות `null`, הוא יישאר `null`:
 
 ```js
   render() {
