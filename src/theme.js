@@ -323,7 +323,6 @@ const sharedStyles = {
       },
 
       lineHeight: 1.2,
-      scrollMarginTop: 120,
 
       ':first-child': {
         '::before': {

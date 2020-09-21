@@ -2,8 +2,6 @@
 id: context
 title: קונטקסט
 permalink: docs/context.html
-prev: reconciliation.html
-next: fragments.html
 ---
 
 קונטקסט מספק דרך להעביר מידע דרך עץ הקומפוננטות בלי להשתמש ב-props באופן ידני לכל קומפוננטה.

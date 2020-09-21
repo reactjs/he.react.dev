@@ -2,7 +2,6 @@
 id: code-splitting
 title: פיצול-קוד
 permalink: docs/code-splitting.html
-prev: accessibility.html
 ---
 
 ## איגוד {#bundling}

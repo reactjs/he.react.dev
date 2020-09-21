@@ -2,8 +2,6 @@
 id: accessibility
 title: נגישות
 permalink: docs/accessibility.html
-prev: integrating-with-other-libraries.html
-next: code-splitting.html
 ---
 
 ## למה נגישות? {#why-accessibility}

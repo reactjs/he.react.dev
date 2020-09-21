@@ -2,8 +2,6 @@
 id: uncontrolled-components
 title: קומפוננטות לא מבוקרות
 permalink: docs/uncontrolled-components.html
-prev: refs-and-the-dom.html
-next: optimizing-performance.html
 ---
 
 ברוב המקרים, אנו ממליצים להשתמש [בקומפוננטות מבוקרות](/docs/forms.html#controlled-components) למימוש טפסים. בקומפוננטה מבוקרת, נתוני הטופס מנוהלים על ידי קומפוננטת React. האלטרנטיבה היא קומפוננטה לא מבוקרת, איפה שנתוני הטופס מנוהלים על ידי ה-DOM עצמו.
