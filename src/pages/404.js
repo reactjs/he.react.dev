@@ -21,7 +21,7 @@ const PageNotFound = ({location}: Props) => (
     <Container>
       <div css={sharedStyles.articleLayout.container}>
         <div css={sharedStyles.articleLayout.content}>
-          <Header>Page Not Found</Header>
+          <Header>הדף לא נמצא</Header>
           <TitleAndMetaTags title="React - הדף אינו נמצא" />
           <div css={sharedStyles.markdown}>
             <p>לא יכולנו למצוא את הדף שאתה מחפש</p>
