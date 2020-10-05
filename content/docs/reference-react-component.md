@@ -39,7 +39,11 @@ class Welcome extends React.Component {
 
 ### קומפוננטת מעגל-החיים {#the-component-lifecycle}
 
+<<<<<<< HEAD
 לכל קומפוננטה קיימות מספר "מתודות של מעגל חיים" שניתן לדרוס כדי להריץ קוד בזמנים מסוימים בתהליך. **אתם יכולים להשתמש [בדיאגרמת מעגל-החיים הזו](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/) כשליף.** ברשימה מטה, מתודות מעגל-חיים שבשימוש נפוץ יותר, מסומנות **במודגש**. שאר המתודות קיימות עבור שימושים נדירים יותר.
+=======
+Each component has several "lifecycle methods" that you can override to run code at particular times in the process. **You can use [this lifecycle diagram](https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/) as a cheat sheet.** In the list below, commonly used lifecycle methods are marked as **bold**. The rest of them exist for relatively rare use cases.
+>>>>>>> 8f7ffa473905148fd5c7ecfd7fed5dabbd261bf0
 
 #### עיגון (Mounting) {#mounting}
 
@@ -110,7 +114,11 @@ class Welcome extends React.Component {
 
 ### מתודות מעגל-חיים שבשימוש נפוץ {#commonly-used-lifecycle-methods}
 
+<<<<<<< HEAD
 המתודות בחלק הזה מכסות את החלק הנרחב של שימושים שתתקלו בהם כאשר תיצרו קומפוננטות ב-React. **להפנייה ויזואלית, בידקו [את דיאגרת מעגל-החיים הזו](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/).**
+=======
+The methods in this section cover the vast majority of use cases you'll encounter creating React components. **For a visual reference, check out [this lifecycle diagram](https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/).**
+>>>>>>> 8f7ffa473905148fd5c7ecfd7fed5dabbd261bf0
 
 ### `render()` {#render}
 
@@ -244,7 +252,13 @@ componentWillUnmount()
 
 * * *
 
+<<<<<<< HEAD
 ### מתודות מעגל-חיים שבשימוש נדיר {#rarely-used-lifecycle-methods}
+=======
+### Rarely Used Lifecycle Methods {#rarely-used-lifecycle-methods}
+
+The methods in this section correspond to uncommon use cases. They're handy once in a while, but most of your components probably don't need any of them. **You can see most of the methods below on [this lifecycle diagram](https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/) if you click the "Show less common lifecycles" checkbox at the top of it.**
+>>>>>>> 8f7ffa473905148fd5c7ecfd7fed5dabbd261bf0
 
 המתודות בחלק הזה מתכתבות עם שימושים פחות נפוצים. הן נוחות לשימוש לעתים, אבל רוב הקומפוננטות ככל הנראה לא זקוקות להן. **אתם יכולים לראות את רוב המתודות להלן [בדיאגרמת מעגל-החיים הזו](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/) על ידי לחיצה על תיבת הסימון - "הראה מתודות מעגל-חיים פחות נפוצות" בראשה.**
 
@@ -279,8 +293,13 @@ static getDerivedStateFromProps(props, state)
 
 המתודה הזו קיימת [לשימושים נדירים](/blog/2018/06/07/you-probably-dont-need-derived-state.html#when-to-use-derived-state) בהם ה-state תלוי בשינויים ב-props במהלך הזמן. לדוגמא, ייתכן שיהיה זה שימושי לשימוש במימוש של קומפוננטת `<Transition>` שמשווה את הילדים הקודמים והבאים שלה כדי להחליט איזה מהם להנפיש.
 
+<<<<<<< HEAD
 שימוש ב- deriving state מוביל לקוד ארוך ומקשה על חשיבה על הקומפוננטות שלכם.
 [ודאו שאתם מכירים מימוש עם אלטרנטיבות פשוטות יותר:](/blog/2018/06/07/you-probably-dont-need-derived-state.html)
+=======
+Deriving state leads to verbose code and makes your components difficult to think about.
+[Make sure you're familiar with simpler alternatives:](/blog/2018/06/07/you-probably-dont-need-derived-state.html)
+>>>>>>> 8f7ffa473905148fd5c7ecfd7fed5dabbd261bf0
 
 * אם אתם צריכים **ליצור side-effect** (לדוגמא, קבלת מידע או הנפשה) כתגובה לשינוי ב-props, השתמשו ב- [`componentDidUpdate`](#componentdidupdate) מעגל-החיים במקום.
 
@@ -324,9 +343,15 @@ getSnapshotBeforeUpdate(prevProps, prevState)
 
 לפרטים נוספים, הסתכלו ב- [*טיפול בשגיאות ב-React 16*](/blog/2017/07/26/error-handling-in-react-16.html).
 
+<<<<<<< HEAD
 > הערה
 >
 > Error boundaries תופסים שגיאות בקומפוננטות **מתחתיהם** בעץ בלבד. error boundary לא יכול לתפוס שגיאה בתוך עצמו.
+=======
+> Note
+>
+> Error boundaries only catch errors in the components **below** them in the tree. An error boundary can’t catch an error within itself.
+>>>>>>> 8f7ffa473905148fd5c7ecfd7fed5dabbd261bf0
 
 ### `static getDerivedStateFromError()` {#static-getderivedstatefromerror}
 ```javascript
@@ -354,7 +379,7 @@ class ErrorBoundary extends React.Component {
       return <h1>Something went wrong.</h1>;
     }
 
-    return this.props.children; 
+    return this.props.children;
   }
 }
 ```
@@ -409,15 +434,22 @@ class ErrorBoundary extends React.Component {
       return <h1>משהו השתבש.<h1/>;
     }
 
-    return this.props.children; 
+    return this.props.children;
   }
 }
 ```
 
+<<<<<<< HEAD
 > הערה
 >
 > באירוע השגיאה, ניתו לרנדר גיבוי UI עם `componentDidCatch()` על ידי קריאה ל- `setState`, אבל תכונה זו תצא משימוש בגרסא עתידית.
 > השתמשו ב- `static getDerivedStateFromError()` על מנת לטפל ברינדור מגובה במקום.
+=======
+> Note
+>
+> In the event of an error, you can render a fallback UI with `componentDidCatch()` by calling `setState`, but this will be deprecated in a future release.
+> Use `static getDerivedStateFromError()` to handle fallback rendering instead.
+>>>>>>> 8f7ffa473905148fd5c7ecfd7fed5dabbd261bf0
 
 * * *
 
