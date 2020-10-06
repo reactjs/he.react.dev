@@ -39,7 +39,7 @@ class Welcome extends React.Component {
 
 ### קומפוננטת מעגל-החיים {#the-component-lifecycle}
 
-לכל קומפוננטה קיימות מספר "מתודות של מעגל חיים" שניתן לדרוס כדי להריץ קוד בזמנים מסוימים בתהליך. **אתם יכולים להשתמש [בדיאגרמת מעגל-החיים הזו](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/) כשליף.** ברשימה מטה, מתודות מעגל-חיים שבשימוש נפוץ יותר, מסומנות **במודגש**. שאר המתודות קיימות עבור שימושים נדירים יותר.
+לכל קומפוננטה קיימות מספר "מתודות של מעגל חיים" שניתן לדרוס כדי להריץ קוד בזמנים מסוימים בתהליך. **אתם יכולים להשתמש [בדיאגרמת מעגל-החיים הזו](https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/) כשליף.** ברשימה מטה, מתודות מעגל-חיים שבשימוש נפוץ יותר, מסומנות **במודגש**. שאר המתודות קיימות עבור שימושים נדירים יותר.
 
 #### עיגון (Mounting) {#mounting}
 
@@ -110,7 +110,7 @@ class Welcome extends React.Component {
 
 ### מתודות מעגל-חיים שבשימוש נפוץ {#commonly-used-lifecycle-methods}
 
-המתודות בחלק הזה מכסות את החלק הנרחב של שימושים שתתקלו בהם כאשר תיצרו קומפוננטות ב-React. **להפנייה ויזואלית, בידקו [את דיאגרת מעגל-החיים הזו](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/).**
+המתודות בחלק הזה מכסות את החלק הנרחב של שימושים שתתקלו בהם כאשר תיצרו קומפוננטות ב-React. **להפנייה ויזואלית, בידקו [את דיאגרת מעגל-החיים הזו](https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/).**
 
 ### `render()` {#render}
 
@@ -246,7 +246,7 @@ componentWillUnmount()
 
 ### מתודות מעגל-חיים שבשימוש נדיר {#rarely-used-lifecycle-methods}
 
-המתודות בחלק הזה מתכתבות עם שימושים פחות נפוצים. הן נוחות לשימוש לעתים, אבל רוב הקומפוננטות ככל הנראה לא זקוקות להן. **אתם יכולים לראות את רוב המתודות להלן [בדיאגרמת מעגל-החיים הזו](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/) על ידי לחיצה על תיבת הסימון - "הראה מתודות מעגל-חיים פחות נפוצות" בראשה.**
+המתודות בחלק הזה מתכתבות עם שימושים פחות נפוצים. הן נוחות לשימוש לעתים, אבל רוב הקומפוננטות ככל הנראה לא זקוקות להן. **אתם יכולים לראות את רוב המתודות להלן [בדיאגרמת מעגל-החיים הזו](https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/) על ידי לחיצה על תיבת הסימון - "הראה מתודות מעגל-חיים פחות נפוצות" בראשה.**
 
  
 ### `shouldComponentUpdate()` {#shouldcomponentupdate}
@@ -324,9 +324,15 @@ getSnapshotBeforeUpdate(prevProps, prevState)
 
 לפרטים נוספים, הסתכלו ב- [*טיפול בשגיאות ב-React 16*](/blog/2017/07/26/error-handling-in-react-16.html).
 
+<<<<<<< HEAD
 > הערה
 >
 > Error boundaries תופסים שגיאות בקומפוננטות **מתחתיהם** בעץ בלבד. error boundary לא יכול לתפוס שגיאה בתוך עצמו.
+=======
+> Note
+>
+> Error boundaries only catch errors in the components **below** them in the tree. An error boundary can’t catch an error within itself.
+>>>>>>> 8f7ffa473905148fd5c7ecfd7fed5dabbd261bf0
 
 ### `static getDerivedStateFromError()` {#static-getderivedstatefromerror}
 ```javascript
@@ -354,7 +360,7 @@ class ErrorBoundary extends React.Component {
       return <h1>Something went wrong.</h1>;
     }
 
-    return this.props.children; 
+    return this.props.children;
   }
 }
 ```
@@ -409,7 +415,7 @@ class ErrorBoundary extends React.Component {
       return <h1>משהו השתבש.<h1/>;
     }
 
-    return this.props.children; 
+    return this.props.children;
   }
 }
 ```
