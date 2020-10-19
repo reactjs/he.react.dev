@@ -181,4 +181,8 @@ const element = {
 
 >**טיפ:**
 >
+<<<<<<< HEAD
 >אנו ממליצים להשתמש ב[הגדרת השפה של "Babel"](https://babeljs.io/docs/editors) עבור העורך שלך כך שגם קוד ES6 וגם קוד JSX מודגשים כראוי.
+=======
+>We recommend using the ["Babel" language definition](https://babeljs.io/docs/en/next/editors) for your editor of choice so that both ES6 and JSX code is properly highlighted.
+>>>>>>> 4e6cee1f82737aa915afd87de0cd4a8393de3fc8
