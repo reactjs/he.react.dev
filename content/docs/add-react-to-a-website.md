@@ -52,10 +52,17 @@ React הונדסה מההתחלה לאימוץ הדרגתי, ו**אנו יכול
 ```html{5,6,9}
   <!-- ... HTML אחר ... -->
 
+<<<<<<< HEAD
   <!-- טעינת ריאקט. -->
   <!-- שים לב: כשמעלים לאוויר, מחליפים את "development.js" עם "production.min.js". -->
   <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
   <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+=======
+  <!-- Load React. -->
+  <!-- Note: when deploying, replace "development.js" with "production.min.js". -->
+  <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+>>>>>>> 6682068641c16df6547b3fcdb7877e71bb0bebf9
 
   <!-- טעינת קומפוננטת ה-React שלנו. -->
   <script src="like_button.js"></script>
@@ -84,7 +91,11 @@ const domContainer = document.querySelector('#like_button_container');
 ReactDOM.render(e(LikeButton), domContainer);
 ```
 
+<<<<<<< HEAD
 שתי שורות אלו מוצאות את תגית ה-`<div>` שהוספנו לדף ה-HTML בשלב הראשון, ואז מציגות את קומפוננטת כפתור ה-"לייק" בתוכו.
+=======
+These two lines of code find the `<div>` we added to our HTML in the first step, and then display our "Like" button React component inside of it.
+>>>>>>> 6682068641c16df6547b3fcdb7877e71bb0bebf9
 
 ### זהו זה! {#thats-it}
 
@@ -115,8 +126,8 @@ ReactDOM.render(e(LikeButton), domContainer);
 אם צמצמת כבר את הסקריפטים של האפליקציה שלך, **האתר שלך יהיה מוכן לפרודקשן** במידה ואתה מוודא שה-HTML שהעלת טוען את גרסאות React המסתיימות עם `production.min.js`:
 
 ```js
-<script src="https://unpkg.com/react@16/umd/react.production.min.js" crossorigin></script>
-<script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js" crossorigin></script>
+<script src="https://unpkg.com/react@17/umd/react.production.min.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js" crossorigin></script>
 ```
 
 אם אין לך שלב צמצום לסקריפטים שלך, [הנה דרך אחת לעשות זאת](https://gist.github.com/gaearon/42a2ffa41b8319948f9be4076286e1f3).
@@ -184,7 +195,7 @@ return (
 צור תיקייה שנקראת `src` והרץ את הפקודה הבאה בשורת הפקודה:
 
 ```
-npx babel --watch src --out-dir . --presets react-app/prod 
+npx babel --watch src --out-dir . --presets react-app/prod
 ```
 
 >הערה
