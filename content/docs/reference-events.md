@@ -34,42 +34,11 @@ string type
 
 > הערה:
 >
-<<<<<<< HEAD
-> החל מגרסה 0.14, החזרת `false` ממטפל אירועים כבר לא תעצור התפשטות אירועים. לחלופין, `e.stopPropagation()` או `e.preventDefault()` צריכים להיות מופעלים ידנית, בהתאם לצורך.
-
-### איגוד אירועים {#event-pooling}
-
-`SyntheticEvent` הוא מאוגד. זה אומר שייעשה שימוש חוזר באובייקט ה-`SyntheticEvent` וכל מאפייניו יבוטלו לאחר שה-callback של האירוע יופעל.
-- דבר זה קורה בגלל סיבות שקשורות לביצועים.
-- כתוצאה מכך, לא ניתן לגשת לאירוע בצורה אסינכרונית. 
-
-
-```javascript
-function onClick(event) {
-  console.log(event); // => אובייקט מבוטל.
-  console.log(event.type); // => "click"
-  const eventType = event.type; // => "click"
-
-  setTimeout(function() {
-    console.log(event.type); // => null
-    console.log(eventType); // => "click"
-  }, 0);
-
-  // לא יעבוד. this.state.clickEvent יכיל רק ערכי null.
-  this.setState({clickEvent: event});
-
-  // עדיין ניתן לייצא את מאפייני האירוע.
-  this.setState({eventType: event.type});
-}
-```
-=======
-> As of v17, `e.persist()` doesn't do anything because the `SyntheticEvent` is no longer [pooled](/docs/legacy-event-pooling.html).
->>>>>>> 6682068641c16df6547b3fcdb7877e71bb0bebf9
+> מגרסה v17, שימוש ב- `e.persist()` לא עושה כלום בגלל שה- `SyntheticEvent` לא [מצורף יותר](/docs/legacy-event-pooling.html).
 
 > הערה:
 >
-<<<<<<< HEAD
-> אם אתה רוצה לגשת למאפייני האירוע בצורה אסינכרונית, עליך לעשות זאת באמצעות קריאה ל-`event.persist()` על האירוע, דבר שיסיר את האירוע הסינתטי מהאיגוד ויאפשר הפניות לאירוע להישמר על ידי קוד המשתמש.
+> נכון לגרסה v0.14, החזרת `false` מ-event handler יותר לא יפסיק התרבות event. במקום זאת, `e.stopPropagation()` או `e.preventDefault()` אמורים לפעול ידנית, כראוי. 
 
 ## אירועים נתמכים {#supported-events}
 
@@ -94,33 +63,6 @@ React מנרמלת אירועים כך שיהיו להם מאפיינים עקב
 - [אירועי אנימציה](#animation-events)
 - [אירועי מעבר](#transition-events)
 - [אירועים אחרים](#other-events)
-=======
-> As of v0.14, returning `false` from an event handler will no longer stop event propagation. Instead, `e.stopPropagation()` or `e.preventDefault()` should be triggered manually, as appropriate.
-
-## Supported Events {#supported-events}
-
-React normalizes events so that they have consistent properties across different browsers.
-
-The event handlers below are triggered by an event in the bubbling phase. To register an event handler for the capture phase, append `Capture` to the event name; for example, instead of using `onClick`, you would use `onClickCapture` to handle the click event in the capture phase.
-
-- [Clipboard Events](#clipboard-events)
-- [Composition Events](#composition-events)
-- [Keyboard Events](#keyboard-events)
-- [Focus Events](#focus-events)
-- [Form Events](#form-events)
-- [Generic Events](#generic-events)
-- [Mouse Events](#mouse-events)
-- [Pointer Events](#pointer-events)
-- [Selection Events](#selection-events)
-- [Touch Events](#touch-events)
-- [UI Events](#ui-events)
-- [Wheel Events](#wheel-events)
-- [Media Events](#media-events)
-- [Image Events](#image-events)
-- [Animation Events](#animation-events)
-- [Transition Events](#transition-events)
-- [Other Events](#other-events)
->>>>>>> 6682068641c16df6547b3fcdb7877e71bb0bebf9
 
 * * *
 
@@ -204,9 +146,9 @@ onFocus onBlur
 DOMEventTarget relatedTarget
 ```
 
-#### onFocus
+#### onFocus {#onfocus}
 
-The `onFocus` event is called when the element (or some element inside of it) receives focus. For example, it's called when the user clicks on a text input.
+נקרא ל-`onFocus` כשהאלמנט (או אלמנט כלשהו בתוכו) מקבל פוקוס. לדוגמה, נקרא לו כשהמשתמש לוחץ על קלט טקסט.
 
 ```javascript
 function Example() {
@@ -221,9 +163,9 @@ function Example() {
 }
 ```
 
-#### onBlur
+#### onBlur {#onblur}
 
-The `onBlur` event handler is called when focus has left the element (or left some element inside of it). For example, it's called when the user clicks outside of a focused text input.
+נקרא ל-`onBlur` כשהפוקוס עזב את האלמנט (או אלמנט כלשהו בתוכו). לדוגמה, נקרא לו כשהמשתמש לוחץ על נקודה מחוץ לקלט הטקסט שבפוקוס. 
 
 ```javascript
 function Example() {
@@ -238,9 +180,9 @@ function Example() {
 }
 ```
 
-#### Detecting Focus Entering and Leaving
+#### זיהוי כניסה ויציאה של פוקוס {#detecting-focus-entering-and-leaving}
 
-You can use the `currentTarget` and `relatedTarget` to differentiate if the focusing or blurring events originated from _outside_ of the parent element. Here is a demo you can copy and paste that shows how to detect focusing a child, focusing the element itself, and focus entering or leaving the whole subtree.
+ניתן להשתמש ב-`currentTarget` וב-`relatedTarget` להבדיל אם מקורם של אירועי הפוקוס או הטשטוש _מחוץ_ לאלמנט ההורה. הנה דמו שתוכל להעתיק ולהדביק שמראה איך לזהות פוקוס על אלמנט צאצא, פוקוס על האלמנט עצמו, ופוקוס כשנכנסים או עוזבים את כל התת-עץ. 
 
 ```javascript
 function Example() {
@@ -254,7 +196,7 @@ function Example() {
           console.log('focused child', e.target);
         }
         if (!e.currentTarget.contains(e.relatedTarget)) {
-          // Not triggered when swapping focus between children
+          // לא מופעל כשמחליפים פוקוס בין ילדים
           console.log('focus entered self');
         }
       }}
@@ -265,7 +207,7 @@ function Example() {
           console.log('unfocused child', e.target);
         }
         if (!e.currentTarget.contains(e.relatedTarget)) {
-          // Not triggered when swapping focus between children
+          // לא מופעל כשמחליפים פוקוס בין ילדים
           console.log('focus left self');
         }
       }}
@@ -412,16 +354,12 @@ DOMTouchList touches
 ```
 onScroll
 ```
-
-<<<<<<< HEAD
-מאפיינים:
-=======
->Note
+>הערה
 >
->Starting with React 17, the `onScroll` event **does not bubble** in React. This matches the browser behavior and prevents the confusion when a nested scrollable element fires events on a distant parent.
+>החל מגרסה 17, `onScroll` **לא מבעבע** בריאקט. זה תואם את התנהגות הדפדפן ומונע בלבול כשתת אלמנט שהוא scrollable יורה events על הורה רחוק.
 
-Properties:
->>>>>>> 6682068641c16df6547b3fcdb7877e71bb0bebf9
+
+מאפיינים:
 
 ```javascript
 number detail
