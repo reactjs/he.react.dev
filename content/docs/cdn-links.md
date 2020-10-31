@@ -20,11 +20,7 @@ React ו-ReactDOM זמינים דרך הCDN.
 <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
 ```
 
-<<<<<<< HEAD
-על מנת לטעון גרסא ספציפית של `React` ו-`react-dom`, החלף את המספר `16` במספר גרסא אחר.
-=======
-To load a specific version of `react` and `react-dom`, replace `17` with the version number.
->>>>>>> 6682068641c16df6547b3fcdb7877e71bb0bebf9
+על מנת לטעון גרסא ספציפית של `React` ו-`react-dom`, החלף את המספר `17` במספר גרסא אחר.
 
 ### למה משמשת תכונת `crossorigin`? {#why-the-crossorigin-attribute}
 
