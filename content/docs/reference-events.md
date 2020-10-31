@@ -34,37 +34,11 @@ string type
 
 > הערה:
 >
-> החל מגרסה 0.14, החזרת `false` ממטפל אירועים כבר לא תעצור התפשטות אירועים. לחלופין, `e.stopPropagation()` או `e.preventDefault()` צריכים להיות מופעלים ידנית, בהתאם לצורך.
-
-### איגוד אירועים {#event-pooling}
-
-`SyntheticEvent` הוא מאוגד. זה אומר שייעשה שימוש חוזר באובייקט ה-`SyntheticEvent` וכל מאפייניו יבוטלו לאחר שה-callback של האירוע יופעל.
-- דבר זה קורה בגלל סיבות שקשורות לביצועים.
-- כתוצאה מכך, לא ניתן לגשת לאירוע בצורה אסינכרונית. 
-
-
-```javascript
-function onClick(event) {
-  console.log(event); // => אובייקט מבוטל.
-  console.log(event.type); // => "click"
-  const eventType = event.type; // => "click"
-
-  setTimeout(function() {
-    console.log(event.type); // => null
-    console.log(eventType); // => "click"
-  }, 0);
-
-  // לא יעבוד. this.state.clickEvent יכיל רק ערכי null.
-  this.setState({clickEvent: event});
-
-  // עדיין ניתן לייצא את מאפייני האירוע.
-  this.setState({eventType: event.type});
-}
-```
+> מגרסה v17, שימוש ב- `e.persist()` לא עושה כלום בגלל שה- `SyntheticEvent` לא [מצורף יותר](/docs/legacy-event-pooling.html).
 
 > הערה:
 >
-> אם אתה רוצה לגשת למאפייני האירוע בצורה אסינכרונית, עליך לעשות זאת באמצעות קריאה ל-`event.persist()` על האירוע, דבר שיסיר את האירוע הסינתטי מהאיגוד ויאפשר הפניות לאירוע להישמר על ידי קוד המשתמש.
+> נכון לגרסה v0.14, החזרת `false` מ-event handler יותר לא יפסיק התרבות event. במקום זאת, `e.stopPropagation()` או `e.preventDefault()` אמורים לפעול ידנית, כראוי. 
 
 ## אירועים נתמכים {#supported-events}
 
@@ -168,9 +142,83 @@ onFocus onBlur
 
 מאפיינים:
 
-```javascript
+```js
 DOMEventTarget relatedTarget
 ```
+
+#### onFocus {#onfocus}
+
+נקרא ל-`onFocus` כשהאלמנט (או אלמנט כלשהו בתוכו) מקבל פוקוס. לדוגמה, נקרא לו כשהמשתמש לוחץ על קלט טקסט.
+
+```javascript
+function Example() {
+  return (
+    <input
+      onFocus={(e) => {
+        console.log('Focused on input');
+      }}
+      placeholder="onFocus is triggered when you click this input."
+    />
+  )
+}
+```
+
+#### onBlur {#onblur}
+
+נקרא ל-`onBlur` כשהפוקוס עזב את האלמנט (או אלמנט כלשהו בתוכו). לדוגמה, נקרא לו כשהמשתמש לוחץ על נקודה מחוץ לקלט הטקסט שבפוקוס. 
+
+```javascript
+function Example() {
+  return (
+    <input
+      onBlur={(e) => {
+        console.log('Triggered because this input lost focus');
+      }}
+      placeholder="onBlur is triggered when you click this input and then you click outside of it."
+    />
+  )
+}
+```
+
+#### זיהוי כניסה ויציאה של פוקוס {#detecting-focus-entering-and-leaving}
+
+ניתן להשתמש ב-`currentTarget` וב-`relatedTarget` להבדיל אם מקורם של אירועי הפוקוס או הטשטוש _מחוץ_ לאלמנט ההורה. הנה דמו שתוכל להעתיק ולהדביק שמראה איך לזהות פוקוס על אלמנט צאצא, פוקוס על האלמנט עצמו, ופוקוס כשנכנסים או עוזבים את כל התת-עץ. 
+
+```javascript
+function Example() {
+  return (
+    <div
+      tabIndex={1}
+      onFocus={(e) => {
+        if (e.currentTarget === e.target) {
+          console.log('focused self');
+        } else {
+          console.log('focused child', e.target);
+        }
+        if (!e.currentTarget.contains(e.relatedTarget)) {
+          // לא מופעל כשמחליפים פוקוס בין ילדים
+          console.log('focus entered self');
+        }
+      }}
+      onBlur={(e) => {
+        if (e.currentTarget === e.target) {
+          console.log('unfocused self');
+        } else {
+          console.log('unfocused child', e.target);
+        }
+        if (!e.currentTarget.contains(e.relatedTarget)) {
+          // לא מופעל כשמחליפים פוקוס בין ילדים
+          console.log('focus left self');
+        }
+      }}
+    >
+      <input id="1" />
+      <input id="2" />
+    </div>
+  );
+}
+```
+
 
 * * *
 
@@ -306,6 +354,10 @@ DOMTouchList touches
 ```
 onScroll
 ```
+>הערה
+>
+>החל מגרסה 17, `onScroll` **לא מבעבע** בריאקט. זה תואם את התנהגות הדפדפן ומונע בלבול כשתת אלמנט שהוא scrollable יורה events על הורה רחוק.
+
 
 מאפיינים:
 

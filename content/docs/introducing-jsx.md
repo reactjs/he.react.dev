@@ -181,4 +181,4 @@ const element = {
 
 >**טיפ:**
 >
->אנו ממליצים להשתמש ב[הגדרת השפה של "Babel"](https://babeljs.io/docs/editors) עבור העורך שלך כך שגם קוד ES6 וגם קוד JSX מודגשים כראוי.
+>אנו ממליצים להשתמש ב[הגדרת השפה של "Babel"](https://babeljs.io/docs/en/next/editors) עבור העורך שלך כך שגם קוד ES6 וגם קוד JSX מודגשים כראוי.
