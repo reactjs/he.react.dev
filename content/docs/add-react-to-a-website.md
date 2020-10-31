@@ -91,11 +91,7 @@ const domContainer = document.querySelector('#like_button_container');
 ReactDOM.render(e(LikeButton), domContainer);
 ```
 
-<<<<<<< HEAD
 שתי שורות אלו מוצאות את תגית ה-`<div>` שהוספנו לדף ה-HTML בשלב הראשון, ואז מציגות את קומפוננטת כפתור ה-"לייק" בתוכו.
-=======
-These two lines of code find the `<div>` we added to our HTML in the first step, and then display our "Like" button React component inside of it.
->>>>>>> 6682068641c16df6547b3fcdb7877e71bb0bebf9
 
 ### זהו זה! {#thats-it}
 
