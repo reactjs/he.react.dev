@@ -180,11 +180,7 @@ function Example() {
 }
 ```
 
-<<<<<<< HEAD
 #### זיהוי כניסה ויציאה של פוקוס {#detecting-focus-entering-and-leaving}
-=======
-#### Detecting Focus Entering and Leaving {#detecting-focus-entering-and-leaving}
->>>>>>> 30baecf59de28a8cd3c91a2cd878e3822f864061
 
 ניתן להשתמש ב-`currentTarget` וב-`relatedTarget` להבדיל אם מקורם של אירועי הפוקוס או הטשטוש _מחוץ_ לאלמנט ההורה. הנה דמו שתוכל להעתיק ולהדביק שמראה איך לזהות פוקוס על אלמנט צאצא, פוקוס על האלמנט עצמו, ופוקוס כשנכנסים או עוזבים את כל התת-עץ. 
 
