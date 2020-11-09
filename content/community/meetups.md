@@ -76,6 +76,7 @@ Do you have a local React.js meetup? Add it here! (Please keep the list alphabet
 * [React.JS Girls Berlin](https://www.meetup.com/ReactJS-Girls-Berlin/)
 
 ## Greece {#greece}
+* [Athens](https://www.meetup.com/React-To-React-Athens-MeetUp/)
 * [Thessaloniki](https://www.meetup.com/Thessaloniki-ReactJS-Meetup/)
 
 ## Hungary {#hungary}
