@@ -36,11 +36,7 @@ React תוכננה מלכתחילה לאימוץ הדרגתי, ו**אתם יכו
 
 ### מגרש משחקים אונליין {#online-playgrounds}
 
-<<<<<<< HEAD
-אם אתם מעוניינים לשחק עם React, תוכלו להשתמש במגרש משחקים של קוד אונליין. נסו את תבנית שלום עולם ב-[CodePen](codepen://hello-world), [CodeSandbox](https://codesandbox.io/s/new), או [Glitch](https://glitch.com/edit/#!/remix/starter-react-template) או [Stackblitz](https://stackblitz.com/fork/react)..
-=======
-If you're interested in playing around with React, you can use an online code playground. Try a Hello World template on [CodePen](codepen://hello-world), [CodeSandbox](https://codesandbox.io/s/new), or [Stackblitz](https://stackblitz.com/fork/react).
->>>>>>> 255497f12fa00d231b5af5d5aa34fa5beffac9e4
+אם אתם מעוניינים לשחק עם React, תוכלו להשתמש במגרש משחקים של קוד אונליין. נסו את תבנית שלום עולם ב-[CodePen](codepen://hello-world), [CodeSandbox](https://codesandbox.io/s/new), או [Stackblitz](https://stackblitz.com/fork/react).
 
 אם אתם מעדיפים להשתמש בעורך הטקסט שלכם, תוכלו גם [להוריד קובץ HTML זה](https://raw.githubusercontent.com/reactjs/reactjs.org/master/static/html/single-file-example.html), לערוך אותו, ולפתוח אותו ממערכת הקבצים המקומית בדפדפן שלכם. זה מאט את הטרנספורמציה של הקוד בזמן הריצה, אז היינו ממליצים להשתמש בזה רק עבור הדגמות פשוטות.
 
