@@ -132,7 +132,7 @@ const MyContext = React.createContext(defaultValue);
 כל עצם קונטקסט מגיע עם קומפוננטת ספק (Provider) שנותנת לקומפוננטות שצורכות אותו להקשיב לשינויים בקונטקסט.
 הספק מקבל prop `value` שיועבר לקומפוננטות ילד שצורכות את הספק בכל רמות העומק של העץ. ספק אחד יכול להתחבר לצרכנים רבים. אפשר להגדיר ספקים ברמות שונות של אותו העץ כדי לעקוף את הערכים המוגדרים בהם בעומקים שונים של עץ הקומפוננטות.
 
-כל צרכן שהוא צאצא של הספק ירנדר את עצמו מחדש כשה- prop `value` של הספק משתנה. התפשטות מהספק לצאצאים(כולל [`.contextType`](#classcontexttype) ו-[`useContext`](/docs/hooks-reference.html#usecontext)) לא נתונה לחסות המתודה `shouldComponentUpdate`, ולכן הצרכנים מתעדכנים אפילו כשקומפוננטת אב מדלגת על עדכון.
+קומפוננטת הספק מקבלת prop `value` אשר יועבר לקומפוננטות הצורכות שהן צאצאים של ספק זה. ספק אחד יכול להיות מחובר להרבה צרכנים. ספקים יכולים להיות מקוננים כדי לדרוס ערכים עמוק יותר בתוך העץ.
 
 שינויים נקבעים ע״י השוואת הערכים החדשים מול הישנים בעזרת אותו האלגוריתם כמו [`Object.is`](//developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is#Description).
 
@@ -195,15 +195,9 @@ class MyClass extends React.Component {
 
 דורשת [פונקציה בתור ילד](/docs/render-props.html#using-props-other-than-render). הפונקציה הזאת מקבלת את ערך הקונטקסט הנוכחי ומחזירה צומת React. ערך הארגומנט שמועבר לפונקציה יהיה זהה ל- `value` prop של ספק הקונטקסט הקרוב ביותר מעלינו בעץ. אם אין ספק לקונטקס, הערך יהיה זהה לערך ברירת המחדל שנקבע בזמן יצירת הקונטקסט (עם `createContext()`).
 
-<<<<<<< HEAD
 > הערה
 > 
-> למידע נוסף על ״פונקציות כילד״ בקרו בעמוד [render props](/docs/render-props.html).
-=======
-> Note
->
-> For more information about the 'function as a child' pattern, see [render props](/docs/render-props.html).
->>>>>>> 071f5b0e1622465fb6fe5cf6c1cbd2aaef7c5ef4
+> למידע נוסף על תבנית ״פונקציה כילד״ בקרו בעמוד [render props](/docs/render-props.html).
 
 ### `Context.displayName` {#contextdisplayname}
 
@@ -249,11 +243,7 @@ MyContext.displayName = 'MyDisplayName';
 
 ### שימוש ביותר מקונטקסט אחד {#consuming-multiple-contexts}
 
-<<<<<<< HEAD
 כדי לודא שרינדור הקונטקסט מחדש יהיה מהיר, React צריך להפוך את כל אחד מצרכני הקונטקסט לצומת נפרדת בעץ.
-=======
-To keep context re-rendering fast, React needs to make each context consumer a separate node in the tree.
->>>>>>> 071f5b0e1622465fb6fe5cf6c1cbd2aaef7c5ef4
 
 `embed:context/multiple-contexts.js`
 
@@ -271,14 +261,6 @@ To keep context re-rendering fast, React needs to make each context consumer a s
 
 ## ממשק תכנות מדור קודם {#legacy-api}
 
-<<<<<<< HEAD
 > הערה
 > 
-> בעבר, React הוציאה ממשק תכנות נסיוני לקונטקסט. הממשק הישן ייתמך בכל גרסאות ה-16.x, אבל אפליקציות שמשתמשות בו צריכות לעבור לשימוש בגרסה החדשה. הממשק הישן יוסר בגרסה הראשית הבאה של React. עוד מידע על [ממשק הקונטקסט הישן](/docs/legacy-context.html).
- 
-=======
-> Note
->
-> React previously shipped with an experimental context API. The old API will be supported in all 16.x releases, but applications using it should migrate to the new version. The legacy API will be removed in a future major React version. Read the [legacy context docs here](/docs/legacy-context.html).
-
->>>>>>> 071f5b0e1622465fb6fe5cf6c1cbd2aaef7c5ef4
+> בעבר, React הכילה ממשק תכנות נסיוני לקונטקסט. הממשק הישן ייתמך בכל גרסאות ה-16.x, אבל אפליקציות שמשתמשות בו צריכות לעבור לשימוש בגרסה החדשה. הממשק הישן יוסר בגרסה הראשית הבאה של React. עוד מידע על [ממשק הקונטקסט הישן](/docs/legacy-context.html).

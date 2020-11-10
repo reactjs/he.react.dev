@@ -219,7 +219,6 @@ function Example() {
 }
 ```
 
-
 * * *
 
 ### אירועי טפסים {#form-events}
