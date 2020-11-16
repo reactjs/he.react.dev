@@ -328,7 +328,11 @@ function getDisplayName(WrappedComponent) {
 
 ### אל תשמשו ב- HOCs בתוך מתודת ה- render {#dont-use-hocs-inside-the-render-method}
 
+<<<<<<< HEAD
 אלגוריתם ההבדלה של React (שנקרא reconciliation) משתמש בזהות קומפוננטה כדי להחליט אם לעדכן את עץ הקומפוננטות או לזרוק אותו וליצור חדש במקומו. אם הקומפוננטה המוחזרת מ- `render` זהה (`===`) לקומפוננטה מהרינדור הקודם, React יעדכן באופן רקורסיבי את עץ הקומפוננטות על ידי השוואתו עם העץ החדש. אם הם לא זהים, עץ הקומפוננטות הקיים יזרק.
+=======
+React's diffing algorithm (called [Reconciliation](/docs/reconciliation.html)) uses component identity to determine whether it should update the existing subtree or throw it away and mount a new one. If the component returned from `render` is identical (`===`) to the component from the previous render, React recursively updates the subtree by diffing it with the new one. If they're not equal, the previous subtree is unmounted completely.
+>>>>>>> 957276e1e92bb48e5bb6b1c17fd0e7a559de0748
 
 בדרך כלל, לא צריך לחשוב על זה. אבל זה חשוב בזמן שימוש בקומפוננטות מסדר גבוה יותר כי זה אומר שאי אפשר לשים HOC בקומפוננטה בעזרת מתודת ה- render:
 
