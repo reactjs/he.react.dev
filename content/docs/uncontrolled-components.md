@@ -45,7 +45,11 @@ class NameForm extends React.Component {
 
 ### ערכי ברירת מחדל {#default-values}
 
+<<<<<<< HEAD
 ברנדור מחזור החיים של React, התכונה `value` באלמנטי טופס ידרסו את הערך ב-DOM. עם קומפוננטה לא מבוקרת, לעיתים קרובות תרצה ש-React יספק את הערך הראשוני, אבל ישאיר את העדכונים הבאים לא מבוקרים. כדי לטפל במקרה כזה, אתה יכול לציין את תכונת `defaultValue` במקום `value`
+=======
+In the React rendering lifecycle, the `value` attribute on form elements will override the value in the DOM. With an uncontrolled component, you often want React to specify the initial value, but leave subsequent updates uncontrolled. To handle this case, you can specify a `defaultValue` attribute instead of `value`. Changing the value of `defaultValue` attribute after a component has mounted will not cause any update of the value in the DOM.
+>>>>>>> 8f9ef00db1b36ee3e5a0e6072eb601257a6f8ccb
 
 ```javascript{7}
 render() {
