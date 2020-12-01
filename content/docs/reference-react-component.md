@@ -420,17 +420,13 @@ class ErrorBoundary extends React.Component {
 }
 ```
 
-<<<<<<< HEAD
+בגרסאות production ו- development יש הבדל שולי בדרך שבה `componentDidCatch()` מטפלת בשגיאות.
+
+בפיתוח, השגיאות יבעבעו ל-`window`, זה אומר שכל `window.onerror` או `window.addEventListener('error', callback)` יירטו את השגיאות שנתפסו על ידי `componentDidCatch()`.
+
+ב-production, במקום, השגיאות לא יבעבעו מעלה, מה שאומר שכל error handler קודם יקבל רק שגיאות שלא נתפסו במפורש על ידי `componentDidCatch()`.
+
 > הערה
-=======
-Production and development builds of React slightly differ in the way `componentDidCatch()` handles errors.
-
-On development, the errors will bubble up to `window`, this means that any `window.onerror` or `window.addEventListener('error', callback)` will intercept the errors that have been caught by `componentDidCatch()`.
-
-On production, instead, the errors will not bubble up, which means any ancestor error handler will only receive errors not explicitly caught by `componentDidCatch()`.
-
-> Note
->>>>>>> 5e437a10ed4e89cd5eaf990ce4f43e0857592b53
 >
 > באירוע השגיאה, ניתו לרנדר גיבוי UI עם `componentDidCatch()` על ידי קריאה ל- `setState`, אבל תכונה זו תצא משימוש בגרסא עתידית.
 > השתמשו ב- `static getDerivedStateFromError()` על מנת לטפל ברינדור מגובה במקום.
