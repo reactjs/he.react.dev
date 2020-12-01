@@ -92,7 +92,7 @@ function getGreeting(user) {
 ניתן להשתמש בגרשיים כדי לציין מחרוזות כמאפיינים:
 
 ```js
-const element = <div tabIndex="0"></div>;
+const element = <div tabIndex={0}></div>;
 ```
 
 תוכלו גם להשתמש בסוגריים מסולסלים כדי להטמיע ביטוי ב-JavaScript במאפיין:

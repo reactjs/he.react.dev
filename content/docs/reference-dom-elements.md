@@ -130,7 +130,7 @@ React תוסיף באופן אוטומטי סיומת  "px" לכמה מאפיי�
 React תמיד סיפקה ממשק משתמש ממוקד JavaScript ל-DOM. מכיוון שקומפוננטות React בדרך כלל מקבלות גם props מותאמות אישית וגם כאלה שקשורות ל-DOM, React משתמשת במוסכמת ה-`camelCase` בדיוק כמו ממשקי המשתמש של ה-DOM:
 
 ```js
-<div tabIndex="-1" />      // כמו node.tabIndex DOM API
+<div tabIndex={-1} />      // כמו node.tabIndex DOM API
 <div className="Button" /> // כמו node.className DOM API
 <input readOnly={true} />  // כמו node.readOnly DOM API
 ```

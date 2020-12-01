@@ -420,6 +420,12 @@ class ErrorBoundary extends React.Component {
 }
 ```
 
+בגרסאות production ו- development יש הבדל שולי בדרך שבה `componentDidCatch()` מטפלת בשגיאות.
+
+בפיתוח, השגיאות יבעבעו ל-`window`, זה אומר שכל `window.onerror` או `window.addEventListener('error', callback)` יירטו את השגיאות שנתפסו על ידי `componentDidCatch()`.
+
+ב-production, במקום, השגיאות לא יבעבעו מעלה, מה שאומר שכל error handler קודם יקבל רק שגיאות שלא נתפסו במפורש על ידי `componentDidCatch()`.
+
 > הערה
 >
 > באירוע השגיאה, ניתו לרנדר גיבוי UI עם `componentDidCatch()` על ידי קריאה ל- `setState`, אבל תכונה זו תצא משימוש בגרסא עתידית.
