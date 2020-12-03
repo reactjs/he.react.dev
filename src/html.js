@@ -7,7 +7,7 @@
 import React from 'react';
 
 const JS_NPM_URLS = [
-  'https://unpkg.com/docsearch.js@2.4.1/dist/cdn/docsearch.min.js',
+  'https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js',
 ];
 
 type Props = {|
