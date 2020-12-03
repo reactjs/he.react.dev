@@ -23,7 +23,7 @@ class DocSearch extends Component<{}, State> {
     if (window.docsearch) {
       window.docsearch({
         apiKey: '1c74a0513dbfb95496f335e51720cbea',
-        indexName: 'react',
+        indexName: 'react-he',
         inputSelector: '#algolia-doc-search',
       });
     } else {
