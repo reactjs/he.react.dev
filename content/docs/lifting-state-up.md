@@ -150,7 +150,7 @@ function tryConvert(temperature, convert) {
 
 ## הרמת ה-State למעלה {#lifting-state-up}
 
-כרגע, שני קומפוננטות ה-`TemperatureInput` מחזיקות את הערך שלהן באופן עצמאי ב-state מקומי:
+כרגע, שתי קומפוננטות ה-`TemperatureInput` מחזיקות את הערך שלהן באופן עצמאי ב-state מקומי:
 
 ```js{5,9,13}
 class TemperatureInput extends React.Component {
@@ -203,7 +203,7 @@ class TemperatureInput extends React.Component {
 >
 >אין משמעות מיוחדת לשמות ה-props `temperature` או `onTemperatureChange` בקומפוננטות מותאמות אישית. יכולנו לקרוא להם כל דבר אחר, כמו לקרוא להם `value` ו-`onChange` שהיא קונבנציה נפוצה.
 
-ה-prop `onTemperatureChange` יועבר יחד עם ה-prop `temperature` על ידי קומפוננטת ההורה `Calculator`. היא תטפל בשינוי על ידי שינוי ה-state המקומי שלה, ובכך תרנדר מחדש רת שני הקלטים עם ערכים חדשים. אנו נסתכל על המימוש החדש של `Calculator` בקרוב מאוד.
+ה-prop `onTemperatureChange` יועבר יחד עם ה-prop `temperature` על ידי קומפוננטת ההורה `Calculator`. היא תטפל בשינוי על ידי שינוי ה-state המקומי שלה, ובכך תרנדר מחדש את שני הקלטים עם ערכים חדשים. אנו נסתכל על המימוש החדש של `Calculator` בקרוב מאוד.
 
 לפני שנצלול לתוך השינויים ב-`Calculator`, בואו נסכם את השינויים שלנו לקומפוננטת `TemperatureInput`. הסרנו ממנו את ה-state המקומי, ובמקום לקרוא את `this.state.temperature`, אנחנו קוראים עכשיו את `this.props.temperature`. במקום לקרוא ל-`this.setState()` כאשר אנחנו רוצים לעשות שינוי, עכשיו אנחנו קוראים ל-`this.props.onTemperatureChange()`, אשר יסופק על ידי `Calculator`:
 

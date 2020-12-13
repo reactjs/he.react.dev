@@ -10,7 +10,7 @@ redirect_from:
 
 ב-React, אתם יכולים ליצור קומפוננטות יחודיות אשר מכמסות את ההתנהגות שאתם מחפשים. לאחר מכן, אתם יכולים לרנדר רק חלק מהן, על פי תלות ב-state של האפליקציה שלכם.
 
-רינדור מותנה ב-React פועל באותו אופן שבו עובדים תנאים ב-JavaScript. השתמשו באופרטורים של JavaScript כמו [`if`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/if...else) או [האופרטו המותנה](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Conditional_Operator) כדי ליצור אלמנטים המייצגים את ה-state הנוכחי, ותנו ל-React לעדכן את ממשק המשתמש כדי שיהיה תואם אליהם.
+רינדור מותנה ב-React פועל באותו אופן שבו עובדים תנאים ב-JavaScript. השתמשו באופרטורים של JavaScript כמו [`if`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/if...else) או [האופרטור המותנה](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Conditional_Operator) כדי ליצור אלמנטים המייצגים את ה-state הנוכחי, ותנו ל-React לעדכן את ממשק המשתמש כדי שיהיה תואם אליהם.
 
 הביטו בשתי הקומפוננטות האלו:
 
@@ -151,8 +151,6 @@ ReactDOM.render(
 זה עובד בגלל שב-JavaScript, `true && expression` תמיד שווה ערך ל-`expression`, ו-`false && expression` תמיד שווה ערך ל-`false`.
 
 לכן, אם התנאי הוא `true`, האלמנט מימין אחרי `&&` יופיע בפלט. אם הוא `false`, React תתעלם ממנו ותדלג עליו.
-
-Note that returning a falsy expression will still cause the element after `&&` to be skipped but will return the falsy expression. In the example below, `<div>0</div>` will be returned by the render method.
 
 שים לב שהחזרת ביטוי שלילי עדיין תגרום לדילוג על האלמנט שאחרי `&&` אבל עדיין תחזיר את הביטוי השלילי. בדוגמה להלן, `<div>0</div>` יוחזר על ידי מתודת הרינדור.
 
