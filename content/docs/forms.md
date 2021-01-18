@@ -31,7 +31,7 @@ redirect_from:
 
 לדוגמה, אם אנחנו רוצים לשנות את הדוגמה הקודמת כך שתרשום ל-log את השם כאשר הטופס נשלח, אנחנו יכולים לרשום את הטופס כקומפונטה מבוקרת:
 
-```javascript{4,10-12,24}
+```javascript{4,10-12,21,24}
 class NameForm extends React.Component {
   constructor(props) {
     super(props);
