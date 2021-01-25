@@ -82,56 +82,10 @@ const Footer = ({layoutHasSidebar = false}: {layoutHasSidebar: boolean}) => (
           </FooterNav>
           <FooterNav layoutHasSidebar={layoutHasSidebar}>
             <MetaTitle onDark={true}>ערוצים</MetaTitle>
-            <ExternalFooterLink
-              href="https://github.com/facebook/react"
-              target="_blank"
-              rel="noopener">
-              GitHub
-            </ExternalFooterLink>
-            <ExternalFooterLink
-              href="https://stackoverflow.com/questions/tagged/reactjs"
-              target="_blank"
-              rel="noopener">
-              Stack Overflow
-            </ExternalFooterLink>
-            <ExternalFooterLink
-              href="https://reactjs.org/community/support.html#popular-discussion-forums"
-              target="_blank"
-              rel="noopener">
-              Discussion Forums
-            </ExternalFooterLink>
-            <ExternalFooterLink
-              href="https://discord.gg/0ZcbPKXt5bZjGY5n"
-              target="_blank"
-              rel="noopener">
-              Reactiflux Chat
-            </ExternalFooterLink>
-            <ExternalFooterLink
-              href="https://dev.to/t/react"
-              target="_blank"
-              rel="noopener">
-              DEV Community
-            </ExternalFooterLink>
-            <ExternalFooterLink
-              href="https://www.facebook.com/react"
-              target="_blank"
-              rel="noopener">
-              Facebook
-            </ExternalFooterLink>
-            <ExternalFooterLink
-              href="https://twitter.com/reactjs"
-              target="_blank"
-              rel="noopener">
-              Twitter
-            </ExternalFooterLink>
-          </FooterNav>
-          <FooterNav layoutHasSidebar={layoutHasSidebar}>
-            <MetaTitle onDark={true}>קהילה</MetaTitle>
-            <MetaTitle onDark={true}>{navFooter.channels.title}</MetaTitle>
             <SectionLinks links={navFooter.channels.items} />
           </FooterNav>
           <FooterNav layoutHasSidebar={layoutHasSidebar}>
-            <MetaTitle onDark={true}>{navFooter.community.title}</MetaTitle>
+            <MetaTitle onDark={true}>קהילה</MetaTitle>
             <ExternalFooterLink
               href={`https://github.com/facebook/react/blob/master/CODE_OF_CONDUCT.md`}>
               קוד התנהגות
@@ -154,14 +108,12 @@ const Footer = ({layoutHasSidebar = false}: {layoutHasSidebar: boolean}) => (
               target="_blank"
               rel="noopener">
               React Native
-              <MetaTitle onDark={true}>פרטיות</MetaTitle>
-              <SectionLinks links={navFooter.more.items} />
-              <ExternalFooterLink href="https://opensource.facebook.com/legal/privacy">
-                פרטיות
-              </ExternalFooterLink>
-              <ExternalFooterLink href="https://opensource.facebook.com/legal/terms">
-                Terms
-              </ExternalFooterLink>
+            </ExternalFooterLink>
+            <ExternalFooterLink href="https://opensource.facebook.com/legal/privacy">
+              פרטיות
+            </ExternalFooterLink>
+            <ExternalFooterLink href="https://opensource.facebook.com/legal/terms">
+              Terms
             </ExternalFooterLink>
           </FooterNav>
         </div>
