@@ -39,11 +39,7 @@ next: cdn-links.html
 
 [Create React App](https://github.com/facebookincubator/create-react-app) יוצר סביבה נוחה למטרת **למידה של ריאקט**, והוא הדרך הטובה ביותר להתחיל לבנות **אפליקציית [דף-יחיד](/docs/glossary.html#single-page-application) חדשה** ב-React.
 
-<<<<<<< HEAD
-הוא מארגן לך את סביבת העבודה כך שתוכל להשתמש בפיצ'רים החדשים ביותר של JavaScript, מספק חווית מפתח נוחה, ועושה אופטימיזציה על האפליקצייה שלך עבור פרודקשן. תצטרך להתקין את Node [בגרסה](https://nodejs.org/en/) 8.1 ומעלה ו-npm בגרסה 5.6 ומעלה. על מנת ליצור פרויקט, הרץ:
-=======
-It sets up your development environment so that you can use the latest JavaScript features, provides a nice developer experience, and optimizes your app for production. You’ll need to have [Node >= 10.16 and npm >= 5.6](https://nodejs.org/en/) on your machine. To create a project, run:
->>>>>>> 888d9eae7a33ec1a48c18f28e82c26d048d885be
+הוא מארגן לך את סביבת העבודה כך שתוכל להשתמש בפיצ'רים החדשים ביותר של JavaScript, מספק חווית מפתח נוחה, ועושה אופטימיזציה על האפליקצייה שלך עבור פרודקשן. תצטרך להתקין את Node [בגרסה](https://nodejs.org/en/) 10.16 ומעלה ו-npm בגרסה 5.6 ומעלה. על מנת ליצור פרויקט, הרץ:
 
 ```bash
 npx create-react-app my-app
