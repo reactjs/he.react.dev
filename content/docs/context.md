@@ -6,11 +6,7 @@ permalink: docs/context.html
 
 קונטקסט מספק דרך להעביר מידע דרך עץ הקומפוננטות בלי להשתמש ב-props באופן ידני לכל קומפוננטה.
 
-<<<<<<< HEAD
 באפליקציית React טיפוסית, המידע מועבר למטה (מקומפוננטת אב לקומפוננטת ילד) דרך props, אבל עבור מידע שנדרש בהרבה קומפוננטות באפליקציה (כמו לדוגמא העדפות שפה או ערכת נושא של ממשק המשתמש) השימוש ב-props יכול להיות מסורבל. קונטקסט מספק דרך לשתף מידע כזה בין קומפוננטות בלי להעביר אותו באופן מפורש לכל קומפוננטה.
-=======
-In a typical React application, data is passed top-down (parent to child) via props, but such usage can be cumbersome for certain types of props (e.g. locale preference, UI theme) that are required by many components within an application. Context provides a way to share values like these between components without having to explicitly pass a prop through every level of the tree.
->>>>>>> adfa67ad01b7e4c6114921cdf12e9e4cf1a1c786
 
 - [מתי להשתמש בקונטקסט](#when-to-use-context)
 - [לפני השימוש בקונטקסט](#before-you-use-context)
@@ -86,14 +82,9 @@ function Page(props) {
 
 עם השינוי הזה, רק הקומפוננטה העליונה `Page` צריכה לדעת על קומפוננטות ה- `Link` וה- `Avatar` ועל ה-props שהן דורשות.
 
-תבנית העיצוב הזו נקראת *היפוך שליטה* והיא מאפשרת לכתוב קוד נקי יותר במקרים רבים, להפחית את מספר ה- props שצריך להעביר באפליקציה, ולהחזיר שליטה לקומפוננטה העליונה. עם זאת, היא לא תמיד הדרך הנכונה בכל מצב: העברת קוד מסובך למעלה בעץ הקומפוננטה יגרום לקומפוננטת השורש להיות יותר מסובכת ויכריח את קומפוננטות הילד להיות יותר מדי גמישות.
+תבנית העיצוב הזו נקראת *היפוך שליטה* והיא מאפשרת לכתוב קוד נקי יותר במקרים רבים, להפחית את מספר ה- props שצריך להעביר באפליקציה, ולהחזיר שליטה לקומפוננטה העליונה. היפוך שליטה זה, עם זאת, הוא לא תמיד הדרך הנכונה בכל מצב: העברת קוד מסובך למעלה בעץ הקומפוננטה יגרום לקומפוננטת השורש להיות יותר מסובכת ויכריח את קומפוננטות הילד להיות יותר מדי גמישות.
 
-<<<<<<< HEAD
 אין הגבלה של ילד יחיד לכל קומפוננטה. אפשר להעביר מספר ילדים, ואפילו מספר ״משבצות״ ("slots") לילדים, [כמתועד כאן](/docs/composition-vs-inheritance.html#containment):
-=======
-This *inversion of control* can make your code cleaner in many cases by reducing the amount of props you need to pass through your application and giving more control to the root components. Such inversion, however, isn't the right choice in every case; moving more complexity higher in the tree makes those higher-level components more complicated and forces the lower-level components to be more flexible than you may want.
->>>>>>> adfa67ad01b7e4c6114921cdf12e9e4cf1a1c786
-
 
 ```js
 function Page(props) {
@@ -129,11 +120,7 @@ const MyContext = React.createContext(defaultValue);
 
 הקוד הזה יותר עצם קונטקסט. כש- React מרנדר את הקומפוננטות שמאזינות לקונטקסט, הוא קורא את ערך הקונטקסט מהספר הקרוב ביותר מעליו בעץ.
 
-<<<<<<< HEAD
-ערך ברירת המחדל נקרא **רק** כשאין ספק מעליו בעץ הקומפוננטות. זה יכול להיות שימושי בבדיקות אוטומטיות לקומפוננטה בבידוד - בלי צורך לעטוף אותן. הערה: העברת הערך `undefined` כערך לספק לא יגרום להחזרת ערך ברירת המחדל.
-=======
-The `defaultValue` argument is **only** used when a component does not have a matching Provider above it in the tree. This default value can be helpful for testing components in isolation without wrapping them. Note: passing `undefined` as a Provider value does not cause consuming components to use `defaultValue`.
->>>>>>> adfa67ad01b7e4c6114921cdf12e9e4cf1a1c786
+ערך ברירת המחדל נקרא **רק** כשאין ספק מעליו בעץ הקומפוננטות. ערך ברירת מחדל זה יכול להיות שימושי בבדיקות אוטומטיות לקומפוננטה בבידוד - בלי צורך לעטוף אותן. הערה: העברת הערך `undefined` כערך לספק לא יגרום להחזרת ערך ברירת המחדל.
 
 ### `Context.Provider` {#contextprovider}
 
@@ -176,11 +163,7 @@ class MyClass extends React.Component {
 MyClass.contextType = MyContext;
 ```
 
-<<<<<<< HEAD
-מאפיין ה-`contextType` במחלקה מוקצה בעצם קונטקסט שנוצר על ידי המתודה [`React.createContext()`](#reactcreatecontext).זה נותן לנו לצרוך את ערך הקונטקסט הנוכחי הקרוב ביותר בעזרת `this.context`. אפשר להשתמש בהפניה זו בכל אחת ממתודות מחזור החיים כולל מתודת הרינדור.
-=======
-The `contextType` property on a class can be assigned a Context object created by [`React.createContext()`](#reactcreatecontext). Using this property lets you consume the nearest current value of that Context type using `this.context`. You can reference this in any of the lifecycle methods including the render function.
->>>>>>> adfa67ad01b7e4c6114921cdf12e9e4cf1a1c786
+מאפיין ה-`contextType` במחלקה מוקצה בעצם קונטקסט שנוצר על ידי המתודה [`React.createContext()`](#reactcreatecontext). שימוש במאפיין זה נותן לנו לצרוך את ערך הקונטקסט הנוכחי הקרוב ביותר בעזרת `this.context`. אפשר להשתמש בהפניה זו בכל אחת ממתודות מחזור החיים כולל מתודת הרינדור.
 
 > הערה:
 >
@@ -207,11 +190,7 @@ class MyClass extends React.Component {
 </MyContext.Consumer>
 ```
 
-<<<<<<< HEAD
-קומפוננטת React שמקשיבה לשינויים בקונטקסט. מאפשרת לצרוך קונטקסט מתוך [קומפוננטת פונקציה](/docs/components-and-props.html#function-and-class-components).
-=======
-A React component that subscribes to context changes. Using this component lets you subscribe to a context within a [function component](/docs/components-and-props.html#function-and-class-components).
->>>>>>> adfa67ad01b7e4c6114921cdf12e9e4cf1a1c786
+קומפוננטת React שמקשיבה לשינויים בקונטקסט. שימוש בקומפוננטה זו מאפשר לצרוך קונטקסט מתוך [קומפוננטת פונקציה](/docs/components-and-props.html#function-and-class-components).
 
 דורשת [פונקציה בתור ילד](/docs/render-props.html#using-props-other-than-render). הפונקציה הזאת מקבלת את ערך הקונטקסט הנוכחי ומחזירה צומת React. ערך הארגומנט שמועבר לפונקציה יהיה זהה ל- `value` prop של ספק הקונטקסט הקרוב ביותר מעלינו בעץ. אם אין ספק לקונטקס, הערך יהיה זהה לערך ברירת המחדל שנקבע בזמן יצירת הקונטקסט (עם `createContext()`).
 
