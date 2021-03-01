@@ -12,7 +12,11 @@ JavaScript הם פונקציות Hooks, אבל אתה צריך לנהוג על �
 
 ### ניתן לקרוא ל- Hooks רק ברמה העליונה {#only-call-hooks-at-the-top-level}
 
+<<<<<<< HEAD
 **אל תקרא ל- Hooks בתוך לופים, conditions כמו if או פונקציות מקוננות.** במקום זאת, תמיד השתמש ב- Hooks ברמה העליונה של פונקציית הריאקט שלך. על ידי ביצוע כלל זה, אתה מבטיח ש- Hooks נקראים באותו סדר כל פעם שקומפוננטה מתרנדרת. זה מה שמאפשר לריאקט לשמור את ה- state של Hooks בין קריאות מרובות של `useState` ו- `useEffect`. (אם אתה סקרן, נסביר זאת לעומק [למטה](#explanation).)
+=======
+**Don't call Hooks inside loops, conditions, or nested functions.** Instead, always use Hooks at the top level of your React function, before any early returns. By following this rule, you ensure that Hooks are called in the same order each time a component renders. That's what allows React to correctly preserve the state of Hooks between multiple `useState` and `useEffect` calls. (If you're curious, we'll explain this in depth [below](#explanation).)
+>>>>>>> 4fa06486cdb8c5a1cd7e3d88b24e76b1920f33fd
 
 ###ניתן לקרוא ל- Hooks רק מתוך פונקציות ריאקט{#only-call-hooks-from-react-functions}
 
