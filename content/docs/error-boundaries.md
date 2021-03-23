@@ -70,11 +70,7 @@ class ErrorBoundary extends React.Component {
 שימו לב ל[דוגמא הבאה של הגדרה ושימוש בגבולות שגיאה](https://codepen.io/gaearon/pen/wqvxGa?editors=0010) עם [גרסה 16 של React](/blog/2017/09/26/react-v16.0.html).
 
 
-<<<<<<< HEAD
 ## איפה למקם את גבולות שגיאה {#where-to-place-error-boundaries}
-=======
-The granularity of error boundaries is up to you. You may wrap top-level route components to display a “Something went wrong” message to the user, just like how server-side frameworks often handle crashes. You may also wrap individual widgets in an error boundary to protect them from crashing the rest of the application.
->>>>>>> df2fbde3b52336229eee550debd692184c427691
 
 אפשר להגדיר גבולות שגיאה ברמה גבוהה או נמוכה לפי הצורך או לפי ההעדפה אישית. לדוגמא, בשורש הצומת של עץ הקומפוננטות עם ממשק חלופי של ״משהו השתבש..״ (כמו שלרוב מנוהלות התרסקויות בצד השרת), או לחלופין לעטוף כל קומפוננטה או ווידג׳ט בגבול שגיאה אישי כדי למנוע התרסקות של שאר האפליקציה.
 
@@ -134,11 +130,6 @@ try {
 React לא צריך גבולות שגיאה כדי להתאושש משגיאות במטפלי אירועים. בשונה מהמתודת הרינדור ומתודות מחזור החיים, שגיאות שצצות במטפלי האירועים לא קורות בזמן הרינדור. אז אם צצה שגיאה, React עדיין ידע מה להציג.
 
 כשיש צורך לתפוס שגיאה במטפל האירועים, השתמשו בבלוק ה-`try` / `catch` כרגיל:
-
-<<<<<<< HEAD
-=======
-If you need to catch an error inside an event handler, use the regular JavaScript `try` / `catch` statement:
->>>>>>> df2fbde3b52336229eee550debd692184c427691
 
 ```js{9-13,17-20}
 class MyComponent extends React.Component {
