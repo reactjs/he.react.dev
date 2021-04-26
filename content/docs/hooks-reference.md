@@ -75,6 +75,7 @@ function Counter({initialCount}) {
 > בשונה ממתודת ה-`setState` שנמצאת בקומפוננטות מחלקה, `useState` לא ממזגת עדכוני אובייקטים באופן אוטומטי. ניתן לחקות התנהגות זו על ידי שילוב של מעדכן פונקציה עם אופן הכתיבה של object spread(שלוש נקודות '...'):
 >
 > ```js
+> const [state, setState] = useState({});
 > setState(prevState => {
 >   // Object.assign גם יעבוד
 >   return {...prevState, ...updatedValues};
