@@ -300,11 +300,7 @@ static getDerivedStateFromProps(props, state)
 getSnapshotBeforeUpdate(prevProps, prevState)
 ```
 
-<<<<<<< HEAD
-המתודה `getSnapshotBeforeUpdate()` מתבצעת רגע לפני שהפלט של הרינדור האחרון ביותר הועבר ל-DOM לדוגמא. זה מאפשר לקומפוננטה ללכוד מידע מסוים מה-DOM (לדוגמא, מיקום הגלילה) לפני שלכאורה ישתנה. כל ערך שיוחזר על-ידי מעגל-החיים הזה יועבר כפרמטר ל- `componentDidUpdate()`.
-=======
-`getSnapshotBeforeUpdate()` is invoked right before the most recently rendered output is committed to e.g. the DOM. It enables your component to capture some information from the DOM (e.g. scroll position) before it is potentially changed. Any value returned by this lifecycle method will be passed as a parameter to `componentDidUpdate()`.
->>>>>>> 5119600cf6f7a5dcbd4d2cc23f6b4ff55d2969b2
+המתודה `getSnapshotBeforeUpdate()` מתבצעת רגע לפני שהפלט של הרינדור האחרון ביותר הועבר ל-DOM לדוגמא. זה מאפשר לקומפוננטה ללכוד מידע מסוים מה-DOM (לדוגמא, מיקום הגלילה) לפני שהוא עשוי להשתנות. כל ערך שיוחזר על-ידי מתודת מעגל-החיים הזו יועבר כפרמטר ל-`componentDidUpdate()`.
 
 השימוש הזה לא נפוץ, אבל יכול להתרחש ב-UI-ים כמו גדיל של צ'אט שצריך לנהל מיקום גלילה בדרך מיוחדת.
 
