@@ -300,7 +300,7 @@ static getDerivedStateFromProps(props, state)
 getSnapshotBeforeUpdate(prevProps, prevState)
 ```
 
-המתודה `getSnapshotBeforeUpdate()` מתבצעת רגע לפני שהפלט של הרינדור האחרון ביותר הועבר ל-DOM לדוגמא. זה מאפשר לקומפוננטה ללכוד מידע מסוים מה-DOM (לדוגמא, מיקום הגלילה) לפני שלכאורה ישתנה. כל ערך שיוחזר על-ידי מעגל-החיים הזה יועבר כפרמטר ל- `componentDidUpdate()`.
+המתודה `getSnapshotBeforeUpdate()` מתבצעת רגע לפני שהפלט של הרינדור האחרון ביותר הועבר ל-DOM לדוגמא. זה מאפשר לקומפוננטה ללכוד מידע מסוים מה-DOM (לדוגמא, מיקום הגלילה) לפני שהוא עשוי להשתנות. כל ערך שיוחזר על-ידי מתודת מעגל-החיים הזו יועבר כפרמטר ל-`componentDidUpdate()`.
 
 השימוש הזה לא נפוץ, אבל יכול להתרחש ב-UI-ים כמו גדיל של צ'אט שצריך לנהל מיקום גלילה בדרך מיוחדת.
 
@@ -324,15 +324,9 @@ getSnapshotBeforeUpdate(prevProps, prevState)
 
 לפרטים נוספים, הסתכלו ב- [*טיפול בשגיאות ב-React 16*](/blog/2017/07/26/error-handling-in-react-16.html).
 
-<<<<<<< HEAD
 > הערה
 >
 > Error boundaries תופסים שגיאות בקומפוננטות **מתחתיהם** בעץ בלבד. error boundary לא יכול לתפוס שגיאה בתוך עצמו.
-=======
-> Note
->
-> Error boundaries only catch errors in the components **below** them in the tree. An error boundary can’t catch an error within itself.
->>>>>>> 8f7ffa473905148fd5c7ecfd7fed5dabbd261bf0
 
 ### `static getDerivedStateFromError()` {#static-getderivedstatefromerror}
 ```javascript
