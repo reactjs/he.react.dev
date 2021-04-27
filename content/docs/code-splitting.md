@@ -43,7 +43,7 @@ console.log(add(16, 26)); // 42
 
 אם יצרתם את האפליקציה בעזרת כלי כמו [Create React App](https://create-react-app.dev/), [Next.js](https://nextjs.org/), [Gatsby](https://www.gatsbyjs.org/) וכדומה, תוכלו להשתמש בהתקנה המובנית של Webpack כדי לאגד את האפליקציה.
 
-אם לא, תצטרכו להתקין כלי איגוד בעצמכם. התיעוד הנ״ל לדוגמא, יעזור לכם [להתקין](https://webpack.js.org/guides/installation/) ו[להתחיל להשתמש](https://webpack.js.org/guides/getting-started/) ב- Webpack.
+אם לא, תצטרכו להתקין כלי איגוד בעצמכם. לדוגמא, קראו את המדריכים [להתקנת](https://webpack.js.org/guides/installation/) ו[למשתמש המתחיל](https://webpack.js.org/guides/getting-started/) בדוקומנטציה של Webpack.
 
 ## פיצול קוד {#code-splitting}
 
