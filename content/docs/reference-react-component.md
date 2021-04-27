@@ -324,15 +324,9 @@ getSnapshotBeforeUpdate(prevProps, prevState)
 
 לפרטים נוספים, הסתכלו ב- [*טיפול בשגיאות ב-React 16*](/blog/2017/07/26/error-handling-in-react-16.html).
 
-<<<<<<< HEAD
 > הערה
 >
 > Error boundaries תופסים שגיאות בקומפוננטות **מתחתיהם** בעץ בלבד. error boundary לא יכול לתפוס שגיאה בתוך עצמו.
-=======
-> Note
->
-> Error boundaries only catch errors in the components **below** them in the tree. An error boundary can’t catch an error within itself.
->>>>>>> 8f7ffa473905148fd5c7ecfd7fed5dabbd261bf0
 
 ### `static getDerivedStateFromError()` {#static-getderivedstatefromerror}
 ```javascript
