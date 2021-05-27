@@ -19,14 +19,7 @@ var ReactTestUtils = require('react-dom/test-utils'); // ES5 עם npm
 
 > הערה:
 >
-<<<<<<< HEAD
-> אנו ממליצים להשתמש ב-[React Testing Library](https://testing-library.com/react) שתוכננה לאפשר ולעודד כתיבת בדיקות שמשתמשות בקומפוננטות שלך בצורה זהה למשתמשי הקצה.
->
-> לחלופין, Airbnb שחררו כלי בדיקה שנקרא [Enzyme](https://airbnb.io/enzyme/), שמקל על ווידוא, מניפולציה ומעבר על פלט קומפוננטות ה-React שלך.
-=======
-> We recommend using [React Testing Library](https://testing-library.com/react) which is designed to enable and encourage writing tests that use your components as the end users do.
-> 
-> For React versions <= 16, the [Enzyme](https://airbnb.io/enzyme/) library makes it easy to assert, manipulate, and traverse your React Components' output.
+> לגרסאות ריאקט מתחת או בגרסה 16, ספריית [Enzyme](https://airbnb.io/enzyme/) עוזרת לעשות מניפולציות על פלטי קומפוננטות בקלות.
 
 
 >>>>>>> e60bca04f3da690256ce019bd8907c2b368589ee
