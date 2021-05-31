@@ -29,21 +29,12 @@ redirect_from:
 </button>
 ```
 
-<<<<<<< HEAD
 הבדל נוסף הוא שאינכם יכולים להחזיר `false` כדי למנוע התנהגות ברירת מחדל ב-React. אתם חייבים לקרוא ל-`preventDefault` במפורש. לדוגמה, עם HTML רגיל, כדי למנוע את התנהגות ברירת המחדל עבור קישור של פתיחת דף חדש, אתם יכולים לכתוב:
 
 ```html
 <a href="#" onclick="console.log('הקישור נלחץ.'); return false">
   לחץ עלי
 </a>
-=======
-Another difference is that you cannot return `false` to prevent default behavior in React. You must call `preventDefault` explicitly. For example, with plain HTML, to prevent the default form behavior of submitting, you can write:
-
-```html
-<form onsubmit="console.log('You clicked submit.'); return false">
-  <button type="submit">Submit</button>
-</form>
->>>>>>> ec2d0adcb44d6394f4e6282d8bf52f0e25dbfec3
 ```
 
 ב-React, זה יכול להיות במקום זאת:
