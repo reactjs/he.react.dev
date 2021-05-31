@@ -39,17 +39,17 @@ redirect_from:
 
 ב-React, זה יכול להיות במקום זאת:
 
-```js{2-5,8}
-function ActionLink() {
-  function handleClick(e) {
+```js{3}
+function Form() {
+  function handleSubmit(e) {
     e.preventDefault();
-    console.log('The link was clicked.');
+    console.log('You clicked submit.');
   }
 
   return (
-    <a href="#" onClick={handleClick}>
-      Click me
-    </a>
+    <form onSubmit={handleSubmit}>
+      <button type="submit">Submit</button>
+    </form>
   );
 }
 ```
@@ -71,8 +71,8 @@ class Toggle extends React.Component {
   }
 
   handleClick() {
-    this.setState(state => ({
-      isToggleOn: !state.isToggleOn
+    this.setState(prevState => ({
+      isToggleOn: !prevState.isToggleOn
     }));
   }
 
