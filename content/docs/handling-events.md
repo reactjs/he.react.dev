@@ -110,7 +110,7 @@ class LoggingButton extends React.Component {
   render() {
     return (
       <button onClick={this.handleClick}>
-        לחץ עלי
+        לחץ עליי
       </button>
     );
   }
@@ -131,7 +131,7 @@ class LoggingButton extends React.Component {
     // תחביר זה מבטיח ש-`this` הוא bound בתוך handleClick
     return (
       <button onClick={() => this.handleClick()}>
-        לחץ עלי
+        לחץ עליי
       </button>
     );
   }
