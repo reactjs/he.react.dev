@@ -9,7 +9,11 @@ redirect_from:
   - "docs/forms-zh-CN.html"
 ---
 
+<<<<<<< HEAD
 אלמנטים של טפסיHTML עובדים מעט שונה מאשר אלמנטים אחרים של ה-DOM ב-React, מכיוון שאלמנטים של טפסים באופן טבעי שומרים על state פנימי. למשל, הטופס הבא ב-HTML פשוט מקבל שם אחד:
+=======
+HTML form elements work a bit differently from other DOM elements in React, because form elements naturally keep some internal state. For example, this form in plain HTML accepts a single name:
+>>>>>>> 68e4efcf93b6e589355f6aa3cbc3f3c811c0ad37
 
 ```html
 <form>
