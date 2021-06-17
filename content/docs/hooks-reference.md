@@ -210,7 +210,7 @@ const [state, dispatch] = useReducer(reducer, initialArg, init);
 
 אלטרנטיבה ל-[`useState`](#usestate). מקבל reducer מסוג `(state, action) => newState`, ומחזיר את ה-state הנוכחי ביחד עם מתודת `dispatch`. (אם התעסקת בעבר עם Redux, זה כבר מוכר לך).
 
-בדרך כלל `useReducer` עדיף על `useState` כשיש לך לוגיקת state מורכבת שמערבת מספר רב של תת-ערכים או כשה-state הבה תלוי ב-state הקודם. `useReducer` גם נותן לנו למטב ביצועים לקומפוננטות שמפעילות עדכונים עמוקים בגלל שניתן [להעביר את dispatch מטה במקום callbacks](/docs/hooks-faq.html#how-to-avoid-passing-callbacks-down).
+בדרך כלל `useReducer` עדיף על `useState` כשיש לך לוגיקת state מורכבת שמערבת מספר רב של תת-ערכים או כשה-state הבא תלוי ב-state הקודם. `useReducer` גם נותן לנו למטב ביצועים לקומפוננטות שמפעילות עדכונים עמוקים בגלל שניתן [להעביר את dispatch מטה במקום callbacks](/docs/hooks-faq.html#how-to-avoid-passing-callbacks-down).
 
 הנה דוגמת ה-counter מהקטע הקודם על [`useState`](#usestate), נכתב מחדש עם שימוש ב-reducer:
 
