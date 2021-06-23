@@ -32,9 +32,9 @@ redirect_from:
 הבדל נוסף הוא שאינכם יכולים להחזיר `false` כדי למנוע התנהגות ברירת מחדל ב-React. אתם חייבים לקרוא ל-`preventDefault` במפורש. לדוגמה, עם HTML רגיל, כדי למנוע את התנהגות ברירת המחדל עבור קישור של פתיחת דף חדש, אתם יכולים לכתוב:
 
 ```html
-<a href="#" onclick="console.log('הקישור נלחץ.'); return false">
-  לחץ עלי
-</a>
+<form onsubmit="console.log('לחצת שלח.'); return false">
+  <button type="submit">שלח</button>
+</form>
 ```
 
 ב-React, זה יכול להיות במקום זאת:
@@ -43,12 +43,12 @@ redirect_from:
 function Form() {
   function handleSubmit(e) {
     e.preventDefault();
-    console.log('You clicked submit.');
+    console.log('לחצת שלח.');
   }
 
   return (
     <form onSubmit={handleSubmit}>
-      <button type="submit">Submit</button>
+      <button type="submit">שלח</button>
     </form>
   );
 }
@@ -110,7 +110,7 @@ class LoggingButton extends React.Component {
   render() {
     return (
       <button onClick={this.handleClick}>
-        Click me
+        לחץ עליי
       </button>
     );
   }
@@ -118,6 +118,7 @@ class LoggingButton extends React.Component {
 ```
 
 תחביר זה מופעל כברירת מחדל ב-[Create React App](https://github.com/facebookincubator/create-react-app).
+
 אם אינכם משתמשים בתחביר שדות של מחלקה, באפשרותכם להשתמש ב[פונקצית חץ](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/Arrow_functions) ב-callback:
 
 ```js{7-9}
@@ -130,7 +131,7 @@ class LoggingButton extends React.Component {
     // תחביר זה מבטיח ש-`this` הוא bound בתוך handleClick
     return (
       <button onClick={() => this.handleClick()}>
-        Click me
+        לחץ עליי
       </button>
     );
   }
