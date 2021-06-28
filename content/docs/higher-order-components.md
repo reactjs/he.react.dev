@@ -306,7 +306,11 @@ const EnhancedComponent = enhance(WrappedComponent)
 
 הקומפוננטות המכילות שמיוצרות על ידי HOCs מוצגות ב- [React Developer Tools](https://github.com/facebook/react-devtools) כמו כל קומפוננטה אחרת. בשביל להקל על דיבאגינג, כדאי לתת לקומפוננטה שם שמסביר שהיא נוצרה כתוצאה משימוש ב- HOC.
 
+<<<<<<< HEAD
 הטכניקה הנפוצה ביותר היא לעטוף את השם (displayName) של הקומפוננטה העטופה. לדוגמא, אם הקומפוננטה מסדר גבוה יותר נקראת `withSubscription`, והקומפוננטה העטופה נקראת `CommentList`, נעטוף את השם המוצג ונחזיר `WithSubscription(CommentList)`:
+=======
+The container components created by HOCs show up in the [React Developer Tools](https://github.com/facebook/react/tree/master/packages/react-devtools) like any other component. To ease debugging, choose a display name that communicates that it's the result of a HOC.
+>>>>>>> 25f756d8e3800afb032cb31ce3626d6134e31e38
 
 
 ```js
