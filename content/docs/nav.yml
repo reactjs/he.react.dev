@@ -105,21 +105,7 @@
     - id: javascript-environment-requirements
       title: דרישות סביבת JS
     - id: glossary
-<<<<<<< HEAD
       title: מילון מונחים
-- title: מצב Concurrent (בשלבי ניסוי)
-  isOrdered: true
-  items:
-    - id: concurrent-mode-intro
-      title: הצגת Concurrent Mode
-    - id: concurrent-mode-suspense
-      title: Suspense ל- Data Fetching
-    - id: concurrent-mode-patterns
-      title: תבניות ממשק משתמש Concurrent
-    - id: concurrent-mode-adoption
-      title: אימוץ מצב Concurrent
-    - id: concurrent-mode-reference
-      title: עיון בסימוכין של מצב Concurrent
 - title: Hooks (חדש)
   isOrdered: true
   items:
@@ -148,37 +134,6 @@
   - id: testing-environments
     title: סביבות בדיקה
 - title: תרומה
-=======
-      title: Glossary
-- title: Hooks
-  isOrdered: true
-  items:
-    - id: hooks-intro
-      title: Introducing Hooks
-    - id: hooks-overview
-      title: Hooks at a Glance
-    - id: hooks-state
-      title: Using the State Hook
-    - id: hooks-effect
-      title: Using the Effect Hook
-    - id: hooks-rules
-      title: Rules of Hooks
-    - id: hooks-custom
-      title: Building Your Own Hooks
-    - id: hooks-reference
-      title: Hooks API Reference
-    - id: hooks-faq
-      title: Hooks FAQ
-- title: Testing
-  items:
-    - id: testing
-      title: Testing Overview
-    - id: testing-recipes
-      title: Testing Recipes
-    - id: testing-environments
-      title: Testing Environments
-- title: Contributing
->>>>>>> 25f756d8e3800afb032cb31ce3626d6134e31e38
   items:
   - id: how-to-contribute
     title: איך אפשר לתרום
