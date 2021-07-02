@@ -97,13 +97,8 @@ const MarkdownPage = ({
                 <div css={{marginTop: 15}}>
                   {date}{' '}
                   {hasAuthors && (
-<<<<<<< HEAD
-                    <span>
-                      על ידי{' '}
-=======
                     <span css={{lineHeight: 1.75}}>
-                      by{' '}
->>>>>>> 25f756d8e3800afb032cb31ce3626d6134e31e38
+                      על ידי{' '}
                       {toCommaSeparatedList(authors, author => (
                         <a
                           css={sharedStyles.link}
