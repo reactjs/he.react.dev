@@ -297,4 +297,4 @@ function NumberList(props) {
 
 [**נסו זאת ב-CodePen**](https://codepen.io/gaearon/pen/BLvYrB?editors=0010)
 
-לפעמיים התוצאה היא קוד ברור יותר, אבל סגנון זה יכול להיות גם לרעה. כמו ב-JavaScript, זה תלוי בהחלטתך האם כדאי לחלץ משתנה למען שיפור קריאתו. זכור כי אם גוף פונקציית `map()` יותר מידי מקונן, זה יכול להיות זמן טוב [לחלץ קומפוננטה](/docs/components-and-props.html#extracting-components).
+לפעמים התוצאה היא קוד ברור יותר, אבל סגנון זה יכול להיות גם לרעה. כמו ב-JavaScript, זה תלוי בהחלטתך האם כדאי לחלץ משתנה למען שיפור קריאתו. זכור כי אם גוף פונקציית `map()` יותר מידי מקונן, זה יכול להיות זמן טוב [לחלץ קומפוננטה](/docs/components-and-props.html#extracting-components).
