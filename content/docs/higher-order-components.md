@@ -16,11 +16,7 @@ const EnhancedComponent = higherOrderComponent(WrappedComponent);
 
 בשונה מקומפוננטה רגילה שמתרגמת מאפיינים לממשק משתמש, קומפוננטה מסדר גבוה יותר מתרגמת קומפוננטה לקומפוננטה אחרת.
 
-<<<<<<< HEAD
 ה-HOCs שכיחות בספריות צד שלישי של React, כמו למשל ה- [`connect`](https://github.com/reduxjs/react-redux/blob/main/docs/api/connect.md#connect) של Redux וה- `createFragmentContainer`](https://relay.dev/docs/v10.1.3/fragment-container/#createfragmentcontainer) של Relay.
-=======
-HOCs are common in third-party React libraries, such as Redux's [`connect`](https://github.com/reduxjs/react-redux/blob/main/docs/api/connect.md#connect) and Relay's [`createFragmentContainer`](https://relay.dev/docs/v10.1.3/fragment-container/#createfragmentcontainer).
->>>>>>> 0bb0303fb704147452a568472e968993f0729c28
 
 כאן נסביר למה קומפוננטות מסדר גבוה יותר שימושיות, ואיך ליצור כאלה בעצמנו.
 
