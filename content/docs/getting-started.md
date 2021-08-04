@@ -38,7 +38,7 @@ React תוכננה מלכתחילה לאימוץ הדרגתי, ו**אתם יכו
 
 אם אתם מעוניינים לשחק עם React, תוכלו להשתמש במגרש משחקים של קוד אונליין. נסו את תבנית שלום עולם ב-[CodePen](codepen://hello-world), [CodeSandbox](https://codesandbox.io/s/new), או [Stackblitz](https://stackblitz.com/fork/react).
 
-אם אתם מעדיפים להשתמש בעורך הטקסט שלכם, תוכלו גם [להוריד קובץ HTML זה](https://raw.githubusercontent.com/reactjs/reactjs.org/master/static/html/single-file-example.html), לערוך אותו, ולפתוח אותו ממערכת הקבצים המקומית בדפדפן שלכם. זה מאט את הטרנספורמציה של הקוד בזמן הריצה, אז היינו ממליצים להשתמש בזה רק עבור הדגמות פשוטות.
+אם אתם מעדיפים להשתמש בעורך הטקסט שלכם, תוכלו גם [להוריד קובץ HTML זה](https://raw.githubusercontent.com/reactjs/reactjs.org/main/static/html/single-file-example.html), לערוך אותו, ולפתוח אותו ממערכת הקבצים המקומית בדפדפן שלכם. זה מאט את הטרנספורמציה של הקוד בזמן הריצה, אז היינו ממליצים להשתמש בזה רק עבור הדגמות פשוטות.
 
 ### הוספת React לאתר {#add-react-to-a-website}
 
@@ -115,7 +115,7 @@ React תוכננה מלכתחילה לאימוץ הדרגתי, ו**אתם יכו
 
 תוכלו גם לעקוב אחר [חשבון @reactjs](https://twitter.com/reactjs) ב- Twitter, אך לא תחמיצו שום דבר חיוני אם תקראו את הבלוג בלבד.
 
-לא כל גירסת React ראויה לבלוג פוסט משל עצמה, אך תוכלו למצוא קובץ שינויים מפורט עבור כל גירסה [בקובץ CHANGELOG.md` בריפוזיטורי של React](https://github.com/facebook/react/blob/master/CHANGELOG.md), וכן בדף ה[שיחרורים](https://github.com/facebook/react/releases).
+לא כל גירסת React ראויה לבלוג פוסט משל עצמה, אך תוכלו למצוא קובץ שינויים מפורט עבור כל גירסה [בקובץ CHANGELOG.md` בריפוזיטורי של React](https://github.com/facebook/react/blob/main/CHANGELOG.md), וכן בדף ה[שיחרורים](https://github.com/facebook/react/releases).
 
 ## גרסאות תיעוד {#versioned-documentation}
 
