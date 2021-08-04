@@ -52,17 +52,10 @@ React הונדסה מההתחלה לאימוץ הדרגתי, ו**אנו יכול
 ```html{5,6,9}
   <!-- ... HTML אחר ... -->
 
-<<<<<<< HEAD
   <!-- טעינת ריאקט. -->
   <!-- שים לב: כשמעלים לאוויר, מחליפים את "development.js" עם "production.min.js". -->
-  <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
-  <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
-=======
-  <!-- Load React. -->
-  <!-- Note: when deploying, replace "development.js" with "production.min.js". -->
   <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
   <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
->>>>>>> 6682068641c16df6547b3fcdb7877e71bb0bebf9
 
   <!-- טעינת קומפוננטת ה-React שלנו. -->
   <script src="like_button.js"></script>
@@ -166,11 +159,7 @@ return (
 <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
 ```
 
-<<<<<<< HEAD
-עכשיו תוכל להשתמש ב-JSX בתוך כל תגית `<script>` על ידי הוספת מאפיין `type="text/babel"`. הנה [דוגמה של דף HTML עם JSX](https://raw.githubusercontent.com/reactjs/reactjs.org/master/static/html/single-file-example.html) שתוכל להוריד ולהתנסות עמה.
-=======
-Now you can use JSX in any `<script>` tag by adding `type="text/babel"` attribute to it. Here is [an example HTML file with JSX](https://raw.githubusercontent.com/reactjs/reactjs.org/main/static/html/single-file-example.html) that you can download and play with.
->>>>>>> 0bb0303fb704147452a568472e968993f0729c28
+עכשיו תוכל להשתמש ב-JSX בתוך כל תגית `<script>` על ידי הוספת מאפיין `type="text/babel"`. הנה [דוגמה של דף HTML עם JSX](https://raw.githubusercontent.com/reactjs/reactjs.org/main/static/html/single-file-example.html) שתוכל להוריד ולהתנסות עמה.
 
 גישה זו היא טובה ללמידה וליצירת הדגמות פשוטות. לעומת זאת, היא עושה את אתרך איטי והיא **אינה מתאימה לפרודקשן**. כשאתה מוכן להתקדם, הסר את תגית ה-`<script>` החדשה ואת מאפייני `type="text/babel"` שהוספת. במקום זאת, בפרק הבא נכין קדם-מעבד JSX שימיר את כל תגיות ה-`<script>` שלך באופן אוטומטי.
 
