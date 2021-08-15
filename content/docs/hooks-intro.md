@@ -98,7 +98,11 @@ React אינו מציע דרך ״לצרף״ התנהגות חוזרת לקומפ
 
 אנו גם מבינים שהרף להוספת פרימיטיב חדש ל-React הוא ממש גבוה. לקוראים סקרנים, הכנו [RFC מפורט](https://github.com/reactjs/rfcs/pull/68) אשר צולל ליותר פרטים, ומספק פרספקטיבה נוספת על החלטות העיצוב הספציפיות ואומנות קודמת בנושא.
 
+<<<<<<< HEAD
 **באופן מכריע, Hooks עובד לצד קוד קיים אז אתה יכול לאמץ אותם בהדרגה.** אין צורך למהר לעבור ל-Hooks. אנו ממליצים להמנע מכל ״שכתוב גדול״, במיוחד בשביל קומפוננטה מחלקה מסובכת קיימת. זה לוקח קצת זמן בשינוי מחשבתי להתחיל ״לחשוב ב-Hooks״. מנסיונינו, זה הכי טוב להתרגל להשתמש בהתחלה ב-Hooks בקומפוננטה חדשה ולא קריטית, ולהבטיח שכולם בצוות שלך מרגישים בנוח איתם. אחרי שנתתם ל-Hooks ניסיון בבקשה תרגישו חופשי [לשלוח אלינו משוב](https://github.com/facebook/react/issues/new), חיובי או שלילי.
+=======
+**Crucially, Hooks work side-by-side with existing code so you can adopt them gradually.** There is no rush to migrate to Hooks. We recommend avoiding any "big rewrites", especially for existing, complex class components. It takes a bit of a mind shift to start "thinking in Hooks". In our experience, it's best to practice using Hooks in new and non-critical components first, and ensure that everybody on your team feels comfortable with them. After you give Hooks a try, please feel free to [send us feedback](https://github.com/facebook/react/issues/new), positive or negative.
+>>>>>>> 95e15d063b205007a92c52efb5311f76ad5a0b6c
 
 אנחנו מתכוונים ב-Hooks לכסות את כל מקרי השימוש שיש במחלקות, אבל **אנו נמשיך לתמוך בקומפוננטת מחלקה בשביל העתיד הצפוי**. בפייסבוק, יש לנו עשרות אלפים של קומפוננטות שנכתבו במחלקות, ואין לנו בהחלט אף תוכנית לשכתב אותם. במקום זאת אנו מתחילים להשתמש ב-Hooks בקוד החדש לצד המחלקות.
 

@@ -16,7 +16,11 @@ const EnhancedComponent = higherOrderComponent(WrappedComponent);
 
 בשונה מקומפוננטה רגילה שמתרגמת מאפיינים לממשק משתמש, קומפוננטה מסדר גבוה יותר מתרגמת קומפוננטה לקומפוננטה אחרת.
 
+<<<<<<< HEAD
 ה-HOCs שכיחות בספריות צד שלישי של React, כמו למשל ה- [`connect`](https://github.com/reduxjs/react-redux/blob/main/docs/api/connect.md#connect) של Redux וה- `createFragmentContainer`](https://relay.dev/docs/v10.1.3/fragment-container/#createfragmentcontainer) של Relay.
+=======
+HOCs are common in third-party React libraries, such as Redux's [`connect`](https://github.com/reduxjs/react-redux/blob/master/docs/api/connect.md#connect) and Relay's [`createFragmentContainer`](https://relay.dev/docs/v10.1.3/fragment-container/#createfragmentcontainer).
+>>>>>>> 95e15d063b205007a92c52efb5311f76ad5a0b6c
 
 כאן נסביר למה קומפוננטות מסדר גבוה יותר שימושיות, ואיך ליצור כאלה בעצמנו.
 
@@ -306,7 +310,11 @@ const EnhancedComponent = enhance(WrappedComponent)
 
 הקומפוננטות המכילות שמיוצרות על ידי HOCs מוצגות ב- [React Developer Tools](https://github.com/facebook/react-devtools) כמו כל קומפוננטה אחרת. בשביל להקל על דיבאגינג, כדאי לתת לקומפוננטה שם שמסביר שהיא נוצרה כתוצאה משימוש ב- HOC.
 
+<<<<<<< HEAD
 הטכניקה הנפוצה ביותר היא לעטוף את השם (displayName) של הקומפוננטה העטופה. לדוגמא, אם הקומפוננטה מסדר גבוה יותר נקראת `withSubscription`, והקומפוננטה העטופה נקראת `CommentList`, נעטוף את השם המוצג ונחזיר `WithSubscription(CommentList)`:
+=======
+The container components created by HOCs show up in the [React Developer Tools](https://github.com/facebook/react/tree/main/packages/react-devtools) like any other component. To ease debugging, choose a display name that communicates that it's the result of a HOC.
+>>>>>>> 95e15d063b205007a92c52efb5311f76ad5a0b6c
 
 
 ```js
