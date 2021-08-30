@@ -237,7 +237,7 @@ class Square extends React.Component {
 class Square extends React.Component {
   render() {
     return (
-      <button className="square" onClick={function() { alert('click'); }}>
+      <button className="square" onClick={function() { console.log('click'); }}>
         {this.props.value}
       </button>
     );
@@ -245,7 +245,7 @@ class Square extends React.Component {
 }
 ```
 
-אם תלחצו על ריבוע עכשיו, אתם אמורים לקבל התראה מהדפדפן שלכם.
+אם תלחצו על ריבוע עכשיו, אתם אמורים לראות 'click' במסוף (console) בכלי הפיתוח של הדפדפן שלכם.
 
 >שימו לב
 >
@@ -255,7 +255,7 @@ class Square extends React.Component {
 >class Square extends React.Component {
 >  render() {
 >    return (
->      <button className="square" onClick={() => alert('click')}>
+>      <button className="square" onClick={() => console.log('click')}>
 >        {this.props.value}
 >      </button>
 >    );
@@ -263,7 +263,7 @@ class Square extends React.Component {
 >}
 >```
 >
->שימו לב איך עם `onClick={() => alert('click')}`, אנו מעבירים *פונקציה* בתור ה-prop `onClick`. React תקרא לפונקציה זו רק אחרי לחיצה. לשכוח את `() =>` ולכתוב רק `onClick={alert('click')}` היא טעות נפוצה, והיא תגרום להקפצת ההתראה בכל פעם שהקומפוננטה מתרנדרת מחדש.
+>שימו לב איך עם `onClick={() => console.log('click')}`, אנו מעבירים *פונקציה* בתור ה-prop `onClick`. React תקרא לפונקציה זו רק אחרי לחיצה. לשכוח את `() =>` ולכתוב רק `onClick={console.log('click')}` היא טעות נפוצה, והיא תגרום להרצת הקוד בכל פעם שהקומפוננטה מתרנדרת מחדש.
 
 בצעד הבא, אנחנו רוצים שהקומפוננטה ריבוע "תזכור" שהיא נלחצה, ותמלא את עצמה עם 
 הסימן "X". כדי "לזכור" דברים, קומפוננטות משתמשות ב-**state (מצב)**.
@@ -283,7 +283,7 @@ class Square extends React.Component {
 
   render() {
     return (
-      <button className="square" onClick={() => alert('click')}>
+      <button className="square" onClick={() => console.log('click')}>
         {this.props.value}
       </button>
     );

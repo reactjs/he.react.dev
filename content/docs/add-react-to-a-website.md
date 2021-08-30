@@ -123,7 +123,7 @@ ReactDOM.render(e(LikeButton), domContainer);
 
 ## אופציונאלי: נסה את React עם JSX {#optional-try-react-with-jsx}
 
-בדוגמאות הקודמות, הסתמכנו רק על פיצ'רים שנתמכים באופן טבעי על ידי הדפדפנים. זאת הסיבה שהשתמשנו בקריאת פונקציית JavaScript על מנת לומר ל-React מה להציג:
+בדוגמאות הקודמות, הסתמכנו רק על פיצ'רים שנתמכים באופן טבעי על ידי דפדפנים. זאת הסיבה שהשתמשנו בקריאה לפונקציית JavaScript על מנת לומר ל-React מה להציג:
 
 ```js
 const e = React.createElement;
