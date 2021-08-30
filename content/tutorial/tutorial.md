@@ -245,11 +245,7 @@ class Square extends React.Component {
 }
 ```
 
-<<<<<<< HEAD
-אם תלחצו על ריבוע עכשיו, אתם אמורים לקבל התראה מהדפדפן שלכם.
-=======
-If you click on a Square now, you should see 'click' in your browser's devtools console.
->>>>>>> 95e15d063b205007a92c52efb5311f76ad5a0b6c
+אם תלחצו על ריבוע עכשיו, אתם אמורים לראות 'click' במסוף (console) בכלי הפיתוח של הדפדפן שלכם.
 
 >שימו לב
 >
@@ -267,11 +263,7 @@ If you click on a Square now, you should see 'click' in your browser's devtools 
 >}
 >```
 >
-<<<<<<< HEAD
->שימו לב איך עם `onClick={() => alert('click')}`, אנו מעבירים *פונקציה* בתור ה-prop `onClick`. React תקרא לפונקציה זו רק אחרי לחיצה. לשכוח את `() =>` ולכתוב רק `onClick={alert('click')}` היא טעות נפוצה, והיא תגרום להקפצת ההתראה בכל פעם שהקומפוננטה מתרנדרת מחדש.
-=======
->Notice how with `onClick={() => console.log('click')}`, we're passing *a function* as the `onClick` prop. React will only call this function after a click. Forgetting `() =>` and writing `onClick={console.log('click')}` is a common mistake, and would fire every time the component re-renders.
->>>>>>> 95e15d063b205007a92c52efb5311f76ad5a0b6c
+>שימו לב איך עם `onClick={() => console.log('click')}`, אנו מעבירים *פונקציה* בתור ה-prop `onClick`. React תקרא לפונקציה זו רק אחרי לחיצה. לשכוח את `() =>` ולכתוב רק `onClick={console.log('click')}` היא טעות נפוצה, והיא תגרום להרצת הקוד בכל פעם שהקומפוננטה מתרנדרת מחדש.
 
 בצעד הבא, אנחנו רוצים שהקומפוננטה ריבוע "תזכור" שהיא נלחצה, ותמלא את עצמה עם 
 הסימן "X". כדי "לזכור" דברים, קומפוננטות משתמשות ב-**state (מצב)**.
