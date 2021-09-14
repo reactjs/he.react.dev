@@ -106,7 +106,7 @@
       title: דרישות סביבת JS
     - id: glossary
       title: מילון מונחים
-- title: Hooks (חדש)
+- title: Hooks
   isOrdered: true
   items:
       - id: hooks-intro
