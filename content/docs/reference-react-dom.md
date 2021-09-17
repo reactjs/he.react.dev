@@ -50,9 +50,15 @@ ReactDOM.render(element, container[, callback])
 >
 > `ReactDOM.render()` לא משנה את הצומת המכיל (רק משנה את הילדים של המכיל). ייתכן שיהיה אפשר להכניס קומפוננטה לצומת DOM קיים מבלי לדרוס את הילדים הקיימים.
 >
+<<<<<<< HEAD
 > `ReactDOM.render()` כרגע מחזירה הפניה למופע השורש `ReactComponent`. עם זאת, שימוש בערך מוחזר זה הוא שאריות מורשת
 > ויש להימנע מכך משום שגירסאות עתידיות של React עשויות לרנדר קומפוננטות באופן אסינכרוני במקרים מסוימים. אם אתם צריכים התייחסות למופע השורש `ReactComponent`, הפתרון המועדף הוא לצרף
 > [הפנייה ל-callback](/docs/more-about-refs.html#the-ref-callback-attribute) לאלמנט השורש.
+=======
+> `ReactDOM.render()` currently returns a reference to the root `ReactComponent` instance. However, using this return value is legacy
+> and should be avoided because future versions of React may render components asynchronously in some cases. If you need a reference to the root `ReactComponent` instance, the preferred solution is to attach a
+> [callback ref](/docs/refs-and-the-dom.html#callback-refs) to the root element.
+>>>>>>> a88b1e1331126287ccf03f2f4ec25ec38513b911
 >
 > שימוש ב-`ReactDOM.render()` כדי לנקות תוכן אלמנט שנשלח על-ידי השרת הוצא משימוש והאפשרות תוסר ב-React 17. השתמשו ב-[`hydrate()`](#hydrate) במקום.
 
