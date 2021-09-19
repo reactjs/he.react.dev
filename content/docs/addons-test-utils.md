@@ -125,11 +125,7 @@ it('can render and update a counter', () => {
 
 אסור לשכוח ששיגור אירועי DOM עובד רק כשקונטיינר ה-DOM נוסף ל-`document`.  ניתן להשתמש בעזר כמו [`react-testing-library`](https://github.com/kentcdodds/react-testing-library) על מנת להפחית קוד תבנית קבועה.
 
-<<<<<<< HEAD
 המסמך [`recipes`](/docs/testing-recipes.html) מכיל עוד מידע על ההתנהגות של `()act`, עם דוגמאות ודרכי שימוש.
-=======
-- The [`recipes`](/docs/testing-recipes.html) document contains more details on how `act()` behaves, with examples and usage.
->>>>>>> 519a3aec91a426b0c8c9ae59e292d064df48c66a
 
 * * *
 
@@ -146,15 +142,7 @@ mockComponent(
 
 > הערה:
 >
-<<<<<<< HEAD
-<<<<<<< HEAD
-> `mockComponent()` הוא API ישן. אנו ממליצים להשתמש ב-[רינדור רדוד](/docs/shallow-renderer.html) או ב-[`jest.mock()`](https://facebook.github.io/jest/docs/en/tutorial-react-native.html#mock-native-modules-using-jestmock) במקום.
-=======
-> `mockComponent()` is a legacy API. We recommend using [`jest.mock()`](https://facebook.github.io/jest/docs/en/tutorial-react-native.html#mock-native-modules-using-jestmock) instead.
->>>>>>> ddbd064d41d719f9ec0c2f6a4227f797a5828310
-=======
-> `mockComponent()` is a legacy API. We recommend using [`jest.mock()`](https://jestjs.io/docs/tutorial-react-native#mock-native-modules-using-jestmock) instead.
->>>>>>> a88b1e1331126287ccf03f2f4ec25ec38513b911
+> `mockComponent()` הוא API ישן. אנו ממליצים להשתמש ב-[רינדור רדוד](/docs/shallow-renderer.html) או ב-[`jest.mock()`](https://jestjs.io/docs/tutorial-react-native#mock-native-modules-using-jestmock) במקום.
 
 * * *
 
