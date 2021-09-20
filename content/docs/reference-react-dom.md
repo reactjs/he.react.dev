@@ -52,7 +52,7 @@ ReactDOM.render(element, container[, callback])
 >
 > `ReactDOM.render()` כרגע מחזירה הפניה למופע השורש `ReactComponent`. עם זאת, שימוש בערך מוחזר זה הוא שאריות מורשת
 > ויש להימנע מכך משום שגירסאות עתידיות של React עשויות לרנדר קומפוננטות באופן אסינכרוני במקרים מסוימים. אם אתם צריכים התייחסות למופע השורש `ReactComponent`, הפתרון המועדף הוא לצרף
-> [הפנייה ל-callback](/docs/more-about-refs.html#the-ref-callback-attribute) לאלמנט השורש.
+> [הפנייה ל-callback](/docs/refs-and-the-dom.html#callback-refs) לאלמנט השורש.
 >
 > שימוש ב-`ReactDOM.render()` כדי לנקות תוכן אלמנט שנשלח על-ידי השרת הוצא משימוש והאפשרות תוסר ב-React 17. השתמשו ב-[`hydrate()`](#hydrate) במקום.
 
