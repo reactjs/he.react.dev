@@ -147,10 +147,14 @@ mockComponent(
 > הערה:
 >
 <<<<<<< HEAD
+<<<<<<< HEAD
 > `mockComponent()` הוא API ישן. אנו ממליצים להשתמש ב-[רינדור רדוד](/docs/shallow-renderer.html) או ב-[`jest.mock()`](https://facebook.github.io/jest/docs/en/tutorial-react-native.html#mock-native-modules-using-jestmock) במקום.
 =======
 > `mockComponent()` is a legacy API. We recommend using [`jest.mock()`](https://facebook.github.io/jest/docs/en/tutorial-react-native.html#mock-native-modules-using-jestmock) instead.
 >>>>>>> ddbd064d41d719f9ec0c2f6a4227f797a5828310
+=======
+> `mockComponent()` is a legacy API. We recommend using [`jest.mock()`](https://jestjs.io/docs/tutorial-react-native#mock-native-modules-using-jestmock) instead.
+>>>>>>> f0a9793dff9f8e86ec365bfadb0b4b23c6f618ce
 
 * * *
 
