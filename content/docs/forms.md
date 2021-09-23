@@ -270,11 +270,7 @@ this.setState(partialState);
 
 ## ערך ריק בקלט מבוקר {#controlled-input-null-value}
 
-<<<<<<< HEAD
 ציון ערך ה-prop על [קומפוננטה מבוקרת](/docs/forms.html#controlled-components) מונעת מהמשתמש לשנות את הקלט אלא אם כן אתם חפצים בכך. אם ציינתם ערך `value` אבל ה-input עדיין ניתן לעריכה, יכול להיות שבטעות הגדרתם את `value` ל-`undefined` או `null`.
-=======
-Specifying the `value` prop on a [controlled component](/docs/forms.html#controlled-components) prevents the user from changing the input unless you desire so. If you've specified a `value` but the input is still editable, you may have accidentally set `value` to `undefined` or `null`.
->>>>>>> f0a9793dff9f8e86ec365bfadb0b4b23c6f618ce
 
 הקוד הבא מדגים זאת. (ה-input נעול בהתחלה, אך הופך לניתן לעריכה לאחר עיכוב קצר).
 
