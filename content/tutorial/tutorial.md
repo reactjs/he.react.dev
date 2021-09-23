@@ -527,11 +527,7 @@ class Board extends React.Component {
 
 ### מהי החשיבות של אי-יכולת השתנות  {#why-immutability-is-important}
 
-<<<<<<< HEAD
-בדוגמת הקוד הקודמת, הצענו להשתמש במתודה `.slice()` כדי ליצור עותק של מערך `squares` על מנת להעתיקו במקום לשנות את המערך הקיים. כעת נדון באי-יכולת השתנות (Immutability) ומדוע חשוב ללמוד על אי-יכולת השתנות.
-=======
-In the previous code example, we suggested that you create a copy of the `squares` array using the `slice()` method instead of modifying the existing array. We'll now discuss immutability and why immutability is important to learn.
->>>>>>> f0a9793dff9f8e86ec365bfadb0b4b23c6f618ce
+בדוגמת הקוד הקודמת, הצענו ליצור עותק של המערך `squares` על ידי שימוש במתודת `slice()` במקום שינוי המערך הקיים. כעת נדון בהיעדר יכולת שינוי (immutability) ומדוע חשוב ללמוד יכולת זו.
 
 יש בדרך כלל שתי גישות לשינוי נתונים. הגישה הראשונה היא *לשנות* את הנתונים על ידי שינוי ישיר של ערכי הנתונים. הגישה השנייה היא להחליף את הנתונים עם עותק חדש שבו יש את השינויים הרצויים.
 
