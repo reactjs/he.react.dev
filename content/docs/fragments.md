@@ -38,7 +38,7 @@ class Table extends React.Component {
 }
 ```
 
-`<Columns />` יצטרך להחזיר אלמנטים `<td>` מרובים כדי שהרנדור של ה-HTML יהיה חוקי. אם ה-div ישמש כהורה ב-`render()` של `<Columns />`, אז התוצאה של ה-HTML תהיה איינה חוקית.
+`<Columns />` יצטרך להחזיר אלמנטים `<td>` מרובים כדי שהרנדור של ה-HTML יהיה חוקי. אם ה-div ישמש כהורה ב-`render()` של `<Columns />`, אז התוצאה של ה-HTML תהיה אינה חוקית.
 
 ```jsx
 class Columns extends React.Component {
@@ -111,7 +111,7 @@ class Columns extends React.Component {
 }
 ```
 
-אתה יכול להשתמש `<></>` באותו אופן שהשתמשת בכל אלמנט אחר, אך הוא איינו תוך ב-keys או תכונות.
+אתה יכול להשתמש `<></>` באותו אופן שהשתמשת בכל אלמנט אחר, אך הוא אינו תוך ב-keys או תכונות.
 
 ### Keyed Fragments {#keyed-fragments}
 
