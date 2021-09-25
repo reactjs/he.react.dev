@@ -22,8 +22,6 @@ var ReactTestUtils = require('react-dom/test-utils'); // ES5 עם npm
 > לגרסאות ריאקט מתחת או בגרסה 16, ספריית [Enzyme](https://airbnb.io/enzyme/) עוזרת לעשות מניפולציות על פלטי קומפוננטות בקלות.
 
 
->>>>>>> e60bca04f3da690256ce019bd8907c2b368589ee
-
  - [`act()`](#act)
  - [`mockComponent()`](#mockcomponent)
  - [`isElement()`](#iselement)

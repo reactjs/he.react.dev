@@ -228,8 +228,7 @@ class Parent extends React.Component {
 this.inputElement.current.focus();
 ```
 
-בזמן השימוש ב HOC להרחבת קומפוננטות, מומלץ ל[העביר את ההפניה](/docs/forwarding-refs.html) לקומפוננטה הנעטפת בעזרת הפונקציה `forwardRef` של React.
-במקרה וקומפוננטת HOC שלא בשליטתכם (צד שלישי) לא מממשת את ההעברת ההפניה, השיטה לעיל יכולה בכל זאת לעזור.
+בזמן השימוש ב [HOC](/docs/higher-order-components.html) להרחבת קומפוננטות, מומלץ ל[העביר את ההפניה](/docs/forwarding-refs.html) לקומפוננטה הנעטפת בעזרת הפונקציה `forwardRef` של React. במקרה וקומפוננטת HOC שלא בשליטתכם (צד שלישי) לא מממשת את ההעברת ההפניה, השיטה לעיל יכולה בכל זאת לעזור.
 
 דוגמא טובה לשליטה בפוקוס אפשר למצוא ב[react-aria-modal](https://github.com/davidtheclark/react-aria-modal). זאת דוגמא יחסית נדירה של חלון מודאלי נגיש לגמרי. לא רק שהוא שם פוקוס התחלתי בכפתור הביטול (כדי למנוע ממשתמש המקלדת להתחיל את פעולת האישור בטעות) ושומר את פוקוס המקלדת בתוך החלון, הוא גם מחזיר את הפוקוס לאלמנט שפתח את החלון מלכתחילה לאחר סגירתו.
 
@@ -301,11 +300,7 @@ class OuterClickExample extends React.Component {
 
 <img src="../images/docs/outerclick-with-keyboard.gif" alt="A toggle button opening a popover list implemented with the click outside pattern and operated with the keyboard showing the popover not being closed on blur and it obscuring other screen elements." />
 
-<<<<<<< HEAD
 אפשר במקום זאת להגיע להתנהגות זהה בעזרת מטפלי אירועים כמו `onBlur` -ו `onFocus`:
-=======
-The same functionality can be achieved by using appropriate event handlers instead, such as `onBlur` and `onFocus`:
->>>>>>> c93286c071bca17ecba91cd130908fe2e33a4766
 
 ```javascript{19-29,31-34,37-38,40-41}
 class BlurExample extends React.Component {
