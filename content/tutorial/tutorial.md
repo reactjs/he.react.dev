@@ -454,11 +454,19 @@ class Square extends React.Component {
 
 כאשר לוחצים על ריבוע, נקראת פונקציית `onClick` שמסופקת על ידי הלוח. הנה סקירה של איך התנהגות זו מושגת:
 
+<<<<<<< HEAD
 1. ה-prop `onClick` בקומפוננטה המובנה של ה-DOM `<button>` גורם ל-React להגדיר מאזין לאירועי לחיצות.
 2. כאשר לוחצים על הכפתור, React יקרא למטפל האירועים `onClick` המוגדר במתודה `render()` של ריבוע.
 3. מטפל אירוע זה קורא ל-`this.props.onClick()`. ה-props `onClick` של ריבוע הוגדר על ידי הלוח.
 4. מאחר שהלוח העביר את `onClick={() => this.handleClick(i)}` לריבוע, הריבוע קורא ל-`this.handleClick(i)` בעת לחיצה עליו.
 5. עדיין לא הגדרנו את המתודה `handleClick()`, ולכן שהקוד שלנו קורס. אם תלחצו על ריבוע עכשיו, אתם אמורים לראות מסך שגיאה אדום שאומר משהו כמו "this.handleClick is not a function".
+=======
+1. The `onClick` prop on the built-in DOM `<button>` component tells React to set up a click event listener.
+2. When the button is clicked, React will call the `onClick` event handler that is defined in Square's `render()` method.
+3. This event handler calls `this.props.onClick()`. The Square's `onClick` prop was specified by the Board.
+4. Since the Board passed `onClick={() => this.handleClick(i)}` to Square, the Square calls the Board's `handleClick(i)` when clicked.
+5. We have not defined the `handleClick()` method yet, so our code crashes. If you click a square now, you should see a red error screen saying something like "this.handleClick is not a function".
+>>>>>>> 23d03a854ba21aeea0a03a0bd5185e0def9237d6
 
 >שימו לב
 >
