@@ -138,7 +138,11 @@ React הופך את זרימת המידע למפורשת על מנת לעזור 
 
 אם ננסה לכתוב או לסמן את הקופסה בגרסה הנוכחית של היישום שלנו, נראה שReact מתעלם מהקלט שלנו. זה נעשה בכוונה, מכיוון שאנחנו הגדרנו את ערך הprop של הקלט להיות תמיד שווה לstate שמועבר מFilterableProductTable.
 
+<<<<<<< HEAD
 נחשוב לרגע על מה אנחנו רוצים שיקרה. אנחנו רוצים להיות בטוחים שכשהמשתמש משנה את הטופס, אנחנו מעדכנים את הstate שישקף את קלט המשתמש. מכיוון שרצוי שקומפוננטות יעדכנו את הstate שלהן בלבד, FilterableProductTable יעביר callbacks לSearchBar שיופעלו כשהstate יתעדכן. אנחנו יכולים להשתמש בonChange event על הקלטים. הcallbacks שעוברים דרך FilterableProductTable יקראו למתודת  setState(), והיישום יתעדכן.
+=======
+If you try to type or check the box in the previous version of the example (step 4), you'll see that React ignores your input. This is intentional, as we've set the `value` prop of the `input` to always be equal to the `state` passed in from `FilterableProductTable`.
+>>>>>>> 9b3c3f4e613440baf2e2f1775be65dac8c08ab5f
 
 אפילו שזה נשמע מסובך, זה בסך הכל מספר מצומצם של שורות קוד. והיתרון הוא שזה מציג באופן מפורש איך המידע מועבר ביישום.
 
