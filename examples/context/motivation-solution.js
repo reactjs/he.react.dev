@@ -1,7 +1,7 @@
 // highlight-range{1-4}
-// קונטקס נותן לנו להעביר ערך עמוק לתוך עץ הקומפוננטות
+// קונטקסט נותן לנו להעביר ערך עמוק לתוך עץ הקומפוננטות
 // בלי להעביר אותו באופן מפורש לכל קומפוננטה.
-// (צור קונטקס לערכת הנושא (עם ברירת מחדל ״בהירה״
+// (צור קונטקסט לערכת הנושא (עם ברירת מחדל ״בהירה״
 const ThemeContext = React.createContext('light');
 
 class App extends React.Component {
@@ -31,7 +31,7 @@ function Toolbar() {
 
 class ThemedButton extends React.Component {
   // highlight-range{1-3,6}
-  // contextType-נקרא את ערך ערכת הנושא מהקונטקס ב.
+  // contextType-נקרא את ערך ערכת הנושא מהקונטקסט ב.
   // ימצא את ספק ערכת הנושא הקרוב ויקרא את ערך ערכת הנושא React
   // בדוגמא הזאת, הערך הוא ״כהה״.
   static contextType = ThemeContext;
