@@ -62,11 +62,7 @@ class ErrorBoundary extends React.Component {
 
 גבולות שגיאה עובדים בצורה דומה לבלוק `catch {}` ב-JavaScript, אבל בתוך הקומפוננטה. רק קומפוננטות מחלקה יכולות להיות גבולות שגיאה. בפועל, מגדירים בדרך כלל גבול שגיאה אחד ונשתמש בו בצורה אחידה בכל האפליקציה.
 
-<<<<<<< HEAD
-שימו לב ש**גבולות שגיאה תופסים אך ורק שגיאות בקומפוננטות הילד שלהם**, ולא בתוך עצמם. אם מתרחשת שגיאה בקוד ה- `render` של גבולות השגיאה לדוגמא, השגיאות תעלה לגבול שגיאה הבא מעליה, בדיוק כמצופה מההתנהגות של בלוק ה- `catch {}` ב-JavaScript.
-=======
-Note that **error boundaries only catch errors in the components below them in the tree**. An error boundary can’t catch an error within itself. If an error boundary fails trying to render the error message, the error will propagate to the closest error boundary above it. This, too, is similar to how the `catch {}` block works in JavaScript.
->>>>>>> 4133943e718a77f11627888db2f59f6cb7a73403
+שימו לב ש**גבולות שגיאה תופסים אך ורק שגיאות בקומפוננטות הילד שלהם**, ולא בתוך עצמם. אם מתרחשת שגיאה בקוד ה- `render` של גבולות השגיאה לדוגמא, השגיאות תעלה לגבול שגיאה הבא מעליה, בדומה להתנהגות של בלוק ה- `catch {}` ב-JavaScript.
 
 ## הדגמה חיה {#live-demo}
 
