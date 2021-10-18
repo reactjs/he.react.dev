@@ -457,7 +457,7 @@ class Square extends React.Component {
 1. ה-prop `onClick` בקומפוננטה המובנה של ה-DOM `<button>` גורם ל-React להגדיר מאזין לאירועי לחיצות.
 2. כאשר לוחצים על הכפתור, React יקרא למטפל האירועים `onClick` המוגדר במתודה `render()` של ריבוע.
 3. מטפל אירוע זה קורא ל-`this.props.onClick()`. ה-props `onClick` של ריבוע הוגדר על ידי הלוח.
-4. מאחר שהלוח העביר את `onClick={() => this.handleClick(i)}` לריבוע, הריבוע קורא ל-`this.handleClick(i)` בעת לחיצה עליו.
+4. מאחר שהלוח העביר את `onClick={() => this.handleClick(i)}` לריבוע, הריבוע קורא ל-`this.handleClick(i)` של הלוח בעת לחיצה עליו.
 5. עדיין לא הגדרנו את המתודה `handleClick()`, ולכן שהקוד שלנו קורס. אם תלחצו על ריבוע עכשיו, אתם אמורים לראות מסך שגיאה אדום שאומר משהו כמו "this.handleClick is not a function".
 
 >שימו לב
@@ -1048,6 +1048,8 @@ const doubled = numbers.map(x => x * 2); // [2, 4, 6]
 
 **[צפו בקוד המלא עד נקודה זו](https://codepen.io/gaearon/pen/EmmGEa?editors=0010)**
 
+כשאנחנו עוברים על המערך `history`, הערך במשתנה `step` הוא הערך הנוכחי שבאלמנט `history`, והערך של `move` הוא המפתח הנוכחי של האלמנט `history`. אנחנו מעוניינים רק ב`move` פה, לכן המשתנה `step` לא מוקצה.
+
 עבור כל מהלך בהיסטוריית משחק האיקס-עיגול, אנו יוצרים פריט רשימה `<li>` המכיל כפתור `<button>`. לכפתור יש מנהל אירוע `onClick` אשר קורא למתודה הנקראת `this.jumpTo()`. לא יישמנו את המתודה `jumpTo()` עדיין. לעת עתה, אנחנו צריכים לראות רשימה של המהלכים שהתרחשו במשחק ואזהרה במסוף כלי הפיתוח (developer tools console) שאומרת:
 
 >  Warning:
@@ -1153,6 +1155,8 @@ class Game extends React.Component {
     // המתודה לא השתנתה
   }
 ```
+
+נשים לב כי במתודה `jumpTo`, לא עדכנו את מאפיין ההיסטוריה של ה-state. זה מכיון שעדכונים ב-state קורים רק למאפיינים שמצויינים בקריאה של המתודה `setState`, מה שמשאיר את שאר המאפיינים כפי שהם. למידע נוסף **[ראה את הדוקומנטציה](https://reactjs.org/docs/state-and-lifecycle.html#state-updates-are-merged)**
 
 כעת נערוך מספר שינויים במתודת `handleClick` של המשחק אשר נקראת כאשר השחקן לוחץ על ריבוע.
 

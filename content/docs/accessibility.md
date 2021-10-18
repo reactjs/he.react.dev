@@ -457,7 +457,7 @@ Deque Systems מציעה את [aXe-core](https://github.com/dequelabs/axe-core) 
 
 [מנוע הנגישות](https://www.deque.com/products/axe/) שנקרא גם aXe, הוא תוסף לדפדפן שבודק נגישות ומרחיב את `aXe-core`.
 
-ניתן להשתמש גם ב [react-axe](https://github.com/dylanb/react-axe) כדי ליצור דוחות על ממצאי נגישות ישירות ל console בזמן פיתוח ודיבאג
+ניתן להשתמש גם ב [@axe-core/react](https://github.com/dequelabs/axe-core-npm/tree/develop/packages/react) כדי ליצור דוחות על ממצאי נגישות ישירות ל console בזמן פיתוח ודיבאג
 
 #### WebAIM WAVE {#webaim-wave}
 
