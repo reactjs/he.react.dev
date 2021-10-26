@@ -75,7 +75,11 @@ Create React App לא מטפל בלוגיקת backend או במסדי נתוני
 
 - **[Nx](https://nx.dev/react)** הוא ערכת כלים לפיתוח monorepo פול-סטאק, עם תמיכה מובנית לריאקט, Next.js, [Express](https://expressjs.com/) ועוד.
 
+<<<<<<< HEAD
 - **[Parcel](https://parceljs.org/)** הוא אפליקציית ווב מהירה, נטולת קונפיגורציות שמשמשת כ-bundler [שעובד עם React](https://parceljs.org/recipes.html#react).
+=======
+- **[Parcel](https://parceljs.org/)** is a fast, zero configuration web application bundler that [works with React](https://parceljs.org/recipes/react/).
+>>>>>>> f574b8f9a5b753bdf4a5fb1ba0e12c605cceed8e
 
 - **[Razzle](https://github.com/jaredpalmer/razzle)** הוא פרייוורק שמשמש לרינדור צד-שרת ולא דורש שום קונפיגורציה, אך מציע יותר גמישות מ-Next.js.
 

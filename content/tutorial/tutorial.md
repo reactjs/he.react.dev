@@ -1156,9 +1156,15 @@ class Game extends React.Component {
   }
 ```
 
+<<<<<<< HEAD
 נשים לב כי במתודה `jumpTo`, לא עדכנו את מאפיין ההיסטוריה של ה-state. זה מכיון שעדכונים ב-state קורים רק למאפיינים שמצויינים בקריאה של המתודה `setState`, מה שמשאיר את שאר המאפיינים כפי שהם. למידע נוסף **[ראה את הדוקומנטציה](https://reactjs.org/docs/state-and-lifecycle.html#state-updates-are-merged)**
 
 כעת נערוך מספר שינויים במתודת `handleClick` של המשחק אשר נקראת כאשר השחקן לוחץ על ריבוע.
+=======
+Notice in `jumpTo` method, we haven't updated `history` property of the state. That is because state updates are merged or in more simple words React will update only the properties mentioned in `setState` method leaving the remaining state as that is. For more info **[see the documentation](/docs/state-and-lifecycle.html#state-updates-are-merged)**.
+
+We will now make a few changes to the Game's `handleClick` method which fires when you click on a square.
+>>>>>>> f574b8f9a5b753bdf4a5fb1ba0e12c605cceed8e
 
 מצב `stepNumber` שהוספנו משקף את המהלך המוצג למשתמש כעת. לאחר שנעשה מהלך חדש, עלינו לעדכן את `stepNumber` על-ידי הוספת `stepNumber: history.length` כחלק מהארגומנטים של `this.setState`. זה מבטיח שאנחנו לא נתקע כשאנחנו מראים את אותו מהלך אחרי שמהלך חדש כבר בוצע.
 
