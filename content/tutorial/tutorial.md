@@ -1048,7 +1048,11 @@ const doubled = numbers.map(x => x * 2); // [2, 4, 6]
 
 **[צפו בקוד המלא עד נקודה זו](https://codepen.io/gaearon/pen/EmmGEa?editors=0010)**
 
+<<<<<<< HEAD
 כשאנחנו עוברים על המערך `history`, הערך במשתנה `step` הוא הערך הנוכחי שבאלמנט `history`, והערך של `move` הוא המפתח הנוכחי של האלמנט `history`. אנחנו מעוניינים רק ב`move` פה, לכן המשתנה `step` לא מוקצה.
+=======
+As we iterate through `history` array, `step` variable refers to the current `history` element value, and `move` refers to the current `history` element index. We are only interested in `move` here, hence `step` is not getting assigned to anything.
+>>>>>>> aa70dcedc6db07987a814dba2b296cc4c5219860
 
 עבור כל מהלך בהיסטוריית משחק האיקס-עיגול, אנו יוצרים פריט רשימה `<li>` המכיל כפתור `<button>`. לכפתור יש מנהל אירוע `onClick` אשר קורא למתודה הנקראת `this.jumpTo()`. לא יישמנו את המתודה `jumpTo()` עדיין. לעת עתה, אנחנו צריכים לראות רשימה של המהלכים שהתרחשו במשחק ואזהרה במסוף כלי הפיתוח (developer tools console) שאומרת:
 
