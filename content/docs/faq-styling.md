@@ -48,4 +48,8 @@ _שים לב שהפונקציונאליות הזאת היא לא חלק מ-React
 
 ### האם אני יכול לעשות אנימציות ב-React? {#can-i-do-animations-in-react}
 
+<<<<<<< HEAD
 ניתן להשתמש ב-React להנפשת אנימציות. ראה [React Transition Group](https://reactcommunity.org/react-transition-group/) ו-[React Motion](https://github.com/chenglou/react-motion) או [React Spring](https://github.com/react-spring/react-spring), לדוגמא.
+=======
+React can be used to power animations. See [React Transition Group](https://reactcommunity.org/react-transition-group/), [React Motion](https://github.com/chenglou/react-motion), [React Spring](https://github.com/react-spring/react-spring), or [Framer Motion](https://framer.com/motion), for example.
+>>>>>>> 014f4890dc30a3946c63f83b06883241ddc9bc75
