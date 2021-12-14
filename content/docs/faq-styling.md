@@ -47,5 +47,4 @@ CSS classes בדרך כלל טובים יותר לביצועים מאשר inline
 _שים לב שהפונקציונאליות הזאת היא לא חלק מ-React, אך מסופקת מספריות צד שלישי._ ל-React אין דיעה על איך עיצוב מוגדר; אם יש ספק, נקודת התחלה טובה היא להגדיר את העיצוב שלך קובץ `*.css` חיצוני כרגיל לפנות אלייהם באמצעות [`className`](/docs/dom-elements.html#classname).
 
 ### האם אני יכול לעשות אנימציות ב-React? {#can-i-do-animations-in-react}
-
-ניתן להשתמש ב-React להנפשת אנימציות. ראה [React Transition Group](https://reactcommunity.org/react-transition-group/) ו-[React Motion](https://github.com/chenglou/react-motion) או [React Spring](https://github.com/react-spring/react-spring), לדוגמא.
+ניתן להשתמש ב-React להנפשת אנימציות. ראה [React Transition Group](https://reactcommunity.org/react-transition-group/), [React Motion](https://github.com/chenglou/react-motion), [React Spring](https://github.com/react-spring/react-spring), או [Framer Motion](https://framer.com/motion) לדוגמא.
