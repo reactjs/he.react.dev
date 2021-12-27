@@ -156,7 +156,7 @@ const Footer = ({layoutHasSidebar = false}: {layoutHasSidebar: boolean}) => (
               color: colors.subtleOnDark,
               paddingTop: 15,
             }}>
-            {`כל הזכויות שמורות © ${new Date().getFullYear()} Facebook Inc.`}
+            {`כל הזכויות שמורות © ${new Date().getFullYear()} Meta Platforms, Inc.`}
           </p>
         </section>
       </div>
