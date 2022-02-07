@@ -68,7 +68,7 @@ ReactDOM.render(
 );
 ```
 
-[](codepen://introducing-jsx)
+**[Try it on CodePen](https://codepen.io/gaearon/pen/PGEjdG?editors=1010)**
 
 אנו מפצלים את JSX על מספר שורות עבור הקריאות. אף על פי שזה לא נדרש, כאשר עושים זאת, אנו ממליצים גם לעטוף אותו בסוגריים כדי למנוע את החסרונות של [הכנסת נקודה-פסיק אוטומטית](https://stackoverflow.com/q/2846283).
 
@@ -92,7 +92,7 @@ function getGreeting(user) {
 ניתן להשתמש בגרשיים כדי לציין מחרוזות כמאפיינים:
 
 ```js
-const element = <div tabIndex="0"></div>;
+const element = <a href="https://www.reactjs.org"> link </a>;
 ```
 
 תוכלו גם להשתמש בסוגריים מסולסלים כדי להטמיע ביטוי ב-JavaScript במאפיין:
