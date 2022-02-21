@@ -180,11 +180,15 @@ const MyComponent = () => (
 
 מקום טוב להתחיל בו הוא ה-routes. רוב האנשים ברשת רגילים שמעבר בין דפים לוקח זמן טעינה מסוים. בנוסף, הדף כולו מרונדר מחדש בבת אחת, ולכן המשתמשים לא יהיו באמצע אינטראקציה עם אלמנטים בדף בזמן הטעינה.
 
+<<<<<<< HEAD
 הנה דוגמא של פיצול קוד לפי routes בעזרת ספריות כמו [React Router](https://reacttraining.com/react-router/) עם `React.lazy`.
+=======
+Here's an example of how to setup route-based code splitting into your app using libraries like [React Router](https://reactrouter.com/) with `React.lazy`.
+>>>>>>> 2310e15532aba273d713996a4c6ef04247dff764
 
 ```js
 import React, { Suspense, lazy } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 const Home = lazy(() => import('./routes/Home'));
 const About = lazy(() => import('./routes/About'));
@@ -192,10 +196,10 @@ const About = lazy(() => import('./routes/About'));
 const App = () => (
   <Router>
     <Suspense fallback={<div>Loading...</div>}>
-      <Switch>
-        <Route exact path="/" component={Home}/>
-        <Route path="/about" component={About}/>
-      </Switch>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+      </Routes>
     </Suspense>
   </Router>
 );

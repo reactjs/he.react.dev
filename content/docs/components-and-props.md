@@ -76,7 +76,7 @@ ReactDOM.render(
 );
 ```
 
-[](codepen://components-and-props/rendering-a-component)
+**[Try it on CodePen](https://codepen.io/gaearon/pen/YGYmEG?editors=1010)**
 
 בואו נסכם מה קורה בדוגמה זו:
 
@@ -118,7 +118,7 @@ ReactDOM.render(
 );
 ```
 
-[](codepen://components-and-props/composing-components)
+**[Try it on CodePen](https://codepen.io/gaearon/pen/KgQKPr?editors=1010)**
 
 בדרך כלל, אפליקציות React חדשות כוללות קומפוננטת `App` אחת בראש האפליקציה. עם זאת, אם תשלבו את React באפליקציה קיימת, תוכלו להתחיל מלמטה למעלה באמצעות קומפוננטה קטנה כגון `Button`, ובהדרגה להגיע לחלק העליון ביותר של הירארכיית התצוגה.
 
@@ -152,7 +152,7 @@ function Comment(props) {
 }
 ```
 
-[](codepen://components-and-props/extracting-components)
+**[Try it on CodePen](https://codepen.io/gaearon/pen/VKQwEo?editors=1010)**
 
 היא מקבלת את `author` (אובייקט), `text` (מחרוזת) ו-`date` (תאריך) בתור props, ומתארת תגובה באתר אינטרנט של מדיה חברתית.
 
@@ -231,7 +231,7 @@ function Comment(props) {
 }
 ```
 
-[](codepen://components-and-props/extracting-components-continued)
+**[Try it on CodePen](https://codepen.io/gaearon/pen/rrJNJY?editors=1010)**
 
 חילוץ קומפוננטות אולי נראה כמו עבודה שחורה בהתחלה, אבל בעלות על מגוון קומפוננטות לשימוש חוזר משתלמת באפליקציות גדולות יותר. כלל אצבע טוב הוא שאם חלק מממשק המשתמש שלכם נמצא בשימוש מספר פעמים (`Button`, `Panel`, `Avatar`), או שהוא מורכב מספיק בכוחות עצמו (`App`, `FeedStory`, `Comment`), הוא מועמד טוב להיות מחולץ לקומפוננטה אחרת.
 
