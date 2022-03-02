@@ -87,13 +87,13 @@ class ErrorBoundary extends React.Component {
 אנחנו ממליצים גם להשתמש בשירותי דיווח השגיאות של JavaScript (או לבנות שירותים דומים בעצמכם), על מנת למצוא בעיות בסביבת הייצור ולתקן אותן בקלות ובמהירות.
 
 
-## מעקבי ערימות לקומפוננטות {#component-stack-traces}
+## stack trace לקומפוננטות {#component-stack-traces}
 
-בגרסה 16 של React כל השגיאות שקורות בזמן הרינדור בסביבת הפיתוח מודפסות למסוף בדפדפן, אפילו אם האפליקציה בולעת אותם בטעות. בנוסף להודעת השגיאה ומעקב העירומת של JavaScript, מודפס גם מעקר הערימה של הקומפפוננטה. עכשיו אפשר לראות בדיוק איפה בקומפוננטה קרתה השגיאה:
+בגרסה 16 של React כל השגיאות שקורות בזמן הרינדור בסביבת הפיתוח מודפסות למסוף בדפדפן, אפילו אם האפליקציה בולעת אותם בטעות. בנוסף להודעת השגיאה וה-stack trace של JavaScript, מודפס גם ה-stack trace של הקומפוננטה. עכשיו אפשר לראות בדיוק איפה בקומפוננטה קרתה השגיאה:
 
 <img src="../images/docs/error-boundaries-stack-trace.png" style="max-width:100%" alt="שיגאה שנתפסה על ידי גבולות שגיאה">
 
-אפשר גם לראות את שם הקובץ ומספר השורה בקוד הקומפוננטה בעזרת מעקב הערימות. זה עובד בברירת המחדל בפרויקטים שנוצרו עם [אפליקצית Create React](https://github.com/facebookincubator/create-react-app):
+אפשר גם לראות את שם הקובץ ומספר השורה בקוד הקומפוננטה בעזרת ה-stack trace. זה עובד בברירת המחדל בפרויקטים שנוצרו עם [אפליקצית Create React](https://github.com/facebookincubator/create-react-app):
 
 <img src="../images/docs/error-boundaries-stack-trace-line-numbers.png" style="max-width:100%" alt="שגיאה שנתפסה על ידי גבולות שגיאה עם מספר שורה">
 
