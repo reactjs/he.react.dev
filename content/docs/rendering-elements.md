@@ -38,7 +38,7 @@ Unlike browser DOM elements, React elements are plain objects, and are cheap to 
 
 `embed:rendering-elements/render-an-element.js`
 
-[](codepen://rendering-elements/render-an-element)
+**[Try it on CodePen](https://codepen.io/gaearon/pen/ZpvBNJ?editors=1010)**
 
 דוגמא זו מציגה "Hello, world" בעמוד.
 
@@ -52,7 +52,7 @@ Unlike browser DOM elements, React elements are plain objects, and are cheap to 
 
 `embed:rendering-elements/update-rendered-element.js`
 
-[](codepen://rendering-elements/update-rendered-element)
+**[Try it on CodePen](https://codepen.io/gaearon/pen/gwoJZk?editors=1010)**
 
 דוגמא זו קוראת ל[`ReactDOM.render()`](/docs/react-dom.html#render) בכל שניה על ידי הפונקציה הנקראת על ידי [`setInterval()`](https://developer.mozilla.org/en-US/docs/Web/API/WindowTimers/setInterval).
 
@@ -67,7 +67,11 @@ Unlike browser DOM elements, React elements are plain objects, and are cheap to 
 
 React DOM משווה את האלמנט וילדיו למצב הקודם שלו ומחיל אך ורק שינויים נדרשים בDOM על מנת להביא אותו למצב הרצוי.
 
+<<<<<<< HEAD
 אתה יכול לאמת זאת על ידי התבוננות [בדוגמא](codepen://rendering-elements/update-rendered-element) באמצעות כלי הדפדפן:
+=======
+You can verify by inspecting the [last example](https://codepen.io/gaearon/pen/gwoJZk?editors=1010) with the browser tools:
+>>>>>>> 1e3b023d3192c36a2da7b72389debee2f0e0e8b0
 
 ![DOM inspector המציג את העדכונים הפרטניים](../images/docs/granular-dom-updates.gif)
 
