@@ -33,13 +33,14 @@ const listItems = numbers.map((number) =>
 );
 ```
 
+<<<<<<< HEAD
 אנו מכלילים את המערך `listItems` כולו לתוך אלמנט `<ul>`, ו[מרדנדרים את ה-DOM](/docs/rendering-elements.html#rendering-an-element-into-the-dom).
+=======
+Then, we can include the entire `listItems` array inside a `<ul>` element:
+>>>>>>> 707f22d25f5b343a2e5e063877f1fc97cb1f48a1
 
 ```javascript{2}
-ReactDOM.render(
-  <ul>{listItems}</ul>,
-  document.getElementById('root')
-);
+<ul>{listItems}</ul>
 ```
 
 [**נסו זאת ב-CodePen**](https://codepen.io/gaearon/pen/GjPyQr?editors=0011)
@@ -64,10 +65,8 @@ function NumberList(props) {
 }
 
 const numbers = [1, 2, 3, 4, 5];
-ReactDOM.render(
-  <NumberList numbers={numbers} />,
-  document.getElementById('root')
-);
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<NumberList numbers={numbers} />);
 ```
 
 כאשר תריץ את הקוד הזה, תופיע אזהרה שמפתח צריך להיות מסופק לפריטים ברשימה. "מפתח" הוא תכונה מיוחדת מסוג מחרוזת שאתה צריך להכליל מתי שאתה יוצר רשימה של אלמנטים. נדון מדוע זה חשוב בחלק הבא.
@@ -86,12 +85,6 @@ function NumberList(props) {
     <ul>{listItems}</ul>
   );
 }
-
-const numbers = [1, 2, 3, 4, 5];
-ReactDOM.render(
-  <NumberList numbers={numbers} />,
-  document.getElementById('root')
-);
 ```
 
 [**נסו זאת ב-CodePen**](https://codepen.io/gaearon/pen/jrXYRR?editors=0011)
@@ -165,12 +158,6 @@ function NumberList(props) {
     </ul>
   );
 }
-
-const numbers = [1, 2, 3, 4, 5];
-ReactDOM.render(
-  <NumberList numbers={numbers} />,
-  document.getElementById('root')
-);
 ```
 
 **דוגמה: שימוש נכון במפתח**
@@ -193,12 +180,6 @@ function NumberList(props) {
     </ul>
   );
 }
-
-const numbers = [1, 2, 3, 4, 5];
-ReactDOM.render(
-  <NumberList numbers={numbers} />,
-  document.getElementById('root')
-);
 ```
 
 [**נסו זאת ב-CodePen**](https://codepen.io/gaearon/pen/ZXeOGM?editors=0010)
@@ -239,10 +220,9 @@ const posts = [
   {id: 1, title: 'שלום עולם', content: '!React ברוכים הבאים ללמידת'},
   {id: 2, title: 'התקנה', content: 'npm-מ React אתה יכול להתקין את'}
 ];
-ReactDOM.render(
-  <Blog posts={posts} />,
-  document.getElementById('root')
-);
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<Blog posts={posts} />);
 ```
 
 [**נסו זאת ב-CodePen**](https://codepen.io/gaearon/pen/NRZYGN?editors=0010)

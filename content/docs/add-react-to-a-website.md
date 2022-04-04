@@ -52,10 +52,17 @@ React הונדסה מההתחלה לאימוץ הדרגתי, ו**אנו יכול
 ```html{5,6,9}
   <!-- ... HTML אחר ... -->
 
+<<<<<<< HEAD
   <!-- טעינת ריאקט. -->
   <!-- שים לב: כשמעלים לאוויר, מחליפים את "development.js" עם "production.min.js". -->
   <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
   <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+=======
+  <!-- Load React. -->
+  <!-- Note: when deploying, replace "development.js" with "production.min.js". -->
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+>>>>>>> 707f22d25f5b343a2e5e063877f1fc97cb1f48a1
 
   <!-- טעינת קומפוננטת ה-React שלנו. -->
   <script src="like_button.js"></script>
@@ -77,14 +84,19 @@ React הונדסה מההתחלה לאימוץ הדרגתי, ו**אנו יכול
 
 אחרי **[הקוד ההתחלתי](https://gist.github.com/gaearon/0b180827c190fe4fd98b4c7f570ea4a8/raw/b9157ce933c79a4559d2aa9ff3372668cce48de7/LikeButton.js)**, הוסף שתי שורות לתחתית הקובץ `like_button.js`:
 
-```js{3,4}
+```js{3,4,5}
 // ... the starter code you pasted ...
 
 const domContainer = document.querySelector('#like_button_container');
-ReactDOM.render(e(LikeButton), domContainer);
+const root = ReactDOM.createRoot(domContainer);
+root.render(e(LikeButton));
 ```
 
+<<<<<<< HEAD
 שתי שורות אלו מוצאות את תגית ה-`<div>` שהוספנו לדף ה-HTML בשלב הראשון, ואז מציגות את קומפוננטת כפתור ה-"לייק" בתוכו.
+=======
+These three lines of code find the `<div>` we added to our HTML in the first step, create a React app with it, and then display our "Like" button React component inside of it.
+>>>>>>> 707f22d25f5b343a2e5e063877f1fc97cb1f48a1
 
 ### זהו זה! {#thats-it}
 
@@ -115,8 +127,8 @@ ReactDOM.render(e(LikeButton), domContainer);
 אם צמצמת כבר את הסקריפטים של האפליקציה שלך, **האתר שלך יהיה מוכן לפרודקשן** במידה ואתה מוודא שה-HTML שהעלת טוען את גרסאות React המסתיימות עם `production.min.js`:
 
 ```js
-<script src="https://unpkg.com/react@17/umd/react.production.min.js" crossorigin></script>
-<script src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js" crossorigin></script>
+<script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
 ```
 
 אם אין לך שלב צמצום לסקריפטים שלך, [הנה דרך אחת לעשות זאת](https://gist.github.com/gaearon/42a2ffa41b8319948f9be4076286e1f3).

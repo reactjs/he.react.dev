@@ -117,7 +117,11 @@ React תוסיף באופן אוטומטי סיומת  "px" לכמה מאפיי�
 
 אם אתה משתמש ברינדור בצד-שרת ב-React, בדרך כלל יש אזהרה כשהשרת והלקוח מרנדרים תוכן שונה. לעומת זאת, במקרים נדירים, זה קשה מאוד עד בלתי אפשרי להבטיח תוצאה זהה. לדוגמה, חותמות זמן אמורות להיות שונות בשרת ובלקוח.
 
+<<<<<<< HEAD
 אם אתה קובע את `suppressHydrationWarning` כ-`true`, React לא תזהיר אותך לגבי אי התאמה בתכונות ובתוכן של האלמנט. דבר זה עובד בעומק של רמה אחת בלבד, ומיועד לשימוש כפתח מילוט. אל תשתמש בזה יותר מדי. ניתן לקרוא עוד על hydration ב-[`ReactDOM.hydrate()` documentation](/docs/react-dom.html#hydrate).
+=======
+If you set `suppressHydrationWarning` to `true`, React will not warn you about mismatches in the attributes and the content of that element. It only works one level deep, and is intended to be used as an escape hatch. Don't overuse it. You can read more about hydration in the [`ReactDOM.hydrateRoot()` documentation](/docs/react-dom-client.html#hydrateroot).
+>>>>>>> 707f22d25f5b343a2e5e063877f1fc97cb1f48a1
 
 ### value {#value}
 

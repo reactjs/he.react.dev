@@ -275,10 +275,14 @@ this.setState(partialState);
 הקוד הבא מדגים זאת. (ה-input נעול בהתחלה, אך הופך לניתן לעריכה לאחר עיכוב קצר).
 
 ```javascript
+<<<<<<< HEAD
 ReactDOM.render(<input value="היי" />, mountNode);
+=======
+ReactDOM.createRoot(mountNode).render(<input value="hi" />);
+>>>>>>> 707f22d25f5b343a2e5e063877f1fc97cb1f48a1
 
 setTimeout(function() {
-  ReactDOM.render(<input value={null} />, mountNode);
+  ReactDOM.createRoot(mountNode).render(<input value={null} />);
 }, 1000);
 
 ```

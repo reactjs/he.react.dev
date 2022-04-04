@@ -67,7 +67,11 @@ React, לפי דעתנו, היא ספריית הג'וואה-סקריפט המו�
 
 נוכל לבנות מלמעלה למטה או מלמטה למעלה. שזה אומר שנוכל להתחיל לבנות את הקומפוננטות מלמעלה בהירככיה( נתחיל מFilterableProductTable ) או מהקומפוננטות התחתונות בהיררכיה( ProductRow  ). בדוגמות פשוטות יותר, זה קל יותר להתחיל מלמעלה למטה, ובפרויקטים גדולים, זה קל יותר להתחיל מלמטה למעלה ולכתוב tests במקביל לבנייה.
 
+<<<<<<< HEAD
 בסוף השלב הזה, יהיה לנו ספרייה של קומפוננטות שמישות שמרנדרות את מודל המידע. הקומפוננטות יכילו רק מתודות render()  מכיון שזוהי גרסה סטטית של היישום. הקומפוננטה בראש ההיררכיה(FilterableProductTable) תיקח  את מודל המידע כprop  שיועבר לה. אם נבצע שינוי למודל המידע ונקרא ל ReactDOM.render() שוב, ממשק המשתמש יעודכן. זה פשוט לראות איך ממשק המשתמש מעודכן והיכן לבצע שינויים מכיוון ששום דבר מסובך לא מתבצע. **העברת המידע בכיוון אחד** של React משאירה הכל בצורה מודולרית ומהירה.
+=======
+At the end of this step, you'll have a library of reusable components that render your data model. The components will only have `render()` methods since this is a static version of your app. The component at the top of the hierarchy (`FilterableProductTable`) will take your data model as a prop. If you make a change to your underlying data model and call `root.render()` again, the UI will be updated. You can see how your UI is updated and where to make changes. React's **one-way data flow** (also called *one-way binding*) keeps everything modular and fast.
+>>>>>>> 707f22d25f5b343a2e5e063877f1fc97cb1f48a1
 
 קרא עוד ב[תיעוד של ריאקט](/docs/getting-started.html) אם תצטרך עזרה בביצוע שלב זה.
 

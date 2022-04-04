@@ -44,6 +44,7 @@ JSX היא תוספת תחביר עבור JavaScript. היא דומה לשפת �
 
 React DOM משתמשת בקונבנצית מתן שמות של מאפיינים ב-camelCase במקום בשמות של תכונות HTML. לדוגמה, `tabindex` הופך ל-`tabIndex` ב-JSX. המאפיין `class` גם נכתב בשם `className` מכיוון ש-`class` היא מילה שמורה ב-JavaScript:
 
+<<<<<<< HEAD
 ```js
 const name = 'תפוזינה';
 ReactDOM.render(
@@ -51,6 +52,11 @@ ReactDOM.render(
   document.getElementById('root')
 );
 ```  
+=======
+```jsx
+<h1 className="hello">My name is Clementine!</h1>
+```
+>>>>>>> 707f22d25f5b343a2e5e063877f1fc97cb1f48a1
 
 ## [אלמנטים](/docs/rendering-elements.html) {#elements}
 
