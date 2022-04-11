@@ -8,16 +8,27 @@ next: introducing-jsx.html
 
 הדוגמה הקטנה ביותר ב-React נראית כך:
 
+<<<<<<< HEAD
 ```js
 ReactDOM.render(
   <h1>שלום עולם</h1>,
   document.getElementById('root')
 );
+=======
+```jsx
+ReactDOM
+  .createRoot(document.getElementById('root'))
+  .render(<h1>Hello, world!</h1>);
+>>>>>>> 84ad3308338e2bb819f4f24fa8e9dfeeffaa970b
 ```
 
 היא מראה את הכותרת ״שלום עולם״ על הדף.
 
+<<<<<<< HEAD
 [נסו את זה ב-CodePen](codepen://hello-world)
+=======
+**[Try it on CodePen](https://codepen.io/gaearon/pen/rrpgNB?editors=1010)**
+>>>>>>> 84ad3308338e2bb819f4f24fa8e9dfeeffaa970b
 
 לחצו על הקישור למעלה כדי לפתוח עורך אונליין. תרגישו בנוח לעשות כמה שינויים כדי שתראו איך הם משנים את התוצאה. לרוב העמודים במדריך הזה יהיו דוגמאות שניתנות לעריכה.
 

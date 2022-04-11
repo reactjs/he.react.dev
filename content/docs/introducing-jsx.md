@@ -33,6 +33,7 @@ React [לא דורשת](/docs/react-without-jsx.html) שימוש ב-JSX, אבל 
 בדוגמה הבאה, אנו מכריזים על משתנה הנקרא `name` (שם) ולאחר מכן משתמשים בו בתוך JSX על ידי עטיפתו בסוגריים מסולסלים:
 
 ```js{1,2}
+<<<<<<< HEAD
 const name = 'גיא פרץ';
 const element = <h1>שלום, {name}</h1>;
 
@@ -40,6 +41,10 @@ ReactDOM.render(
   element,
   document.getElementById('root')
 );
+=======
+const name = 'Josh Perez';
+const element = <h1>Hello, {name}</h1>;
+>>>>>>> 84ad3308338e2bb819f4f24fa8e9dfeeffaa970b
 ```
 
 ניתן לשים כל [ביטוי JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Expressions_and_Operators#Expressions) חוקי בתוך סוגריים מסולסלים ב-JSX. לדוגמה, `2 + 2`, `user.firstName`, או `formatName(user)` הם כולם ביטויים חוקיים ב-JavaScript.
@@ -61,14 +66,9 @@ const element = (
     Hello, {formatName(user)}!
   </h1>
 );
-
-ReactDOM.render(
-  element,
-  document.getElementById('root')
-);
 ```
 
-[](codepen://introducing-jsx)
+**[Try it on CodePen](https://codepen.io/gaearon/pen/PGEjdG?editors=1010)**
 
 אנו מפצלים את JSX על מספר שורות עבור הקריאות. אף על פי שזה לא נדרש, כאשר עושים זאת, אנו ממליצים גם לעטוף אותו בסוגריים כדי למנוע את החסרונות של [הכנסת נקודה-פסיק אוטומטית](https://stackoverflow.com/q/2846283).
 
@@ -92,7 +92,7 @@ function getGreeting(user) {
 ניתן להשתמש בגרשיים כדי לציין מחרוזות כמאפיינים:
 
 ```js
-const element = <div tabIndex="0"></div>;
+const element = <a href="https://www.reactjs.org"> link </a>;
 ```
 
 תוכלו גם להשתמש בסוגריים מסולסלים כדי להטמיע ביטוי ב-JavaScript במאפיין:
