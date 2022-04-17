@@ -513,7 +513,11 @@ setState(updater, [callback])
 
 `setState()` מכניסה לתור שינויים ב-state של הקומפוננטה ואומרת ל-React שהקומפוננטה הזו והילדים שלה צריכים להיות מרונדרים מחדש עם ה-state המעודכן. זו המתודה הראשית שבה משתמשים כדי לעדכן את ממשק המשתמש בתגובה למנהלי אירועים ותגובות שרת.
 
+<<<<<<< HEAD
 חישבו על `setState()` כאל *בקשה* מאשר כאל פקודה מידית לעדכון הקומפוננטה. למען ביצועים טובים יותר, React עשויה לעכב את ביצועה של הפקודה, ואז לעדכן מספר קומפוננטות במעבר אחד. React לא מבטיחה ששינוי ה-state יתבצעו מידית.
+=======
+Think of `setState()` as a *request* rather than an immediate command to update the component. For better perceived performance, React may delay it, and then update several components in a single pass. In the rare case that you need to force the DOM update to be applied synchronously, you may wrap it in [`flushSync`](/docs/react-dom.html#flushsync), but this may hurt performance.
+>>>>>>> 84ad3308338e2bb819f4f24fa8e9dfeeffaa970b
 
 `setState()` לא תמיד מעדכנת באופן מידי את הקומפוננטה. היא עשויה לדחות את העידכון לאחר כך. זה גורם לכך שקריאה מ- `this.state` ישר אחרי קריאה ל-`setState()` למלכודת פוטנציאלית. במקום, השתמשו ב- `componentDidUpdate` או בפונקצית ה-callback ב-`setState` (`setState(updater, callback)`), בכל אחד מהמקרים מובטח כי יתבצע לאחד שהעדכון יקרה. אם יש צורך להגדיר את ה-state בהתבסס על ה-state הקודם, קראו על הארגומנט `updater` מטה.
 

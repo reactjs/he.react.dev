@@ -1156,13 +1156,21 @@ class Game extends React.Component {
   }
 ```
 
+<<<<<<< HEAD
 נשים לב כי במתודה `jumpTo`, לא עדכנו את מאפיין ההיסטוריה של ה-state. זה מכיון שעדכונים ב-state קורים רק למאפיינים שמצויינים בקריאה של המתודה `setState`, מה שמשאיר את שאר המאפיינים כפי שהם. למידע נוסף **[ראה את הדוקומנטציה](https://reactjs.org/docs/state-and-lifecycle.html#state-updates-are-merged)**
+=======
+Notice in `jumpTo` method, we haven't updated `history` property of the state. That is because state updates are merged or in more simple words React will update only the properties mentioned in `setState` method leaving the remaining state as is. For more info **[see the documentation](/docs/state-and-lifecycle.html#state-updates-are-merged)**.
+>>>>>>> 84ad3308338e2bb819f4f24fa8e9dfeeffaa970b
 
 כעת נערוך מספר שינויים במתודת `handleClick` של המשחק אשר נקראת כאשר השחקן לוחץ על ריבוע.
 
 מצב `stepNumber` שהוספנו משקף את המהלך המוצג למשתמש כעת. לאחר שנעשה מהלך חדש, עלינו לעדכן את `stepNumber` על-ידי הוספת `stepNumber: history.length` כחלק מהארגומנטים של `this.setState`. זה מבטיח שאנחנו לא נתקע כשאנחנו מראים את אותו מהלך אחרי שמהלך חדש כבר בוצע.
 
+<<<<<<< HEAD
 בנוסף נחליף את הקריאה מ-`this.state.history` עם `this.state.history.slice(0, this.state.stepNumber + 1)`. זה מבטיח שאם אנחנו "חוזרים אחורה בזמן" ולאחר מכן עושים מהלך חדש מנקודה זו, אנו זורקים את כל ההיסטוריה "העתידית" שעכשיו תיהפך לשגויה.
+=======
+We will also replace reading `this.state.history` with `this.state.history.slice(0, this.state.stepNumber + 1)`. This ensures that if we "go back in time" and then make a new move from that point, we throw away all the "future" history that would now be incorrect.
+>>>>>>> 84ad3308338e2bb819f4f24fa8e9dfeeffaa970b
 
 ```javascript{2,13}
   handleClick(i) {

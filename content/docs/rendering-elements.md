@@ -34,11 +34,15 @@ Unlike browser DOM elements, React elements are plain objects, and are cheap to 
 
 בדרך כלל, אפליקציות הנבנות עם ריאקט הן בעלות קודקוד DOM שורשי אחד. במידה ואתה משלב את ריאקט לתוך אפליקציה קיימת, אתה יכול להשתמש בכמות בלתי מוגבלת של קודקודי DOM שורשיים.
 
+<<<<<<< HEAD
 על מנת לצייר אלמנט ריאקטי לתוך קודקוד DOM שורשי, העבר אותם אל הפונקציה [`ReactDOM.render()`](/docs/react-dom.html#render):
+=======
+To render a React element, first pass the DOM element to [`ReactDOM.createRoot()`](/docs/react-dom-client.html#createroot), then pass the React element to `root.render()`:
+>>>>>>> 84ad3308338e2bb819f4f24fa8e9dfeeffaa970b
 
 `embed:rendering-elements/render-an-element.js`
 
-[](codepen://rendering-elements/render-an-element)
+**[Try it on CodePen](https://codepen.io/gaearon/pen/ZpvBNJ?editors=1010)**
 
 דוגמא זו מציגה "Hello, world" בעמוד.
 
@@ -46,20 +50,32 @@ Unlike browser DOM elements, React elements are plain objects, and are cheap to 
 
 אלמנטי ריאקט [אינם משתנים](https://en.wikipedia.org/wiki/Immutable_object). במידה ויצרת אלמנט, לא ניתן לשנות את ילדיו או מאפייניו. אלמנט הוא כמו פרים יחיד בסרט: הוא מייצג את ממשק המשתמש בנקודה מסויימת בזמן.
 
+<<<<<<< HEAD
 עם הידע שלמדנו על כה, הדרך היחידה לעדכן את ממשק המשתמש הוא על ידי יצירה של אלמנט חדש והעברה שלו ל[`ReactDOM.render()`](/docs/react-dom.html#render).
+=======
+With our knowledge so far, the only way to update the UI is to create a new element, and pass it to `root.render()`.
+>>>>>>> 84ad3308338e2bb819f4f24fa8e9dfeeffaa970b
 
 בהתחשב בדוגמת השעון המתקתק:
 
 `embed:rendering-elements/update-rendered-element.js`
 
-[](codepen://rendering-elements/update-rendered-element)
+**[Try it on CodePen](https://codepen.io/gaearon/pen/gwoJZk?editors=1010)**
 
+<<<<<<< HEAD
 דוגמא זו קוראת ל[`ReactDOM.render()`](/docs/react-dom.html#render) בכל שניה על ידי הפונקציה הנקראת על ידי [`setInterval()`](https://developer.mozilla.org/en-US/docs/Web/API/WindowTimers/setInterval).
+=======
+It calls [`root.render()`](/docs/react-dom.html#render) every second from a [`setInterval()`](https://developer.mozilla.org/en-US/docs/Web/API/WindowTimers/setInterval) callback.
+>>>>>>> 84ad3308338e2bb819f4f24fa8e9dfeeffaa970b
 
 >**הערה:**
 >
+<<<<<<< HEAD
 >בפועל, רוב אפליקציות ריאקט קוראות ל[`ReactDOM.render()`](/docs/react-dom.html#render) פעם אחת בלבד. בפרקים הבאים נלמד איך קוד כזה מוכמס ל[קומפוננטות בעלות state](/docs/state-and-lifecycle.html).
 
+=======
+>In practice, most React apps only call `root.render()` once. In the next sections we will learn how such code gets encapsulated into [stateful components](/docs/state-and-lifecycle.html).
+>>>>>>> 84ad3308338e2bb819f4f24fa8e9dfeeffaa970b
 >
 >אנו ממליצים לא לדלג על נושאים מכיוון שהם נבנו אחד על השני.
 
@@ -67,7 +83,11 @@ Unlike browser DOM elements, React elements are plain objects, and are cheap to 
 
 React DOM משווה את האלמנט וילדיו למצב הקודם שלו ומחיל אך ורק שינויים נדרשים בDOM על מנת להביא אותו למצב הרצוי.
 
+<<<<<<< HEAD
 אתה יכול לאמת זאת על ידי התבוננות [בדוגמא](codepen://rendering-elements/update-rendered-element) באמצעות כלי הדפדפן:
+=======
+You can verify by inspecting the [last example](https://codepen.io/gaearon/pen/gwoJZk?editors=1010) with the browser tools:
+>>>>>>> 84ad3308338e2bb819f4f24fa8e9dfeeffaa970b
 
 ![DOM inspector המציג את העדכונים הפרטניים](../images/docs/granular-dom-updates.gif)
 
