@@ -25,7 +25,11 @@ React הונדסה מההתחלה לאימוץ הדרגתי, ו**אנו יכול
 
 לא יהיו כלים מורכבים או דרישות התקנה – **על מנת להשלים חלק זה, כל מה שתצטרך הוא חיבור אינטרנט ודקה מזמנך.**
 
+<<<<<<< HEAD
 אופציונאלי: [הורד את הדוגמה המלאה (2KB zipped)](https://gist.github.com/gaearon/6668a1f6986742109c00a581ce704605/archive/f6c882b6ae18bde42dcf6fdb751aae93495a2275.zip)
+=======
+Optional: [Download the full example (2KB zipped)](https://gist.github.com/gaearon/6668a1f6986742109c00a581ce704605/archive/87f0b6f34238595b44308acfb86df6ea43669c08.zip)
+>>>>>>> 5f3a9756e00e256735a5f52df19b403d8fdd3a9d
 
 ### שלב ראשון: הוסף קונטיינר DOM לקובץ ה-HTML {#step-1-add-a-dom-container-to-the-html}
 
@@ -82,7 +86,11 @@ React הונדסה מההתחלה לאימוץ הדרגתי, ו**אנו יכול
 >
 >קוד זה מגדיר קומפוננטת React שנקראת `LikeButton`. אל תדאג אם אתה לא מבין את זה עדיין -- אנו נכסה את היסודות של React מאוחר יותר ב[מדריך המעשי](/tutorial/tutorial.html) וב[מדריך הקונספטים העיקריים](/docs/hello-world.html). בינתיים, בוא רק נדאג שזה יוצג על המסך!
 
+<<<<<<< HEAD
 אחרי **[הקוד ההתחלתי](https://gist.github.com/gaearon/0b180827c190fe4fd98b4c7f570ea4a8/raw/b9157ce933c79a4559d2aa9ff3372668cce48de7/LikeButton.js)**, הוסף שתי שורות לתחתית הקובץ `like_button.js`:
+=======
+After **[the starter code](https://gist.github.com/gaearon/0b180827c190fe4fd98b4c7f570ea4a8/raw/b9157ce933c79a4559d2aa9ff3372668cce48de7/LikeButton.js)**, add three lines to the bottom of `like_button.js`:
+>>>>>>> 5f3a9756e00e256735a5f52df19b403d8fdd3a9d
 
 ```js{3,4,5}
 // ... the starter code you pasted ...
@@ -106,7 +114,11 @@ These three lines of code find the `<div>` we added to our HTML in the first ste
 
 **[ראה את קוד הדוגמה המלא](https://gist.github.com/gaearon/6668a1f6986742109c00a581ce704605)**
 
+<<<<<<< HEAD
 **[הורד את הדוגמה המלאה (2KB zipped)](https://gist.github.com/gaearon/6668a1f6986742109c00a581ce704605/archive/f6c882b6ae18bde42dcf6fdb751aae93495a2275.zip)**
+=======
+**[Download the full example (2KB zipped)](https://gist.github.com/gaearon/6668a1f6986742109c00a581ce704605/archive/87f0b6f34238595b44308acfb86df6ea43669c08.zip)**
+>>>>>>> 5f3a9756e00e256735a5f52df19b403d8fdd3a9d
 
 ### טיפ: שימוש חוזר בקומפוננטה {#tip-reuse-a-component}
 
@@ -114,7 +126,11 @@ These three lines of code find the `<div>` we added to our HTML in the first ste
 
 [ראה את קוד הדוגמה המלא](https://gist.github.com/gaearon/faa67b76a6c47adbab04f739cba7ceda)
 
+<<<<<<< HEAD
 [הורד את הדוגמה המלאה (2KB zipped)](https://gist.github.com/gaearon/faa67b76a6c47adbab04f739cba7ceda/archive/9d0dd0ee941fea05fd1357502e5aa348abb84c12.zip)
+=======
+[Download the full example (2KB zipped)](https://gist.github.com/gaearon/faa67b76a6c47adbab04f739cba7ceda/archive/279839cb9891bd41802ebebc5365e9dec08eeb9f.zip)
+>>>>>>> 5f3a9756e00e256735a5f52df19b403d8fdd3a9d
 
 >הערה
 >
