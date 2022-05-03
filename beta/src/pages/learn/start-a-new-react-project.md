@@ -4,30 +4,30 @@ title: Start a New React Project
 
 <Intro>
 
-If you're learning React or considering adding it to an existing project, you can get started quickly by [adding React to any HTML page with script tags](/learn/add-react-to-a-website). If your project will need many components and many files, it might be time to consider the options below!
+בין אם אתה לומד ריאקט או שוקל להשתמש בספרייה בפרויקט קיים, תוכל להתחיל מיד על ידי [הוספת ריאקט לדף HTML באמצעות תגית script](/learn/add-react-to-a-website). אם הפרויקט שלך יהיה זקוק להרבה קומפוננטות וקבצים, יהיה עדיף לשקול את האופציות בהמשך העמוד.
 
 </Intro>
 
-## Choose your own adventure {/*choose-your-own-adventure*/}
+## בחר את הדרך שלך {/*choose-your-own-adventure*/}
 
-React is a library that lets you organize UI code by breaking it apart into pieces called components. React doesn't take care of routing or data management. For these features, you'll want to use third-party libraries or write your own solutions. This means there are several ways to start a new React project:
+ריאקט היא ספרייה שנותנת לנו לארגן קוד UI על ידי הפרדתו לחלקים שנקראים קומפוננטות. ריאקט לא מטפלת בשבילנו בניתוב(routing) או בניהול מידע. בשביל לנתב או לנהל מידע, נצטרך להתקין ספריות צד שלישי או לכתוב פתרונות משלנו. זה אומר שישנם כמה דרכים להתחיל פרויקט ריאקט חדש:
 
-* Start with a **minimal set up with just a toolchain,** adding features to your project as necessary.
-* Start with an **opinionated framework** with common functionality already built in.
+* להתחיל עם **סט כלים מינימלי**, ולהוסיף פיצ׳רים לפרוייקט כשנצטרך אותם.
+* להתחיל עם **פריימוורק** שמכיל בתוכו פיצ׳רים נפוצים.
 
-Whether you're just getting started, looking to build something big, or want to set up your own toolchain, this guide will set you on the right path.
+בין אם אתה רק מתחיל, מנסה לבנות משהו גדול, או רוצה לבנות סט כלים משלך, המדריך הזה יכוון אותך לדרך הנכונה.
 
-## Getting started with a React toolchain {/*getting-started-with-a-react-toolchain*/}
+## להתחיל עם סט כלים של ריאקט {/*getting-started-with-a-react-toolchain*/}
 
-If you're just getting started with React, we recommend [Create React App](https://create-react-app.dev/), the most popular way to try out React's features and a great way to build a new single-page, client-side application. Create React App is an unopinionated toolchain configured just for React. Toolchains help with things like:
+אם אתה רק מתחיל עם ריאקט, אנחנו ממליצים על [Create React App](https://create-react-app.dev/), שהיא דרך פופולרית לנסות פיצ׳רים של ריאקט ולבנות אפליקציית צד לקוח. Create React App הוא סט כלים שעוצב במיוחד בשביל ריאקט. כלים כמו CRA עוזרים לנו בדברים כמו:
 
-* Scaling to many files and components
-* Using third-party libraries from npm
-* Detecting common mistakes early
-* Live-editing CSS and JS in development
-* Optimizing the output for production
+* ניהול מספר רב של קבצים וקומפוננטות
+* שימוש בספריות צד שלישי מ-npm
+* הימנעות מטעויות נפוצות כבר מההתחלה
+* שינוי בלייב של CSS וקוד JS בזמן פיתוח
+* אופטימיזציה של הקוד לפרודקשן
 
-You can get started building with Create React App with one line of code in your terminal! (**Be sure you have [Node.js](https://nodejs.org/) installed!**)
+ניתן להתחיל לכתוב ריאקט עם Create React App באמצעות השורה הבאה בטרמינל (**וודא שיש לך [Node.js](https://nodejs.org/) מותקן!**)
 
 <TerminalBlock>
 
@@ -35,7 +35,7 @@ npx create-react-app my-app
 
 </TerminalBlock>
 
-Now you can run your app with:
+עכשיו אפשר להריץ את הקוד שלנו באמצעות:
 
 <TerminalBlock>
 
@@ -44,37 +44,37 @@ npm start
 
 </TerminalBlock>
 
-For more information, [check out the official guide](https://create-react-app.dev/docs/getting-started).
+למידע נוסף, [קרא את הדוקומנטציה הרשמית](https://create-react-app.dev/docs/getting-started).
 
-> Create React App doesn't handle backend logic or databases; it just creates a frontend build pipeline. This means you can use it with any backend you want. But if you're looking for more features like routing and server-side logic, read on!
+Create React App לא מטפלת בלוגיקה של הבקאנד, הכלי רק יוצר frontend build pipeline. זה אומר שניתן להשתמש באיזה בקאנד שנרצה עם CRA. אם אתה מחפש פיצ׳רים נוספים כמו ניתוב ולוגיקת צד שרת, תמשיך לקרוא!
 
-### Other options {/*other-options*/}
+### אופציות נוספות {/*other-options*/}
 
-Create React App is great to get started working with React, but if you'd like an even lighter toolchain, you might try one of these other popular toolchains:
+Create React App היא מעולה כדי להתחיל לעבוד עם ריאקט, אבל אם תרצה סט כלים יותר קטן, תוכל לנסות את אחד הכלים הבאים:
 
 * [Vite](https://vitejs.dev/guide/)
 * [Parcel](https://parceljs.org/)
 * [Snowpack](https://www.snowpack.dev/tutorials/react)
 
-## Building with React and a framework {/*building-with-react-and-a-framework*/}
+## כתיבת אפליקציה עם ריאקט ופריימוורק {/*building-with-react-and-a-framework*/}
 
-If you're looking to start a bigger, production-ready project, [Next.js](https://nextjs.org/) is a great place to start. Next.js is a popular, lightweight framework for static and server‑rendered applications built with React. It comes pre-packaged with features like routing, styling, and server-side rendering, getting your project up and running quickly. 
+אם אתה מחפש להתחיל פרוייקט גדול יותר שיכול לרוץ בפרוקדשן, [Next.js](https://nextjs.org/) היא מקום מעולה להתחיל ממנו. Next.js הוא פריימוורק פופולרי שנועד לכתיבת אפליקציות סטטיות ואפליקציות server-rendered עם ריאקט. הפריימוורק מכיל פיצ׳רים כמו ניתוב, styling, ורינדור צד שרת, מה שמאפשר להרים פרוייקט במהירות.
 
-[Get started building with Next.js](https://nextjs.org/docs/getting-started) with the official guide.
+[התחל עם Next.js](https://nextjs.org/docs/getting-started) עם המדריך הרשמי.
 
-### Other options {/*other-options-1*/}
+### אופציות נוספות {/*other-options-1*/}
 
-* [Gatsby](https://www.gatsbyjs.org/) lets you generate static websites with React with GraphQL.
-* [Razzle](https://razzlejs.org/) is a server-rendering framework that doesn't require any configuration, but offers more flexibility than Next.js.
+* נותן לכתוב אתרים סטטיים באמצעות ריאקט ו-GraphQL. [Gatsby](https://www.gatsbyjs.org/)
+* [Razzle](https://razzlejs.org/) הוא פריימוורק עם רינדור בצד שרת שלא דורש קונפיגורציה, אבל מאפשר יותר גמישות מ-Next.js.
 
 ## Custom toolchains {/*custom-toolchains*/}
 
-You may prefer to create and configure your own toolchain. A JavaScript build toolchain typically consists of:
+יכול להיות שאתה מעדיף ליצור ולקנפג סט כלים משלך. סט כלים ב-JavaScript מכיל בדרך כלל:
 
-* A **package manager**—lets you install, update and manage third-party packages. [Yarn](https://yarnpkg.com/) and [npm](https://www.npmjs.com/) are two popular package managers.
-* A **bundler**—lets you write modular code and bundle it together into small packages to optimize load time. [Webpack](https://webpack.js.org/), [Snowpack](https://www.snowpack.dev/), [Parcel](https://parceljs.org/) are several popular bundlers.
-* A **compiler**—lets you write modern JavaScript code that still works in older browsers. [Babel](https://babeljs.io/) is one such example.
+* **מנהל חבילות**- מאפשר להתקין, לעדכן ולנהל ספריות צד שלישי. [Yarn](https://yarnpkg.com/) ו-[npm](https://www.npmjs.com/) הם שני מנהלי חבילות פופולריים.
+* **באנדלר**- מאפשר לנו לכתוב קוד מודולרי ואורז אותו לתוך חלקים קטנים, מה שמוריד את זמני הטעינה. [Webpack](https://webpack.js.org/), [Snowpack](https://www.snowpack.dev/), ו-[Parcel](https://parceljs.org/) הם באנדלרים פופולריים (הערת המתרגם - גם [vite](https://vitejs.dev/) אחלה).
+* **קומפיילר**- מאפשר לנו לכתוב קוד JavaScript מודרני שעובד בדפדפנים ישנים. [Babel](https://babeljs.io/) הוא דוגמה אחת.
 
-In a larger project, you might also want to have a tool to manage multiple packages in a single repository. [Nx](https://nx.dev/react) is an example of such a tool.
+בפרוייקט גדול יותר, יכול להיות שיהיה צורך בכלי שמנהל מספר חבילות ב-repo אחד. [Nx](https://nx.dev/react) הוא דוגמה לכלי כזה. 
 
-If you prefer to set up your own JavaScript toolchain from scratch, [check out this guide](https://blog.usejournal.com/creating-a-react-app-from-scratch-f3c693b84658) that re-creates some of the Create React App functionality.
+אם אתה מעדיף להקים סט כלים משלך מאפס, [מדריך זה](https://blog.usejournal.com/creating-a-react-app-from-scratch-f3c693b84658) יוצר מאפס חלק מהפונקציונליות של Create React App.
