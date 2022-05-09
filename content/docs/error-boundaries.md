@@ -66,7 +66,11 @@ class ErrorBoundary extends React.Component {
 
 ## הדגמה חיה {#live-demo}
 
+<<<<<<< HEAD
 שימו לב ל[דוגמא הבאה של הגדרה ושימוש בגבולות שגיאה](https://codepen.io/gaearon/pen/wqvxGa?editors=0010) עם [גרסה 16 של React](/blog/2017/09/26/react-v16.0.html).
+=======
+Check out [this example of declaring and using an error boundary](https://codepen.io/gaearon/pen/wqvxGa?editors=0010).
+>>>>>>> 26a870e1c6e232062b760d37620d85802750e985
 
 
 ## איפה למקם את גבולות שגיאה {#where-to-place-error-boundaries}
