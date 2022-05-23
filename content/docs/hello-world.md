@@ -16,10 +16,15 @@ ReactDOM.render(
 );
 =======
 ```jsx
+<<<<<<< HEAD
 ReactDOM
   .createRoot(document.getElementById('root'))
   .render(<h1>Hello, world!</h1>);
 >>>>>>> 84ad3308338e2bb819f4f24fa8e9dfeeffaa970b
+=======
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<h1>Hello, world!</h1>);
+>>>>>>> 3aac8c59848046fb427aab4373a7aadd7069a24c
 ```
 
 היא מראה את הכותרת ״שלום עולם״ על הדף.
