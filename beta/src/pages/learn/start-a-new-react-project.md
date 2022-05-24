@@ -54,7 +54,6 @@ Create React App היא מעולה כדי להתחיל לעבוד עם ריאק�
 
 * [Vite](https://vitejs.dev/guide/)
 * [Parcel](https://parceljs.org/)
-* [Snowpack](https://www.snowpack.dev/tutorials/react)
 
 ## כתיבת אפליקציה עם ריאקט ופריימוורק {/*building-with-react-and-a-framework*/}
 

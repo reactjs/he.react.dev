@@ -25,7 +25,7 @@ React הונדסה מההתחלה לאימוץ הדרגתי, ו**אנו יכול
 
 לא יהיו כלים מורכבים או דרישות התקנה – **על מנת להשלים חלק זה, כל מה שתצטרך הוא חיבור אינטרנט ודקה מזמנך.**
 
-אופציונאלי: [הורד את הדוגמה המלאה (2KB zipped)](https://gist.github.com/gaearon/6668a1f6986742109c00a581ce704605/archive/f6c882b6ae18bde42dcf6fdb751aae93495a2275.zip)
+אופציונאלי: [הורד את הדוגמה המלאה (2KB zipped)](https://gist.github.com/gaearon/6668a1f6986742109c00a581ce704605/archive/87f0b6f34238595b44308acfb86df6ea43669c08.zip)
 
 ### שלב ראשון: הוסף קונטיינר DOM לקובץ ה-HTML {#step-1-add-a-dom-container-to-the-html}
 
@@ -52,17 +52,10 @@ React הונדסה מההתחלה לאימוץ הדרגתי, ו**אנו יכול
 ```html{5,6,9}
   <!-- ... HTML אחר ... -->
 
-<<<<<<< HEAD
   <!-- טעינת ריאקט. -->
   <!-- שים לב: כשמעלים לאוויר, מחליפים את "development.js" עם "production.min.js". -->
-  <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
-  <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
-=======
-  <!-- Load React. -->
-  <!-- Note: when deploying, replace "development.js" with "production.min.js". -->
   <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
   <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
->>>>>>> 84ad3308338e2bb819f4f24fa8e9dfeeffaa970b
 
   <!-- טעינת קומפוננטת ה-React שלנו. -->
   <script src="like_button.js"></script>
@@ -79,7 +72,7 @@ React הונדסה מההתחלה לאימוץ הדרגתי, ו**אנו יכול
 פתח את **[הקוד ההתחלתי הזה](https://gist.github.com/gaearon/0b180827c190fe4fd98b4c7f570ea4a8/raw/b9157ce933c79a4559d2aa9ff3372668cce48de7/LikeButton.js)** והדבק אותו בקובץ שיצרת.
 
 >טיפ
->
+
 >קוד זה מגדיר קומפוננטת React שנקראת `LikeButton`. אל תדאג אם אתה לא מבין את זה עדיין -- אנו נכסה את היסודות של React מאוחר יותר ב[מדריך המעשי](/tutorial/tutorial.html) וב[מדריך הקונספטים העיקריים](/docs/hello-world.html). בינתיים, בוא רק נדאג שזה יוצג על המסך!
 
 אחרי **[הקוד ההתחלתי](https://gist.github.com/gaearon/0b180827c190fe4fd98b4c7f570ea4a8/raw/b9157ce933c79a4559d2aa9ff3372668cce48de7/LikeButton.js)**, הוסף שתי שורות לתחתית הקובץ `like_button.js`:
@@ -92,11 +85,7 @@ const root = ReactDOM.createRoot(domContainer);
 root.render(e(LikeButton));
 ```
 
-<<<<<<< HEAD
 שתי שורות אלו מוצאות את תגית ה-`<div>` שהוספנו לדף ה-HTML בשלב הראשון, ואז מציגות את קומפוננטת כפתור ה-"לייק" בתוכו.
-=======
-These three lines of code find the `<div>` we added to our HTML in the first step, create a React app with it, and then display our "Like" button React component inside of it.
->>>>>>> 84ad3308338e2bb819f4f24fa8e9dfeeffaa970b
 
 ### זהו זה! {#thats-it}
 
@@ -106,7 +95,7 @@ These three lines of code find the `<div>` we added to our HTML in the first ste
 
 **[ראה את קוד הדוגמה המלא](https://gist.github.com/gaearon/6668a1f6986742109c00a581ce704605)**
 
-**[הורד את הדוגמה המלאה (2KB zipped)](https://gist.github.com/gaearon/6668a1f6986742109c00a581ce704605/archive/f6c882b6ae18bde42dcf6fdb751aae93495a2275.zip)**
+**[הורד את הדוגמה המלאה (2KB zipped)](https://gist.github.com/gaearon/6668a1f6986742109c00a581ce704605/archive/87f0b6f34238595b44308acfb86df6ea43669c08.zip)**
 
 ### טיפ: שימוש חוזר בקומפוננטה {#tip-reuse-a-component}
 
@@ -114,7 +103,7 @@ These three lines of code find the `<div>` we added to our HTML in the first ste
 
 [ראה את קוד הדוגמה המלא](https://gist.github.com/gaearon/faa67b76a6c47adbab04f739cba7ceda)
 
-[הורד את הדוגמה המלאה (2KB zipped)](https://gist.github.com/gaearon/faa67b76a6c47adbab04f739cba7ceda/archive/9d0dd0ee941fea05fd1357502e5aa348abb84c12.zip)
+[הורד את הדוגמה המלאה (2KB zipped)](https://gist.github.com/gaearon/faa67b76a6c47adbab04f739cba7ceda/archive/279839cb9891bd41802ebebc5365e9dec08eeb9f.zip)
 
 >הערה
 >
@@ -195,7 +184,7 @@ return (
 
 צור תיקייה שנקראת `src` והרץ את הפקודה הבאה בשורת הפקודה:
 
-```
+```console
 npx babel --watch src --out-dir . --presets react-app/prod
 ```
 
