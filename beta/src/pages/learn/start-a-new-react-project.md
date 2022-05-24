@@ -4,32 +4,30 @@ title: Start a New React Project
 
 <Intro>
 
-If you're starting a new project, we recommend to use a toolchain or a framework. These tools provide a comfortable development environment but require a local Node.js installation.
+בין אם אתה לומד ריאקט או שוקל להשתמש בספרייה בפרויקט קיים, תוכל להתחיל מיד על ידי [הוספת ריאקט לדף HTML באמצעות תגית script](/learn/add-react-to-a-website). אם הפרויקט שלך יהיה זקוק להרבה קומפוננטות וקבצים, יהיה עדיף לשקול את האופציות בהמשך העמוד.
 
 </Intro>
 
-<YouWillLearn>
+## בחר את הדרך שלך {/*choose-your-own-adventure*/}
 
-* How toolchains are different from frameworks
-* How to start a project with a minimal toolchain
-* How to start a project with a fully-featured framework
-* What's inside popular toolchains and frameworks
+ריאקט היא ספרייה שנותנת לנו לארגן קוד UI על ידי הפרדתו לחלקים שנקראים קומפוננטות. ריאקט לא מטפלת בשבילנו בניתוב(routing) או בניהול מידע. בשביל לנתב או לנהל מידע, נצטרך להתקין ספריות צד שלישי או לכתוב פתרונות משלנו. זה אומר שישנם כמה דרכים להתחיל פרויקט ריאקט חדש:
 
-</YouWillLearn>
+* להתחיל עם **סט כלים מינימלי**, ולהוסיף פיצ׳רים לפרוייקט כשנצטרך אותם.
+* להתחיל עם **פריימוורק** שמכיל בתוכו פיצ׳רים נפוצים.
 
-## Choose your own adventure {/*choose-your-own-adventure*/}
+בין אם אתה רק מתחיל, מנסה לבנות משהו גדול, או רוצה לבנות סט כלים משלך, המדריך הזה יכוון אותך לדרך הנכונה.
 
-React is a library that lets you organize UI code by breaking it apart into pieces called components. React doesn't take care of routing or data management. This means there are several ways to start a new React project:
+## להתחיל עם סט כלים של ריאקט {/*getting-started-with-a-react-toolchain*/}
 
-* [Start with an **HTML file and a script tag**.](/learn/add-react-to-a-website) This doesn't require Node.js setup but offers limited features.
-* Start with a **minimal toolchain,** adding more features to your project as you go. (Great for learning!)
-* Start with an **opinionated framework** that has common features like data fetching and routing built-in.
+אם אתה רק מתחיל עם ריאקט, אנחנו ממליצים על [Create React App](https://create-react-app.dev/), שהיא דרך פופולרית לנסות פיצ׳רים של ריאקט ולבנות אפליקציית צד לקוח. Create React App הוא סט כלים שעוצב במיוחד בשביל ריאקט. כלים כמו CRA עוזרים לנו בדברים כמו:
 
-## Getting started with a minimal toolchain {/*getting-started-with-a-minimal-toolchain*/}
+* ניהול מספר רב של קבצים וקומפוננטות
+* שימוש בספריות צד שלישי מ-npm
+* הימנעות מטעויות נפוצות כבר מההתחלה
+* שינוי בלייב של CSS וקוד JS בזמן פיתוח
+* אופטימיזציה של הקוד לפרודקשן
 
-If you're **learning React,** we recommend [Create React App](https://create-react-app.dev/). It is the most popular way to try out React and build a new single-page, client-side application. It's made for React but isn't opinionated about routing or data fetching.
-
-First, install [Node.js](https://nodejs.org/en/). Then open your terminal and run this line to create a project:
+ניתן להתחיל לכתוב ריאקט עם Create React App באמצעות השורה הבאה בטרמינל (**וודא שיש לך [Node.js](https://nodejs.org/) מותקן!**)
 
 <TerminalBlock>
 
@@ -37,7 +35,7 @@ npx create-react-app my-app
 
 </TerminalBlock>
 
-Now you can run your app with:
+עכשיו אפשר להריץ את הקוד שלנו באמצעות:
 
 <TerminalBlock>
 
@@ -46,38 +44,36 @@ npm start
 
 </TerminalBlock>
 
-For more information, [check out the official guide](https://create-react-app.dev/docs/getting-started).
+למידע נוסף, [קרא את הדוקומנטציה הרשמית](https://create-react-app.dev/docs/getting-started).
 
-> Create React App doesn't handle backend logic or databases. You can use it with any backend. When you build a project, you'll get a folder with static HTML, CSS and JS. Because Create React App can't take advantage of the server, it doesn't provide the best performance. If you're looking for faster loading times and built-in features like routing and server-side logic, we recommend using a framework instead.
+Create React App לא מטפלת בלוגיקה של הבקאנד, הכלי רק יוצר frontend build pipeline. זה אומר שניתן להשתמש באיזה בקאנד שנרצה עם CRA. אם אתה מחפש פיצ׳רים נוספים כמו ניתוב ולוגיקת צד שרת, תמשיך לקרוא!
 
-### Popular alternatives {/*popular-alternatives*/}
+### אופציות נוספות {/*other-options*/}
+
+Create React App היא מעולה כדי להתחיל לעבוד עם ריאקט, אבל אם תרצה סט כלים יותר קטן, תוכל לנסות את אחד הכלים הבאים:
 
 * [Vite](https://vitejs.dev/guide/)
 * [Parcel](https://parceljs.org/)
 
-## Building with a full-featured framework {/*building-with-a-full-featured-framework*/}
+## כתיבת אפליקציה עם ריאקט ופריימוורק {/*building-with-react-and-a-framework*/}
 
-If you're looking to **start a production-ready project,** [Next.js](https://nextjs.org/) is a great place to start. Next.js is a popular, lightweight framework for static and server‑rendered applications built with React. It comes pre-packaged with features like routing, styling, and server-side rendering, getting your project up and running quickly. 
+אם אתה מחפש להתחיל פרוייקט גדול יותר שיכול לרוץ בפרוקדשן, [Next.js](https://nextjs.org/) היא מקום מעולה להתחיל ממנו. Next.js הוא פריימוורק פופולרי שנועד לכתיבת אפליקציות סטטיות ואפליקציות server-rendered עם ריאקט. הפריימוורק מכיל פיצ׳רים כמו ניתוב, styling, ורינדור צד שרת, מה שמאפשר להרים פרוייקט במהירות.
 
-The [Next.js Foundations](https://nextjs.org/learn/foundations/about-nextjs) tutorial is a great introduction to building with React and Next.js.
+[התחל עם Next.js](https://nextjs.org/docs/getting-started) עם המדריך הרשמי.
 
-### Popular alternatives {/*popular-alternatives*/}
+### אופציות נוספות {/*other-options-1*/}
 
-* [Gatsby](https://www.gatsbyjs.org/)
-* [Remix](https://remix.run/)
-* [Razzle](https://razzlejs.org/)
+* נותן לכתוב אתרים סטטיים באמצעות ריאקט ו-GraphQL. [Gatsby](https://www.gatsbyjs.org/)
+* [Razzle](https://razzlejs.org/) הוא פריימוורק עם רינדור בצד שרת שלא דורש קונפיגורציה, אבל מאפשר יותר גמישות מ-Next.js.
 
 ## Custom toolchains {/*custom-toolchains*/}
 
-You may prefer to create and configure your own toolchain. A toolchain typically consists of:
+יכול להיות שאתה מעדיף ליצור ולקנפג סט כלים משלך. סט כלים ב-JavaScript מכיל בדרך כלל:
 
-* A **package manager** lets you install, update, and manage third-party packages. Popular package managers: [npm](https://www.npmjs.com/) (built into Node.js), [Yarn](https://yarnpkg.com/), [pnpm](https://pnpm.io/).
-* A **compiler** lets you compile modern language features and additional syntax like JSX or type annotations for the browsers. Popular compilers: [Babel](https://babeljs.io/), [TypeScript](http://typescript.org/), [swc](https://swc.rs/).
-* A **bundler** lets you write modular code and bundle it together into small packages to optimize load time. Popular bundlers: [webpack](https://webpack.js.org/), [Parcel](https://parceljs.org/), [esbuild](https://esbuild.github.io/), [swc](https://swc.rs/).
-* A **minifier** makes your code more compact so that it loads faster. Popular minifiers: [Terser](https://terser.org/), [swc](https://swc.rs/).
-* A **server** handles server requests so that you can render components to HTML. Popular servers: [Express](https://expressjs.com/).
-* A **linter** checks your code for common mistakes. Popular linters: [ESLint](https://eslint.org/).
-* A **test runner** lets you run tests against your code. Popular test runners: [Jest](https://jestjs.io/).
+* **מנהל חבילות**- מאפשר להתקין, לעדכן ולנהל ספריות צד שלישי. [Yarn](https://yarnpkg.com/) ו-[npm](https://www.npmjs.com/) הם שני מנהלי חבילות פופולריים.
+* **באנדלר**- מאפשר לנו לכתוב קוד מודולרי ואורז אותו לתוך חלקים קטנים, מה שמוריד את זמני הטעינה. [Webpack](https://webpack.js.org/), [Snowpack](https://www.snowpack.dev/), ו-[Parcel](https://parceljs.org/) הם באנדלרים פופולריים (הערת המתרגם - גם [vite](https://vitejs.dev/) אחלה).
+* **קומפיילר**- מאפשר לנו לכתוב קוד JavaScript מודרני שעובד בדפדפנים ישנים. [Babel](https://babeljs.io/) הוא דוגמה אחת.
 
-If you prefer to set up your own JavaScript toolchain from scratch, [check out this guide](https://blog.usejournal.com/creating-a-react-app-from-scratch-f3c693b84658) that re-creates some of the Create React App functionality. A framework will usually also provide a routing and a data fetching solution. In a larger project, you might also want to manage multiple packages in a single repository with a tool like [Nx](https://nx.dev/react).
+בפרוייקט גדול יותר, יכול להיות שיהיה צורך בכלי שמנהל מספר חבילות ב-repo אחד. [Nx](https://nx.dev/react) הוא דוגמה לכלי כזה. 
 
+אם אתה מעדיף להקים סט כלים משלך מאפס, [מדריך זה](https://blog.usejournal.com/creating-a-react-app-from-scratch-f3c693b84658) יוצר מאפס חלק מהפונקציונליות של Create React App.
