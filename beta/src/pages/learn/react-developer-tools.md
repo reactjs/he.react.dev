@@ -4,30 +4,29 @@ title: React Developer Tools
 
 <Intro>
 
-Use React Developer Tools to inspect React [components](/learn/your-first-component), edit [props](/learn/passing-props-to-a-component) and [state](/learn/state-a-components-memory), and identify performance problems.
-
+ניתן להשתמש ב-React Developer Tools על מנת לבחון [קומפוננטות](/learn/your-first-component), לערוך [props](/learn/passing-props-to-a-component) ו-[state](/learn/state-a-components-memory), ובנוסף לאבחן בעיות שקשורות לביצועים.
 </Intro>
 
 <YouWillLearn>
 
-* How to install React Developer Tools
+* איך להתקין React Developer Tools
 
 </YouWillLearn>
 
-## Browser extension {/*browser-extension*/}
+## תוסף דפדפן {/*browser-extension*/}
 
-The easiest way to debug websites built with React is to install the React Developer Tools browser extension. It is available for several popular browsers:
+הדרך הקלה ביותר לדבג אתרים שכתובים בעזרת ריאקט היא להתקין את תוסף כלי המפתחים של ריאקט. הוא זמין בכמה דפדפנים:
 
-* [Install for **Chrome**](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en)
-* [Install for **Firefox**](https://addons.mozilla.org/en-US/firefox/addon/react-devtools/)
-* [Install for **Edge**](https://microsoftedge.microsoft.com/addons/detail/react-developer-tools/gpphkfbcpidddadnkolkpfckpihlkkil)
+* [התקן בדפדפן **Chrome**](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en)
+* [התקן בדפדפן **Firefox**](https://addons.mozilla.org/en-US/firefox/addon/react-devtools/)
+* [התקן בדפדפן **Edge**](https://microsoftedge.microsoft.com/addons/detail/react-developer-tools/gpphkfbcpidddadnkolkpfckpihlkkil)
 
-Now, if you visit a website **built with React**, you will see the _Components_ and _Profiler_ panels.
+לאחר ההתקנה, אם תיכנס לאתר **שכתוב בריאקט**, תראה את הפאנלים _Components_ ו-_Profiler_.
 
 ![React Developer Tools extension](/images/docs/react-devtools-extension.png)
 
-### Safari and other browsers {/*safari-and-other-browsers*/}
-For other browsers (for example, Safari), install the [`react-devtools`](https://www.npmjs.com/package/react-devtools) npm package:
+### Safari ודפדפנים אחרים {/*safari-and-other-browsers*/}
+על מנת להשתמש בתוסף בדפדפנים אחרים כמו Safari, התקן את חבילת ה-npm הזו: [`react-devtools`](https://www.npmjs.com/package/react-devtools)
 ```bash
 # Yarn
 yarn global add react-devtools
@@ -36,26 +35,26 @@ yarn global add react-devtools
 npm install -g react-devtools
 ```
 
-Next open the developer tools from the terminal:
+עכשיו פתח את כלי המפתחים מהטרמינל:
 ```bash
 react-devtools
 ```
 
-Then connect your website by adding the following `<script>` tag to the beginning of your website's `<head>`:
+לאחר מכן התחבר לאתר שלך בעזרת הוספת תגית ה-`<script>` הבאה בתוך ה-`head` באתר שלך:
 ```html {3}
 <html>
   <head>
     <script src="http://localhost:8097"></script>
 ```
 
-Reload your website in the browser now to view it in developer tools.
+טען מחדש את האתר על מנת לראות את הכלים באיזור כלי המפתחים:
 
 ![React Developer Tools standalone](/images/docs/react-devtools-standalone.png)
 
 ## Mobile (React Native) {/*mobile-react-native*/}
-React Developer Tools can be used to inspect apps built with [React Native](https://reactnative.dev/) as well.
+ניתן להשתמש בכלי המפתחים של ריאקט על מנת לבחון אפליקציות שנבנו בעזרת [React Native](https://reactnative.dev/). 
 
-The easiest way to use React Developer Tools is to install it globally:
+הדרך הקלה ביותר להשתמש בכלי המפתחים היא להתקין אותם גלובאלית:
 ```bash
 # Yarn
 yarn global add react-devtools
@@ -64,13 +63,12 @@ yarn global add react-devtools
 npm install -g react-devtools
 ```
 
-Next open the developer tools from the terminal.
+פתח את הכלים מהטרמינל:
 ```bash
 react-devtools
 ```
+הכלים אמורים להתחבר לכל אפליקציית react native שרצה לוקאלית.
 
-It should connect to any local React Native app that's running.
+> נסה לטעון מחדש את האפליקצייה אם הכלים לא מתחברים אליה תוך מספר שניות.
 
-> Try reloading the app if developer tools doesn't connect after a few seconds.
-
-[Learn more about debugging React Native.](https://reactnative.dev/docs/debugging)
+[למד עוד על דיבוג React Native.](https://reactnative.dev/docs/debugging)
