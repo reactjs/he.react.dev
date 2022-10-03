@@ -4,24 +4,22 @@ title: Importing and Exporting Components
 
 <Intro>
 
-The magic of components lies in their reusability: you can create components that are composed of other components. But as you nest more and more components, it often makes sense to start splitting them into different files. This lets you keep your files easy to scan and reuse components in more places.
-
+הקסם של קומפוננטות טמון בשימוש החוזר שלהם: ניתן ליצור קומפנטטות המורכבות מקומפוננטות אחרות. אבל ככל שאתה מתחיל לקנן יותר ויותר קומפוננטות, לעתים קרובות הגיוני יותר להתחיל לפצל אותם לקבצים שונים. זה מאפשר לך לשמור על הקבצים שלך קריאים ולעשות שימוש חוזר בקומפוננטות במקומות נוספים.
 </Intro>
 
 <YouWillLearn>
 
-* What a root component file is
-* How to import and export a component
-* When to use default and named imports and exports
-* How to import and export multiple components from one file
-* How to split components into multiple files
+* מה היא קומפוננטת שורש
+* איך לייבא ולייצא קומפוננטה
+* מתי נשתמש ביבוא וייצוא דיפולטיבי, ומתי ביבוא וייצוא שמי
+* איך ליבא ולייצא מספר קומפוננטות מאותו הקובץ
+* איך לפצל קומפוננטות למספר קבצים
 
 </YouWillLearn>
 
-## The root component file {/*the-root-component-file*/}
+## קומפוננטת השורש {/*the-root-component-file*/}
 
-In [Your First Component](/learn/your-first-component), you made a `Profile` component and a `Gallery` component that renders it:
-
+[בקומפוננטה הראשונה שלך](/learn/your-first-component) בנית את הקומפוננטה  `Profile` ואת הקומפוננטה `Gallery` שמרדנרדת אותה: 
 <Sandpack>
 
 ```js
@@ -52,17 +50,17 @@ img { margin: 0 10px 10px 0; height: 90px; }
 
 </Sandpack>
 
-These currently live in a **root component file,** named `App.js` in this example. In [Create React App](https://create-react-app.dev/), your app lives in `src/App.js`. Depending on your setup, your root component could be in another file, though. If you use a framework with file-based routing, such as Next.js, your root component will be different for every page.
-
-## Exporting and importing a component {/*exporting-and-importing-a-component*/}
+הקופמפוננטות האלו כרגע יושבות **בקובץ קומפוננטת השורש** שנקרא `App.js` בדוגמא הזאת. ב[Create React App](https://create-react-app.dev/), האפליקציה שלך יושבת ב`src/App.js`. כתלות בקונפיקורציה שלך, קומפוננטת השורש יכולה לשבת בקובץ אחר. אם אתה משתמש בפריימוורק עם ראוטינג שמתבסס על מבנה הקבצים, כמו למשל Next.js, קומפוננטת השורש שלך תהיה שונה עבור כל עמוד.
+## ייצוא ויבוא של קומפוננטה {/*exporting-and-importing-a-component*/}
 
 What if you want to change the landing screen in the future and put a list of science books there? Or place all the profiles somewhere else? It makes sense to move `Gallery` and `Profile` out of the root component file. This will make them more modular and reusable in other files. You can move a component in three steps:
 
-1. **Make** a new JS file to put the components in.
-2. **Export** your function component from that file (using either [default](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/export#using_the_default_export) or [named](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/export#using_named_exports) exports).
-3. **Import** it in the file where you’ll use the component (using the corresponding technique for importing [default](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/import#importing_defaults) or [named](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/import#import_a_single_export_from_a_module) exports).
+מה אם תרצו לשנות את דף הנחיתה בעתיד, ולשים שם רשימה של ספרי מדע? או  להשתמש בפרופילים במקום אחר באפליקציה? צעד סביר יהיה להזיז את קומפוננטות:  `Gallery` ו-`Profile` מחוץ לקומפוננטת השורש שלך. צעד זה יהפוך אותם ליותר מודולריים  וריוזביליים בקבצים אחרים. ניתן להזיז קופמפוננטה בשלושה צעדים:
+1. **ליצור** קובץ JS חדש כדי לשים בו את הקומפוננטה
+2. **לייצא** את הקומפוננטה מהקובץ החדש (בייצוא [דיפולטיבי](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/export#using_the_default_export) או [שמי](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/export#using_named_exports))
+3. **לייבא** את הקומפוננטה שייצאת לתוך הקובץ שבו תשתמש בה (בייבוא  [דיפולטיבי](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/export#using_the_default_export) או [שמי](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/export#using_named_exports) בהתאם לצורה שבה הקומפוננטה יוצאה )
 
-Here both `Profile` and `Gallery` have been moved out of `App.js` into a new file called `Gallery.js`. Now you can change `App.js` to import `Gallery` from `Gallery.js`:
+כאן גם `Profile` וגם `Gallery` הוזזו אל מחוץ לקומפוננטת `App.js` אל תוך קובץ חדש שנקרא `Gallery.js`. עכשיו אפשר לייבא ב-`App.js` את `Gallery` מתוך `Gallery.js`:
 
 <Sandpack>
 
@@ -103,26 +101,25 @@ img { margin: 0 10px 10px 0; height: 90px; }
 ```
 
 </Sandpack>
-
-Notice how this example is broken down into two component files now:
+שימו לב איך בדוגמא הזאת, פירקנו את קומפוננטת השורש, לשני קבצים שונים:
 
 1. `Gallery.js`:
-     - Defines the `Profile` component which is only used within the same file and is not exported.
-     - Exports the `Gallery` component as a **default export**.
+     - מגדיר את קומפוננטת `Profile`, בה אנחנו עושים שימוש רק באותו הקובץ, ולא מייצאים אותה.
+     - מייצא את קומפוננטת `Gallery` **בייצוא דיפולטיבי**
 2. `App.js`:
-     - Imports `Gallery` as a **default import** from `Gallery.js`.
-     - Exports the root `App` component as a **default export**.
+     - מייבא את קומפוננטת `Gallery` **ביבוא דיפולטיבי** מתוך `Gallery.js`.
+     - מייצא את קומפוננטת השורש `App` **בייצוא דיפולטיבי**
 
 
 <Note>
 
-You may encounter files that leave off the `.js` file extension like so:
 
+ייתכן ותיתקל בקבצים המשמיטים את סיומת הקובץ `.js` כך:
 ```js 
 import Gallery from './Gallery';
 ```
+שתי הצורות יעבדו עם ריאקט, `'./Gallery.js'` או `'./Gallery'` למרות שהצורה הראשונה קרובה יותר לצורה שבה זה נעשה ב-[native ES Modules](https://developer.mozilla.org/docs/Web/JavaScript/Guide/Modules).
 
-Either `'./Gallery.js'` or `'./Gallery'` will work with React, though the former is closer to how [native ES Modules](https://developer.mozilla.org/docs/Web/JavaScript/Guide/Modules) work.
 
 </Note>
 
