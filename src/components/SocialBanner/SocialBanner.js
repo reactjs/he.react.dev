@@ -15,8 +15,8 @@ const linkProps = {
   rel: 'noopener',
 };
 
-const bannerText = 'Support Ukraine 🇺🇦 ';
-const bannerLink = 'Help Provide Humanitarian Aid to Ukraine.';
+const bannerText = 'תמכו באוקראינה';
+const bannerLink = 'עזרו לספק תמיכה הומניטרית לאוקראינה.';
 
 export default function SocialBanner() {
   return (
@@ -52,6 +52,7 @@ export default function SocialBanner() {
           <span
             css={{
               marginRight: '0.5rem',
+              marginLeft: '0.5rem',
             }}>
             {bannerText}
           </span>
