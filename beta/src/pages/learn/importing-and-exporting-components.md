@@ -4,22 +4,22 @@ title: Importing and Exporting Components
 
 <Intro>
 
-הקסם של קומפוננטות טמון בשימוש החוזר שלהם: ניתן ליצור קומפנטטות המורכבות מקומפוננטות אחרות. אבל ככל שאתה מתחיל לקנן יותר ויותר קומפוננטות, לעתים קרובות הגיוני יותר להתחיל לפצל אותם לקבצים שונים. זה מאפשר לך לשמור על הקבצים שלך קריאים ולעשות שימוש חוזר בקומפוננטות במקומות נוספים.
+הקסם של קומפוננטות טמון בשימוש החוזר שלהם: ניתן ליצור קומפנטטות המורכבות מקומפוננטות אחרות. אבל ככל שאתם מתחילים לקנן יותר ויותר קומפוננטות, לעתים קרובות הגיוני יותר להתחיל לפצל אותם לקבצים שונים. זה יאפשר לכם לשמור על הקבצים שלכם קריאים ולעשות שימוש חוזר בקומפוננטות במקומות נוספים.
 </Intro>
 
 <YouWillLearn>
 
 * מה היא קומפוננטת שורש
 * איך לייבא ולייצא קומפוננטה
-* מתי נשתמש ביבוא וייצוא דיפולטיבי, ומתי ביבוא וייצוא שמי
-* איך ליבא ולייצא מספר קומפוננטות מאותו הקובץ
+* מתי נשתמש ביבוא ויצוא דיפולטיבי, ומתי ביבוא ויצוא שמי
+* איך לייבא ולייצא מספר קומפוננטות מאותו הקובץ
 * איך לפצל קומפוננטות למספר קבצים
 
 </YouWillLearn>
 
 ## קומפוננטת השורש {/*the-root-component-file*/}
 
-[בקומפוננטה הראשונה שלך](/learn/your-first-component) בנית את הקומפוננטה  `Profile` ואת הקומפוננטה `Gallery` שמרדנרדת אותה: 
+[בקומפוננטה הראשונה שלכם](/learn/your-first-component) בנית את הקומפוננטה  `Profile` ואת הקומפוננטה `Gallery` שמרדנרדת אותה: 
 <Sandpack>
 
 ```js
@@ -50,12 +50,10 @@ img { margin: 0 10px 10px 0; height: 90px; }
 
 </Sandpack>
 
-הקופמפוננטות האלו כרגע יושבות **בקובץ קומפוננטת השורש** שנקרא `App.js` בדוגמא הזאת. ב[Create React App](https://create-react-app.dev/), האפליקציה שלך יושבת ב`src/App.js`. כתלות בקונפיקורציה שלך, קומפוננטת השורש יכולה לשבת בקובץ אחר. אם אתה משתמש בפריימוורק עם ראוטינג שמתבסס על מבנה הקבצים, כמו למשל Next.js, קומפוננטת השורש שלך תהיה שונה עבור כל עמוד.
+הקומפוננטות האלו כרגע יושבות **בקובץ קומפוננטת השורש** שנקרא `App.js` בדוגמא הזאת. ב[Create React App](https://create-react-app.dev/), האפליקציה שלכם יושבת ב`src/App.js`. כתלות בקונפיגורציה שלכם, קומפוננטת השורש יכולה לשבת בקובץ אחר. אם אתם משתמשים בפריימוורק עם ראוטינג שמתבסס על מבנה הקבצים, כמו למשל Next.js, קומפוננטת השורש שלכם תהיה שונה עבור כל עמוד.
 ## ייצוא ויבוא של קומפוננטה {/*exporting-and-importing-a-component*/}
 
-What if you want to change the landing screen in the future and put a list of science books there? Or place all the profiles somewhere else? It makes sense to move `Gallery` and `Profile` out of the root component file. This will make them more modular and reusable in other files. You can move a component in three steps:
-
-מה אם תרצו לשנות את דף הנחיתה בעתיד, ולשים שם רשימה של ספרי מדע? או  להשתמש בפרופילים במקום אחר באפליקציה? צעד סביר יהיה להזיז את קומפוננטות:  `Gallery` ו-`Profile` מחוץ לקומפוננטת השורש שלך. צעד זה יהפוך אותם ליותר מודולריים  וריוזביליים בקבצים אחרים. ניתן להזיז קופמפוננטה בשלושה צעדים:
+מה אם תרצו לשנות את דף הנחיתה בעתיד, ולשים שם רשימה של ספרי מדע? או  להשתמש בפרופילים במקום אחר באפליקציה? צעד סביר יהיה להזיז את קומפוננטות:  `Gallery` ו-`Profile` מחוץ לקומפוננטת השורש שלכם. צעד זה יהפוך אותם ליותר מודולריים  וריוזביליים בקבצים אחרים. ניתן להזיז קומפוננטה בשלושה צעדים:
 1. **ליצור** קובץ JS חדש כדי לשים בו את הקומפוננטה
 2. **לייצא** את הקומפוננטה מהקובץ החדש (בייצוא [דיפולטיבי](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/export#using_the_default_export) או [שמי](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/export#using_named_exports))
 3. **לייבא** את הקומפוננטה שייצאת לתוך הקובץ שבו תשתמש בה (בייבוא  [דיפולטיבי](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/export#using_the_default_export) או [שמי](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/export#using_named_exports) בהתאם לצורה שבה הקומפוננטה יוצאה )
@@ -114,7 +112,7 @@ img { margin: 0 10px 10px 0; height: 90px; }
 <Note>
 
 
-ייתכן ותיתקל בקבצים המשמיטים את סיומת הקובץ `.js` כך:
+ייתכן ותיתקלו בקבצים המשמיטים את סיומת הקובץ `.js` כך:
 ```js 
 import Gallery from './Gallery';
 ```
@@ -124,45 +122,48 @@ import Gallery from './Gallery';
 </Note>
 
 <DeepDive title="Default vs Named Exports">
+****
 
-There are two primary ways to export values with JavaScript: default exports and named exports. So far, our examples have only used default exports. But you can use one or both of them in the same file. **A file can have no more than one _default_ export, but it can have as many _named_ exports as you like.**
+יש שני דרכים עיקריות לייצא ערכים בג׳אווסקריפט. ייצוא דיפולטיבי, וייצוא שמי. עד עכשיו, בכל הדוגמאות שהצגנו, השתמשנו רק בייצוא שמי. אבל, ניתן להשתמש באחד או בשניהם באותו הקובץ.
+**בקובץ ניתן לייצא באופן _דיפולטיבי_, רק ערך אחד, אבל ניתן לייצא כמה ערכים _שמיים_ שתרצו.**
+
 
 ![Default and named exports](/images/docs/illustrations/i_import-export.svg)
 
-How you export your component dictates how you must import it. You will get an error if you try to import a default export the same way you would a named export! This chart can help you keep track:
+האופן שבו אתם מייצאים את הקומפוננטה שלכם מכתיב כיצד עליכם לייבא אותה. תקבלו שגיאה אם תנסו לייבא ייצוא דיפולטיבי באותו אופן שהיית עושה לייצוא שמי! טבלה זו יכולה לעזור לכם בהבנה:
+
 
 | Syntax           | Export statement                           | Import statement                          |
 | -----------      | -----------                                | -----------                               |
 | Default  | `export default function Button() {}` | `import Button from './button.js';`     |
 | Named    | `export function Button() {}`         | `import { Button } from './button.js';` |
 
-When you write a _default_ import, you can put any name you want after `import`. For example, you could write `import Banana from './button.js'` instead and it would still provide you with the same default export. In contrast, with named imports, the name has to match on both sides. That's why they are called _named_ imports!
+כאשר אתם כותבים ייבוא _דיפולטיבי_, אתם יכולים לשים כל שם שתרצו לאחר ה`import`. לדוגמה, אתם יכולים לכתוב `import Banana from './button.js'` במקום זאת, וזה עדיין יספק לכם את אותו ייצוא דיפולטיבי. לעומת זאת, עם יבוא שמי, השם צריך להתאים משני הצדדים. לכן זה נקרא יבוא _שמי_!
 
-**People often use default exports if the file exports only one component, and use named exports if it exports multiple components and values.** Regardless of which coding style you prefer, always give meaningful names to your component functions and the files that contain them. Components without names, like `export default () => {}`, are discouraged because they make debugging harder.
+**אנשים משתמשים לעתים קרובות בייצוא ברירת מחדל אם הקובץ מייצא רק קומפוננטה אחד, ומשתמשים בייצוא שמי אם הוא מייצא מספר קומפוננטות וערכים.** לא משנה איזה סגנון קידוד אתם מעדיפים, תמיד תנו שמות משמעותיים לפונקציות הקומפננטות  שלכם ולקבצים המכילים אותם. אנחנו לא ממליצים לייצא קומפוננטות כך: `export default () => {}`, בשל הקושי לדבג קומפוננטות כאלו. 
 
 </DeepDive>
 
-## Exporting and importing multiple components from the same file {/*exporting-and-importing-multiple-components-from-the-same-file*/}
+## יבוא וייצוא של מספר קומפוננטות מאותו הקובץ {/*exporting-and-importing-multiple-components-from-the-same-file*/}
 
-What if you want to show just one `Profile` instead of a gallery? You can export the `Profile` component, too. But `Gallery.js` already has a *default* export, and you can't have _two_ default exports. You could create a new file with a default export, or you could add a *named* export for `Profile`. **A file can only have one default export, but it can have numerous named exports!**
+מה אם נרצה להראות רק `Profile` אחד במקום גלריה של פרופילים? אפשר גם לייצא רק את קומפוננטת `Profile`. אבל בקובץ `Gallery.js` כבר יש ייצוא *דיפולטיבי* אחד, ואי אפשר שיהיו _שני_ יצואים דיפולטיבים. אפשר לייצר קובץ חדש עם ייצוא דיפולטיבי, או להוסיף בקובץ הקיים ייצוא *שמי* עבור `Profile`. **בכל קובץ יכול להיות רק ייצוא דיפולטיבי אחד אבל ייצוא שמי ללא הגבלה.**
 
-> To reduce the potential confusion between default and named exports, some teams choose to only stick to one style (default or named), or avoid mixing them in a single file. It's a matter of preference. Do what works best for you!
 
-First, **export** `Profile` from `Gallery.js` using a named export (no `default` keyword):
+> בכדי להפחית את הבלבול שבין יצוא דיפולטיבי ליצוא שמי, ישנם צוותים שבחורים רק בסגנון אחד, או שנמנעים מלערבב באותו קובץ את סוגי היצוא השונים. הכל שאלה של העדפה. תעשו מה שמתאים לכם!
+
+קודם כל **יצאו** את קומפוננטת `Profile` מתוך `Gallery.js` בעזרת יצוא שמי (ללא שימוש במילה `default`):
 
 ```js
 export function Profile() {
   // ...
 }
 ```
-
-Then, **import** `Profile` from `Gallery.js` to `App.js` using a named import (with the curly braces):
+לאחר מכן, **יבאו** את קומפוננטת `Profile` מתוך `Gallery.js` אל `App.js` בעזרת יבוא שמי (עם סוגריים מסולסלים):
 
 ```js
 import { Profile } from './Gallery.js';
 ```
-
-Finally, **render** `<Profile />` from the `App` component:
+לבסוף, **רנדרו** את קומפוננטת `</ Profile>` בתוך קומפוננטת `App`:
 
 ```js
 export default function App() {
@@ -170,7 +171,7 @@ export default function App() {
 }
 ```
 
-Now `Gallery.js` contains two exports: a default `Gallery` export, and a named `Profile` export. `App.js` imports both of them. Try editing `<Profile />` to `<Gallery />` and back in this example:
+עכשיו `Gallery.js` מכילה שני ייצואים: דיפולטיבי, של קומפוננטת `Gallery` ושמי של קומפוננטת `Profile`. `App.js` מייבא את שניהם. נסו לערוך את `<Profile />` ל- `<Gallery />` ובחזרה בדוגמה הבאה:
 
 <Sandpack>
 
@@ -213,24 +214,24 @@ img { margin: 0 10px 10px 0; height: 90px; }
 
 </Sandpack>
 
-Now you're using a mix of default and named exports:
+עכשיו אתם משתמשים בשילוב של יצוא דיפולטיבי ויצוא שמי:
 
 * `Gallery.js`:
-  - Exports the `Profile` component as a **named export called `Profile`**.
-  - Exports the `Gallery` component as a **default export**.
+  - מייצא את `Profile` בתור **ייצוא שמי בשם `Profile`**
+  - מייצא את `Gallery` **בייצוא דיפוטליבי**
 * `App.js`:
-  - Imports `Profile` as a **named import called `Profile`** from `Gallery.js`.
-  - Imports `Gallery` as a **default import** from `Gallery.js`.
-  - Exports the root `App` component as a **default export**.
+  - מייבא את `Profile` בתור **ייבוא שמי בשם `Profile`** מתוך קובץ `Gallery.js`.
+  - מייבא את `Gallery` בתור **יבוא דיפולטיבי** מתוך `Gallery.js`.
+  - מייצא את קומפננטת השורש `App` בתור **ייצוא דיפולטיבי**.
 
 <Recap>
 
-On this page you learned:
+בעמוד זה למדנו:
 
-* What a root component file is
-* How to import and export a component
-* When and how to use default and named imports and exports
-* How to export multiple components from the same file
+* מהו קובץ קומפוננטת השורש
+* איך לייצא ולייבא קומפוננטה
+* מתי ואיך להשתמש ביבוא ויצוא דיפוטליבי ושמי
+* איך לייצא מספר קומפוננטות מאותו הקובץ
 
 </Recap>
 
@@ -238,13 +239,14 @@ On this page you learned:
 
 <Challenges>
 
-### Split the components further {/*split-the-components-further*/}
+### המשך פיצול הקומפוננטות {/*split-the-components-further*/}
 
-Currently, `Gallery.js` exports both `Profile` and `Gallery`, which is a bit confusing.
 
-Move the `Profile` component to its own `Profile.js`, and then change the `App` component to render both `<Profile />` and `<Gallery />` one after another.
+כרגע, `Gallery.js` מייצאת גם את `Profile` וגם את `Gallery`, דבר שעשוי קצת לבלבל.
 
-You may use either a default or a named export for `Profile`, but make sure that you use the corresponding import syntax in both `App.js` and `Gallery.js`! You can refer to the table from the deep dive above:
+בואו נזיז את קומפוננטת `Profile` לקובץ נפרד, בשם `Profile.js`, ואז נשנה את קומפוננטת `App` כך שתרנדר גם את  `<Profile />` וגם את `<Gallery />` אחת אחרי השנייה.
+
+ניתן להשתמש בייצוא דיפולטיבי או בייצוא שמי על מנת לייצא את קומפוננטת `Profile`, מה שחשוב זה לוודא שסינטקס היבוא תואם גם ב-`App.js` וגם ב-`Gallery.js`! אפשר להסתכל בטבלה למטה כדי לקבל סיכום.
 
 | Syntax           | Export statement                           | Import statement                          |
 | -----------      | -----------                                | -----------                               |
@@ -253,7 +255,7 @@ You may use either a default or a named export for `Profile`, but make sure that
 
 <Hint>
 
-Don't forget to import your components where they are called. Doesn't `Gallery` use `Profile`, too?
+אל תשכחו לייבא את הקומפוננטות כשאתם מרנדרים אותם. גם `Gallery` מרנדר את `Profile`, נכון?
 
 </Hint>
 
@@ -304,11 +306,11 @@ img { margin: 0 10px 10px 0; height: 90px; }
 
 </Sandpack>
 
-After you get it working with one kind of exports, make it work with the other kind.
+אחרי שאתם מצליחים לעבוד עם סוג אחד של יצוא, תנסו עם הסוג השני.
 
 <Solution>
 
-This is the solution with named exports:
+זה הפיתרון עם יצוא שמי:
 
 <Sandpack>
 
@@ -358,7 +360,7 @@ img { margin: 0 10px 10px 0; height: 90px; }
 
 </Sandpack>
 
-This is the solution with default exports:
+זה הפיתרון עם יצוא דיפולטיבי:
 
 <Sandpack>
 
