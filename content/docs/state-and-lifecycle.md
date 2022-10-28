@@ -10,11 +10,7 @@ next: handling-events.html
 
 דף זה מציג את הקונספט של state ומחזור חיים בקומפוננטת React. תוכלו למצוא את [פירוט ה-API של קומפוננטה כאן](/docs/react-component.html).
 
-<<<<<<< HEAD
 הביטו על דוגמת השעון המתקתק מ[אחד מהחלקים הקודמים](/docs/rendering-elements.html#updating-the-rendered-element). ב[רינדור אלמנטים](/docs/rendering-elements.html#rendering-an-element-into-the-dom), למדנו רק דרך אחת לעדכון ממשק המשתמש. אנו קוראים ל-`ReactDOM.render()` כדי לשנות את הפלט שירונדר:
-=======
-Consider the ticking clock example from [one of the previous sections](/docs/rendering-elements.html#updating-the-rendered-element). In [Rendering Elements](/docs/rendering-elements.html#rendering-an-element-into-the-dom), we have only learned one way to update the UI. We call `root.render()` to change the rendered output:
->>>>>>> 84ad3308338e2bb819f4f24fa8e9dfeeffaa970b
 
 ```js{10}
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -298,11 +294,7 @@ root.render(<Clock />);
 
 בואו נסכם בזריזות את מה שקורה ואת הסדר שבו מתודות נקראות:
 
-<<<<<<< HEAD
 1) כאשר `<Clock />` מועבר ל-`ReactDOM.render()`, React קוראת לבנאי של הרכיב `Clock`. מכיוון ש-`Clock` צריך להציג את השעה הנוכחית, הוא מאתחל את `this.state` עם אובייקט שכולל את הזמן הנוכחי. בהמשך נעדכן את ה-state הזה.
-=======
-1) When `<Clock />` is passed to `root.render()`, React calls the constructor of the `Clock` component. Since `Clock` needs to display the current time, it initializes `this.state` with an object including the current time. We will later update this state.
->>>>>>> 84ad3308338e2bb819f4f24fa8e9dfeeffaa970b
 
 2) אז React קוראת למתודת `render()` של קומפוננטת ה-`Clock`. באופן זה React לומדת מה צריך להיות מוצג על המסך. אז React מעדכנת את ה-DOM כדי שיהיה תואם לפלט שרונדר על ידי `Clock`.
 

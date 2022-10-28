@@ -74,21 +74,14 @@ const element = <Welcome name="Sara" />;
 root.render(element);
 ```
 
-**[Try it on CodePen](https://codepen.io/gaearon/pen/YGYmEG?editors=1010)**
+**[נסו את זה ב-codepen](https://codepen.io/gaearon/pen/YGYmEG?editors=1010)**
 
 בואו נסכם מה קורה בדוגמה זו:
 
-<<<<<<< HEAD
 1. אנחנו קוראים ל-`ReactDOM.render()` עם האלמנט `<Welcome name="Sara" />`.
 2. React קוראת לקומפוננטת `Welcome` עם `{name: 'Sara'}` בתור ה-props.
 3. קומפוננטת `Welcome` שלנו מחזירה אלמנט `<h1>Hello, Sara</h1>` בתור התוצאה שלה.
 4. React DOM מעדכן ביעילות את ה-DOM להיות תואם ל-`<h1>Hello, Sara</h1>`.
-=======
-1. We call `root.render()` with the `<Welcome name="Sara" />` element.
-2. React calls the `Welcome` component with `{name: 'Sara'}` as the props.
-3. Our `Welcome` component returns a `<h1>Hello, Sara</h1>` element as the result.
-4. React DOM efficiently updates the DOM to match `<h1>Hello, Sara</h1>`.
->>>>>>> 84ad3308338e2bb819f4f24fa8e9dfeeffaa970b
 
 >**הערה:** יש להתחיל שמות קומפוננטות עם אות גדולה.
 >
@@ -118,7 +111,7 @@ function App() {
 }
 ```
 
-**[Try it on CodePen](https://codepen.io/gaearon/pen/KgQKPr?editors=1010)**
+**[נסו את זה ב-codepen](https://codepen.io/gaearon/pen/KgQKPr?editors=1010)**
 
 בדרך כלל, אפליקציות React חדשות כוללות קומפוננטת `App` אחת בראש האפליקציה. עם זאת, אם תשלבו את React באפליקציה קיימת, תוכלו להתחיל מלמטה למעלה באמצעות קומפוננטה קטנה כגון `Button`, ובהדרגה להגיע לחלק העליון ביותר של הירארכיית התצוגה.
 
@@ -152,7 +145,7 @@ function Comment(props) {
 }
 ```
 
-**[Try it on CodePen](https://codepen.io/gaearon/pen/VKQwEo?editors=1010)**
+**[נסו את זה ב-codepen](https://codepen.io/gaearon/pen/VKQwEo?editors=1010)**
 
 היא מקבלת את `author` (אובייקט), `text` (מחרוזת) ו-`date` (תאריך) בתור props, ומתארת תגובה באתר אינטרנט של מדיה חברתית.
 
@@ -231,7 +224,7 @@ function Comment(props) {
 }
 ```
 
-**[Try it on CodePen](https://codepen.io/gaearon/pen/rrJNJY?editors=1010)**
+**[נסו את זה ב-codepen](https://codepen.io/gaearon/pen/rrJNJY?editors=1010)**
 
 חילוץ קומפוננטות אולי נראה כמו עבודה שחורה בהתחלה, אבל בעלות על מגוון קומפוננטות לשימוש חוזר משתלמת באפליקציות גדולות יותר. כלל אצבע טוב הוא שאם חלק מממשק המשתמש שלכם נמצא בשימוש מספר פעמים (`Button`, `Panel`, `Avatar`), או שהוא מורכב מספיק בכוחות עצמו (`App`, `FeedStory`, `Comment`), הוא מועמד טוב להיות מחולץ לקומפוננטה אחרת.
 

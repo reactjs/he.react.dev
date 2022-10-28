@@ -33,11 +33,7 @@ const listItems = numbers.map((number) =>
 );
 ```
 
-<<<<<<< HEAD
 אנו מכלילים את המערך `listItems` כולו לתוך אלמנט `<ul>`, ו[מרדנדרים את ה-DOM](/docs/rendering-elements.html#rendering-an-element-into-the-dom).
-=======
-Then, we can include the entire `listItems` array inside a `<ul>` element:
->>>>>>> 84ad3308338e2bb819f4f24fa8e9dfeeffaa970b
 
 ```javascript{2}
 <ul>{listItems}</ul>
