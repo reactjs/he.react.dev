@@ -17,7 +17,7 @@ redirect_from:
 
 ## Stack Overflow {#stack-overflow}
 
-Stack Overflow הינה פלטפורמה מוכרת לשאלות קוד או שגיאות מסוימות שטרם נמצא להן פיתרון. נא עיינו ב [שאלות נפותות](https://stackoverflow.com/questions/tagged/reactjs) עם התגית **reactjs** או [שאלו שאלות  משלכם](https://stackoverflow.com/questions/ask?tags=reactjs)!
+Stack Overflow הינה פלטפורמה מוכרת לשאלות בנושא קוד או שגיאות מסוימות שטרם נמצא להן פיתרון. נא עיינו ב [שאלות נפוצות](https://stackoverflow.com/questions/tagged/reactjs) עם התגית **reactjs** או [שאלו שאלות משלכם](https://stackoverflow.com/questions/ask?tags=reactjs)!
 
 ## פורומי דיונים מוכרים {#popular-discussion-forums}
 
