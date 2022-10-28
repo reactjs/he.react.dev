@@ -25,7 +25,7 @@ const PageNotFound = ({location}: Props) => (
           <TitleAndMetaTags title="React - הדף אינו נמצא" />
           <div css={sharedStyles.markdown}>
             <p>לא יכולנו למצוא את הדף שאתה מחפש</p>
-            <p>אנא פנה לבעל האתר שסיפק לך את הקישור, והודע לו שהכתובת שגויה.</p>
+            <p>אנא פנה לבעל האתר שסיפק לך את לינג, והודע לו שהלינק שבור.</p>
           </div>
         </div>
       </div>
