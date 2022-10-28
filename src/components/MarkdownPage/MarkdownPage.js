@@ -135,7 +135,7 @@ const MarkdownPage = ({
                     <a
                       css={sharedStyles.articleLayout.editLink}
                       href={`https://github.com/reactjs/he.reactjs.org/tree/main/${markdownRemark.fields.path}`}>
-                      ערוך עמוד זה
+                      לעריכת העמוד הנוכחי
                     </a>
                   </div>
                 )}

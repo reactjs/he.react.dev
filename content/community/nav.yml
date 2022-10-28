@@ -3,7 +3,7 @@
     - id: support
       title: תמיכה
     - id: team
-      title: Team
+      title: הקבוצה
     - id: courses
       title: קורסים
     - id: examples
@@ -19,4 +19,4 @@
     - id: videos
       title: סרטונים
     - id: external-resources
-      title: External Resources
+      title: מקורות מידע חיצוניים

@@ -18,9 +18,12 @@ const FeedbackForm = () => {
   } else {
     return (
       <span>
-        Is this page useful?
+        האם התוכן בעמוד זה היה שימושי?
         <button
-          css={[sharedStyles.articleLayout.feedbackButton, {marginLeft: '6px'}]}
+          css={[
+            sharedStyles.articleLayout.feedbackButton,
+            {marginLeft: '6px', marginRight: '6px'},
+          ]}
           aria-label="Yes"
           onClick={e => {
             e.preventDefault();
