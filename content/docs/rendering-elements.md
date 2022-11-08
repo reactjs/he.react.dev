@@ -16,7 +16,6 @@ next: components-and-props.html
 const element = <h1>Hello, world</h1>;
 ```
 
-Unlike browser DOM elements, React elements are plain objects, and are cheap to create. React DOM takes care of updating the DOM to match the React elements.
 שלא כמו אלמנטים של DOM, אלמנטים של ריאקט הם אובייקטים פשוטים, ויצירתם אינה דורשת משאבים רבים. React DOM מטפל בעדכון הDOM על מנת להתאים אותם לאלמנטים של ריאקט.
 
 >**:הערה**
