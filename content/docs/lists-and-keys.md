@@ -8,7 +8,7 @@ next: forms.html
 
 ראשית, בואו נסקור איך לשנות רשימות ב-JavaScript.
 
-בהתחשב בקוד שלהלן, אנחנו משתמשים בפונקציית [`()map`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) כדי לקחת מערך של מספרים `numbers` ולהכפיל את הערכים שלהם. אנו מקצים את המערך החדש שחוזר מ-`map()` למשתנה `doubled` ומדפיסים אותו.
+בהתחשב בקוד שלהלן, אנחנו משתמשים בפונקציית [`map()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) כדי לקחת מערך של מספרים `numbers` ולהכפיל את הערכים שלהם. אנו מקצים את המערך החדש שחוזר מ-`map()` למשתנה `doubled` ומדפיסים אותו.
 
 ```javascript{2}
 const numbers = [1, 2, 3, 4, 5];
