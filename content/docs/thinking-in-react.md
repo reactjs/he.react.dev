@@ -8,6 +8,13 @@ redirect_from:
 prev: composition-vs-inheritance.html
 ---
 
+<div class="scary">
+
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+> 
+> The updated [Thinking in React](https://react.dev/learn/thinking-in-react) guide teaches modern React and includes live examples.
+
+</div>
 
 React, לפי דעתנו, היא ספריית הג'וואה-סקריפט המובילה בבניית יישומי אינטרנט. הספרייה הוכיחה את עצמה אצלנו בפייסבוק ובאינסטגרם.
 

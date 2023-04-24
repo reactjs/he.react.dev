@@ -13,6 +13,19 @@ redirect_from:
   - "docs/top-level-api-zh-CN.html"
 ---
 
+<div class="scary">
+
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+>
+> These new documentation pages teach modern React:
+>
+> - [`react`: Components](https://react.dev/reference/react/components)
+> - [`react`: Hooks](https://react.dev/reference/react/)
+> - [`react`: APIs](https://react.dev/reference/react/apis)
+> - [`react`: Legacy APIs](https://react.dev/reference/react/legacy)
+
+</div>
+
 `React` is the entry point to the React library. If you load React from a `<script>` tag, these top-level APIs are available on the `React` global. If you use ES6 with npm, you can write `import React from 'react'`. If you use ES5 with npm, you can write `var React = require('react')`.
 
 ## Overview {#overview}
@@ -101,6 +114,14 @@ Suspense lets components "wait" for something before rendering. Today, Suspense 
 
 ### `React.Component` {#reactcomponent}
 
+<div class="scary">
+
+> This content is out of date.
+>
+> Read the new React documentation for [`Component`](https://react.dev/reference/react/Component).
+
+</div>
+
 `React.Component` is the base class for React components when they are defined using [ES6 classes](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes):
 
 ```javascript
@@ -117,19 +138,35 @@ See the [React.Component API Reference](/docs/react-component.html) for a list o
 
 ### `React.PureComponent` {#reactpurecomponent}
 
+<div class="scary">
+
+> This content is out of date.
+>
+> Read the new React documentation for [`PureComponent`](https://react.dev/reference/react/PureComponent).
+
+</div>
+
 `React.PureComponent` is similar to [`React.Component`](#reactcomponent). The difference between them is that [`React.Component`](#reactcomponent) doesn't implement [`shouldComponentUpdate()`](/docs/react-component.html#shouldcomponentupdate), but `React.PureComponent` implements it with a shallow prop and state comparison.
 
 If your React component's `render()` function renders the same result given the same props and state, you can use `React.PureComponent` for a performance boost in some cases.
 
 > Note
 >
-> `React.PureComponent`'s `shouldComponentUpdate()` only shallowly compares the objects. If these contain complex data structures, it may produce false-negatives for deeper differences. Only extend `PureComponent` when you expect to have simple props and state, or use [`forceUpdate()`](/docs/react-component.html#forceupdate) when you know deep data structures have changed. Or, consider using [immutable objects](https://facebook.github.io/immutable-js/) to facilitate fast comparisons of nested data.
+> `React.PureComponent`'s `shouldComponentUpdate()` only shallowly compares the objects. If these contain complex data structures, it may produce false-negatives for deeper differences. Only extend `PureComponent` when you expect to have simple props and state, or use [`forceUpdate()`](/docs/react-component.html#forceupdate) when you know deep data structures have changed. Or, consider using [immutable objects](https://immutable-js.com/) to facilitate fast comparisons of nested data.
 >
 > Furthermore, `React.PureComponent`'s `shouldComponentUpdate()` skips prop updates for the whole component subtree. Make sure all the children components are also "pure".
 
 * * *
 
 ### `React.memo` {#reactmemo}
+
+<div class="scary">
+
+> This content is out of date.
+>
+> Read the new React documentation for [`memo`](https://react.dev/reference/react/memo).
+
+</div>
 
 ```javascript
 const MyComponent = React.memo(function MyComponent(props) {
@@ -169,6 +206,14 @@ This method only exists as a **[performance optimization](/docs/optimizing-perfo
 
 ### `createElement()` {#createelement}
 
+<div class="scary">
+
+> This content is out of date.
+>
+> Read the new React documentation for [`createElement`](https://react.dev/reference/react/createElement).
+
+</div>
+
 ```javascript
 React.createElement(
   type,
@@ -184,6 +229,14 @@ Code written with [JSX](/docs/introducing-jsx.html) will be converted to use `Re
 * * *
 
 ### `cloneElement()` {#cloneelement}
+
+<div class="scary">
+
+> This content is out of date.
+>
+> Read the new React documentation for [`cloneElement`](https://react.dev/reference/react/cloneElement).
+
+</div>
 
 ```
 React.cloneElement(
@@ -209,6 +262,14 @@ This API was introduced as a replacement of the deprecated `React.addons.cloneWi
 
 ### `createFactory()` {#createfactory}
 
+<div class="scary">
+
+> This content is out of date.
+>
+> Read the new React documentation for [`createFactory`](https://react.dev/reference/react/createFactory).
+
+</div>
+
 ```javascript
 React.createFactory(type)
 ```
@@ -223,6 +284,14 @@ You will not typically invoke `React.createFactory()` directly if you are using 
 
 ### `isValidElement()` {#isvalidelement}
 
+<div class="scary">
+
+> This content is out of date.
+>
+> Read the new React documentation for [`isValidElement`](https://react.dev/reference/react/isValidElement).
+
+</div>
+
 ```javascript
 React.isValidElement(object)
 ```
@@ -232,6 +301,14 @@ Verifies the object is a React element. Returns `true` or `false`.
 * * *
 
 ### `React.Children` {#reactchildren}
+
+<div class="scary">
+
+> This content is out of date.
+>
+> Read the new React documentation for [`Children`](https://react.dev/reference/react/Children).
+
+</div>
 
 `React.Children` provides utilities for dealing with the `this.props.children` opaque data structure.
 
@@ -291,6 +368,14 @@ Returns the `children` opaque data structure as a flat array with keys assigned 
 
 ### `React.Fragment` {#reactfragment}
 
+<div class="scary">
+
+> This content is out of date.
+>
+> Read the new React documentation for [`Fragment`](https://react.dev/reference/react/Fragment).
+
+</div>
+
 The `React.Fragment` component lets you return multiple elements in a `render()` method without creating an additional DOM element:
 
 ```javascript
@@ -309,10 +394,26 @@ You can also use it with the shorthand `<></>` syntax. For more information, see
 
 ### `React.createRef` {#reactcreateref}
 
+<div class="scary">
+
+> This content is out of date.
+>
+> Read the new React documentation for [`createRef`](https://react.dev/reference/react/createRef).
+
+</div>
+
 `React.createRef` creates a [ref](/docs/refs-and-the-dom.html) that can be attached to React elements via the ref attribute.
 `embed:16-3-release-blog-post/create-ref-example.js`
 
 ### `React.forwardRef` {#reactforwardref}
+
+<div class="scary">
+
+> This content is out of date.
+>
+> Read the new React documentation for [`forwardRef`](https://react.dev/reference/react/forwardRef).
+
+</div>
 
 `React.forwardRef` creates a React component that forwards the [ref](/docs/refs-and-the-dom.html) attribute it receives to another component below in the tree. This technique is not very common but is particularly useful in two scenarios:
 
@@ -331,6 +432,14 @@ For more information, see [forwarding refs](/docs/forwarding-refs.html).
 
 ### `React.lazy` {#reactlazy}
 
+<div class="scary">
+
+> This content is out of date.
+>
+> Read the new React documentation for [`lazy`](https://react.dev/reference/react/lazy).
+
+</div>
+
 `React.lazy()` lets you define a component that is loaded dynamically. This helps reduce the bundle size to delay loading components that aren't used during the initial render.
 
 You can learn how to use it from our [code splitting documentation](/docs/code-splitting.html#reactlazy). You might also want to check out [this article](https://medium.com/@pomber/lazy-loading-and-preloading-components-in-react-16-6-804de091c82d) explaining how to use it in more detail.
@@ -343,6 +452,14 @@ const SomeComponent = React.lazy(() => import('./SomeComponent'));
 Note that rendering `lazy` components requires that there's a `<React.Suspense>` component higher in the rendering tree. This is how you specify a loading indicator.
 
 ### `React.Suspense` {#reactsuspense}
+
+<div class="scary">
+
+> This content is out of date.
+>
+> Read the new React documentation for [`Suspense`](https://react.dev/reference/react/Suspense).
+
+</div>
 
 `React.Suspense` lets you specify the loading indicator in case some components in the tree below it are not yet ready to render. In the future we plan to let `Suspense` handle more scenarios such as data fetching. You can read about this in [our roadmap](/blog/2018/11/27/react-16-roadmap.html).
 
@@ -375,10 +492,17 @@ During server side rendering Suspense Boundaries allow you to flush your applica
 When a component suspends we schedule a low priority task to render the closest Suspense boundary's fallback. If the component unsuspends before we flush the fallback then we send down the actual content and throw away the fallback.
 
 #### `React.Suspense` during hydration {#reactsuspense-during-hydration}
-Suspense boundaries depend on their parent boundaries being hydrated before they can hydrate, but they can hydrate independently from sibling boundaries. Events on a boundary before its hydrated will cause the boundary to hydrate at
-a higher priority than neighboring boundaries. [Read more](https://github.com/reactwg/react-18/discussions/130)
+Suspense boundaries depend on their parent boundaries being hydrated before they can hydrate, but they can hydrate independently from sibling boundaries. Events on a boundary before it is hydrated will cause the boundary to hydrate at a higher priority than neighboring boundaries. [Read more](https://github.com/reactwg/react-18/discussions/130)
 
 ### `React.startTransition` {#starttransition}
+
+<div class="scary">
+
+> This content is out of date.
+>
+> Read the new React documentation for [`startTransition`](https://react.dev/reference/react/startTransition).
+
+</div>
 
 ```js
 React.startTransition(callback)

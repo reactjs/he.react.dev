@@ -4,6 +4,17 @@ title: פיצול-קוד
 permalink: docs/code-splitting.html
 ---
 
+<div class="scary">
+
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+> 
+> These new documentation pages teach modern React and include live examples:
+>
+> - [`lazy`](https://react.dev/reference/react/lazy)
+> - [`<Suspense>`](https://react.dev/reference/react/Suspense)
+
+</div>
+
 ## איגוד {#bundling}
 
 בדרך כלל, הקבצים באפליקציות React ״מאוגדים״ באמצעות כלים כמו [Webpack](https://webpack.js.org/) , [Rollup](https://rollupjs.org/guide/en/#code-splitting) ו-[Browserify](http://browserify.org/) או [Browserify](http://browserify.org/).

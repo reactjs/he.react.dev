@@ -4,6 +4,14 @@ title: קומפוננטות מסדר גבוה יותר
 permalink: docs/higher-order-components.html
 ---
 
+<div class="scary">
+
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+> 
+> Higher-order components are not commonly used in modern React code.
+
+</div>
+
 קומפוננטה מסדר גבוה יותר (HOC) היא טכניקה מתקדמת של React שעוזרת למחזר קוד קומפוננטות. HOCs הן לא בדיוק חלק מהממשק של React, אלא תבנית עיצוב שהתפתחה מהטבע הקומפוזיציוני של React.
 
 מבחינת היישום, **קומפוננטה מסדר גבוה יותר היא פונקציה שלוקחת קומפוננטה ומחזירה קומפוננטה אחרת**.
@@ -14,7 +22,7 @@ const EnhancedComponent = higherOrderComponent(WrappedComponent);
 
 בשונה מקומפוננטה רגילה שמתרגמת מאפיינים לממשק משתמש, קומפוננטה מסדר גבוה יותר מתרגמת קומפוננטה לקומפוננטה אחרת.
 
-ה-HOCs שכיחות בספריות צד שלישי של React, כמו למשל ה-[`connect`](https://github.com/reduxjs/react-redux/blob/master/docs/api/connect.md#connect) של Redux וה-[`createFragmentContainer`](https://relay.dev/docs/v10.1.3/fragment-container/#createfragmentcontainer) של Relay.
+ה-HOCs שכיחות בספריות צד שלישי של React, כמו למשל ה-[`connect`](https://react-redux.js.org/api/connect) של Redux וה-[`createFragmentContainer`](https://relay.dev/docs/v10.1.3/fragment-container/#createfragmentcontainer) של Relay.
 
 כאן נסביר למה קומפוננטות מסדר גבוה יותר שימושיות, ואיך ליצור כאלה בעצמנו.
 

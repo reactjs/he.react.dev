@@ -41,10 +41,9 @@ class Foo extends Component {
 
 ```jsx
 class Foo extends Component {
-  // הערה: תחביר זה ניסיוני ואינו חלק מהתקן בינתיים
   handleClick = () => {
     console.log('הכפתור נלחץ');
-  }
+  };
   render() {
     return <button onClick={this.handleClick}>לחץ עליי</button>;
   }

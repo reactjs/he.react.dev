@@ -6,10 +6,20 @@ category: Reference
 permalink: docs/react-dom.html
 ---
 
-<<<<<<< HEAD
+<div class="scary">
+
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+>
+> These new documentation pages teach modern React:
+>
+> - [`react-dom`: Components](https://react.dev/reference/react-dom/components)
+> - [`react-dom`: APIs](https://react.dev/reference/react-dom)
+> - [`react-dom`: Client APIs](https://react.dev/reference/react-dom/client)
+> - [`react-dom`: Server APIs](https://react.dev/reference/react-dom/server)
+
+</div>
+
 אם אתם טוענים את React מתגית `<script>`, ה-APIs מהרמה העליונה הבאים זמינים תחת המשתנה הגלובלי `ReactDOM`. אם אתם משתמשים ב-ES6 עם npm, אתם יכולים לכתוב `import ReactDOM from 'react-dom'`. אם אתם משתמשים ב-ES5 עם npm, תוכלו לכתוב `var ReactDOM = require('react-dom')`.
-=======
-The `react-dom` package provides DOM-specific methods that can be used at the top level of your app and as an escape hatch to get outside the React model if you need to.
 
 ```js
 import * as ReactDOM from 'react-dom';
@@ -68,6 +78,14 @@ React supports all modern browsers, although [some polyfills are required](/docs
 
 ### `createPortal()` {#createportal}
 
+<div class="scary">
+
+> This content is out of date.
+>
+> Read the new React documentation for [`createPortal`](https://react.dev/reference/react-dom/createPortal).
+
+</div>
+
 ```javascript
 createPortal(child, container)
 ```
@@ -78,6 +96,14 @@ createPortal(child, container)
 Creates a portal. Portals provide a way to [render children into a DOM node that exists outside the hierarchy of the DOM component](/docs/portals.html).
 
 ### `flushSync()` {#flushsync}
+
+<div class="scary">
+
+> This content is out of date.
+>
+> Read the new React documentation for [`flushSync`](https://react.dev/reference/react-dom/flushSync).
+
+</div>
 
 ```javascript
 flushSync(callback)
@@ -105,6 +131,15 @@ flushSync(() => {
 
 ## Legacy Reference {#legacy-reference}
 ### `render()` {#render}
+
+<div class="scary">
+
+> This content is out of date.
+>
+> Read the new React documentation for [`render`](https://react.dev/reference/react-dom/render).
+
+</div>
+
 ```javascript
 render(element, container[, callback])
 ```
@@ -141,12 +176,20 @@ Render a React element into the DOM in the supplied `container` and return a [re
 > and should be avoided because future versions of React may render components asynchronously in some cases. If you need a reference to the root `ReactComponent` instance, the preferred solution is to attach a
 > [callback ref](/docs/refs-and-the-dom.html#callback-refs) to the root element.
 >
-> Using `render()` to hydrate a server-rendered container is deprecated. Use [`hydrateRoot()`](#hydrateroot) instead.
+> Using `render()` to hydrate a server-rendered container is deprecated. Use [`hydrateRoot()`](/docs/react-dom-client.html#hydrateroot) instead.
 >>>>>>> 84ad3308338e2bb819f4f24fa8e9dfeeffaa970b
 
 * * *
 
 ### `hydrate()` {#hydrate}
+
+<div class="scary">
+
+> This content is out of date.
+>
+> Read the new React documentation for [`hydrate`](https://react.dev/reference/react-dom/hydrate).
+
+</div>
 
 ```javascript
 hydrate(element, container[, callback])
@@ -174,6 +217,14 @@ React מצפה שהתוכן המרונדר יהיה זהה בין השרת לב�
 
 ### `unmountComponentAtNode()` {#unmountcomponentatnode}
 
+<div class="scary">
+
+> This content is out of date.
+>
+> Read the new React documentation for [`unmountComponentAtNode`](https://react.dev/reference/react-dom/unmountComponentAtNode).
+
+</div>
+
 ```javascript
 unmountComponentAtNode(container)
 ```
@@ -191,6 +242,14 @@ Remove a mounted React component from the DOM and clean up its event handlers an
 * * *
 
 ### `findDOMNode()` {#finddomnode}
+
+<div class="scary">
+
+> This content is out of date.
+>
+> Read the new React documentation for [`findDOMNode`](https://react.dev/reference/react-dom/findDOMNode).
+
+</div>
 
 > הערה:
 >

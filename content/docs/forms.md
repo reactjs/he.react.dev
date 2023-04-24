@@ -9,6 +9,18 @@ redirect_from:
   - "docs/forms-zh-CN.html"
 ---
 
+<div class="scary">
+
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+> 
+> These new documentation pages teach modern React and include live examples:
+>
+> - [`<input>`](https://react.dev/reference/react-dom/components/input)
+> - [`<select>`](https://react.dev/reference/react-dom/components/select)
+> - [`<textarea>`](https://react.dev/reference/react-dom/components/textarea)
+
+</div>
+
 אלמנטים של טפסיHTML  עובדים מעט שונה מאשר אלמנטים אחרים של ה-DOM ב-React, מכיוון שאלמנטים של טפסים באופן טבעי שומרים על state פנימי. למשל, הטופס הבא ב-HTML מקבל שם אחד:
 
 ```html

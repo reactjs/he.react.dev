@@ -4,6 +4,17 @@ title: העברת רפרנסים
 permalink: docs/forwarding-refs.html
 ---
 
+<div class="scary">
+
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+> 
+> These new documentation pages teach modern React and include live examples:
+>
+> - [Manipulating the DOM with Refs](https://react.dev/learn/manipulating-the-dom-with-refs)
+> - [`forwardRef`](https://react.dev/reference/react/forwardRef)
+
+</div>
+
 העברת רפרנסים היא טכניקה להעברה אוטומטית של [רפרנס](/docs/refs-and-the-dom.html) דרך קומפוננטה לאחד מקומפוננטות הילד שלה. בדרך כלל, זאת טכניקה שלא נחוצה לרוב הקומפוננטות באפליקציה, אבל יכולה להיות שימושית במצבים מסוימים, בעיקר בספריות קומפוננטות רב פעמיות. התרחישים הנפוצים ביותר מתוארים פה.
 
 ## העברת רפרנסים לקומפוננטות ב-DOM {#forwarding-refs-to-dom-components}

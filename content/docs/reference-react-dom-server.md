@@ -6,6 +6,16 @@ category: Reference
 permalink: docs/react-dom-server.html
 ---
 
+<div class="scary">
+
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+>
+> These new documentation pages teach modern React:
+>
+> - [`react-dom`: Server APIs](https://react.dev/reference/react-dom/server)
+
+</div>
+
 האובייקט `ReactDOMServer` מאפשר לעבד קומפוננטות ל-markup סטטי. בדרך כלל, נעשה בו שימוש בשרת Node:
 
 ```js
@@ -20,7 +30,7 @@ var ReactDOMServer = require('react-dom/server');
 <<<<<<< HEAD
 ניתן להשתמש במתודות הבאות הן בסביבת השרת והן בסביבות דפדפן:
 =======
-These methods are only available in the **environments with [Node.js Streams](https://nodejs.dev/learn/nodejs-streams):**
+These methods are only available in the **environments with [Node.js Streams](https://nodejs.org/api/stream.html):**
 
 - [`renderToPipeableStream()`](#rendertopipeablestream)
 - [`renderToNodeStream()`](#rendertonodestream) (Deprecated)
@@ -50,6 +60,14 @@ The following methods can be used in the environments that don't support streams
 >>>>>>> 84ad3308338e2bb819f4f24fa8e9dfeeffaa970b
 
 ### `renderToPipeableStream()` {#rendertopipeablestream}
+
+<div class="scary">
+
+> This content is out of date.
+>
+> Read the new React documentation for [`renderToPipeableStream`](https://react.dev/reference/react-dom/server/renderToPipeableStream).
+
+</div>
 
 ```javascript
 ReactDOMServer.renderToPipeableStream(element, options)
@@ -111,6 +129,14 @@ See the [full list of options](https://github.com/facebook/react/blob/14c2be8dac
 * * *
 
 ### `renderToReadableStream()` {#rendertoreadablestream}
+
+<div class="scary">
+
+> This content is out of date.
+>
+> Read the new React documentation for [`renderToReadableStream`](https://react.dev/reference/react-dom/server/renderToReadableStream).
+
+</div>
 
 ```javascript
 ReactDOMServer.renderToReadableStream(element, options);
@@ -175,6 +201,14 @@ See the [full list of options](https://github.com/facebook/react/blob/14c2be8dac
 
 ### `renderToNodeStream()`  (Deprecated) {#rendertonodestream}
 
+<div class="scary">
+
+> This content is out of date.
+>
+> Read the new React documentation for [`renderToNodeStream`](https://react.dev/reference/react-dom/server/renderToNodeStream).
+
+</div>
+
 ```javascript
 ReactDOMServer.renderToNodeStream(element)
 ```
@@ -200,6 +234,14 @@ If you call [`ReactDOM.hydrateRoot()`](/docs/react-dom-client.html#hydrateroot) 
 * * *
 
 ### `renderToStaticNodeStream()` {#rendertostaticnodestream}
+
+<div class="scary">
+
+> This content is out of date.
+>
+> Read the new React documentation for [`renderToStaticNodeStream`](https://react.dev/reference/react-dom/server/renderToStaticNodeStream).
+
+</div>
 
 ```javascript
 ReactDOMServer.renderToStaticNodeStream(element)
@@ -228,6 +270,14 @@ If you plan to use React on the client to make the markup interactive, do not us
 
 ### `renderToString()` {#rendertostring}
 
+<div class="scary">
+
+> This content is out of date.
+>
+> Read the new React documentation for [`renderToString`](https://react.dev/reference/react-dom/server/renderToString).
+
+</div>
+
 ```javascript
 ReactDOMServer.renderToString(element)
 ```
@@ -245,6 +295,14 @@ If you call [`ReactDOM.hydrateRoot()`](/docs/react-dom-client.html#hydrateroot) 
 * * *
 
 ### `renderToStaticMarkup()` {#rendertostaticmarkup}
+
+<div class="scary">
+
+> This content is out of date.
+>
+> Read the new React documentation for [`renderToStaticMarkup`](https://react.dev/reference/react-dom/server/renderToStaticMarkup).
+
+</div>
 
 ```javascript
 ReactDOMServer.renderToStaticMarkup(element)

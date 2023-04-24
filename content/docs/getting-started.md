@@ -18,6 +18,15 @@ redirect_from:
   - "docs/environments.html"
 ---
 
+<div class="scary">
+
+>
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+> 
+> The new [Quick Start](https://react.dev/learn) teaches modern React and includes live examples.
+
+</div>
+
 דף זה הוא סקירה כללית של התיעוד של React ומשאבים קשורים.
 
 **React** היא ספריית JavaScript לבניית ממשקי משתמש. למדו הכל אודות React [בדף הבית שלנו](/) או [במדריך](/tutorial/tutorial.html).

@@ -6,6 +6,17 @@ prev: conditional-rendering.html
 next: forms.html
 ---
 
+<div class="scary">
+
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+> 
+> These new documentation pages teach modern React and include live examples:
+>
+> - [Rendering Lists](https://react.dev/learn/rendering-lists)
+
+</div>
+
+
 ראשית, בואו נסקור איך לשנות רשימות ב-JavaScript.
 
 בהתחשב בקוד שלהלן, אנחנו משתמשים בפונקציית [`()map`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) כדי לקחת מערך של מספרים `numbers` ולהכפיל את הערכים שלהם. אנו מקצים את המערך החדש שחוזר מ-`map()` למשתנה `doubled` ומדפיסים אותו.
@@ -119,7 +130,7 @@ const todoItems = todos.map((todo, index) =>
 );
 ```
 
-אנחנו לא ממליצים להשתמש באינדקסים עבור מפתחות אם סדר הפריטים ישתנה. זה יכול להשפיע לרעה על הביצועים ולגרום לבעיות ב-state של הקומפוננטה. עיין במאמר של Robin Pokorny בשביל [הסבר מעמיק על ההשפעות השליליות של שימוש באינדקס כמפתח](https://medium.com/@robinpokorny/index-as-a-key-is-an-anti-pattern-e0349aece318). אם תבחר לא להקצות מפתח מפורש לפריט ברשימה אז React ישתמש כברירת מחדל באינדקס כמפתח.
+אנחנו לא ממליצים להשתמש באינדקסים עבור מפתחות אם סדר הפריטים ישתנה. זה יכול להשפיע לרעה על הביצועים ולגרום לבעיות ב-state של הקומפוננטה. עיין במאמר של Robin Pokorny בשביל [הסבר מעמיק על ההשפעות השליליות של שימוש באינדקס כמפתח](https://robinpokorny.com/blog/index-as-a-key-is-an-anti-pattern/). אם תבחר לא להקצות מפתח מפורש לפריט ברשימה אז React ישתמש כברירת מחדל באינדקס כמפתח.
 
 הנה [הסבר מעמיק על למה מפתחות נחוצים](/docs/reconciliation.html#recursing-on-children) אם אתה מעוניין ללמוד יותר.
 

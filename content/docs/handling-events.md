@@ -8,6 +8,16 @@ redirect_from:
   - "docs/events-ko-KR.html"
 ---
 
+<div class="scary">
+
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+>
+> These new documentation pages teach modern React and include live examples:
+>
+> - [Responding to Events](https://react.dev/learn/responding-to-events)
+
+</div>
+
 טיפול באירועים עם אלמנטים של React דומה מאוד לטיפול באירועים באלמנטים של DOM. ישנם כמה הבדלים תחביריים:
 
 * שמות אירועים של React נכתבים באמצעות תחביר camelCase (כל תחילת מילה באות גדולה פרט לראשונה), ולא באותיות קטנות.
@@ -97,10 +107,9 @@ class Toggle extends React.Component {
 ```js{2-6}
 class LoggingButton extends React.Component {
   // תחביר זה מבטיח ש-`this` הוא bound בתוך handleClick.
-  // אזהרה: זהו תחביר *ניסיוני*.
   handleClick = () => {
     console.log('this is:', this);
-  }
+  };
 
   render() {
     return (

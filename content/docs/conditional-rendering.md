@@ -8,6 +8,17 @@ redirect_from:
   - "tips/false-in-jsx.html"
 ---
 
+<div class="scary">
+
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+>
+> These new documentation pages teach modern React and include live examples:
+>
+> - [Conditional Rendering](https://react.dev/learn/conditional-rendering)
+
+</div>
+
+
 ב-React, אתם יכולים ליצור קומפוננטות יחודיות אשר מכמסות את ההתנהגות שאתם מחפשים. לאחר מכן, אתם יכולים לרנדר רק חלק מהן, על פי תלות ב-state של האפליקציה שלכם.
 
 רינדור מותנה ב-React פועל באותו אופן שבו עובדים תנאים ב-JavaScript. השתמשו באופרטורים של JavaScript כמו [`if`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/if...else) או [האופרטור המותנה](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Conditional_Operator) כדי ליצור אלמנטים המייצגים את ה-state הנוכחי, ותנו ל-React לעדכן את ממשק המשתמש כדי שיהיה תואם אליהם.
