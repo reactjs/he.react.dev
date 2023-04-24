@@ -8,6 +8,18 @@ prev: components-and-props.html
 next: handling-events.html
 ---
 
+<div class="scary">
+
+>
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+>
+> These new documentation pages teach modern React and include live examples:
+>
+> - [State: A Component's Memory](https://react.dev/learn/state-a-components-memory)
+> - [Synchronizing with Effects](https://react.dev/learn/synchronizing-with-effects)
+
+</div>
+
 דף זה מציג את הקונספט של state ומחזור חיים בקומפוננטת React. תוכלו למצוא את [פירוט ה-API של קומפוננטה כאן](/docs/react-component.html).
 
 הביטו על דוגמת השעון המתקתק מ[אחד מהחלקים הקודמים](/docs/rendering-elements.html#updating-the-rendered-element). ב[רינדור אלמנטים](/docs/rendering-elements.html#rendering-an-element-into-the-dom), למדנו רק דרך אחת לעדכון ממשק המשתמש. אנו קוראים ל-`ReactDOM.render()` כדי לשנות את הפלט שירונדר:

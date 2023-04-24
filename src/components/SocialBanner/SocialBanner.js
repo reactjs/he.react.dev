@@ -10,13 +10,13 @@ import React from 'react';
 import {colors, media} from 'theme';
 
 const linkProps = {
-  href: 'https://opensource.fb.com/support-ukraine',
+  href: 'https://react.dev/blog/2023/03/16/introducing-react-dev',
   target: '_blank',
   rel: 'noopener',
 };
 
-const bannerText = 'תמכו באוקראינה';
-const bannerLink = 'עזרו לספק תמיכה הומניטרית לאוקראינה.';
+const bannerText = 'אתר זה אינו מעודכן יותר.';
+const bannerLink = 'עבור אל react.dev';
 
 export default function SocialBanner() {
   return (
@@ -25,6 +25,7 @@ export default function SocialBanner() {
         display: 'var(--social-banner-display)',
         height: 'var(--social-banner-height-normal)',
         fontSize: 18,
+        fontWeight: 'bold',
         [media.lessThan('large')]: {
           fontSize: 16,
         },
@@ -59,11 +60,7 @@ export default function SocialBanner() {
 
           <a
             css={{
-              color: '#ddd',
-              transition: 'color 200ms ease-out',
-              ':hover': {
-                color: colors.white,
-              },
+              color: colors.brand,
             }}
             {...linkProps}
             target="_blank"

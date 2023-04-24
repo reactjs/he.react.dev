@@ -16,6 +16,18 @@ prev: rendering-elements.html
 next: state-and-lifecycle.html
 ---
 
+<div class="scary">
+
+>
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+>
+> These new documentation pages teach modern React and include live examples:
+>
+> - [Your First Component](https://react.dev/learn/your-first-component)
+> - [Passing Props to a Component](https://react.dev/learn/passing-props-to-a-component)
+
+</div>
+
 קומפוננטות מאפשרות לכם לפצל את ממשק המשתמש לחתיכות עצמאיות המאפשרות שימוש חוזר, ולחשוב על כל חתיכה בנפרד. דף זה מספק מבוא לרעיון של קומפוננטות. תוכלו למצוא [הסבר מפורט של ה-API של קומפוננטות כאן](/docs/react-component.html).
 
 מבחינה תפיסתית, קומפוננטות הן כמו פונקציות JavaScript. הן מקבלות קלט שרירותי (נקרא "props") ומחזירות אלמנטים של React המתארים מה אמור להופיע על המסך.

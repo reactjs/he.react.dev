@@ -14,6 +14,21 @@ redirect_from:
   - "tips/dangerously-set-inner-html.html"
 ---
 
+<div class="scary">
+
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+> 
+> These new documentation pages teach modern React and include live examples:
+>
+> - [Common components (e.g. `<div>`)](https://react.dev/reference/react-dom/components/common)
+> - [`<input>`](https://react.dev/reference/react-dom/components/input)
+> - [`<option>`](https://react.dev/reference/react-dom/components/option)
+> - [`<progress>`](https://react.dev/reference/react-dom/components/progress)
+> - [`<select>`](https://react.dev/reference/react-dom/components/select)
+> - [`<textarea>`](https://react.dev/reference/react-dom/components/textarea)
+
+</div>
+
 React מיישמת מערכת DOM ללא-תלות בדפדפן עבור ביצועים ותאימות לדפדפנים שונים. ניצלנו את ההזדמנות על מנת לנקות מספר בעיות במימוש ה-DOM של הדפדפן.
 
 ב-React, כל המאפיינים (properties) והתכונות (attributes) של ה-DOM (כולל מנהלי אירועים) צריכים להיות camelCased. לדוגמה, תכונת ה-`tabindex` של HTML מקבילה לתכונה `tabIndex` ב-React. המקרים היוצאים מן הכלל הם `aria-*` ו-`data-*`, שצריכים להיות באותיות קטנות. לדוגמה, נוכל להשאיר את `aria-label` בתור `aria-label`.

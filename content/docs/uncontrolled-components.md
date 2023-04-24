@@ -4,6 +4,18 @@ title: קומפוננטות לא מבוקרות
 permalink: docs/uncontrolled-components.html
 ---
 
+<div class="scary">
+
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+> 
+> These new documentation pages teach modern React and include live examples:
+>
+> - [`<input>`](https://react.dev/reference/react-dom/components/input)
+> - [`<select>`](https://react.dev/reference/react-dom/components/select)
+> - [`<textarea>`](https://react.dev/reference/react-dom/components/textarea)
+
+</div>
+
 ברוב המקרים, אנו ממליצים להשתמש [בקומפוננטות מבוקרות](/docs/forms.html#controlled-components) למימוש טפסים. בקומפוננטה מבוקרת, נתוני הטופס מנוהלים על ידי קומפוננטת React. האלטרנטיבה היא קומפוננטה לא מבוקרת, איפה שנתוני הטופס מנוהלים על ידי ה-DOM עצמו.
 
 כדי לכתוב קומפוננטה לא מבוקרת, במקום לרשום event handler לכל עדכון state, אתה יכול [להשתמש ב-ref](/docs/refs-and-the-dom.html) כדי לקבל את ערכי הטופס מה-DOM.

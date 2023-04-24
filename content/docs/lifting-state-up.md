@@ -9,6 +9,16 @@ redirect_from:
   - "docs/flux-todo-list.html"
 ---
 
+<div class="scary">
+
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+> 
+> These new documentation pages teach modern React and include live examples:
+>
+> - [Sharing State Between Components](https://react.dev/learn/sharing-state-between-components)
+
+</div>
+
 לעתים קרובות, מספר קומפוננטות צריכות לשקף את אותם נתונים משתנים. אנו ממליצים להרים את ה-state המשותף עד לאב הקדמון הקרוב ביותר. בואו נראה איך זה עובד.
 
 בחלק זה, ניצור מחשבון טמפרטורה המחשב אם המים ירתחו בטמפרטורה נתונה.

@@ -4,6 +4,16 @@ title: Fragments
 permalink: docs/fragments.html
 ---
 
+<div class="scary">
+
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+> 
+> These new documentation pages teach modern React:
+>
+> - [`<Fragment>`](https://react.dev/reference/react/Fragment)
+
+</div>
+
 תבנית נפוצה ב-React עבור קומפוננטה שמחזירה אלמנטים מרובים. Fragments נותנים לך לאחד רשימה של ילדים מבלי להוסיף nodes נוספים ל-DOM.
 
 ```js

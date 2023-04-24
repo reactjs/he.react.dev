@@ -15,6 +15,16 @@ redirect_from:
   - "tips/use-react-with-other-libraries.html"
 ---
 
+<div class="scary">
+
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+>
+> These new documentation pages teach modern React:
+>
+> - [`React.Component`](https://react.dev/reference/react/Component)
+
+</div>
+
 הדף הזה מכיל הפניית API מפורטת עבור ההגדרה של קומפוננטת מחלקה ב-React. הוא מניח שאתם מכירים קונספטים בסיסיים ב-React, כדוגמת [קומפוננטות ו-Props](/docs/components-and-props.html), בנוסף גם [State ומעגל-חיים](/docs/state-and-lifecycle.html). אם אתם לא, קראו אותם תחילה.
 
 ## סקירה-כללית {#overview}
@@ -508,7 +518,7 @@ UNSAFE_componentWillUpdate(nextProps, nextState)
 ### `setState()` {#setstate}
 
 ```javascript
-setState(updater, [callback])
+setState(updater[, callback])
 ```
 
 `setState()` מכניסה לתור שינויים ב-state של הקומפוננטה ואומרת ל-React שהקומפוננטה הזו והילדים שלה צריכים להיות מרונדרים מחדש עם ה-state המעודכן. זו המתודה הראשית שבה משתמשים כדי לעדכן את ממשק המשתמש בתגובה למנהלי אירועים ותגובות שרת.

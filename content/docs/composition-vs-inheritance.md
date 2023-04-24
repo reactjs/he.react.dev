@@ -8,6 +8,12 @@ prev: lifting-state-up.html
 next: thinking-in-react.html
 ---
 
+<div class="scary">
+
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+
+</div>
+
 React היא בעלת מודל הכלה רב עוצמה ואנו ממליצים להשתמש בהכלה במקום הורשה על מנת לבצע שימוש חוזר בקוד בין קומפוננטות.
 
 בפרק זה נעסוק במספר בעיות שקורות כאשר מתכנתי React חדשים בוחרים לעיתים קרובות להשתמש בהורשה ונציג איך ניתן לפתור בעיות אלו באמצעות הכלה.

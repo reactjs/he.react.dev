@@ -4,6 +4,17 @@ title: קונטקסט
 permalink: docs/context.html
 ---
 
+<div class="scary">
+
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+> 
+> These new documentation pages teach modern React and include live examples:
+>
+> - [Passing Data Deeply with Context](https://react.dev/learn/passing-data-deeply-with-context)
+> - [`useContext`](https://react.dev/reference/react/useContext)
+
+</div>
+
 קונטקסט מספק דרך להעביר מידע דרך עץ הקומפוננטות בלי להשתמש ב-props באופן ידני לכל קומפוננטה.
 
 באפליקציית React טיפוסית, המידע מועבר למטה (מקומפוננטת אב לקומפוננטת ילד) דרך props, אבל עבור מידע שנדרש בהרבה קומפוננטות באפליקציה (כמו לדוגמא העדפות שפה או ערכת נושא של ממשק המשתמש) השימוש ב-props יכול להיות מסורבל. קונטקסט מספק דרך לשתף מידע כזה בין קומפוננטות בלי להעביר אותו באופן מפורש לכל קומפוננטה.

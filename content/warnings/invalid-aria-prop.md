@@ -8,8 +8,6 @@ permalink: warnings/invalid-aria-prop.html
 
 1. אם אתה מרגיש שאתה משתמש ב-prop חוקי, בדוק את האיות בקפידה. `aria-labelledby` ו-`aria-activedescendant` לעיתים קרובות מאוייתות באופן שגוי.
 
-<<<<<<< HEAD
-2. React עדיין לא מזהה את התכונה שציינת. זה כנראה יתוקן בגרסא עתידית של React. למרות זאת, React כרגע מסיר את כל התכונות הלא ידועות, אז לציין אותם באפליקציית ה-React שלך תגרום להם לא להתרנדר.
-=======
-2. React does not yet recognize the attribute you specified. This will likely be fixed in a future version of React.
->>>>>>> 84ad3308338e2bb819f4f24fa8e9dfeeffaa970b
+2. If you wrote `aria-role`, you may have meant `role`.
+
+3. Otherwise, if you're on the latest version of React DOM and verified that you're using a valid property name listed in the ARIA specification, please [report a bug](https://github.com/facebook/react/issues/new/choose).

@@ -6,6 +6,16 @@ layout: docs
 category: Reference
 ---
 
+<div class="scary">
+
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+> 
+> These new documentation pages teach modern React and include live examples:
+>
+> - [Common components (e.g. `<div>`)](https://react.dev/reference/react-dom/components/common)
+
+</div>
+
 מדריך עזר זה מסביר על מעטפת ה-`SyntheticEvent` המהווה חלק ממערכת האירועים של React. ראה את מדריך [טיפול באירועים](/docs/handling-events.html) על מנת ללמוד עוד.
 
 ## סקירה כללית {#overview}

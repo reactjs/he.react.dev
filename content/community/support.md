@@ -8,6 +8,15 @@ redirect_from:
   - "support.html"
 ---
 
+<div class="scary">
+
+>
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+> 
+> See the [Community](https://react.dev/community) resources on the new site.
+
+</div>
+
 קהילת הפיתוח של ריאקט מורכבת ממיליוני מפתחות ומפתחים.
 
 בדף זה ריכזנו קהילות בנושא ריאקט שניתן לקחת חלק בהן, ניתן גם לצפות בדפים נוספים למטה על מנת לקבל חומרי לימוד עצמי.
