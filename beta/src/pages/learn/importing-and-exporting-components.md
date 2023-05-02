@@ -9,15 +9,15 @@ title: Importing and Exporting Components
 
 <YouWillLearn>
 
-* מה היא קומפוננטת שורש
+* מה היא קומפוננטת root?
 * איך לייבא ולייצא קומפוננטה
-* מתי נשתמש ביבוא ויצוא דיפולטיבי, ומתי ביבוא ויצוא שמי
+* מתי נשתמש default import/export, ומתי named import/export
 * איך לייבא ולייצא מספר קומפוננטות מאותו הקובץ
 * איך לפצל קומפוננטות למספר קבצים
 
 </YouWillLearn>
 
-## קומפוננטת השורש {/*the-root-component-file*/}
+## קומפוננטת ה-root {/*the-root-component-file*/}
 
 [בקומפוננטה הראשונה שלכם](/learn/your-first-component) בנית את הקומפוננטה  `Profile` ואת הקומפוננטה `Gallery` שמרדנרדת אותה: 
 <Sandpack>
