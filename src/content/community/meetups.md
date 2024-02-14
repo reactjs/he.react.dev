@@ -87,12 +87,7 @@ Do you have a local React.js meetup? Add it here! (Please keep the list alphabet
 * [Karlsruhe](https://www.meetup.com/react_ka/)
 * [Kiel](https://www.meetup.com/Kiel-React-Native-Meetup/)
 * [Munich](https://www.meetup.com/ReactJS-Meetup-Munich/)
-<<<<<<< HEAD
-* [React Berlin](https://www.meetup.com/React-Open-Source/)
-* [React.JS Girls Berlin](https://www.meetup.com/ReactJS-Girls-Berlin/)
-=======
 * [React Berlin](https://guild.host/react-berlin)
->>>>>>> 5d2f7105bd6374e465b8bdce8efceaeb8f01c937
 
 ## Greece {/*greece*/}
 * [Athens](https://www.meetup.com/React-To-React-Athens-MeetUp/)
