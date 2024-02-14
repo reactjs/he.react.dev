@@ -1501,7 +1501,7 @@ main {
 
 ---
 
-### Displaying an error to users with a error boundary {/*displaying-an-error-to-users-with-error-boundary*/}
+### Displaying an error to users with an error boundary {/*displaying-an-error-to-users-with-error-boundary*/}
 
 <Canary>
 
@@ -1520,15 +1520,15 @@ import { ErrorBoundary } from "react-error-boundary";
 export function AddCommentContainer() {
   return (
     <ErrorBoundary fallback={<p>⚠️Something went wrong</p>}>
-        <AddCommentButton />
+      <AddCommentButton />
     </ErrorBoundary>
   );
 }
 
 function addComment(comment) {
   // For demonstration purposes to show Error Boundary
-  if(comment == null){
-    throw Error('Example error')
+  if (comment == null) {
+    throw new Error("Example Error: An error thrown to trigger error boundary");
   }
 }
 
@@ -1544,9 +1544,10 @@ function AddCommentButton() {
           // so error gets thrown
           addComment();
         });
-      }}>
-        Add comment
-      </button>
+      }}
+    >
+      Add comment
+    </button>
   );
 }
 ```
