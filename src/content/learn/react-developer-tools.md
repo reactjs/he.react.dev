@@ -52,17 +52,21 @@ react-devtools
 ![React Developer Tools standalone](/images/docs/react-devtools-standalone.png)
 
 ## Mobile (React Native) {/*mobile-react-native*/}
+<<<<<<< HEAD
 ניתן להשתמש בכלי המפתחים של ריאקט על מנת לבחון אפליקציות שנבנו בעזרת [React Native](https://reactnative.dev/). 
 
 הדרך הקלה ביותר להשתמש בכלי המפתחים היא להתקין אותם גלובאלית:
 ```bash
 # Yarn
 yarn global add react-devtools
+=======
 
-# Npm
-npm install -g react-devtools
-```
+To inspect apps built with [React Native](https://reactnative.dev/), you can use [React Native DevTools](https://reactnative.dev/docs/react-native-devtools), the built-in debugger that deeply integrates React Developer Tools. All features work identically to the browser extension, including native element highlighting and selection.
+>>>>>>> f8c81a0f4f8e454c850f0c854ad054b32313345c
 
+[Learn more about debugging in React Native.](https://reactnative.dev/docs/debugging)
+
+<<<<<<< HEAD
 פתח את הכלים מהטרמינל:
 ```bash
 react-devtools
@@ -72,3 +76,6 @@ react-devtools
 > נסה לטעון מחדש את האפליקצייה אם הכלים לא מתחברים אליה תוך מספר שניות.
 
 [למד עוד על דיבוג React Native.](https://reactnative.dev/docs/debugging)
+=======
+> For versions of React Native earlier than 0.76, please use the standalone build of React DevTools by following the [Safari and other browsers](#safari-and-other-browsers) guide above.
+>>>>>>> f8c81a0f4f8e454c850f0c854ad054b32313345c
