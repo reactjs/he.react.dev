@@ -1,30 +1,30 @@
 ---
-title: Managing State
+title: "ניהול הstate"
 ---
 
 <Intro>
 
-As your application grows, it helps to be more intentional about how your state is organized and how the data flows between your components. Redundant or duplicate state is a common source of bugs. In this chapter, you'll learn how to structure your state well, how to keep your state update logic maintainable, and how to share state between distant components.
+ככל שהאפליקציה שלך גדלה, זה עוזר להיות יותר מכוון לגבי האופן שבו הstate שלך מאורגנת ואיך זורמים בין הרכיבים שלך. מצב מיותר או כפול הוא מקור נפוץ לבאגים. בפרק זה, תלמד כיצד לבנות את הstate שלך היטב, כיצד לשמור על לוגיקה של עדכון הstate שלך ניתנת לתחזוקה וכיצד לשתף מצב בין רכיבים מרוחקים.
 
 </Intro>
 
 <YouWillLearn isChapter={true}>
 
-* [How to think about UI changes as state changes](/learn/reacting-to-input-with-state)
-* [How to structure state well](/learn/choosing-the-state-structure)
-* [How to "lift state up" to share it between components](/learn/sharing-state-between-components)
-* [How to control whether the state gets preserved or reset](/learn/preserving-and-resetting-state)
-* [How to consolidate complex state logic in a function](/learn/extracting-state-logic-into-a-reducer)
-* [How to pass information without "prop drilling"](/learn/passing-data-deeply-with-context)
-* [How to scale state management as your app grows](/learn/scaling-up-with-reducer-and-context)
+* [איך לחשוב על שינויים בממשק משתמש כשינויים בstate](/learn/reacting-to-input-with-state)
+* [איך לבנות מצב טוב](/learn/choosing-the-state-structure)
+* [עזרה "להרים את הstate למעלה" כדי לשתף אותו בין רכיבים](/learn/sharing-state-between-components)
+* [כיצד לשלוט אם הstate ישמר או יאופס](/learn/preserving-and-resetting-state)
+* [כיצד לאחד היגיון מצב מורכב בפונקציה](/learn/extracting-state-logic-into-a-reducer)
+* [כיצד להעביר מידע ללא "קידוח props"](/learn/passing-data-deeply-with-context)
+* [כיצד להרחיב את ניהול הstate ככל שהאפליקציה שלך גדלה](/learn/scaling-up-with-reducer-and-context)
 
 </YouWillLearn>
 
-## Reacting to input with state {/*reacting-to-input-with-state*/}
+## מגיבה לקלט עם מצב {/*מגיב-לקלט-עם-מצב*/}
 
-With React, you won't modify the UI from code directly. For example, you won't write commands like "disable the button", "enable the button", "show the success message", etc. Instead, you will describe the UI you want to see for the different visual states of your component ("initial state", "typing state", "success state"), and then trigger the state changes in response to user input. This is similar to how designers think about UI.
+עם React, לא תשנה את ממשק משתמש מהקוד בעצם. לדוגמה, לא תכתוב פקודות כמו "השבת את הלחצן", "הפעל את הלחצן", "הצג את הודעת ההצלחה" וכו'. במקום זאת, תתאר את ממשק המשתמש שאתה רוצה עבור הstates החזותיים לראות את הרכיב שלך ("מצב התחלתי", "מצב הקלדה", "מצב הצלחה"), תפעיל את שינוי הstate בתגובה למשתמש. זה דומה לאופן שבו מעצבים על ממשק משתמש.
 
-Here is a quiz form built using React. Note how it uses the `status` state variable to determine whether to enable or disable the submit button, and whether to show the success message instead.
+להלן טופס חידון שנבנה באמצעות React. שים לב איך הוא משתמש בשינוי הstate 'סטטוס' כדי לקבוע אם להפעיל או להשלים את לחצן השליחה, ואם להגיש את הדעת ההצלחה במקום זאת.
 
 <Sandpack>
 
@@ -108,15 +108,15 @@ function submitForm(answer) {
 
 <LearnMore path="/learn/reacting-to-input-with-state">
 
-Read **[Reacting to Input with State](/learn/reacting-to-input-with-state)** to learn how to approach interactions with a state-driven mindset.
+קרא את **[להגיב לקלט עם מצב](/learn/reacting-to-input-with-state)** כדי ללמוד כיצד לגשת לאינטראקציות עם חשיבה מונעת לפי מצב.
 
 </LearnMore>
 
-## Choosing the state structure {/*choosing-the-state-structure*/}
+## בחירת מבנה הstate {/*בחירת-מבנה-הstate*/}
 
-Structuring state well can make a difference between a component that is pleasant to modify and debug, and one that is a constant source of bugs. The most important principle is that state shouldn't contain redundant or duplicated information. If there's unnecessary state, it's easy to forget to update it, and introduce bugs!
+מבנה מצב טוב לעשות הבדל בין רכיב שנעים לשינוי וניפוי באגים, כזה שמהווה מקור קבוע לבאגים. העיקרון העיקרי הוא שstate לא צריך להכיל מידע מיותר או משוכפל. אם יש מצב מיותר, קל לשכוח לעדכן אותו ולהציג באגים!
 
-For example, this form has a **redundant** `fullName` state variable:
+לדוגמה, לטופס זה יש משתנה מצב **מיותר** 'מלא שם':
 
 <Sandpack>
 
@@ -169,7 +169,7 @@ label { display: block; margin-bottom: 5px; }
 
 </Sandpack>
 
-You can remove it and simplify the code by calculating `fullName` while the component is rendering:
+אתה יכול להסיר אותו ולפשט את הקוד על ידי חישוב 'שם מלא' בזמן שהרכיב מעבד:
 
 <Sandpack>
 
@@ -221,19 +221,19 @@ label { display: block; margin-bottom: 5px; }
 
 </Sandpack>
 
-This might seem like a small change, but many bugs in React apps are fixed this way.
+זה אולי נראה כמו שינוי קטן, אבל באגים רבים באפליקציות הגיבו מתוקנים בדרך זו.
 
 <LearnMore path="/learn/choosing-the-state-structure">
 
-Read **[Choosing the State Structure](/learn/choosing-the-state-structure)** to learn how to design the state shape to avoid bugs.
+קרא את **[Choosing the State Structure](/learn/choosing-the-state-structure)** כדי ללמוד לעצב את צורת הstate כדי למנוע באגים.
 
 </LearnMore>
 
-## Sharing state between components {/*sharing-state-between-components*/}
+## מצב שיתוף בין רכיבים {/*sharing-state-between-components*/}
 
-Sometimes, you want the state of two components to always change together. To do it, remove state from both of them, move it to their closest common parent, and then pass it down to them via props. This is known as "lifting state up", and it's one of the most common things you will do writing React code.
+לפעמים אתה רוצה שstateם של שני רכיבים ישתנה תמיד ביחד. כדי לעשות זאת, הם יעבירו אותו להורה המשותף הקרוב. זה ידוע בשם "רמת מצב למעלה", וזה אחד הדברים הנפוצים ביותר שתעשה בכתיבת קוד React.
 
-In this example, only one panel should be active at a time. To achieve this, instead of keeping the active state inside each individual panel, the parent component holds the state and specifies the props for its children.
+בדוגמה זו, רק חלונית אחת צריכה להיות פעילה בכל פעם. כדי להשיג זאת, במקום לשמור על הstate הstate הprops עבור ילדיו.
 
 <Sandpack>
 
@@ -296,15 +296,15 @@ h3, p { margin: 5px 0px; }
 
 <LearnMore path="/learn/sharing-state-between-components">
 
-Read **[Sharing State Between Components](/learn/sharing-state-between-components)** to learn how to lift state up and keep components in sync.
+קרא את **[מצב שיתוף בין רכיבים](/learn/sharing-state-between-components)** כדי ללמוד כיצד להעלות מצב ולשמור על רכיבים מסונכרנים.
 
 </LearnMore>
 
-## Preserving and resetting state {/*preserving-and-resetting-state*/}
+## שמירה ואיפוס מצב {/*שמירה-ו-איפוס-מצב*/}
 
-When you re-render a component, React needs to decide which parts of the tree to keep (and update), and which parts to discard or re-create from scratch. In most cases, React's automatic behavior works well enough. By default, React preserves the parts of the tree that "match up" with the previously rendered component tree.
+כאשר אתה מעבד מחדש רכיב, React צריך להחליט אילו חלקים בעץ (ולעדכן), אילו חלקים לזרוק או ליצור מחדש מאפס. רוב המקרים, ההתנהגות האוטומטית של React עובדת מספיק טוב. כברירת מחדל, תגובה משמר את חלקי העץ מתאים" לעץ הרכיבים שעובד קודם לכן.
 
-However, sometimes this is not what you want. In this chat app, typing a message and then switching the recipient does not reset the input. This can make the user accidentally send a message to the wrong person:
+עם זאת, לפעמים זה לא מה שאתה רוצה. באפליקציית הצ'אט הזו, הקלדת הודעה ואז החלפת הנמען לא מאפסת את הקלט. זה יכול לגרום למשתמש לשלוח בטעות הודעה לאדם הלא נכון:
 
 <Sandpack>
 
@@ -399,7 +399,7 @@ textarea {
 
 </Sandpack>
 
-React lets you override the default behavior, and *force* a component to reset its state by passing it a different `key`, like `<Chat key={email} />`. This tells React that if the recipient is different, it should be considered a *different* `Chat` component that needs to be re-created from scratch with the new data (and UI like inputs). Now switching between the recipients resets the input field--even though you render the same component.
+תגובה מאפשרת לך לעקוף את התנהגות ברירת המחדל, ו*להכריח* רכיב לאפס את מצבו על ידי העברה לו `מפתח` אחר, כמו `<Chat key={email} />`. זה ל-React שאם הנמען שונה, זה צריך להיחשב כרכיב 'צ'אט' *שונה* שצריך ליצור מחדש מאפס עם החדשים (וכניסות כמו ממשק משתמש). עדיין בין הנמענים מאפס את שדה הקלט - למרות שאתה מעבד אותו רכיב.
 
 <Sandpack>
 
@@ -496,13 +496,13 @@ textarea {
 
 <LearnMore path="/learn/preserving-and-resetting-state">
 
-Read **[Preserving and Resetting State](/learn/preserving-and-resetting-state)** to learn the lifetime of state and how to control it.
+קרא את **[שימור ואיפוס מצב](/learn/preserving-and-resetting-state)** כדי ללמוד את משך החיים של הstate וכיצד לשלוט בו.
 
 </LearnMore>
 
-## Extracting state logic into a reducer {/*extracting-state-logic-into-a-reducer*/}
+## חילוץ היגיון מצב לתוך מפחית {/*חילוץ-מצב-לוגיקה-לreducer*/}
 
-Components with many state updates spread across many event handlers can get overwhelming. For these cases, you can consolidate all the state update logic outside your component in a single function, called "reducer". Your event handlers become concise because they only specify the user "actions". At the bottom of the file, the reducer function specifies how the state should update in response to each action!
+רכיבים עם עדכוני מצב רבים מהמפוארים על פני רופאי אירועים רבים יכולים להיות מהמם. אלה, אתה יכול לאחד את כל הלוגיקה של עדכון הstate מחוץ לרכיב שלך בפונקציה אחת, הנקראת "מפחית". המטפלים שלך הופכים תמצי שהם מציינים רק את המשתמש "פעולות". בתחתית הקובץ, פונקציית המפחית מציינת כיצד הstate צריך להתעדכן בתגובה לכל פעולה!
 
 <Sandpack>
 
@@ -693,15 +693,15 @@ ul, li { margin: 0; padding: 0; }
 
 <LearnMore path="/learn/extracting-state-logic-into-a-reducer">
 
-Read **[Extracting State Logic into a Reducer](/learn/extracting-state-logic-into-a-reducer)** to learn how to consolidate logic in the reducer function.
+קרא את **[חילוץ היגיון בstate reducer](/learn/extracting-state-logic-into-a-reducer)** כדי ללמוד איך לאחד את ההיגיון בפונקציית הרדוקרה.
 
 </LearnMore>
 
-## Passing data deeply with context {/*passing-data-deeply-with-context*/}
+## העברת נתונים עמוקה עם הקשר {/*העברת-נתונים-עמוק-עם-הקשר*/}
 
-Usually, you will pass information from a parent component to a child component via props. But passing props can become inconvenient if you need to pass some prop through many components, or if many components need the same information. Context lets the parent component make some information available to any component in the tree below it—no matter how deep it is—without passing it explicitly through props.
+בדרך כלל, תעביר מידע לגבי אב רכיב ילד באמצעות props. אבל להעביר props יכולה להיות לא נוחה אם אתה צריך להעביר props דרך רכיבים רבים, או אם רכיבים רבים זקוקים למידע. ההקשר היכול לרכיב האב יצור מידע לזמין לכל רכיב בעץ שמתחתיו - לא משנה כמה הוא עמוק - לא להעביר אותו במפורש דרך props.
 
-Here, the `Heading` component determines its heading level by "asking" the closest `Section` for its level. Each `Section` tracks its own level by asking the parent `Section` and adding one to it. Every `Section` provides information to all components below it without passing props--it does that through context.
+כאן, רכיב `Heading` קובע את רמת הכותרת שלו על ידי "שאילת" ה`Section` הקרוב ביותר לרמתו. כל 'מדור' עוקב אחר רמה משלו על ידי שאילת 'מדור' האב והוספת אחד אליו. כל 'מדור' מספק מידע לכל הרכיבים שמתחתיו להעברת props - הוא עושה זאת באמצעות הקשר.
 
 <Sandpack>
 
@@ -795,15 +795,15 @@ export const LevelContext = createContext(0);
 
 <LearnMore path="/learn/passing-data-deeply-with-context">
 
-Read **[Passing Data Deeply with Context](/learn/passing-data-deeply-with-context)** to learn about using context as an alternative to passing props.
+קרא את **[העברת נתונים עמHooks עם ההקשר](/learn/passing-data-deeply-with-context)** כדי ללמוד לפעול בהקשר כחלופה לprops המועברים.
 
 </LearnMore>
 
-## Scaling up with reducer and context {/*scaling-up-with-reducer-and-context*/}
+## הגדלה עם מפחית והקשר {/*הגדלה-עם-reducer-והקשר*/}
 
-Reducers let you consolidate a component’s state update logic. Context lets you pass information deep down to other components. You can combine reducers and context together to manage state of a complex screen.
+מפחית מאפשרים לך לאחד את לוגיקת עדכון הstate של רכיב. ההקשר האפשרי להעביר מידע אחר למטה לרכיבים. אתה יכול להפחית את השלב והקשר יחד כדי לנהל מצב של כמות מורכבת.
 
-With this approach, a parent component with complex state manages it with a reducer. Other components anywhere deep in the tree can read its state via context. They can also dispatch actions to update that state.
+בגישה זו, רכיב אב עם מצב מורכב מנהל אותו עם מפחית. רכיבים אחרים בכל מקום עמוק בעץ יכולים לקרוא את המצב באמצעות הקשר. הם יכולים גם לשלוח פעולות לעדכון מצב זה.
 
 <Sandpack>
 
@@ -1006,12 +1006,12 @@ ul, li { margin: 0; padding: 0; }
 
 <LearnMore path="/learn/scaling-up-with-reducer-and-context">
 
-Read **[Scaling Up with Reducer and Context](/learn/scaling-up-with-reducer-and-context)** to learn how state management scales in a growing app.
+קרא את **[הגדלה עם מפחית והקשר](/learn/scaling-up-with-reducer-and-context)** כדי ללמוד ניהול מצב מתרחב באפליקציה צומחת.
 
 </LearnMore>
 
-## What's next? {/*whats-next*/}
+## מה הלאה? {/*מה-הבא*/}
 
-Head over to [Reacting to Input with State](/learn/reacting-to-input-with-state) to start reading this chapter page by page!
+עבור אל [מגיב לקלט עם מצב](/learn/reacting-to-input-with-state) כדי להתחיל לקרוא פרק זה עמוד אחר עמוד!
 
-Or, if you're already familiar with these topics, why not read about [Escape Hatches](/learn/escape-hatches)?
+או, אם אתה כבר מכיר את הנושאים האלה, למה שלא תקרא על [Escape Hatches](/learn/escape-hatches)?

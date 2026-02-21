@@ -1,10 +1,10 @@
 ---
-title: "<option>"
+title: "<אופציה>"
 ---
 
 <Intro>
 
-The [built-in browser `<option>` component](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/option) lets you render an option inside a [`<select>`](/reference/react-dom/components/select) box.
+רכיב הדפדפן המובנה [`<option>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/option) אפשרות לרנדר אפשרות בתוך תיבת [`<select>`](/reference/react-dom/components/select).
 
 ```js
 <select>
@@ -19,11 +19,11 @@ The [built-in browser `<option>` component](https://developer.mozilla.org/en-US/
 
 ---
 
-## Reference {/*reference*/}
+## הפניה {/*reference*/}
 
 ### `<option>` {/*option*/}
 
-The [built-in browser `<option>` component](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/option) lets you render an option inside a [`<select>`](/reference/react-dom/components/select) box.
+רכיב הדפדפן המובנה [`<option>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/option) אפשרות לרנדר אפשרות בתוך תיבת [`<select>`](/reference/react-dom/components/select).
 
 ```js
 <select>
@@ -32,31 +32,31 @@ The [built-in browser `<option>` component](https://developer.mozilla.org/en-US/
 </select>
 ```
 
-[See more examples below.](#usage)
+[עוד דוגמאות נוספות.](#usage)
 
-#### Props {/*props*/}
+#### אבזרים {/*props*/}
 
-`<option>` supports all [common element props.](/reference/react-dom/components/common#props)
+`<option>` תומך בכל [מאפייני האלמנט הנפוצים.](/reference/react-dom/components/common#props)
 
-Additionally, `<option>` supports these props:
+בנוסף, `<option>` תומך ב-props האלה:
 
-* [`disabled`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/option#disabled): A boolean. If `true`, the option will not be selectable and will appear dimmed.
-* [`label`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/option#label): A string. Specifies the meaning of the option. If not specified, the text inside the option is used.
-* [`value`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/option#value): The value to be used [when submitting the parent `<select>` in a form](/reference/react-dom/components/select#reading-the-select-box-value-when-submitting-a-form) if this option is selected.
+* [`disabled`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/option#disabled): ערך בוליאני. אם `true`, לא ניתן לבחור באפשרות היא תוצג מעומעמת.
+* [`label`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/option#label): מחרוזת. מציינת את המשמעות אפשרות. אם לא הוגדרה, ישמש הטקסט שבתוך אפשרות.
+* [`value`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/option#value): הערך שישמש [בעת שליחת טופס ה-`<select>` ההורה](/reference/react-dom/components/select#reading-the-select-box-value-when-submitting-a-form) אם זו נבחרה.
 
-#### Caveats {/*caveats*/}
+#### אזהרות {/*caveats*/}
 
-* React does not support the `selected` attribute on `<option>`. Instead, pass this option's `value` to the parent [`<select defaultValue>`](/reference/react-dom/components/select#providing-an-initially-selected-option) for an uncontrolled select box, or [`<select value>`](/reference/react-dom/components/select#controlling-a-select-box-with-a-state-variable) for a controlled select.
+* React לא תומכת במאפיין `selected` על `<option>`. במקום זאת, העבירו את ה-`value` של אפשרות ל-[`<select defaultValue>`](/reference/react-dom/components/select#providing-an-initially-selected-option) של ההורה עבור select לא נשלט, או ל-[`<select value>`](/reference/react-dom/components/select#controlling-a-select-box-with-a-state-variable) עבור בחר נשלט.
 
 ---
 
-## Usage {/*usage*/}
+## שימוש {/*usage*/}
 
-### Displaying a select box with options {/*displaying-a-select-box-with-options*/}
+### הצגת תיבת בחר עם אפשרויות {/*displaying-a-select-box-with-options*/}
 
-Render a `<select>` with a list of `<option>` components inside to display a select box. Give each `<option>` a `value` representing the data to be submitted with the form.
+רנדרו `<select>` עם רשימת קומפונטות `<option>` בתוכו כדי להציג תיבת select. תנו לכל `<option>` ערך `value` שמציג את הנתון שישלח עם הטופס.
 
-[Read more about displaying a `<select>` with a list of `<option>` components.](/reference/react-dom/components/select)
+[קראו עוד על הצגת `<select>` עם רשימת קומפונטות `<option>`. ](/reference/react-dom/components/select)
 
 <Sandpack>
 
@@ -80,4 +80,3 @@ select { margin: 5px; }
 ```
 
 </Sandpack>  
-

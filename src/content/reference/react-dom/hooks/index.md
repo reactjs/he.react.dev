@@ -1,27 +1,27 @@
 ---
-title: "Built-in React DOM Hooks"
+title: "React DOM Hooks מובנים"
 ---
 
 <Intro>
 
-The `react-dom` package contains Hooks that are only supported for web applications (which run in the browser DOM environment). These Hooks are not supported in non-browser environments like iOS, Android, or Windows applications. If you are looking for Hooks that are supported in web browsers *and other environments* see [the React Hooks page](/reference/react). This page lists all the Hooks in the `react-dom` package.
+החבילה `react-dom` כוללת Hooks שנתמכים רק באפליקציות ווב (שרצות בסביבת DOM של הדפדפן). Hooks אלה לא נתמכים בסביבות שאינן דפדפן, כמו אפליקציות iOS, Android או Windows. אם אתם מחפשים Hooks שנתמכים גם בדפדפנים *וגם בסביבות נוספות*, ראו [את עמוד React Hooks](/reference/react). העמוד הזה מציג את כל ה-Hooks בחבילת `react-dom`.
 
 </Intro>
 
 ---
 
-## Form Hooks {/*form-hooks*/}
+## טופס Hooks {/*form-hooks*/}
 
 <Canary>
 
-Form Hooks are currently only available in React's canary and experimental channels. Learn more about [React's release channels here](/community/versioning-policy#all-release-channels).
+טופס Hooks זמינים כרגע רק בערוצי קנרי ו-ניסיוני של React. מידע נוסף ב-[ערוצי השחרור של React](/community/versioning-policy#all-release-channels).
 
 </Canary>
 
-*Forms* let you create interactive controls for submitting information.  To manage forms in your components, use one of these Hooks:
+*טפסים* מאפשרים ליצור רכיבים אינטראקטיביים לשליחת מידע. כדי לנהל טפסים בתוך הקומפוננטות, השתמשו באחד מה-Hooks הבאים:
 
-* [`useFormStatus`](/reference/react-dom/hooks/useFormStatus) allows you to make updates to the UI based on the status of the a form.
-* [`useFormState`](/reference/react-dom/hooks/useFormState) allows you to manage state inside a form.
+* [`useFormStatus`](/reference/react-dom/hooks/useFormStatus) יכול לבצע עדכוני UI לפי הסטטוס של טופס.
+* [`useFormState`](/reference/react-dom/hooks/useFormState) יכול לנהל state בתוך טופס.
 
 ```js
 function Form({ action }) {
@@ -46,4 +46,3 @@ function Button() {
   );
 }
 ```
-

@@ -1,32 +1,32 @@
 ---
-title: React Developer Tools
+title: "כלי הפיתוח של React"
 ---
 
 <Intro>
 
-ניתן להשתמש ב-React Developer Tools על מנת לבחון [קומפוננטות](/learn/your-first-component), לערוך [props](/learn/passing-props-to-a-component) ו-[state](/learn/state-a-components-memory), ובנוסף לאבחן בעיות שקשורות לביצועים.
+השתמש ב-React כלים למפתחים על מנת לבחון [קומפונטות](/learn/your-first-component), לערוך [props](/learn/passing-props-to-a-component) ו-[state](/learn/__TK_component_5____), ובובעיות לבצע שקשורות.
 </Intro>
 
 <YouWillLearn>
 
-* איך להתקין React Developer Tools
+* איך להתקין React כלים למפתחים
 
 </YouWillLearn>
 
-## תוסף דפדפן {/*browser-extension*/}
+## תוסף דפדפן {/*תוסף-דפדפן*/}
 
 הדרך הקלה ביותר לדבג אתרים שכתובים בעזרת ריאקט היא להתקין את תוסף כלי המפתחים של ריאקט. הוא זמין בכמה דפדפנים:
 
-* [התקן בדפדפן **Chrome**](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en)
+* [התקן בדפדפן **Chrome**](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=iw)
 * [התקן בדפדפן **Firefox**](https://addons.mozilla.org/en-US/firefox/addon/react-devtools/)
 * [התקן בדפדפן **Edge**](https://microsoftedge.microsoft.com/addons/detail/react-developer-tools/gpphkfbcpidddadnkolkpfckpihlkkil)
 
 לאחר ההתקנה, אם תיכנס לאתר **שכתוב בריאקט**, תראה את הפאנלים _Components_ ו-_Profiler_.
 
-![React Developer Tools extension](/images/docs/react-devtools-extension.png)
+![תוסף React כלים למפתחים](/images/docs/react-devtools-extension.png)
 
 ### Safari ודפדפנים אחרים {/*safari-and-other-browsers*/}
-על מנת להשתמש בתוסף בדפדפנים אחרים כמו Safari, התקן את חבילת ה-npm הזו: [`react-devtools`](https://www.npmjs.com/package/react-devtools)
+כדי להשתמש בתוכם בדפדפנים אחרים כמו ספארי, התקינו את חבילת ה-npm הזו: [`react-devtools`](https://www.npmjs.com/package/react-devtools)
 ```bash
 # Yarn
 yarn global add react-devtools
@@ -35,26 +35,26 @@ yarn global add react-devtools
 npm install -g react-devtools
 ```
 
-עכשיו פתח את כלי המפתחים מהטרמינל:
+עכשיו פתחו את כלי המפתחים מהטרמינל:
 ```bash
 react-devtools
 ```
 
-לאחר מכן התחבר לאתר שלך בעזרת הוספת תגית ה-`<script>` הבאה בתוך ה-`head` באתר שלך:
+לאחר התחברו לאתר על ידי הוספת תגית ה-`<script>` הבאה בתוך ה-`head`:
 ```html {3}
 <html>
   <head>
     <script src="http://localhost:8097"></script>
 ```
 
-טען מחדש את האתר על מנת לראות את הכלים באיזור כלי המפתחים:
+טענו מחדש את האתר כדי לראות את הכלים באזור כלי המפתחים:
 
-![React Developer Tools standalone](/images/docs/react-devtools-standalone.png)
+![React כלים למפתחים בstate עצמאי](/images/docs/react-devtools-standalone.png)
 
-## Mobile (React Native) {/*mobile-react-native*/}
-ניתן להשתמש בכלי המפתחים של ריאקט על מנת לבחון אפליקציות שנבנו בעזרת [React Native](https://reactnative.dev/). 
+## מובייל (React יליד) {/*mobile-react-native*/}
+אפשר להשתמש בכל המפתחים של React כדי לבחון אפליקציות גם שנבנו עם [React Native](https://reactnative.dev/).
 
-הדרך הקלה ביותר להשתמש בכלי המפתחים היא להתקין אותם גלובאלית:
+הדרך הקלה ביותר להשתמש בכלי המפתחים היא להתקין אותם גלובלית:
 ```bash
 # Yarn
 yarn global add react-devtools
@@ -63,12 +63,13 @@ yarn global add react-devtools
 npm install -g react-devtools
 ```
 
-פתח את הכלים מהטרמינל:
+פתחו את הכלים מהטרמינל:
 ```bash
 react-devtools
 ```
-הכלים אמורים להתחבר לכל אפליקציית react native שרצה לוקאלית.
+הכלים אמורים להתחבר לכל אפליקציית React Native שרצה מקומית.
 
-> נסה לטעון מחדש את האפליקצייה אם הכלים לא מתחברים אליה תוך מספר שניות.
+> אם הכלים לא מתחברים תוך כמה שניות, נסו לטעון מחדש את האפליקציה.
 
-[למד עוד על דיבוג React Native.](https://reactnative.dev/docs/debugging)
+[למידע נוסף על ניפוי שגיאות ב-React יליד.](https://reactnative.dev/docs/debugging)
+

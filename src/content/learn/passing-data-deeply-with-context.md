@@ -1,48 +1,48 @@
 ---
-title: Passing Data Deeply with Context
+title: "העברת נתונים לעומק עם ההקשר"
 ---
 
 <Intro>
 
-Usually, you will pass information from a parent component to a child component via props. But passing props can become verbose and inconvenient if you have to pass them through many components in the middle, or if many components in your app need the same information. *Context* lets the parent component make some information available to any component in the tree below it—no matter how deep—without passing it explicitly through props.
+בדרך כלל, תעביר מידע מרכיב אב לרכיב צאצא באמצעות props. אבל העברת props יכולה להיות מילולית ולא נוחה אם תצטרך להעביר אותם דרך רכיבים רבים באמצע, או אם רכיבים רבים באפליקציה שלך זקוקים לאותו מידע. *הקשר* מאפשר לרכיב האב להפוך מידע זמין לכל רכיב בעץ שמתחתיו - לא משנה כמה עמוק - מבלי להעביר אותו במפורש דרך props.
 
 </Intro>
 
 <YouWillLearn>
 
-- What "prop drilling" is
-- How to replace repetitive prop passing with context
-- Common use cases for context
-- Common alternatives to context
+- מה זה "קידוח פרוס".
+- כיצד להחליף את העברת האביזרים החוזרים על עצמם בהקשר
+- מקרים נפוצים של use להקשר
+- חלופות נפוצות להקשר
 
 </YouWillLearn>
 
-## The problem with passing props {/*the-problem-with-passing-props*/}
+## הבעיה בהעברת props {/*the-problem-with-passing-props*/}
 
-[Passing props](/learn/passing-props-to-a-component) is a great way to explicitly pipe data through your UI tree to the components that use it.
+[העברת props](/learn/passing-props-to-a-component) היא דרך מצוינת להעביר נתונים באופן מפורש דרך עץ הממשק שלך לרכיבים שuse אותו.
 
-But passing props can become verbose and inconvenient when you need to pass some prop deeply through the tree, or if many components need the same prop. The nearest common ancestor could be far removed from the components that need data, and [lifting state up](/learn/sharing-state-between-components) that high can lead to a situation called "prop drilling".
+אבל העברת props יכולה להיות מילולית ולא נוחה כאשר אתה צריך להעביר אביזר עמוק דרך העץ, או אם רכיבים רבים זקוקים לאותו אביזר. האב הקדמון המשותף הקרוב ביותר יכול להיות רחוק מהרכיבים שזקוקים לנתונים, ו[העלאת state למעלה](/learn/sharing-state-between-components) כל כך גבוה יכול להוביל למצב שנקרא "קידוח פרופס".
 
 <DiagramGroup>
 
 <Diagram name="passing_data_lifting_state" height={160} width={608} captionPosition="top" alt="Diagram with a tree of three components. The parent contains a bubble representing a value highlighted in purple. The value flows down to each of the two children, both highlighted in purple." >
 
-Lifting state up
+הרמת state למעלה
 
 </Diagram>
 <Diagram name="passing_data_prop_drilling" height={430} width={608} captionPosition="top" alt="Diagram with a tree of ten nodes, each node with two children or less. The root node contains a bubble representing a value highlighted in purple. The value flows down through the two children, each of which pass the value but do not contain it. The left child passes the value down to two children which are both highlighted purple. The right child of the root passes the value through to one of its two children - the right one, which is highlighted purple. That child passed the value through its single child, which passes it down to both of its two children, which are highlighted purple.">
 
-Prop drilling
+קידוח פרוס
 
 </Diagram>
 
 </DiagramGroup>
 
-Wouldn't it be great if there were a way to "teleport" data to the components in the tree that need it without passing props? With React's context feature, there is!
+האם זה לא יהיה נהדר אם הייתה דרך "לטלפורט" נתונים לרכיבים בעץ שצריכים אותם מבלי להעביר את props? עם תכונת ההקשר של React, יש!
 
-## Context: an alternative to passing props {/*context-an-alternative-to-passing-props*/}
+## הקשר: חלופה להעברת props {/*context-an-alternative-to-passing-props*/}
 
-Context lets a parent component provide data to the entire tree below it. There are many uses for context. Here is one example. Consider this `Heading` component that accepts a `level` for its size:
+ההקשר מאפשר לרכיב אב לספק נתונים לכל העץ שמתחתיו. יש הרבה uses להקשר. הנה דוגמה אחת. שקול את הרכיב `Heading` הזה שמקבל `level` עבור הגודל שלו:
 
 <Sandpack>
 
@@ -106,7 +106,7 @@ export default function Heading({ level, children }) {
 
 </Sandpack>
 
-Let's say you want multiple headings within the same `Section` to always have the same size:
+נניח שאתה רוצה שמספר כותרות בתוך אותו `Section` יהיו תמיד באותו גודל:
 
 <Sandpack>
 
@@ -180,7 +180,7 @@ export default function Heading({ level, children }) {
 
 </Sandpack>
 
-Currently, you pass the `level` prop to each `<Heading>` separately:
+נכון לעכשיו, אתה מעביר את אבזר `level` לכל `<Heading>` בנפרד:
 
 ```js
 <Section>
@@ -190,7 +190,7 @@ Currently, you pass the `level` prop to each `<Heading>` separately:
 </Section>
 ```
 
-It would be nice if you could pass the `level` prop to the `<Section>` component instead and remove it from the `<Heading>`. This way you could enforce that all headings in the same section have the same size:
+זה יהיה נחמד אם תוכל להעביר את הפרופס `level` לרכיב `<Section>` במקום ולהסיר אותו מה-`<Heading>`. כך תוכל לאכוף שלכל הכותרות באותו סעיף יהיה אותו גודל:
 
 ```js
 <Section level={3}>
@@ -200,35 +200,35 @@ It would be nice if you could pass the `level` prop to the `<Section>` component
 </Section>
 ```
 
-But how can the `<Heading>` component know the level of its closest `<Section>`? **That would require some way for a child to "ask" for data from somewhere above in the tree.**
+אבל איך רכיב `<Heading>` יכול לדעת את הרמה של `<Section>` הקרוב ביותר שלו? **זה ידרוש דרך כלשהי לילד "לבקש" נתונים ממקום כלשהו מעל העץ.**
 
-You can't do it with props alone. This is where context comes into play. You will do it in three steps:
+אתה לא יכול לעשות את זה עם props לבד. כאן נכנס לתמונה ההקשר. אתה תעשה את זה בשלושה שלבים:
 
-1. **Create** a context. (You can call it `LevelContext`, since it's for the heading level.)
-2. **Use** that context from the component that needs the data. (`Heading` will use `LevelContext`.)
-3. **Provide** that context from the component that specifies the data. (`Section` will provide `LevelContext`.)
+1. **צור** הקשר. (אתה יכול לקרוא לזה `LevelContext`, מכיוון שזה עבור רמת הכותרת.)
+2. **השתמש** בהקשר הזה מהרכיב שצריך את הנתונים. (`Heading` יהיה use `LevelContext`.)
+3. **ספק** את ההקשר הזה מהרכיב שמציין את הנתונים. (`Section` יספק `LevelContext`.)
 
-Context lets a parent--even a distant one!--provide some data to the entire tree inside of it.
+ההקשר מאפשר להורה - אפילו רחוק! - לספק נתונים לכל העץ שבתוכו.
 
 <DiagramGroup>
 
 <Diagram name="passing_data_context_close" height={160} width={608} captionPosition="top" alt="Diagram with a tree of three components. The parent contains a bubble representing a value highlighted in orange which projects down to the two children, each highlighted in orange." >
 
-Using context in close children
+שימוש בהקשר בילדים קרובים
 
 </Diagram>
 
 <Diagram name="passing_data_context_far" height={430} width={608} captionPosition="top" alt="Diagram with a tree of ten nodes, each node with two children or less. The root parent node contains a bubble representing a value highlighted in orange. The value projects down directly to four leaves and one intermediate component in the tree, which are all highlighted in orange. None of the other intermediate components are highlighted.">
 
-Using context in distant children
+שימוש בהקשר בילדים רחוקים
 
 </Diagram>
 
 </DiagramGroup>
 
-### Step 1: Create the context {/*step-1-create-the-context*/}
+### שלב 1: צור את ההקשר {/*step-1-create-the-context*/}
 
-First, you need to create the context. You'll need to **export it from a file** so that your components can use it:
+ראשית, עליך ליצור את ההקשר. תצטרך **לייצא אותו מקובץ** כדי שהרכיבים שלך יוכלו use אותו:
 
 <Sandpack>
 
@@ -308,18 +308,18 @@ export const LevelContext = createContext(1);
 
 </Sandpack>
 
-The only argument to `createContext` is the _default_ value. Here, `1` refers to the biggest heading level, but you could pass any kind of value (even an object). You will see the significance of the default value in the next step.
+הארגומנט היחיד ל-`createContext` הוא ערך _default_. כאן, `1` מתייחס לרמת הכותרת הגדולה ביותר, אבל אתה יכול להעביר כל סוג של ערך (אפילו אובייקט). תראה את המשמעות של ערך ברירת המחדל בשלב הבא.
 
-### Step 2: Use the context {/*step-2-use-the-context*/}
+### שלב 2: השתמש בהקשר {/*step-2-use-the-context*/}
 
-Import the `useContext` Hook from React and your context:
+ייבא את `useContext` Hook מ-React ואת ההקשר שלך:
 
 ```js
 import { useContext } from 'react';
 import { LevelContext } from './LevelContext.js';
 ```
 
-Currently, the `Heading` component reads `level` from props:
+נכון לעכשיו, הרכיב `Heading` קורא `level` מתוך props:
 
 ```js
 export default function Heading({ level, children }) {
@@ -327,7 +327,7 @@ export default function Heading({ level, children }) {
 }
 ```
 
-Instead, remove the `level` prop and read the value from the context you just imported, `LevelContext`:
+במקום זאת, הסר את האביזר `level` וקרא את הערך מההקשר שזה עתה ייבאת, `LevelContext`:
 
 ```js {2}
 export default function Heading({ children }) {
@@ -336,9 +336,9 @@ export default function Heading({ children }) {
 }
 ```
 
-`useContext` is a Hook. Just like `useState` and `useReducer`, you can only call a Hook immediately inside a React component (not inside loops or conditions). **`useContext` tells React that the `Heading` component wants to read the `LevelContext`.**
+`useContext` הוא Hook. בדיוק כמו `useState` ו-`useReducer`, אתה יכול לקרוא רק ל-Hook מיד בתוך רכיב React (לא בתוך לולאות או תנאים). **`useContext` אומר לReact שהרכיב `Heading` רוצה לקרוא את ה-`LevelContext`.**
 
-Now that the `Heading` component doesn't have a `level` prop, you don't need to pass the level prop to `Heading` in your JSX like this anymore:
+כעת, כאשר לרכיב `Heading` אין אבזר `level`, אינך צריך להעביר את אבזר הרמה ל-`Heading` ב-JSX שלך כך יותר:
 
 ```js
 <Section>
@@ -348,7 +348,7 @@ Now that the `Heading` component doesn't have a `level` prop, you don't need to 
 </Section>
 ```
 
-Update the JSX so that it's the `Section` that receives it instead:
+עדכן את ה-JSX כך שה-`Section` הוא שמקבל אותו במקום זאת:
 
 ```jsx
 <Section level={4}>
@@ -358,7 +358,7 @@ Update the JSX so that it's the `Section` that receives it instead:
 </Section>
 ```
 
-As a reminder, this is the markup that you were trying to get working:
+כזכור, זה הסימון שניסית להפעיל:
 
 <Sandpack>
 
@@ -442,13 +442,13 @@ export const LevelContext = createContext(1);
 
 </Sandpack>
 
-Notice this example doesn't quite work, yet! All the headings have the same size because **even though you're *using* the context, you have not *provided* it yet.** React doesn't know where to get it!
+שימו לב שהדוגמה הזו לא ממש עובדת, עדיין! לכל הכותרות יש את אותו גודל מכיוון שuse **למרות שאתה *משתמש* בהקשר, עדיין לא *סיפקת* אותו.** React לא יודע איפה להשיג אותו!
 
-If you don't provide the context, React will use the default value you've specified in the previous step. In this example, you specified `1` as the argument to `createContext`, so `useContext(LevelContext)` returns `1`, setting all those headings to `<h1>`. Let's fix this problem by having each `Section` provide its own context.
+אם לא תספק את ההקשר, React use ערך ברירת המחדל שציינת בשלב הקודם. בדוגמה זו, ציינת את `1` כארגומנט ל-`createContext`, אז `useContext(LevelContext)` מחזיר את `1`, ומגדיר את כל הכותרות האלה ל-`<h1>`. בואו נתקן את הבעיה על ידי כך שכל `Section` יספק את ההקשר שלו.
 
-### Step 3: Provide the context {/*step-3-provide-the-context*/}
+### שלב 3: ספק את ההקשר {/*step-3-provide-the-context*/}
 
-The `Section` component currently renders its children:
+הרכיב `Section` מציג כעת את הילדים שלו:
 
 ```js
 export default function Section({ children }) {
@@ -460,7 +460,7 @@ export default function Section({ children }) {
 }
 ```
 
-**Wrap them with a context provider** to provide the `LevelContext` to them:
+**עטפו אותם עם ספק הקשר** כדי לספק להם את ה-`LevelContext`:
 
 ```js {1,6,8}
 import { LevelContext } from './LevelContext.js';
@@ -476,7 +476,7 @@ export default function Section({ level, children }) {
 }
 ```
 
-This tells React: "if any component inside this `<Section>` asks for `LevelContext`, give them this `level`." The component will use the value of the nearest `<LevelContext.Provider>` in the UI tree above it.
+זה אומר ל-React: "אם רכיב כלשהו בתוך ה-`<Section>` הזה מבקש `LevelContext`, תן לו את ה-`level` הזה." הרכיב use הערך של `<LevelContext.Provider>` הקרוב ביותר בעץ ה-UI שמעליו.
 
 <Sandpack>
 
@@ -564,15 +564,15 @@ export const LevelContext = createContext(1);
 
 </Sandpack>
 
-It's the same result as the original code, but you did not need to pass the `level` prop to each `Heading` component! Instead, it "figures out" its heading level by asking the closest `Section` above:
+זו אותה תוצאה כמו הקוד המקורי, אבל לא היית צריך להעביר את הפרופס `level` לכל רכיב `Heading`! במקום זאת, הוא "מבין" את רמת הכותרת שלו על ידי שאילת ה-`Section` הקרוב ביותר למעלה:
 
-1. You pass a `level` prop to the `<Section>`.
-2. `Section` wraps its children into `<LevelContext.Provider value={level}>`.
-3. `Heading` asks the closest value of `LevelContext` above with `useContext(LevelContext)`.
+1. אתה מעביר אביזר `level` ל-`<Section>`.
+2. `Section` עוטף את ילדיו ב-`<LevelContext.Provider value={level}>`.
+3. `Heading` שואל את הערך הקרוב ביותר של `LevelContext` למעלה עם `useContext(LevelContext)`.
 
-## Using and providing context from the same component {/*using-and-providing-context-from-the-same-component*/}
+## שימוש ומתן הקשר מאותו רכיב {/*using-and-providing-context-from-the-same-component*/}
 
-Currently, you still have to specify each section's `level` manually:
+נכון לעכשיו, אתה עדיין צריך לציין את ה-`level` של כל חלק באופן ידני:
 
 ```js
 export default function Page() {
@@ -585,7 +585,7 @@ export default function Page() {
           ...
 ```
 
-Since context lets you read information from a component above, each `Section` could read the `level` from the `Section` above, and pass `level + 1` down automatically. Here is how you could do it:
+מכיוון שההקשר מאפשר לך לקרוא מידע מרכיב למעלה, כל `Section` יכול לקרוא את ה-`level` מה-`Section` שלמעלה, ולהעביר את `level + 1` למטה באופן אוטומטי. הנה איך אתה יכול לעשות את זה:
 
 ```js src/Section.js {5,8}
 import { useContext } from 'react';
@@ -603,7 +603,7 @@ export default function Section({ children }) {
 }
 ```
 
-With this change, you don't need to pass the `level` prop *either* to the `<Section>` or to the `<Heading>`:
+עם השינוי הזה, אינך צריך להעביר את משענת `level` *לא* ל-`<Section>` או ל-`<Heading>`:
 
 <Sandpack>
 
@@ -695,19 +695,19 @@ export const LevelContext = createContext(0);
 
 </Sandpack>
 
-Now both `Heading` and `Section` read the `LevelContext` to figure out how "deep" they are. And the `Section` wraps its children into the `LevelContext` to specify that anything inside of it is at a "deeper" level.
+עכשיו גם `Heading` וגם `Section` קראו את ה-`LevelContext` כדי להבין עד כמה הם "עמוקים". וה-`Section` עוטף את ילדיו ב-`LevelContext` כדי לציין שכל דבר בתוכו נמצא ברמה "עמוקה" יותר.
 
 <Note>
 
-This example uses heading levels because they show visually how nested components can override context. But context is useful for many other use cases too. You can pass down any information needed by the entire subtree: the current color theme, the currently logged in user, and so on.
+דוגמה זו של רמות הכותרת של use מכיוון שuse הן מציגות חזותית כיצד רכיבים מקוננים יכולים לעקוף את ההקשר. אבל ההקשר useמלא גם עבור מקרים רבים אחרים של use. אתה יכול להעביר כל מידע הדרוש לכל תת-עץ: ערכת הצבע הנוכחית, user המחוברת כעת, וכן הלאה.
 
 </Note>
 
-## Context passes through intermediate components {/*context-passes-through-intermediate-components*/}
+## ההקשר עובר דרך רכיבי ביניים {/*context-passes-through-intermediate-components*/}
 
-You can insert as many components as you like between the component that provides context and the one that uses it. This includes both built-in components like `<div>` and components you might build yourself.
+אתה יכול להכניס כמה רכיבים שתרצה בין הרכיב שמספק הקשר לזה שuse הוא זה. זה כולל גם רכיבים מובנים כמו `<div>` וגם רכיבים שאתה עשוי לבנות בעצמך.
 
-In this example, the same `Post` component (with a dashed border) is rendered at two different nesting levels. Notice that the `<Heading>` inside of it gets its level automatically from the closest `<Section>`:
+בדוגמה זו, אותו רכיב `Post` (עם גבול מקווקו) מוצג בשתי רמות קינון שונות. שימו לב שה-`<Heading>` שבתוכו מקבל את הרמה שלו אוטומטית מה-`<Section>` הקרוב ביותר:
 
 <Sandpack>
 
@@ -832,58 +832,58 @@ export const LevelContext = createContext(0);
 
 </Sandpack>
 
-You didn't do anything special for this to work. A `Section` specifies the context for the tree inside it, so you can insert a `<Heading>` anywhere, and it will have the correct size. Try it in the sandbox above!
+לא עשית שום דבר מיוחד כדי שזה יעבוד. `Section` מציין את ההקשר של העץ שבתוכו, כך שתוכל להכניס `<Heading>` בכל מקום, והוא יקבל את הגודל הנכון. נסה את זה בארגז החול למעלה!
 
-**Context lets you write components that "adapt to their surroundings" and display themselves differently depending on _where_ (or, in other words, _in which context_) they are being rendered.**
+**הקשר מאפשר לך לכתוב רכיבים ש"מתאימים לסביבתם" ומציגים את עצמם בצורה שונה בהתאם ל-_היכן_ (או, במילים אחרות, _באיזה הקשר_) הם מעובדים.**
 
-How context works might remind you of [CSS property inheritance.](https://developer.mozilla.org/en-US/docs/Web/CSS/inheritance) In CSS, you can specify `color: blue` for a `<div>`, and any DOM node inside of it, no matter how deep, will inherit that color unless some other DOM node in the middle overrides it with `color: green`. Similarly, in React, the only way to override some context coming from above is to wrap children into a context provider with a different value.
+אופן הפעולה של ההקשר עשוי להזכיר לך את [CSS ירושה של נכס.](https://developer.mozilla.org/en-US/docs/Web/CSS/inheritance) ב-CSS, אתה יכול לציין `color: blue` עבור `<div>`, וכל צומת DOM בתוכו, לא משנה כמה עמוק, יירש את הצבע הזה, אלא אם כן `color: blue` אחר יתחיל עם ה-K_2 האמצעי. באופן דומה, ב-React, הדרך היחידה לעקוף הקשר כלשהו שמגיע מלמעלה היא לעטוף ילדים לספק הקשר עם ערך שונה.
 
-In CSS, different properties like `color` and `background-color` don't override each other. You can set all  `<div>`'s `color` to red without impacting `background-color`. Similarly, **different React contexts don't override each other.** Each context that you make with `createContext()` is completely separate from other ones, and ties together components using and providing *that particular* context. One component may use or provide many different contexts without a problem.
+ב-CSS, מאפיינים שונים כמו `color` ו-`background-color` אינם עוקפים זה את זה. אתה יכול להגדיר את כל `color` של `<div>` לאדום מבלי להשפיע על `background-color`. באופן דומה, **הקשרי React שונים אינם עוקפים זה את זה.** כל הקשר שאתה יוצר עם `createContext()` נפרד לחלוטין מהקשרים אחרים, ומקשר בין רכיבים תוך שימוש ומספק *הקשר המסוים הזה* הזה. רכיב אחד עשוי use או לספק הקשרים רבים ושונים ללא בעיה.
 
-## Before you use context {/*before-you-use-context*/}
+## לפני שאתה use הקשר {/*before-you-use-context*/}
 
-Context is very tempting to use! However, this also means it's too easy to overuse it. **Just because you need to pass some props several levels deep doesn't mean you should put that information into context.**
+ההקשר מאוד מפתה use! עם זאת, זה גם אומר שקל מדי להגזיםuse מזה. **רק בגלל שuse אתה צריך לעבור כמה props בעומק של כמה רמות לא אומר שאתה צריך להכניס את המידע הזה להקשר.**
 
-Here's a few alternatives you should consider before using context:
+הנה כמה חלופות שכדאי לשקול לפני השימוש בהקשר:
 
-1. **Start by [passing props.](/learn/passing-props-to-a-component)** If your components are not trivial, it's not unusual to pass a dozen props down through a dozen components. It may feel like a slog, but it makes it very clear which components use which data! The person maintaining your code will be glad you've made the data flow explicit with props.
-2. **Extract components and [pass JSX as `children`](/learn/passing-props-to-a-component#passing-jsx-as-children) to them.** If you pass some data through many layers of intermediate components that don't use that data (and only pass it further down), this often means that you forgot to extract some components along the way. For example, maybe you pass data props like `posts` to visual components that don't use them directly, like `<Layout posts={posts} />`. Instead, make `Layout` take `children` as a prop, and render `<Layout><Posts posts={posts} /></Layout>`. This reduces the number of layers between the component specifying the data and the one that needs it.
+1. **התחל ב[מעבר props.](/learn/passing-props-to-a-component)** אם הרכיבים שלך אינם טריוויאליים, זה לא יוצא דופן להעביר תריסר props דרך תריסר רכיבים. זה אולי מרגיש כמו סיסמה, אבל זה מבהיר מאוד אילו רכיבים use אילו נתונים! האדם ששומר על הקוד שלך ישמח שהפכת את זרימת הנתונים למפורשת עם props.
+2. **חלץ רכיבים ו[העברת JSX בתור `children`](/learn/passing-props-to-a-component#passing-jsx-as-children) אליהם.** אם אתה מעביר חלק מהנתונים דרך שכבות רבות של רכיבי ביניים שלא use פירושו שלעתים קרובות אתה מעביר את הנתונים האלה בהמשך (ובדרך זו אתה מעביר את הנתונים האלה בדרך נוספת). לדוגמה, אולי אתה מעביר נתונים props כמו `posts` לרכיבים חזותיים שאינם use אותם ישירות, כמו `<Layout posts={posts} />`. במקום זאת, גרם ל-`Layout` לקחת את `children` כאביזר, ולעבד את `<Layout><Posts posts={posts} /></Layout>`. זה מפחית את מספר השכבות בין הרכיב המציין את הנתונים לזה שזקוק להם.
 
-If neither of these approaches works well for you, consider context.
+אם אף אחת מהגישות הללו לא עובדת טוב עבורך, שקול את ההקשר.
 
-## Use cases for context {/*use-cases-for-context*/}
+## שימוש במקרים עבור הקשר {/*use-cases-for-context*/}
 
-* **Theming:** If your app lets the user change its appearance (e.g. dark mode), you can put a context provider at the top of your app, and use that context in components that need to adjust their visual look.
-* **Current account:** Many components might need to know the currently logged in user. Putting it in context makes it convenient to read it anywhere in the tree. Some apps also let you operate multiple accounts at the same time (e.g. to leave a comment as a different user). In those cases, it can be convenient to wrap a part of the UI into a nested provider with a different current account value.
-* **Routing:** Most routing solutions use context internally to hold the current route. This is how every link "knows" whether it's active or not. If you build your own router, you might want to do it too.
-* **Managing state:** As your app grows, you might end up with a lot of state closer to the top of your app. Many distant components below may want to change it. It is common to [use a reducer together with context](/learn/scaling-up-with-reducer-and-context) to manage complex state and pass it down to distant components without too much hassle.
+* **עיצוב:** אם האפליקציה שלך מאפשרת ל-user לשנות את המראה שלו (למשל במצב כהה), תוכל לשים ספק הקשר בחלק העליון של האפליקציה שלך, וuse ההקשר הזה ברכיבים שצריכים להתאים את המראה החזותי שלהם.
+* **חשבון נוכחי:** ייתכן שרכיבים רבים צריכים לדעת את user המחובר כעת. הצבתו בהקשר מאפשרת לקרוא אותו בכל מקום בעץ. אפליקציות מסוימות גם מאפשרות לך להפעיל מספר חשבונות בו-זמנית (למשל להשאיר הערה בתור user אחר). במקרים אלה, זה יכול להיות נוח לעטוף חלק ממשק המשתמש לספק מקונן עם ערך חשבון שוטף שונה.
+* **ניתוב:** רוב פתרונות הניתוב use הקשר פנימי כדי להחזיק את המסלול הנוכחי. כך כל קישור "יודע" אם הוא פעיל או לא. אם אתה בונה נתב משלך, אולי תרצה לעשות את זה גם.
+* **ניהול state:** ככל שהאפליקציה שלך תגדל, אתה עלול בסופו של דבר לקבל הרבה state קרוב יותר לראש האפליקציה שלך. רכיבים רחוקים רבים להלן עשויים לרצות לשנות אותו. מקובל ל-[use מפחית יחד עם הקשר](/learn/scaling-up-with-reducer-and-context) לנהל state מורכבים ולהעביר אותו לרכיבים מרוחקים בלי יותר מדי טרחה.
   
-Context is not limited to static values. If you pass a different value on the next render, React will update all the components reading it below! This is why context is often used in combination with state.
+ההקשר אינו מוגבל לערכים סטטיים. אם תעביר ערך אחר בעיבוד הבא, React יעדכן את כל הרכיבים שקוראים אותו למטה! זו הסיבה שהקשר הוא לעתים קרובות used בשילוב עם state.
 
-In general, if some information is needed by distant components in different parts of the tree, it's a good indication that context will help you.
+באופן כללי, אם יש צורך במידע מסוים על ידי רכיבים מרוחקים בחלקים שונים של העץ, זה אינדיקציה טובה שהקשר יעזור לך.
 
 <Recap>
 
-* Context lets a component provide some information to the entire tree below it.
-* To pass context:
-  1. Create and export it with `export const MyContext = createContext(defaultValue)`.
-  2. Pass it to the `useContext(MyContext)` Hook to read it in any child component, no matter how deep.
-  3. Wrap children into `<MyContext.Provider value={...}>` to provide it from a parent.
-* Context passes through any components in the middle.
-* Context lets you write components that "adapt to their surroundings".
-* Before you use context, try passing props or passing JSX as `children`.
+* ההקשר מאפשר לרכיב לספק מידע כלשהו לכל העץ שמתחתיו.
+* כדי להעביר את ההקשר:
+  1. צור וייצא אותו באמצעות `export const MyContext = createContext(defaultValue)`.
+  2. העבירו אותו ל-`useContext(MyContext)` Hook כדי לקרוא אותו בכל רכיב צאצא, לא משנה כמה עמוק.
+  3. עטפו ילדים לתוך `<MyContext.Provider value={...}>` כדי לספק אותו מהורה.
+* ההקשר עובר דרך כל רכיב באמצע.
+* ההקשר מאפשר לך לכתוב רכיבים ש"מתאימים לסביבתם".
+* לפני שאתה use הקשר, נסה להעביר את props או להעביר את JSX בתור `children`.
 
 </Recap>
 
 <Challenges>
 
-#### Replace prop drilling with context {/*replace-prop-drilling-with-context*/}
+#### החלף את קידוח התמיכה בהקשר {/*replace-prop-drilling-with-context*/}
 
-In this example, toggling the checkbox changes the `imageSize` prop passed to each `<PlaceImage>`. The checkbox state is held in the top-level `App` component, but each `<PlaceImage>` needs to be aware of it.
+בדוגמה זו, החלפת תיבת הסימון משנה את התמיכה `imageSize` המועברת לכל `<PlaceImage>`. תיבת הסימון state מוחזקת ברכיב `App` ברמה העליונה, אך כל `<PlaceImage>` צריך להיות מודע לכך.
 
-Currently, `App` passes `imageSize` to `List`, which passes it to each `Place`, which passes it to the `PlaceImage`. Remove the `imageSize` prop, and instead pass it from the `App` component directly to `PlaceImage`.
+נכון לעכשיו, `App` מעביר את `imageSize` ל`List`, שמעביר אותו לכל `Place`, שמעביר אותו ל`PlaceImage`. הסר את האביזר `imageSize`, ובמקום זאת העביר אותו מהרכיב `App` ישירות אל `PlaceImage`.
 
-You can declare context in `Context.js`.
+אתה יכול להכריז על הקשר ב-`Context.js`.
 
 <Sandpack>
 
@@ -1020,9 +1020,9 @@ li {
 
 <Solution>
 
-Remove `imageSize` prop from all the components.
+הסר את אבזר `imageSize` מכל הרכיבים.
 
-Create and export `ImageSizeContext` from `Context.js`. Then wrap the List into `<ImageSizeContext.Provider value={imageSize}>` to pass the value down, and `useContext(ImageSizeContext)` to read it in the `PlaceImage`:
+צור וייצא `ImageSizeContext` מ-`Context.js`. לאחר מכן עטפו את הרשימה ב-`<ImageSizeContext.Provider value={imageSize}>` כדי להעביר את הערך למטה, ו-`useContext(ImageSizeContext)` כדי לקרוא אותה ב-`PlaceImage`:
 
 <Sandpack>
 
@@ -1157,7 +1157,7 @@ li {
 
 </Sandpack>
 
-Note how components in the middle don't need to pass `imageSize` anymore.
+שימו לב איך רכיבים באמצע לא צריכים לעבור את `imageSize` יותר.
 
 </Solution>
 

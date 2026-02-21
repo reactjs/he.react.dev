@@ -1,24 +1,24 @@
 ---
-title: Responding to Events
+title: "תגובה לאירועים"
 ---
 
 <Intro>
 
-React lets you add *event handlers* to your JSX. Event handlers are your own functions that will be triggered in response to interactions like clicking, hovering, focusing form inputs, and so on.
+React מאפשר לך להוסיף *מטפלי אירועים* ל-JSX שלך. מטפלי אירועים הם פונקציות משלך שיופעלו בתגובה לאינטראקציות כמו לחיצה, ריחוף, מיקוד של קלט טופס וכן הלאה.
 
 </Intro>
 
 <YouWillLearn>
 
-* Different ways to write an event handler
-* How to pass event handling logic from a parent component
-* How events propagate and how to stop them
+* דרכים שונות לכתוב מטפל באירועים
+* איך להעביר לוגיקת טיפול באירועים מרכיב אב
+* איך אירועים מתפשטים וכיצד לעצור אותם
 
 </YouWillLearn>
 
-## Adding event handlers {/*adding-event-handlers*/}
+## הוספת מטפלי אירועים {/*adding-event-handlers*/}
 
-To add an event handler, you will first define a function and then [pass it as a prop](/learn/passing-props-to-a-component) to the appropriate JSX tag. For example, here is a button that doesn't do anything yet:
+כדי להוסיף מטפל באירועים, תחילה תגדיר פונקציה ולאחר מכן [תעביר אותה כעזר](/learn/passing-props-to-a-component) לתג JSX המתאים. לדוגמה, הנה כפתור שעדיין לא עושה כלום:
 
 <Sandpack>
 
@@ -34,11 +34,11 @@ export default function Button() {
 
 </Sandpack>
 
-You can make it show a message when a user clicks by following these three steps:
+אתה יכול לגרום לזה להציג הודעה כאשר user לוחץ על ידי ביצוע שלושת השלבים הבאים:
 
-1. Declare a function called `handleClick` *inside* your `Button` component.
-2. Implement the logic inside that function (use `alert` to show the message).
-3. Add `onClick={handleClick}` to the `<button>` JSX.
+1. הכריז על פונקציה בשם `handleClick` *בתוך* רכיב ה-`Button` שלך.
+2. יישם את ההיגיון בתוך אותה פונקציה (use `alert` כדי להציג את ההודעה).
+3. הוסף `onClick={handleClick}` ל-`<button>` JSX.
 
 <Sandpack>
 
@@ -62,14 +62,14 @@ button { margin-right: 10px; }
 
 </Sandpack>
 
-You defined the `handleClick` function and then [passed it as a prop](/learn/passing-props-to-a-component) to `<button>`.  `handleClick` is an **event handler.** Event handler functions:
+הגדרת את הפונקציה `handleClick` ולאחר מכן [העברת אותה כעזר](/learn/passing-props-to-a-component) ל-`<button>`.  `handleClick` הוא **מטפל באירועים.** פונקציות של מטפל באירועים:
 
-* Are usually defined *inside* your components.
-* Have names that start with `handle`, followed by the name of the event.
+* בדרך כלל מוגדרים *בתוך* הרכיבים שלך.
+* יש שמות שמתחילים ב-`handle`, ואחריו שם האירוע.
 
-By convention, it is common to name event handlers as `handle` followed by the event name. You'll often see `onClick={handleClick}`, `onMouseEnter={handleMouseEnter}`, and so on.
+לפי המוסכמה, מקובל לתת שם למטפלי אירועים כ-`handle` ואחריו שם האירוע. לעתים קרובות תראה `onClick={handleClick}`, `onMouseEnter={handleMouseEnter}` וכן הלאה.
 
-Alternatively, you can define an event handler inline in the JSX:
+לחלופין, אתה יכול להגדיר מטפל אירועים מוטבע ב-JSX:
 
 ```jsx
 <button onClick={function handleClick() {
@@ -77,7 +77,7 @@ Alternatively, you can define an event handler inline in the JSX:
 }}>
 ```
 
-Or, more concisely, using an arrow function:
+או, באופן תמציתי יותר, באמצעות פונקציית חץ:
 
 ```jsx
 <button onClick={() => {
@@ -85,54 +85,54 @@ Or, more concisely, using an arrow function:
 }}>
 ```
 
-All of these styles are equivalent. Inline event handlers are convenient for short functions.
+כל הסגנונות הללו שווים. מטפלי אירועים מוטבעים נוחים לפונקציות קצרות.
 
 <Pitfall>
 
-Functions passed to event handlers must be passed, not called. For example:
+יש להעביר פונקציות המועברות למטפלי אירועים, לא לקרוא. לְדוּגמָה:
 
-| passing a function (correct)     | calling a function (incorrect)     |
+| העברת פונקציה (נכון) | קריאה לפונקציה (שגויה) |
 | -------------------------------- | ---------------------------------- |
 | `<button onClick={handleClick}>` | `<button onClick={handleClick()}>` |
 
-The difference is subtle. In the first example, the `handleClick` function is passed as an `onClick` event handler. This tells React to remember it and only call your function when the user clicks the button.
+ההבדל הוא דק. בדוגמה הראשונה, הפונקציה `handleClick` מועברת כמטפל באירועים `onClick`. זה אומר לReact לזכור אותו ולהתקשר לפונקציה שלך רק כאשר ה-user לוחץ על הכפתור.
 
-In the second example, the `()` at the end of `handleClick()` fires the function *immediately* during [rendering](/learn/render-and-commit), without any clicks. This is because JavaScript inside the [JSX `{` and `}`](/learn/javascript-in-jsx-with-curly-braces) executes right away.
+בדוגמה השנייה, ה-`()` בסוף `handleClick()` מפעיל את הפונקציה *מייד* במהלך [עיבוד](/learn/render-and-commit), ללא כל קליקים. זה בגלל שuse JavaScript בתוך [JSX `{` ו`}`](/learn/javascript-in-jsx-with-curly-braces) מבוצעים מיד.
 
-When you write code inline, the same pitfall presents itself in a different way:
+כשאתה כותב קוד בשורה, אותה בור מציגה את עצמה בצורה שונה:
 
-| passing a function (correct)            | calling a function (incorrect)    |
+| העברת פונקציה (נכון) | קריאה לפונקציה (שגויה) |
 | --------------------------------------- | --------------------------------- |
 | `<button onClick={() => alert('...')}>` | `<button onClick={alert('...')}>` |
 
 
-Passing inline code like this won't fire on click—it fires every time the component renders:
+העברת קוד מוטבע כזה לא מופעלת בלחיצה - היא מופעלת בכל פעם שהרכיב מעבד:
 
 ```jsx
 // This alert fires when the component renders, not when clicked!
 <button onClick={alert('You clicked me!')}>
 ```
 
-If you want to define your event handler inline, wrap it in an anonymous function like so:
+אם אתה רוצה להגדיר את מטפל האירועים שלך בשורה, עטוף אותו בפונקציה אנונימית כך:
 
 ```jsx
 <button onClick={() => alert('You clicked me!')}>
 ```
 
-Rather than executing the code inside with every render, this creates a function to be called later.
+במקום לבצע את הקוד בפנים עם כל רינדור, זה יוצר פונקציה שתיקרא מאוחר יותר.
 
-In both cases, what you want to pass is a function:
+בשני המקרים, מה שאתה רוצה להעביר הוא פונקציה:
 
-* `<button onClick={handleClick}>` passes the `handleClick` function.
-* `<button onClick={() => alert('...')}>` passes the `() => alert('...')` function.
+* `<button onClick={handleClick}>` מעביר את הפונקציה `handleClick`.
+* `<button onClick={() => alert('...')}>` מעביר את הפונקציה `() => alert('...')`.
 
-[Read more about arrow functions.](https://javascript.info/arrow-functions-basics)
+[קרא עוד על פונקציות חצים.](https://javascript.info/arrow-functions-basics)
 
 </Pitfall>
 
-### Reading props in event handlers {/*reading-props-in-event-handlers*/}
+### קריאת props במטפלי אירועים {/*reading-props-in-event-handlers*/}
 
-Because event handlers are declared inside of a component, they have access to the component's props. Here is a button that, when clicked, shows an alert with its `message` prop:
+Because מטפלי אירועים מוכרזים בתוך רכיב, יש להם גישה ל-props של הרכיב. הנה כפתור שכאשר לוחצים עליו, מציג התראה עם אביזר ה-`message` שלו:
 
 <Sandpack>
 
@@ -165,13 +165,13 @@ button { margin-right: 10px; }
 
 </Sandpack>
 
-This lets these two buttons show different messages. Try changing the messages passed to them.
+זה מאפשר לשני הכפתורים האלה להציג הודעות שונות. נסה לשנות את ההודעות שהועברו אליהם.
 
-### Passing event handlers as props {/*passing-event-handlers-as-props*/}
+### העברת מטפלי אירועים בתור props {/*passing-event-handlers-as-props*/}
 
-Often you'll want the parent component to specify a child's event handler. Consider buttons: depending on where you're using a `Button` component, you might want to execute a different function—perhaps one plays a movie and another uploads an image. 
+לעתים קרובות תרצה שרכיב האב יציין מטפל באירועים של ילד. שקול לחצנים: תלוי איפה אתה משתמש ברכיב `Button`, אולי תרצה לבצע פונקציה אחרת - אולי אחד מנגן סרט ואחר מעלה תמונה.
 
-To do this, pass a prop the component receives from its parent as the event handler like so:
+כדי לעשות זאת, העבירו אבזר שהרכיב מקבל מהאב שלו כמטפל באירועים כך:
 
 <Sandpack>
 
@@ -220,22 +220,22 @@ button { margin-right: 10px; }
 
 </Sandpack>
 
-Here, the `Toolbar` component renders a `PlayButton` and an `UploadButton`:
+כאן, הרכיב `Toolbar` מעבד `PlayButton` ו`UploadButton`:
 
-- `PlayButton` passes `handlePlayClick` as the `onClick` prop to the `Button` inside.
-- `UploadButton` passes `() => alert('Uploading!')` as the `onClick` prop to the `Button` inside.
+- `PlayButton` מעביר את `handlePlayClick` כמשענת `onClick` ל`Button` שבפנים.
+- `UploadButton` מעביר את `() => alert('Uploading!')` כמשענת `onClick` ל`Button` שבפנים.
 
-Finally, your `Button` component accepts a prop called `onClick`. It passes that prop directly to the built-in browser `<button>` with `onClick={onClick}`. This tells React to call the passed function on click.
+לבסוף, רכיב `Button` שלך מקבל אבזר שנקרא `onClick`. הוא מעביר את העזר הזה ישירות לדפדפן המובנה `<button>` עם `onClick={onClick}`. זה אומר לReact לקרוא לפונקציה שעברה בלחיצה.
 
-If you use a [design system](https://uxdesign.cc/everything-you-need-to-know-about-design-systems-54b109851969), it's common for components like buttons to contain styling but not specify behavior. Instead, components like `PlayButton` and `UploadButton` will pass event handlers down.
+אם אתה use [מערכת עיצוב](https://uxdesign.cc/everything-you-need-to-know-about-design-systems-54b109851969), זה נפוץ שרכיבים כמו כפתורים מכילים סגנון אבל לא מציינים התנהגות. במקום זאת, רכיבים כמו `PlayButton` ו-`UploadButton` יעבירו מטפלים באירועים.
 
-### Naming event handler props {/*naming-event-handler-props*/}
+### מתן שם לאירוע מטפל props {/*naming-event-handler-props*/}
 
-Built-in components like `<button>` and `<div>` only support [browser event names](/reference/react-dom/components/common#common-props) like `onClick`. However, when you're building your own components, you can name their event handler props any way that you like.
+רכיבים מובנים כמו `<button>` ו-`<div>` תומכים רק ב[שמות אירועי דפדפן](/reference/react-dom/components/common#common-props) כמו `onClick`. עם זאת, כאשר אתה בונה רכיבים משלך, אתה יכול לקרוא למטפל האירועים שלהם props בכל דרך שתרצה.
 
-By convention, event handler props should start with `on`, followed by a capital letter.
+לפי המוסכמה, מטפל באירועים props צריך להתחיל ב-`on`, ואחריו באות גדולה.
 
-For example, the `Button` component's `onClick` prop could have been called `onSmash`:
+לדוגמה, הרכיב `onClick` של הרכיב `Button` יכול היה להיקרא `onSmash`:
 
 <Sandpack>
 
@@ -268,9 +268,9 @@ button { margin-right: 10px; }
 
 </Sandpack>
 
-In this example, `<button onClick={onSmash}>` shows that the browser `<button>` (lowercase) still needs a prop called `onClick`, but the prop name received by your custom `Button` component is up to you!
+בדוגמה זו, `<button onClick={onSmash}>` מראה שהדפדפן `<button>` (אותיות קטנות) עדיין זקוק לאביזר בשם `onClick`, אבל שם האביזר שמתקבל על ידי רכיב ה-`Button` המותאם אישית שלך תלוי בך!
 
-When your component supports multiple interactions, you might name event handler props for app-specific concepts. For example, this `Toolbar` component receives `onPlayMovie` and `onUploadImage` event handlers:
+כאשר הרכיב שלך תומך באינטראקציות מרובות, אתה יכול לקרוא למטפל באירועים props עבור מושגים ספציפיים לאפליקציה. לדוגמה, רכיב `Toolbar` זה מקבל מטפלי אירועים `onPlayMovie` ו`onUploadImage`:
 
 <Sandpack>
 
@@ -312,19 +312,19 @@ button { margin-right: 10px; }
 
 </Sandpack>
 
-Notice how the `App` component does not need to know *what* `Toolbar` will do with `onPlayMovie` or `onUploadImage`. That's an implementation detail of the `Toolbar`. Here, `Toolbar` passes them down as `onClick` handlers to its `Button`s, but it could later also trigger them on a keyboard shortcut. Naming props after app-specific interactions like `onPlayMovie` gives you the flexibility to change how they're used later.
+שימו לב איך הרכיב `App` לא צריך לדעת *מה* `Toolbar` יעשה עם `onPlayMovie` או `onUploadImage`. זה פרט יישום של `Toolbar`. כאן, `Toolbar` מעביר אותם כמטפלי `onClick` ל-`Button`s שלו, אבל זה יכול מאוחר יותר גם להפעיל אותם על קיצור מקשים. מתן שם ל-props לאחר אינטראקציות ספציפיות לאפליקציה כמו `onPlayMovie` נותן לך את הגמישות לשנות את האופן שבו הם used מאוחר יותר.
   
 <Note>
 
-Make sure that you use the appropriate HTML tags for your event handlers. For example, to handle clicks, use [`<button onClick={handleClick}>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button) instead of `<div onClick={handleClick}>`. Using a real browser `<button>` enables built-in browser behaviors like keyboard navigation. If you don't like the default browser styling of a button and want to make it look more like a link or a different UI element, you can achieve it with CSS. [Learn more about writing accessible markup.](https://developer.mozilla.org/en-US/docs/Learn/Accessibility/HTML)
+ודא שאתה use את התגים HTML המתאימים עבור מטפלי האירועים שלך. לדוגמה, כדי לטפל בלחיצות, use [`<button onClick={handleClick}>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button) במקום `<div onClick={handleClick}>`. שימוש בדפדפן אמיתי `<button>` מאפשר התנהגויות מובנות בדפדפן כמו ניווט במקלדת. אם אינך אוהב את סגנון הדפדפן המוגדר כברירת מחדל של כפתור וברצונך לגרום לו להיראות יותר כמו קישור או אלמנט כתיבה אחר על ___, תוכל לקבל גישה אליו יותר על ___. סימון.](https://developer.mozilla.org/en-US/docs/Learn/Accessibility/HTML)
   
 </Note>
 
-## Event propagation {/*event-propagation*/}
+## הפצת אירוע {/*event-propagation*/}
 
-Event handlers will also catch events from any children your component might have. We say that an event "bubbles" or "propagates" up the tree: it starts with where the event happened, and then goes up the tree.
+מטפלי אירועים יתפסו גם אירועים מכל הילדים שעשויים להיות לרכיב שלך. אנו אומרים שאירוע "בוע" או "מתפשט" במעלה העץ: הוא מתחיל במקום בו התרחש האירוע, ואז עולה בעץ.
 
-This `<div>` contains two buttons. Both the `<div>` *and* each button have their own `onClick` handlers. Which handlers do you think will fire when you click a button?
+`<div>` זה מכיל שני כפתורים. גם `<div>` *ו* לכל כפתור יש מטפל `onClick` משלהם. אילו מטפלים לדעתך יירו כשתלחץ על כפתור?
 
 <Sandpack>
 
@@ -355,19 +355,19 @@ button { margin: 5px; }
 
 </Sandpack>
 
-If you click on either button, its `onClick` will run first, followed by the parent `<div>`'s `onClick`. So two messages will appear. If you click the toolbar itself, only the parent `<div>`'s `onClick` will run.
+אם תלחץ על אחד מהלחצנים, ה-`onClick` שלו יפעל ראשון, ואחריו ה-`onClick` של האב `<div>`. אז יופיעו שתי הודעות. אם תלחץ על סרגל הכלים עצמו, רק ה-`onClick` של האב `<div>` יפעל.
 
 <Pitfall>
 
-All events propagate in React except `onScroll`, which only works on the JSX tag you attach it to.
+כל האירועים מתפשטים ב-React מלבד `onScroll`, שפועל רק על התג JSX שאליו אתה מצרף אותו.
 
 </Pitfall>
 
-### Stopping propagation {/*stopping-propagation*/}
+### הפסקת ההפצה {/*stopping-propagation*/}
 
-Event handlers receive an **event object** as their only argument. By convention, it's usually called `e`, which stands for "event". You can use this object to read information about the event.
+מטפלי אירועים מקבלים **אובייקט אירוע** כארגומנט היחיד שלהם. לפי המוסכמה, זה נקרא בדרך כלל `e`, אשר מייצג "אירוע". אתה יכול use אובייקט זה כדי לקרוא מידע על האירוע.
 
-That event object also lets you stop the propagation. If you want to prevent an event from reaching parent components, you need to call `e.stopPropagation()` like this `Button` component does:
+אובייקט האירוע הזה גם מאפשר לך לעצור את ההפצה. אם ברצונך למנוע מאירוע להגיע לרכיבי אב, עליך להתקשר ל-`e.stopPropagation()` כמו שרכיב `Button` זה עושה:
 
 <Sandpack>
 
@@ -409,22 +409,22 @@ button { margin: 5px; }
 
 </Sandpack>
 
-When you click on a button:
+כאשר אתה לוחץ על כפתור:
 
-1. React calls the `onClick` handler passed to `<button>`. 
-2. That handler, defined in `Button`, does the following:
-   * Calls `e.stopPropagation()`, preventing the event from bubbling further.
-   * Calls the `onClick` function, which is a prop passed from the `Toolbar` component.
-3. That function, defined in the `Toolbar` component, displays the button's own alert.
-4. Since the propagation was stopped, the parent `<div>`'s `onClick` handler does *not* run.
+1. React קורא למטפל `onClick` שהועבר ל`<button>`. 
+2. המטפל הזה, המוגדר ב-`Button`, עושה את הפעולות הבאות:
+   * מתקשר ל-`e.stopPropagation()`, מונע מהאירוע לבעבע עוד יותר.
+   * קורא לפונקציה `onClick`, שהיא אבזר המועבר מהרכיב `Toolbar`.
+3. פונקציה זו, המוגדרת ברכיב `Toolbar`, מציגה את ההתראה של הכפתור עצמו.
+4. מאז שההפצה הופסקה, המטפל `onClick` של האב `<div>` *לא* פועל.
 
-As a result of `e.stopPropagation()`, clicking on the buttons now only shows a single alert (from the `<button>`) rather than the two of them (from the `<button>` and the parent toolbar `<div>`). Clicking a button is not the same thing as clicking the surrounding toolbar, so stopping the propagation makes sense for this UI.
+כתוצאה מ-`e.stopPropagation()`, לחיצה על הכפתורים מציגה כעת רק התראה בודדת (מה-`<button>`) ולא את שניהם (מ-`<button>` ומסרגל הכלים של האב `<div>`). לחיצה על כפתור אינה זהה ללחיצה על סרגל הכלים שמסביב, לכן עצירת ההפצה הגיונית עבור ממשק המשתמש הזה.
 
 <DeepDive>
 
-#### Capture phase events {/*capture-phase-events*/}
+#### אירועי שלב לכידת {/*capture-phase-events*/}
 
-In rare cases, you might need to catch all events on child elements, *even if they stopped propagation*. For example, maybe you want to log every click to analytics, regardless of the propagation logic. You can do this by adding `Capture` at the end of the event name:
+במקרים נדירים, ייתכן שיהיה עליך לתפוס את כל האירועים ברכיבי צאצא, *גם אם הם הפסיקו את ההפצה*. לדוגמה, אולי אתה רוצה לרשום כל קליק לניתוח, ללא קשר להיגיון ההפצה. אתה יכול לעשות זאת על ידי הוספת `Capture` בסוף שם האירוע:
 
 ```js
 <div onClickCapture={() => { /* this runs first */ }}>
@@ -433,19 +433,19 @@ In rare cases, you might need to catch all events on child elements, *even if th
 </div>
 ```
 
-Each event propagates in three phases: 
+כל אירוע מתפשט בשלושה שלבים:
 
-1. It travels down, calling all `onClickCapture` handlers.
-2. It runs the clicked element's `onClick` handler. 
-3. It travels upwards, calling all `onClick` handlers.
+1. זה נוסע למטה, קורא לכל המטפלים `onClickCapture`.
+2. הוא מריץ את המטפל `onClick` של הרכיב שנלחץ. 
+3. הוא נוסע כלפי מעלה, קורא לכל המטפלים `onClick`.
 
-Capture events are useful for code like routers or analytics, but you probably won't use them in app code.
+אירועי לכידה הם use מלאים עבור קוד כמו נתבים או ניתוחים, אבל כנראה שלא use אותם בקוד האפליקציה.
 
 </DeepDive>
 
-### Passing handlers as alternative to propagation {/*passing-handlers-as-alternative-to-propagation*/}
+### העברת מטפלים כחלופה להפצה {/*passing-handlers-as-alternative-to-propagation*/}
 
-Notice how this click handler runs a line of code _and then_ calls the `onClick` prop passed by the parent:
+שים לב כיצד מטפל הקליקים הזה מריץ שורת קוד _ולאחר מכן_ קורא לאוזר `onClick` שהועבר על ידי האב:
 
 ```js {4,5}
 function Button({ onClick, children }) {
@@ -460,13 +460,13 @@ function Button({ onClick, children }) {
 }
 ```
 
-You could add more code to this handler before calling the parent `onClick` event handler, too. This pattern provides an *alternative* to propagation. It lets the child component handle the event, while also letting the parent component specify some additional behavior. Unlike propagation, it's not automatic. But the benefit of this pattern is that you can clearly follow the whole chain of code that executes as a result of some event.
+אתה יכול להוסיף עוד קוד למטפל הזה לפני שתקרא גם למטפל `onClick` האב. דפוס זה מספק *אלטרנטיבה* להפצה. זה מאפשר לרכיב הילד לטפל באירוע, ובמקביל מאפשר לרכיב האב לציין התנהגות נוספת. בניגוד להפצה, זה לא אוטומטי. אבל היתרון של הדפוס הזה הוא שאתה יכול לעקוב בבירור אחר כל שרשרת הקוד שמתבצעת כתוצאה מאירוע כלשהו.
 
-If you rely on propagation and it's difficult to trace which handlers execute and why, try this approach instead.
+אם אתה מסתמך על התפשטות וקשה לאתר אילו מטפלים מבצעים ומדוע, נסה את הגישה הזו במקום זאת.
 
-### Preventing default behavior {/*preventing-default-behavior*/}
+### מניעת התנהגות ברירת מחדל {/*preventing-default-behavior*/}
 
-Some browser events have default behavior associated with them. For example, a `<form>` submit event, which happens when a button inside of it is clicked, will reload the whole page by default:
+לאירועי דפדפן מסוימים יש התנהגות ברירת מחדל הקשורה אליהם. לדוגמה, אירוע שליחה `<form>`, המתרחש כאשר לוחצים על כפתור בתוכו, יטען מחדש את כל העמוד כברירת מחדל:
 
 <Sandpack>
 
@@ -487,7 +487,7 @@ button { margin-left: 5px; }
 
 </Sandpack>
 
-You can call `e.preventDefault()` on the event object to stop this from happening:
+אתה יכול להתקשר ל-`e.preventDefault()` באובייקט האירוע כדי למנוע את זה:
 
 <Sandpack>
 
@@ -511,28 +511,28 @@ button { margin-left: 5px; }
 
 </Sandpack>
 
-Don't confuse `e.stopPropagation()` and `e.preventDefault()`. They are both useful, but are unrelated:
+אל תסובב use `e.stopPropagation()` ו`e.preventDefault()`. שניהם useמלאים, אך אינם קשורים:
 
-* [`e.stopPropagation()`](https://developer.mozilla.org/docs/Web/API/Event/stopPropagation) stops the event handlers attached to the tags above from firing.
-* [`e.preventDefault()` ](https://developer.mozilla.org/docs/Web/API/Event/preventDefault) prevents the default browser behavior for the few events that have it.
+* [`e.stopPropagation()`](https://developer.mozilla.org/docs/Web/API/Event/stopPropagation) עוצר את ההפעלה של מטפלי האירועים המצורפים לתגים למעלה.
+* [`e.preventDefault()` ](https://developer.mozilla.org/docs/Web/API/Event/preventDefault) מונעת את התנהגות הדפדפן המוגדרת כברירת מחדל עבור כמה אירועים שיש להם את זה.
 
-## Can event handlers have side effects? {/*can-event-handlers-have-side-effects*/}
+## האם למטפלים באירועים יכולים להיות תופעות לוואי? {/*can-event-handlers-have-side-effects*/}
 
-Absolutely! Event handlers are the best place for side effects.
+בְּהֶחלֵט! מטפלי אירועים הם המקום הטוב ביותר לתופעות לוואי.
 
-Unlike rendering functions, event handlers don't need to be [pure](/learn/keeping-components-pure), so it's a great place to *change* something—for example, change an input's value in response to typing, or change a list in response to a button press. However, in order to change some information, you first need some way to store it. In React, this is done by using [state, a component's memory.](/learn/state-a-components-memory) You will learn all about it on the next page.
+שלא כמו פונקציות רינדור, מטפלי אירועים לא צריכים להיות [טהורים](/learn/keeping-components-pure), אז זה מקום מצוין *לשנות* משהו - לדוגמה, לשנות ערך של קלט בתגובה להקלדה, או לשנות רשימה בתגובה ללחיצת כפתור. עם זאת, כדי לשנות מידע מסוים, תחילה עליך דרך כלשהי לאחסן אותו. ב-React, זה נעשה באמצעות [state, memory של רכיב.](/learn/state-a-components-memory) תלמד הכל על זה בעמוד הבא.
 
 <Recap>
 
-* You can handle events by passing a function as a prop to an element like `<button>`.
-* Event handlers must be passed, **not called!** `onClick={handleClick}`, not `onClick={handleClick()}`.
-* You can define an event handler function separately or inline.
-* Event handlers are defined inside a component, so they can access props.
-* You can declare an event handler in a parent and pass it as a prop to a child.
-* You can define your own event handler props with application-specific names.
-* Events propagate upwards. Call `e.stopPropagation()` on the first argument to prevent that.
-* Events may have unwanted default browser behavior. Call `e.preventDefault()` to prevent that.
-* Explicitly calling an event handler prop from a child handler is a good alternative to propagation.
+* אתה יכול לטפל באירועים על ידי העברת פונקציה כעזר לאלמנט כמו `<button>`.
+* מטפלי אירועים חייבים לעבור, **לא נקרא!** `onClick={handleClick}`, לא `onClick={handleClick()}`.
+* ניתן להגדיר פונקציית מטפל באירועים בנפרד או בשורה.
+* מטפלי אירועים מוגדרים בתוך רכיב, כך שהם יכולים לגשת ל-props.
+* ניתן להכריז על מטפל באירועים בהורה ולהעביר אותו כאביזר לילד.
+* אתה יכול להגדיר מטפל אירועים משלך props עם שמות ספציפיים ליישום.
+* אירועים מתפשטים כלפי מעלה. התקשר ל-`e.stopPropagation()` בטיעון הראשון כדי למנוע זאת.
+* ייתכן שלאירועים יש התנהגות לא רצויה של דפדפן ברירת מחדל. התקשר ל-`e.preventDefault()` כדי למנוע זאת.
+* קריאה מפורשת לאביזר של מטפל באירועים ממטפל צאצא היא חלופה טובה להפצה.
 
 </Recap>
 
@@ -540,9 +540,9 @@ Unlike rendering functions, event handlers don't need to be [pure](/learn/keepin
 
 <Challenges>
 
-#### Fix an event handler {/*fix-an-event-handler*/}
+#### תקן מטפל באירועים {/*fix-an-event-handler*/}
 
-Clicking this button is supposed to switch the page background between white and black. However, nothing happens when you click it. Fix the problem. (Don't worry about the logic inside `handleClick`—that part is fine.)
+לחיצה על כפתור זה אמורה להחליף את רקע העמוד בין לבן לשחור. עם זאת, שום דבר לא קורה כאשר אתה לוחץ עליו. תקן את הבעיה. (אל תדאג לגבי ההיגיון שבתוך `handleClick` - החלק הזה בסדר.)
 
 <Sandpack>
 
@@ -569,7 +569,7 @@ export default function LightSwitch() {
 
 <Solution>
 
-The problem is that `<button onClick={handleClick()}>` _calls_ the `handleClick` function while rendering instead of _passing_ it. Removing the `()` call so that it's `<button onClick={handleClick}>` fixes the issue:
+הבעיה היא ש`<button onClick={handleClick()}>` _קורא_ לפונקציה `handleClick` תוך כדי רינדור במקום _העברת_ אותה. הסרת הקריאה `()` כך שתהיה `<button onClick={handleClick}>` פותרת את הבעיה:
 
 <Sandpack>
 
@@ -594,7 +594,7 @@ export default function LightSwitch() {
 
 </Sandpack>
 
-Alternatively, you could wrap the call into another function, like `<button onClick={() => handleClick()}>`:
+לחלופין, תוכל לעטוף את השיחה לפונקציה אחרת, כמו `<button onClick={() => handleClick()}>`:
 
 <Sandpack>
 
@@ -621,11 +621,11 @@ export default function LightSwitch() {
 
 </Solution>
 
-#### Wire up the events {/*wire-up-the-events*/}
+#### קשר את האירועים {/*wire-up-the-events*/}
 
-This `ColorSwitch` component renders a button. It's supposed to change the page color. Wire it up to the `onChangeColor` event handler prop it receives from the parent so that clicking the button changes the color.
+רכיב `ColorSwitch` זה יוצר כפתור. זה אמור לשנות את צבע העמוד. חבר אותו ל-`onChangeColor` אבזר מטפל באירועים שהוא מקבל מההורה כך שלחיצה על הכפתור משנה את הצבע.
 
-After you do this, notice that clicking the button also increments the page click counter. Your colleague who wrote the parent component insists that `onChangeColor` does not increment any counters. What else might be happening? Fix it so that clicking the button *only* changes the color, and does _not_ increment the counter.
+לאחר שתעשה זאת, שים לב שלחיצה על הכפתור גם מגדילה את מונה הקליקים של העמוד. עמיתך שכתב את רכיב האב מתעקש ש`onChangeColor` לא יגדיל מונים. מה עוד עלול לקרות? תקן את זה כך שלחיצה על הכפתור *רק* תשנה את הצבע, ו_לא_ תגדיל את המונה.
 
 <Sandpack>
 
@@ -679,9 +679,9 @@ export default function App() {
 
 <Solution>
 
-First, you need to add the event handler, like `<button onClick={onChangeColor}>`.
+ראשית, עליך להוסיף את המטפל באירועים, כמו `<button onClick={onChangeColor}>`.
 
-However, this introduces the problem of the incrementing counter. If `onChangeColor` does not do this, as your colleague insists, then the problem is that this event propagates up, and some handler above does it. To solve this problem, you need to stop the propagation. But don't forget that you should still call `onChangeColor`.
+עם זאת, זה מציג את הבעיה של מונה ההגדלה. אם `onChangeColor` לא עושה זאת, כפי שעמיתך מתעקש, אז הבעיה היא שהאירוע הזה מתפשט, ואיזה מטפל למעלה עושה את זה. כדי לפתור בעיה זו, עליך להפסיק את ההפצה. אבל אל תשכח שאתה עדיין צריך להתקשר ל-`onChangeColor`.
 
 <Sandpack>
 

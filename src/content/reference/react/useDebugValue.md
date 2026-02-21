@@ -1,10 +1,10 @@
 ---
-title: useDebugValue
+title: "useDebugValue"
 ---
 
 <Intro>
 
-`useDebugValue` is a React Hook that lets you add a label to a custom Hook in [React DevTools.](/learn/react-developer-tools)
+`useDebugValue` הוא React Hook שמאפשר להוסיף תווית ל-custom Hook בתוך [React DevTools.](/learn/react-developer-tools)
 
 ```js
 useDebugValue(value, format?)
@@ -16,11 +16,11 @@ useDebugValue(value, format?)
 
 ---
 
-## Reference {/*reference*/}
+## הפניה {/*reference*/}
 
 ### `useDebugValue(value, format?)` {/*usedebugvalue*/}
 
-Call `useDebugValue` at the top level of your [custom Hook](/learn/reusing-logic-with-custom-hooks) to display a readable debug value:
+קראו ל-`useDebugValue` ברמה העליונה של [custom Hook](/learn/reusing-logic-with-custom-hooks) כדי להציע ערך דיבוג קריא:
 
 ```js
 import { useDebugValue } from 'react';
@@ -32,22 +32,22 @@ function useOnlineStatus() {
 }
 ```
 
-[See more examples below.](#usage)
+[עוד דוגמאות נוספות.](#usage)
 
-#### Parameters {/*parameters*/}
+#### פרמטרים {/*parameters*/}
 
-* `value`: The value you want to display in React DevTools. It can have any type.
-* **optional** `format`: A formatting function. When the component is inspected, React DevTools will call the formatting function with the `value` as the argument, and then display the returned formatted value (which may have any type). If you don't specify the formatting function, the original `value` itself will be displayed.
+* `value`: הערך רוצה להציג ב-React DevTools. יכול להיות מכל סוג.
+* **אופציונלי** `format`: פונקציית עיצוב. כשבודקים את הקומפוננטה, React DevTools תקרא לפונקציית העיצוב עם `value` כארגומנט, ואז תציג את הערך המעוצב שהוא חזר (שגם הוא יכול להיות מכל סוג). אם לא מציינים פונקציית עיצוב, יוצג הערך המקורי `value`.
 
-#### Returns {/*returns*/}
+#### מחזירה {/*returns*/}
 
-`useDebugValue` does not return anything.
+`useDebugValue` לא מחזירה דבר.
 
-## Usage {/*usage*/}
+## שימוש {/*usage*/}
 
-### Adding a label to a custom Hook {/*adding-a-label-to-a-custom-hook*/}
+### הוספת תווית ל-custom Hook {/*adding-a-label-to-a-custom-hook*/}
 
-Call `useDebugValue` at the top level of your [custom Hook](/learn/reusing-logic-with-custom-hooks) to display a readable <CodeStep step={1}>debug value</CodeStep> for [React DevTools.](/learn/react-developer-tools)
+קראו ל-`useDebugValue` ברמה העליונה של [custom Hook](/learn/reusing-logic-with-custom-hooks) כדי להציע <CodeStep step={1}>ערך דיבוג</CodeStep> קריא עבור [React DevTools.](/learn/-react-de)
 
 ```js [[1, 5, "isOnline ? 'Online' : 'Offline'"]]
 import { useDebugValue } from 'react';
@@ -59,11 +59,11 @@ function useOnlineStatus() {
 }
 ```
 
-This gives components calling `useOnlineStatus` a label like `OnlineStatus: "Online"` when you inspect them:
+כך קומפוננטות שקוראות ל-`useOnlineStatus` יקבלו תווית כמו `OnlineStatus: "Online"` כשבודקים אותם:
 
-![A screenshot of React DevTools showing the debug value](/images/docs/react-devtools-usedebugvalue.png)
+![צילום מסך של React DevTools המציג את ערך ניפוי הבאגים](/images/docs/react-devtools-usedebugvalue.png)
 
-Without the `useDebugValue` call, only the underlying data (in this example, `true`) would be displayed.
+בלי הקריאה ל-`useDebugValue`, יוצגו רק את הבסיסיים (בדוגמה הזאת, `true`).
 
 <Sandpack>
 
@@ -103,20 +103,20 @@ function subscribe(callback) {
 
 <Note>
 
-Don't add debug values to every custom Hook. It's most valuable for custom Hooks that are part of shared libraries and that have a complex internal data structure that's difficult to inspect.
+אל תוסיפו ערכי דיבוג לכל מותאם אישית Hook. זה הכי שימושי עבור מותאם אישית Hooks חלק מספריות משותפות ושיש להם מבנה מבנה פנימי מורכב שקשה לבדוק.
 
 </Note>
 
 ---
 
-### Deferring formatting of a debug value {/*deferring-formatting-of-a-debug-value*/}
+### דחיית עיצוב של ערך דיבוג {/*deferring-formatting-of-a-debug-value*/}
 
-You can also pass a formatting function as the second argument to `useDebugValue`:
+אפשר גם להעביר פונקציית עיצוב כארגומנט שני ל-`useDebugValue`:
 
 ```js [[1, 1, "date", 18], [2, 1, "date.toDateString()"]]
 useDebugValue(date, date => date.toDateString());
 ```
 
-Your formatting function will receive the <CodeStep step={1}>debug value</CodeStep> as a parameter and should return a <CodeStep step={2}>formatted display value</CodeStep>. When your component is inspected, React DevTools will call this function and display its result.
+פונקציית העיצוב תקבל את <CodeStep step={1}>ערך הדיבוג</CodeStep> כפרמטר וצריכה להחזיר <CodeStep step={2}>ערך תצוגה מעוצב</CodeStep>. כשבודקים את הקומפוננטה, React DevTools תקרא לפונקציה הזו ותציג את התוצאה.
 
-This lets you avoid running potentially expensive formatting logic unless the component is actually inspected. For example, if `date` is a Date value, this avoids calling `toDateString()` on it for every render.
+כך אפשר מהרצת לוגיקת עיצוב יקרה אלא אם הקומפוננטה באמת נבדקת. לדוגמה, אם `date` הוא ערך סוג Date, זה מונע קריאה ל-`toDateString()` בכל רינדור.

@@ -1,10 +1,10 @@
 ---
-title: <Suspense>
+title: "<Suspense>"
 ---
 
 <Intro>
 
-`<Suspense>` lets you display a fallback until its children have finished loading.
+`<Suspense>` מאפשר לך להציג סתירה עד שהילדים שלו יסיימו לטעון.
 
 
 ```js
@@ -19,28 +19,28 @@ title: <Suspense>
 
 ---
 
-## Reference {/*reference*/}
+## הפניה {/*reference*/}
 
 ### `<Suspense>` {/*suspense*/}
 
-#### Props {/*props*/}
-* `children`: The actual UI you intend to render. If `children` suspends while rendering, the Suspense boundary will switch to rendering `fallback`.
-* `fallback`: An alternate UI to render in place of the actual UI if it has not finished loading. Any valid React node is accepted, though in practice, a fallback is a lightweight placeholder view, such as a loading spinner or skeleton. Suspense will automatically switch to `fallback` when `children` suspends, and back to `children` when the data is ready. If `fallback` suspends while rendering, it will activate the closest parent Suspense boundary.
+#### אבזרים {/*props*/}
+* `children`: ממשק המשתמש בפועל שאתה מתכוון לעבד. אם `children` מושהה בזמן העיבוד, הגבול Suspense יעבור לעיבוד `fallback`.
+* `fallback`: ממשק משתמש חלופי לעיבוד במקום ממשק המשתמש בפועל אם הוא לא סיים לטעון. כל צומת React חוקי מתקבל, אם כי בפועל, סתירה היא תצוגת מציין מיקום קלת משקל, כגון ספינר טעינה או שלד. Suspense יעבור אוטומטית ל-`fallback` כאשר `children` יושעה, ויחזור ל-`children` כאשר הנתונים יהיו מוכנים. אם `fallback` מושהה בזמן העיבוד, זה יפעיל את גבול האב הקרוב ביותר Suspense.
 
-#### Caveats {/*caveats*/}
+#### אזהרות {/*caveats*/}
 
-- React does not preserve any state for renders that got suspended before they were able to mount for the first time. When the component has loaded, React will retry rendering the suspended tree from scratch.
-- If Suspense was displaying content for the tree, but then it suspended again, the `fallback` will be shown again unless the update causing it was caused by [`startTransition`](/reference/react/startTransition) or [`useDeferredValue`](/reference/react/useDeferredValue).
-- If React needs to hide the already visible content because it suspended again, it will clean up [layout Effects](/reference/react/useLayoutEffect) in the content tree. When the content is ready to be shown again, React will fire the layout Effects again. This ensures that Effects measuring the DOM layout don't try to do this while the content is hidden.
-- React includes under-the-hood optimizations like *Streaming Server Rendering* and *Selective Hydration* that are integrated with Suspense. Read [an architectural overview](https://github.com/reactwg/react-18/discussions/37) and watch [a technical talk](https://www.youtube.com/watch?v=pj5N-Khihgc) to learn more.
+- React אינו משמר שום state עבור עיבודים שהושעו לפני שהם הצליחו לעלות בפעם הראשונה. כאשר הרכיב נטען, React ינסה לעבד את העץ התלוי מאפס.
+- אם Suspense הציג תוכן עבור העץ, אבל אז הוא הושעה שוב, ה-`fallback` יוצג שוב אלא אם העדכון שגרם לו היה caused על ידי [`startTransition`](/reference/react/startTransition) או [`useDeferredValue`](/TK_5__/).
+- אם React צריך להסתיר את התוכן שכבר נראה לעין בגלל שהוא הושעה שוב, הוא ינקה את [אפקטי הפריסה](/reference/react/useLayoutEffect) בעץ התוכן. כאשר התוכן יהיה מוכן להצגה שוב, React יפעיל שוב את אפקטי הפריסה. זה מבטיח שאפקטים המודדים את פריסת DOM לא ינסו לעשות זאת בזמן שהתוכן מוסתר.
+- React כולל אופטימיזציות מתחת למכסה המנוע כמו *עיבוד שרת זרימה* ו-*הידרציה סלקטיבית* המשולבות עם Suspense. קרא [סקירה אדריכלית](https://github.com/reactwg/react-18/discussions/37) וצפה ב[שיחה טכנית](https://www.youtube.com/watch?v=pj5N-Khihgc) למידע נוסף.
 
 ---
 
-## Usage {/*usage*/}
+## שימוש {/*usage*/}
 
-### Displaying a fallback while content is loading {/*displaying-a-fallback-while-content-is-loading*/}
+### הצגת מיתוס בזמן טעינת תוכן {/*displaying-a-fallback-while-content-is-loading*/}
 
-You can wrap any part of your application with a Suspense boundary:
+אתה יכול לעטוף כל חלק ביישום שלך עם גבול Suspense:
 
 ```js [[1, 1, "<Loading />"], [2, 2, "<Albums />"]]
 <Suspense fallback={<Loading />}>
@@ -48,9 +48,9 @@ You can wrap any part of your application with a Suspense boundary:
 </Suspense>
 ```
 
-React will display your <CodeStep step={1}>loading fallback</CodeStep> until all the code and data needed by <CodeStep step={2}>the children</CodeStep> has been loaded.
+React יציג את <CodeStep step={1}>חזרת הטעינה</CodeStep> שלך עד שכל הקוד והנתונים הדרושים ל-<CodeStep step={2}>הילדים</CodeStep> ייטענו.
 
-In the example below, the `Albums` component *suspends* while fetching the list of albums. Until it's ready to render, React switches the closest Suspense boundary above to show the fallback--your `Loading` component. Then, when the data loads, React hides the `Loading` fallback and renders the `Albums` component with data.
+בדוגמה למטה, הרכיב `Albums` *משהה* בזמן שליפת רשימת האלבומים. עד שהוא מוכן לעיבוד, React מחליף את גבול Suspense הקרוב ביותר למעלה כדי להציג את ה-fallback - רכיב ה-`Loading` שלך. לאחר מכן, כשהנתונים נטענים, React מסתיר את `Loading` החזרה ומעבד את הרכיב `Albums` עם נתונים.
 
 <Sandpack>
 
@@ -250,25 +250,25 @@ async function getAlbums() {
 
 <Note>
 
-**Only Suspense-enabled data sources will activate the Suspense component.** They include:
+**רק מקורות נתונים התומכים ב-Suspense יפעילו את רכיב Suspense.** הם כוללים:
 
-- Data fetching with Suspense-enabled frameworks like [Relay](https://relay.dev/docs/guided-tour/rendering/loading-states/) and [Next.js](https://nextjs.org/docs/getting-started/react-essentials)
-- Lazy-loading component code with [`lazy`](/reference/react/lazy)
-- Reading the value of a Promise with [`use`](/reference/react/use)
+- אחזור נתונים עם מסגרות התומכות ב-Suspense כמו [Relay](https://relay.dev/docs/guided-tour/rendering/loading-states/) ו-[Next.js](https://nextjs.org/docs/getting-started/react-essentials)
+- קוד רכיב בטעינה עצלנית עם [`lazy`](/reference/react/lazy)
+- קריאת הערך של הבטחה עם [`use`](/reference/react/use)
 
-Suspense **does not** detect when data is fetched inside an Effect or event handler.
+Suspense **לא** מזהה כאשר נתונים מובאים בתוך אפקט או מטפל באירועים.
 
-The exact way you would load data in the `Albums` component above depends on your framework. If you use a Suspense-enabled framework, you'll find the details in its data fetching documentation.
+הדרך המדויקת שתטען נתונים ברכיב `Albums` לעיל תלויה במסגרת שלך. אם אתה use מסגרת התומכת ב-Suspense, תמצא את הפרטים בתיעוד איסוף הנתונים שלה.
 
-Suspense-enabled data fetching without the use of an opinionated framework is not yet supported. The requirements for implementing a Suspense-enabled data source are unstable and undocumented. An official API for integrating data sources with Suspense will be released in a future version of React. 
+עדיין אין תמיכה באחזור נתונים עם Suspense ללא use של מסגרת דעתנית. הדרישות להטמעת מקור נתונים התומך ב-Suspense אינן יציבות ואינן מתועדות. API רשמי לשילוב מקורות נתונים עם Suspense ישוחרר בגרסה עתידית של React.
 
 </Note>
 
 ---
 
-### Revealing content together at once {/*revealing-content-together-at-once*/}
+### חשיפת תוכן יחד בבת אחת {/*revealing-content-together-at-once*/}
 
-By default, the whole tree inside Suspense is treated as a single unit. For example, even if *only one* of these components suspends waiting for some data, *all* of them together will be replaced by the loading indicator:
+כברירת מחדל, העץ כולו בתוך Suspense מטופל כיחידה אחת. לדוגמה, גם אם *רק אחד* מהרכיבים האלה משעה המתנה לכמה נתונים, *כולם* יחד יוחלפו במחוון הטעינה:
 
 ```js {2-5}
 <Suspense fallback={<Loading />}>
@@ -279,9 +279,9 @@ By default, the whole tree inside Suspense is treated as a single unit. For exam
 </Suspense>
 ```
 
-Then, after all of them are ready to be displayed, they will all appear together at once.
+לאחר מכן, לאחר שכולם יהיו מוכנים להצגה, כולם יופיעו יחד בבת אחת.
 
-In the example below, both `Biography` and `Albums` fetch some data. However, because they are grouped under a single Suspense boundary, these components always "pop in" together at the same time.
+בדוגמה למטה, גם `Biography` וגם `Albums` מביאים נתונים מסוימים. עם זאת, מכיוון שuse הם מקובצים תחת גבול Suspense יחיד, הרכיבים האלה תמיד "קופצים" יחד בו זמנית.
 
 <Sandpack>
 
@@ -563,7 +563,7 @@ async function getAlbums() {
 
 </Sandpack>
 
-Components that load data don't have to be direct children of the Suspense boundary. For example, you can move `Biography` and `Albums` into a new `Details` component. This doesn't change the behavior. `Biography` and `Albums` share the same closest parent Suspense boundary, so their reveal is coordinated together.
+רכיבים שטוענים נתונים אינם חייבים להיות ילדים ישירים של גבול Suspense. לדוגמה, אתה יכול להעביר את `Biography` ו-`Albums` לרכיב `Details` חדש. זה לא משנה את ההתנהגות. `Biography` ו`Albums` חולקים את אותו גבול הורה Suspense הקרוב ביותר, כך שהגילוי שלהם מתואם יחד.
 
 ```js {2,8-11}
 <Suspense fallback={<Loading />}>
@@ -584,9 +584,9 @@ function Details({ artistId }) {
 
 ---
 
-### Revealing nested content as it loads {/*revealing-nested-content-as-it-loads*/}
+### חשיפת תוכן מקונן בזמן שהוא נטען {/*revealing-nested-content-as-it-loads*/}
 
-When a component suspends, the closest parent Suspense component shows the fallback. This lets you nest multiple Suspense components to create a loading sequence. Each Suspense boundary's fallback will be filled in as the next level of content becomes available. For example, you can give the album list its own fallback:
+כאשר רכיב מושהה, רכיב האב הקרוב ביותר Suspense מציג את ה-fallback. זה מאפשר לך לקנן רכיבי Suspense מרובים כדי ליצור רצף טעינה. כל נפילה של גבול Suspense יתמלא כאשר רמת התוכן הבאה תהיה זמינה. לדוגמה, אתה יכול להעניק לרשימת האלבומים נקודת מוצא משלה:
 
 ```js {3,7}
 <Suspense fallback={<BigSpinner />}>
@@ -599,14 +599,14 @@ When a component suspends, the closest parent Suspense component shows the fallb
 </Suspense>
 ```
 
-With this change, displaying the `Biography` doesn't need to "wait" for the `Albums` to load.
+עם השינוי הזה, הצגת ה-`Biography` לא צריכה "לחכות" לטעינת ה-`Albums`.
 
-The sequence will be:
+הרצף יהיה:
 
-1. If `Biography` hasn't loaded yet, `BigSpinner` is shown in place of the entire content area.
-1. Once `Biography` finishes loading, `BigSpinner` is replaced by the content.
-1. If `Albums` hasn't loaded yet, `AlbumsGlimmer` is shown in place of `Albums` and its parent `Panel`.
-1. Finally, once `Albums` finishes loading, it replaces `AlbumsGlimmer`.
+1. אם `Biography` עדיין לא נטען, `BigSpinner` מוצג במקום כל אזור התוכן.
+1. ברגע ש-`Biography` מסיים את הטעינה, `BigSpinner` מוחלף בתוכן.
+1. אם `Albums` עדיין לא נטען, `AlbumsGlimmer` מוצג במקום `Albums` והאב שלו `Panel`.
+1. לבסוף, ברגע ש`Albums` מסיים את הטעינה, הוא מחליף את `AlbumsGlimmer`.
 
 <Sandpack>
 
@@ -917,15 +917,15 @@ async function getAlbums() {
 
 </Sandpack>
 
-Suspense boundaries let you coordinate which parts of your UI should always "pop in" together at the same time, and which parts should progressively reveal more content in a sequence of loading states. You can add, move, or delete Suspense boundaries in any place in the tree without affecting the rest of your app's behavior.
+גבולות Suspense מאפשרים לך לתאם אילו חלקים בממשק המשתמש שלך צריכים תמיד "לצץ" יחד בו זמנית, ואילו חלקים צריכים לחשוף בהדרגה יותר תוכן ברצף של טעינת states. אתה יכול להוסיף, להעביר או למחוק גבולות Suspense בכל מקום בעץ מבלי להשפיע על שאר התנהגות האפליקציה שלך.
 
-Don't put a Suspense boundary around every component. Suspense boundaries should not be more granular than the loading sequence that you want the user to experience. If you work with a designer, ask them where the loading states should be placed--it's likely that they've already included them in their design wireframes.
+אל תשים גבול Suspense סביב כל רכיב. גבולות Suspense לא צריכים להיות יותר מפורטים מרצף הטעינה שאתה רוצה שה-user יחווה. אם אתה עובד עם מעצב, שאל אותו היכן יש למקם את states הטעינה - סביר להניח שהם כבר כללו אותם במסגרות העיצוב שלהם.
 
 ---
 
-### Showing stale content while fresh content is loading {/*showing-stale-content-while-fresh-content-is-loading*/}
+### מציג תוכן מיושן בזמן טעינת תוכן טרי {/*showing-stale-content-while-fresh-content-is-loading*/}
 
-In this example, the `SearchResults` component suspends while fetching the search results. Type `"a"`, wait for the results, and then edit it to `"ab"`. The results for `"a"` will get replaced by the loading fallback.
+בדוגמה זו, הרכיב `SearchResults` מושהה בזמן שליפת תוצאות החיפוש. הקלד `"a"`, המתן לתוצאות ולאחר מכן ערוך אותו ל-`"ab"`. התוצאות עבור `"a"` יוחלפו על ידי החזרה לטעינה.
 
 <Sandpack>
 
@@ -1117,7 +1117,7 @@ input { margin: 10px; }
 
 </Sandpack>
 
-A common alternative UI pattern is to *defer* updating the list and to keep showing the previous results until the new results are ready. The [`useDeferredValue`](/reference/react/useDeferredValue) Hook lets you pass a deferred version of the query down: 
+דפוס משתמש חלופי נפוץ הוא *לדחות* את עדכון הרשימה ולהמשיך להציג את התוצאות הקודמות עד שהתוצאות החדשות יהיו מוכנות. ה-[`useDeferredValue`](/reference/react/useDeferredValue) Hook מאפשר לך להעביר גרסה נדחית של השאילתה למטה:
 
 ```js {3,11}
 export default function App() {
@@ -1137,9 +1137,9 @@ export default function App() {
 }
 ```
 
-The `query` will update immediately, so the input will display the new value. However, the `deferredQuery` will keep its previous value until the data has loaded, so `SearchResults` will show the stale results for a bit.
+ה-`query` יתעדכן מיד, כך שהקלט יציג את הערך החדש. עם זאת, ה-`deferredQuery` ישמור על הערך הקודם שלו עד שהנתונים ייטענו, אז `SearchResults` יציג את התוצאות המעופשות לזמן מה.
 
-To make it more obvious to the user, you can add a visual indication when the stale result list is displayed:
+כדי להפוך את זה לברור יותר ל-user, אתה יכול להוסיף אינדיקציה חזותית כאשר רשימת התוצאות המעופשת מוצגת:
 
 ```js {2}
 <div style={{
@@ -1149,7 +1149,7 @@ To make it more obvious to the user, you can add a visual indication when the st
 </div>
 ```
 
-Enter `"a"` in the example below, wait for the results to load, and then edit the input to `"ab"`. Notice how instead of the Suspense fallback, you now see the dimmed stale result list until the new results have loaded:
+הזן `"a"` בדוגמה למטה, המתן לטעינת התוצאות ולאחר מכן ערוך את הקלט ל-`"ab"`. שים לב כיצד במקום ה-fallback Suspense, אתה רואה כעת את רשימת התוצאות המעומעמת עד שהתוצאות החדשות ייטענו:
 
 
 <Sandpack>
@@ -1348,15 +1348,15 @@ input { margin: 10px; }
 
 <Note>
 
-Both deferred values and [transitions](#preventing-already-revealed-content-from-hiding) let you avoid showing Suspense fallback in favor of inline indicators. Transitions mark the whole update as non-urgent so they are typically used by frameworks and router libraries for navigation. Deferred values, on the other hand, are mostly useful in application code where you want to mark a part of UI as non-urgent and let it "lag behind" the rest of the UI.
+גם ערכים דחויים וגם [מעברים](#preventing-already-revealed-content-from-hiding) מאפשרים לך להימנע מהצגת Suspense fallback לטובת אינדיקטורים מוטבעים. מעברים מסמנים את כל העדכון כלא דחוף ולכן הם בדרך כלל used על ידי מסגרות וספריות נתב לניווט. ערכים דחויים, לעומת זאת, הם לרוב useמלאים בקוד היישום שבו אתה רוצה לסמן חלק ממשק המשתמש כלא דחוף ולתת לו "לפיגור" בשאר ממשק המשתמש.
 
 </Note>
 
 ---
 
-### Preventing already revealed content from hiding {/*preventing-already-revealed-content-from-hiding*/}
+### מניעת הסתרת תוכן שכבר נחשף {/*preventing-already-revealed-content-from-hiding*/}
 
-When a component suspends, the closest parent Suspense boundary switches to showing the fallback. This can lead to a jarring user experience if it was already displaying some content. Try pressing this button:
+כאשר רכיב מושהה, גבול האב הקרוב ביותר Suspense עובר להצגת ה-fallback. זה יכול להוביל לחוויית user צורמת אם הוא כבר הציג תוכן כלשהו. נסה ללחוץ על הכפתור הזה:
 
 <Sandpack>
 
@@ -1725,9 +1725,9 @@ main {
 
 </Sandpack>
 
-When you pressed the button, the `Router` component rendered `ArtistPage` instead of `IndexPage`. A component inside `ArtistPage` suspended, so the closest Suspense boundary started showing the fallback. The closest Suspense boundary was near the root, so the whole site layout got replaced by `BigSpinner`.
+כאשר לחצת על הכפתור, הרכיב `Router` הציג `ArtistPage` במקום `IndexPage`. רכיב בתוך `ArtistPage` הושעה, כך שהגבול הקרוב ביותר של Suspense התחיל להראות את החזרה. הגבול Suspense הקרוב ביותר היה ליד השורש, כך שכל פריסת האתר הוחלפה ב-`BigSpinner`.
 
-To prevent this, you can mark the navigation state update as a *transition* with [`startTransition`:](/reference/react/startTransition)
+כדי למנוע זאת, תוכל לסמן את עדכון הניווט state כ*מעבר* עם [`startTransition`:](/reference/react/startTransition)
 
 ```js {5,7}
 function Router() {
@@ -1741,7 +1741,7 @@ function Router() {
   // ...
 ```
 
-This tells React that the state transition is not urgent, and it's better to keep showing the previous page instead of hiding any already revealed content. Now clicking the button "waits" for the `Biography` to load:
+זה אומר לReact שהמעבר state אינו דחוף, ועדיף להמשיך ולהציג את הדף הקודם במקום להסתיר תוכן שכבר נחשף. כעת לחיצה על הכפתור "ממתין" לטעינת ה-`Biography`:
 
 <Sandpack>
 
@@ -2112,19 +2112,19 @@ main {
 
 </Sandpack>
 
-A transition doesn't wait for *all* content to load. It only waits long enough to avoid hiding already revealed content. For example, the website `Layout` was already revealed, so it would be bad to hide it behind a loading spinner. However, the nested `Suspense` boundary around `Albums` is new, so the transition doesn't wait for it.
+מעבר לא מחכה לטעינת *כל* התוכן. זה רק מחכה מספיק זמן כדי להימנע מהסתרת תוכן שכבר נחשף. לדוגמה, האתר `Layout` כבר נחשף, אז זה יהיה רע להחביא אותו מאחורי ספינר טעינה. עם זאת, הגבול המקנן `Suspense` סביב `Albums` הוא חדש, כך שהמעבר לא מחכה לו.
 
 <Note>
 
-Suspense-enabled routers are expected to wrap the navigation updates into transitions by default.
+נתבים התומכים ב-Suspense צפויים לעטוף את עדכוני הניווט למעברים כברירת מחדל.
 
 </Note>
 
 ---
 
-### Indicating that a transition is happening {/*indicating-that-a-transition-is-happening*/}
+### מציין שמתרחש מעבר {/*indicating-that-a-transition-is-happening*/}
 
-In the above example, once you click the button, there is no visual indication that a navigation is in progress. To add an indicator, you can replace [`startTransition`](/reference/react/startTransition) with [`useTransition`](/reference/react/useTransition) which gives you a boolean `isPending` value. In the example below, it's used to change the website header styling while a transition is happening:
+בדוגמה שלמעלה, ברגע שאתה לוחץ על הכפתור, אין אינדיקציה ויזואלית לכך שניווט מתבצע. כדי להוסיף מחוון, אתה יכול להחליף את [`startTransition`](/reference/react/startTransition) ב-[`useTransition`](/reference/react/useTransition) שנותן לך ערך בוליאני `isPending`. בדוגמה שלהלן, זה used לשנות את סגנון הכותרת של האתר בזמן שמתרחש מעבר:
 
 <Sandpack>
 
@@ -2500,27 +2500,27 @@ main {
 
 ---
 
-### Resetting Suspense boundaries on navigation {/*resetting-suspense-boundaries-on-navigation*/}
+### איפוס גבולות Suspense בניווט {/*resetting-suspense-boundaries-on-navigation*/}
 
-During a transition, React will avoid hiding already revealed content. However, if you navigate to a route with different parameters, you might want to tell React it is *different* content. You can express this with a `key`:
+במהלך מעבר, React ימנע מהסתרת תוכן שכבר נחשף. עם זאת, אם אתה מנווט למסלול עם פרמטרים שונים, אולי תרצה לומר ל-React שזהו תוכן *שונה*. אתה יכול לבטא זאת באמצעות `key`:
 
 ```js
 <ProfilePage key={queryParams.id} />
 ```
 
-Imagine you're navigating within a user's profile page, and something suspends. If that update is wrapped in a transition, it will not trigger the fallback for already visible content. That's the expected behavior.
+תאר לעצמך שאתה מנווט בתוך דף הפרופיל של user, ומשהו מושהה. אם העדכון הזה עטוף במעבר, הוא לא יפעיל את החזרה לתוכן שכבר גלוי. זו ההתנהגות הצפויה.
 
-However, now imagine you're navigating between two different user profiles. In that case, it makes sense to show the fallback. For example, one user's timeline is *different content* from another user's timeline. By specifying a `key`, you ensure that React treats different users' profiles as different components, and resets the Suspense boundaries during navigation. Suspense-integrated routers should do this automatically.
+עם זאת, דמיין כעת שאתה מנווט בין שני פרופילי user שונים. במקרה כזה, הגיוני להראות את הנסיגה. לדוגמה, ציר הזמן של user אחד הוא *תוכן שונה* מציר הזמן של user אחר. על ידי ציון `key`, אתה מבטיח שReact מתייחס לפרופילים שונים של users כרכיבים שונים, ומאפס את גבולות Suspense במהלך הניווט. נתבים המשולבים ב-Suspense צריכים לעשות זאת באופן אוטומטי.
 
 ---
 
-### Providing a fallback for server errors and client-only content {/*providing-a-fallback-for-server-errors-and-client-only-content*/}
+### מתן מיתון עבור שגיאות שרת ותוכן ללקוח בלבד {/*providing-a-fallback-for-server-errors-and-client-only-content*/}
 
-If you use one of the [streaming server rendering APIs](/reference/react-dom/server) (or a framework that relies on them), React will also use your `<Suspense>` boundaries to handle errors on the server. If a component throws an error on the server, React will not abort the server render. Instead, it will find the closest `<Suspense>` component above it and include its fallback (such as a spinner) into the generated server HTML. The user will see a spinner at first.
+אם אתה use אחד מ-[שרת הזרימה המציג APIs](/reference/react-dom/server) (או מסגרת המסתמכת עליהם), React גם use גבולות `<Suspense>` שלך כדי לטפל בשגיאות בשרת. אם רכיב זורק שגיאה על השרת, React לא יבטל את עיבוד השרת. במקום זאת, הוא ימצא את רכיב `<Suspense>` הקרוב ביותר מעליו ויכלול את ה-fallback שלו (כגון ספינר) לתוך השרת שנוצר HTML. ה-user יראה ספינר בהתחלה.
 
-On the client, React will attempt to render the same component again. If it errors on the client too, React will throw the error and display the closest [error boundary.](/reference/react/Component#static-getderivedstatefromerror) However, if it does not error on the client, React will not display the error to the user since the content was eventually displayed successfully.
+בלקוח, React ינסה לעבד שוב את אותו רכיב. אם יש שגיאות גם בלקוח, React יזרוק את השגיאה ויציג את [גבול השגיאה הקרוב ביותר.](/reference/react/Component#static-getderivedstatefromerror) עם זאת, אם היא לא תופיע שגיאה בלקוח, React לא יציג את השגיאה ל-React בסופו של דבר מאז שהתוכן שהוצג בהצלחה.
 
-You can use this to opt out some components from rendering on the server. To do this, throw an error in the server environment and then wrap them in a `<Suspense>` boundary to replace their HTML with fallbacks:
+אתה יכול use זה כדי לבטל את הסכמתם של רכיבים מסוימים לעיבוד בשרת. כדי לעשות זאת, זרוק שגיאה בסביבת השרת ולאחר מכן עטוף אותם בגבול `<Suspense>` כדי להחליף את ה-HTML שלהם ב-fallbacks:
 
 ```js
 <Suspense fallback={<Loading />}>
@@ -2535,17 +2535,17 @@ function Chat() {
 }
 ```
 
-The server HTML will include the loading indicator. It will be replaced by the `Chat` component on the client.
+השרת HTML יכלול את מחוון הטעינה. הוא יוחלף ברכיב `Chat` בלקוח.
 
 ---
 
-## Troubleshooting {/*troubleshooting*/}
+## פתרון בעיות {/*troubleshooting*/}
 
-### How do I prevent the UI from being replaced by a fallback during an update? {/*preventing-unwanted-fallbacks*/}
+### כיצד אוכל למנוע את החלפת ממשק המשתמש ב-fallback במהלך עדכון? {/*preventing-unwanted-fallbacks*/}
 
-Replacing visible UI with a fallback creates a jarring user experience. This can happen when an update causes a component to suspend, and the nearest Suspense boundary is already showing content to the user.
+החלפת ממשק משתמש גלוי ב-fallback יוצרת חוויית user צורמת. זה יכול לקרות כאשר עדכון cause הוא רכיב להשעיה, והגבול Suspense הקרוב ביותר כבר מציג תוכן ל-user.
 
-To prevent this from happening, [mark the update as non-urgent using `startTransition`](#preventing-already-revealed-content-from-hiding). During a transition, React will wait until enough data has loaded to prevent an unwanted fallback from appearing:
+כדי למנוע את זה, [סמן את העדכון כלא דחוף באמצעות `startTransition`](#preventing-already-revealed-content-from-hiding). במהלך מעבר, React ימתין עד שיטענו מספיק נתונים כדי למנוע הופעת נסיגה לא רצויה:
 
 ```js {2-3,5}
 function handleNextPageClick() {
@@ -2556,8 +2556,8 @@ function handleNextPageClick() {
 }
 ```
 
-This will avoid hiding existing content. However, any newly rendered `Suspense` boundaries will still immediately display fallbacks to avoid blocking the UI and let the user see the content as it becomes available.
+זה ימנע הסתרת תוכן קיים. עם זאת, כל גבולות `Suspense` שיוצגו לאחרונה עדיין יציגו מיד נפילות כדי להימנע מחסימת ממשק המשתמש ולתת ל-user לראות את התוכן כאשר הוא הופך זמין.
 
-**React will only prevent unwanted fallbacks during non-urgent updates**. It will not delay a render if it's the result of an urgent update. You must opt in with an API like [`startTransition`](/reference/react/startTransition) or [`useDeferredValue`](/reference/react/useDeferredValue).
+**React ימנע נפילות לא רצויות רק במהלך עדכונים לא דחופים**. זה לא יעכב עיבוד אם זה תוצאה של עדכון דחוף. עליך להצטרף עם API כמו [`startTransition`](/reference/react/startTransition) או [`useDeferredValue`](/reference/react/useDeferredValue).
 
-If your router is integrated with Suspense, it should wrap its updates into [`startTransition`](/reference/react/startTransition) automatically.
+אם הנתב שלך משולב עם Suspense, הוא אמור לעטוף את העדכונים שלו לתוך [`startTransition`](/reference/react/startTransition) באופן אוטומטי.

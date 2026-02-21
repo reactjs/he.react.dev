@@ -1,10 +1,10 @@
 ---
-title: useTransition
+title: "useTransition"
 ---
 
 <Intro>
 
-`useTransition` is a React Hook that lets you update the state without blocking the UI.
+`useTransition` הוא React Hook המאפשר לך לעדכן את state מבלי לחסום את ממשק המשתמש.
 
 ```js
 const [isPending, startTransition] = useTransition()
@@ -16,11 +16,11 @@ const [isPending, startTransition] = useTransition()
 
 ---
 
-## Reference {/*reference*/}
+## הפניה {/*reference*/}
 
 ### `useTransition()` {/*usetransition*/}
 
-Call `useTransition` at the top level of your component to mark some state updates as transitions.
+התקשר ל-`useTransition` ברמה העליונה של הרכיב שלך כדי לסמן כמה עדכוני state כמעברים.
 
 ```js
 import { useTransition } from 'react';
@@ -31,24 +31,24 @@ function TabContainer() {
 }
 ```
 
-[See more examples below.](#usage)
+[ראה דוגמאות נוספות למטה.](#usage)
 
-#### Parameters {/*parameters*/}
+#### פרמטרים {/*parameters*/}
 
-`useTransition` does not take any parameters.
+`useTransition` אינו לוקח פרמטרים כלשהם.
 
-#### Returns {/*returns*/}
+#### מחזירה {/*returns*/}
 
-`useTransition` returns an array with exactly two items:
+`useTransition` מחזיר מערך עם שני פריטים בדיוק:
 
-1. The `isPending` flag that tells you whether there is a pending transition.
-2. The [`startTransition` function](#starttransition) that lets you mark a state update as a transition.
+1. הדגל `isPending` שאומר לך אם יש מעבר ממתין.
+2. הפונקציה [`startTransition`](#starttransition) המאפשרת לסמן עדכון state כמעבר.
 
 ---
 
-### `startTransition` function {/*starttransition*/}
+### `startTransition` פונקציה {/*starttransition*/}
 
-The `startTransition` function returned by `useTransition` lets you mark a state update as a transition.
+הפונקציה `startTransition` המוחזרת על ידי `useTransition` מאפשרת לך לסמן עדכון state כמעבר.
 
 ```js {6,8}
 function TabContainer() {
@@ -64,35 +64,35 @@ function TabContainer() {
 }
 ```
 
-#### Parameters {/*starttransition-parameters*/}
+#### פרמטרים {/*starttransition-parameters*/}
 
-* `scope`: A function that updates some state by calling one or more [`set` functions.](/reference/react/useState#setstate) React immediately calls `scope` with no parameters and marks all state updates scheduled synchronously during the `scope` function call as transitions. They will be [non-blocking](#marking-a-state-update-as-a-non-blocking-transition) and [will not display unwanted loading indicators.](#preventing-unwanted-loading-indicators)
+* `scope`: פונקציה שמעדכנת חלק מה-state על ידי קריאה לפונקציה אחת או יותר של [`set`.](/reference/react/useState#setstate) React מתקשרת מיד ל`scope` ללא פרמטרים ומסמנת את כל `set` פונקציה אחת או יותר כפונקציה __TK_8_ מעדכנת באופן סינכרוני את לוח הזמנים __T_3. הם יהיו [לא חוסמים](#marking-a-state-update-as-a-non-blocking-transition) ו[לא יציגו מחווני טעינה לא רצויים.](#preventing-unwanted-loading-indicators)
 
-#### Returns {/*starttransition-returns*/}
+#### מחזירה {/*starttransition-returns*/}
 
-`startTransition` does not return anything.
+`startTransition` לא מחזיר כלום.
 
-#### Caveats {/*starttransition-caveats*/}
+#### אזהרות {/*starttransition-caveats*/}
 
-* `useTransition` is a Hook, so it can only be called inside components or custom Hooks. If you need to start a transition somewhere else (for example, from a data library), call the standalone [`startTransition`](/reference/react/startTransition) instead.
+* `useTransition` הוא Hook, כך שניתן לקרוא לו רק בתוך רכיבים או Hooks מותאם אישית. אם אתה צריך להתחיל מעבר במקום אחר (לדוגמה, מספריית נתונים), התקשר ל-[`startTransition`](/reference/react/startTransition) העצמאי במקום זאת.
 
-* You can wrap an update into a transition only if you have access to the `set` function of that state. If you want to start a transition in response to some prop or a custom Hook value, try [`useDeferredValue`](/reference/react/useDeferredValue) instead.
+* אתה יכול לעטוף עדכון למעבר רק אם יש לך גישה לפונקציית `set` של אותו state. אם אתה רוצה להתחיל במעבר בתגובה לאביזר כלשהו או לערך Hook מותאם אישית, נסה את [`useDeferredValue`](/reference/react/useDeferredValue) במקום זאת.
 
-* The function you pass to `startTransition` must be synchronous. React immediately executes this function, marking all state updates that happen while it executes as transitions. If you try to perform more state updates later (for example, in a timeout), they won't be marked as transitions.
+* הפונקציה שאתה מעביר ל-`startTransition` חייבת להיות סינכרונית. React מבצע מיד את הפונקציה הזו, ומסמן את כל העדכונים state שקורים בזמן ביצועה כמעברים. אם תנסה לבצע יותר עדכוני state מאוחר יותר (לדוגמה, בזמן קצוב), הם לא יסומנו כמעברים.
 
-* A state update marked as a transition will be interrupted by other state updates. For example, if you update a chart component inside a transition, but then start typing into an input while the chart is in the middle of a re-render, React will restart the rendering work on the chart component after handling the input update.
+* עדכון state המסומן כמעבר יופסק על ידי עדכוני state אחרים. לדוגמה, אם תעדכן רכיב תרשים בתוך מעבר, אבל אז תתחיל להקליד בקלט בזמן שהתרשים נמצא באמצע רינדור מחדש, React יתחיל מחדש את עבודת העיבוד ברכיב התרשים לאחר טיפול בעדכון הקלט.
 
-* Transition updates can't be used to control text inputs.
+* עדכוני מעבר לא יכולים להיות used כדי לשלוט בקלט טקסט.
 
-* If there are multiple ongoing transitions, React currently batches them together. This is a limitation that will likely be removed in a future release.
+* אם יש מספר מעברים מתמשכים, React כרגע מקבץ אותם יחד. זוהי מגבלה שככל הנראה תוסר במהדורה עתידית.
 
 ---
 
-## Usage {/*usage*/}
+## שימוש {/*usage*/}
 
-### Marking a state update as a non-blocking transition {/*marking-a-state-update-as-a-non-blocking-transition*/}
+### סימון עדכון state כמעבר לא חוסם {/*marking-a-state-update-as-a-non-blocking-transition*/}
 
-Call `useTransition` at the top level of your component to mark state updates as non-blocking *transitions*.
+התקשר ל-`useTransition` ברמה העליונה של הרכיב שלך כדי לסמן עדכונים של state כ*מעברים* שאינם חוסמים.
 
 ```js [[1, 4, "isPending"], [2, 4, "startTransition"]]
 import { useState, useTransition } from 'react';
@@ -103,12 +103,12 @@ function TabContainer() {
 }
 ```
 
-`useTransition` returns an array with exactly two items:
+`useTransition` מחזיר מערך עם שני פריטים בדיוק:
 
-1. The <CodeStep step={1}>`isPending` flag</CodeStep> that tells you whether there is a pending transition.
-2. The <CodeStep step={2}>`startTransition` function</CodeStep> that lets you mark a state update as a transition.
+1. הדגל <CodeStep step={1}>`isPending`</CodeStep> שאומר לך אם יש מעבר בהמתנה.
+2. הפונקציה <CodeStep step={2}>`startTransition`</CodeStep> המאפשרת לך לסמן עדכון state כמעבר.
 
-You can then mark a state update as a transition like this:
+לאחר מכן תוכל לסמן עדכון state כמעבר כך:
 
 ```js {6,8}
 function TabContainer() {
@@ -124,17 +124,17 @@ function TabContainer() {
 }
 ```
 
-Transitions let you keep the user interface updates responsive even on slow devices.
+מעברים מאפשרים לך לשמור על עדכוני ממשק user מגיבים אפילו במכשירים איטיים.
 
-With a transition, your UI stays responsive in the middle of a re-render. For example, if the user clicks a tab but then change their mind and click another tab, they can do that without waiting for the first re-render to finish.
+עם מעבר, ממשק המשתמש שלך נשאר מגיב באמצע עיבוד מחדש. לדוגמה, אם ה-user לוחץ על כרטיסייה אבל אז משנה את דעתו ולוחץ על כרטיסייה אחרת, הם יכולים לעשות זאת מבלי לחכות לסיום העיבוד המחודש הראשון.
 
 <Recipes titleText="The difference between useTransition and regular state updates" titleId="examples">
 
-#### Updating the current tab in a transition {/*updating-the-current-tab-in-a-transition*/}
+#### עדכון הכרטיסייה הנוכחית במעבר {/*updating-the-current-tab-in-a-transition*/}
 
-In this example, the "Posts" tab is **artificially slowed down** so that it takes at least a second to render.
+בדוגמה זו, הכרטיסייה "פוסטים" **האטה באופן מלאכותי** כך שלוקח שנייה לפחות לעיבוד.
 
-Click "Posts" and then immediately click "Contact". Notice that this interrupts the slow render of "Posts". The "Contact" tab shows immediately. Because this state update is marked as a transition, a slow re-render did not freeze the user interface.
+לחץ על "פוסטים" ולאחר מכן לחץ מיד על "צור קשר". שימו לב שזה מפריע לעיבוד האיטי של "פוסטים". הכרטיסייה "צור קשר" מופיעה מיד. מכיוון שעדכון state זה מסומן כמעבר, רינדור איטי מחדש לא הקפיא את ממשק user.
 
 <Sandpack>
 
@@ -269,11 +269,11 @@ b { display: inline-block; margin-right: 10px; }
 
 <Solution />
 
-#### Updating the current tab without a transition {/*updating-the-current-tab-without-a-transition*/}
+#### עדכון הכרטיסייה הנוכחית ללא מעבר {/*updating-the-current-tab-without-a-transition*/}
 
-In this example, the "Posts" tab is also **artificially slowed down** so that it takes at least a second to render. Unlike in the previous example, this state update is **not a transition.**
+בדוגמה זו, גם הכרטיסייה "פוסטים" **האטה באופן מלאכותי** כך שלוקח שנייה לפחות לעיבוד. שלא כמו בדוגמה הקודמת, עדכון state זה הוא **לא מעבר.**
 
-Click "Posts" and then immediately click "Contact". Notice that the app freezes while rendering the slowed down tab, and the UI becomes unresponsive. This state update is not a transition, so a slow re-render freezed the user interface.
+לחץ על "פוסטים" ולאחר מכן לחץ מיד על "צור קשר". שימו לב שהאפליקציה קופאת תוך כדי רינדור הכרטיסייה האטה, והממשק משתמש לא מגיב. עדכון state זה אינו מעבר, כך שעיבוד איטי מחדש הקפיא את ממשק user.
 
 <Sandpack>
 
@@ -409,9 +409,9 @@ b { display: inline-block; margin-right: 10px; }
 
 ---
 
-### Updating the parent component in a transition {/*updating-the-parent-component-in-a-transition*/}
+### עדכון רכיב האב במעבר {/*updating-the-parent-component-in-a-transition*/}
 
-You can update a parent component's state from the `useTransition` call, too. For example, this `TabButton` component wraps its `onClick` logic in a transition:
+אתה יכול לעדכן את state של רכיב אב גם מהקריאה `useTransition`. לדוגמה, רכיב `TabButton` זה עוטף את ההיגיון `onClick` שלו במעבר:
 
 ```js {8-10}
 export default function TabButton({ children, isActive, onClick }) {
@@ -431,7 +431,7 @@ export default function TabButton({ children, isActive, onClick }) {
 }
 ```
 
-Because the parent component updates its state inside the `onClick` event handler, that state update gets marked as a transition. This is why, like in the earlier example, you can click on "Posts" and then immediately click "Contact". Updating the selected tab is marked as a transition, so it does not block user interactions.
+מכיוון שרכיב האב מעדכן את state שלו בתוך מטפל האירועים `onClick`, עדכון state יסומן כמעבר. זו הסיבה, כמו בדוגמה הקודמת, אתה יכול ללחוץ על "פוסטים" ולאחר מכן ללחוץ מיד על "צור קשר". עדכון הכרטיסייה שנבחרה מסומן כמעבר, כך שהוא אינו חוסם אינטראקציות user.
 
 <Sandpack>
 
@@ -560,9 +560,9 @@ b { display: inline-block; margin-right: 10px; }
 
 ---
 
-### Displaying a pending visual state during the transition {/*displaying-a-pending-visual-state-during-the-transition*/}
+### הצגת חזותית ממתינה state במהלך המעבר {/*displaying-a-pending-visual-state-during-the-transition*/}
 
-You can use the `isPending` boolean value returned by `useTransition` to indicate to the user that a transition is in progress. For example, the tab button can have a special "pending" visual state:
+אתה יכול use את הערך הבוליאני `isPending` המוחזר על ידי `useTransition` כדי לציין ל-user שמתבצע מעבר. לדוגמה, לחצן הכרטיסייה יכול להיות חזותי מיוחד "בהמתנה" state:
 
 ```js {4-6}
 function TabButton({ children, isActive, onClick }) {
@@ -574,7 +574,7 @@ function TabButton({ children, isActive, onClick }) {
   // ...
 ```
 
-Notice how clicking "Posts" now feels more responsive because the tab button itself updates right away:
+שימו לב כיצד לחיצה על "פוסטים" מרגישה כעת יותר מגיבה מכיוון שכפתור הכרטיסייה עצמו מתעדכן מיד:
 
 <Sandpack>
 
@@ -707,9 +707,9 @@ b { display: inline-block; margin-right: 10px; }
 
 ---
 
-### Preventing unwanted loading indicators {/*preventing-unwanted-loading-indicators*/}
+### מניעת מחווני טעינה לא רצויים {/*preventing-unwanted-loading-indicators*/}
 
-In this example, the `PostsTab` component fetches some data using a [Suspense-enabled](/reference/react/Suspense) data source. When you click the "Posts" tab, the `PostsTab` component *suspends*, causing the closest loading fallback to appear:
+בדוגמה זו, הרכיב `PostsTab` מביא נתונים מסוימים באמצעות מקור נתונים [Suspense-enabled](/reference/react/Suspense). כאשר אתה לוחץ על הכרטיסייה "פוסטים", הרכיב `PostsTab` *מושעה*, מה שגורם להופעת החזרת הטעינה הקרובה ביותר:
 
 <Sandpack>
 
@@ -893,9 +893,9 @@ b { display: inline-block; margin-right: 10px; }
 
 </Sandpack>
 
-Hiding the entire tab container to show a loading indicator leads to a jarring user experience. If you add `useTransition` to `TabButton`, you can instead indicate display the pending state in the tab button instead.
+הסתרת כל מיכל הכרטיסיות כדי להציג מחוון טעינה מובילה לחוויית user צורמת. אם תוסיף את `useTransition` ל-`TabButton`, במקום זאת תוכל לציין את ה-state הממתין בלחצן הכרטיסייה במקום זאת.
 
-Notice that clicking "Posts" no longer replaces the entire tab container with a spinner:
+שימו לב שלחיצה על "פוסטים" כבר לא מחליפה את כל מיכל הכרטיסיות בספינר:
 
 <Sandpack>
 
@@ -1087,19 +1087,19 @@ b { display: inline-block; margin-right: 10px; }
 
 </Sandpack>
 
-[Read more about using transitions with Suspense.](/reference/react/Suspense#preventing-already-revealed-content-from-hiding)
+[קרא עוד על שימוש במעברים עם Suspense.](/reference/react/Suspense#preventing-already-revealed-content-from-hiding)
 
 <Note>
 
-Transitions will only "wait" long enough to avoid hiding *already revealed* content (like the tab container). If the Posts tab had a [nested `<Suspense>` boundary,](/reference/react/Suspense#revealing-nested-content-as-it-loads) the transition would not "wait" for it.
+מעברים רק "ימתינו" מספיק זמן כדי להימנע מהסתרת תוכן *שנחשף כבר* (כמו מיכל הכרטיסיות). אם לכרטיסייה 'פוסטים' היה גבול [מקונן `<Suspense>`,](/reference/react/Suspense#revealing-nested-content-as-it-loads) המעבר לא היה "מחכה" לו.
 
 </Note>
 
 ---
 
-### Building a Suspense-enabled router {/*building-a-suspense-enabled-router*/}
+### בניית נתב תומך Suspense {/*building-a-suspense-enabled-router*/}
 
-If you're building a React framework or a router, we recommend marking page navigations as transitions.
+אם אתה בונה מסגרת React או נתב, אנו ממליצים לסמן ניווטים בדפים כמעברים.
 
 ```js {3,6,8}
 function Router() {
@@ -1114,12 +1114,12 @@ function Router() {
   // ...
 ```
 
-This is recommended for two reasons:
+זה מומלץ משתי סיבות:
 
-- [Transitions are interruptible,](#marking-a-state-update-as-a-non-blocking-transition) which lets the user click away without waiting for the re-render to complete.
-- [Transitions prevent unwanted loading indicators,](#preventing-unwanted-loading-indicators) which lets the user avoid jarring jumps on navigation.
+- [מעברים ניתנים להפסקה,](#marking-a-state-update-as-a-non-blocking-transition) המאפשר ל-user ללחוץ משם מבלי לחכות לסיום העיבוד מחדש.
+- [מעברים מונעים מחווני טעינה לא רצויים,](#preventing-unwanted-loading-indicators) המאפשר ל-user להימנע מקפיצות צורמות בניווט.
 
-Here is a tiny simplified router example using transitions for navigations.
+הנה דוגמה זעירה לנתב פשוטה המשתמשת במעברים לניווטים.
 
 <Sandpack>
 
@@ -1495,21 +1495,21 @@ main {
 
 <Note>
 
-[Suspense-enabled](/reference/react/Suspense) routers are expected to wrap the navigation updates into transitions by default.
+[Suspense-enabled](/reference/react/Suspense) נתבים צפויים לעטוף את עדכוני הניווט למעברים כברירת מחדל.
 
 </Note>
 
 ---
 
-### Displaying an error to users with an error boundary {/*displaying-an-error-to-users-with-error-boundary*/}
+### הצגת שגיאה לusers עם גבול שגיאה {/*displaying-an-error-to-users-with-error-boundary*/}
 
 <Canary>
 
-Error Boundary for useTransition is currently only available in React's canary and experimental channels. Learn more about [React's release channels here](/community/versioning-policy#all-release-channels).
+גבול שגיאה עבור useTransition זמין כרגע רק בערוצים הקנריים והניסיוניים של React. למידע נוסף על ערוצי ההפצה של [React כאן](/community/versioning-policy#all-release-channels).
 
 </Canary>
 
-If a function passed to `startTransition` throws an error, you can display an error to your user with an [error boundary](/reference/react/Component#catching-rendering-errors-with-an-error-boundary). To use an error boundary, wrap the component where you are calling the `useTransition` in an error boundary. Once the function passed to `startTransition` errors, the fallback for the error boundary will be displayed.
+אם פונקציה שהועברה ל-`startTransition` זורקת שגיאה, תוכל להציג שגיאה ל-user שלך עם [גבול שגיאה](/reference/react/Component#catching-rendering-errors-with-an-error-boundary). כדי use גבול שגיאה, עטוף את הרכיב שבו אתה קורא ל-`useTransition` בגבול שגיאה. לאחר שהפונקציה תועבר לשגיאות `startTransition`, תוצג החזרה לגבול השגיאה.
 
 <Sandpack>
 
@@ -1596,11 +1596,11 @@ root.render(
 
 ---
 
-## Troubleshooting {/*troubleshooting*/}
+## פתרון בעיות {/*troubleshooting*/}
 
-### Updating an input in a transition doesn't work {/*updating-an-input-in-a-transition-doesnt-work*/}
+### עדכון קלט במעבר לא עובד {/*updating-an-input-in-a-transition-doesnt-work*/}
 
-You can't use a transition for a state variable that controls an input:
+אתה לא יכול use מעבר עבור משתנה state השולט בקלט:
 
 ```js {4,10}
 const [text, setText] = useState('');
@@ -1615,16 +1615,16 @@ function handleChange(e) {
 return <input value={text} onChange={handleChange} />;
 ```
 
-This is because transitions are non-blocking, but updating an input in response to the change event should happen synchronously. If you want to run a transition in response to typing, you have two options:
+הסיבה לכך היא שמעבריםuse אינם חוסמים, אך עדכון קלט בתגובה לאירוע השינוי אמור להתרחש באופן סינכרוני. אם ברצונך להפעיל מעבר בתגובה להקלדה, יש לך שתי אפשרויות:
 
-1. You can declare two separate state variables: one for the input state (which always updates synchronously), and one that you will update in a transition. This lets you control the input using the synchronous state, and pass the transition state variable (which will "lag behind" the input) to the rest of your rendering logic.
-2. Alternatively, you can have one state variable, and add [`useDeferredValue`](/reference/react/useDeferredValue) which will "lag behind" the real value. It will trigger non-blocking re-renders to "catch up" with the new value automatically.
+1. ניתן להכריז על שני משתנים נפרדים של state: אחד עבור הקלט state (שתמיד מתעדכן באופן סינכרוני), ואחד שתעדכן במעבר. זה מאפשר לך לשלוט בקלט באמצעות ה-state הסינכרוני, ולהעביר את משתנה המעבר state (ש"ישאר אחרי" הקלט) לשאר הלוגיקה של העיבוד שלך.
+2. לחלופין, אתה יכול לקבל משתנה state אחד, ולהוסיף [`useDeferredValue`](/reference/react/useDeferredValue) ש"יפגר מאחורי" הערך האמיתי. זה יפעיל עיבוד מחדש לא חוסם כדי "להדביק" את הערך החדש באופן אוטומטי.
 
 ---
 
-### React doesn't treat my state update as a transition {/*react-doesnt-treat-my-state-update-as-a-transition*/}
+### React לא מתייחס לעדכון state שלי כאל מעבר {/*react-doesnt-treat-my-state-update-as-a-transition*/}
 
-When you wrap a state update in a transition, make sure that it happens *during* the `startTransition` call:
+כאשר אתה עוטף עדכון state במעבר, ודא שהוא קורה *במהלך* הקריאה `startTransition`:
 
 ```js
 startTransition(() => {
@@ -1633,9 +1633,9 @@ startTransition(() => {
 });
 ```
 
-The function you pass to `startTransition` must be synchronous.
+הפונקציה שאתה מעביר ל-`startTransition` חייבת להיות סינכרונית.
 
-You can't mark an update as a transition like this:
+לא ניתן לסמן עדכון כמעבר כך:
 
 ```js
 startTransition(() => {
@@ -1646,7 +1646,7 @@ startTransition(() => {
 });
 ```
 
-Instead, you could do this:
+במקום זאת, תוכל לעשות זאת:
 
 ```js
 setTimeout(() => {
@@ -1657,7 +1657,7 @@ setTimeout(() => {
 }, 1000);
 ```
 
-Similarly, you can't mark an update as a transition like this:
+באופן דומה, אינך יכול לסמן עדכון כמעבר כך:
 
 ```js
 startTransition(async () => {
@@ -1667,7 +1667,7 @@ startTransition(async () => {
 });
 ```
 
-However, this works instead:
+עם זאת, זה עובד במקום זאת:
 
 ```js
 await someAsyncFunction();
@@ -1679,15 +1679,15 @@ startTransition(() => {
 
 ---
 
-### I want to call `useTransition` from outside a component {/*i-want-to-call-usetransition-from-outside-a-component*/}
+### אני רוצה לקרוא ל`useTransition` מחוץ לרכיב {/*i-want-to-call-usetransition-from-outside-a-component*/}
 
-You can't call `useTransition` outside a component because it's a Hook. In this case, use the standalone [`startTransition`](/reference/react/startTransition) method instead. It works the same way, but it doesn't provide the `isPending` indicator.
+אתה לא יכול לקרוא ל-`useTransition` מחוץ לרכיב כי use זה Hook. במקרה זה, use השיטה העצמאית [`startTransition`](/reference/react/startTransition) במקום זאת. זה עובד באותו אופן, אבל זה לא מספק את מחוון `isPending`.
 
 ---
 
-### The function I pass to `startTransition` executes immediately {/*the-function-i-pass-to-starttransition-executes-immediately*/}
+### הפונקציה שאני מעביר ל`startTransition` מבצעת מיד {/*the-function-i-pass-to-starttransition-executes-immediately*/}
 
-If you run this code, it will print 1, 2, 3:
+אם תפעיל את הקוד הזה, הוא ידפיס 1, 2, 3:
 
 ```js {1,3,6}
 console.log(1);
@@ -1698,7 +1698,7 @@ startTransition(() => {
 console.log(3);
 ```
 
-**It is expected to print 1, 2, 3.** The function you pass to `startTransition` does not get delayed. Unlike with the browser `setTimeout`, it does not run the callback later. React executes your function immediately, but any state updates scheduled *while it is running* are marked as transitions. You can imagine that it works like this:
+**זה צפוי להדפיס 1, 2, 3.** הפונקציה שתעביר ל-`startTransition` לא מתעכבת. שלא כמו בדפדפן `setTimeout`, הוא לא מפעיל את ההתקשרות חזרה מאוחר יותר. React מבצע את הפונקציה שלך באופן מיידי, אבל כל עדכוני state המתוזמנים *בזמן שהוא פועל* מסומנים כמעברים. אתה יכול לדמיין שזה עובד ככה:
 
 ```js
 // A simplified version of how React works

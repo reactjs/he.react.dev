@@ -1,10 +1,10 @@
 ---
-title: forwardRef
+title: "forwardRef"
 ---
 
 <Intro>
 
-`forwardRef` lets your component expose a DOM node to parent component with a [ref.](/learn/manipulating-the-dom-with-refs)
+`forwardRef` מאפשר לרכיב שלך לחשוף צומת DOM לרכיב אב עם [ref.](/learn/manipulating-the-dom-with-refs)
 
 ```js
 const SomeComponent = forwardRef(render)
@@ -16,11 +16,11 @@ const SomeComponent = forwardRef(render)
 
 ---
 
-## Reference {/*reference*/}
+## הפניה {/*reference*/}
 
 ### `forwardRef(render)` {/*forwardref*/}
 
-Call `forwardRef()` to let your component receive a ref and forward it to a child component:
+התקשר ל-`forwardRef()` כדי לאפשר לרכיב שלך לקבל ר' ולהעביר אותו לרכיב צאצא:
 
 ```js
 import { forwardRef } from 'react';
@@ -30,26 +30,26 @@ const MyInput = forwardRef(function MyInput(props, ref) {
 });
 ```
 
-[See more examples below.](#usage)
+[ראה דוגמאות נוספות למטה.](#usage)
 
-#### Parameters {/*parameters*/}
+#### פרמטרים {/*parameters*/}
 
-* `render`: The render function for your component. React calls this function with the props and `ref` that your component received from its parent. The JSX you return will be the output of your component.
+* `render`: פונקציית העיבוד של הרכיב שלך. React קורא לפונקציה הזו עם props ו`ref` שהרכיב שלך קיבל מהאב שלו. ה-JSX שתחזיר יהיה הפלט של הרכיב שלך.
 
-#### Returns {/*returns*/}
+#### מחזירה {/*returns*/}
 
-`forwardRef` returns a React component that you can render in JSX. Unlike React components defined as plain functions, a component returned by `forwardRef` is also able to receive a `ref` prop.
+`forwardRef` מחזיר רכיב React שאתה יכול לרנדר ב-JSX. בניגוד לרכיבי React המוגדרים כפונקציות רגילות, רכיב המוחזר על ידי `forwardRef` מסוגל לקבל גם `ref` תמיכה.
 
-#### Caveats {/*caveats*/}
+#### אזהרות {/*caveats*/}
 
-* In Strict Mode, React will **call your render function twice** in order to [help you find accidental impurities.](/reference/react/useState#my-initializer-or-updater-function-runs-twice) This is development-only behavior and does not affect production. If your render function is pure (as it should be), this should not affect the logic of your component. The result from one of the calls will be ignored.
+* במצב קפדני, React **תתקשר לפונקציית העיבוד שלך פעמיים** ​​על מנת [לעזור לך למצוא זיהומים מקריים.](/reference/react/useState#my-initializer-or-updater-function-runs-twice) זוהי התנהגות לפיתוח בלבד ואינה משפיעה על הייצור. אם פונקציית העיבוד שלך טהורה (כפי שהיא צריכה להיות), זה לא אמור להשפיע על ההיגיון של הרכיב שלך. התוצאה מאחת השיחות תתעלם.
 
 
 ---
 
-### `render` function {/*render-function*/}
+### `render` פונקציה {/*render-function*/}
 
-`forwardRef` accepts a render function as an argument. React calls this function with `props` and `ref`:
+`forwardRef` מקבל פונקציית render כארגומנט. React קורא לפונקציה הזו עם `props` ו`ref`:
 
 ```js
 const MyInput = forwardRef(function MyInput(props, ref) {
@@ -62,23 +62,23 @@ const MyInput = forwardRef(function MyInput(props, ref) {
 });
 ```
 
-#### Parameters {/*render-parameters*/}
+#### פרמטרים {/*render-parameters*/}
 
-* `props`: The props passed by the parent component.
+* `props`: ה-props עבר על ידי רכיב האב.
 
-* `ref`:  The `ref` attribute passed by the parent component. The `ref` can be an object or a function. If the parent component has not passed a ref, it will be `null`. You should either pass the `ref` you receive to another component, or pass it to [`useImperativeHandle`.](/reference/react/useImperativeHandle)
+* `ref`: התכונה `ref` הועברה על ידי רכיב האב. ה-`ref` יכול להיות אובייקט או פונקציה. אם רכיב האב לא עבר שופט, זה יהיה `null`. עליך להעביר את `ref` שאתה מקבל לרכיב אחר, או להעביר אותו ל-[`useImperativeHandle`.](/reference/react/useImperativeHandle)
 
-#### Returns {/*render-returns*/}
+#### מחזירה {/*render-returns*/}
 
-`forwardRef` returns a React component that you can render in JSX. Unlike React components defined as plain functions, the component returned by `forwardRef` is able to take a `ref` prop.
+`forwardRef` מחזיר רכיב React שאתה יכול לרנדר ב-JSX. שלא כמו רכיבי React המוגדרים כפונקציות רגילות, הרכיב המוחזר על ידי `forwardRef` מסוגל לקחת אבזר `ref`.
 
 ---
 
-## Usage {/*usage*/}
+## שימוש {/*usage*/}
 
-### Exposing a DOM node to the parent component {/*exposing-a-dom-node-to-the-parent-component*/}
+### חשיפת צומת DOM לרכיב האב {/*exposing-a-dom-node-to-the-parent-component*/}
 
-By default, each component's DOM nodes are private. However, sometimes it's useful to expose a DOM node to the parent--for example, to allow focusing it. To opt in, wrap your component definition into `forwardRef()`:
+כברירת מחדל, הצמתים DOM של כל רכיב הם פרטיים. עם זאת, לפעמים זה useמלא לחשוף צומת DOM להורה - למשל, כדי לאפשר מיקוד שלו. כדי להצטרף, עטוף את הגדרת הרכיב שלך ב-`forwardRef()`:
 
 ```js {3,11}
 import { forwardRef } from 'react';
@@ -94,7 +94,7 @@ const MyInput = forwardRef(function MyInput(props, ref) {
 });
 ```
 
-You will receive a <CodeStep step={1}>ref</CodeStep> as the second argument after props. Pass it to the DOM node that you want to expose:
+תקבל <CodeStep step={1}>ref</CodeStep> בתור הארגומנט השני אחרי props. העבר אותו לצומת DOM שברצונך לחשוף:
 
 ```js {8} [[1, 3, "ref"], [1, 8, "ref", 30]]
 import { forwardRef } from 'react';
@@ -110,7 +110,7 @@ const MyInput = forwardRef(function MyInput(props, ref) {
 });
 ```
 
-This lets the parent `Form` component access the <CodeStep step={2}>`<input>` DOM node</CodeStep> exposed by `MyInput`:
+זה מאפשר לרכיב האב `Form` לגשת אל <CodeStep step={2}>`<input>` DOM הצומת</CodeStep> שנחשף על ידי `MyInput`:
 
 ```js [[1, 2, "ref"], [1, 10, "ref", 41], [2, 5, "ref.current"]]
 function Form() {
@@ -131,15 +131,15 @@ function Form() {
 }
 ```
 
-This `Form` component [passes a ref](/reference/react/useRef#manipulating-the-dom-with-a-ref) to `MyInput`. The `MyInput` component *forwards* that ref to the `<input>` browser tag. As a result, the `Form` component can access that `<input>` DOM node and call [`focus()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/focus) on it.
+רכיב `Form` זה [מעביר ref](/reference/react/useRef#manipulating-the-dom-with-a-ref) ל-`MyInput`. רכיב `MyInput` *מפנה* המפנה לתג הדפדפן `<input>`. כתוצאה מכך, הרכיב `Form` יכול לגשת לאותו צומת `<input>` DOM ולהתקשר אליו [`focus()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/focus).
 
-Keep in mind that exposing a ref to the DOM node inside your component makes it harder to change your component's internals later. You will typically expose DOM nodes from reusable low-level components like buttons or text inputs, but you won't do it for application-level components like an avatar or a comment.
+זכור שחשיפת רפר לצומת DOM בתוך הרכיב שלך מקשה על שינוי הרכיבים הפנימיים של הרכיב שלך מאוחר יותר. בדרך כלל תחשוף צמתים DOM מרכיבים ברמה נמוכה הניתנים לשימוש חוזר כמו לחצנים או קלט טקסט, אבל לא תעשה זאת עבור רכיבים ברמת היישום כמו אווטאר או הערה.
 
 <Recipes titleText="Examples of forwarding a ref">
 
-#### Focusing a text input {/*focusing-a-text-input*/}
+#### מיקוד קלט טקסט {/*focusing-a-text-input*/}
 
-Clicking the button will focus the input. The `Form` component defines a ref and passes it to the `MyInput` component. The `MyInput` component forwards that ref to the browser `<input>`. This lets the `Form` component focus the `<input>`.
+לחיצה על הכפתור תתמקד בקלט. הרכיב `Form` מגדיר שופט ומעביר אותו לרכיב `MyInput`. הרכיב `MyInput` מעביר את המפנה לדפדפן `<input>`. זה מאפשר לרכיב `Form` למקד את ה-`<input>`.
 
 <Sandpack>
 
@@ -191,9 +191,9 @@ input {
 
 <Solution />
 
-#### Playing and pausing a video {/*playing-and-pausing-a-video*/}
+#### הפעלה והשהיה של סרטון {/*playing-and-pausing-a-video*/}
 
-Clicking the button will call [`play()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/play) and [`pause()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/pause) on a `<video>` DOM node. The `App` component defines a ref and passes it to the `MyVideoPlayer` component. The `MyVideoPlayer` component forwards that ref to the browser `<video>` node. This lets the `App` component play and pause the `<video>`.
+לחיצה על הכפתור תקרא ל-[`play()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/play) ו-[`pause()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/pause) בצומת `<video>` DOM. הרכיב `App` מגדיר ר"פ ומעביר אותו לרכיב `MyVideoPlayer`. הרכיב __TK_ מעביר לדפדפן __TK__ __5__" צומת זה מאפשר לרכיב `App` לשחק ול-pause את `<video>`.
 
 <Sandpack>
 
@@ -252,9 +252,9 @@ button { margin-bottom: 10px; margin-right: 10px; }
 
 ---
 
-### Forwarding a ref through multiple components {/*forwarding-a-ref-through-multiple-components*/}
+### העברת שופט דרך מספר רכיבים {/*forwarding-a-ref-through-multiple-components*/}
 
-Instead of forwarding a `ref` to a DOM node, you can forward it to your own component like `MyInput`:
+במקום להעביר `ref` לצומת DOM, אתה יכול להעביר אותו לרכיב משלך כמו `MyInput`:
 
 ```js {1,5}
 const FormField = forwardRef(function FormField(props, ref) {
@@ -268,7 +268,7 @@ const FormField = forwardRef(function FormField(props, ref) {
 });
 ```
 
-If that `MyInput` component forwards a ref to its `<input>`, a ref to `FormField` will give you that `<input>`:
+אם רכיב ה-`MyInput` הזה מעביר ר"פ ל-`<input>` שלו, ר"פ ל-`FormField` ייתן לך את ה-`<input>` הזה:
 
 ```js {2,5,10}
 function Form() {
@@ -289,7 +289,7 @@ function Form() {
 }
 ```
 
-The `Form` component defines a ref and passes it to `FormField`. The `FormField` component forwards that ref to `MyInput`, which forwards it to a browser `<input>` DOM node. This is how `Form` accesses that DOM node.
+הרכיב `Form` מגדיר שופט ומעביר אותו ל`FormField`. הרכיב `FormField` מעביר את הפניה הזו ל-`MyInput`, שמעביר אותו לצומת `<input>` DOM של הדפדפן. כך `Form` ניגש לאותו צומת DOM.
 
 
 <Sandpack>
@@ -367,9 +367,9 @@ input, button {
 
 ---
 
-### Exposing an imperative handle instead of a DOM node {/*exposing-an-imperative-handle-instead-of-a-dom-node*/}
+### חשיפת ידית ציווי במקום צומת DOM {/*exposing-an-imperative-handle-instead-of-a-dom-node*/}
 
-Instead of exposing an entire DOM node, you can expose a custom object, called an *imperative handle,* with a more constrained set of methods. To do this, you'd need to define a separate ref to hold the DOM node:
+במקום לחשוף צומת DOM שלם, אתה יכול לחשוף אובייקט מותאם אישית, הנקרא *ידית ציווי,* עם קבוצה מוגבלת יותר של שיטות. כדי לעשות זאת, תצטרך להגדיר רפר נפרד שיחזיק את הצומת DOM:
 
 ```js {2,6}
 const MyInput = forwardRef(function MyInput(props, ref) {
@@ -381,7 +381,7 @@ const MyInput = forwardRef(function MyInput(props, ref) {
 });
 ```
 
-Pass the `ref` you received to [`useImperativeHandle`](/reference/react/useImperativeHandle) and specify the value you want to expose to the `ref`:
+העבר את ה-`ref` שקיבלת אל [`useImperativeHandle`](/reference/react/useImperativeHandle) וציין את הערך שברצונך לחשוף ל-`ref`:
 
 ```js {6-15}
 import { forwardRef, useRef, useImperativeHandle } from 'react';
@@ -404,7 +404,7 @@ const MyInput = forwardRef(function MyInput(props, ref) {
 });
 ```
 
-If some component gets a ref to `MyInput`, it will only receive your `{ focus, scrollIntoView }` object instead of the DOM node. This lets you limit the information you expose about your DOM node to the minimum.
+אם רכיב כלשהו מקבל ref ל-`MyInput`, הוא יקבל רק את האובייקט `{ focus, scrollIntoView }` שלך במקום את הצומת DOM. זה מאפשר לך להגביל את המידע שאתה חושף על הצומת DOM שלך למינימום.
 
 <Sandpack>
 
@@ -463,25 +463,25 @@ input {
 
 </Sandpack>
 
-[Read more about using imperative handles.](/reference/react/useImperativeHandle)
+[קרא עוד על שימוש בידיות ציוויות.](/reference/react/useImperativeHandle)
 
 <Pitfall>
 
-**Do not overuse refs.** You should only use refs for *imperative* behaviors that you can't express as props: for example, scrolling to a node, focusing a node, triggering an animation, selecting text, and so on.
+**לא להגזים ב-use רספים.** עליכם להשתמש ב-use רק עבור התנהגויות *חוויתי* שאינכם יכולים לבטא כ-props: למשל, גלילה לצומת, מיקוד של צומת, הפעלת אנימציה, בחירת טקסט וכן הלאה.
 
-**If you can express something as a prop, you should not use a ref.** For example, instead of exposing an imperative handle like `{ open, close }` from a `Modal` component, it is better to take `isOpen` as a prop like `<Modal isOpen={isOpen} />`. [Effects](/learn/synchronizing-with-effects) can help you expose imperative behaviors via props.
+**אם אתה יכול לבטא משהו בתור אביזר, אתה לא צריך use ref.** למשל, במקום לחשוף ידית ציווי כמו `{ open, close }` מרכיב `Modal`, עדיף לקחת את `isOpen` כאביזר כמו `<Modal isOpen={isOpen} />`. [אפקטים](/learn/synchronizing-with-effects) יכול לעזור לך לחשוף התנהגויות הכרחיות באמצעות props.
 
 </Pitfall>
 
 ---
 
-## Troubleshooting {/*troubleshooting*/}
+## פתרון בעיות {/*troubleshooting*/}
 
-### My component is wrapped in `forwardRef`, but the `ref` to it is always `null` {/*my-component-is-wrapped-in-forwardref-but-the-ref-to-it-is-always-null*/}
+### הרכיב שלי עטוף ב-`forwardRef`, אבל ה-`ref` אליו הוא תמיד `null` {/*my-component-is-wrapped-in-forwardref-but-the-ref-to-it-is-always-null*/}
 
-This usually means that you forgot to actually use the `ref` that you received.
+זה בדרך כלל אומר ששכחת למעשה use את `ref` שקיבלת.
 
-For example, this component doesn't do anything with its `ref`:
+לדוגמה, הרכיב הזה לא עושה כלום עם ה-`ref` שלו:
 
 ```js {1}
 const MyInput = forwardRef(function MyInput({ label }, ref) {
@@ -494,7 +494,7 @@ const MyInput = forwardRef(function MyInput({ label }, ref) {
 });
 ```
 
-To fix it, pass the `ref` down to a DOM node or another component that can accept a ref:
+כדי לתקן את זה, העבירו את ה-`ref` לצומת DOM או לרכיב אחר שיכול לקבל ר"פ:
 
 ```js {1,5}
 const MyInput = forwardRef(function MyInput({ label }, ref) {
@@ -507,7 +507,7 @@ const MyInput = forwardRef(function MyInput({ label }, ref) {
 });
 ```
 
-The `ref` to `MyInput` could also be `null` if some of the logic is conditional:
+ה-`ref` ל-`MyInput` יכול להיות גם `null` אם חלק מהלוגיקה מותנית:
 
 ```js {1,5}
 const MyInput = forwardRef(function MyInput({ label, showInput }, ref) {
@@ -520,7 +520,7 @@ const MyInput = forwardRef(function MyInput({ label, showInput }, ref) {
 });
 ```
 
-If `showInput` is `false`, then the ref won't be forwarded to any node, and a ref to `MyInput` will remain empty. This is particularly easy to miss if the condition is hidden inside another component, like `Panel` in this example:
+אם `showInput` הוא `false`, ה-Ref לא יועבר לשום צומת, ו-Ref ל-`MyInput` יישאר ריק. זה קל במיוחד לפספס אם התנאי מוסתר בתוך רכיב אחר, כמו `Panel` בדוגמה זו:
 
 ```js {5,7}
 const MyInput = forwardRef(function MyInput({ label, showInput }, ref) {

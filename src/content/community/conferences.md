@@ -1,838 +1,838 @@
 ---
-title: React Conferences
+title: "React ועידות"
 ---
 
 <Intro>
 
-Do you know of a local React.js conference? Add it here! (Please keep the list chronological)
+האם אתה מכיר ועידת React.js מקומית? הוסף את זה כאן! (נא לשמור את הרשימה כרונולוגית)
 
 </Intro>
 
-## Upcoming Conferences {/*upcoming-conferences*/}
+## כנסים קרובים {/*upcoming-conferences*/}
 
-### React Paris 2024 {/*react-paris-2024*/}
-March 22, 2024. In-person in Paris, France + Remote (hybrid)
+### React פריז 2024 {/*react-paris-2024*/}
+22 במרץ 2024. באופן אישי בפריז, צרפת + שלט (היברידית)
 
-[Website](https://react.paris/) - [Twitter](https://twitter.com/BeJS_) - [LinkedIn](https://www.linkedin.com/events/7150816372074192900/comments/)
+[אתר](https://react.paris/) - [טוויטר](https://twitter.com/BeJS_) - [LinkedIn](https://www.linkedin.com/events/7150816372074192900/comments/)
 
 ### Epic Web Conf 2024 {/*epic-web-2024*/}
-April 10 - 11, 2024. In-person in Park City, UT, USA
+10 - 11 באפריל, 2024. באופן אישי בפארק סיטי, UT, ארה"ב
 
-[Website](https://www.epicweb.dev/conf) - [YouTube](https://www.youtube.com/@EpicWebDev)
+[אתר](https://www.epicweb.dev/conf) - [YouTube](https://www.youtube.com/@EpicWebDev)
 
-### React Miami 2024 {/*react-miami-2024*/}
-April 19 - 20, 2024. In-person in Miami, FL, USA
+### React מיאמי 2024 {/*react-miami-2024*/}
+19 - 20 באפריל 2024. באופן אישי במיאמי, פלורידה, ארה"ב
 
-[Website](https://reactmiami.com/) - [Twitter](https://twitter.com/ReactMiamiConf)
+[אתר](https://reactmiami.com/) - [טוויטר](https://twitter.com/ReactMiamiConf)
 
-### React Connection 2024 {/*react-connection-2024*/}
-April 22, 2024. In-person in Paris, France 
+### React חיבור 2024 {/*react-connection-2024*/}
+22 באפריל 2024. באופן אישי בפריז, צרפת
 
-[Website](https://reactconnection.io/) - [Twitter](https://twitter.com/ReactConn)
+[אתר](https://reactconnection.io/) - [טוויטר](https://twitter.com/ReactConn)
 
 ### React Native Connection 2024 {/*react-native-connection-2024*/}
-April 23, 2024. In-person in Paris, France 
+23 באפריל 2024. באופן אישי בפריז, צרפת
 
-[Website](https://reactnativeconnection.io/) - [Twitter](https://twitter.com/ReactNativeConn)
+[אתר](https://reactnativeconnection.io/) - [טוויטר](https://twitter.com/ReactNativeConn)
 
 ### React Conf 2024 {/*react-conf-2024*/}
-May 15 - 16, 2024. In-person in Henderson, NV, USA + remote
+15 - 16 במאי 2024. באופן אישי בהנדרסון, ניו יורק, ארה"ב + שלט
 
-[Website](https://conf.react.dev) - [Twitter](https://twitter.com/reactjs)
+[אתר](https://conf.react.dev) - [טוויטר](https://twitter.com/reactjs)
 
 ### App.js Conf 2024 {/*appjs-conf-2024*/}
-May 22 - 24, 2024. In-person in Kraków, Poland + remote
+22 - 24 במאי 2024. באופן אישי בקרקוב, פולין + שלט
 
-[Website](https://appjs.co) - [Twitter](https://twitter.com/appjsconf)
+[אתר](https://appjs.co) - [טוויטר](https://twitter.com/appjsconf)
 
-### React Summit 2024 {/*react-summit-2024*/}
-June 14 & 18, 2024. In-person in Amsterdam, Netherlands + remote (hybrid event)
+### React פסגה 2024 {/*react-summit-2024*/}
+14 ו-18 ביוני 2024. באופן אישי באמסטרדם, הולנד + מרחוק (אירוע היברידי)
 
-[Website](https://reactsummit.com/) - [Twitter](https://twitter.com/reactsummit) - [Videos](https://portal.gitnation.org/)
+[אתר](https://reactsummit.com/) - [טוויטר](https://twitter.com/reactsummit) - [סרטונים](https://portal.gitnation.org/)
 
 ### Render(ATL) 2024 🍑 {/*renderatl-2024-*/}
-June 12 - June 14, 2024. Atlanta, GA, USA
+12 ביוני - 14 ביוני 2024. אטלנטה, ג'ורג'יה, ארה"ב
 
-[Website](https://renderatl.com) - [Discord](https://www.renderatl.com/discord) - [Twitter](https://twitter.com/renderATL) - [Instagram](https://www.instagram.com/renderatl/) - [Facebook](https://www.facebook.com/renderatl/) - [LinkedIn](https://www.linkedin.com/company/renderatl) - [Podcast](https://www.renderatl.com/culture-and-code#/)
+[אתר](https://renderatl.com) - [Discord](https://www.renderatl.com/discord) - [טוויטר](https://twitter.com/renderATL) - [אינסטגרם](https://www.instagram.com/renderatl/) - [פייסבוק](https://www.facebook.com/renderatl/) - [LinkedIn](https://www.linkedin.com/company/renderatl) - [פודקוסט](https://www.renderatl.com/culture-and-code#/)
 
-### React Norway 2024 {/*react-norway-2024*/}
-June 14, 2024. In-person at Farris Bad Hotel in Larvik, Norway and online (hybrid event).
+### React נורבגיה 2024 {/*react-norway-2024*/}
+14 ביוני 2024. באופן אישי במלון פאריס באד בלארוויק, נורבגיה ובאינטרנט (אירוע היברידי).
 
-[Website](https://reactnorway.com/) - [Twitter](https://twitter.com/ReactNorway)
+[אתר](https://reactnorway.com/) - [טוויטר](https://twitter.com/ReactNorway)
 
 ### React Nexus 2024 {/*react-nexus-2024*/}
-July 04 & 05, 2024. Bangalore, India (In-person event)
+4 ו-5 ביולי 2024. בנגלור, הודו (אירוע אישי)
 
-[Website](https://reactnexus.com/) - [Twitter](https://twitter.com/ReactNexus) - [Linkedin](https://www.linkedin.com/company/react-nexus) - [YouTube](https://www.youtube.com/reactify_in)
+[אתר](https://reactnexus.com/) - [טוויטר](https://twitter.com/ReactNexus) - [Linkedin](https://www.linkedin.com/company/react-nexus) - [YouTube](https://www.youtube.com/reactify_in)
 
-### Chain React 2024 {/*chain-react-2024*/}
-July 17-19, 2024. In-person in Portland, OR, USA
+### שרשרת React 2024 {/*chain-react-2024*/}
+17-19 ביולי, 2024. באופן אישי בפורטלנד, OR, ארה"ב
 
-[Website](https://chainreactconf.com) - [Twitter](https://twitter.com/ChainReactConf)
+[אתר](https://chainreactconf.com) - [טוויטר](https://twitter.com/ChainReactConf)
 
 ### The Geek Conf 2024 {/*the-geek-conf-2024*/}
-July 25, 2024. In-person in Berlin, Germany + remote (hybrid event)
+25 ביולי 2024. באופן אישי בברלין, גרמניה + מרחוק (אירוע היברידי)
 
-[Website](https://thegeekconf.com) - [Twitter](https://twitter.com/thegeekconf)
+[אתר](https://thegeekconf.com) - [טוויטר](https://twitter.com/thegeekconf)
 
 ### React Universe Conf 2024 {/*react-universe-conf-2024*/}
-September 5-6, 2024. Wrocław, Poland.
+5-6 בספטמבר 2024. ורוצלב, פולין.
 
-[Website](https://www.reactuniverseconf.com/) - [Twitter](https://twitter.com/react_native_eu) - [LinkedIn](https://www.linkedin.com/events/reactuniverseconf7163919537074118657/)
+[אתר](https://www.reactuniverseconf.com/) - [טוויטר](https://twitter.com/react_native_eu) - [LinkedIn](https://www.linkedin.com/events/reactuniverseconf7163919537074118657/)
 
-### React Alicante 2024 {/*react-alicante-2024*/}
-September 19-21, 2024. Alicante, Spain.
+### React אליקנטה 2024 {/*react-alicante-2024*/}
+19-21 בספטמבר 2024. אליקנטה, ספרד.
 
-[Website](https://reactalicante.es/) - [Twitter](https://twitter.com/ReactAlicante) - [YouTube](https://www.youtube.com/channel/UCaSdUaITU1Cz6PvC97A7e0w)
+[אתר](https://reactalicante.es/) - [טוויטר](https://twitter.com/ReactAlicante) - [YouTube](https://www.youtube.com/channel/UCaSdUaITU1Cz6PvC97A7e0w)
 
 
-### React India 2024 {/*react-india-2024*/}
-October 17 - 19, 2024. In-person in Goa, India (hybrid event) + Oct 15 2024 - remote day
+### React הודו 2024 {/*react-india-2024*/}
+17 - 19 באוקטובר 2024. באופן אישי בגואה, הודו (אירוע היברידי) + 15 באוקטובר 2024 - יום מרוחק
 
-[Website](https://www.reactindia.io) - [Twitter](https://twitter.com/react_india) - [Facebook](https://www.facebook.com/ReactJSIndia) - [Youtube](https://www.youtube.com/channel/UCaFbHCBkPvVv1bWs_jwYt3w)
+[אתר](https://www.reactindia.io) - [טוויטר](https://twitter.com/react_india) - [פייסבוק](https://www.facebook.com/ReactJSIndia) - [יוטיוב](https://www.youtube.com/channel/UCaFbHCBkPvVv1bWs_jwYt3w)
 
-## Past Conferences {/*past-conferences*/}
+## ועידות קודמות {/*past-conferences*/}
 
-### React Day Berlin 2023 {/*react-day-berlin-2023*/}
-December 8 & 12, 2023. In-person in Berlin, Germany + remote first interactivity (hybrid event)
+### React יום ברלין 2023 {/*react-day-berlin-2023*/}
+8 ו-12 בדצמבר 2023. באופן אישי בברלין, גרמניה + אינטראקטיביות ראשונה מרחוק (אירוע היברידי)
 
-[Website](https://reactday.berlin) - [Twitter](https://twitter.com/reactdayberlin) - [Facebook](https://www.facebook.com/reactdayberlin/) - [Videos](https://portal.gitnation.org/events/react-day-berlin-2023)
+[אתר](https://reactday.berlin) - [טוויטר](https://twitter.com/reactdayberlin) - [פייסבוק](https://www.facebook.com/reactdayberlin/) - [סרטונים](https://portal.gitnation.org/events/react-day-berlin-2023)
 
-### React Summit US 2023 {/*react-summit-us-2023*/}
-November 13 & 15, 2023. In-person in New York, US + remote first interactivity (hybrid event)
+### React פסגה ארה"ב 2023 {/*react-summit-us-2023*/}
+13 ו-15 בנובמבר 2023. באופן אישי בניו יורק, ארה"ב + אינטראקטיביות ראשונה מרחוק (אירוע היברידי)
 
-[Website](https://reactsummit.us) - [Twitter](https://twitter.com/reactsummit) - [Facebook](https://www.facebook.com/reactamsterdam) - [Videos](https://portal.gitnation.org/events/react-summit-us-2023)
+[אתר](https://reactsummit.us) - [טוויטר](https://twitter.com/reactsummit) - [פייסבוק](https://www.facebook.com/reactamsterdam) - [סרטונים](https://portal.gitnation.org/events/react-summit-us-2023)
 
 ### reactjsday 2023 {/*reactjsday-2023*/}
-October 27th 2023. In-person in Verona, Italy and online (hybrid event)
+27 באוקטובר 2023. באופן אישי בורונה, איטליה ומקוון (אירוע היברידי)
 
-[Website](https://2023.reactjsday.it/) - [Twitter](https://twitter.com/reactjsday) - [Facebook](https://www.facebook.com/GrUSP/) - [YouTube](https://www.youtube.com/c/grusp)
+[אתר](https://2023.reactjsday.it/) - [טוויטר](https://twitter.com/reactjsday) - [פייסבוק](https://www.facebook.com/GrUSP/) - [YouTube](https://www.youtube.com/c/grusp)
 
-### React Advanced 2023 {/*react-advanced-2023*/}
-October 20 & 23, 2023. In-person in London, UK + remote first interactivity (hybrid event)
+### React מתקדם 2023 {/*react-advanced-2023*/}
+20 ו-23 באוקטובר 2023. באופן אישי בלונדון, בריטניה + אינטראקטיביות ראשונה מרחוק (אירוע היברידי)
 
-[Website](https://www.reactadvanced.com/) - [Twitter](https://twitter.com/ReactAdvanced) - [Facebook](https://www.facebook.com/ReactAdvanced) - [Videos](https://portal.gitnation.org/events/react-advanced-conference-2023)
+[אתר](https://www.reactadvanced.com/) - [טוויטר](https://twitter.com/ReactAdvanced) - [פייסבוק](https://www.facebook.com/ReactAdvanced) - [סרטונים](https://portal.gitnation.org/events/react-advanced-conference-2023)
 
-### React Brussels 2023 {/*react-brussels-2023*/}
-October 13th 2023. In-person in Brussels, Belgium + Remote (hybrid)
+### React בריסל 2023 {/*react-brussels-2023*/}
+13 באוקטובר 2023. באופן אישי בבריסל, בלגיה + מרחוק (היברידית)
 
-[Website](https://www.react.brussels/) - [Twitter](https://twitter.com/BrusselsReact) - [Videos](https://www.youtube.com/playlist?list=PL53Z0yyYnpWh85KeMomUoVz8_brrmh_aC) 
+[אתר](https://www.react.brussels/) - [טוויטר](https://twitter.com/BrusselsReact) - [סרטונים](https://www.youtube.com/playlist?list=PL53Z0yyYnpWh85KeMomUoVz8_brrmh_aC)
 
-### React India 2023 {/*react-india-2023*/}
-October 5 - 7, 2023. In-person in Goa, India (hybrid event) + Oct 3 2023 - remote day
+### React הודו 2023 {/*react-india-2023*/}
+5 - 7 באוקטובר 2023. באופן אישי בגואה, הודו (אירוע היברידי) + 3 באוקטובר 2023 - יום מרוחק
 
-[Website](https://www.reactindia.io) - [Twitter](https://x.com/react_india) - [Facebook](https://www.facebook.com/ReactJSIndia) - [Youtube](https://www.youtube.com/channel/UCaFbHCBkPvVv1bWs_jwYt3w)
+[אתר](https://www.reactindia.io) - [טוויטר](https://x.com/react_india) - [פייסבוק](https://www.facebook.com/ReactJSIndia) - [יוטיוב](https://www.youtube.com/channel/UCaFbHCBkPvVv1bWs_jwYt3w)
 
 ### RenderCon Kenya 2023 {/*rendercon-kenya-2023*/}
-September 29 - 30, 2023. Nairobi, Kenya
+29 - 30 בספטמבר 2023. ניירובי, קניה
 
-[Website](https://rendercon.org/) - [Twitter](https://twitter.com/renderconke) - [LinkedIn](https://www.linkedin.com/company/renderconke/) - [YouTube](https://www.youtube.com/channel/UC0bCcG8gHUL4njDOpQGcMIA)
+[אתר](https://rendercon.org/) - [טוויטר](https://twitter.com/renderconke) - [LinkedIn](https://www.linkedin.com/company/renderconke/) - [YouTube](https://www.youtube.com/channel/UC0bCcG8gHUL4njDOpQGcMIA)
 
-### React Live 2023 {/*react-live-2023*/}
-September 29, 2023. Amsterdam, Netherlands
+### React בשידור חי 2023 {/*react-live-2023*/}
+29 בספטמבר 2023. אמסטרדם, הולנד
 
-[Website](https://reactlive.nl/)
+[אתר](https://reactlive.nl/)
 
-### React Alicante 2023 {/*react-alicante-2023*/}
-September 28 - 30, 2023. Alicante, Spain
+### React אליקנטה 2023 {/*react-alicante-2023*/}
+28 - 30 בספטמבר 2023. אליקנטה, ספרד
 
-[Website](https://reactalicante.es/) - [Twitter](https://twitter.com/reactalicante)
+[אתר](https://reactalicante.es/) - [טוויטר](https://twitter.com/reactalicante)
 
 ### RedwoodJS Conference 2023 {/*redwoodjs-conference-2023*/}
-September 26 - 29, 2023. Grants Pass, Oregon + remote (hybrid event) 
+26 - 29 בספטמבר 2023. Grants Pass, אורגון + שלט (אירוע היברידי)
 
-[Website](https://www.redwoodjsconf.com/) - [Twitter](https://twitter.com/redwoodjs)
+[אתר](https://www.redwoodjsconf.com/) - [טוויטר](https://twitter.com/redwoodjs)
 
-### React Native EU 2023 {/*react-native-eu-2023*/}
-September 7 & 8, 2023. Wrocław, Poland
+### React ילידי האיחוד האירופי 2023 {/*react-native-eu-2023*/}
+7 ו-8 בספטמבר 2023. ורוצלב, פולין
 
-[Website](https://react-native.eu) - [Twitter](https://twitter.com/react_native_eu) - [Facebook](https://www.facebook.com/reactnativeeu)
+[אתר](https://react-native.eu) - [טוויטר](https://twitter.com/react_native_eu) - [פייסבוק](https://www.facebook.com/reactnativeeu)
 
-### React Rally 2023 🐙 {/*react-rally-2023*/}
-August 17 & 18, 2023. Salt Lake City, UT, USA
+### React ראלי 2023 🐙 {/*react-rally-2023*/}
+17 ו-18 באוגוסט 2023. סולט לייק סיטי, UT, ארה"ב
 
-[Website](https://www.reactrally.com/) - [Twitter](https://twitter.com/ReactRally) - [Instagram](https://www.instagram.com/reactrally/)
+[אתר](https://www.reactrally.com/) - [טוויטר](https://twitter.com/ReactRally) - [אינסטגרם](https://www.instagram.com/reactrally/)
 
 ### React Nexus 2023 {/*react-nexus-2023*/}
-July 07 & 08, 2023. Bangalore, India (In-person event)
+7 ו-8 ביולי 2023. בנגלור, הודו (אירוע אישי)
 
-[Website](https://reactnexus.com/) - [Twitter](https://twitter.com/ReactNexus) - [Linkedin](https://www.linkedin.com/company/react-nexus) - [YouTube](https://www.youtube.com/reactify_in)
+[אתר](https://reactnexus.com/) - [טוויטר](https://twitter.com/ReactNexus) - [Linkedin](https://www.linkedin.com/company/react-nexus) - [YouTube](https://www.youtube.com/reactify_in)
 
-### ReactNext 2023 {/*reactnext-2023*/}
-June 27th, 2023. Tel Aviv, Israel
+### Reactהבא 2023 {/*reactnext-2023*/}
+27 ביוני, 2023. תל אביב, ישראל
 
-[Website](https://www.react-next.com/) - [Facebook](https://www.facebook.com/ReactNextConf) - [Youtube](https://www.youtube.com/@ReactNext)
+[אתר](https://www.react-next.com/) - [פייסבוק](https://www.facebook.com/ReactNextConf) - [יוטיוב](https://www.youtube.com/@ReactNext)
 
-### React Norway 2023 {/*react-norway-2023*/}
-June 16th, 2023. Larvik, Norway
+### React נורבגיה 2023 {/*react-norway-2023*/}
+16 ביוני, 2023. לרוויק, נורבגיה
 
-[Website](https://reactnorway.com/) - [Twitter](https://twitter.com/ReactNorway/) - [Facebook](https://www.facebook.com/reactdaynorway/)
+[אתר](https://reactnorway.com/) - [טוויטר](https://twitter.com/ReactNorway/) - [פייסבוק](https://www.facebook.com/reactdaynorway/)
 
-### React Summit 2023 {/*react-summit-2023*/}
-June 2 & 6, 2023. In-person in Amsterdam, Netherlands + remote first interactivity (hybrid event)
+### React פסגה 2023 {/*react-summit-2023*/}
+2 ו-6 ביוני 2023. באופן אישי באמסטרדם, הולנד + אינטראקטיביות ראשונה מרחוק (אירוע היברידי)
 
-[Website](https://reactsummit.com) - [Twitter](https://twitter.com/reactsummit) - [Facebook](https://www.facebook.com/reactamsterdam) - [Videos](https://portal.gitnation.org/events/react-summit-2023)
+[אתר](https://reactsummit.com) - [טוויטר](https://twitter.com/reactsummit) - [פייסבוק](https://www.facebook.com/reactamsterdam) - [סרטונים](https://portal.gitnation.org/events/react-summit-2023)
 
 ### Render(ATL) 2023 🍑 {/*renderatl-2023-*/}
-May 31 - June 2, 2023. Atlanta, GA, USA
+31 במאי - 2 ביוני 2023. אטלנטה, ג'ורג'יה, ארה"ב
 
-[Website](https://renderatl.com) - [Discord](https://www.renderatl.com/discord) - [Twitter](https://twitter.com/renderATL) - [Instagram](https://www.instagram.com/renderatl/) - [Facebook](https://www.facebook.com/renderatl/) - [LinkedIn](https://www.linkedin.com/company/renderatl) - [Podcast](https://www.renderatl.com/culture-and-code#/)
+[אתר](https://renderatl.com) - [Discord](https://www.renderatl.com/discord) - [טוויטר](https://twitter.com/renderATL) - [אינסטגרם](https://www.instagram.com/renderatl/) - [פייסבוק](https://www.facebook.com/renderatl/) - [LinkedIn](https://www.linkedin.com/company/renderatl) - [פודקוסט](https://www.renderatl.com/culture-and-code#/)
 
-### Chain React 2023 {/*chain-react-2023*/}
-May 17 - 19, 2023. Portland, OR, USA
+### שרשרת React 2023 {/*chain-react-2023*/}
+17 - 19 במאי 2023. פורטלנד, OR, ארה"ב
 
-[Website](https://chainreactconf.com/) - [Twitter](https://twitter.com/ChainReactConf) - [Facebook](https://www.facebook.com/ChainReactConf/) - [Youtube](https://www.youtube.com/channel/UCwpSzVt7QpLDbCnPXqR97-g/playlists)
+[אתר](https://chainreactconf.com/) - [טוויטר](https://twitter.com/ChainReactConf) - [פייסבוק](https://www.facebook.com/ChainReactConf/) - [יוטיוב](https://www.youtube.com/channel/UCwpSzVt7QpLDbCnPXqR97-g/playlists)
 
 ### App.js Conf 2023 {/*appjs-conf-2023*/}
-May 10 - 12, 2023. In-person in Kraków, Poland + remote
+10 - 12 במאי 2023. באופן אישי בקרקוב, פולין + שלט
 
-[Website](https://appjs.co) - [Twitter](https://twitter.com/appjsconf)
+[אתר](https://appjs.co) - [טוויטר](https://twitter.com/appjsconf)
 
 ### RemixConf 2023 {/*remixconf-2023*/}
-May, 2023. Salt Lake City, UT
+מאי, 2023. סולט לייק סיטי, UT
 
-[Website](https://remix.run/conf/2023) - [Twitter](https://twitter.com/remix_run)
+[אתר](https://remix.run/conf/2023) - [טוויטר](https://twitter.com/remix_run)
 
 ### Reactathon 2023 {/*reactathon-2023*/}
-May 2 - 3, 2023. San Francisco, CA, USA
+2 - 3 במאי 2023. סן פרנסיסקו, קליפורניה, ארה"ב
 
-[Website](https://reactathon.com) - [Twitter](https://twitter.com/reactathon) - [YouTube](https://www.youtube.com/realworldreact)
+[אתר](https://reactathon.com) - [טוויטר](https://twitter.com/reactathon) - [YouTube](https://www.youtube.com/realworldreact)
 
-### React Miami 2023 {/*react-miami-2023*/}
-April 20 - 21, 2023. Miami, FL, USA
+### React מיאמי 2023 {/*react-miami-2023*/}
+20 - 21 באפריל 2023. מיאמי, פלורידה, ארה"ב
 
-[Website](https://www.reactmiami.com/) - [Twitter](https://twitter.com/ReactMiamiConf)
+[אתר](https://www.reactmiami.com/) - [טוויטר](https://twitter.com/ReactMiamiConf)
 
-### React Day Berlin 2022 {/*react-day-berlin-2022*/}
-December 2, 2022. In-person in Berlin, Germany + remote (hybrid event)
+### React יום ברלין 2022 {/*react-day-berlin-2022*/}
+2 בדצמבר 2022. באופן אישי בברלין, גרמניה + מרחוק (אירוע היברידי)
 
-[Website](https://reactday.berlin) - [Twitter](https://twitter.com/reactdayberlin) - [Facebook](https://www.facebook.com/reactdayberlin/) - [Videos](https://www.youtube.com/c/ReactConferences)
+[אתר](https://reactday.berlin) - [טוויטר](https://twitter.com/reactdayberlin) - [פייסבוק](https://www.facebook.com/reactdayberlin/) - [סרטונים](https://www.youtube.com/c/ReactConferences)
 
-### React Global Online Summit 22.2 by Geekle {/*react-global-online-summit-222-by-geekle*/}
-November 8 - 9, 2022 - Online Summit
+### React הפסגה המקוונת העולמית 22.2 מאת Geekle {/*react-global-online-summit-222-by-geekle*/}
+8 - 9 בנובמבר 2022 - פסגה מקוונת
 
-[Website](https://events.geekle.us/react3/) - [LinkedIn](https://www.linkedin.com/posts/geekle-us_event-react-reactjs-activity-6964904611207864320-gpDx?utm_source=share&utm_medium=member_desktop)
+[אתר](https://events.geekle.us/react3/) - [LinkedIn](https://www.linkedin.com/posts/geekle-us_event-react-reactjs-activity-6964904611207864320-gpDx?utm_source=share&utm_medium=member_desktop)
 
 ### Remix Conf Europe 2022 {/*remix-conf-europe-2022*/}
-November 18, 2022, 7am PST / 10am EST / 4pm CET - remote event
+18 בנובמבר 2022, 7:00 PST / 10:00 EST / 16:00 CET - אירוע מרחוק
 
-[Website](https://remixconf.eu/) - [Twitter](https://twitter.com/remixconfeu) - [Videos](https://portal.gitnation.org/events/remix-conf-europe-2022)
+[אתר](https://remixconf.eu/) - [טוויטר](https://twitter.com/remixconfeu) - [סרטונים](https://portal.gitnation.org/events/remix-conf-europe-2022)
 
-### React Advanced 2022 {/*react-advanced-2022*/}
-October 21 & 25, 2022. In-person in London, UK + remote (hybrid event)
+### React מתקדם 2022 {/*react-advanced-2022*/}
+21 ו-25 באוקטובר 2022. באופן אישי בלונדון, בריטניה + מרחוק (אירוע היברידי)
 
-[Website](https://www.reactadvanced.com/) - [Twitter](https://twitter.com/ReactAdvanced) - [Facebook](https://www.facebook.com/ReactAdvanced) - [Videos](https://portal.gitnation.org/events/react-advanced-conference-2022)
+[אתר](https://www.reactadvanced.com/) - [טוויטר](https://twitter.com/ReactAdvanced) - [פייסבוק](https://www.facebook.com/ReactAdvanced) - [סרטונים](https://portal.gitnation.org/events/react-advanced-conference-2022)
 
-### ReactJS Day 2022 {/*reactjs-day-2022*/}
-October 21, 2022 in Verona, Italy
+### ReactJS יום 2022 {/*reactjs-day-2022*/}
+21 באוקטובר 2022 בורונה, איטליה
 
-[Website](https://2022.reactjsday.it/) - [Twitter](https://twitter.com/reactjsday) - [LinkedIn](https://www.linkedin.com/company/grusp/) - [Facebook](https://www.facebook.com/reactjsday/) - [Videos](https://www.youtube.com/c/grusp)
+[אתר](https://2022.reactjsday.it/) - [טוויטר](https://twitter.com/reactjsday) - [LinkedIn](https://www.linkedin.com/company/grusp/) - [פייסבוק](https://www.facebook.com/reactjsday/) - [סרטונים](https://www.youtube.com/c/grusp)
 
-### React Brussels 2022 {/*react-brussels-2022*/}
-October 14, 2022. In-person in Brussels, Belgium + remote (hybrid event)
+### React בריסל 2022 {/*react-brussels-2022*/}
+14 באוקטובר 2022. באופן אישי בבריסל, בלגיה + מרחוק (אירוע היברידי)
 
-[Website](https://www.react.brussels/) - [Twitter](https://twitter.com/BrusselsReact) - [LinkedIn](https://www.linkedin.com/events/6938421827153088512/) - [Facebook](https://www.facebook.com/events/1289080838167252/) - [Videos](https://www.youtube.com/channel/UCvES7lMpnx-t934qGxD4w4g)
+[אתר](https://www.react.brussels/) - [טוויטר](https://twitter.com/BrusselsReact) - [LinkedIn](https://www.linkedin.com/events/6938421827153088512/) - [פייסבוק](https://www.facebook.com/events/1289080838167252/) - [סרטונים](https://www.youtube.com/channel/UCvES7lMpnx-t934qGxD4w4g)
 
-### React Alicante 2022 {/*react-alicante-2022*/}
-September 29 - October 1, 2022. In-person in Alicante, Spain + remote (hybrid event)
+### React אליקנטה 2022 {/*react-alicante-2022*/}
+29 בספטמבר - 1 באוקטובר 2022. באופן אישי באליקנטה, ספרד + מרחוק (אירוע היברידי)
 
-[Website](https://reactalicante.es/) - [Twitter](https://twitter.com/reactalicante) - [Facebook](https://www.facebook.com/ReactAlicante) - [Videos](https://www.youtube.com/channel/UCaSdUaITU1Cz6PvC97A7e0w)
-### React India 2022 {/*react-india-2022*/}
-September 22 - 24, 2022. In-person in Goa, India + remote (hybrid event)
+[אתר](https://reactalicante.es/) - [טוויטר](https://twitter.com/reactalicante) - [פייסבוק](https://www.facebook.com/ReactAlicante) - [סרטונים](https://www.youtube.com/channel/UCaSdUaITU1Cz6PvC97A7e0w)
+### React הודו 2022 {/*react-india-2022*/}
+22 - 24 בספטמבר 2022. באופן אישי בגואה, הודו + מרחוק (אירוע היברידי)
 
-[Website](https://www.reactindia.io) - [Twitter](https://twitter.com/react_india) - [Facebook](https://www.facebook.com/ReactJSIndia) - [Videos](https://www.youtube.com/channel/UCaFbHCBkPvVv1bWs_jwYt3w)
+[אתר](https://www.reactindia.io) - [טוויטר](https://twitter.com/react_india) - [פייסבוק](https://www.facebook.com/ReactJSIndia) - [סרטונים](https://www.youtube.com/channel/UCaFbHCBkPvVv1bWs_jwYt3w)
 
-### React Finland 2022 {/*react-finland-2022*/}
-September 12 - 16, 2022. In-person in Helsinki, Finland
+### React פינלנד 2022 {/*react-finland-2022*/}
+12 - 16 בספטמבר 2022. באופן אישי בהלסינקי, פינלנד
 
-[Website](https://react-finland.fi/) - [Twitter](https://twitter.com/ReactFinland) - [Schedule](https://react-finland.fi/schedule/) - [Speakers](https://react-finland.fi/speakers/)
+[אתר](https://react-finland.fi/) - [טוויטר](https://twitter.com/ReactFinland) - [לוח_2](__TK___ - [רמקולים](https://react-finland.fi/speakers/)
 
-### React Native EU 2022: Powered by callstack {/*react-native-eu-2022-powered-by-callstack*/}
-September 1-2, 2022 - Remote event
+### React EU 2022 מקורי: מופעל על ידי callstack {/*react-native-eu-2022-powered-by-callstack*/}
+1-2 בספטמבר 2022 - אירוע מרוחק
 
-[Website](https://www.react-native.eu/?utm_campaign=React_Native_EU&utm_source=referral&utm_content=reactjs_community_conferences) -
-[Twitter](https://twitter.com/react_native_eu) -
+[אתר](https://www.react-native.eu/?utm_campaign=React_Native_EU&utm_source=referral&utm_content=reactjs_community_conferences) -
+[טוויטר](https://twitter.com/react_native_eu) -
 [Linkedin](https://www.linkedin.com/showcase/react-native-eu) -
-[Facebook](https://www.facebook.com/reactnativeeu/) -
-[Instagram](https://www.instagram.com/reactnative_eu/)
+[פייסבוק](https://www.facebook.com/reactnativeeu/) -
+[אינסטגרם](https://www.instagram.com/reactnative_eu/)
 
-### ReactNext 2022 {/*reactnext-2022*/}
-June 28, 2022. Tel-Aviv, Israel
+### Reactהבא 2022 {/*reactnext-2022*/}
+28 ביוני 2022. תל אביב, ישראל
 
-[Website](https://react-next.com) - [Twitter](https://twitter.com/ReactNext) - [Videos](https://www.youtube.com/c/ReactNext)
+[אתר](https://react-next.com) - [טוויטר](https://twitter.com/ReactNext) - [סרטונים](https://www.youtube.com/c/ReactNext)
 
-### React Norway 2022 {/*react-norway-2022*/}
-June 24, 2022. In-person at Farris Bad Hotel in Larvik, Norway and online (hybrid event).
+### React נורבגיה 2022 {/*react-norway-2022*/}
+24 ביוני 2022. באופן אישי במלון פאריס באד בלארוויק, נורבגיה ובאינטרנט (אירוע היברידי).
 
-[Website](https://reactnorway.com/) - [Twitter](https://twitter.com/ReactNorway)
+[אתר](https://reactnorway.com/) - [טוויטר](https://twitter.com/ReactNorway)
 
-### React Summit 2022 {/*react-summit-2022*/}
-June 17 & 21, 2022. In-person in Amsterdam, Netherlands + remote first interactivity (hybrid event)
+### React פסגה 2022 {/*react-summit-2022*/}
+17 ו-21 ביוני 2022. באופן אישי באמסטרדם, הולנד + אינטראקטיביות ראשונה מרחוק (אירוע היברידי)
 
-[Website](https://reactsummit.com) - [Twitter](https://twitter.com/reactsummit) - [Facebook](https://www.facebook.com/reactamsterdam) - [Videos](https://portal.gitnation.org/events/react-summit-2022)
+[אתר](https://reactsummit.com) - [טוויטר](https://twitter.com/reactsummit) - [פייסבוק](https://www.facebook.com/reactamsterdam) - [סרטונים](https://portal.gitnation.org/events/react-summit-2022)
 
 ### App.js Conf 2022 {/*appjs-conf-2022*/}
-June 8 - 10, 2022. In-person in Kraków, Poland + remote
+8 - 10 ביוני 2022. באופן אישי בקרקוב, פולין + שלט
 
-[Website](https://appjs.co) - [Twitter](https://twitter.com/appjsconf)
+[אתר](https://appjs.co) - [טוויטר](https://twitter.com/appjsconf)
 
-### React Day Bangalore 2022 {/*react-day-bangalore-2022*/}
-June 8 - 9, 2022.  Remote
+### React יום בנגלור 2022 {/*react-day-bangalore-2022*/}
+8 - 9 ביוני 2022. מרחוק
 
-[Website](https://reactday.in/) - [Twitter](https://twitter.com/ReactDayIn) - [Linkedin](https://www.linkedin.com/company/react-day/) - [YouTube](https://www.youtube.com/reactify_in)
+[אתר](https://reactday.in/) - [טוויטר](https://twitter.com/ReactDayIn) - [Linkedin](https://www.linkedin.com/company/react-day/) - [YouTube](https://www.youtube.com/reactify_in)
 
 ### render(ATL) 2022 🍑 {/*renderatl-2022-*/}
-June 1 - 4, 2022. Atlanta, GA, USA
+1 - 4 ביוני 2022. אטלנטה, ג'ורג'יה, ארה"ב
 
-[Website](https://renderatl.com) - [Discord](https://www.renderatl.com/discord) - [Twitter](https://twitter.com/renderATL) - [Instagram](https://www.instagram.com/renderatl/) - [Facebook](https://www.facebook.com/renderatl/) - [LinkedIn](https://www.linkedin.com/company/renderatl) - [Podcast](https://www.renderatl.com/culture-and-code#/)
+[אתר](https://renderatl.com) - [Discord](https://www.renderatl.com/discord) - [טוויטר](https://twitter.com/renderATL) - [אינסטגרם](https://www.instagram.com/renderatl/) - [פייסבוק](https://www.facebook.com/renderatl/) - [LinkedIn](https://www.linkedin.com/company/renderatl) - [פודקוסט](https://www.renderatl.com/culture-and-code#/)
 
 ### RemixConf 2022 {/*remixconf-2022*/}
-May 24 - 25, 2022. Salt Lake City, UT
+24 - 25 במאי 2022. סולט לייק סיטי, UT
 
-[Website](https://remix.run/conf/2022) - [Twitter](https://twitter.com/remix_run) - [YouTube](https://www.youtube.com/playlist?list=PLXoynULbYuEC36XutMMWEuTu9uuh171wx)
+[אתר](https://remix.run/conf/2022) - [טוויטר](https://twitter.com/remix_run) - [YouTube](https://www.youtube.com/playlist?list=PLXoynULbYuEC36XutMMWEuTu9uuh171wx)
 
 ### Reactathon 2022 {/*reactathon-2022*/}
-May 3 - 5, 2022. Berkeley, CA
+3 - 5 במאי 2022. ברקלי, קליפורניה
 
-[Website](https://reactathon.com) - [Twitter](https://twitter.com/reactathon) -[YouTube](https://www.youtube.com/watch?v=-YG5cljNXIA)
+[אתר](https://reactathon.com) - [טוויטר](https://twitter.com/reactathon) -[YouTube](https://www.youtube.com/watch?v=-YG5cljNXIA)
 
-### React Global Online Summit 2022 by Geekle {/*react-global-online-summit-2022-by-geekle*/}
-April 20 - 21, 2022 - Online Summit
+### React הפסגה המקוונת העולמית 2022 מאת Geekle {/*react-global-online-summit-2022-by-geekle*/}
+20 - 21 באפריל, 2022 - פסגה מקוונת
 
-[Website](https://events.geekle.us/react2/) - [LinkedIn](https://www.linkedin.com/events/reactglobalonlinesummit-226887417664541614081/)
+[אתר](https://events.geekle.us/react2/) - [LinkedIn](https://www.linkedin.com/events/reactglobalonlinesummit-226887417664541614081/)
 
-### React Miami 2022 🌴 {/*react-miami-2022-*/}
-April 18 - 19, 2022. Miami, Florida
-[Website](https://www.reactmiami.com/)
+### React מיאמי 2022 🌴 {/*react-miami-2022-*/}
+18 - 19 באפריל 2022. מיאמי, פלורידה
+[אתר](https://www.reactmiami.com/)
 
-### React Live 2022 {/*react-live-2022*/}
-April 1, 2022. Amsterdam, The Netherlands
+### React בשידור חי 2022 {/*react-live-2022*/}
+1 באפריל 2022. אמסטרדם, הולנד
 
-[Website](https://www.reactlive.nl/) - [Twitter](https://twitter.com/reactlivenl)
+[אתר](https://www.reactlive.nl/) - [טוויטר](https://twitter.com/reactlivenl)
 
 ### AgentConf 2022 {/*agentconf-2022*/}
 
-January 27 - 30, 2022. In-person in Dornbirn and Lech Austria
+27 - 30 בינואר 2022. באופן אישי בדורנבירן ובלך אוסטריה
 
-[Website](https://agent.sh/) - [Twitter](https://twitter.com/AgentConf) - [Instagram](https://www.instagram.com/teamagent/)
+[אתר](https://agent.sh/) - [טוויטר](https://twitter.com/AgentConf) - [אינסטגרם](https://www.instagram.com/teamagent/)
 
 ### React Conf 2021 {/*react-conf-2021*/}
-December 8, 2021 - remote event (replay event on December 9)
+8 בדצמבר 2021 - אירוע מרחוק (אירוע שידור חוזר ב-9 בדצמבר)
 
-[Website](https://conf.reactjs.org/)
+[אתר](https://conf.reactjs.org/)
 
-### ReactEurope 2021 {/*reacteurope-2021*/}
-December 9-10, 2021 - remote event
+### Reactאירופה 2021 {/*reacteurope-2021*/}
+9-10 בדצמבר 2021 - אירוע מרוחק
 
-[Videos](https://www.youtube.com/c/ReacteuropeOrgConf)
+[סרטונים](https://www.youtube.com/c/ReacteuropeOrgConf)
 
-### ReactNext 2021 {/*reactnext-2021*/}
-December 15, 2021. Tel-Aviv, Israel
+### Reactהבא 2021 {/*reactnext-2021*/}
+15 בדצמבר 2021. תל אביב, ישראל
 
-[Website](https://react-next.com) - [Twitter](https://twitter.com/ReactNext) - [Videos](https://www.youtube.com/channel/UC3BT8hh3yTTYxbLQy_wbk2w)
+[אתר](https://react-next.com) - [טוויטר](https://twitter.com/ReactNext) - [סרטונים](https://www.youtube.com/channel/UC3BT8hh3yTTYxbLQy_wbk2w)
 
-### React India 2021 {/*react-india-2021*/}
-November 12-13, 2021 - remote event
+### React הודו 2021 {/*react-india-2021*/}
+12-13 בנובמבר 2021 - אירוע מרחוק
 
-[Website](https://www.reactindia.io) - [Twitter](https://twitter.com/react_india) - [Facebook](https://www.facebook.com/ReactJSIndia/) - [LinkedIn](https://www.linkedin.com/showcase/14545585) - [YouTube](https://www.youtube.com/channel/UCaFbHCBkPvVv1bWs_jwYt3w/videos)
+[אתר](https://www.reactindia.io) - [טוויטר](https://twitter.com/react_india) - [פייסבוק](https://www.facebook.com/ReactJSIndia/) - [LinkedIn](https://www.linkedin.com/showcase/14545585) - [YouTube](https://www.youtube.com/channel/UCaFbHCBkPvVv1bWs_jwYt3w/videos)
 
-### React Global by Geekle {/*react-global-by-geekle*/}
-November 3-4, 2021 - remote event
+### React גלובלי מאת Geekle {/*react-global-by-geekle*/}
+3-4 בנובמבר 2021 - אירוע מרוחק
 
-[Website](https://geekle.us/react) - [LinkedIn](https://www.linkedin.com/events/javascriptglobalsummit6721691514176720896/) - [YouTube](https://www.youtube.com/watch?v=0HhWIvPhbu0)
+[אתר](https://geekle.us/react) - [LinkedIn](https://www.linkedin.com/events/javascriptglobalsummit6721691514176720896/) - [YouTube](https://www.youtube.com/watch?v=0HhWIvPhbu0)
 
-### React Advanced 2021 {/*react-advanced-2021*/}
-October 22-23, 2021. In-person in London, UK + remote (hybrid event)
+### React מתקדם 2021 {/*react-advanced-2021*/}
+22-23 באוקטובר 2021. באופן אישי בלונדון, בריטניה + מרחוק (אירוע היברידי)
 
-[Website](https://reactadvanced.com) - [Twitter](https://twitter.com/reactadvanced) - [Facebook](https://www.facebook.com/ReactAdvanced) - [Videos](https://youtube.com/c/ReactConferences)
+[אתר](https://reactadvanced.com) - [טוויטר](https://twitter.com/reactadvanced) - [פייסבוק](https://www.facebook.com/ReactAdvanced) - [סרטונים](https://youtube.com/c/ReactConferences)
 
 ### React Conf Brasil 2021 {/*react-conf-brasil-2021*/}
-October 16, 2021 - remote event
+16 באוקטובר 2021 - אירוע מרוחק
 
-[Website](http://reactconf.com.br) - [Twitter](https://twitter.com/reactconfbr) - [Slack](https://react.now.sh) - [Facebook](https://facebook.com/reactconf) - [Instagram](https://instagram.com/reactconfbr) - [YouTube](https://www.youtube.com/channel/UCJL5eorStQfC0x1iiWhvqPA/videos)
+[אתר](http://reactconf.com.br) - [טוויטר](https://twitter.com/reactconfbr) - [Slack](https://react.now.sh) - [פייסבוק](https://facebook.com/reactconf) - [אינסטגרם](https://instagram.com/reactconfbr) - [YouTube](https://www.youtube.com/channel/UCJL5eorStQfC0x1iiWhvqPA/videos)
 
-### React Brussels 2021 {/*react-brussels-2021*/}
-October 15, 2021 - remote event
+### React בריסל 2021 {/*react-brussels-2021*/}
+15 באוקטובר 2021 - אירוע מרוחק
 
-[Website](https://www.react.brussels/) - [Twitter](https://twitter.com/BrusselsReact) - [LinkedIn](https://www.linkedin.com/events/6805708233819336704/)
+[אתר](https://www.react.brussels/) - [טוויטר](https://twitter.com/BrusselsReact) - [LinkedIn](https://www.linkedin.com/events/6805708233819336704/)
 
 ### render(ATL) 2021 {/*renderatl-2021*/}
-September 13-15, 2021. Atlanta, GA, USA
+13-15 בספטמבר 2021. אטלנטה, ג'ורג'יה, ארה"ב
 
-[Website](https://renderatl.com) - [Twitter](https://twitter.com/renderATL) - [Instagram](https://www.instagram.com/renderatl/) - [Facebook](https://www.facebook.com/renderatl/) - [LinkedIn](https://www.linkedin.com/company/renderatl)
+[אתר](https://renderatl.com) - [טוויטר](https://twitter.com/renderATL) - [אינסטגרם](https://www.instagram.com/renderatl/) - [פייסבוק](https://www.facebook.com/renderatl/) - [LinkedIn](https://www.linkedin.com/company/renderatl)
 
-### React Native EU 2021 {/*react-native-eu-2021*/}
-September 1-2, 2021 - remote event
+### React ילידי האיחוד האירופי 2021 {/*react-native-eu-2021*/}
+1-2 בספטמבר 2021 - אירוע מרוחק
 
-[Website](https://www.react-native.eu/) - [Twitter](https://twitter.com/react_native_eu) - [Facebook](https://www.facebook.com/reactnativeeu/) - [Instagram](https://www.instagram.com/reactnative_eu/)
+[אתר](https://www.react-native.eu/) - [טוויטר](https://twitter.com/react_native_eu) - [פייסבוק](https://www.facebook.com/reactnativeeu/) - [אינסטגרם](https://www.instagram.com/reactnative_eu/)
 
-### React Finland 2021 {/*react-finland-2021*/}
-August 30 - September 3, 2021 - remote event
+### React פינלנד 2021 {/*react-finland-2021*/}
+30 באוגוסט - 3 בספטמבר 2021 - אירוע מרוחק
 
-[Website](https://react-finland.fi/) - [Twitter](https://twitter.com/ReactFinland) - [LinkedIn](https://www.linkedin.com/company/react-finland/)
+[אתר](https://react-finland.fi/) - [טוויטר](https://twitter.com/ReactFinland) - [LinkedIn](https://www.linkedin.com/company/react-finland/)
 
-### React Case Study Festival 2021 {/*react-case-study-festival-2021*/}
-April 27-28, 2021 - remote event
+### React פסטיבל מקרי מבחן 2021 {/*react-case-study-festival-2021*/}
+27-28 באפריל, 2021 - אירוע מרוחק
 
-[Website](https://link.geekle.us/react/offsite) - [LinkedIn](https://www.linkedin.com/events/reactcasestudyfestival6721300943411015680/) - [Facebook](https://www.facebook.com/events/255715435820203)
+[אתר](https://link.geekle.us/react/offsite) - [LinkedIn](https://www.linkedin.com/events/reactcasestudyfestival6721300943411015680/) - [פייסבוק](https://www.facebook.com/events/255715435820203)
 
 ### React Summit - Remote Edition 2021 {/*react-summit---remote-edition-2021*/}
-April 14-16, 2021, 7am PST / 10am EST / 4pm CEST - remote event
+14-16 באפריל, 2021, 7:00 PST / 10:00 EST / 16:00 CEST - אירוע מרוחק
 
-[Website](https://remote.reactsummit.com) - [Twitter](https://twitter.com/reactsummit) - [Facebook](https://www.facebook.com/reactamsterdam) - [Videos](https://portal.gitnation.org/events/react-summit-remote-edition-2021)
+[אתר](https://remote.reactsummit.com) - [טוויטר](https://twitter.com/reactsummit) - [פייסבוק](https://www.facebook.com/reactamsterdam) - [סרטונים](https://portal.gitnation.org/events/react-summit-remote-edition-2021)
 
-### React fwdays’21 {/*react-fwdays21*/}
-March 27, 2021 - remote event
+### React fwdays'21 {/*react-fwdays21*/}
+27 במרץ 2021 - אירוע מרוחק
 
-[Website](https://fwdays.com/en/event/react-fwdays-2021) - [Twitter](https://twitter.com/fwdays) - [Facebook](https://www.facebook.com/events/1133828147054286) - [LinkedIn](https://www.linkedin.com/events/reactfwdays-21onlineconference6758046347334582273) - [Meetup](https://www.meetup.com/ru-RU/Fwdays/events/275764431/)
+[אתר](https://fwdays.com/en/event/react-fwdays-2021) - [טוויטר](https://twitter.com/fwdays) - [פייסבוק](https://www.facebook.com/events/1133828147054286) - [LinkedIn](https://www.linkedin.com/events/reactfwdays-21onlineconference6758046347334582273) - [Meetup](https://www.meetup.com/ru-RU/Fwdays/events/275764431/)
 
-### React Next 2020 {/*react-next-2020*/}
-December 1-2, 2020 - remote event
+### React הבא 2020 {/*react-next-2020*/}
+1-2 בדצמבר 2020 - אירוע מרחוק
 
-[Website](https://react-next.com/) - [Twitter](https://twitter.com/reactnext) - [Facebook](https://www.facebook.com/ReactNext2016/)
+[אתר](https://react-next.com/) - [טוויטר](https://twitter.com/reactnext) - [פייסבוק](https://www.facebook.com/ReactNext2016/)
 
 ### React Conf Brasil 2020 {/*react-conf-brasil-2020*/}
-November 21, 2020 - remote event
+21 בנובמבר 2020 - אירוע מרוחק
 
-[Website](https://reactconf.com.br/) - [Twitter](https://twitter.com/reactconfbr) - [Slack](https://react.now.sh/)
+[אתר](https://reactconf.com.br/) - [טוויטר](https://twitter.com/reactconfbr) - [Slack](https://react.now.sh/)
 
-### React Summit 2020 {/*react-summit-2020*/}
-October 15-16, 2020, 7am PST / 10am EST / 4pm CEST - remote event
+### React פסגה 2020 {/*react-summit-2020*/}
+15-16 באוקטובר 2020, 7:00 PST / 10:00 EST / 16:00 CEST - אירוע מרוחק
 
-[Website](https://reactsummit.com) - [Twitter](https://twitter.com/reactsummit) - [Facebook](https://www.facebook.com/reactamsterdam) - [Videos](https://youtube.com/c/ReactConferences)
+[אתר](https://reactsummit.com) - [טוויטר](https://twitter.com/reactsummit) - [פייסבוק](https://www.facebook.com/reactamsterdam) - [סרטונים](https://youtube.com/c/ReactConferences)
 
-### React Native EU 2020 {/*react-native-eu-2020*/}
-September 3-4, 2020 - remote event
+### React ילידי האיחוד האירופי 2020 {/*react-native-eu-2020*/}
+3-4 בספטמבר 2020 - אירוע מרחוק
 
-[Website](https://www.react-native.eu/) - [Twitter](https://twitter.com/react_native_eu) - [Facebook](https://www.facebook.com/reactnativeeu/) - [YouTube](https://www.youtube.com/watch?v=m0GfmlGFh3E&list=PLZ3MwD-soTTHy9_88QPLF8DEJkvoB5Tl-) - [Instagram](https://www.instagram.com/reactnative_eu/)
+[אתר](https://www.react-native.eu/) - [טוויטר](https://twitter.com/react_native_eu) - [פייסבוק](https://www.facebook.com/reactnativeeu/) - [YouTube](https://www.youtube.com/watch?v=m0GfmlGFh3E&list=PLZ3MwD-soTTHy9_88QPLF8DEJkvoB5Tl-) - [אינסטגרם](https://www.instagram.com/reactnative_eu/)
 
-### ReactEurope 2020 {/*reacteurope-2020*/}
-May 14-15, 2020 in Paris, France
+### Reactאירופה 2020 {/*reacteurope-2020*/}
+14-15 במאי 2020 בפריז, צרפת
 
-[Videos](https://www.youtube.com/c/ReacteuropeOrgConf)
+[סרטונים](https://www.youtube.com/c/ReacteuropeOrgConf)
 
 ### Byteconf React 2020 {/*byteconf-react-2020*/}
-May 1, 2020. Streamed online on YouTube.
+1 במאי 2020. שודר באינטרנט ב-YouTube.
 
-[Website](https://www.bytesized.xyz) - [Twitter](https://twitter.com/bytesizedcode) - [YouTube](https://www.youtube.com/channel/UC046lFvJZhiwSRWsoH8SFjg)
+[אתר](https://www.bytesized.xyz) - [טוויטר](https://twitter.com/bytesizedcode) - [YouTube](https://www.youtube.com/channel/UC046lFvJZhiwSRWsoH8SFjg)
 
 ### React Summit - Remote Edition 2020 {/*react-summit---remote-edition-2020*/}
-3pm CEST time, April 17, 2020 - remote event
+15:00 שעון CEST, 17 באפריל, 2020 - אירוע מרחוק
 
-[Website](https://remote.reactsummit.com) - [Twitter](https://twitter.com/reactsummit) - [Facebook](https://www.facebook.com/reactamsterdam) - [Videos](https://youtube.com/c/ReactConferences)
+[אתר](https://remote.reactsummit.com) - [טוויטר](https://twitter.com/reactsummit) - [פייסבוק](https://www.facebook.com/reactamsterdam) - [סרטונים](https://youtube.com/c/ReactConferences)
 
 ### Reactathon 2020 {/*reactathon-2020*/}
-March 30 - 31, 2020 in San Francisco, CA
+30 - 31 במרץ 2020 בסן פרנסיסקו, קליפורניה
 
-[Website](https://www.reactathon.com) - [Twitter](https://twitter.com/reactathon) - [Facebook](https://www.facebook.com/events/575942819854160/)
+[אתר](https://www.reactathon.com) - [טוויטר](https://twitter.com/reactathon) - [פייסבוק](https://www.facebook.com/events/575942819854160/)
 
 ### ReactConf AU 2020 {/*reactconf-au-2020*/}
-February 27 & 28, 2020 in Sydney, Australia
+27 ו-28 בפברואר 2020 בסידני, אוסטרליה
 
-[Website](https://reactconfau.com/) - [Twitter](https://twitter.com/reactconfau) - [Facebook](https://www.facebook.com/reactconfau) - [Instagram](https://www.instagram.com/reactconfau/)
+[אתר](https://reactconfau.com/) - [טוויטר](https://twitter.com/reactconfau) - [פייסבוק](https://www.facebook.com/reactconfau) - [אינסטגרם](https://www.instagram.com/reactconfau/)
 
 ### React Barcamp Cologne 2020 {/*react-barcamp-cologne-2020*/}
-February 1-2, 2020 in Cologne, Germany
+1-2 בפברואר 2020 בקלן, גרמניה
 
-[Website](https://react-barcamp.de/) - [Twitter](https://twitter.com/ReactBarcamp) - [Facebook](https://www.facebook.com/reactbarcamp)
+[אתר](https://react-barcamp.de/) - [טוויטר](https://twitter.com/ReactBarcamp) - [פייסבוק](https://www.facebook.com/reactbarcamp)
 
-### React Day Berlin 2019 {/*react-day-berlin-2019*/}
-December 6, 2019 in Berlin, Germany
+### React יום ברלין 2019 {/*react-day-berlin-2019*/}
+6 בדצמבר 2019 בברלין, גרמניה
 
-[Website](https://reactday.berlin) - [Twitter](https://twitter.com/reactdayberlin) - [Facebook](https://www.facebook.com/reactdayberlin/) - [Videos](https://www.youtube.com/reactdayberlin)
+[אתר](https://reactday.berlin) - [טוויטר](https://twitter.com/reactdayberlin) - [פייסבוק](https://www.facebook.com/reactdayberlin/) - [סרטונים](https://www.youtube.com/reactdayberlin)
 
-### React Summit 2019 {/*react-summit-2019*/}
-November 30, 2019 in Lagos, Nigeria
+### React פסגה 2019 {/*react-summit-2019*/}
+30 בנובמבר 2019 בלאגוס, ניגריה
 
-[Website](https://reactsummit2019.splashthat.com) -[Twitter](https://twitter.com/react_summit)
+[אתר](https://reactsummit2019.splashthat.com) -[טוויטר](https://twitter.com/react_summit)
 
 ### React Conf Brasil 2019 {/*react-conf-brasil-2019*/}
-October 19, 2019 in São Paulo, BR
+19 באוקטובר 2019 בסאו פאולו, בר
 
-[Website](https://reactconf.com.br/) - [Twitter](https://twitter.com/reactconfbr) - [Facebook](https://www.facebook.com/ReactAdvanced) - [Slack](https://react.now.sh/)
+[אתר](https://reactconf.com.br/) - [טוויטר](https://twitter.com/reactconfbr) - [פייסבוק](https://www.facebook.com/ReactAdvanced) - [Slack](https://react.now.sh/)
 
-### React Advanced 2019 {/*react-advanced-2019*/}
-October 25, 2019 in London, UK
+### React מתקדם 2019 {/*react-advanced-2019*/}
+25 באוקטובר 2019 בלונדון, בריטניה
 
-[Website](https://reactadvanced.com) - [Twitter](http://twitter.com/reactadvanced) - [Facebook](https://www.facebook.com/ReactAdvanced) - [Videos](https://youtube.com/c/ReactConferences)
+[אתר](https://reactadvanced.com) - [טוויטר](http://twitter.com/reactadvanced) - [פייסבוק](https://www.facebook.com/ReactAdvanced) - [סרטונים](https://youtube.com/c/ReactConferences)
 
 ### React Conf 2019 {/*react-conf-2019*/}
-October 24-25, 2019 in Henderson, Nevada USA
+24-25 באוקטובר 2019 בהנדרסון, נבאדה ארה"ב
 
-[Website](https://conf.reactjs.org/) - [Twitter](https://twitter.com/reactjs)
+[אתר](https://conf.reactjs.org/) - [טוויטר](https://twitter.com/reactjs)
 
-### React Alicante 2019 {/*react-alicante-2019*/}
-September 26-28, 2019 in Alicante, Spain
+### React אליקנטה 2019 {/*react-alicante-2019*/}
+26-28 בספטמבר 2019 באליקנטה, ספרד
 
-[Website](http://reactalicante.es/) - [Twitter](https://twitter.com/reactalicante) - [Facebook](https://www.facebook.com/ReactAlicante)
+[אתר](http://reactalicante.es/) - [טוויטר](https://twitter.com/reactalicante) - [פייסבוק](https://www.facebook.com/ReactAlicante)
 
-### React India 2019 {/*react-india-2019*/}
-September 26-28, 2019 in Goa, India
+### React הודו 2019 {/*react-india-2019*/}
+26-28 בספטמבר 2019 בגואה, הודו
 
-[Website](https://www.reactindia.io/) - [Twitter](https://twitter.com/react_india) - [Facebook](https://www.facebook.com/ReactJSIndia)
+[אתר](https://www.reactindia.io/) - [טוויטר](https://twitter.com/react_india) - [פייסבוק](https://www.facebook.com/ReactJSIndia)
 
-### React Boston 2019 {/*react-boston-2019*/}
-September 21-22, 2019 in Boston, Massachusetts USA
+### React בוסטון 2019 {/*react-boston-2019*/}
+21-22 בספטמבר 2019 בבוסטון, Massachusetts ארה"ב
 
-[Website](https://www.reactboston.com/) - [Twitter](https://twitter.com/reactboston)
+[אתר](https://www.reactboston.com/) - [טוויטר](https://twitter.com/reactboston)
 
-### React Live 2019 {/*react-live-2019*/}
-September 13th, 2019. Amsterdam, The Netherlands
+### React בשידור חי 2019 {/*react-live-2019*/}
+13 בספטמבר 2019. אמסטרדם, הולנד
 
-[Website](https://www.reactlive.nl/) - [Twitter](https://twitter.com/reactlivenl)
+[אתר](https://www.reactlive.nl/) - [טוויטר](https://twitter.com/reactlivenl)
 
-### React New York 2019 {/*react-new-york-2019*/}
-September 13th, 2019. New York, USA
+### React ניו יורק 2019 {/*react-new-york-2019*/}
+13 בספטמבר, 2019. ניו יורק, ארה"ב
 
-[Website](https://reactnewyork.com/) - [Twitter](https://twitter.com/reactnewyork)
+[אתר](https://reactnewyork.com/) - [טוויטר](https://twitter.com/reactnewyork)
 
 ### ComponentsConf 2019 {/*componentsconf-2019*/}
-September 6, 2019 in Melbourne, Australia
+6 בספטמבר 2019 במלבורן, אוסטרליה
 
-[Website](https://www.componentsconf.com.au/) - [Twitter](https://twitter.com/componentsconf)
+[אתר](https://www.componentsconf.com.au/) - [טוויטר](https://twitter.com/componentsconf)
 
-### React Native EU 2019 {/*react-native-eu-2019*/}
-September 5-6 in Wrocław, Poland
+### React ילידי האיחוד האירופי 2019 {/*react-native-eu-2019*/}
+5-6 בספטמבר בוורוצלב, פולין
 
-[Website](https://react-native.eu) - [Twitter](https://twitter.com/react_native_eu) - [Facebook](https://www.facebook.com/reactnativeeu)
+[אתר](https://react-native.eu) - [טוויטר](https://twitter.com/react_native_eu) - [פייסבוק](https://www.facebook.com/reactnativeeu)
 
 ### React Conf Iran 2019 {/*react-conf-iran-2019*/}
-August 29, 2019. Tehran, Iran.
+29 באוגוסט 2019. טהראן, איראן.
 
-[Website](https://reactconf.ir/) - [Videos](https://www.youtube.com/playlist?list=PL-VNqZFI5Nf-Nsj0rD3CWXGPkH-DI_0VY) - [Highlights](https://github.com/ReactConf/react-conf-highlights)
+[אתר](https://reactconf.ir/) - [סרטונים](https://www.youtube.com/playlist?list=PL-VNqZFI5Nf-Nsj0rD3CWXGPkH-DI_0VY) - [הדגשות](https://github.com/ReactConf/react-conf-highlights)
 
-### React Rally 2019 {/*react-rally-2019*/}
-August 22-23, 2019. Salt Lake City, USA.
+### React ראלי 2019 {/*react-rally-2019*/}
+22-23 באוגוסט, 2019. סולט לייק סיטי, ארה"ב.
 
-[Website](https://www.reactrally.com/) - [Twitter](https://twitter.com/ReactRally) - [Instagram](https://www.instagram.com/reactrally/)
+[אתר](https://www.reactrally.com/) - [טוויטר](https://twitter.com/ReactRally) - [אינסטגרם](https://www.instagram.com/reactrally/)
 
-### Chain React 2019 {/*chain-react-2019*/}
-July 11-12, 2019. Portland, OR, USA.
+### שרשרת React 2019 {/*chain-react-2019*/}
+11-12 ביולי, 2019. פורטלנד, OR, ארה"ב.
 
-[Website](https://infinite.red/ChainReactConf)
+[אתר](https://infinite.red/ChainReactConf)
 
-### React Loop 2019 {/*react-loop-2019*/}
-June 21, 2019 Chicago, Illinois USA
+### React לולה 2019 {/*react-loop-2019*/}
+21 ביוני 2019 שיקגו, אילינוי ארה"ב
 
-[Website](https://reactloop.com) - [Twitter](https://twitter.com/ReactLoop)
+[אתר](https://reactloop.com) - [טוויטר](https://twitter.com/ReactLoop)
 
-### React Norway 2019 {/*react-norway-2019*/}
-June 12, 2019. Larvik, Norway
+### React נורבגיה 2019 {/*react-norway-2019*/}
+12 ביוני 2019. לרוויק, נורבגיה
 
-[Website](https://reactnorway.com) - [Twitter](https://twitter.com/ReactNorway)
+[אתר](https://reactnorway.com) - [טוויטר](https://twitter.com/ReactNorway)
 
-### ReactNext 2019 {/*reactnext-2019*/}
-June 11, 2019. Tel Aviv, Israel
+### Reactהבא 2019 {/*reactnext-2019*/}
+11 ביוני 2019. תל אביב, ישראל
 
-[Website](https://react-next.com) - [Twitter](https://twitter.com/ReactNext) - [Videos](https://www.youtube.com/channel/UC3BT8hh3yTTYxbLQy_wbk2w)
+[אתר](https://react-next.com) - [טוויטר](https://twitter.com/ReactNext) - [סרטונים](https://www.youtube.com/channel/UC3BT8hh3yTTYxbLQy_wbk2w)
 
 ### React Conf Armenia 2019 {/*react-conf-armenia-2019*/}
-May 25, 2019 in Yerevan, Armenia
+25 במאי 2019 בירוואן, ארמניה
 
-[Website](https://reactconf.am/) - [Twitter](https://twitter.com/ReactConfAM) - [Facebook](https://www.facebook.com/reactconf.am/) - [YouTube](https://www.youtube.com/c/JavaScriptConferenceArmenia) - [CFP](http://bit.ly/speakReact)
+[אתר](https://reactconf.am/) - [טוויטר](https://twitter.com/ReactConfAM) - [פייסבוק](https://www.facebook.com/reactconf.am/) - [YouTube](https://www.youtube.com/c/JavaScriptConferenceArmenia) - [CFP](http://bit.ly/speakReact)
 
-### ReactEurope 2019 {/*reacteurope-2019*/}
-May 23-24, 2019 in Paris, France
+### Reactאירופה 2019 {/*reacteurope-2019*/}
+23-24 במאי 2019 בפריז, צרפת
 
-[Videos](https://www.youtube.com/c/ReacteuropeOrgConf)
+[סרטונים](https://www.youtube.com/c/ReacteuropeOrgConf)
 
 ### React.NotAConf 2019 {/*reactnotaconf-2019*/}
-May 11 in Sofia, Bulgaria
+11 במאי בסופיה, בולגריה
 
-[Website](http://react-not-a-conf.com/) - [Twitter](https://twitter.com/reactnotaconf) - [Facebook](https://www.facebook.com/events/780891358936156)
+[אתר](http://react-not-a-conf.com/) - [טוויטר](https://twitter.com/reactnotaconf) - [פייסבוק](https://www.facebook.com/events/780891358936156)
 
-### ReactJS Girls Conference {/*reactjs-girls-conference*/}
-May 3, 2019 in London, UK
+### ReactJS כנס בנות {/*reactjs-girls-conference*/}
+3 במאי 2019 בלונדון, בריטניה
 
-[Website](https://reactjsgirls.com/) - [Twitter](https://twitter.com/reactjsgirls)
+[אתר](https://reactjsgirls.com/) - [טוויטר](https://twitter.com/reactjsgirls)
 
-### React Finland 2019 {/*react-finland-2019*/}
-April 24-26 in Helsinki, Finland
+### React פינלנד 2019 {/*react-finland-2019*/}
+24-26 באפריל בהלסינקי, פינלנד
 
-[Website](https://react-finland.fi/) - [Twitter](https://twitter.com/ReactFinland)
+[אתר](https://react-finland.fi/) - [טוויטר](https://twitter.com/ReactFinland)
 
-### React Amsterdam 2019 {/*react-amsterdam-2019*/}
-April 12, 2019 in Amsterdam, The Netherlands
+### React אמסטרדם 2019 {/*react-amsterdam-2019*/}
+12 באפריל, 2019 באמסטרדם, הולנד
 
-[Website](https://reactsummit.com) - [Twitter](https://twitter.com/reactsummit) - [Facebook](https://www.facebook.com/reactamsterdam) - [Videos](https://youtube.com/c/ReactConferences)
+[אתר](https://reactsummit.com) - [טוויטר](https://twitter.com/reactsummit) - [פייסבוק](https://www.facebook.com/reactamsterdam) - [סרטונים](https://youtube.com/c/ReactConferences)
 
 ### App.js Conf 2019 {/*appjs-conf-2019*/}
-April 4-5, 2019 in Kraków, Poland
+4-5 באפריל, 2019 בקרקוב, פולין
 
-[Website](https://appjs.co) - [Twitter](https://twitter.com/appjsconf)
+[אתר](https://appjs.co) - [טוויטר](https://twitter.com/appjsconf)
 
 ### Reactathon 2019 {/*reactathon-2019*/}
-March 30-31, 2019 in San Francisco, USA
+30-31 במרץ 2019 בסן פרנסיסקו, ארה"ב
 
-[Website](https://www.reactathon.com/) - [Twitter](https://twitter.com/reactathon)
+[אתר](https://www.reactathon.com/) - [טוויטר](https://twitter.com/reactathon)
 
-### React Iran 2019 {/*react-iran-2019*/}
-January 31, 2019 in Tehran, Iran
+### React איראן 2019 {/*react-iran-2019*/}
+31 בינואר 2019 בטהראן, איראן
 
-[Website](http://reactiran.com) - [Instagram](https://www.instagram.com/reactiran/)
+[אתר](http://reactiran.com) - [אינסטגרם](https://www.instagram.com/reactiran/)
 
-### React Day Berlin 2018 {/*react-day-berlin-2018*/}
-November 30, Berlin, Germany
+### React יום ברלין 2018 {/*react-day-berlin-2018*/}
+30 בנובמבר, ברלין, גרמניה
 
-[Website](https://reactday.berlin) - [Twitter](https://twitter.com/reactdayberlin) - [Facebook](https://www.facebook.com/reactdayberlin/) - [Videos](https://www.youtube.com/channel/UC1EYHmQYBUJjkmL6OtK4rlw)
+[אתר](https://reactday.berlin) - [טוויטר](https://twitter.com/reactdayberlin) - [פייסבוק](https://www.facebook.com/reactdayberlin/) - [סרטונים](https://www.youtube.com/channel/UC1EYHmQYBUJjkmL6OtK4rlw)
 
-### ReactNext 2018 {/*reactnext-2018*/}
-November 4 in Tel Aviv, Israel
+### Reactהבא 2018 {/*reactnext-2018*/}
+4 בנובמבר בתל אביב, ישראל
 
-[Website](https://react-next.com) - [Twitter](https://twitter.com/ReactNext) - [Facebook](https://facebook.com/ReactNext2016)
+[אתר](https://react-next.com) - [טוויטר](https://twitter.com/ReactNext) - [פייסבוק](https://facebook.com/ReactNext2016)
 
 ### React Conf 2018 {/*react-conf-2018*/}
-October 25-26 in Henderson, Nevada USA
+25-26 באוקטובר בהנדרסון, נבאדה ארה"ב
 
-[Website](https://conf.reactjs.org/)
+[אתר](https://conf.reactjs.org/)
 
 ### React Conf Brasil 2018 {/*react-conf-brasil-2018*/}
-October 20 in Sao Paulo, Brazil
+20 באוקטובר בסאו פאולו, ברזיל
 
-[Website](http://reactconfbr.com.br) - [Twitter](https://twitter.com/reactconfbr) - [Facebook](https://www.facebook.com/reactconf)
+[אתר](http://reactconfbr.com.br) - [טוויטר](https://twitter.com/reactconfbr) - [פייסבוק](https://www.facebook.com/reactconf)
 
-### ReactJS Day 2018 {/*reactjs-day-2018*/}
-October 5 in Verona, Italy
+### ReactJS יום 2018 {/*reactjs-day-2018*/}
+5 באוקטובר בורונה, איטליה
 
-[Website](http://2018.reactjsday.it) - [Twitter](https://twitter.com/reactjsday)
+[אתר](http://2018.reactjsday.it) - [טוויטר](https://twitter.com/reactjsday)
 
-### React Boston 2018 {/*react-boston-2018*/}
-September 29-30 in Boston, Massachusetts USA
+### React בוסטון 2018 {/*react-boston-2018*/}
+29-30 בספטמבר בבוסטון, Massachusetts ארה"ב
 
-[Website](http://www.reactboston.com/) - [Twitter](https://twitter.com/ReactBoston)
+[אתר](http://www.reactboston.com/) - [טוויטר](https://twitter.com/ReactBoston)
 
-### React Alicante 2018 {/*react-alicante-2018*/}
-September 13-15 in Alicante, Spain
+### React אליקנטה 2018 {/*react-alicante-2018*/}
+13-15 בספטמבר באליקנטה, ספרד
 
-[Website](http://reactalicante.es) - [Twitter](https://twitter.com/ReactAlicante)
+[אתר](http://reactalicante.es) - [טוויטר](https://twitter.com/ReactAlicante)
 
-### React Native EU 2018 {/*react-native-eu-2018*/}
-September 5-6 in Wrocław, Poland
+### React ילידי האיחוד האירופי 2018 {/*react-native-eu-2018*/}
+5-6 בספטמבר בוורוצלב, פולין
 
-[Website](https://react-native.eu) - [Twitter](https://twitter.com/react_native_eu) - [Facebook](https://www.facebook.com/reactnativeeu)
+[אתר](https://react-native.eu) - [טוויטר](https://twitter.com/react_native_eu) - [פייסבוק](https://www.facebook.com/reactnativeeu)
 
 ### Byteconf React 2018 {/*byteconf-react-2018*/}
-August 31 streamed online, via Twitch
+31 באוגוסט שודר באינטרנט, דרך Twitch
 
-[Website](https://byteconf.com) - [Twitch](https://twitch.tv/byteconf) - [Twitter](https://twitter.com/byteconf)
+[אתר](https://byteconf.com) - [Twitch](https://twitch.tv/byteconf) - [Twitter](https://twitter.com/byteconf)
 
-### ReactFoo Delhi {/*reactfoo-delhi*/}
-August 18 in Delhi, India
+### ReactFo Delhi {/*reactfoo-delhi*/}
+18 באוגוסט בדלהי, הודו
 
-[Website](https://reactfoo.in/2018-delhi/) - [Twitter](https://twitter.com/reactfoo) - [Past talks](https://hasgeek.tv)
+[אתר](https://reactfoo.in/2018-delhi/) - [טוויטר](https://twitter.com/reactfoo) - [שיחות קודמות](https://hasgeek.tv)
 
 ### React DEV Conf China {/*react-dev-conf-china*/}
-August 18 in Guangzhou, China
+18 באוגוסט בגואנגג'ואו, סין
 
-[Website](https://react.w3ctech.com)
+[אתר](https://react.w3ctech.com)
 
-### React Rally 2018 {/*react-rally-2018*/}
-August 16-17 in Salt Lake City, Utah USA
+### React ראלי 2018 {/*react-rally-2018*/}
+16-17 באוגוסט בסולט לייק סיטי, יוטה ארה"ב
 
-[Website](http://www.reactrally.com) - [Twitter](https://twitter.com/reactrally)
+[אתר](http://www.reactrally.com) - [טוויטר](https://twitter.com/reactrally)
 
-### Chain React 2018 {/*chain-react-2018*/}
-July 11-13 in Portland, Oregon USA
+### שרשרת React 2018 {/*chain-react-2018*/}
+11-13 ביולי בפורטלנד, אורגון ארה"ב
 
-[Website](https://infinite.red/ChainReactConf) - [Twitter](https://twitter.com/chainreactconf)
+[אתר](https://infinite.red/ChainReactConf) - [טוויטר](https://twitter.com/chainreactconf)
 
-### ReactFoo Mumbai {/*reactfoo-mumbai*/}
-May 26 in Mumbai, India
+### ReactFo Mumbai {/*reactfoo-mumbai*/}
+26 במאי במומבאי, הודו
 
-[Website](https://reactfoo.in/2018-mumbai/) - [Twitter](https://twitter.com/reactfoo) - [Past talks](https://hasgeek.tv)
+[אתר](https://reactfoo.in/2018-mumbai/) - [טוויטר](https://twitter.com/reactfoo) - [שיחות קודמות](https://hasgeek.tv)
 
 
-### ReactEurope 2018 {/*reacteurope-2018*/}
-May 17-18 in Paris, France
+### Reactאירופה 2018 {/*reacteurope-2018*/}
+17-18 במאי בפריז, צרפת
 
-[Videos](https://www.youtube.com/c/ReacteuropeOrgConf)
+[סרטונים](https://www.youtube.com/c/ReacteuropeOrgConf)
 
 ### React.NotAConf 2018 {/*reactnotaconf-2018*/}
-April 28 in Sofia, Bulgaria
+28 באפריל בסופיה, בולגריה
 
-[Website](http://react-not-a-conf.com/) - [Twitter](https://twitter.com/reactnotaconf) - [Facebook](https://www.facebook.com/groups/1614950305478021/)
+[אתר](http://react-not-a-conf.com/) - [טוויטר](https://twitter.com/reactnotaconf) - [פייסבוק](https://www.facebook.com/groups/1614950305478021/)
 
-### React Finland 2018 {/*react-finland-2018*/}
-April 24-26 in Helsinki, Finland
+### React פינלנד 2018 {/*react-finland-2018*/}
+24-26 באפריל בהלסינקי, פינלנד
 
-[Website](https://react-finland.fi/) - [Twitter](https://twitter.com/ReactFinland)
+[אתר](https://react-finland.fi/) - [טוויטר](https://twitter.com/ReactFinland)
 
-### React Amsterdam 2018 {/*react-amsterdam-2018*/}
-April 13 in Amsterdam, The Netherlands
+### React אמסטרדם 2018 {/*react-amsterdam-2018*/}
+13 באפריל באמסטרדם, הולנד
 
-[Website](https://reactsummit.com) - [Twitter](https://twitter.com/reactsummit) - [Facebook](https://www.facebook.com/reactamsterdam)
+[אתר](https://reactsummit.com) - [טוויטר](https://twitter.com/reactsummit) - [פייסבוק](https://www.facebook.com/reactamsterdam)
 
-### React Native Camp UA 2018 {/*react-native-camp-ua-2018*/}
-March 31 in Kiev, Ukraine
+### React מחנה ילידים UA 2018 {/*react-native-camp-ua-2018*/}
+31 במרץ בקייב, אוקראינה
 
-[Website](http://reactnative.com.ua/) - [Twitter](https://twitter.com/reactnativecamp) - [Facebook](https://www.facebook.com/reactnativecamp/)
+[אתר](http://reactnative.com.ua/) - [טוויטר](https://twitter.com/reactnativecamp) - [פייסבוק](https://www.facebook.com/reactnativecamp/)
 
 ### Reactathon 2018 {/*reactathon-2018*/}
-March 20-22 in San Francisco, USA
+20-22 במרץ בסן פרנסיסקו, ארה"ב
 
-[Website](https://www.reactathon.com/) - [Twitter](https://twitter.com/reactathon) - [Videos (fundamentals)](https://www.youtube.com/watch?v=knn364bssQU&list=PLRvKvw42Rc7OWK5s-YGGFSmByDzzgC0HP), [Videos (advanced day1)](https://www.youtube.com/watch?v=57hmk4GvJpk&list=PLRvKvw42Rc7N0QpX2Rc5CdrqGuxzwD_0H), [Videos (advanced day2)](https://www.youtube.com/watch?v=1hvQ8p8q0a0&list=PLRvKvw42Rc7Ne46QAjWNWFo1Jf0mQdnIW)
+[אתר](https://www.youtube.com/watch?v=knn364bssQU&list=PLRvKvw42Rc7OWK5s-YGGFSmByDzzgC0HP), - [טוויטר](https://www.youtube.com/watch?v=1hvQ8p8q0a0&list=PLRvKvw42Rc7Ne46QAjWNWFo1Jf0mQdnIW) - [סרטונים (יסודות)](https://www.youtube.com/watch?v=knn364bssQU&list=PLRvKvw42Rc7OWK5s-YGGFSmByDzzgC0HP), [סרטונים (יום מתקדם1)](__TK_3__ [סרטונים (יום מתקדם2)](https://www.youtube.com/watch?v=1hvQ8p8q0a0&list=PLRvKvw42Rc7Ne46QAjWNWFo1Jf0mQdnIW)
 
-### ReactFest 2018 {/*reactfest-2018*/}
-March 8-9 in London, UK
+### Reactפסטיבל 2018 {/*reactfest-2018*/}
+8-9 במרץ בלונדון, בריטניה
 
-[Website](https://reactfest.uk/) - [Twitter](https://twitter.com/ReactFest) - [Videos](https://www.youtube.com/watch?v=YOCrJ5vRCnw&list=PLRgweB8YtNRt-Sf-A0y446wTJNUaAAmle)
+[אתר](https://reactfest.uk/) - [טוויטר](https://twitter.com/ReactFest) - [סרטונים](https://www.youtube.com/watch?v=YOCrJ5vRCnw&list=PLRgweB8YtNRt-Sf-A0y446wTJNUaAAmle)
 
 ### AgentConf 2018 {/*agentconf-2018*/}
-January 25-28 in Dornbirn, Austria
+25-28 בינואר בדורנבירן, אוסטריה
 
-[Website](http://agent.sh/)
+[אתר](http://agent.sh/)
 
-### ReactFoo Pune {/*reactfoo-pune*/}
-January 19-20, Pune, India
+### ReactFo Pune {/*reactfoo-pune*/}
+19-20 בינואר, פונה, הודו
 
-[Website](https://reactfoo.in/2018-pune/) - [Twitter](https://twitter.com/ReactFoo)
+[אתר](https://reactfoo.in/2018-pune/) - [טוויטר](https://twitter.com/ReactFoo)
 
-### React Day Berlin 2017 {/*react-day-berlin-2017*/}
-December 2, Berlin, Germany
+### React יום ברלין 2017 {/*react-day-berlin-2017*/}
+2 בדצמבר, ברלין, גרמניה
 
-[Website](https://reactday.berlin) - [Twitter](https://twitter.com/reactdayberlin) - [Facebook](https://www.facebook.com/reactdayberlin/) - [Videos](https://www.youtube.com/watch?v=UnNLJvHKfSY&list=PL-3BrJ5CiIx5GoXci54-VsrO6GwLhSHEK)
+[אתר](https://reactday.berlin) - [טוויטר](https://twitter.com/reactdayberlin) - [פייסבוק](https://www.facebook.com/reactdayberlin/) - [סרטונים](https://www.youtube.com/watch?v=UnNLJvHKfSY&list=PL-3BrJ5CiIx5GoXci54-VsrO6GwLhSHEK)
 
-### React Seoul 2017 {/*react-seoul-2017*/}
-November 4 in Seoul, South Korea
+### React סיאול 2017 {/*react-seoul-2017*/}
+4 בנובמבר בסיאול, דרום קוריאה
 
-[Website](http://seoul.reactjs.kr/en)
+[אתר](http://seoul.reactjs.kr/en)
 
 ### ReactiveConf 2017 {/*reactiveconf-2017*/}
-October 25–27, Bratislava, Slovakia
+25–27 באוקטובר, ברטיסלבה, סלובקיה
 
-[Website](https://reactiveconf.com) - [Videos](https://www.youtube.com/watch?v=BOKxSFB2hOE&list=PLa2ZZ09WYepMB-I7AiDjDYR8TjO8uoNjs)
+[אתר](https://reactiveconf.com) - [סרטונים](https://www.youtube.com/watch?v=BOKxSFB2hOE&list=PLa2ZZ09WYepMB-I7AiDjDYR8TjO8uoNjs)
 
-### React Summit 2017 {/*react-summit-2017*/}
-October 21 in Lagos, Nigeria
+### React פסגה 2017 {/*react-summit-2017*/}
+21 באוקטובר בלאגוס, ניגריה
 
-[Website](https://reactsummit2017.splashthat.com/) - [Twitter](https://twitter.com/DevCircleLagos/) - [Facebook](https://www.facebook.com/groups/DevCLagos/)
+[אתר](https://reactsummit2017.splashthat.com/) - [טוויטר](https://twitter.com/DevCircleLagos/) - [פייסבוק](https://www.facebook.com/groups/DevCLagos/)
 
-### State.js Conference 2017 {/*statejs-conference-2017*/}
-October 13 in Stockholm, Sweden
+### ועידת State.js 2017 {/*statejs-conference-2017*/}
+13 באוקטובר בשטוקהולם, שוודיה
 
-[Website](https://statejs.com/)
+[אתר](https://statejs.com/)
 
 ### React Conf Brasil 2017 {/*react-conf-brasil-2017*/}
-October 7 in Sao Paulo, Brazil
+7 באוקטובר בסאו פאולו, ברזיל
 
-[Website](http://reactconfbr.com.br) - [Twitter](https://twitter.com/reactconfbr) - [Facebook](https://www.facebook.com/reactconf/)
+[אתר](http://reactconfbr.com.br) - [טוויטר](https://twitter.com/reactconfbr) - [פייסבוק](https://www.facebook.com/reactconf/)
 
-### ReactJS Day 2017 {/*reactjs-day-2017*/}
-October 6 in Verona, Italy
+### ReactJS יום 2017 {/*reactjs-day-2017*/}
+6 באוקטובר בורונה, איטליה
 
-[Website](http://2017.reactjsday.it) - [Twitter](https://twitter.com/reactjsday) - [Videos](https://www.youtube.com/watch?v=bUqqJPIgjNU&list=PLWK9j6ps_unl293VhhN4RYMCISxye3xH9)
+[אתר](http://2017.reactjsday.it) - [טוויטר](https://twitter.com/reactjsday) - [סרטונים](https://www.youtube.com/watch?v=bUqqJPIgjNU&list=PLWK9j6ps_unl293VhhN4RYMCISxye3xH9)
 
-### React Alicante 2017 {/*react-alicante-2017*/}
-September 28-30 in Alicante, Spain
+### React אליקנטה 2017 {/*react-alicante-2017*/}
+28-30 בספטמבר באליקנטה, ספרד
 
-[Website](http://reactalicante.es) - [Twitter](https://twitter.com/ReactAlicante) - [Videos](https://www.youtube.com/watch?v=UMZvRCWo6Dw&list=PLd7nkr8mN0sWvBH_s0foCE6eZTX8BmLUM)
+[אתר](http://reactalicante.es) - [טוויטר](https://twitter.com/ReactAlicante) - [סרטונים](https://www.youtube.com/watch?v=UMZvRCWo6Dw&list=PLd7nkr8mN0sWvBH_s0foCE6eZTX8BmLUM)
 
-### React Boston 2017 {/*react-boston-2017*/}
-September 23-24 in Boston, Massachusetts USA
+### React בוסטון 2017 {/*react-boston-2017*/}
+23-24 בספטמבר בבוסטון, Massachusetts ארה"ב
 
-[Website](http://www.reactboston.com/) - [Twitter](https://twitter.com/ReactBoston) - [Videos](https://www.youtube.com/watch?v=2iPE5l3cl_s&list=PL-fCkV3wv4ub8zJMIhmrrLcQqSR5XPlIT)
+[אתר](http://www.reactboston.com/) - [טוויטר](https://twitter.com/ReactBoston) - [סרטונים](https://www.youtube.com/watch?v=2iPE5l3cl_s&list=PL-fCkV3wv4ub8zJMIhmrrLcQqSR5XPlIT)
 
 ### ReactFoo 2017 {/*reactfoo-2017*/}
-September 14 in Bangalore, India
+14 בספטמבר בבנגלור, הודו
 
-[Website](https://reactfoo.in/2017/) - [Videos](https://www.youtube.com/watch?v=3G6tMg29Wnw&list=PL279M8GbNsespKKm1L0NAzYLO6gU5LvfH)
+[אתר](https://reactfoo.in/2017/) - [סרטונים](https://www.youtube.com/watch?v=3G6tMg29Wnw&list=PL279M8GbNsespKKm1L0NAzYLO6gU5LvfH)
 
-### ReactNext 2017 {/*reactnext-2017*/}
-September 8-10 in Tel Aviv, Israel
+### Reactהבא 2017 {/*reactnext-2017*/}
+8-10 בספטמבר בתל אביב, ישראל
 
-[Website](http://react-next.com/) - [Twitter](https://twitter.com/ReactNext) - [Videos (Hall A)](https://www.youtube.com/watch?v=eKXQw5kR86c&list=PLMYVq3z1QxSqq6D7jxVdqttOX7H_Brq8Z), [Videos (Hall B)](https://www.youtube.com/watch?v=1InokWxYGnE&list=PLMYVq3z1QxSqCZmaqgTXLsrcJ8mZmBF7T)
+[אתר](https://www.youtube.com/watch?v=eKXQw5kR86c&list=PLMYVq3z1QxSqq6D7jxVdqttOX7H_Brq8Z), - [טוויטר](https://www.youtube.com/watch?v=1InokWxYGnE&list=PLMYVq3z1QxSqCZmaqgTXLsrcJ8mZmBF7T) - [סרטונים (אולם א')](https://www.youtube.com/watch?v=eKXQw5kR86c&list=PLMYVq3z1QxSqq6D7jxVdqttOX7H_Brq8Z), [סרטונים (אולם ב')](https://www.youtube.com/watch?v=1InokWxYGnE&list=PLMYVq3z1QxSqCZmaqgTXLsrcJ8mZmBF7T)
 
-### React Native EU 2017 {/*react-native-eu-2017*/}
-September 6-7 in Wroclaw, Poland
+### React ילידי האיחוד האירופי 2017 {/*react-native-eu-2017*/}
+6-7 בספטמבר בוורוצלב, פולין
 
-[Website](http://react-native.eu/) - [Videos](https://www.youtube.com/watch?v=453oKJAqfy0&list=PLzUKC1ci01h_hkn7_KoFA-Au0DXLAQZR7)
+[אתר](http://react-native.eu/) - [סרטונים](https://www.youtube.com/watch?v=453oKJAqfy0&list=PLzUKC1ci01h_hkn7_KoFA-Au0DXLAQZR7)
 
-### React Rally 2017 {/*react-rally-2017*/}
-August 24-25 in Salt Lake City, Utah USA
+### React ראלי 2017 {/*react-rally-2017*/}
+24-25 באוגוסט בסולט לייק סיטי, יוטה ארה"ב
 
-[Website](http://www.reactrally.com) - [Twitter](https://twitter.com/reactrally) - [Videos](https://www.youtube.com/watch?v=f4KnHNCZcH4&list=PLUD4kD-wL_zZUhvAIHJjueJDPr6qHvkni)
+[אתר](http://www.reactrally.com) - [טוויטר](https://twitter.com/reactrally) - [סרטונים](https://www.youtube.com/watch?v=f4KnHNCZcH4&list=PLUD4kD-wL_zZUhvAIHJjueJDPr6qHvkni)
 
-### Chain React 2017 {/*chain-react-2017*/}
-July 10-11 in Portland, Oregon USA
+### שרשרת React 2017 {/*chain-react-2017*/}
+10-11 ביולי בפורטלנד, אורגון ארה"ב
 
-[Website](https://infinite.red/ChainReactConf) - [Twitter](https://twitter.com/chainreactconf) - [Videos](https://www.youtube.com/watch?v=cz5BzwgATpc&list=PLFHvL21g9bk3RxJ1Ut5nR_uTZFVOxu522)
+[אתר](https://infinite.red/ChainReactConf) - [טוויטר](https://twitter.com/chainreactconf) - [סרטונים](https://www.youtube.com/watch?v=cz5BzwgATpc&list=PLFHvL21g9bk3RxJ1Ut5nR_uTZFVOxu522)
 
-### ReactEurope 2017 {/*reacteurope-2017*/}
-May 18th & 19th in Paris, France
+### Reactאירופה 2017 {/*reacteurope-2017*/}
+18 ו-19 במאי בפריז, צרפת
 
-[Videos](https://www.youtube.com/c/ReacteuropeOrgConf)
+[סרטונים](https://www.youtube.com/c/ReacteuropeOrgConf)
 
-### React Amsterdam 2017 {/*react-amsterdam-2017*/}
-April 21st in Amsterdam, The Netherlands
+### React אמסטרדם 2017 {/*react-amsterdam-2017*/}
+21 באפריל באמסטרדם, הולנד
 
-[Website](https://reactsummit.com) - [Twitter](https://twitter.com/reactsummit) - [Videos](https://youtube.com/c/ReactConferences)
+[אתר](https://reactsummit.com) - [טוויטר](https://twitter.com/reactsummit) - [סרטונים](https://youtube.com/c/ReactConferences)
 
-### React London 2017 {/*react-london-2017*/}
-March 28th at the [QEII Centre, London](http://qeiicentre.london/)
+### React לונדון 2017 {/*react-london-2017*/}
+28 במרץ במרכז [QEII, לונדון](http://qeiicentre.london/)
 
-[Website](http://react.london/) - [Videos](https://www.youtube.com/watch?v=2j9rSur_mnk&list=PLW6ORi0XZU0CFjdoYeC0f5QReBG-NeNKJ)
+[אתר](http://react.london/) - [סרטונים](https://www.youtube.com/watch?v=2j9rSur_mnk&list=PLW6ORi0XZU0CFjdoYeC0f5QReBG-NeNKJ)
 
 ### React Conf 2017 {/*react-conf-2017*/}
-March 13-14 in Santa Clara, CA
+13-14 במרץ בסנטה קלרה, קליפורניה
 
-[Website](http://conf.reactjs.org/) - [Videos](https://www.youtube.com/watch?v=7HSd1sk07uU&list=PLb0IAmt7-GS3fZ46IGFirdqKTIxlws7e0)
+[אתר](http://conf.reactjs.org/) - [סרטונים](https://www.youtube.com/watch?v=7HSd1sk07uU&list=PLb0IAmt7-GS3fZ46IGFirdqKTIxlws7e0)
 
-### Agent Conference 2017 {/*agent-conference-2017*/}
-January 20-21 in Dornbirn, Austria
+### ועידת סוכנים 2017 {/*agent-conference-2017*/}
+20-21 בינואר בדורנבירן, אוסטריה
 
-[Website](http://agent.sh/)
+[אתר](http://agent.sh/)
 
-### React Remote Conf 2016 {/*react-remote-conf-2016*/}
-October 26-28 online
+### React Conf מרחוק 2016 {/*react-remote-conf-2016*/}
+26-28 באוקטובר באינטרנט
 
-[Website](https://allremoteconfs.com/react-2016) - [Schedule](https://allremoteconfs.com/react-2016#schedule)
+[אתר](https://allremoteconfs.com/react-2016) - [לוח זמנים](https://allremoteconfs.com/react-2016#schedule)
 
 ### Reactive 2016 {/*reactive-2016*/}
-October 26-28 in Bratislava, Slovakia
+26-28 באוקטובר בברטיסלבה, סלובקיה
 
-[Website](https://reactiveconf.com/)
+[אתר](https://reactiveconf.com/)
 
 ### ReactNL 2016 {/*reactnl-2016*/}
-October 13 in Amsterdam, The Netherlands
+13 באוקטובר באמסטרדם, הולנד
 
-[Website](http://reactnl.org/) - [Schedule](http://reactnl.org/#program)
+[אתר](http://reactnl.org/) - [לוח זמנים](http://reactnl.org/#program)
 
-### ReactNext 2016 {/*reactnext-2016*/}
-September 15 in Tel Aviv, Israel
+### Reactהבא 2016 {/*reactnext-2016*/}
+15 בספטמבר בתל אביב, ישראל
 
-[Website](http://react-next.com/) - [Schedule](http://react-next.com/#schedule) - [Videos](https://www.youtube.com/channel/UC3BT8hh3yTTYxbLQy_wbk2w)
+[אתר](http://react-next.com/) - [לוח זמנים](http://react-next.com/#schedule) - [סרטונים](https://www.youtube.com/channel/UC3BT8hh3yTTYxbLQy_wbk2w)
 
-### ReactRally 2016 {/*reactrally-2016*/}
-August 25-26 in Salt Lake City, UT
+### Reactראלי 2016 {/*reactrally-2016*/}
+25-26 באוגוסט בסולט לייק סיטי, UT
 
-[Website](http://www.reactrally.com/) - [Schedule](http://www.reactrally.com/#/schedule) - [Videos](https://www.youtube.com/playlist?list=PLUD4kD-wL_zYSfU3tIYsb4WqfFQzO_EjQ)
+[אתר](http://www.reactrally.com/) - [לוח זמנים](http://www.reactrally.com/#/schedule) - [סרטונים](https://www.youtube.com/playlist?list=PLUD4kD-wL_zYSfU3tIYsb4WqfFQzO_EjQ)
 
-### ReactEurope 2016 {/*reacteurope-2016*/}
-June 2 & 3 in Paris, France
+### Reactאירופה 2016 {/*reacteurope-2016*/}
+2 ו-3 ביוני בפריז, צרפת
 
-[Videos](https://www.youtube.com/c/ReacteuropeOrgConf)
+[סרטונים](https://www.youtube.com/c/ReacteuropeOrgConf)
 
-### React Amsterdam 2016 {/*react-amsterdam-2016*/}
-April 16 in Amsterdam, The Netherlands
+### React אמסטרדם 2016 {/*react-amsterdam-2016*/}
+16 באפריל באמסטרדם, הולנד
 
-[Website](https://reactsummit.com) - [Twitter](https://twitter.com/reactsummit) - [Facebook](https://www.facebook.com/reactamsterdam) - [Videos](https://youtube.com/c/ReactConferences)
+[אתר](https://reactsummit.com) - [טוויטר](https://twitter.com/reactsummit) - [פייסבוק](https://www.facebook.com/reactamsterdam) - [סרטונים](https://youtube.com/c/ReactConferences)
 
 ### React.js Conf 2016 {/*reactjs-conf-2016*/}
-February 22 & 23 in San Francisco, CA
+22 ו-23 בפברואר בסן פרנסיסקו, קליפורניה
 
-[Website](http://conf2016.reactjs.org/) - [Schedule](http://conf2016.reactjs.org/schedule.html) - [Videos](https://www.youtube.com/playlist?list=PLb0IAmt7-GS0M8Q95RIc2lOM6nc77q1IY)
+[אתר](http://conf2016.reactjs.org/) - [לוח זמנים](http://conf2016.reactjs.org/schedule.html) - [סרטונים](https://www.youtube.com/playlist?list=PLb0IAmt7-GS0M8Q95RIc2lOM6nc77q1IY)
 
 ### Reactive 2015 {/*reactive-2015*/}
-November 2-4 in Bratislava, Slovakia
+2-4 בנובמבר בברטיסלבה, סלובקיה
 
-[Website](https://reactive2015.com/) - [Schedule](https://reactive2015.com/schedule_speakers.html#schedule)
+[אתר](https://reactive2015.com/) - [לוח זמנים](https://reactive2015.com/schedule_speakers.html#schedule)
 
-### ReactEurope 2015 {/*reacteurope-2015*/}
-July 2 & 3 in Paris, France
+### Reactאירופה 2015 {/*reacteurope-2015*/}
+2 ו-3 ביולי בפריז, צרפת
 
-[Videos](https://www.youtube.com/c/ReacteuropeOrgConf)
+[סרטונים](https://www.youtube.com/c/ReacteuropeOrgConf)
 
 ### React.js Conf 2015 {/*reactjs-conf-2015*/}
-January 28 & 29 in Facebook HQ, CA
+28 ו-29 בינואר במטה פייסבוק, קליפורניה
 
-[Website](http://conf2015.reactjs.org/) - [Schedule](http://conf2015.reactjs.org/schedule.html) - [Videos](https://www.youtube.com/playlist?list=PLb0IAmt7-GS1cbw4qonlQztYV1TAW0sCr)
+[אתר](http://conf2015.reactjs.org/) - [לוח זמנים](http://conf2015.reactjs.org/schedule.html) - [סרטונים](https://www.youtube.com/playlist?list=PLb0IAmt7-GS1cbw4qonlQztYV1TAW0sCr)

@@ -114,7 +114,7 @@ export function Page({children, toc, routeTree, meta, section}: PageProps) {
         title={title}
         titleForTitleTag={meta.titleForTitleTag}
         isHomePage={isHomePage}
-        image={`/images/og-` + section + '.png'}
+        image={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/og-` + section + '.png'}
         searchOrder={searchOrder}
       />
       <SocialBanner />

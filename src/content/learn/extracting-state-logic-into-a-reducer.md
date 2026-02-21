@@ -1,25 +1,25 @@
 ---
-title: Extracting State Logic into a Reducer
+title: "חילוץ לוגיקת state ל-מחמצת"
 ---
 
 <Intro>
 
-Components with many state updates spread across many event handlers can get overwhelming. For these cases, you can consolidate all the state update logic outside your component in a single function, called a _reducer._
+רכיבים עם עדכוני מצב רבים מהממים על פני רופאי אירועים רבים יכולים להיות מהמם. אלה, אתה יכול לאחד את כל העדכון הstate מחוץ לרכיב שלך בפונקציה אחת, הנקראת _reducer._
 
 </Intro>
 
 <YouWillLearn>
 
-- What a reducer function is
-- How to refactor `useState` to `useReducer`
-- When to use a reducer
-- How to write one well
+- מהי פונקציית מפחית
+- איך לשנות את 'useState' ל-'useReducer'
+מתי להשתמש במפחית
+- איך לכתוב אחד טוב
 
 </YouWillLearn>
 
-## Consolidate state logic with a reducer {/*consolidate-state-logic-with-a-reducer*/}
+## איחוד היגיון מצב עם מפחית {/*consolide-state-logic-with-a-reducer*/}
 
-As your components grow in complexity, it can get harder to see at a glance all the different ways in which a component's state gets updated. For example, the `TaskApp` component below holds an array of `tasks` in state and uses three different event handlers to add, remove, and edit tasks:
+כמה שהרכיבים שלך גדלים במורכבות, זה יהיה קשה יותר לראות במבט אחד את כל הדרכים השונות שבהן מצב הרכיב מתעדכן. לדוגמה, הרכיב 'TaskApp' למטה מחזיק מערך של 'משימות' בstate ומשתמש בשלושה מטפלי אירועים כדי להוסיף ולערוך משימות:
 
 <Sandpack>
 
@@ -179,17 +179,17 @@ li {
 
 </Sandpack>
 
-Each of its event handlers calls `setTasks` in order to update the state. As this component grows, so does the amount of state logic sprinkled throughout it. To reduce this complexity and keep all your logic in one easy-to-access place, you can move that state logic into a single function outside your component, **called a "reducer".**
+כל אחד מעובדי העסקים שלו קורא 'שואל' על מנת לעדכן את הstate. ככל שחשוב זה גדל, כך גדלה כמות ההיגיון של הstate המפוזרת בו. כדי להפחית את המורכבות הזו ולשמור את כל ההיגיון שלך במקום אחד קל לגעת, אתה יכול להעביר את הstate הזה לפונקציה יחידה מחוץ לרכיב שלך, **המכונה "מפחית".**
 
-Reducers are a different way to handle state. You can migrate from `useState` to `useReducer` in three steps:
+מפחית הם דרך אחרת בstate. אתה יכול לעבור מ'useState' ל'useReducer' בשלושה שלבים:
 
-1. **Move** from setting state to dispatching actions.
-2. **Write** a reducer function.
-3. **Use** the reducer from your component.
+1. **עבור** מstate לפעולות שיגור.
+2. **כתוב** פונקציית מפחית.
+3. **השתמש** במפחית מהרכיב שלך.
 
-### Step 1: Move from setting state to dispatching actions {/*step-1-move-from-setting-state-to-dispatching-actions*/}
+### שלב 1: המשך מstate לפעולות שיגור {/*step-1-movefrom-setting-state-to-dispatching-actions*/}
 
-Your event handlers currently specify _what to do_ by setting state:
+מטפלי האירועים שלך מציינים כעת _מה לעשות_ על ידי הגדרת מצב:
 
 ```js
 function handleAddTask(text) {
@@ -220,13 +220,13 @@ function handleDeleteTask(taskId) {
 }
 ```
 
-Remove all the state setting logic. What you are left with are three event handlers:
+הסר את כל הלוגיקה של הגדרות הstate. מה שנותר לך הם שלושה רופאים אירועים:
 
-- `handleAddTask(text)` is called when the user presses "Add".
-- `handleChangeTask(task)` is called when the user toggles a task or presses "Save".
-- `handleDeleteTask(taskId)` is called when the user presses "Delete".
+- `handleAddTask(text)` נקרא כאשר משתמש לוחץ על "הוסף".
+- `handleChangeTask(task)` כאשר המשתמש מחליף משימה או לוחץ על "שמור".
+- `handleDeleteTask(taskId)` נקרא כאשר משתמש לוחץ על "מחק".
 
-Managing state with reducers is slightly different from directly setting state. Instead of telling React "what to do" by setting state, you specify "what the user just did" by dispatching "actions" from your event handlers. (The state update logic will live elsewhere!) So instead of "setting `tasks`" via an event handler, you're dispatching an "added/changed/deleted a task" action. This is more descriptive of the user's intent.
+ניהול מצב עם מפחית שונה במקצת מstate ישיר. במקום להגיד ל-React "מה לעשות" לפי הגדרת מצב, אתה מדווח "מה משתמש בדיוק עשה" על ידי שליחת "פעולות" מי פעולות שלך. (עדכון לוגיקת הstate תתקיים במקום אחר!) אז במקום "להגדיר `משימות`" באמצעות מטפל באירועים, אתה שולח פעולת "הוסף/שונה/מחק משימה". זה מתאר יותר את הכוונת המשתמש.
 
 ```js
 function handleAddTask(text) {
@@ -252,7 +252,7 @@ function handleDeleteTask(taskId) {
 }
 ```
 
-The object you pass to `dispatch` is called an "action":
+האובייקט שאתה מעביר ל-'dispatch' נקרא "פעולה":
 
 ```js {3-7}
 function handleDeleteTask(taskId) {
@@ -266,13 +266,13 @@ function handleDeleteTask(taskId) {
 }
 ```
 
-It is a regular JavaScript object. You decide what to put in it, but generally it should contain the minimal information about _what happened_. (You will add the `dispatch` function itself in a later step.)
+זהו אובייקט JavaScript רגיל. אתה מחליט מה לשים בו, אבל בדרך כלל הוא צריך להכיל את המינימלי על _מה שקרה_. (תוסיף את הפונקציית ה'שליחות' עצמה מאוחרת יותר).
 
 <Note>
 
-An action object can have any shape.
+לאובייקט פעולה יכול להיות כל צורה.
 
-By convention, it is common to give it a string `type` that describes what happened, and pass any additional information in other fields. The `type` is specific to a component, so in this example either `'added'` or `'added_task'` would be fine. Choose a name that says what happened!
+לפי המוסכמה, מקובל לתת לו 'סוג' מחרוזת שמתארת ​​את מה שקרה, להעביר כל מידע נוסף בשדות אחרות. ה-`סוג` ספציפי לרכיב, אז בדוגמה או `'added'` או `'added_task'` יהיו בסדר. בחר שם שאומר מה קרה!
 
 ```js
 dispatch({
@@ -284,9 +284,9 @@ dispatch({
 
 </Note>
 
-### Step 2: Write a reducer function {/*step-2-write-a-reducer-function*/}
+### שלב 2: מפחית כתוב פונקציית {/*שלב-2-כתוב-פונקציית-reducer*/}
 
-A reducer function is where you will put your state logic. It takes two arguments, the current state and the action object, and it returns the next state:
+מפחית פונקציית הוא המקום שבו תכניס את היגיון הstate שלך. זה דורש שני ארגומנטים, הstate הנוכחי ושאיפה, והוא מחזיר את הstate הבא:
 
 ```js
 function yourReducer(state, action) {
@@ -294,15 +294,15 @@ function yourReducer(state, action) {
 }
 ```
 
-React will set the state to what you return from the reducer.
+תגיב תגדיר את הstate למה ​​אתה מחזיר מפחיד.
 
-To move your state setting logic from your event handlers to a reducer function in this example, you will:
+כדי להעביר את הגדרת היגיון ה__TK0__ שלך מרפאת עובדים לפונקציית מפחית בדוגמה זו, תעשה:
 
-1. Declare the current state (`tasks`) as the first argument.
-2. Declare the `action` object as the second argument.
-3. Return the _next_ state from the reducer (which React will set the state to).
+1. הכריז על הstate הראשון הנוכחי (`משימות`) כארגומנט.
+2. הכריז על אובייקט `פעולה` כארגומנט השני.
+3. החזר את הstate _next_ מפחיד (אשר תגיב יגדיר את הstate אליו).
 
-Here is all the state setting logic migrated to a reducer function:
+הנה כל הלוגיקה של הגדרות הstate שעברה לפונקציית מפחית:
 
 ```js
 function tasksReducer(tasks, action) {
@@ -331,13 +331,13 @@ function tasksReducer(tasks, action) {
 }
 ```
 
-Because the reducer function takes state (`tasks`) as an argument, you can **declare it outside of your component.** This decreases the indentation level and can make your code easier to read.
+מה שפונקציית המפחית לוקחת את מצב (`משימות`) כארגומנט, אתה יכול **להכריז עליו מחוץ לרכיב.** זה מקטין את רמת ההזחה ויכולה שלך להתחבר לקריאת הקוד שלך.
 
 <Note>
 
-The code above uses if/else statements, but it's a convention to use [switch statements](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/switch) inside reducers. The result is the same, but it can be easier to read switch statements at a glance.
+הקוד שלמעלה משתמש בהצהרות if/else, אבל זה מוסכמה להשתמש ב[switch statements](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/switch) בתוך reducer. התוצאה היא, אבל יכולה להיות קל יותר לקרוא את הצהרות מתג במבט חטוף.
 
-We'll be using them throughout the rest of this documentation like so:
+אנו נשתמש בהם לאורך שאר התיעוד הזה כך:
 
 ```js
 function tasksReducer(tasks, action) {
@@ -371,19 +371,19 @@ function tasksReducer(tasks, action) {
 }
 ```
 
-We recommend wrapping each `case` block into the `{` and `}` curly braces so that variables declared inside of different `case`s don't clash with each other. Also, a `case` should usually end with a `return`. If you forget to `return`, the code will "fall through" to the next `case`, which can lead to mistakes!
+אנו ממליצים לעטוף כל בלוק `מקרה` בסוגריים מתולתלים `{` ו`}` כך שמשתנים המוצהרים בתוך `מקרה` שונים לא יתנגשו זה בזה. כמו כן, `מקרה` אמור להסתיים בדרך כלל ב`החזרה`. אם תשכחו `להחזיר`, הקוד "יפול" ל`מקרה` הבא, מה שעלול להוביל לטעויות!
 
-If you're not yet comfortable with switch statements, using if/else is completely fine.
+אם אתה עדיין לא מרגיש בנוח עם הצהרות החלף, השימוש ב-if/else הוא לגמרי בסדר.
 
 </Note>
 
 <DeepDive>
 
-#### Why are reducers called this way? {/*why-are-reducers-called-this-way*/}
+#### למה קוראים למפחיתים כך? {/*למה-reducer-בדרך-זו*/}
 
-Although reducers can "reduce" the amount of code inside your component, they are actually named after the [`reduce()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce) operation that you can perform on arrays.
+למרות שהמפחיתים יכולים "להפחית" את כמות הקוד בתוך הרכיב שלך, הם למעשה נקראים על שם פעולת [`reduce()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce) יכולים לבצע על מערכים.
 
-The `reduce()` operation lets you take an array and "accumulate" a single value out of many:
+פעולת `reduce()` מאפשרת לך לקחת מערך ו"לצבור" ערך בודד מתוך רבים:
 
 ```
 const arr = [1, 2, 3, 4, 5];
@@ -392,9 +392,9 @@ const sum = arr.reduce(
 ); // 1 + 2 + 3 + 4 + 5
 ```
 
-The function you pass to `reduce` is known as a "reducer". It takes the _result so far_ and the _current item,_ then it returns the _next result._ React reducers are an example of the same idea: they take the _state so far_ and the _action_, and return the _next state._ In this way, they accumulate actions over time into state.
+הפונקציה שאתה מעביר ל-'reduce' ידועה בתור "reducer". הוא לוקח את _התוצאה עד כה_ ואת _הפריט הנוכחי,_ ואז הוא מחזיר את _התוצאה הבאה._ מפחית תגובה הם דוגמה לא רעיון: הם לוקחים את _state עד כה_ ו_פעולה_, ומחזירים את _state הבא._ בדרך זו, הם צוברים לאורך זמן הstate.
 
-You could even use the `reduce()` method with an `initialState` and an array of `actions` to calculate the final state by passing your reducer function to it:
+אתה יכול אפילו להשתמש בשיטת `reduce()` עם `initialState` ומערך של `פעולות` כדי לחשב את ה__TK_3 הסופי על ידי העברת פונקציית הרדוקרה שלך אליו:
 
 <Sandpack>
 
@@ -453,43 +453,43 @@ export default function tasksReducer(tasks, action) {
 
 </Sandpack>
 
-You probably won't need to do this yourself, but this is similar to what React does!
+כנראה שלא תצטרכו לעשות זאת בעצמכם, אבל זה דומה למה ש-React עושה!
 
 </DeepDive>
 
-### Step 3: Use the reducer from your component {/*step-3-use-the-reducer-from-your-component*/}
+### שלב 3: השתמש במחמצת מהרכיב שלך {/*step-3-use-the-reducer-from-your-component*/}
 
-Finally, you need to hook up the `tasksReducer` to your component. Import the `useReducer` Hook from React:
+לבסוף, עליך לחבר את 'משימות מפחיתות' לרכיב שלך. ייבא את ה- 'useReducer' מ-React:
 
 ```js
 import { useReducer } from 'react';
 ```
 
-Then you can replace `useState`:
+אז אתה יכול להחליף את 'useState':
 
 ```js
 const [tasks, setTasks] = useState(initialTasks);
 ```
 
-with `useReducer` like so:
+עם 'useReducer' כך:
 
 ```js
 const [tasks, dispatch] = useReducer(tasksReducer, initialTasks);
 ```
 
-The `useReducer` Hook is similar to `useState`—you must pass it an initial state and it returns a stateful value and a way to set state (in this case, the dispatch function). But it's a little different.
+ה- `useReducer` Hook דומה ל-`useState` - עליך להעביר לו מצב מתחיל והוא מחזיר ערך stateפול ודרך להגדיר מצב (במקרה זה, פונקציית השילוח). אבל זה קצת שונה.
 
-The `useReducer` Hook takes two arguments:
+ה- 'useReducer' Hook לוקח שני ארגומנטים:
 
-1. A reducer function
-2. An initial state
+1. פונקציית מפחית
+2. מצב ראשוני
 
-And it returns:
+וזה מחזיר:
 
-1. A stateful value
-2. A dispatch function (to "dispatch" user actions to the reducer)
+1. ערך ממלכתי
+2. פונקציית שיגור (כדי "לשלוח" פעולות משתמש לreducer)
 
-Now it's fully wired up! Here, the reducer is declared at the bottom of the component file:
+עכשיו זה מחובר לגמרי! כאן, מפחית מוצהר בתחתית קובץ הרכיבים:
 
 <Sandpack>
 
@@ -674,7 +674,7 @@ li {
 
 </Sandpack>
 
-If you want, you can even move the reducer to a different file:
+אם תרצה, אתה יכול אפילו להעביר את המפחית לקובץ אחר:
 
 <Sandpack>
 
@@ -862,30 +862,30 @@ li {
 
 </Sandpack>
 
-Component logic can be easier to read when you separate concerns like this. Now the event handlers only specify _what happened_ by dispatching actions, and the reducer function determines _how the state updates_ in response to them.
+לוגיקה של רכיבים יכולה להיות קלה יותר לקריאה כשאתה מפריד בין חששות כמו זה. רק _מה קרה_ על ידי שיגור פעולות, ופונקציית המפחית קובעת _איך הstate מתכן_ בתגובה להן.
 
-## Comparing `useState` and `useReducer` {/*comparing-usestate-and-usereducer*/}
+## השוואת `useState` ו-`useReducer` {/*comparing-usestate-and-usereducer*/}
 
-Reducers are not without downsides! Here's a few ways you can compare them:
+למפחיתים אין חסרונות! הנה כמה דרכים שבהן תוכל להשוות בין:
 
-- **Code size:** Generally, with `useState` you have to write less code upfront. With `useReducer`, you have to write both a reducer function _and_ dispatch actions. However, `useReducer` can help cut down on the code if many event handlers modify state in a similar way.
-- **Readability:** `useState` is very easy to read when the state updates are simple. When they get more complex, they can bloat your component's code and make it difficult to scan. In this case, `useReducer` lets you cleanly separate the _how_ of update logic from the _what happened_ of event handlers.
-- **Debugging:** When you have a bug with `useState`, it can be difficult to tell _where_ the state was set incorrectly, and _why_. With `useReducer`, you can add a console log into your reducer to see every state update, and _why_ it happened (due to which `action`). If each `action` is correct, you'll know that the mistake is in the reducer logic itself. However, you have to step through more code than with `useState`.
-- **Testing:** A reducer is a pure function that doesn't depend on your component. This means that you can export and test it separately in isolation. While generally it's best to test components in a more realistic environment, for complex state update logic it can be useful to assert that your reducer returns a particular state for a particular initial state and action.
-- **Personal preference:** Some people like reducers, others don't. That's okay. It's a matter of preference. You can always convert between `useState` and `useReducer` back and forth: they are equivalent!
+- **גודל קוד:** בדרך כלל, עם 'useState' אתה צריך לכתוב פחות קוד מראש. עם 'useReducer', אתה צריך לכתוב גם פונקציית מפחיתים _ו_ פעולות שיגור. עם זאת, 'useReducer' יכול לעזור לצמצם את הקוד אם רופאים אירועים רבים משנים מצב בצורה דומה.
+- **קריאה:** 'useState' קל מאוד לקריאה כאשר עדכוני הstate פשוטים. כשהם נעשים מורכבים יותר, הם יכולים למלא את הקוד של הרכיב והקשות על הסריקה. במקרה זה, 'useReducer' מאפשר לך להפריד בצורה נקייה את _איך_ של לוגיקת העדכון _מה _ של מטפלי אירועים.
+- **ניפוי באגים:** כאשר יש לך באג עם 'useState', זה יכול להיות קשה לדעת _היכן_ הstate הוא גדר בצורה שגויה, ו-_למה_. עם `useReducer`, אתה יכול להוסיף את יומן מסוף לreducer שלך כדי לראות את כל עדכון מצב, ו-_למה_ זה קרה (בשל איזו `פעולה`). אם כל `פעולה` נכונה, תדע שהטעות היא בלוגית הרדוקרה עצמה. עם זאת, אתה צריך לעבור יותר קוד מאשר עם 'useState'.
+- **בדיקה:** מפחית היא פונקציה טהורה שאינה תלויה ברכיב שלך. זה אומר שאתה לייצא ולבדוק אותו בנפרד בבידוד. למרות שבדרך כלל עדיף לבחון רכיבים בסביבה מציאותית יותר, עבור לוגיקה של עדכון מצב מורכב זה יכול שימושי לטעון מפחית שלך מחזיר להיות מצב מסוים מצב ופעולה ראשוניים לאפשרות.
+- **העדפה אישית:** יש אנשים שאוהבים מפחית, אחרים לא. זה בסדר. זה עניין של העדפה. אתה תמיד יכול להמיר בין 'useState' ו-'useReducer' הלוך ושוב: הם שווים!
 
-We recommend using a reducer if you often encounter bugs due to incorrect state updates in some component, and want to introduce more structure to its code. You don't have to use reducers for everything: feel free to mix and match! You can even `useState` and `useReducer` in the same component.
+אנו ממלי להשתמש במחמצת אם אתה נתקל בקשר בבאגים עקב עדכוני מצב שגויים ברכיבים, וברצונך להכניס מבנה נוסף לקוד שלו. לא חייבים להשתמש במקסימום לכל דבר: חפש לערבב ולהתאים אתם! אתה יכול אפילו 'useState' ו-'useReducer' באותו רכיב.
 
-## Writing reducers well {/*writing-reducers-well*/}
+## כתיבה מפחיתה היטב {/*reducerי-כתיבה-טוב*/}
 
-Keep these two tips in mind when writing reducers:
+זכור את שני הטיפים הבאים בעת כתיבת מפחית:
 
-- **Reducers must be pure.** Similar to [state updater functions](/learn/queueing-a-series-of-state-updates), reducers run during rendering! (Actions are queued until the next render.) This means that reducers [must be pure](/learn/keeping-components-pure)—same inputs always result in the same output. They should not send requests, schedule timeouts, or perform any side effects (operations that impact things outside the component). They should update [objects](/learn/updating-objects-in-state) and [arrays](/learn/updating-arrays-in-state) without mutations.
-- **Each action describes a single user interaction, even if that leads to multiple changes in the data.** For example, if a user presses "Reset" on a form with five fields managed by a reducer, it makes more sense to dispatch one `reset_form` action rather than five separate `set_field` actions. If you log every action in a reducer, that log should be clear enough for you to reconstruct what interactions or responses happened in what order. This helps with debugging!
+- **מפחית חייב להיות טהורים.** בדומה ל[עדכון מצב פונקציות](/learn/queueing-a-series-of-state-updates), מפחית פועלים על העיבוד! (פעולות עומדות לפי עד לעיבוד הבא.) משמעות הדבר היא שreducers [חייבים להיות טהורים](/learn/keeping-components-pure) - אותם כניסות תמיד מביאות לאותו פלט. אסור להם לשלוח בקשות, לתזמן פסקי זמן או לבצע פעולה לוואי כלשהן (פעולות שמרכיבות על דברים מחוץ ל). עליהם לעדכן את [objects](/learn/updating-objects-in-state) ו-[מערכים](/learn/updating-arrays-in-state) ללא מוטציות.
+- **כל פעולה מתארת ​​אינטראקציה של משתמש בודד, גם אם זה מוביל לשינויים מרובים בנתונים.** לדוגמה, אם לוחץ משתמש על "איפוס" בטופס עם חמש שדות המנוהל על ידי מפחית, הגיוני יותר לשלוח פעולת `reset_form` אחת ולא חמש פעולות `set_field` נפרדות. אם אתה רושם כל פעולה במפחית, יומן זה אמור להיות ברור מספיק כדי לשחזר אילו אינטראקציות או תגובות התרחשו באיזה סדר. זה עוזר באיתור באגים!
 
-## Writing concise reducers with Immer {/*writing-concise-reducers-with-immer*/}
+## כתיבת מצמצמים תמציתיים עם Immer {/*כתיבה-תמצית-reducer-עם-immer*/}
 
-Just like with [updating objects](/learn/updating-objects-in-state#write-concise-update-logic-with-immer) and [arrays](/learn/updating-arrays-in-state#write-concise-update-logic-with-immer) in regular state, you can use the Immer library to make reducers more concise. Here, [`useImmerReducer`](https://github.com/immerjs/use-immer#useimmerreducer) lets you mutate the state with `push` or `arr[i] =` assignment:
+בדיוק כמו עם [עדכון הstates](/learn/updating-objects-in-state#write-concise-update-logic-with-immer) ו-[מערכים](/learn/updating-arrays-in-state#write-concise-update-immer)-. כאן, [`useImmerReducer`](https://github.com/immerjs/use-immer#useimmerreducer) תוכל לשנות את הstate עם הקצאת `push` או `arr[i] =`:
 
 <Sandpack>
 
@@ -1082,34 +1082,34 @@ li {
 
 </Sandpack>
 
-Reducers must be pure, so they shouldn't mutate state. But Immer provides you with a special `draft` object which is safe to mutate. Under the hood, Immer will create a copy of your state with the changes you made to the `draft`. This is why reducers managed by `useImmerReducer` can mutate their first argument and don't need to return state.
+אפשר להיות טהורים, אז הם לא צריכים לעבור תנועה בstate. אבל אני מספקת לך אובייקט מיוחד `טיוטה` שבטוח מוטציה. מתחת למכסה המנוע, Immer תיצור עותק של הstate שלך עם השינויים שביצעת ב'טיוטה'. אתה יכול לשנות את הטיעון הראשון שלהם ואינם צריכים להחזיר מצב.
 
 <Recap>
 
-- To convert from `useState` to `useReducer`:
-  1. Dispatch actions from event handlers.
-  2. Write a reducer function that returns the next state for a given state and action.
-  3. Replace `useState` with `useReducer`.
-- Reducers require you to write a bit more code, but they help with debugging and testing.
-- Reducers must be pure.
-- Each action describes a single user interaction.
-- Use Immer if you want to write reducers in a mutating style.
+- להמיר מ'useState' ל'useReducer':
+  1. שיגור פעולות ממטפלי אירועים.
+2. כתוב פונקציית מפחית שמחזירה את הstate הבא עבור מצב ופעולה נתונים.
+  3. החלף את 'useState' ב-'useReducer'.
+- מפחית דורשים ממך לכתוב קצת יותר קוד, אבל הם עוזרים בניפוי באגים ובדיקות.
+- מפחית חייב להיות טהורים.
+- כל פעולה מתארת ​​אינטראקציה של משתמש בודד.
+- השתמש ב-Immer אם אתה רוצה לכתוב מפחית נוסח מוטציה.
 
 </Recap>
 
 <Challenges>
 
-#### Dispatch actions from event handlers {/*dispatch-actions-from-event-handlers*/}
+#### שליחת פעולות ממטפלי אירועים {/*משלוח-פעולות-מ-מתמודדים-עם-אירועים*/}
 
-Currently, the event handlers in `ContactList.js` and `Chat.js` have `// TODO` comments. This is why typing into the input doesn't work, and clicking on the buttons doesn't change the selected recipient.
+נכון לעכשיו, לרופאים ב-`ContactList.js` וב-`Chat.js` יש הערות `// TODO`. זה מה שהקלדה בקלט לא עובדת, ולחיצה על הכפתורים לא משנה את הנמען שנבחר.
 
-Replace these two `// TODO`s with the code to `dispatch` the corresponding actions. To see the expected shape and the type of the actions, check the reducer in `messengerReducer.js`. The reducer is already written so you won't need to change it. You only need to dispatch the actions in `ContactList.js` and `Chat.js`.
+החלף את שני `// TODO` אלה בקוד כדי `לשלוח` את התאימות לפעולות. ראה את הרצון כדי ואת סוג הפעולות, בדוק את המפחית ב-`messengerReducer.js`. המפחית כבר כתוב כך שלא תתאים אותו. אתה רק צריך לשלוח את הפעולות ב-'ContactList.js' ו-'Chat.js'.
 
 <Hint>
 
-The `dispatch` function is already available in both of these components because it was passed as a prop. So you need to call `dispatch` with the corresponding action object.
+הפונקציה 'שיגור' כבר זמינה בשני הרכיבים הללו מכיוון שהיא הועברה כעזר. אז אתה צריך לקרוא 'שיגור' עם אובייקט הפעולה המתאים.
 
-To check the action object shape, you can look at the reducer and see which `action` fields it expects to see. For example, the `changed_selection` case in the reducer looks like this:
+כדי לבדוק את צורת הפעולה, אתה יכול להסתכל על המפחית ולראות אילו שדות 'פעולה' הוא מצפה לראות. לדוגמה, מקרה 'changed_selection' ב-reducer נראה כך:
 
 ```js
 case 'changed_selection': {
@@ -1120,7 +1120,7 @@ case 'changed_selection': {
 }
 ```
 
-This means that your action object should have a `type: 'changed_selection'`. You also see the `action.contactId` being used, so you need to include a `contactId` property into your action.
+זה אומר של העניין שלך צריך להיות 'סוג: 'changed_selection''. אתה גם רואה את 'action.contactId' בשימוש, עליך לכלול את המאפיין 'contactId' בפעולה שלך.
 
 </Hint>
 
@@ -1256,7 +1256,7 @@ textarea {
 
 <Solution>
 
-From the reducer code, you can infer that actions need to look like this:
+מקוד המפחית, אתה יכול להסיק שפעולות צריכות להיראות כך:
 
 ```js
 // When the user presses "Alice"
@@ -1272,7 +1272,7 @@ dispatch({
 });
 ```
 
-Here is the example updated to dispatch the corresponding messages:
+הנה הדוגמה שעודכנה לשליחת ההודעות המתאימות:
 
 <Sandpack>
 
@@ -1411,12 +1411,12 @@ textarea {
 
 </Solution>
 
-#### Clear the input on sending a message {/*clear-the-input-on-sending-a-message*/}
+#### נקה את הקלט בשליחת הודעה {/*clear-the-input-on-שליחת-הודעה*/}
 
-Currently, pressing "Send" doesn't do anything. Add an event handler to the "Send" button that will:
+נכון לעכשיו, לחיצה על "שלח" לא עושה כלום. הוסף מטפל באירועים ללחצן "שלח" שיבצע:
 
-1. Show an `alert` with the recipient's email and the message.
-2. Clear the message input.
+1. הצג `התראה` עם האימייל של הנמען וההודעה.
+2. נקה את קלט ההודעה.
 
 <Sandpack>
 
@@ -1555,7 +1555,7 @@ textarea {
 
 <Solution>
 
-There are a couple of ways you could do it in the "Send" button event handler. One approach is to show an alert and then dispatch an `edited_message` action with an empty `message`:
+ישנן מספר דרכים שבהן תוכל לעשות זאת במטפל באירועים של כפתור "שלח". גישה אחת היא להציג התראה ולאחר מכן לשלוח פעולת `עריכה_הודעה` עם `הודעה` ריקה:
 
 <Sandpack>
 
@@ -1701,9 +1701,9 @@ textarea {
 
 </Sandpack>
 
-This works and clears the input when you hit "Send".
+זה עובד ומנקה את הקלט כאשר אתה לוחץ על "שלח".
 
-However, _from the user's perspective_, sending a message is a different action than editing the field. To reflect that, you could instead create a _new_ action called `sent_message`, and handle it separately in the reducer:
+עם זאת, _מנקודת המבט של המשתמש_, שליחת הודעה היא פעולה שונה מאשר עריכת השדה. כדי לשקף, אתה יכול במקום לעשות זאת _חדשה_ בשם 'הודעה_שלחה', ולטפל בה בנפרד ב-reducer:
 
 <Sandpack>
 
@@ -1854,15 +1854,15 @@ textarea {
 
 </Sandpack>
 
-The resulting behavior is the same. But keep in mind that action types should ideally describe "what the user did" rather than "how you want the state to change". This makes it easier to later add more features.
+ההתנהגות המתקבלת זהה. אבל זכור שסוגי פעולה צריכים לתאר באופן אידיאלי "מה המשתמש עשה" ולא "איך אתה רוצה שstate תשתנה". זה מקל להוסיף מאוחר יותר תכונות נוספות.
 
-With either solution, it's important that you **don't** place the `alert` inside a reducer. The reducer should be a pure function--it should only calculate the next state. It should not "do" anything, including displaying messages to the user. That should happen in the event handler. (To help catch mistakes like this, React will call your reducers multiple times in Strict Mode. This is why, if you put an alert in a reducer, it fires twice.)
+עם כל אחד מהפתרונות, חשוב ש**לא** תציב את ה'התראה' בתוך מפחית. הוא צריך לחשב רק את הstate הבא. זה לא צריך "לעשות" שום דבר, כולל הצגת הודעות למשתמש. זה אמור לקרות בטיפול. (כדי לעזור לתפוס טעויות כמו זו, תגיב יתקשר למפחיתים שלך מכניסים מספר פעמים בstate קפדני.
 
 </Solution>
 
-#### Restore input values when switching between tabs {/*restore-input-values-when-switching-between-tabs*/}
+#### שחזור ערכי קלט בזמן מעבר בין כרטיסיות {/*restore-input-values-when-switching-between-tabs*/}
 
-In this example, switching between different recipients always clears the text input:
+בדוגמה זו, מעבר בין נמענים שונים תמיד מנקה את קלט הטקסט:
 
 ```js
 case 'changed_selection': {
@@ -1873,13 +1873,13 @@ case 'changed_selection': {
   };
 ```
 
-This is because you don't want to share a single message draft between several recipients. But it would be better if your app "remembered" a draft for each contact separately, restoring them when you switch contacts.
+הסיבה לכך היא שאינך רוצה לשתף טיוטת הודעה אחת בין מספר נמענים. אבל זה יהיה טוב יותר אם האפליקציה שלך "תזכור" טיוטה עבור כל איש קשר בנפרד, ותשחזר אותם כאשר אתה מחליף אנשי קשר.
 
-Your task is to change the way the state is structured so that you remember a separate message draft _per contact_. You would need to make a few changes to the reducer, the initial state, and the components.
+המשימה היא שלך לשנות את האופן שבו הstate בנוי כך שתזכור תיבת הודעה נפרדת _לכל איש קשר_. תצטרך לבצע כמה שינויים ב-reducer, בstate ההתחלתי וברכיבים.
 
 <Hint>
 
-You can structure your state like this:
+אתה יכול לבנות את הstate כך:
 
 ```js
 export const initialState = {
@@ -1891,7 +1891,7 @@ export const initialState = {
 };
 ```
 
-The `[key]: value` [computed property](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer#computed_property_names) syntax can help you update the `messages` object:
+התחביר `[key]: value` [מאפיין ממוחשב](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer#computed_property_names) יכול לעזור לך לעדכן את אובייקט `הודעות`:
 
 ```js
 {
@@ -2053,7 +2053,7 @@ textarea {
 
 <Solution>
 
-You'll need to update the reducer to store and update a separate message draft per contact:
+יהיה עליך לעדכן את המפחית כדי לאחסן ולעדכן הודעה נפרדת לכל איש קשר:
 
 ```js
 // When the input is edited
@@ -2071,13 +2071,13 @@ case 'edited_message': {
 }
 ```
 
-You would also update the `Messenger` component to read the message for the currently selected contact:
+תעדכן גם את רכיב 'מסנג'ר' כדי לקרוא את ההודעה של איש הקשר שנבחר כעת:
 
 ```js
 const message = state.messages[state.selectedId];
 ```
 
-Here is the complete solution:
+הנה הפתרון המלא:
 
 <Sandpack>
 
@@ -2237,19 +2237,19 @@ textarea {
 
 </Sandpack>
 
-Notably, you didn't need to change any of the event handlers to implement this different behavior. Without a reducer, you would have to change every event handler that updates the state.
+יש לציין שלא היית צריך לשנות אף אחד מהמטפלים באירועים כדי ליישם את ההתנהגות הזו הזו. ללא מפחית, תצטרך לשנות כל מטפל באירועים שמעדכן את הstate.
 
 </Solution>
 
-#### Implement `useReducer` from scratch {/*implement-usereducer-from-scratch*/}
+#### הטמעת 'useReducer' מאפס {/*implement-usereducer-from-scratch*/}
 
-In the earlier examples, you imported the `useReducer` Hook from React. This time, you will implement _the `useReducer` Hook itself!_ Here is a stub to get you started. It shouldn't take more than 10 lines of code.
+בדוגמאות הקודמות, ייבאת את ה- 'useReducer' מ-React. הפעם, אתה תטמיע את _ה-'useReducer' Hook עצמו!_ הנה בדל שיעזור לך להתחיל. זה לא אמור לקחת יותר מ-10 שורות קוד.
 
-To test your changes, try typing into the input or select a contact.
+כדי לבדוק את השינויים שלך, נסה להקליד בקלט או בחר איש קשר.
 
 <Hint>
 
-Here is a more detailed sketch of the implementation:
+להלן סקיצה מפורטת יותר של היישום:
 
 ```js
 export function useReducer(reducer, initialState) {
@@ -2263,7 +2263,7 @@ export function useReducer(reducer, initialState) {
 }
 ```
 
-Recall that a reducer function takes two arguments--the current state and the action object--and it returns the next state. What should your `dispatch` implementation do with it?
+נזכיר שפונקציית מפחית לוקחת שני ארגומנטים - הstate הנוכחית ופעולה - והיא מחזירה את הstate הבא. מה צריך לעשות עם יישום ה'שליחות'?
 
 </Hint>
 
@@ -2439,7 +2439,7 @@ textarea {
 
 <Solution>
 
-Dispatching an action calls a reducer with the current state and the action, and stores the result as the next state. This is what it looks like in code:
+שיגור פעולה קורא למפחית עם הstate הנוכחי והפעולה, ומחסן את התוצאה כstate הבא. כך זה נראה בקוד:
 
 <Sandpack>
 
@@ -2614,7 +2614,7 @@ textarea {
 
 </Sandpack>
 
-Though it doesn't matter in most cases, a slightly more accurate implementation looks like this:
+למרות שזה לא משנה ברוב המקרים, יישום קצת יותר מדויק נראה כך:
 
 ```js
 function dispatch(action) {
@@ -2622,8 +2622,9 @@ function dispatch(action) {
 }
 ```
 
-This is because the dispatched actions are queued until the next render, [similar to the updater functions.](/learn/queueing-a-series-of-state-updates)
+מה היא הסיבה שהפעולות שנשלחו לפי עד לעיבוד הבא, [בדומה לפונקציות העדכון.](/learn/queueing-a-series-of-state-updates)
 
 </Solution>
 
 </Challenges>
+

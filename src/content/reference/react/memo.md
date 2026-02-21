@@ -1,10 +1,10 @@
 ---
-title: memo
+title: "memo"
 ---
 
 <Intro>
 
-`memo` lets you skip re-rendering a component when its props are unchanged.
+`memo` מאפשר לך לדלג על עיבוד מחדש של רכיב כאשר ה-props שלו לא השתנה.
 
 ```
 const MemoizedComponent = memo(SomeComponent, arePropsEqual?)
@@ -16,11 +16,11 @@ const MemoizedComponent = memo(SomeComponent, arePropsEqual?)
 
 ---
 
-## Reference {/*reference*/}
+## הפניה {/*reference*/}
 
 ### `memo(Component, arePropsEqual?)` {/*memo*/}
 
-Wrap a component in `memo` to get a *memoized* version of that component. This memoized version of your component will usually not be re-rendered when its parent component is re-rendered as long as its props have not changed. But React may still re-render it: memoization is a performance optimization, not a guarantee.
+עטוף רכיב ב-`memo` כדי לקבל גרסה *memoized* של רכיב זה. גרסה זו memo שעברה עיבוד מחדש של הרכיב שלך בדרך כלל לא תעובד מחדש כאשר רכיב האב שלו יעובד מחדש כל עוד ה-props שלו לא השתנה. אבל React עדיין עשוי לעבד אותו מחדש: memoization הוא אופטימיזציה של ביצועים, לא ערובה.
 
 ```js
 import { memo } from 'react';
@@ -30,27 +30,27 @@ const SomeComponent = memo(function SomeComponent(props) {
 });
 ```
 
-[See more examples below.](#usage)
+[ראה דוגמאות נוספות למטה.](#usage)
 
-#### Parameters {/*parameters*/}
+#### פרמטרים {/*parameters*/}
 
-* `Component`: The component that you want to memoize. The `memo` does not modify this component, but returns a new, memoized component instead. Any valid React component, including functions and [`forwardRef`](/reference/react/forwardRef) components, is accepted.
+* `Component`: הרכיב שברצונך לשנות memo. ה-`memo` אינו משנה את הרכיב הזה, אלא מחזיר במקום זאת רכיב חדש, memo. כל רכיב React חוקי, כולל פונקציות ורכיבי [`forwardRef`](/reference/react/forwardRef), מתקבל.
 
-* **optional** `arePropsEqual`: A function that accepts two arguments: the component's previous props, and its new props. It should return `true` if the old and new props are equal: that is, if the component will render the same output and behave in the same way with the new props as with the old. Otherwise it should return `false`. Usually, you will not specify this function. By default, React will compare each prop with [`Object.is`.](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is)
+* **אופציונלי** `arePropsEqual`: פונקציה שמקבלת שני ארגומנטים: ה-props הקודם של הרכיב, וה-props החדש שלו. זה אמור להחזיר `true` אם ה-props הישן והחדש שווים: כלומר, אם הרכיב יציג את אותו פלט ויתנהג באותו אופן עם props החדש כמו עם הישן. אחרת הוא אמור להחזיר `false`. בדרך כלל, לא תציין פונקציה זו. כברירת מחדל, React ישווה כל אבזר עם [`Object.is`.](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is)
 
-#### Returns {/*returns*/}
+#### מחזירה {/*returns*/}
 
-`memo` returns a new React component. It behaves the same as the component provided to `memo` except that React will not always re-render it when its parent is being re-rendered unless its props have changed.
+`memo` מחזיר רכיב React חדש. הוא מתנהג כמו הרכיב שסופק ל-`memo`, אלא ש-React לא תמיד יעבד אותו מחדש כאשר האב שלו עובר עיבוד מחדש, אלא אם כן ה-props שלו השתנה.
 
 ---
 
-## Usage {/*usage*/}
+## שימוש {/*usage*/}
 
-### Skipping re-rendering when props are unchanged {/*skipping-re-rendering-when-props-are-unchanged*/}
+### דילוג על עיבוד מחדש כאשר props אינם משתנים {/*skipping-re-rendering-when-props-are-unchanged*/}
 
-React normally re-renders a component whenever its parent re-renders. With `memo`, you can create a component that React will not re-render when its parent re-renders so long as its new props are the same as the old props. Such a component is said to be *memoized*.
+React בדרך כלל מעבד מחדש רכיב בכל פעם שהאב שלו מעבד מחדש. עם `memo`, אתה יכול ליצור רכיב ש-React לא יעבד מחדש כאשר האב שלו מעבד מחדש כל עוד ה-props החדש שלו זהה ל-props הישן. אומרים שרכיב כזה הוא *memoized*.
 
-To memoize a component, wrap it in `memo` and use the value that it returns in place of your original component:
+כדי memoלהפוך רכיב, עטוף אותו ב-`memo` וב-use הערך שהוא מחזיר במקום הרכיב המקורי שלך:
 
 ```js
 const Greeting = memo(function Greeting({ name }) {
@@ -60,9 +60,9 @@ const Greeting = memo(function Greeting({ name }) {
 export default Greeting;
 ```
 
-A React component should always have [pure rendering logic.](/learn/keeping-components-pure) This means that it must return the same output if its props, state, and context haven't changed. By using `memo`, you are telling React that your component complies with this requirement, so React doesn't need to re-render as long as its props haven't changed. Even with `memo`, your component will re-render if its own state changes or if a context that it's using changes.
+לרכיב React צריך תמיד להיות [לוגיקת רינדור טהורה.](/learn/keeping-components-pure) פירוש הדבר שהוא חייב להחזיר את אותו פלט אם ה-props, state וההקשר שלו לא השתנו. על ידי שימוש ב-`memo`, אתה אומר ל-React שהרכיב שלך תואם לדרישה זו, כך ש-React לא צריך לבצע רינדור מחדש כל עוד ה-props שלו לא השתנה. אפילו עם `memo`, הרכיב שלך יעבד מחדש אם ה-state שלו משתנה או אם ישתנה הקשר שהוא משתמש בו.
 
-In this example, notice that the `Greeting` component re-renders whenever `name` is changed (because that's one of its props), but not when `address` is changed (because it's not passed to `Greeting` as a prop):
+בדוגמה זו, שימו לב שהרכיב `Greeting` מעבד מחדש בכל פעם ש-`name` משתנה (because זה אחד מה-props שלו), אבל לא כאשר `address` משתנה (בגלל use הוא לא מועבר ל-`Greeting` בתור אבזר):
 
 <Sandpack>
 
@@ -104,37 +104,37 @@ label {
 
 <Note>
 
-**You should only rely on `memo` as a performance optimization.** If your code doesn't work without it, find the underlying problem and fix it first. Then you may add `memo` to improve performance.
+**עליך להסתמך רק על `memo` כאופטימיזציה של ביצועים.** אם הקוד שלך לא עובד בלעדיו, מצא את הבעיה הבסיסית ותקן אותה תחילה. לאחר מכן תוכל להוסיף `memo` כדי לשפר את הביצועים.
 
 </Note>
 
 <DeepDive>
 
-#### Should you add memo everywhere? {/*should-you-add-memo-everywhere*/}
+#### האם להוסיף memo בכל מקום? {/*should-you-add-memo-everywhere*/}
 
-If your app is like this site, and most interactions are coarse (like replacing a page or an entire section), memoization is usually unnecessary. On the other hand, if your app is more like a drawing editor, and most interactions are granular (like moving shapes), then you might find memoization very helpful. 
+אם האפליקציה שלך דומה לאתר הזה, ורוב האינטראקציות הן גסות (כמו החלפת דף או קטע שלם), memoאיזון בדרך כלל מיותר. מצד שני, אם האפליקציה שלך דומה יותר לעורך ציור, ורוב האינטראקציות הן פרטניות (כמו צורות זזות), אז אתה עשוי למצוא memoization מועיל מאוד.
 
-Optimizing with `memo`  is only valuable when your component re-renders often with the same exact props, and its re-rendering logic is expensive. If there is no perceptible lag when your component re-renders, `memo` is unnecessary. Keep in mind that `memo` is completely useless if the props passed to your component are *always different,* such as if you pass an object or a plain function defined during rendering. This is why you will often need [`useMemo`](/reference/react/useMemo#skipping-re-rendering-of-components) and [`useCallback`](/reference/react/useCallback#skipping-re-rendering-of-components) together with `memo`.
+אופטימיזציה עם `memo` היא בעלת ערך רק כאשר הרכיב שלך מעבד מחדש לעתים קרובות עם אותו props בדיוק, והלוגיקת העיבוד מחדש שלו יקרה. אם אין השהייה מורגשת כאשר הרכיב שלך מעבד מחדש, `memo` מיותר. זכור ש-`memo` הוא use פחות לחלוטין אם ה-props המועבר לרכיב שלך הוא *תמיד שונה,* כמו למשל אם תעביר אובייקט או פונקציה רגילה שהוגדרה במהלך העיבוד. זו הסיבה שתצטרך לעתים קרובות את [`useMemo`](/reference/react/useMemo#skipping-re-rendering-of-components) ו-[`useCallback`](/reference/react/useCallback#skipping-re-rendering-of-components) יחד עם `memo`.
 
-There is no benefit to wrapping a component in `memo` in other cases. There is no significant harm to doing that either, so some teams choose to not think about individual cases, and memoize as much as possible. The downside of this approach is that code becomes less readable. Also, not all memoization is effective: a single value that's "always new" is enough to break memoization for an entire component.
+אין שום תועלת לעטוף רכיב ב-`memo` במקרים אחרים. גם לעשות את זה אין שום נזק משמעותי, אז חלק מהצוותים בוחרים לא לחשוב על מקרים בודדים, וmemoלבצע כמה שיותר. החיסרון של גישה זו הוא שהקוד הופך פחות קריא. כמו כן, לא כל memoization יעיל: מספיק ערך בודד שהוא "חדש תמיד" כדי לשבור memoization עבור רכיב שלם.
 
-**In practice, you can make a lot of memoization unnecessary by following a few principles:**
+**בפועל, אתה יכול להפוך הרבה memoאיזון למיותר על ידי ביצוע מספר עקרונות:**
 
-1. When a component visually wraps other components, let it [accept JSX as children.](/learn/passing-props-to-a-component#passing-jsx-as-children) This way, when the wrapper component updates its own state, React knows that its children don't need to re-render.
-1. Prefer local state and don't [lift state up](/learn/sharing-state-between-components) any further than necessary. For example, don't keep transient state like forms and whether an item is hovered at the top of your tree or in a global state library.
-1. Keep your [rendering logic pure.](/learn/keeping-components-pure) If re-rendering a component causes a problem or produces some noticeable visual artifact, it's a bug in your component! Fix the bug instead of adding memoization.
-1. Avoid [unnecessary Effects that update state.](/learn/you-might-not-need-an-effect) Most performance problems in React apps are caused by chains of updates originating from Effects that cause your components to render over and over.
-1. Try to [remove unnecessary dependencies from your Effects.](/learn/removing-effect-dependencies) For example, instead of memoization, it's often simpler to move some object or a function inside an Effect or outside the component.
+1. כאשר רכיב עוטף רכיבים אחרים באופן ויזואלי, תן ​​לו [לקבל את JSX כילדים.](/learn/passing-props-to-a-component#passing-jsx-as-children) בדרך זו, כאשר רכיב העטיפה מעדכן את state משלו, React לא צריך React שלו.
+1. העדיפו state מקומי ואל ת [להרים את state למעלה](/learn/sharing-state-between-components) מעבר למה שצריך. לדוגמה, אל תשמור טפסים חולפים כמו state והאם פריט מרחף בראש העץ שלך או בספריית state גלובלית.
+1. שמור על [לוגיקת העיבוד שלך טהורה.](/learn/keeping-components-pure) אם עיבוד מחדש של רכיב גורם לבעיה או מייצר חפץ חזותי בולט, זה באג ברכיב שלך! תקן את הבאג במקום להוסיף memoization.
+1. הימנע מ[אפקטים מיותרים שמעדכנים state.](/learn/you-might-not-need-an-effect) רוב בעיות הביצועים באפליקציות React ניתנות ל-used על ידי שרשראות של עדכונים שמקורן באפקטים שמאפשרים use לעבד את הרכיבים שלך שוב ושוב.
+1. נסה [להסיר תלות מיותרת מהאפקטים שלך.](/learn/removing-effect-dependencies) לדוגמה, במקום memoization, לעתים קרובות יותר פשוט להעביר אובייקט או פונקציה בתוך אפקט או מחוץ לרכיב.
 
-If a specific interaction still feels laggy, [use the React Developer Tools profiler](https://legacy.reactjs.org/blog/2018/09/10/introducing-the-react-profiler.html) to see which components would benefit the most from memoization, and add memoization where needed. These principles make your components easier to debug and understand, so it's good to follow them in any case. In the long term, we're researching [doing granular memoization automatically](https://www.youtube.com/watch?v=lGEMwh32soc) to solve this once and for all.
+אם אינטראקציה ספציפית עדיין מרגישה בפיגור, [use הפרופיל של React Developer Tools](https://legacy.reactjs.org/blog/2018/09/10/introducing-the-react-profiler.html) כדי לראות אילו רכיבים ירוויחו הכי הרבה מ-memoization, והוסיפו memoization במידת הצורך. עקרונות אלו מקלים על ניפוי באגים והבנה של הרכיבים שלכם, אז כדאי לעקוב אחריהם בטווח הארוך, בכל מקרה.' memoization באופן אוטומטי](https://www.youtube.com/watch?v=lGEMwh32soc) כדי לפתור את זה אחת ולתמיד.
 
 </DeepDive>
 
 ---
 
-### Updating a memoized component using state {/*updating-a-memoized-component-using-state*/}
+### עדכון רכיב memoized באמצעות state {/*updating-a-memoized-component-using-state*/}
 
-Even when a component is memoized, it will still re-render when its own state changes. Memoization only has to do with props that are passed to the component from its parent.
+גם כאשר רכיב הוא memoized, הוא עדיין יעבד מחדש כאשר state משלו ישתנה. שינון קשור רק ל-props שמועברים לרכיב מהאב שלו.
 
 <Sandpack>
 
@@ -203,13 +203,13 @@ label {
 
 </Sandpack>
 
-If you set a state variable to its current value, React will skip re-rendering your component even without `memo`. You may still see your component function being called an extra time, but the result will be discarded.
+אם תגדיר משתנה state לערך הנוכחי שלו, React ידלג על עיבוד מחדש של הרכיב שלך גם ללא `memo`. ייתכן שעדיין תראה שפונקציית הרכיב שלך נקראת פעם נוספת, אך התוצאה תימחק.
 
 ---
 
-### Updating a memoized component using a context {/*updating-a-memoized-component-using-a-context*/}
+### עדכון רכיב memoעובר באמצעות הקשר {/*updating-a-memoized-component-using-a-context*/}
 
-Even when a component is memoized, it will still re-render when a context that it's using changes. Memoization only has to do with props that are passed to the component from its parent.
+גם כאשר רכיב הוא memoized, הוא עדיין יוצג מחדש כאשר ההקשר שבו הוא משתמש משתנה. שינון קשור רק ל-props שמועברים לרכיב מהאב שלו.
 
 <Sandpack>
 
@@ -263,16 +263,16 @@ label {
 
 </Sandpack>
 
-To make your component re-render only when a _part_ of some context changes, split your component in two. Read what you need from the context in the outer component, and pass it down to a memoized child as a prop.
+כדי להפוך את הרכיב שלך לעיבוד מחדש רק כאשר _חלק_ מהקשר מסוים משתנה, פצל את הרכיב שלך לשניים. קרא את מה שאתה צריך מהקשר ברכיב החיצוני, והעבר אותו לילד memo כאביזר.
 
 ---
 
-### Minimizing props changes {/*minimizing-props-changes*/}
+### צמצום props שינויים {/*minimizing-props-changes*/}
 
-When you use `memo`, your component re-renders whenever any prop is not *shallowly equal* to what it was previously. This means that React compares every prop in your component with its previous value using the [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) comparison. Note that `Object.is(3, 3)` is `true`, but `Object.is({}, {})` is `false`.
+כאשר אתה use `memo`, הרכיב שלך מעבד מחדש בכל פעם שעזר כלשהו אינו *שווה באופן רדוד* למה שהיה קודם. המשמעות היא ש-React משווה כל אביזר ברכיב שלך עם הערך הקודם שלו באמצעות ההשוואה [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is). שימו לב ש`Object.is(3, 3)` הוא `true`, אבל `Object.is({}, {})` הוא `false`.
 
 
-To get the most out of `memo`, minimize the times that the props change. For example, if the prop is an object, prevent the parent component from re-creating that object every time by using [`useMemo`:](/reference/react/useMemo)
+כדי להפיק את המרב מ-`memo`, צמצם את הזמנים שבהם ה-props משתנה. לדוגמה, אם האביזר הוא אובייקט, מנע מהרכיב האב ליצור מחדש את האובייקט הזה בכל פעם באמצעות [`useMemo`:](/reference/react/useMemo)
 
 ```js {5-8}
 function Page() {
@@ -292,7 +292,7 @@ const Profile = memo(function Profile({ person }) {
 });
 ```
 
-A better way to minimize props changes is to make sure the component accepts the minimum necessary information in its props. For example, it could accept individual values instead of a whole object:
+דרך טובה יותר למזער שינויים ב-props היא לוודא שהרכיב מקבל את המידע המינימלי הדרוש ב-props שלו. לדוגמה, הוא יכול לקבל ערכים בודדים במקום אובייקט שלם:
 
 ```js {4,7}
 function Page() {
@@ -306,7 +306,7 @@ const Profile = memo(function Profile({ name, age }) {
 });
 ```
 
-Even individual values can sometimes be projected to ones that change less frequently. For example, here a component accepts a boolean indicating the presence of a value rather than the value itself:
+אפילו ערכים בודדים יכולים לפעמים להיות מוקרנים לאלה שמשתנים בתדירות נמוכה יותר. לדוגמה, כאן רכיב מקבל ערך בוליאני המציין את נוכחותו של ערך ולא את הערך עצמו:
 
 ```js {3}
 function GroupsLanding({ person }) {
@@ -319,13 +319,13 @@ const CallToAction = memo(function CallToAction({ hasGroups }) {
 });
 ```
 
-When you need to pass a function to memoized component, either declare it outside your component so that it never changes, or [`useCallback`](/reference/react/useCallback#skipping-re-rendering-of-components) to cache its definition between re-renders.
+כאשר אתה צריך להעביר פונקציה לרכיב memoized, או הכריז עליה מחוץ לרכיב שלך כך שהוא לעולם לא ישתנה, או [`useCallback`](/reference/react/useCallback#skipping-re-rendering-of-components) כדי לשמור את ההגדרה שלה בין רינדורים מחדש.
 
 ---
 
-### Specifying a custom comparison function {/*specifying-a-custom-comparison-function*/}
+### ציון פונקציית השוואה מותאמת אישית {/*specifying-a-custom-comparison-function*/}
 
-In rare cases it may be infeasible to minimize the props changes of a memoized component. In that case, you can provide a custom comparison function, which React will use to compare the old and new props instead of using shallow equality. This function is passed as a second argument to `memo`. It should return `true` only if the new props would result in the same output as the old props; otherwise it should return `false`.
+במקרים נדירים זה לא אפשרי למזער את השינויים props של רכיב memo. במקרה כזה, אתה יכול לספק פונקציית השוואה מותאמת אישית, אשר React תעשה use כדי להשוות את הישן והחדש props במקום להשתמש בשוויון רדוד. פונקציה זו מועברת כארגומנט שני ל-`memo`. זה אמור להחזיר את `true` רק אם ה-props החדש יביא לאותו פלט כמו ה-props הישן; אחרת הוא אמור להחזיר `false`.
 
 ```js {3}
 const Chart = memo(function Chart({ dataPoints }) {
@@ -343,21 +343,21 @@ function arePropsEqual(oldProps, newProps) {
 }
 ```
 
-If you do this, use the Performance panel in your browser developer tools to make sure that your comparison function is actually faster than re-rendering the component. You might be surprised.
+אם תעשה זאת, use חלונית הביצועים בכלי המפתחים של הדפדפן שלך כדי לוודא שפונקציית ההשוואה שלך למעשה מהירה יותר מאשר עיבוד מחדש של הרכיב. אולי תופתעו.
 
-When you do performance measurements, make sure that React is running in the production mode.
+כאשר אתה מבצע מדידות ביצועים, ודא שReact פועל במצב הייצור.
 
 <Pitfall>
 
-If you provide a custom `arePropsEqual` implementation, **you must compare every prop, including functions.** Functions often [close over](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures) the props and state of parent components. If you return `true` when `oldProps.onClick !== newProps.onClick`, your component will keep "seeing" the props and state from a previous render inside its `onClick` handler, leading to very confusing bugs.
+אם אתה מספק יישום `arePropsEqual` מותאם אישית, **עליך להשוות כל אבזר, כולל פונקציות.** פונקציות לעתים קרובות [סגורות מעל](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures) ה-props וstate של רכיבי האב. אם תחזירו `true` כאשר `oldProps.onClick !== newProps.onClick`, הרכיב שלכם ימשיך "לראות" את ה-__K_8 הקודמת ו____T המטפל `onClick` שלו, מה שמוביל לבאגים מבלבלים מאוד.
 
-Avoid doing deep equality checks inside `arePropsEqual` unless you are 100% sure that the data structure you're working with has a known limited depth. **Deep equality checks can become incredibly slow** and can freeze your app for many seconds if someone changes the data structure later.
+הימנע מביצוע בדיקות שוויון עמוקות בתוך `arePropsEqual` אלא אם כן אתה בטוח ב-100% שלמבנה הנתונים איתו אתה עובד יש עומק מוגבל ידוע. **בדיקות שוויון עמוקות יכולות להיות איטיות להפליא** ויכולות להקפיא את האפליקציה שלך למשך שניות רבות אם מישהו משנה את מבנה הנתונים מאוחר יותר.
 
 </Pitfall>
 
 ---
 
-## Troubleshooting {/*troubleshooting*/}
-### My component re-renders when a prop is an object, array, or function {/*my-component-rerenders-when-a-prop-is-an-object-or-array*/}
+## פתרון בעיות {/*troubleshooting*/}
+### הרכיב שלי מעבד מחדש כאשר אבזר הוא אובייקט, מערך או פונקציה {/*my-component-rerenders-when-a-prop-is-an-object-or-array*/}
 
-React compares old and new props by shallow equality: that is, it considers whether each new prop is reference-equal to the old prop. If you create a new object or array each time the parent is re-rendered, even if the individual elements are each the same, React will still consider it to be changed. Similarly, if you create a new function when rendering the parent component, React will consider it to have changed even if the function has the same definition. To avoid this, [simplify props or memoize props in the parent component](#minimizing-props-changes).
+React משווה בין props ישן לחדש לפי שוויון רדוד: כלומר, הוא שוקל אם כל אבזר חדש שווה להתייחסות לאביזר הישן. אם אתה יוצר אובייקט או מערך חדשים בכל פעם שהאב מעובד מחדש, גם אם כל האלמנטים הבודדים זהים, React עדיין ישקול אותו כשינוי. באופן דומה, אם תיצור פונקציה חדשה בעת רינדור רכיב האב, React יחשב אותה כשונתה גם אם לפונקציה יש אותה הגדרה. כדי להימנע מכך, [פשוט props או memoize props ברכיב האב] (#minimizing-props-changes).

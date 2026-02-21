@@ -1,49 +1,48 @@
 ---
-title: "React Labs: What We've Been Working On – February 2024"
+title: "React Labs: על מה עבדנו - פברואר 2024"
 ---
 
-February 15, 2024 by [Joseph Savona](https://twitter.com/en_JS), [Ricky Hanlon](https://twitter.com/rickhanlonii), [Andrew Clark](https://twitter.com/acdlite), [Matt Carroll](https://twitter.com/mattcarrollcode), and [Dan Abramov](https://twitter.com/dan_abramov).
+15 בפברואר 2024 מאת [Joseph Savona](https://twitter.com/en_JS), [ריקי הנלון](https://twitter.com/rickhanlonii), [Andrew Clark](https://twitter.com/acdlite), [Matt Carroll](https://twitter.com/mattcarrollcode), and [Dan Abramov](https://twitter.com/dan_abramov).
 
 ---
 
 <Intro>
 
-In React Labs posts, we write about projects in active research and development. We’ve made significant progress since our [last update](/blog/2023/03/22/react-labs-what-we-have-been-working-on-march-2023), and we’d like to share our progress.
+בפוסטים של React Labs אנחנו כותבים על פרויקטים שנמצאים במחקר ופיתוח פעילים. התקדמנו מאז __TK__, ורצינו לשתף בהדמות.
 
 </Intro>
 
 <Note>
 
-React Conf 2024 is scheduled for May 15–16 in Henderson, Nevada! If you’re interested in attending React Conf in person, you can [sign up for the ticket lottery](https://forms.reform.app/bLaLeE/react-conf-2024-ticket-lottery/1aRQLK) until February 28th. 
+React Conf 2024 מתוכנן ל-15-16 במאי ב-Henderson, Nevada! אם מעניין להגיע פיזית ל-React Conf, אפשר [להירשם להגרלת כרטיסים](https://forms.reform.app/bLaLeE/react-conf-2024-ticket-lottery/1aRQLK) עד 28 בפברואר.
 
-For more info on tickets, free streaming, sponsoring, and more, see [the React Conf website](https://conf.react.dev).
+למידע נוסף על כרטיסים, סטרימינג בחינם, חסויות ועוד, ראו את [אתר React Conf](https://conf.react.dev).
 
 </Note>
 
 ---
 
-## React Compiler {/*react-compiler*/}
+## React מהדר {/*react-compiler*/}
 
-React Compiler is no longer a research project: the compiler now powers instagram.com in production, and we are working to ship the compiler across additional surfaces at Meta and to prepare the first open source release.
+React Compiler כבר לא פרויקט מחקר: הקומפיילר מריץ עכשיו את instagram.com בפרודקשן, ואנחנו עובדים כדי לפרוס אותו למשטחים נוספים ב-Meta ולהכין את השחרור הקוד הפתוח הראשון.
 
-As discussed in our [previous post](/blog/2023/03/22/react-labs-what-we-have-been-working-on-march-2023#react-optimizing-compiler), React can *sometimes* re-render too much when state changes. Since the early days of React our solution for such cases has been manual memoization. In our current APIs, this means applying the [`useMemo`](/reference/react/useMemo), [`useCallback`](/reference/react/useCallback), and [`memo`](/reference/react/memo) APIs to manually tune how much React re-renders on state changes. But manual memoization is a compromise. It clutters up our code, is easy to get wrong, and requires extra work to keep up to date.
+כפי שדיברנו [בפוסט הקודם](/blog/2023/03/22/react-labs-what-we-have-been-working-on-march-2023#react-optimizing-compiler), React יכול *לפעמים* לבצע יותר מדי רינדורים מחדש כשמצב משתנה. מאז הימים הראשונים של React הפתרון שלנו למקרים כאלה היה memoization ידני. ב-APIs הנוכחיים שלנו זה אומר ב-[useCallback](/reference/react/useMemo), [useMemo](/reference/react/useCallback), ו-[React](/reference/react/memo) כדי לכוונן יד_ מחדש כמה __. אבל memoization ידני הוא פשרה: הוא מעמיס על הקוד, קל לטעות בו, ודורש עבודה נוספת כדי לשמור אותו מעודכן.
 
-Manual memoization is a reasonable compromise, but we weren’t satisfied. Our vision is for React to *automatically* re-render just the right parts of the UI when state changes, *without compromising on React’s core mental model*. We believe that React’s approach — UI as a simple function of state, with standard JavaScript values and idioms — is a key part of why React has been approachable for so many developers. That’s why we’ve invested in building an optimizing compiler for React.
+memoization ידני הוא פשרה סבירה, אבל לא היינו מרוצים. החזון שלנו הוא ש-React ירנדר מחדש *אוטומטית* רק את החלקים הנכונים ב-UI כשמצב משתנה, *להתפשר על המודל המחשבתי המרכזי של React*. אנחנו מאמינים שהגישה של React, UI כפונקציה פשוטה של ​​מצב עם ערכי JavaScript סטנדרטיים ואידיומים מוכרים, היא חלק מרכזי בסיבה לכך ש-React נגיש לכל הרבה מפתחים. לכן השקענו בבניית מהדר אופטימיזציה עבור React.
 
-JavaScript is a notoriously challenging language to optimize, thanks to its loose rules and dynamic nature. React Compiler is able to compile code safely by modeling both the rules of JavaScript *and* the “rules of React”. For example, React components must be idempotent — returning the same value given the same inputs — and can’t mutate props or state values. These rules limit what developers can do and help to carve out a safe space for the compiler to optimize.
+JavaScript היא שפה מאתגרת במיוחד לאופטימיזציה בגלל החוקים הרופפים והאופי הדינמי שלה. React מהדר מסוגל לקמפל קוד בצורה בטוחה על ידי מודל של גם חוקי JavaScript *וגם* "החוקים של React". לדוגמה, קומנטות React חייבות להיות idempotent, כלומר להחזיר אותו לערך עבורם קלטים, ואסור להן לשנות props או ערכי state. החוקים האלה מגבילים מה מפתחים יכולים לעשות, וגם יוצרים מרחב בטוח שבו הקומפיילר יכול לבצע אופטימיזציה.
 
-Of course, we understand that developers sometimes bend the rules a bit, and our goal is to make React Compiler work out of the box on as much code as possible. The compiler attempts to detect when code doesn’t strictly follow React’s rules and will either compile the code where safe or skip compilation if it isn’t safe. We’re testing against Meta’s large and varied codebase in order to help validate this approach.
+כמובן, אנחנו מבינים שלפעמים מפתחים מכופפים את החוקים קצת, והמטרה שלנו היא ש-React מהדר יעבוד מהקופסה על כמה שיותר קוד. הקומפיילר מנסה לזהות מתי קוד לא עומד לגמרי בחוקי React, ואז או יקמפל אותו אם זה בטוח או ידלג על הקומפילציה אם זה לא בטוח. אנחנו בודקים מול בסיס הקוד ומגוון של Meta כדי לאמת את הגישה הזו.
 
-For developers who are curious about making sure their code follows React’s rules, we recommend [enabling Strict Mode](/reference/react/StrictMode) and [configuring React’s ESLint plugin](/learn/editor-setup#linting). These tools can help to catch subtle bugs in your React code, improving the quality of your applications today, and future-proofs your applications for upcoming features such as React Compiler. We are also working on consolidated documentation of the rules of React and updates to our ESLint plugin to help teams understand and apply these rules to create more robust apps.
+מפתחים שרוצים לוודא שהקוד עומד בחוקי React, אנחנו ממליצים [להפעיל Strict Mode](/reference/react/StrictMode) ו-[להגדיר את תוסף ESLint של React](/learn/editor-setup#linting). הכלים האלה יכולים לתפוס באגים עדינים בקוד React, לשפר את איכות האפליקציות כבר היום, ולחזק את לעתיד מול יכולות עתידיות כמו React מהדר. אנחנו גם עובדים על תיעוד מאוחד של חוקי React ועל עדכונים לתוסף ESLint כדי לעזור לצוותים להבין ולליישם את החוקים האלה ולבנות אפליקציות חזקות יותר.
 
-To see the compiler in action, you can check out our [talk from last fall](https://www.youtube.com/watch?v=qOQClO3g8-Y). At the time of the talk, we had early experimental data from trying React Compiler on one page of instagram.com. Since then, we shipped the compiler to production across instagram.com. We’ve also expanded our team to accelerate the rollout to additional surfaces at Meta and to open source. We’re excited about the path ahead and will have more to share in the coming months.
+כדי לראות את הקומפיילר בפעולה, אפשר לצפות ב-[הרצאה שלנו מהסתיו האחרון](https://www.youtube.com/watch?v=qOQClO3g8-Y). בזמן ההרצאה היו לנו נתונים ניסיוניים מוקדמים מניסיון React מהדר על עמוד אחד ב-instagram.com.
 
-## Actions {/*actions*/}
+## פעולות {/*actions*/}
 
+[שיתפנו בעבר](/blog/2023/03/22/react-labs-what-we-have-been-working-on-march-2023#react-server-components) אנו בוחנים פתרונות להעברת נתונים מהלקוח לשרת עם שרת פעולות, כך אפשר לבצע מוטציות במסד נתונים ולממש טפסים. על הפיתוח של פעולות שרת הרחבנו את ה-APIs האלה כדי לתמוך גם בטיפול בנתונים באפליקציות בלבד.
 
-We [previously shared](/blog/2023/03/22/react-labs-what-we-have-been-working-on-march-2023#react-server-components) that we were exploring solutions for sending data from the client to the server with Server Actions, so that you can execute database mutations and implement forms. During development of Server Actions, we extended these APIs to support data handling in client-only applications as well.
-
-We refer to this broader collection of features as simply "Actions". Actions allow you to pass a function to DOM elements such as [`<form/>`](/reference/react-dom/components/form):
+לקבוצת היכולות הרחבה הזו אנחנו קוראים פשוט "פעולות". פעולות המאפשרים להעביר פונקציה למרכיבים ב-DOM כמו [DOM](/reference/react-dom/components/form):
 
 ```js
 <form action={search}>
@@ -52,66 +51,66 @@ We refer to this broader collection of features as simply "Actions". Actions all
 </form>
 ```
 
-The `action` function can operate synchronously or asynchronously. You can define them on the client side using standard JavaScript or on the server with the  [`'use server'`](/reference/react/use-server) directive. When using an action, React will manage the life cycle of the data submission for you, providing hooks like [`useFormStatus`](/reference/react-dom/hooks/useFormStatus), and [`useFormState`](/reference/react-dom/hooks/useFormState) to access the current state and response of the form action. 
+הפונקציה `action` יכולה לפעול סינכרונית או אסינכרונית. אפשר להגדיר פעולות בצד הלקוח עם JavaScript רגיל או בצד השרת עם ההנחיה [JavaScript](/reference/react/use-server). כשמשתמשים ב-action, React מנהל עבור מחזור החיים שלכם ומספק הוקס כמו [React](/reference/react-dom/hooks/useFormStatus) ו-[use](/reference/react-dom/hooks/useFormState) כדי לפענח את המצב הנוכחי של היום.
 
-By default, Actions are submitted within a [transition](/reference/react/useTransition), keeping the current page interactive while the action is processing. Since Actions support async functions, we've also added the ability to use `async/await` in transitions. This allows you to show pending UI with the `isPending` state of a transition when an async request like `fetch` starts, and show the pending UI all the way through the update being applied. 
+כברירת מחדל, נשארות פעולות נשלחים בתוך [transition](/reference/react/useTransition), כך שהעמוד הנוכחי אינטראקטיבי בזמן פעילות מעובדת. באילו ש-פעולות תומכים בפונקציות אסינכרון, הוספנו גם אפשרות להשתמש ב-`async/await` בתוך מעברים. זה יכול להציג ממשק משתמש בהמתנה עם מצב `isPending` של להמשיך כשהבקשה האסינכרונית (כמו `fetch`) מתחילה, ולהמשיך להציג בהמתנה למשש משתמש עד שהעדכון מוחל.
 
-Alongside Actions, we're introducing a feature named [`useOptimistic`](/reference/react/useOptimistic) for managing optimistic state updates. With this hook, you can apply temporary updates that are automatically reverted once the final state commits. For Actions, this allows you to optimistically set the final state of the data on the client, assuming the submission is successful, and revert to the value for data received from the server. It works using regular `async`/`await`, so it works the same whether you're using `fetch` on the client, or a Server Action from the server.
+יחד עם פעולות אנחנו מציגים יכולת בשם [`async`](/reference/react/useOptimistic) לניהול עדכוני state אופטימיים. עם הוק זה אפשר להחיל עדכונים זמניים שחוזרים אוטומטית אחורה ברגע שהמצב הסופי נכתב. עבור פעולות, זה יכול לקבוע את המצב הסופי אפשרי בהנחה שהשליחה הצליחה, ולחזור לערך שהתקבל מהשרת אם צריך. זה עובד עם `async`/`await` רגיל, מתנהג אותו בין אם משתמשים ב-`fetch` בצד לקוח או ב-Server Action בצד השרת.
 
-Library authors can implement custom `action={fn}` props in their own components with `useTransition`. Our intent is for libraries to adopt the Actions pattern when designing their component APIs, to provide a consistent experience for React developers. For example, if your library provides a `<Calendar onSelect={eventHandler}>` component, consider also exposing a `<Calendar selectAction={action}>` API, too.
+מחברי ספריות יכולים לממש props מותאמים סטייל `action={fn}` בקומפוננטות שלהם עם `useTransition`. הכוונה שלנו היא ספריות יאמצו את דפוס פעולות בזמן תכנון APIs של קומפונטות, כדי לספק חוויה עקבית למפתחי React. לדוגמה, אם הספרייה שלכם מספקת קומפונטה `<Calendar onSelect={eventHandler}>`, שקלו לחשוף גם API של `<Calendar selectAction={action}>`.
 
-While we initially focused on Server Actions for client-server data transfer, our philosophy for React is to provide the same programming model across all platforms and environments. When possible, if we introduce a feature on the client, we aim to make it also work on the server, and vice versa. This philosophy allows us to create a single set of APIs that work no matter where your app runs, making it easier to upgrade to different environments later. 
+למרות שבתחילת הניתוח ב-Server Actions להעברת נתונים לקוח-שרת, הפילוסופיה שלנו ב-React היא מספקת אותו מודל תכנות בכל הפלטפורמה והסביבות. כשאפשר, אם אנחנו מציגים יכולת בצד הלקוח, אנחנו שואפים שתעבוד גם בשרת ולהפך. הפילוסופיה הזו יכולה ליצור סט APIs אחיד שעובד לא משנה איפה האפליקציה רצה, ומקלה על שדרוג לסביבות שונות.
 
-Actions are now available in the Canary channel and will ship in the next release of React.
+פעולות זמינים עכשיו בערוץ Canary ויישלחו בגרסת React הבאה.
 
-## New Features in React Canary {/*new-features-in-react-canary*/}
+## אפשר חדשות ב-React Canary {/*new-features-in-react-canary*/}
 
-We introduced [React Canaries](/blog/2023/05/03/react-canaries) as an option to adopt individual new stable features as soon as their design is close to final, before they’re released in a stable semver version. 
+הצגנו את [React Canaries](/blog/2023/05/03/react-canaries) כאפשרות לאמץ יכולות יציבות חדשות בודדות שהעיצוב שלהן קרוב לסופי, עוד שהן משתחררות בגרסת סבר יציבה.
 
-Canaries are a change to the way we develop React. Previously, features would be researched and built privately inside of Meta, so users would only see the final polished product when released to Stable. With Canaries, we’re building in public with the help of the community to finalize features we share in the React Labs blog series. This means you hear about new features sooner, as they’re being finalized instead of after they’re complete.
+Canaries הם שינויים באופן שבו אנחנו מפתחים את React. בעבר אפשר נחקרו ונבנו פנימית Meta, כך שמשתמשים ראו רק את התוצר בתוך המלוטש הסופי בזמן שוחרר ל-Stable. עם Canaries אנחנו בונים בפומבי בעזרת הקהילה בסדר כדי לסגור את האפשרות להשתלבות פוסטי React Labs. זה אומר שאתה שומעים על יכול להיות חדשות יותר, בזמן שהן נסגרות ולא רק אחרי שהכול הושלם.
 
-React Server Components, Asset Loading, Document Metadata, and Actions have all landed in the React Canary, and we've added docs for these features on react.dev:
+React רכיבי שרת, טעינת נכסים, מטא נתונים של מסמכים ו-Actions כבר נכנסו ל-React Canary, והוספנו תיעוד ליכולות האלה ב-react.dev:
 
-- **Directives**: [`"use client"`](/reference/react/use-client) and [`"use server"`](/reference/react/use-server) are bundler features designed for full-stack React frameworks. They mark the "split points" between the two environments: `"use client"` instructs the bundler to generate a `<script>` tag (like [Astro Islands](https://docs.astro.build/en/concepts/islands/#creating-an-island)), while `"use server"` tells the bundler to generate a POST endpoint (like [tRPC Mutations](https://trpc.io/docs/concepts)). Together, they let you write reusable components that compose client-side interactivity with the related server-side logic.
+- ** הנחיות**: [`"use client"`](/reference/react/use-client) ו-[`<script>`](/reference/react/use-server) יכולות לצרור שמיועדות ל-full-stack React frameworks. הן מסמנות את "נקודות הפיצול" בין שתי הסביבות: `"use client"` מנחה את הבאנדלר מניעה תגית `<script>` (בדומה ל-[איי אסטרו](https://docs.astro.build/en/concepts/islands/#creating-an-island)), ו-`"use server"` ו-`"use server"` אומר לבאנדלר שלב קצה חוזר של POST (דומה ל-__6)(https://docs.astro.build/en/concepts/islands/#creating-an-island)), ו-`"use server"` ו-`"use server"` אומר לבאנדלר שלב קצה חוזר של POST (דומה ל__6) המתאימה לשרת.
 
-- **Document Metadata**: we added built-in support for rendering [`<title>`](/reference/react-dom/components/title), [`<meta>`](/reference/react-dom/components/meta), and metadata [`<link>`](/reference/react-dom/components/link) tags anywhere in your component tree. These work the same way in all environments, including fully client-side code, SSR, and RSC. This provides built-in support for features pioneered by libraries like [React Helmet](https://github.com/nfl/react-helmet).
+- **Document Metadata**: הוספנו תמיכה מובנית ברינדור תגיות [https://github.com/nfl/react-helmet)](/reference/react-dom/components/title), [React](/reference/react-dom/components/meta), ו-[__TK_2__](/reference/react-dom/component) של met. הן עובדות אותו בכל הסביבה, כולל קוד לקוח מלא, SSR ו-RSC. כך מתקבלת תמיכה מובנית ביכולות ספריות כמו [React Helmet](https://github.com/nfl/react-helmet) הובילו בעבר.
 
-- **Asset Loading**: we integrated Suspense with the loading lifecycle of resources such as stylesheets, fonts, and scripts so that React takes them into account to determine whether the content in elements like [`<style>`](/reference/react-dom/components/style), [`<link>`](/reference/react-dom/components/link), and [`<script>`](/reference/react-dom/components/script) are ready to be displayed. We’ve also added new [Resource Loading APIs](/reference/react-dom#resource-preloading-apis) like `preload` and `preinit` to provide greater control for when a resource should load and initialize.
+- **טעינת נכסים**: שילבנו Suspense במחזור החיים של טעינת משאבים כמו גיליונות סגנונות, פונטים וסקריפים כך ש-React לוקח אותם בחשבון כדי לקבוע אם תוכן ברכיבים כמו [`preload`](/reference/react-dom/components/style), [`preinit`/react], [`preinit`](-dom/link), ו-[Suspense](/reference/react-dom/components/script) מוכן להצגה. הוספנו גם [Resource Loading APIs](/reference/react-dom#resource-preloading-apis) חדשים כמו `preload` ו-`preinit` כדי לאפשר שליטה טובה יותר מתי משאב צריך להיטען ולעבור את חול.
 
-- **Actions**: As shared above, we've added Actions to manage sending data from the client to the server. You can add `action` to elements like [`<form/>`](/reference/react-dom/components/form), access the status with [`useFormStatus`](/reference/react-dom/hooks/useFormStatus), handle the result with [`useFormState`](/reference/react-dom/hooks/useFormState), and optimistically update the UI with [`useOptimistic`](/reference/react/useOptimistic).
+- ** פעולות**: כפי ששיתפנו למעלה, הוספנו פעולות לניהול שליחת נתונים מהלקוח לשרת. אפשר להוסיף `action` לאלמנטים כמו [useOptimistic](/reference/react-dom/components/form), לגשת לסטטוס עם [use](/reference/react-dom/hooks/useFormStatus),להגיע עם [use](/reference/react-dom/hooks) אופטימי עם [__TK_4__](/reference/react/useOptimistic).
 
-Since all of these features work together, it’s difficult to release them in the Stable channel individually. Releasing Actions without the complementary hooks for accessing form states would limit the practical usability of Actions. Introducing React Server Components without integrating Server Actions would complicate modifying data on the server. 
+כל היכולות האלה עובדות יחד, קשה לשחרר את בנפרד בערוץ יציב. שחרור פעולות בלי ה-hooks המשלים לגישה למצב טויפס היה מגביל את הפעלת המעשי ב-Actions. הכנסת React רכיבי שרת בלי אינטגרציה של פעולות שרת הייתה מסבכת עדכוני נתונים בשרת.
 
-Before we can release a set of features to the Stable channel, we need to ensure they work cohesively and developers have everything they need to use them in production. React Canaries allow us to develop these features individually, and release the stable APIs incrementally until the entire feature set is complete.
+לפני שאפשר לשחרר, לוודא שהן עובדות יחד בצורה קוהרנטית ושיש מפתחים את כל מה שצריך כדי להשתמש בפרודקשן. React Canaries מאפשרים לנו לפתח את היכולות האלה בנפרד ולשחרר APIs יציבים בהדרגה עד שכל סט היכולות שלם.
 
-The current set of features in React Canary are complete and ready to release.
+סט היכולות הנוכחי ב-React Canary שלם ומוכן לשחרור.
 
-## The Next Major Version of React {/*the-next-major-version-of-react*/}
+## גרסת ה-major הבאה של React {/*the-next-major-version-of-react*/}
 
-After a couple of years of iteration, `react@canary` is now ready to ship to `react@latest`. The new features mentioned above are compatible with any environment your app runs in, providing everything needed for production use. Since Asset Loading and Document Metadata may be a breaking change for some apps, the next version of React will be a major version: **React 19**.
+אחרי כמה שנים של איטרציה, `react@canary` עכשיו להישלח ל-`react@latest`. היכולות החדשות שצוינו למעלה תואמות לכל הסביבה שבה האפליקציה שלכם רצה ומספקת את כל מה שנדרש לשימוש בפרודקשן. היכן ש-טעינת נכסים ו-Document Metadata יתבצע שינוי שובר עבור חלק מהאפליקציות, הגרסה הבאה של React תהיה גרסה עיקרית: **React 19**.
 
-There’s still more to be done to prepare for release. In React 19, we’re also adding long-requested improvements which require breaking changes like support for Web Components. Our focus now is to land these changes, prepare for release, finalize docs for new features, and publish announcements for what’s included.
+עדיין נשארה לעבודה לקראת השחרור. ב-React 19 אנחנו מציעים גם שיפורים מבוקשים שדורשים שינויים, כמו תמיכה ב-Web Components. הפוקוס שלנו עכשיו הוא להכניס את השינויים האלה, להכין את השחרור, לסיים את התיעוד ליכולות החדשות ולפרסם הכרזות על כל מה שנכלל.
 
-We’ll share more information about everything React 19 includes, how to adopt the new client features, and how to build support for React Server Components in the coming months.
+נשתף בימים הקרובים עוד מידע על מה ש-React 19 כולל, איך לאמץ את יכולה לרכוש את החדשות, ואיך לבנות כל תמיכה ב-React רכיבי שרת.
 
-## Offscreen (renamed to Activity). {/*offscreen-renamed-to-activity*/}
+## מחוץ למסך (שמו שונה ל-Activity) {/*offscreen-renamed-to-activity*/}
 
-Since our last update, we’ve renamed a capability we’re researching from “Offscreen” to “Activity”. The name “Offscreen” implied that it only applied to parts of the app that were not visible, but while researching the feature we realized that it’s possible for parts of the app to be visible and inactive, such as content behind a modal. The new name more closely reflects the behavior of marking certain parts of the app “active” or “inactive”.
+מאז העדכון הקודם שינינו שם ליכולת שלנו מחקר מ-"Offscreen" ל-"Activity". השם "מחוץ למסך" רמז שזה חל רק על חלקים באפליקציה שלא נראים, אבל תוך כדי מחקר הבניינים להיות חלקים גלויים אך לא פעילים, כמו התוכן נמצא מאחורי מודל. החדש השם ף טוב יותר את התנהגות סימון חלקים המשק באפליקציה כ-"פעיל" או "לא פעיל".
 
-Activity is still under research and our remaining work is to finalize the primitives that are exposed to library developers. We’ve deprioritized this area while we focus on shipping features that are more complete.
+פעילות במחקר, והעבודה שנותרה היא לסגור סופית את הנחשפים הפרימיטיביים למפתחי ספריות. הורדנו עדיפות זמניים לאזור זה בזמן שאנחנו עובדים בשחרור יכולים בשלות יותר.
 
 * * *
 
-In addition to this update, our team has presented at conferences and made appearances on podcasts to speak more on our work and answer questions.
+בנוסף לעדכון הזה, הצוות שלנו הרצה בכנסים והתארח בפודקאסטים כדי לדבר יותר על העבודה שלנו ולענות על שאלות.
 
-- [Sathya Gunasekaran](/community/team#sathya-gunasekaran) spoke about the React Compiler at the [React India](https://www.youtube.com/watch?v=kjOacmVsLSE) conference
+- [Sathya Gunasekaran](/community/team#sathya-gunasekaran) דיבר על React מהדר בכנס [React הודו](https://www.youtube.com/watch?v=kjOacmVsLSE)
 
-- [Dan Abramov](/community/team#dan-abramov) gave a talk at [RemixConf](https://www.youtube.com/watch?v=zMf_xeGPn6s) titled “React from Another Dimension” which explores an alternative history of how React Server Components and Actions could have been created
+- [Dan Abramov](/community/team#dan-abramov) נתן הרצאה ב-[RemixConf](https://www.youtube.com/watch?v=zMf_xeGPn6s) בשם "React from Another Dimension" שחוקרת היסטוריה חלופית של יצירת React רכיבי שרת ו-פעולות
 
-- [Dan Abramov](/community/team#dan-abramov) was interviewed on [the Changelog’s JS Party podcast](https://changelog.com/jsparty/311) about React Server Components
+- [דן אברמוב](/community/team#dan-abramov) התראיין ב-[פודקוסט JS Party של Changelog](https://changelog.com/jsparty/311) על React רכיבי שרת
 
-- [Matt Carroll](/community/team#matt-carroll) was interviewed on the [Front-End Fire podcast](https://www.buzzsprout.com/2226499/14462424-interview-the-two-reacts-with-rachel-nabors-evan-bacon-and-matt-carroll) where he discussed [The Two Reacts](https://overreacted.io/the-two-reacts/)
+- [Matt Carroll](/community/team#matt-carroll) התראיין ב-[פודקסט Front-End Fire](https://www.buzzsprout.com/2226499/14462424-interview-the-two-reacts-with-rachel-nabors-evan-bacon-and-matt-carroll) ושם דיבר על [The Two Reacts](https://overreacted.io/the-two-reacts/)
 
-Thanks [Lauren Tan](https://twitter.com/potetotes), [Sophie Alpert](https://twitter.com/sophiebits), [Jason Bonta](https://threads.net/someextent), [Eli White](https://twitter.com/Eli_White), and [Sathya Gunasekaran](https://twitter.com/_gsathya) for reviewing this post.
+תודה ל-[לורן טאן](https://twitter.com/potetotes), [סופי אלפרט](https://twitter.com/sophiebits), [ג'ייסון בונטה](https://threads.net/someextent), [אלי ווייט](https://twitter.com/Eli_White), ו[סאתיה גונאסקרן](https://twitter.com/_gsathya) על סקירת הפוסט הזה.
 
-Thanks for reading, and [see you at React Conf](https://conf.react.dev/)!
+תודה שקראתם, ו-[נתראה ב-React Conf](https://conf.react.dev/)!

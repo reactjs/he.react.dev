@@ -1,10 +1,10 @@
 ---
-title: createPortal
+title: "ליצור פורטל"
 ---
 
 <Intro>
 
-`createPortal` lets you render some children into a different part of the DOM.
+`createPortal` מאפשר לך להפוך חלק מהילדים לחלק אחר של DOM.
 
 
 ```js
@@ -20,11 +20,11 @@ title: createPortal
 
 ---
 
-## Reference {/*reference*/}
+## הפניה {/*reference*/}
 
 ### `createPortal(children, domNode, key?)` {/*createportal*/}
 
-To create a portal, call `createPortal`, passing some JSX, and the DOM node where it should be rendered:
+כדי ליצור פורטל, התקשר ל-`createPortal`, העברת כמה JSX, ואת הצומת DOM שבו יש להציג אותו:
 
 ```js
 import { createPortal } from 'react-dom';
@@ -40,35 +40,35 @@ import { createPortal } from 'react-dom';
 </div>
 ```
 
-[See more examples below.](#usage)
+[ראה דוגמאות נוספות למטה.](#usage)
 
-A portal only changes the physical placement of the DOM node. In every other way, the JSX you render into a portal acts as a child node of the React component that renders it. For example, the child can access the context provided by the parent tree, and events bubble up from children to parents according to the React tree.
+פורטל משנה רק את המיקום הפיזי של הצומת DOM. בכל דרך אחרת, ה-JSX שאתה מעבד לפורטל פועל כצומת צאצא של הרכיב React שמעבד אותו. לדוגמה, הילד יכול לגשת להקשר שמספק עץ האב, ואירועים מבעבעים מהילדים להורים לפי העץ React.
 
-#### Parameters {/*parameters*/}
+#### פרמטרים {/*parameters*/}
 
-* `children`: Anything that can be rendered with React, such as a piece of JSX (e.g. `<div />` or `<SomeComponent />`), a [Fragment](/reference/react/Fragment) (`<>...</>`), a string or a number, or an array of these.
+* `children`: כל דבר שניתן לעבד עם React, כמו חתיכה של JSX (למשל `<div />` או `<SomeComponent />`), [Fragment] (/reference/react/Fragment) (`<>...</>`), או מחרוזת או מערך.
 
-* `domNode`: Some DOM node, such as those returned by `document.getElementById()`. The node must already exist. Passing a different DOM node during an update will cause the portal content to be recreated.
+* `domNode`: צומת DOM כלשהו, ​​כגון אלו שהוחזרו על ידי `document.getElementById()`. הצומת חייב כבר להתקיים. העברת צומת DOM אחר במהלך עדכון תגרום לuse את תוכן הפורטל שייווצר מחדש.
 
-* **optional** `key`: A unique string or number to be used as the portal's [key.](/learn/rendering-lists/#keeping-list-items-in-order-with-key)
+* **אופציונלי** `key`: מחרוזת או מספר ייחודיים להיות used בתור [מפתח.](/learn/rendering-lists/#keeping-list-items-in-order-with-key)
 
-#### Returns {/*returns*/}
+#### מחזירה {/*returns*/}
 
-`createPortal` returns a React node that can be included into JSX or returned from a React component. If React encounters it in the render output, it will place the provided `children` inside the provided `domNode`.
+`createPortal` מחזירה צומת React שניתן לכלול ב-JSX או להחזירו מרכיב React. אם React נתקל בו בפלט העיבוד, הוא יציב את ה-`children` המסופק בתוך ה-`domNode` המסופק.
 
-#### Caveats {/*caveats*/}
+#### אזהרות {/*caveats*/}
 
-* Events from portals propagate according to the React tree rather than the DOM tree. For example, if you click inside a portal, and the portal is wrapped in `<div onClick>`, that `onClick` handler will fire. If this causes issues, either stop the event propagation from inside the portal, or move the portal itself up in the React tree.
+* אירועים מפורטלים מתפשטים לפי עץ React ולא עץ DOM. לדוגמה, אם תלחץ בתוך פורטל, והפורטל עטוף ב-`<div onClick>`, מטפל ה-`onClick` הזה יפעל. אם ה-causes בעיות, או עצור את הפצת האירועים מתוך הפורטל, או העבר את הפורטל עצמו למעלה בעץ React.
 
 ---
 
-## Usage {/*usage*/}
+## שימוש {/*usage*/}
 
-### Rendering to a different part of the DOM {/*rendering-to-a-different-part-of-the-dom*/}
+### עיבוד לחלק אחר של DOM {/*rendering-to-a-different-part-of-the-dom*/}
 
-*Portals* let your components render some of their children into a different place in the DOM. This lets a part of your component "escape" from whatever containers it may be in. For example, a component can display a modal dialog or a tooltip that appears above and outside of the rest of the page.
+*פורטלים* מאפשרים לרכיבים שלך להפוך חלק מהילדים שלהם למקום אחר ב-DOM. זה מאפשר לחלק מהרכיב שלך "לברוח" מכל מיכל שהוא נמצא בתוכם. לדוגמה, רכיב יכול להציג דו-שיח מודאלי או הסבר כלים המופיע מעל ומחוץ לשאר העמוד.
 
-To create a portal, render the result of `createPortal` with <CodeStep step={1}>some JSX</CodeStep> and the <CodeStep step={2}>DOM node where it should go</CodeStep>:
+כדי ליצור פורטל, עבד את התוצאה של `createPortal` עם <CodeStep step={1}>כמה JSX</CodeStep> והצומת <CodeStep step={2}>DOM לאן שהוא אמור להגיע</CodeStep>:
 
 ```js [[1, 8, "<p>This child is placed in the document body.</p>"], [2, 9, "document.body"]]
 import { createPortal } from 'react-dom';
@@ -86,9 +86,9 @@ function MyComponent() {
 }
 ```
 
-React will put the DOM nodes for <CodeStep step={1}>the JSX you passed</CodeStep> inside of the <CodeStep step={2}>DOM node you provided</CodeStep>.
+React ישים את הצמתים DOM עבור <CodeStep step={1}>JSX שהעברת</CodeStep> בתוך הצומת <CodeStep step={2}>DOM שסיפקת</CodeStep>.
 
-Without a portal, the second `<p>` would be placed inside the parent `<div>`, but the portal "teleported" it into the [`document.body`:](https://developer.mozilla.org/en-US/docs/Web/API/Document/body)
+ללא פורטל, `<p>` השני יוצב בתוך האב `<div>`, אבל הפורטל "טלפורט" אותו לתוך [`document.body`:](https://developer.mozilla.org/en-US/docs/Web/API/Document/body)
 
 <Sandpack>
 
@@ -110,7 +110,7 @@ export default function MyComponent() {
 
 </Sandpack>
 
-Notice how the second paragraph visually appears outside the parent `<div>` with the border. If you inspect the DOM structure with developer tools, you'll see that the second `<p>` got placed directly into the `<body>`:
+שימו לב כיצד הפסקה השנייה מופיעה חזותית מחוץ להורה `<div>` עם הגבול. אם תבדוק את מבנה DOM עם כלי מפתחים, תראה שה-`<p>` השני הוכנס ישירות ל-`<body>`:
 
 ```html {4-6,9}
 <body>
@@ -125,15 +125,15 @@ Notice how the second paragraph visually appears outside the parent `<div>` with
 </body>
 ```
 
-A portal only changes the physical placement of the DOM node. In every other way, the JSX you render into a portal acts as a child node of the React component that renders it. For example, the child can access the context provided by the parent tree, and events still bubble up from children to parents according to the React tree.
+פורטל משנה רק את המיקום הפיזי של הצומת DOM. בכל דרך אחרת, ה-JSX שאתה מעבד לפורטל פועל כצומת צאצא של הרכיב React שמעבד אותו. לדוגמה, הילד יכול לגשת להקשר שמספק עץ האב, ואירועים עדיין מבעבעים מהילדים להורים לפי העץ React.
 
 ---
 
-### Rendering a modal dialog with a portal {/*rendering-a-modal-dialog-with-a-portal*/}
+### עיבוד דו-שיח מודאלי עם פורטל {/*rendering-a-modal-dialog-with-a-portal*/}
 
-You can use a portal to create a modal dialog that floats above the rest of the page, even if the component that summons the dialog is inside a container with `overflow: hidden` or other styles that interfere with the dialog.
+אתה יכול use פורטל כדי ליצור דיאלוג מודאלי שצף מעל שאר העמוד, גם אם הרכיב שמזמן את הדיאלוג נמצא בתוך קונטיינר עם `overflow: hidden` או סגנונות אחרים שמפריעים לדיאלוג.
 
-In this example, the two containers have styles that disrupt the modal dialog, but the one rendered into a portal is unaffected because, in the DOM, the modal is not contained within the parent JSX elements.
+בדוגמה זו, לשני הקונטיינרים יש סגנונות שמשבשים את הדו-שיח המודאלי, אך זה שעובד לפורטל אינו מושפע מכיוון שuse, ב-DOM, המודאל אינו כלול ברכיבי האב JSX.
 
 <Sandpack>
 
@@ -238,17 +238,17 @@ export default function ModalContent({ onClose }) {
 
 <Pitfall>
 
-It's important to make sure that your app is accessible when using portals. For instance, you may need to manage keyboard focus so that the user can move the focus in and out of the portal in a natural way.
+חשוב לוודא שהאפליקציה שלך נגישה בעת שימוש בפורטלים. לדוגמה, ייתכן שתצטרך לנהל את מיקוד המקלדת כך שה-user יוכל להזיז את המיקוד פנימה והחוצה מהפורטל בצורה טבעית.
 
-Follow the [WAI-ARIA Modal Authoring Practices](https://www.w3.org/WAI/ARIA/apg/#dialog_modal) when creating modals. If you use a community package, ensure that it is accessible and follows these guidelines.
+פעל על פי [שיטות הכתיבה המודיות של WAI-ARIA](https://www.w3.org/WAI/ARIA/apg/#dialog_modal) בעת יצירת מודלים. אם אתה use חבילת קהילה, ודא שהיא נגישה ועוקבת אחר ההנחיות האלה.
 
 </Pitfall>
 
 ---
 
-### Rendering React components into non-React server markup {/*rendering-react-components-into-non-react-server-markup*/}
+### עיבוד רכיבי React לתוך סימון שרת שאינו React {/*rendering-react-components-into-non-react-server-markup*/}
 
-Portals can be useful if your React root is only part of a static or server-rendered page that isn't built with React. For example, if your page is built with a server framework like Rails, you can create areas of interactivity within static areas such as sidebars. Compared with having [multiple separate React roots,](/reference/react-dom/client/createRoot#rendering-a-page-partially-built-with-react) portals let you treat the app as a single React tree with shared state even though its parts render to different parts of the DOM.
+פורטלים יכולים להיות מלאים use אם השורש React שלך הוא רק חלק מדף סטטי או מעובד בשרת שאינו בנוי עם React. לדוגמה, אם הדף שלך בנוי עם מסגרת שרת כמו Rails, אתה יכול ליצור אזורים של אינטראקטיביות בתוך אזורים סטטיים כמו סרגלי צד. בהשוואה לפורטלים של [מספר שורשים נפרדים של React,](/reference/react-dom/client/createRoot#rendering-a-page-partially-built-with-react) מאפשרים לך להתייחס לאפליקציה כאל עץ React יחיד עם state משותף למרות שהחלקים שלה __T מעבדים __T שונים.
 
 <Sandpack>
 
@@ -342,15 +342,15 @@ p {
 
 ---
 
-### Rendering React components into non-React DOM nodes {/*rendering-react-components-into-non-react-dom-nodes*/}
+### עיבוד רכיבי React לצמתים שאינם React DOM {/*rendering-react-components-into-non-react-dom-nodes*/}
 
-You can also use a portal to manage the content of a DOM node that's managed outside of React. For example, suppose you're integrating with a non-React map widget and you want to render React content inside a popup. To do this, declare a `popupContainer` state variable to store the DOM node you're going to render into:
+אתה יכול גם use פורטל לניהול התוכן של צומת DOM המנוהל מחוץ ל-React. לדוגמה, נניח שאתה משתלב עם ווידג'ט מפה שאינו React וברצונך להציג תוכן React בתוך חלון קופץ. כדי לעשות זאת, הכריז על משתנה `popupContainer` state כדי לאחסן את הצומת DOM שאליו אתה הולך לרנדר:
 
 ```js
 const [popupContainer, setPopupContainer] = useState(null);
 ```
 
-When you create the third-party widget, store the DOM node returned by the widget so you can render into it:
+כאשר אתה יוצר את הווידג'ט של צד שלישי, אחסן את הצומת DOM שהוחזר על ידי הווידג'ט כדי שתוכל לעבד אותו:
 
 ```js {5-6}
 useEffect(() => {
@@ -363,7 +363,7 @@ useEffect(() => {
 }, []);
 ```
 
-This lets you use `createPortal` to render React content into `popupContainer` once it becomes available:
+זה מאפשר לך use `createPortal` לעבד תוכן React ל-`popupContainer` ברגע שהוא יהיה זמין:
 
 ```js {3-6}
 return (
@@ -376,7 +376,7 @@ return (
 );
 ```
 
-Here is a complete example you can play with:
+הנה דוגמה מלאה שתוכל לשחק איתה:
 
 <Sandpack>
 

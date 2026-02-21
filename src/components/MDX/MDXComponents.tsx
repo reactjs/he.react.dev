@@ -224,6 +224,8 @@ const IllustrationContext = React.createContext<{
   isInBlock: false,
 });
 
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
+
 function Illustration({
   caption,
   src,
@@ -238,12 +240,13 @@ function Illustration({
   authorLink: string;
 }) {
   const {isInBlock} = React.useContext(IllustrationContext);
+  const prefixedSrc = src.startsWith('/') ? basePath + src : src;
 
   return (
     <div className="relative group before:absolute before:-inset-y-16 before:inset-x-0 my-16 mx-0 2xl:mx-auto max-w-4xl 2xl:max-w-6xl">
       <figure className="my-8 flex justify-center">
         <img
-          src={src}
+          src={prefixedSrc}
           alt={alt}
           style={{maxHeight: 300}}
           className="rounded-lg"
@@ -275,23 +278,26 @@ function IllustrationBlock({
   const imageInfos = Children.toArray(children).map(
     (child: any) => child.props
   );
-  const images = imageInfos.map((info, index) => (
-    <figure key={index}>
-      <div className="bg-white rounded-lg p-4 flex-1 flex xl:p-6 justify-center items-center my-4">
-        <img
-          className="text-primary"
-          src={info.src}
-          alt={info.alt}
-          height={info.height}
-        />
-      </div>
-      {info.caption ? (
-        <figcaption className="text-secondary dark:text-secondary-dark text-center leading-tight mt-4">
-          {info.caption}
-        </figcaption>
-      ) : null}
-    </figure>
-  ));
+  const images = imageInfos.map((info, index) => {
+    const prefixed = info.src && info.src.startsWith('/') ? basePath + info.src : info.src;
+    return (
+      <figure key={index}>
+        <div className="bg-white rounded-lg p-4 flex-1 flex xl:p-6 justify-center items-center my-4">
+          <img
+            className="text-primary"
+            src={prefixed}
+            alt={info.alt}
+            height={info.height}
+          />
+        </div>
+        {info.caption ? (
+          <figcaption className="text-secondary dark:text-secondary-dark text-center leading-tight mt-4">
+            {info.caption}
+          </figcaption>
+        ) : null}
+      </figure>
+    );
+  });
   return (
     <IllustrationContext.Provider value={isInBlockTrue}>
       <div className="relative group before:absolute before:-inset-y-16 before:inset-x-0 my-16 mx-0 2xl:mx-auto max-w-4xl 2xl:max-w-6xl">

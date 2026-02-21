@@ -1,10 +1,10 @@
 ---
-title: React Blog
+title: "בלוג React"
 ---
 
 <Intro>
 
-This blog is the official source for the updates from the React team. Anything important, including release notes or deprecation notices, will be posted here first. You can also follow the [@reactjs](https://twitter.com/reactjs) account on Twitter, but you won’t miss anything essential if you only read this blog.
+הבלוג הזה הוא המקור הרשמי לעדכונים מצוות React. כל דבר חשוב, כולל הערות שחרור או הודעות על הוצאה משימוש, פרסם כאן קודם. אפשר גם לעקוב אחרי חשבון [@reactjs](https://twitter.com/reactjs) ב-Twitter, אבל לא תפספסו שום דבר מהותי גם אם תקראו רק את הבלוג הזה.
 
 </Intro>
 
@@ -12,70 +12,70 @@ This blog is the official source for the updates from the React team. Anything i
 
 <BlogCard title="React Labs: What We've Been Working On – February 2024" date="February 15, 2024" url="/blog/2024/02/15/react-labs-what-we-have-been-working-on-february-2024">
 
-In React Labs posts, we write about projects in active research and development. Since our last update, we've made significant progress on React Compiler, new features, and React 19, and we'd like to share what we learned.
+בפוסטים של React Labs אנחנו כותבים על פרויקטים שנמצאים במחקר ופיתוח פעילים. מאז העדכון הקודם שלנו התקדמנו ב-React מהדר, בפיצ'רים חדשים וב-React 19, ורצינו לשתף במה שלמדנו.
 
 </BlogCard>
 
 <BlogCard title="React Canaries: Incremental Feature Rollout Outside Meta" date="May 3, 2023" url="/blog/2023/05/03/react-canaries">
 
-Traditionally, new React features used to only be available at Meta first, and land in the open source releases later. We'd like to offer the React community an option to adopt individual new features as soon as their design is close to final--similar to how Meta uses React internally. We are introducing a new officially supported Canary release channel. It lets curated setups like frameworks decouple adoption of individual React features from the React release schedule.
+באופן טבעי, פיצ'רים חדשים של React היו זמינים קודם רק ב-Meta, ורק אחר כך הגיעו לגרסאות קוד פתוח. אנחנו לתת לקהילת React רוצים אפשרות לאמץ פיצ'רים חדשים בודדים שהעיצוב שלהם קרוב לגרסה, בדומה לאופן שבו מטה משתמשת ב-React פנימית. אז השקנו ערוץ שחרור Canary חדש שנתך רשמית. הוא יכול לסביבות מאורגנות כמו frameworks לנתק בין אימוץ פיצ'רים בודדים של React בלוח הזמנים של שחרורי React.
 
 </BlogCard>
 
 <BlogCard title="React Labs: What We've Been Working On – March 2023" date="March 22, 2023" url="/blog/2023/03/22/react-labs-what-we-have-been-working-on-march-2023">
 
-In React Labs posts, we write about projects in active research and development. Since our last update, we've made significant progress on React Server Components, Asset Loading, Optimizing Compiler, Offscreen Rendering, and Transition Tracing, and we'd like to share what we learned.
+בפוסטים של React Labs אנחנו כותבים על פרויקטים שנמצאים במחקר ופיתוח פעילים. מאז העדכון הקודם התקדמנו ב-React רכיבי שרת, טעינת נכסים, אופטימיזציית קומפיילר, עיבוד מחוץ למסך ו-Transition Tracing, ורצינו לשתף במה שלמדנו.
 
 </BlogCard>
 
 
 <BlogCard title="Introducing react.dev" date="March 16, 2023" url="/blog/2023/03/16/introducing-react-dev">
 
-Today we are thrilled to launch react.dev, the new home for React and its documentation. In this post, we would like to give you a tour of the new site.
+היום אנחנו נרגשים להשיק את react.dev, הבית החדש של React והתיעוד שלו. בפוסט הזה אנחנו נותנים סיור באתר החדש.
 
 </BlogCard>
 
 
 <BlogCard title="React Labs: What We've Been Working On – June 2022" date="June 15, 2022" url="/blog/2022/06/15/react-labs-what-we-have-been-working-on-june-2022">
-React 18 was years in the making, and with it brought valuable lessons for the React team. Its release was the result of many years of research and exploring many paths. Some of those paths were successful; many more were dead-ends that led to new insights. One lesson we’ve learned is that it’s frustrating for the community to wait for new features without having insight into these paths that we’re exploring...
+React 18 נבנתה לאורך שנים, ובדרך סיפקה לצוות React הרבה תובנות חשובות. השחרור שלה הוא תוצאה של שנים של מחקר ובחינה של מסלולים רבים. חלק מהמסלולים הצליחו; רבים אחרים היו מבוי סתום שהוביל לתובנות חדשות. אחד הדברים שלמדנו הוא שמתסכל את הקהילה להמתין לפיצ'רים חדשים בלי לראות את המסלולים שלנו בוחנים...
 </BlogCard>
 
 <BlogCard title="React v18.0" date="March 29, 2022" url="/blog/2022/03/29/react-v18">
-React 18 is now available on npm! In our last post, we shared step-by-step instructions for upgrading your app to React 18. In this post, we’ll give an overview of what’s new in React 18, and what it means for the future...
+React 18 זמינה עכשיו ב-npm! בפוסט הקודם שיתפנו הוראות שלב-אחר-שלב לשדרוג אפליקציה ל-React 18. בפוסט הזה ניתן סקירה של מה חדש ב-React 18 ומהו-פעולה לעתיד...
 </BlogCard>
 
 <BlogCard title="How to Upgrade to React 18" date="March 8, 2022" url="/blog/2022/03/08/react-18-upgrade-guide">
-As we shared in the release post, React 18 introduces features powered by our new concurrent renderer, with a gradual adoption strategy for existing applications. In this post, we will guide you through the steps for upgrading to React 18...
+כפי ששיתפנו בפוסט ההשקה, React 18 מציגים פיצ'רים שמופעלים על ידי ה-Concurrent renderer החדש שלנו, עם אסטרטגיית אימוץ הדרגתית לאפליקציות קיימות. בפוסט הזה נדריך אתכם בשדרוג ל-React 18...
 </BlogCard>
 
 <BlogCard title="React Conf 2021 Recap" date="December 17, 2021" url="/blog/2021/12/17/react-conf-2021-recap">
-Last week we hosted our 6th React Conf.  In previous years, we’ve used the React Conf stage to deliver industry changing announcements such as React Native and React Hooks. This year, we shared our multi-platform vision for React, starting with the release of React 18 and gradual adoption of concurrent features...
+בשבוע שעבר ערכנו את React Conf השישי שלנו. התקנת קודמות השתמשנו בבמה של React Conf כדי לפרסם הכרזות ששינו את התעשייה, כמו React Native ו-React Hooks. השנה שיתפנו את החזון הרב- פלטפורמה שלנו ל-React, החל מהשקת React 18 ועד לאימוץ הדרגתי של פיצ'רים מבוססי תוספתיות...
 </BlogCard>
 
 <BlogCard title="The Plan for React 18" date="June 8, 2021" url="/blog/2021/06/08/the-plan-for-react-18">
-The React team is excited to share a few updates:
+צוות React שמח לשתף כמה עדכונים:
 
-- We’ve started work on the React 18 release, which will be our next major version.
-- We’ve created a Working Group to prepare the community for gradual adoption of new features in React 18.
-- We’ve published a React 18 Alpha so that library authors can try it and provide feedback...
+- התחלנו לעבוד על React 18, שתהיה הגרסה הגדולה הבאה שלנו.
+-נו Working Group כדי להכין את הקהילה לאימוץ הדרגתי של פיצ'רים יצרנים חדשים ב-React 18.
+- פרסמנו React 18 אלפא כדי שמפתחי ספריות לנסות וללתת פידבק...
 </BlogCard>
 
 <BlogCard title="Introducing Zero-Bundle-Size React Server Components" date="December 21, 2020" url="/blog/2020/12/21/data-fetching-with-react-server-components">
-2020 has been a long year. As it comes to an end we wanted to share a special Holiday Update on our research into zero-bundle-size React Server Components. To introduce React Server Components, we have prepared a talk and a demo. If you want, you can check them out during the holidays, or later when work picks back up in the new year...
+שנת 2020 הייתה שנה ארוכה. לקראת סוף רצינו לשתף עדכון חגים מיוחד על המחקר שלנו בנושא React רכיבי שרת בגודל חבילה אפסי. כדי להציג את רכיבי שרת React הכנו הרצאה ודמו. אם תרצו, אפשר לעבור על החגים, או להמשיך כשחוזרים לשגרה בשנה החדשה...
 </BlogCard>
 
 </div>
 
 ---
 
-### All release notes {/*all-release-notes*/}
+### כל הערות השחרור {/*all-release-notes*/}
 
-Not every React release deserves its own blog post, but you can find a detailed changelog for every release in the [`CHANGELOG.md`](https://github.com/facebook/react/blob/main/CHANGELOG.md) file in the React repository, as well as on the [Releases](https://github.com/facebook/react/releases) page.
+לא כל שחרור של React מקבל פוסט משלו בבלוג, אבל אפשר למצוא changelog מפורט לכל שחרור בקובץ [`CHANGELOG.md`](https://github.com/facebook/react/blob/main/CHANGELOG.md) במאגר של React, וגם בעמוד [Releases](https://github.com/facebook/react/releases).
 
 ---
 
-### Older posts {/*older-posts*/}
+### פוסטים ישנים יותר {/*older-posts*/}
 
-See the [older posts.](https://reactjs.org/blog/all.html)
+ראו את [הפוסטים הישנים יותר.](https://reactjs.org/blog/all.html)
 
 <div className="h-12"></div>

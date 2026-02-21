@@ -1,25 +1,25 @@
 ---
-title: "State: A Component's Memory"
+title: "state: הזיכרון של קומפונטה"
 ---
 
 <Intro>
 
-Components often need to change what's on the screen as a result of an interaction. Typing into the form should update the input field, clicking "next" on an image carousel should change which image is displayed, clicking "buy" should put a product in the shopping cart. Components need to "remember" things: the current input value, the current image, the shopping cart. In React, this kind of component-specific memory is called *state*.
+רכיבים צריכים לעשות את מה שמופיע על המסך כמו מאינטראקציה. הקלדה בטופס אמורה לעדכן את שדה הקלט, לחיצה על "הבא" בקרוסלת תמונה אמורה לשנות איזו תמונה מוצגת, לחיצה על "קנה" אמורה להכניס קוד לעגלת הקניות. רכיבים צריכים "לזכור" דברים: ערך הקלט הנוכחית, התמונה הנוכחית, עגלת הקניות. ב-React, סוג זה של זיכרון מיוחד לרכיב נקרא *מצב*.
 
 </Intro>
 
 <YouWillLearn>
 
-* How to add a state variable with the [`useState`](/reference/react/useState) Hook
-* What pair of values the `useState` Hook returns
-* How to add more than one state variable
-* Why state is called local
+* איך להוסיף שינוי מצב עם ה- [`useState`](/reference/react/useState)
+* איזה צמד ערכים ה-'useState' מחזיר
+* כיצד להוסיף יותר ממשתנה מצב אחד
+*למה state נקראת מקומית
 
 </YouWillLearn>
 
-## When a regular variable isn’t enough {/*when-a-regular-variable-isnt-enough*/}
+## כאשר מדרג רגיל אינו מספיק {/*when-a-regular-variable-isnt-enough*/}
 
-Here's a component that renders a sculpture image. Clicking the "Next" button should show the next sculpture by changing the `index` to `1`, then `2`, and so on. However, this **won't work** (you can try it!):
+הנה רכיב שמציג תמונה של פיסול. לחיצה על כפתור "הבא" אמורה להציג את הפסל הבא על ידי שינוי ה'אינדקס' ל'1', ואז '2', וכן הלאה. עם זאת, זה **לא יעבוד** (תוכל לנסות את זה!):
 
 <Sandpack>
 
@@ -151,46 +151,46 @@ button {
 
 </Sandpack>
 
-The `handleClick` event handler is updating a local variable, `index`. But two things prevent that change from being visible:
+המטפל באירוע `handleClick` מעדכן ranking מקומי, `index`. אבל שני דברים מונעים מהשינוי הזה להיות גלוי:
 
-1. **Local variables don't persist between renders.** When React renders this component a second time, it renders it from scratch—it doesn't consider any changes to the local variables.
-2. **Changes to local variables won't trigger renders.** React doesn't realize it needs to render the component again with the new data.
+1. **משתנים מקומיים לא נמשכים בין רינדור.** כאשר React מעבד את הרכיב הזה פעם שנייה, הוא מעבד אותו מאפס - הוא לא מתחשב בשינויים במשתנים מקומיים.
+2. **שינויים במשתנים מקומיים לא יפעילו עיבודים.** React לא מבין שהיא צריכה לעבוד את הרכיב הזה עם החדשים.
 
-To update a component with new data, two things need to happen:
+כדי לעדכן רכיב בנתונים חדשים, צריכים לקרות שני דברים:
 
-1. **Retain** the data between renders.
-2. **Trigger** React to render the component with new data (re-rendering).
+1. **שמור** את הנתונים בין העיבודים.
+2. **טריגר** הגיבו לעיבוד הרכיב עם נתונים חדשים (עיבוד מחדש).
 
-The [`useState`](/reference/react/useState) Hook provides those two things:
+ה- [`useState`](/reference/react/useState) Hook מספק את שני הדברים האלה:
 
-1. A **state variable** to retain the data between renders.
-2. A **state setter function** to update the variable and trigger React to render the component again.
+1. **משתנה מצב** לשמירה על הנתונים בין העיבודים.
+2. **פונקציה קבועה מצב** לעדכון השינוי ולהפעיל את React כדי לעבד שוב את הרכיב.
 
-## Adding a state variable {/*adding-a-state-variable*/}
+## הוספת משתנה מצב {/*הוספת-מצב-משתנה*/}
 
-To add a state variable, import `useState` from React at the top of the file:
+כדי להוסיף שינוי מצב, ייבא 'useState' מ-React בחלק העליון של הקובץ:
 
 ```js
 import { useState } from 'react';
 ```
 
-Then, replace this line:
+לאחר מכן, החלף את השורה הזו:
 
 ```js
 let index = 0;
 ```
 
-with
+עִם
 
 ```js
 const [index, setIndex] = useState(0);
 ```
 
-`index` is a state variable and `setIndex` is the setter function.
+`index` הוא משתנה מצב ו-`setIndex` הוא פונקציית הקובע.
 
-> The `[` and `]` syntax here is called [array destructuring](https://javascript.info/destructuring-assignment) and it lets you read values from an array. The array returned by `useState` always has exactly two items.
+> התחביר `[` ו`]` כאן נקרא [destructuring array](https://javascript.info/destructuring-assignment) הוא יכול לקרוא ערכים ממערך. למערך המוחזר על ידי 'useState' יש תמיד בדיוק שני פריטים.
 
-This is how they work together in `handleClick`:
+כך הם עובדים יחד ב`handleClick`:
 
 ```js
 function handleClick() {
@@ -198,7 +198,7 @@ function handleClick() {
 }
 ```
 
-Now clicking the "Next" button switches the current sculpture:
+כעת לחיצה על כפתור "הבא" משנה את הפסל הנוכחי:
 
 <Sandpack>
 
@@ -331,57 +331,57 @@ button {
 
 </Sandpack>
 
-### Meet your first Hook {/*meet-your-first-hook*/}
+### פגוש את ה-Hook הראשון שלך {/*meet-your-first-hook*/}
 
-In React, `useState`, as well as any other function starting with "`use`", is called a Hook.
+ב-React, `useState`, כמו גם כל פונקציה שמתחילה ב-``use`", נקראת Hook.
 
-*Hooks* are special functions that are only available while React is [rendering](/learn/render-and-commit#step-1-trigger-a-render) (which we'll get into in more detail on the next page). They let you "hook into" different React features.
+*Hooks* הם פונקציות מיוחדות שזמינות רק בזמן ש-React הוא [rendering](/learn/render-and-commit#step-1-trigger-a-render) (עליהן ניכנס ביתר פירוט בעמוד הבא). הם מאפשרים לך "להתחבר" לתכונות שונות של React.
 
-State is just one of those features, but you will meet the other Hooks later.
+הstate היא רק אחת מהתכונות הללו, אבל תפגוש את הHooks אחרים מאוחר יותר.
 
 <Pitfall>
 
-**Hooks—functions starting with `use`—can only be called at the top level of your components or [your own Hooks.](/learn/reusing-logic-with-custom-hooks)** You can't call Hooks inside conditions, loops, or other nested functions. Hooks are functions, but it's helpful to think of them as unconditional declarations about your component's needs. You "use" React features at the top of your component similar to how you "import" modules at the top of your file.
+**Hooks — פונקציות שמתחילות ב-'use' — ניתן לקרוא רק ברמה העליונה של הרכיבים שלך או [Hooks משלך.](/learn/reusing-logic-with-custom-hooks)** אתה לא יכול לקרוא ל-Hooks בתוך תנאים, קוננות או פונקציות אחרות. ווים הם פונקציות, אבל כדאי לחשוב עליהם כעל הצהרות ללא תנאי לגבי הצרכים של הרכיב שלך. אתה "משתמש" בתכונות React בחלק העליון של הרכיב שלך בדומה לאופן שבו אתה "מייבא" מודולים בחלק העליון של הקובץ שלך.
 
 </Pitfall>
 
-### Anatomy of `useState` {/*anatomy-of-usestate*/}
+### האנטומיה של `useState` {/*anatomy-of-usestate*/}
 
-When you call [`useState`](/reference/react/useState), you are telling React that you want this component to remember something:
+אשרה קורא ל-[`useState`](/reference/react/useState), אתה אומר ל-React שאתה רוצה שהרכיב הזה יזכור משהו:
 
 ```js
 const [index, setIndex] = useState(0);
 ```
 
-In this case, you want React to remember `index`.
+במקרה זה, אתה רוצה ש-React תזכור את 'אינדקס'.
 
 <Note>
 
-The convention is to name this pair like `const [something, setSomething]`. You could name it anything you like, but conventions make things easier to understand across projects.
+המוסכמה היא לתת שם לזוג הזה כמו `const [משהו, setSomething]`. אתה יכול לקרוא לזה כל מה שאתה אוהב, אבל כמות מקלות על ההבנה של דברים בין פרויקטים.
 
 </Note>
 
-The only argument to `useState` is the **initial value** of your state variable. In this example, the `index`'s initial value is set to `0` with `useState(0)`. 
+הארגומנט היחיד ל-'useState' הוא **הערך ההתחלתי** של ranking הstate שלך. בדוגמה זו, הערך ההתחלתי של `אינדקס` מוגדר ל-`0` עם `useState(0)`.
 
-Every time your component renders, `useState` gives you an array containing two values:
+בכל פעם שהרכיב שלך מעבד, 'useState' נותן לך מערך המכיל שני ערכים:
 
-1. The **state variable** (`index`) with the value you stored.
-2. The **state setter function** (`setIndex`) which can update the state variable and trigger React to render the component again.
+1. **שינוי הstate** (`אינדקס`) עם הערך ששמרת.
+2. פונקציית ** מצב קובע** (`setIndex`) יכול לעדכן את ranking הstate ולהפעיל את React לעיבוד הרכיב שוב.
 
-Here's how that happens in action:
+הנה איך זה קורה בפעולה:
 
 ```js
 const [index, setIndex] = useState(0);
 ```
 
-1. **Your component renders the first time.** Because you passed `0` to `useState` as the initial value for `index`, it will return `[0, setIndex]`. React remembers `0` is the latest state value.
-2. **You update the state.** When a user clicks the button, it calls `setIndex(index + 1)`. `index` is `0`, so it's `setIndex(1)`. This tells React to remember `index` is `1` now and triggers another render.
-3. **Your component's second render.** React still sees `useState(0)`, but because React *remembers* that you set `index` to `1`, it returns `[1, setIndex]` instead.
-4. And so on!
+1. **הרכיב שלך מעבד בפעם הראשונה.** כשהעברת '0' ל'useState' כערך ההתחלתי של 'index', הוא יחזיר את '[0, setIndex]'. React זוכר ש'0' הוא ערך הstate האחרון.
+2. **אתה מעדכן את הstate.** כאשר משתמש לוחץ על הכפתור, הוא קורא `setIndex(index + 1)`. `index` הוא `0`, אז זה `setIndex(1)`. זה אומר ל-React לזכור ש'אינדקס' הוא '1' עכשיו ומפעיל רינדור נוסף.
+3. **הרינדור השני של הרכיב שלך.** React עדיין רואה את `useState(0)`, אך מה ש-React *חפש* שהגדרת `אינדקס` ל-`1`, הוא מחזיר במקום `[1, setIndex]`.
+4. וכן הלאה!
 
-## Giving a component multiple state variables {/*giving-a-component-multiple-state-variables*/}
+## מתן משתני מצב מרובים לרכיב {/*מתן-רכיב-משתני-מצב-מרובים*/}
 
-You can have as many state variables of as many types as you like in one component. This component has two state variables, a number `index` and a boolean `showMore` that's toggled when you click "Show details":
+אתה יכול לקבל כמה משתני מצב של כמה סוגים שאתה רוצה ברכיב אחד. לרכיב זה יש שני משתני מצב, 'אינדקס' מספר ו-'showMore' בוליאני שמופעל כאשר אתה לוחץ על "הצג פרטים":
 
 <Sandpack>
 
@@ -520,19 +520,19 @@ button {
 
 </Sandpack>
 
-It is a good idea to have multiple state variables if their state is unrelated, like `index` and `showMore` in this example. But if you find that you often change two state variables together, it might be easier to combine them into one. For example, if you have a form with many fields, it's more convenient to have a single state variable that holds an object than state variable per field. Read [Choosing the State Structure](/learn/choosing-the-state-structure) for more tips.
+זה רעיון טוב, כמו 'אינדקס' ו-'showMore' בדוגמה זו. אבל אם אתה מגלה שלעתים קשור אתה משנה שני משתני מצב ביחד, אולי יהיה קל יותר לשלב אותם לאחד. לדוגמה, אם יש לך מידע עם שדות רבים, נוח יותר לקבל את השינוי במצב יחיד שמכיל מעבר לשינוי מצב לכל שדה. קרא את [Choosing the State Structure](/learn/choosing-the-state-structure) לקבלת עצות נוספות.
 
 <DeepDive>
 
-#### How does React know which state to return? {/*how-does-react-know-which-state-to-return*/}
+#### איך React יודע לאיזה מצב לחזור? {/*איך-מגיב-יודע-איזה-state-להחזיר*/}
 
-You might have noticed that the `useState` call does not receive any information about *which* state variable it refers to. There is no "identifier" that is passed to `useState`, so how does it know which of the state variables to return? Does it rely on some magic like parsing your functions? The answer is no.
+אולי שמתם לב שהקריאה 'TK_1__' לא מקבלת שום מידע לגבי *__איזת. אין "מזהה" שמועבר ל`useState`, אז איך הוא יודע איזה ממשתני הstate להחזיר? האם זה מסתמך על קסם כמו ניתוח הפונקציות שלך? התשובה היא לא.
 
-Instead, to enable their concise syntax, Hooks **rely on a stable call order on every render of the same component.** This works well in practice because if you follow the rule above ("only call Hooks at the top level"), Hooks will always be called in the same order. Additionally, a [linter plugin](https://www.npmjs.com/package/eslint-plugin-react-hooks) catches most mistakes.
+במקום זאת, כדי לאפשר את התחביר התמציתי שלהם, Hooks **מסתמכים על סדר קריאה יציב על כל עיבוד של אותו רכיב.** זה עובד היטב עם שפעלו לפי הכלל שלמעלה ("התקשרו רק ל-Hooks ברמה העליונה"), Hooks תמיד ייקרא באותו סדר. בנוסף, [פלאגין linter](https://www.npmjs.com/package/eslint-plugin-react-hooks) תופס את רוב הטעויות.
 
-Internally, React holds an array of state pairs for every component. It also maintains the current pair index, which is set to `0` before rendering. Each time you call `useState`, React gives you the next state pair and increments the index. You can read more about this mechanism in [React Hooks: Not Magic, Just Arrays.](https://medium.com/@ryardley/react-hooks-not-magic-just-arrays-cd4f1857236e)
+באופן פנימי, React מחזיקה יותר של זוגות מצבים עבור כל רכיב. זה גם שומר על אינדקס זוגיות הנוכחית, שמוגדר ל-'0' לפני העיבוד. בכל פעם שאתה קורא 'useState', React נותן לך את הצמד הstates הבא ומגדיל את האינדקס. תוכל לקרוא עוד על המנגנון הזה ב-[React Hooks: Not Magic, Just Arrays.](https://medium.com/@ryardley/react-hooks-not-magic-just-arrays-cd4f1857236e)
 
-This example **doesn't use React** but it gives you an idea of how `useState` works internally:
+הדוגמה הזו **לא משתמשת ב-React** אבל היא נותנת לך מושג איך 'useState' עובד באופן פנימי:
 
 <Sandpack>
 
@@ -724,15 +724,15 @@ button { display: block; margin-bottom: 10px; }
 
 </Sandpack>
 
-You don't have to understand it to use React, but you might find this a helpful mental model.
+אתה לא צריך להבין את זה כדי להשתמש ב-React, אבל אתה יכול למצוא את זה מודל נפשי מועיל.
 
 </DeepDive>
 
-## State is isolated and private {/*state-is-isolated-and-private*/}
+## הstate מבודדת ופרטית {/*state-מבודדת-ופרטית*/}
 
-State is local to a component instance on the screen. In other words, **if you render the same component twice, each copy will have completely isolated state!** Changing one of them will not affect the other.
+הstate הוא מקומי למופע רכיב על המסך. במילים אחרים, **אם תעבדו את אותו רכיב, לכל עותק יהיה מצב מבודד לחלוטין!** שינוי אחד מהם לא ישפיע על השני.
 
-In this example, the `Gallery` component from earlier is rendered twice with no changes to its logic. Try clicking the buttons inside each of the galleries. Notice that their state is independent:
+בדוגמה זו, הרכיב 'גלריה' ממקודם מוצג ללא שינויים בבלוגיקה שלו. נסה ללחוץ על הכפתורים בתוך כל אחת מהגלריות. שימו לב שstate שלה עצמאית:
 
 <Sandpack>
 
@@ -891,21 +891,21 @@ button {
 
 </Sandpack>
 
-This is what makes state different from regular variables that you might declare at the top of your module. State is not tied to a particular function call or a place in the code, but it's "local" to the specific place on the screen. You rendered two `<Gallery />` components, so their state is stored separately.
+זה מה שעושה מצב שונה ממשתנים רגילים שאתה יכול להצהיר בראש המודול שלך. הstate לא קשורה לקריאת פונקציה מסוימת או למקום בקוד, אלא היא "מקומית" למקום הספציפי על המסך. הצגת שני רכיבי `<Gallery />`, כך שstate שלהם מאוחסן בנפרד.
 
-Also notice how the `Page` component doesn't "know" anything about the `Gallery` state or even whether it has any. Unlike props, **state is fully private to the component declaring it.** The parent component can't change it. This lets you add state to any component or remove it without impacting the rest of the components.
+שימו לב גם איך רכיב ה'דף' אינו "יודע" דבר על מצב ה'גלריה' או אפילו אם יש לו כזה. נדרש לprops, **מצב פרטי לחלוטין לרכיב המצהיר עליו.** רכיב האב לא יכול לשנות אותו. זה יכול לך להוסיף מצב לכל רכיב או לכלול אותו כדי להשפיע על שאר הרכיבים.
 
-What if you wanted both galleries to keep their states in sync? The right way to do it in React is to *remove* state from child components and add it to their closest shared parent. The next few pages will focus on organizing state of a single component, but we will return to this topic in [Sharing State Between Components.](/learn/sharing-state-between-components)
+מה אם היית רוצה ששתי הגלריות ישמרו על הstates שלהן מסונכרנים? הדרך הנכונה לעשות זאת ב-React. העמודים הבאים יעקבו בארגון מצב של רכיב בודד, אך נחזור לנושא זה ב-[Sharing State Between Components.](/learn/sharing-state-between-components)
 
 <Recap>
 
-* Use a state variable when a component needs to "remember" some information between renders.
-* State variables are declared by calling the `useState` Hook.
-* Hooks are special functions that start with `use`. They let you "hook into" React features like state.
-* Hooks might remind you of imports: they need to be called unconditionally. Calling Hooks, including `useState`, is only valid at the top level of a component or another Hook.
-* The `useState` Hook returns a pair of values: the current state and the function to update it.
-* You can have more than one state variable. Internally, React matches them up by their order.
-* State is private to the component. If you render it in two places, each copy gets its own state.
+* השתמש במשתנה מצב כאשר רכיב צריך "לזכור" מידע מסוים בין עיבודים.
+* משתני מצב מוכרזים על ידי קריאה ל-`useState` Hook.
+* ווים הם פונקציות מיוחדות שמתחילות ב'שימוש'. הם מאפשרים לך "להתחבר" לתכונות של React כמו מצב.
+* הHooks לחייב להזכיר לך יבוא: צריך לקרוא אותם ללא תנאי. מתקשר לHooks, כולל 'useState', תקף רק ברמה העליונה של רכיב או Hook אחר.
+* ה-`useState` Hook מחזיר ערכים זוג: הstate הנוכחי והפונקציה לעדכן אותו.
+* אתה יכול לקבל יותר משינוי מצב אחד. באופן פנימי, React מתאים להם לפי ההזמנה שלהם.
+* הstate היא פרטית לרכיב. אם תעבדו אותו בשני מקומות, כל עותק יקבל מצב משלו.
 
 </Recap>
 
@@ -913,11 +913,11 @@ What if you wanted both galleries to keep their states in sync? The right way to
 
 <Challenges>
 
-#### Complete the gallery {/*complete-the-gallery*/}
+#### השלם את הגלריה {/*השלם-הגלריה*/}
 
-When you press "Next" on the last sculpture, the code crashes. Fix the logic to prevent the crash. You may do this by adding extra logic to event handler or by disabling the button when the action is not possible.
+כאשר אתה לוחץ על "הבא" על הפסל האחרון, הקוד קורס. תקן את ההיגיון כדי למנוע את ההתרסקות. אתה יכול לעשות זאת על ידי הוספת היגיון נוסף למטפל באירועים או על ידי השבתת הכפתור כאשר הפעולה אינה אפשרית.
 
-After fixing the crash, add a "Previous" button that shows the previous sculpture. It shouldn't crash on the first sculpture.
+לאחר תיקון ההתרסקות, הוסף כפתור "קודם" המציג את הפסל הקודם. זה לא אמור להתרסק על הפסל הראשון.
 
 <Sandpack>
 
@@ -1059,7 +1059,7 @@ img { width: 120px; height: 120px; }
 
 <Solution>
 
-This adds a guarding condition inside both event handlers and disables the buttons when needed:
+זה מוסיף מצב שמירה בשני מטפלי האירועים ומשבית את הכפתורים בעת הצורך:
 
 <Sandpack>
 
@@ -1219,13 +1219,13 @@ img { width: 120px; height: 120px; }
 
 </Sandpack>
 
-Notice how `hasPrev` and `hasNext` are used *both* for the returned JSX and inside the event handlers! This handy pattern works because event handler functions ["close over"](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures) any variables declared while rendering.
+שימו לב איך `hasPrev` ו-`hasNext` משתמשים *גם* עבור ה-JSX המוחזר וגם בתוך רופאים! הדפוס שימושי הזה עובד שמטפל באירועים מתפקד ["סגור מעל"](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures) כל משתנים שהוכרזו בזמן העיבוד.
 
 </Solution>
 
-#### Fix stuck form inputs {/*fix-stuck-form-inputs*/}
+#### תקן כניסות טפסים תקועים {/*fix-stuck-form-inputs*/}
 
-When you type into the input fields, nothing appears. It's like the input values are "stuck" with empty strings. The `value` of the first `<input>` is set to always match the `firstName` variable, and the `value` for the second `<input>` is set to always match the `lastName` variable. This is correct. Both inputs have `onChange` event handlers, which try to update the variables based on the latest user input (`e.target.value`). However, the variables don't seem to "remember" their values between re-renders. Fix this by using state variables instead.
+כאשר אתה מקליד בשדות הקלט, שום דבר לא מופיע. זה ערכי הקלט "תקועים" עם מחרוזות כאילו. ה-'value' של ה-`<input>` הראשון מוגדר כך שיתאים תמיד לשינוי 'firstName', וה-'value' עבור ה-`<input>` השני מוגדר כך שיתאים תמיד לרישום 'שם משפחה'. זה נכון. לשני הקלטים יש מטפלי אירועים 'onChange', שמנסים לעדכן את המשתנים על סמך הקלט האחרון של המשתמש ('e.target.value'). עם זאת, נראה שהמשתנים לא "חפשים" את הערכים שלהם בין עיבוד מחדש. תקן זאת על ידי שימוש במשתני מצב במקום זאת.
 
 <Sandpack>
 
@@ -1274,7 +1274,7 @@ h1 { margin-top: 10px; }
 
 <Solution>
 
-First, import `useState` from React. Then replace `firstName` and `lastName` with state variables declared by calling `useState`. Finally, replace every `firstName = ...` assignment with `setFirstName(...)`, and do the same for `lastName`. Don't forget to update `handleReset` too so that the reset button works.
+ראשית, ייבא 'useState' מ-React. לאחר שהחלף את `firstName` ו`lastName` במשתני מצב שבו כרזו על ידי קריאה ל-`useState`. לבסוף, החלף כל הקצאת `firstName = ...` ב-`setFirstName(...)`, ועשה את זה עבור `lastName`. אל תשכח לעדכן גם את `handleReset` כדי שכפתור האיפוס יפעל.
 
 <Sandpack>
 
@@ -1325,13 +1325,13 @@ h1 { margin-top: 10px; }
 
 </Solution>
 
-#### Fix a crash {/*fix-a-crash*/}
+#### תיקון קריסה {/*תיקון-התרסקות*/}
 
-Here is a small form that is supposed to let the user leave some feedback. When the feedback is submitted, it's supposed to display a thank-you message. However, it crashes with an error message saying "Rendered fewer hooks than expected". Can you spot the mistake and fix it?
+הנה טופס קטן שאמור לאפשר למשתמש להשאיר קצת משוב. כאשר המשוב נשלח, הוא אמור להציג הודעת תודה. עם זאת, הוא קורס עם הודעת שגיאה האומרת "נתן פחות ווים מהצפוי". האם תוכל לזהות את הטעות ולתקן אותה?
 
 <Hint>
 
-Are there any limitations on _where_ Hooks may be called? Does this component break any rules? Check if there are any comments disabling the linter checks--this is where the bugs often hide!
+האם יש מגבלות על _היכן_ ניתן לקרוא לHooks? האם הרכיב הזה? בדוק אם יש הערות כלשהן שמות את בדיקות ה-Bellinter--זה המקום שבו הבאגים מתחבאים בשטח!
 
 </Hint>
 
@@ -1370,9 +1370,9 @@ export default function FeedbackForm() {
 
 <Solution>
 
-Hooks can only be called at the top level of the component function. Here, the first `isSent` definition follows this rule, but the `message` definition is nested in a condition.
+ניתן לקרוא לHooks רק ברמה העליונה של פונקציית הרכיב. כאן, ה'isSent' הראשונה עוקבת אחר הכלל הזה, אבל ההודעה' מקוננת בתנאי.
 
-Move it out of the condition to fix the issue:
+הזז אותו מstate כדי לתקן את הבעיה:
 
 <Sandpack>
 
@@ -1407,9 +1407,9 @@ export default function FeedbackForm() {
 
 </Sandpack>
 
-Remember, Hooks must be called unconditionally and always in the same order!
+זכור, הHooks חייב להיקרא ללא תנאי ותמיד באותו סדר!
 
-You could also remove the unnecessary `else` branch to reduce the nesting. However, it's still important that all calls to Hooks happen *before* the first `return`.
+אתה יכול גם להוציא את הענף 'אחר' המיותר כדי להפחית את הקינון. עם זאת, עדיין חשוב שכל הקריאות לHooks יתרחשו *לפני* ה'חזרה' הראשונה.
 
 <Sandpack>
 
@@ -1444,19 +1444,19 @@ export default function FeedbackForm() {
 
 </Sandpack>
 
-Try moving the second `useState` call after the `if` condition and notice how this breaks it again.
+נסה להעביר את הקריאה 'useState' השנייה אחרי תנאי ה-'if' ושם לב איך זה שובר אותה.
 
-If your linter is [configured for React](/learn/editor-setup#linting), you should see a lint error when you make a mistake like this. If you don't see an error when you try the faulty code locally, you need to set up linting for your project. 
+אם ה-linter שלך [מוגדר עבור React](/learn/editor-setup#linting), אתה אמור לראות שגיאת ממך עושה טעות כזו. אם אינך רואה שגיאה כאשר אתה מנסה את הקוד הפגום מקומי, עליך להגדיר מוך עבור הפרויקט שלך.
 
 </Solution>
 
-#### Remove unnecessary state {/*remove-unnecessary-state*/}
+#### הסר מצב מיותר {/*remove-unecessary-state*/}
 
-When the button is clicked, this example should ask for the user's name and then display an alert greeting them. You tried to use state to keep the name, but for some reason it always shows "Hello, !".
+כאשר לוחצים על הכפתור, דוגמה זו צריכה לבקש את שם המשתמש היכנס להציג את התראה המברכת אותו. ניסית להשתמש ב-state כדי לשמור על השם, אבל מסיבה שהיא תמיד מראה "שלום, !".
 
-To fix this code, remove the unnecessary state variable. (We will discuss about [why this didn't work](/learn/state-as-a-snapshot) later.)
+כדי לתקן את הקוד הזה, הסר את מדרג הstate המיותר. (נדבר על [למה זה לא עבד](/learn/state-as-a-snapshot) מאוחר יותר.)
 
-Can you explain why this state variable was unnecessary?
+האם אתה יכול להסביר למה לעצב את הstate הזה היה מיותר?
 
 <Sandpack>
 
@@ -1483,7 +1483,7 @@ export default function FeedbackForm() {
 
 <Solution>
 
-Here is a fixed version that uses a regular `name` variable declared in the function that needs it:
+הנה גרסה קבועה שמשתמשת במשתנה `שם` רגיל המוצהר בפונקציה שצריכה אותו:
 
 <Sandpack>
 
@@ -1504,8 +1504,9 @@ export default function FeedbackForm() {
 
 </Sandpack>
 
-A state variable is only necessary to keep information between re-renders of a component. Within a single event handler, a regular variable will do fine. Don't introduce state variables when a regular variable works well.
+משתנה מצב נחוץ רק כדי לשמור מידע בין עיבודים חוזרים של רכיב. בתוך מטפל באירוע בודד, משתנה רגיל יצליח. אל תציג משתני מצב כאשר משתנה רגיל עובד היטב.
 
 </Solution>
 
 </Challenges>
+

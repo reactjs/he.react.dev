@@ -1,10 +1,10 @@
 ---
-title: "<progress>"
+title: "<התקדמות>"
 ---
 
 <Intro>
 
-The [built-in browser `<progress>` component](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/progress) lets you render a progress indicator.
+רכיב הדפדפן המובנה [`<progress>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/progress) יכול לרנדר מחוון התקדמות.
 
 ```js
 <progress value={0.5} />
@@ -16,36 +16,36 @@ The [built-in browser `<progress>` component](https://developer.mozilla.org/en-U
 
 ---
 
-## Reference {/*reference*/}
+## הפניה {/*reference*/}
 
 ### `<progress>` {/*progress*/}
 
-To display a progress indicator, render the [built-in browser `<progress>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/progress) component.
+כדי להציג מחוון התקדמות, רנדרו את רכיב הדפדפן המובנה [`<progress>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/progress).
 
 ```js
 <progress value={0.5} />
 ```
 
-[See more examples below.](#usage)
+[עוד דוגמאות נוספות.](#usage)
 
-#### Props {/*props*/}
+#### אבזרים {/*props*/}
 
-`<progress>` supports all [common element props.](/reference/react-dom/components/common#props)
+`<progress>` תומך בכל [מאפייני האלמנט הנפוצים.](/reference/react-dom/components/common#props)
 
-Additionally, `<progress>` supports these props:
+בנוסף, `<progress>` תומך ב-props האלה:
 
-* [`max`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/progress#max): A number. Specifies the maximum `value`. Defaults to `1`.
-* [`value`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/progress#value): A number between `0` and `max`, or `null` for indeterminate progress. Specifies how much was done.
+* [`max`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/progress#max): מספר. מציין את הערך ה-`value` המקסימלי. ברירת המחדל היא `1`.
+* [`value`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/progress#value): מספר בין `0` ל-`max`, או `null` להתקדמות לא-מוגדרת. מציין כמה כבר הושלם.
 
 ---
 
-## Usage {/*usage*/}
+## שימוש {/*usage*/}
 
-### Controlling a progress indicator {/*controlling-a-progress-indicator*/}
+### שליטה במחוון התקדמות {/*controlling-a-progress-indicator*/}
 
-To display a progress indicator, render a `<progress>` component. You can pass a number `value` between `0` and the `max` value you specify. If you don't pass a `max` value, it will assumed to be `1` by default.
+כדי להציג מחוון התקדמות, רנדרו קומפונטת `<progress>`. אפשר להעביר מספר ב-`value` בין `0` לערך ה-`max` שתגדירו. אם לא תעבירו `max`, ברירת המחדל תהיה `1`.
 
-If the operation is not ongoing, pass `value={null}` to put the progress indicator into an indeterminate state.
+אם פעולה אינה מתקדמת כרגע, העבירו `value={null}` כדי להעביר את מחוון ההתקדמות מצב לא-מוגדר.
 
 <Sandpack>
 

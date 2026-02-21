@@ -1,17 +1,17 @@
 ---
-title: useFormState
+title: "useFormState"
 canary: true
 ---
 
 <Canary>
 
-The `useFormState` Hook is currently only available in React's Canary and experimental channels. Learn more about [release channels here](/community/versioning-policy#all-release-channels). In addition, you need to use a framework that supports [React Server Components](/reference/react/use-client) to get the full benefit of `useFormState`.
+ה-Hook `useFormState` זמין כרגע רק בערוצי Canary ו-experimental של React. מידע נוסף ב-[ערוצי שחרור](/community/versioning-policy#all-release-channels). בנוסף, צריך להשתמש ב-framework שתומך ב-[React רכיבי שרת](/reference/react/use-client) כדי לקבל את מלוא התועלת מ-`useFormState`.
 
 </Canary>
 
 <Intro>
 
-`useFormState` is a Hook that allows you to update state based on the result of a form action.
+`useFormState` הוא Hook שמאפשר לעדכן state על בסיס תוצאת פעולה של טופס.
 
 ```js
 const [state, formAction] = useFormState(fn, initialState, permalink?);
@@ -23,13 +23,13 @@ const [state, formAction] = useFormState(fn, initialState, permalink?);
 
 ---
 
-## Reference {/*reference*/}
+## הפניה {/*reference*/}
 
 ### `useFormState(action, initialState, permalink?)` {/*useformstate*/}
 
 {/* TODO T164397693: link to actions documentation once it exists */}
 
-Call `useFormState` at the top level of your component to create component state that is updated [when a form action is invoked](/reference/react-dom/components/form). You pass `useFormState` an existing form action function as well as an initial state, and it returns a new action that you use in your form, along with the latest form state. The latest form state is also passed to the function that you provided.
+קראו ל-`useFormState` ברמה העליונה של הקומפוננטה כדי ליצור state לקומפוננטה שמתעדכן [כשפעולת טופס מופעלת](/reference/react-dom/components/form). אתם מעבירים ל-`useFormState` פונקציית טופס פעולה קיים יחד עם state התחלתי, והפונקציה מחזירה פעולה חדשה שתשתמשו בה בטופס, יחד עם מצב הטופס העדכני ביותר. מצב הטופס העדכני גם מועבר לפונקציה שסיפקתם.
 
 ```js
 import { useFormState } from "react-dom";
@@ -49,39 +49,39 @@ function StatefulForm({}) {
 }
 ```
 
-The form state is the value returned by the action when the form was last submitted. If the form has not yet been submitted, it is the initial state that you pass.
+מצב הטופס הוא הערך שמוחזר מה-פעולה כשהטופס התפרסם לאחרונה. אם הטופס עדיין לא הוגש, זה יהיה ה-state ההתחלה שהעברתם.
 
-If used with a Server Action, `useFormState` allows the server's response from submitting the form to be shown even before hydration has completed.
+בשימוש עם Server Action, ‏`useFormState` יכול להציע את תגובת השרת מהגשת הטופס עוד לפני שה-hydration הושלם.
 
-[See more examples below.](#usage)
+[עוד דוגמאות נוספות.](#usage)
 
-#### Parameters {/*parameters*/}
+#### פרמטרים {/*parameters*/}
 
-* `fn`: The function to be called when the form is submitted or button pressed. When the function is called, it will receive the previous state of the form (initially the `initialState` that you pass, subsequently its previous return value) as its initial argument, followed by the arguments that a form action normally receives.
-* `initialState`: The value you want the state to be initially. It can be any serializable value. This argument is ignored after the action is first invoked.
-* **optional** `permalink`: A string containing the unique page URL that this form modifies. For use on pages with dynamic content (eg: feeds) in conjunction with progressive enhancement: if `fn` is a [server action](/reference/react/use-server) and the form is submitted before the JavaScript bundle loads, the browser will navigate to the specified permalink URL, rather than the current page's URL. Ensure that the same form component is rendered on the destination page (including the same action `fn` and `permalink`) so that React knows how to pass the state through. Once the form has been hydrated, this parameter has no effect.
+* `fn`: הפונקציה שתיקרא כששולחים את הטופס או לוחצים על כפתור. כשהפונקציה נקראת, היא מקבלת את מצב הטופס הקודם (בהתחלה ה-`initialState` העברתם, ובהמשך ערך ההחזרה הקודם שלה) כארגומנט ראשון, ואז את הארגומנטים ש-form action מקבלת בדרך כלל.
+* `initialState`: הערך שתרצו שיהיה במצב בתחילה. הוא יכול להיות כל ערך לסריאליזציה. מתעלמים מהארגומנט הזה אחרי הפעלת הפעולה בפעם הראשונה.
+* **אופציונלי** `permalink`: מחרוזת שמכילה את כתובת האתר העמוד הייחודי שהטופס הזה משנה. מיועדים עם תוכן דינמי (פיד) עם שיפור פרוגרסיבי: אם `fn` [פעולת שרת](/reference/react/use-server) והטופס נשלח לפני ש-JavaScript bundleten, הדפדפן הפונה ל-URL יחד של ה-permalink שצוין במקום ל-URL של העמוד הנוכחי. ודאו שאותה קומפונטת טופס מרונדרת בעמוד היעד (כולל פעולה אותה `fn` ואותו `permalink`) כדי ש-React תדע להעביר את המצב. אחרי שהטופס עובר הידרציה, לפרמטר הזה אין מעורב.
 
 {/* TODO T164397693: link to serializable values docs once it exists */}
 
-#### Returns {/*returns*/}
+#### מחזירה {/*returns*/}
 
-`useFormState` returns an array with exactly two values:
+`useFormState` חזירה מערך עם שני ערכים בדיוק:
 
-1. The current state. During the first render, it will match the `initialState` you have passed. After the action is invoked, it will match the value returned by the action.
-2. A new action that you can pass as the `action` prop to your `form` component or `formAction` prop to any `button` component within the form.
+1. הנוכחי הנוכחי. בזמן הרינדור הראשון הוא יתאים ל-`initialState` שהעברתם. אחרי שהפעולה הופנתה, הוא יתאים לערך שהוא חזר מהפעולה.
+2. פעולה חדשה שאפשר להעביר כ-prop בשם `action` לקומפוננטת `form` שלכם, או כ-prop בשם `formAction` לכל קומפונטת `button` בתוך הטופס.
 
-#### Caveats {/*caveats*/}
+#### אזהרות {/*caveats*/}
 
-* When used with a framework that supports React Server Components, `useFormState` lets you make forms interactive before JavaScript has executed on the client. When used without Server Components, it is equivalent to component local state.
-* The function passed to `useFormState` receives an extra argument, the previous or initial state, as its first argument. This makes its signature different than if it were used directly as a form action without using `useFormState`.
+* כשמשתמשים משתמשים שתומכת ב-React רכיבי שרת, `useFormState` יכול להפוך טפסים לאינטראקטיביים עוד לפני ש-JavaScript בוצע בלקוח. בשימוש בלי רכיבי שרת, זה שקול ל-state מקומי של קומפונטה.
+* הפונקציה שמועברת ל-`useFormState` מקבלת ארגומנט נוסף — ה-state הקודם או ההתחלה — כארגומנט ראשון. החתימה שלה שונה מאשר שימוש ישיר בה כ-form action בלי `useFormState`.
 
 ---
 
-## Usage {/*usage*/}
+## שימוש {/*usage*/}
 
-### Using information returned by a form action {/*using-information-returned-by-a-form-action*/}
+### שימוש במידע שמוחזר מפעולת טופס {/*using-information-returned-by-a-form-action*/}
 
-Call `useFormState` at the top level of your component to access the return value of an action from the last time a form was submitted.
+קראו ל-`useFormState` ברמה העליונה של הקומפוננטה כדי לגשת לערך ההחזרה של פעולה מהפעם האחרונה שהטופס הזמין.
 
 ```js [[1, 5, "state"], [2, 5, "formAction"], [3, 5, "action"], [4, 5, "null"], [2, 8, "formAction"]]
 import { useFormState } from 'react-dom';
@@ -98,14 +98,14 @@ function MyComponent() {
 }
 ```
 
-`useFormState` returns an array with exactly two items:
+`useFormState` מחזירה מערך עם שני פריטים בדיוק:
 
-1. The <CodeStep step={1}>current state</CodeStep> of the form, which is initially set to the <CodeStep step={4}>initial state</CodeStep> you provided, and after the form is submitted is set to the return value of the <CodeStep step={3}>action</CodeStep> you provided.
-2. A <CodeStep step={2}>new action</CodeStep> that you pass to `<form>` as its `action` prop.
+1. ה-<CodeStep step={1}>state הנוכחי</CodeStep> של הטופס. בתחילה הוא מוגדר ל-<CodeStep step={4}>state ההתחלתי</CodeStep> שסיפקתם, ואחרי הגשת הטופס הוא מוגדר לערך ההחזרה של ה-<CodeStep step={3}>action</CodeStep>.
+2. <CodeStep step={2}>פעולה חדשה</CodeStep> שאתם מעבירים ל-`form` כ-prop בשם `action`.
 
-When the form is submitted, the <CodeStep step={3}>action</CodeStep> function that you provided will be called. Its return value will become the new <CodeStep step={1}>current state</CodeStep> of the form.
+כשהטופס נשלח, פונקציית ה-<CodeStep step={3}>action</CodeStep> שסיפקתם תיקרא. ערך ההחזרה שלה יהפוך ל-<CodeStep step={1}>state הנוכחי</CodeStep> החדש של הטופס.
 
-The <CodeStep step={3}>action</CodeStep> that you provide will also receive a new first argument, namely the <CodeStep step={1}>current state</CodeStep> of the form. The first time the form is submitted, this will be the <CodeStep step={4}>initial state</CodeStep> you provided, while with subsequent submissions, it will be the return value from the last time the action was called. The rest of the arguments are the same as if `useFormState` had not been used.
+ה-<CodeStep step={3}>action</CodeStep> שסיפקתם תקבל גם ארגומנט ראשון חדש: ה-<CodeStep step={1}>state הנוכחי</CodeStep> של הטופס. בפעם הראשונה שהטופס נשלח, זה יהיה ה-<CodeStep step={4}>state ההתחלה</CodeStep> שסיפקתם; בשליחות הבאות, זה יהיה ערך ההחזרה מהפעם הקודמת שהפעולה נקראה. שאר הארגומנטים זהים במצב שבו `useFormState` לא הייתה בשימוש.
 
 ```js [[3, 1, "action"], [1, 1, "currentState"]]
 function action(currentState, formData) {
@@ -116,9 +116,9 @@ function action(currentState, formData) {
 
 <Recipes titleText="Display information after submitting a form" titleId="display-information-after-submitting-a-form">
 
-#### Display form errors {/*display-form-errors*/}
+#### הצגת שגיאות טופס {/*display-form-errors*/}
 
-To display messages such as an error message or toast that's returned by a Server Action, wrap the action in a call to `useFormState`.
+כדי להציג הודעות כמו שגיאה או טווסט שמוחזרות מ-Server Action, עטפו את הפעולה בקריאה ל-`useFormState`.
 
 <Sandpack>
 
@@ -189,9 +189,9 @@ form button {
 
 <Solution />
 
-#### Display structured information after submitting a form {/*display-structured-information-after-submitting-a-form*/}
+#### הצגת מידע מובנה אחרי שליחת טופס {/*display-structured-information-after-submitting-a-form*/}
 
-The return value from a Server Action can be any serializable value. For example, it could be an object that includes a boolean indicating whether the action was successful, an error message, or updated information.
+ערך ההחזרה מ-Server Action יכול להיות כל ערך לריאליזציה. למשל, אובייקט שכולל ערך בוליאני שמגיש אם פתרון הצליחה, הודעת שגיאה או מידע מעודכן.
 
 <Sandpack>
 
@@ -279,11 +279,11 @@ form button {
 
 </Recipes>
 
-## Troubleshooting {/*troubleshooting*/}
+## פתרון בעיות {/*troubleshooting*/}
 
-### My action can no longer read the submitted form data {/*my-action-can-no-longer-read-the-submitted-form-data*/}
+### הפעולה שלי כבר לא יכולה לקרוא את נתוני הטופס שנשלחו {/*my-action-can-no-longer-read-the-submitted-form-data*/}
 
-When you wrap an action with `useFormState`, it gets an extra argument *as its first argument*. The submitted form data is therefore its *second* argument instead of its first as it would usually be. The new first argument that gets added is the current state of the form.
+כשעוטפים פעולה עם `useFormState`, היא מקבלת ארגומנט נוסף *כארגומנט ראשון*. לכן נתוני הטופס שנשלחו הופכים ל-*ארגומנט השני* במקום הראשון כפי שבדרך כלל. הארגומנט הראשון החדש שנוסף הוא מצב הטופס הנוכחי.
 
 ```js
 function action(currentState, formData) {

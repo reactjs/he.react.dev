@@ -1,30 +1,30 @@
 ---
-title: Describing the UI
+title: "תיאור ה-UI"
 ---
 
 <Intro>
 
-React is a JavaScript library for rendering user interfaces (UI). UI is built from small units like buttons, text, and images. React lets you combine them into reusable, nestable *components.* From web sites to phone apps, everything on the screen can be broken down into components. In this chapter, you'll learn to create, customize, and conditionally display React components.
+React היא ספריית JavaScript לעיבוד ממשקי משתמש (UI). ממשק משתמש בנוי מיחידות קטנות כמו לחצנים, טקסט ותמונות. תגובה מאפשרת לך לשלב אותם לכדי *רכיבים ניתנים חוזרים, ניתנים לקינון.* מאטרי אינטרנט ועד אפליקציות טלפון, ניתן לפרק כל דבר על המסך לרכיבים. תגיב.
 
 </Intro>
 
 <YouWillLearn isChapter={true}>
 
-* [How to write your first React component](/learn/your-first-component)
-* [When and how to create multi-component files](/learn/importing-and-exporting-components)
-* [How to add markup to JavaScript with JSX](/learn/writing-markup-with-jsx)
-* [How to use curly braces with JSX to access JavaScript functionality from your components](/learn/javascript-in-jsx-with-curly-braces)
-* [How to configure components with props](/learn/passing-props-to-a-component)
-* [How to conditionally render components](/learn/conditional-rendering)
-* [How to render multiple components at a time](/learn/rendering-lists)
-* [How to avoid confusing bugs by keeping components pure](/learn/keeping-components-pure)
-* [Why understanding your UI as trees is useful](/learn/understanding-your-ui-as-a-tree)
+* [כיצד לכתוב את הרכיב ה-React הראשון שלך](/learn/your-first-component)
+* [מתי וכיצד ליצור קבצים מרובי רכיבים](/learn/importing-and-exporting-components)
+* [כיצד להוסיף סימון ל-JavaScript עם JSX](/learn/writing-markup-with-jsx)
+* [להשתמש בסוגרים מסולסלים עם JSX כדי לגשת לפונקציונליות שלך JavaScript מהרכיבים](/learn/javascript-in-jsx-with-curly-braces)
+* [כיצד להגדיר רכיבים עם props](/learn/passing-props-to-a-component)
+* [כיצד לעבד רכיבים באופן מותנה](/learn/conditional-rendering)
+* [כיצד לעבד מספר רכיבים בו-זמנית](/learn/rendering-lists)
+* [כיצד מבלבול באגים על ידי שמירה על רכיבים טהורים](/learn/keeping-components-pure)
+* [מדוע הבנת ממשק המשתמש שלך כעצים היא שימושית](/learn/understanding-your-ui-as-a-tree)
 
 </YouWillLearn>
 
-## Your first component {/*your-first-component*/}
+## הרכיב הראשון שלך {/*הרכיב-הראשון-שלך*/}
 
-React applications are built from isolated pieces of UI called *components*. A React component is a JavaScript function that you can sprinkle with markup. Components can be as small as a button, or as large as an entire page. Here is a `Gallery` component rendering three `Profile` components:
+ישומי React בנויים מחלקים מבודדים של ממשק משתמש הנקראים *רכיבים*. רכיב React הוא פונקציית JavaScript אתה יכול לפזר עם סימון. רכיבים יכולים להיות קטנים כמו כפתור, או גדולים כמו עמוד שלם. הנה רכיב 'גלריה' המציג שלושה רכיבי 'פרופיל':
 
 <Sandpack>
 
@@ -58,13 +58,13 @@ img { margin: 0 10px 10px 0; height: 90px; }
 
 <LearnMore path="/learn/your-first-component">
 
-Read **[Your First Component](/learn/your-first-component)** to learn how to declare and use React components.
+קרא את **[הרכיב הראשון](/learn/your-first-component)** כדי ללמוד להשתמש ברכיבי React.
 
 </LearnMore>
 
-## Importing and exporting components {/*importing-and-exporting-components*/}
+## ייבוא ​​וייצוא רכיבים {/*ייבוא-וייצוא-רכיבים*/}
 
-You can declare many components in one file, but large files can get difficult to navigate. To solve this, you can *export* a component into its own file, and then *import* that component from another file:
+אתה יכול להצהיר על רכיבים רבים בקובץ אחד, אבל קבצים גדולים יכולים להיות קשים לניווט. כדי לפתור זאת, אתה יכול *לייצא* רכיב לקובץ משלו, ולאחר מכן *לייבא* את הרכיב הזה מקובץ אחר:
 
 
 <Sandpack>
@@ -113,15 +113,15 @@ img { margin: 0 10px 10px 0; }
 
 <LearnMore path="/learn/importing-and-exporting-components">
 
-Read **[Importing and Exporting Components](/learn/importing-and-exporting-components)** to learn how to split components into their own files.
+קרא את **[ייבוא ​​וייצוא רכיבים](/learn/importing-and-exporting-components)** כדי ללמוד כיצד לפצל רכיבים לקבצים משלהם.
 
 </LearnMore>
 
-## Writing markup with JSX {/*writing-markup-with-jsx*/}
+## כתיבת סימון עם JSX {/*writing-markup-with-jsx*/}
 
-Each React component is a JavaScript function that may contain some markup that React renders into the browser. React components use a syntax extension called JSX to represent that markup. JSX looks a lot like HTML, but it is a bit stricter and can display dynamic information.
+כל הרכיב React הוא פונקציית JavaScript שעשויה להכיל סימון ש-React מעבד לדפדפן. רכיבי הגיבו משתמשים בסיומת תחביר הנקראת JSX כדי להציג את הסימון הזה. JSX נראה הרבה כמו HTML, אבל הוא קצת יותר מחמיר ויכול להציע מידע דינמי.
 
-If we paste existing HTML markup into a React component, it won't always work:
+אם נדביק סימון HTML קיים ברכיב React, זה לא תמיד יעבוד:
 
 <Sandpack>
 
@@ -150,7 +150,7 @@ img { height: 90px; }
 
 </Sandpack>
 
-If you have existing HTML like this, you can fix it using a [converter](https://transform.tools/html-to-jsx):
+אם יש לך HTML קיים כזה, אתה יכול לתקן אותו באמצעות [ממיר](https://transform.tools/html-to-jsx):
 
 <Sandpack>
 
@@ -182,13 +182,13 @@ img { height: 90px; }
 
 <LearnMore path="/learn/writing-markup-with-jsx">
 
-Read **[Writing Markup with JSX](/learn/writing-markup-with-jsx)** to learn how to write valid JSX.
+קרא את **[כתיבת סימון עם JSX](/learn/writing-markup-with-jsx)** כדי ללמוד איך לכתוב JSX חוקי.
 
 </LearnMore>
 
-## JavaScript in JSX with curly braces {/*javascript-in-jsx-with-curly-braces*/}
+## JavaScript ב-JSX עם פלטה מתולתת {/*javascript-in-jsx-with-curly-braces*/}
 
-JSX lets you write HTML-like markup inside a JavaScript file, keeping rendering logic and content in the same place. Sometimes you will want to add a little JavaScript logic or reference a dynamic property inside that markup. In this situation, you can use curly braces in your JSX to "open a window" to JavaScript:
+JSX יכול לכתוב סימון דמוי HTML בתוך קובץ JavaScript, תוך שמירה על רינדור ההיגיון והתוכן באותו מקום. לפעמים תרצה להוסיף קצת הגיון JavaScript או להתייחס למאפיין דינמי בתוך הסימון הזה. בstate זה, אתה יכול להשתמש בסוגרים מסולסלים ב-JSX שלך כדי "לפתוח חלון" ל-JavaScript:
 
 <Sandpack>
 
@@ -230,13 +230,13 @@ body > div > div { padding: 20px; }
 
 <LearnMore path="/learn/javascript-in-jsx-with-curly-braces">
 
-Read **[JavaScript in JSX with Curly Braces](/learn/javascript-in-jsx-with-curly-braces)** to learn how to access JavaScript data from JSX.
+קרא את **[JavaScript ב-JSX עם פלטה מתולתת](/learn/javascript-in-jsx-with-curly- braces)** כדי ללמוד איך לגשת לנתוני JavaScript מ-JSX.
 
 </LearnMore>
 
-## Passing props to a component {/*passing-props-to-a-component*/}
+## העברת props לרכיב {/*העברת-props-לרכיב*/}
 
-React components use *props* to communicate with each other. Every parent component can pass some information to its child components by giving them props. Props might remind you of HTML attributes, but you can pass any JavaScript value through them, including objects, arrays, functions, and even JSX!
+רכיבי React users ב-*props* כדי לתקשר עם זה. כל רכיב הורה יכול להעביר מידע מסוים לרכיבי על ידי מתן props. props יכולים להכיל תכונות HTML, אבל להעביר דרכם כל ערך JavaScript, כולל אובייקטים, מערכים, פונקציות אפילו JSX!
 
 <Sandpack>
 
@@ -311,15 +311,15 @@ export function getImageUrl(person, size = 's') {
 
 <LearnMore path="/learn/passing-props-to-a-component">
 
-Read **[Passing Props to a Component](/learn/passing-props-to-a-component)** to learn how to pass and read props.
+קרא את **[ העברה props לרכיב](/learn/passing-props-to-a-component)** כדי ללמוד להעביר ולקרוא props.
 
 </LearnMore>
 
-## Conditional rendering {/*conditional-rendering*/}
+## עיבוד מותנה {/*עיבוד-מותנה*/}
 
-Your components will often need to display different things depending on different conditions. In React, you can conditionally render JSX using JavaScript syntax like `if` statements, `&&`, and `? :` operators.
+הרכיבים שלך יצטרכו מסופקים שונים. ב-React, אתה יכול לבצע עיבוד מותנה של JSX באמצעות תחביר JavaScript כמו הצהרות `if`, `&&` ו`? :` מפעילים.
 
-In this example, the JavaScript `&&` operator is used to conditionally render a checkmark:
+בדוגמה זו, האופרטור '&&' של JavaScript שימוש לעיבוד מותנה של סימן ביקורת:
 
 <Sandpack>
 
@@ -359,15 +359,15 @@ export default function PackingList() {
 
 <LearnMore path="/learn/conditional-rendering">
 
-Read **[Conditional Rendering](/learn/conditional-rendering)** to learn the different ways to render content conditionally.
+קרא את **[עיבוד מותנה](/learn/conditional-rendering)** כדי ללמוד את הדרכים השונות לעיבוד תוכן מותנה.
 
 </LearnMore>
 
-## Rendering lists {/*rendering-lists*/}
+## רשימות עיבוד {/*רשימות-עיבוד*/}
 
-You will often want to display multiple similar components from a collection of data. You can use JavaScript's `filter()` and `map()` with React to filter and transform your array of data into an array of components.
+קרוב תרצה להציג מספר רכיבים דומים מאוסף נתונים. אתה יכול להשתמש ב-'filter()' ו-'map()' של JavaScript עם React כדי לסנן ולהפוך את המערך שלך לרכיבים.
 
-For each array item, you will need to specify a `key`. Usually, you will want to use an ID from the database as a `key`. Keys let React keep track of each item's place in the list even if the list changes.
+עבור כל פריט מערך, תפרט 'מפתח'. בדרך כלל, תרצה להשתמש במזהה ממסד עבור `מפתח`. קשים מסוגלים ל-React לעקוב אחר מקומו של כל פריט ברשימה גם אם הרשימה משתנה.
 
 <Sandpack>
 
@@ -459,18 +459,18 @@ h2 { font-size: 20px; }
 
 <LearnMore path="/learn/rendering-lists">
 
-Read **[Rendering Lists](/learn/rendering-lists)** to learn how to render a list of components, and how to choose a key.
+קרא את **[רשימות עיבוד](/learn/rendering-lists)** כדי ללמוד כיצד לעבד רשימה של רכיבים וכיצד לבחור מפתח.
 
 </LearnMore>
 
-## Keeping components pure {/*keeping-components-pure*/}
+## שמירה על טהרת הרכיבים {/*שמירה-הרכיבים-טהורים*/}
 
-Some JavaScript functions are *pure.* A pure function:
+חלק פונקציות JavaScript הן *טה.* פונקציה טהורה:
 
-* **Minds its own business.** It does not change any objects or variables that existed before it was called.
-* **Same inputs, same output.** Given the same inputs, a pure function should always return the same result.
+* ** דואג לעניינים שלו.** זה לא משנה אובייקטים או משתנים שהיו קיימים לפני שנקרא.
+* **אותן כניסות, אותו פלט.** בהינתן אותן כניסות, פונקציה טהורה צריכה תמיד להחזיר את אותה תוצאה.
 
-By strictly only writing your components as pure functions, you can avoid an entire class of baffling bugs and unpredictable behavior as your codebase grows. Here is an example of an impure component:
+על ידי כתיבת הרכיבים שלך כפונקציות טהורות בלבד, אתה יכול למנוע מחלקה שלמה של באגים מביכים והתנהגות בלתי צפויה ככל שבסיס הקוד שלך גדל. הנה דוגמה לרכיב לא טהור:
 
 <Sandpack>
 
@@ -496,7 +496,7 @@ export default function TeaSet() {
 
 </Sandpack>
 
-You can make this component pure by passing a prop instead of modifying a preexisting variable:
+אתה יכול להפוך את הרכיב הזה לטהור על ידי העברת props במקום שינוי משתנה קיים:
 
 <Sandpack>
 
@@ -520,43 +520,44 @@ export default function TeaSet() {
 
 <LearnMore path="/learn/keeping-components-pure">
 
-Read **[Keeping Components Pure](/learn/keeping-components-pure)** to learn how to write components as pure, predictable functions.
+קרא את **[Keeping Components Pure](/learn/keeping-components-pure)** כדי ללמוד כיצד לכתוב רכיבים כפונקציות טהורות וניתנות לחיזוי.
 
 </LearnMore>
 
-## Your UI as a tree {/*your-ui-as-a-tree*/}
+## ממשק המשתמש שלך כעץ {/*הממשק-שלך-כעץ*/}
 
-React uses trees to model the relationships between components and modules. 
+תגובה משתמש בצים כדי לדגמן את היחסים בין רכיבים ומודולים. 
 
-A React render tree is a representation of the parent and child relationship between components. 
+עץ רינדור React הוא ייצוג של יחסי ההורה והילד בין רכיבים.
 
 <Diagram name="generic_render_tree" height={250} width={500} alt="A tree graph with five nodes, with each node representing a component. The root node is located at the top the tree graph and is labelled 'Root Component'. It has two arrows extending down to two nodes labelled 'Component A' and 'Component C'. Each of the arrows is labelled with 'renders'. 'Component A' has a single 'renders' arrow to a node labelled 'Component B'. 'Component C' has a single 'renders' arrow to a node labelled 'Component D'.">
 
-An example React render tree.
+עץ רינדור תגובה לדוגמה.
 
 </Diagram>
 
-Components near the top of the tree, near the root component, are considered top-level components. Components with no child components are leaf components. This categorization of components is useful for understanding data flow and rendering performance.
+רכיבים ליד ראש העץ, ליד מרכיב השורש, נחשבים לרכיבים ברמה העליונה. רכיבים ללא רכיבי צאצא הם רכיבי עלים. סיווג זה של רכיבים שימושי להבנת זרימת הנתונים וביצועי העיבוד.
 
-Modelling the relationship between JavaScript modules is another useful way to understand your app. We refer to it as a module dependency tree. 
+מודלים של הקשר בין מודולי JavaScript היא דרך שימושית נוספת להבין את האפליקציה שלך. אנו מתחרים אליו כאל עץ תלות מודול.
 
 <Diagram name="generic_dependency_tree" height={250} width={500} alt="A tree graph with five nodes. Each node represents a JavaScript module. The top-most node is labelled 'RootModule.js'. It has three arrows extending to the nodes: 'ModuleA.js', 'ModuleB.js', and 'ModuleC.js'. Each arrow is labelled as 'imports'. 'ModuleC.js' node has a single 'imports' arrow that points to a node labelled 'ModuleD.js'.">
 
-An example module dependency tree.
+עץ תלות מודול לדוגמה.
 
 </Diagram>
 
-A dependency tree is often used by build tools to bundle all the relevant JavaScript code for the client to download and render. A large bundle size regresses user experience for React apps. Understanding the module dependency tree is helpful to debug such issues. 
+עץ תל כלי משמש כדרך בנייה כדי לאגד את כל הקוד ה-JavaScript הרלונטי עבור הלקוח להורדה ולעיבוד. גודל חבילה גדול מחזיר את חוויית המשתמש עבור אפליקציות React. הבנת עץ התלות של המודול מועיל לאיתור באגים מסוג זה.
 
 <LearnMore path="/learn/understanding-your-ui-as-a-tree">
 
-Read **[Your UI as a Tree](/learn/understanding-your-ui-as-a-tree)** to learn how to create a render and module dependency trees for a React app and how they're useful mental models for improving user experience and performance.
+קרא את **[ממשק המשתמש שלך כעץ](/learn/understanding-your-ui-as-a-tree)** כדי ללמוד כיצד ליצור עיבוד ועצי תלות במודול עבור אפליקציית.
 
 </LearnMore>
 
 
-## What's next? {/*whats-next*/}
+## מה הלאה? {/*מה-הבא*/}
 
-Head over to [Your First Component](/learn/your-first-component) to start reading this chapter page by page!
+עברו אל [הרכיב הראשון שלך](/learn/your-first-component) כדי להתחיל לקרוא את זה עמוד אחר עמוד!
 
-Or, if you're already familiar with these topics, why not read about [Adding Interactivity](/learn/adding-interactivity)?
+או, אם אתה כבר מכיר את הנושאים האלה, למה שלא תקרא על [הוספת אינטראקטיביות](/learn/adding-interactivity)?
+

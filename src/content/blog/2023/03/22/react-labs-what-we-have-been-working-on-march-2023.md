@@ -1,102 +1,102 @@
 ---
-title: "React Labs: What We've Been Working On – March 2023"
+title: "React Labs: על מה עבדנו - מרץ 2023"
 ---
 
-March 22, 2023 by [Joseph Savona](https://twitter.com/en_JS), [Josh Story](https://twitter.com/joshcstory), [Lauren Tan](https://twitter.com/potetotes), [Mengdi Chen](https://twitter.com/mengdi_en), [Samuel Susla](https://twitter.com/SamuelSusla), [Sathya Gunasekaran](https://twitter.com/_gsathya), [Sebastian Markbåge](https://twitter.com/sebmarkbage), and [Andrew Clark](https://twitter.com/acdlite)
+22 במרץ 2023 מאת [Joseph Savona](https://twitter.com/en_JS), [Josh Story](https://twitter.com/joshcstory), [Lauren Tan](https://twitter.com/potetotes), [Mengdi Chen](https://twitter.com/mengdi_en), [Samuel Susla](https://twitter.com/SamuelSusla), [Sathya Gunasekaran](__TK_6](__[Mengdi Tank_6](https://twitter.com/mengdi_en), חן](https://twitter.com/mengdi_en), [סמואל סוסלה](https://twitter.com/SamuelSusla), [Sathya Gunasekaran](https://twitter.com/joshcstory),](https://twitter.com/joshcstory),)(https://twitter.com/sebmarkbage), ו-TK_6__) קלארק](https://twitter.com/acdlite)
 
 ---
 
 <Intro>
 
-In React Labs posts, we write about projects in active research and development. We've made significant progress on them since our [last update](/blog/2022/06/15/react-labs-what-we-have-been-working-on-june-2022), and we'd like to share what we learned.
+בפוסטים של React Labs אנחנו כותבים על פרויקטים במחקר ופיתוח פעילים. מאז [העדכון הקודם](/blog/2022/06/15/react-labs-what-we-have-been-working-on-june-2022) הייתה התקדמות דומה, ורצינו לשתף מה למדנו.
 
 </Intro>
 
 ---
 
-## React Server Components {/*react-server-components*/}
+## React רכיבי שרת {/*react-server-components*/}
 
-React Server Components (or RSC) is a new application architecture designed by the React team.
+React רכיבי שרת (או RSC) היא ארכיטקטורת אפליקציה חדשה שתוכננה על ידי צוות React.
 
-We've first shared our research on RSC in an [introductory talk](/blog/2020/12/21/data-fetching-with-react-server-components) and an [RFC](https://github.com/reactjs/rfcs/pull/188). To recap them, we are introducing a new kind of component--Server Components--that run ahead of time and are excluded from your JavaScript bundle. Server Components can run during the build, letting you read from the filesystem or fetch static content. They can also run on the server, letting you access your data layer without having to build an API. You can pass data by props from Server Components to the interactive Client Components in the browser.
+סוג ראשון למחקר על נפרד RSC ב-[הרצאת מבוא](/blog/2020/12/21/data-fetching-with-react-server-components) וב-[RFC](https://github.com/reactjs/rfcs/pull/188). בקצרה: אנחנו מציגים חדש של קומפונטות, רכיבי שרת, שרצות מראש וב-[RFC](https://github.com/reactjs/rfcs/pull/188). בקצרה: אנחנו מציגים חדש של קומפוננטות, רכיבי שרת, שרצות מראש ולא נכללות בחבילת של __K_T נתונים. props מ-Server Components ל-Client Components אינטראקטיביות בדפדפן.
 
-RSC combines the simple "request/response" mental model of server-centric Multi-Page Apps with the seamless interactivity of client-centric Single-Page Apps, giving you the best of both worlds.
+RSC משלבת את המודל הפשוט של "בקשה/תגובה" מאפליקציות Multi-Page ממוקדות-שרת, עם האינטראקטיביות החלקה של ישומי עמוד יחיד ממוקדות-לקוח, כדי לקבל את הטוב משני העולמות.
 
-Since our last update, we have merged the [React Server Components RFC](https://github.com/reactjs/rfcs/blob/main/text/0188-server-components.md) to ratify the proposal. We resolved outstanding issues with the [React Server Module Conventions](https://github.com/reactjs/rfcs/blob/main/text/0227-server-module-conventions.md) proposal, and reached consensus with our partners to go with the `"use client"` convention. These documents also act as specification for what an RSC-compatible implementation should support.
+העדכון האחרון מיזגנו את [React Server Components RFC](https://github.com/reactjs/rfcs/blob/main/text/0188-server-components.md) כדי לאשרר את ההצעה תמיכה. פתרנו נושאים פתוחים סביב [React Server Module Conventions](https://github.com/reactjs/rfcs/blob/main/text/0227-server-module-conventions.md), והגענו להספיק עם השותפים לאמץ את הקונבנציית `"use client"`. המסמכים.
 
-The biggest change is that we introduced [`async` / `await`](https://github.com/reactjs/rfcs/pull/229) as the primary way to do data fetching from Server Components. We also plan to support data loading from the client by introducing a new Hook called `use` that unwraps Promises. Although we can't support `async / await` in arbitrary components in client-only apps, we plan to add support for it when you structure your client-only app similar to how RSC apps are structured.
+השינוי הגדול ביותר הוא אימוץ [`async` / `await`](https://github.com/reactjs/rfcs/pull/229) כדרך לטעינת נתונים מתוך רכיבי שרת. בנוסף, אנחנו מתכננים לתמוך בטעינת נתונים מצד הלקוח דרך Hook חדש בשם `use`ורס שפ הבטחות. לתמוך באפליקציות במבנה של האפליקציה RSC למבנה.
 
-Now that we have data fetching pretty well sorted, we're exploring the other direction: sending data from the client to the server, so that you can execute database mutations and implement forms. We're doing this by letting you pass Server Action functions across the server/client boundary, which the client can then call, providing seamless RPC. Server Actions also give you progressively enhanced forms before JavaScript loads.
+אחרי שתחום טעינת להתייצב יחסית, אנחנו בוחנים גם את הכיוון ההפוך: שליחת נתונים מהלקוח לביצוע מוטציות במסד נתונים ולממש טפסים. אנחנו עושים זאת על ידי העברת פונקציות שרת פעולה דרך הגבול בין שרת ללקוח, כך שהלקוח יכול לקרוא להן וליהנות מ-RPC חלק. פעולות שרתות גם שיפור מתקדם לטפסים עוד לפני טעינת JavaScript.
 
-React Server Components has shipped in [Next.js App Router](/learn/start-a-new-react-project#nextjs-app-router). This showcases a deep integration of a router that really buys into RSC as a primitive, but it's not the only way to build a RSC-compatible router and framework. There's a clear separation for features provided by the RSC spec and implementation. React Server Components is meant as a spec for components that work across compatible React frameworks.
+React רכיבי שרת כבר נשלחה ב-[Next.js App Router](/learn/start-a-new-react-project#nextjs-app-router). זה מדגים אינטגרציה עמוקה של הנתב שמאמץ את RSC כ-פרימיטיבי מרכזי, אבל זו לא הדרך היחידה לבנות נתב/מסגרת תואמי-RSC. יש הפרדה ברורה יכולה בין שניתנות מהפרט והאפליקציה של RSC. React רכיבי שרת מיועדת להיות מפרט לקומפוננטות שעובדות בין frameworks תואמים.
 
-We generally recommend using an existing framework, but if you need to build your own custom framework, it is possible. Building your own RSC-compatible framework is not as easy as we'd like it to be, mainly due to the deep bundler integration needed. The current generation of bundlers are great for use on the client, but they weren't designed with first-class support for splitting a single module graph between the server and the client. This is why we're now partnering directly with bundler developers to get the primitives for RSC built-in.
+באופן כללי אנחנו ממליצים להשתמש ב-framework קיים, אבל אם צריך לבנות מסגרת מותאמת אישית. בניית מסגרת תואם-RSC עדיין מורכבת יותר ממה שהיינו רוצים, בעיקר בגלל אינטגרציית מצרפת עמוקה שנדרשת. הדור הנוכחי של bundlers מצוין ללקוח, לא תוכנן עם תמיכה אבל גרף מודול ראשון בפיצול יחיד בין שרת ללקוח. אנחנו עובדים עם מפתחי באנדלר כדי להכניס פריטים מובנים ל-RSC.
 
-## Asset Loading {/*asset-loading*/}
+## נכסים {/*asset-loading*/}
 
-[Suspense](/reference/react/Suspense) lets you specify what to display on the screen while the data or code for your components is still being loaded. This lets your users progressively see more content while the page is loading as well as during the router navigations that load more data and code. However, from the user's perspective, data loading and rendering do not tell the whole story when considering whether new content is ready. By default, browsers load stylesheets, fonts, and images independently, which can lead to UI jumps and consecutive layout shifts.
+[Suspense](/reference/react/Suspense) יכול להגדיר מה להצגה בזמן שהנתונים או הקוד של הקומפוננטות עדיין נטענים. כך משתמשים רואים יותר תוכן בהדרגה בזמן טעינת העמוד וגם בזמן ניווטים בנתב שטוענים עוד נתונים וקוד. אבל מנקודת מבט משתמש, טעינת נתונים ורינדור לא מספרים את כל הסיפור לגבי מוכנות התוכן. כברירת מחדל, דפדפנים טוענים גיליונות סגנונות, גופנים ותמונות בנפרד, מה שעלול לגרום לקפיצות UI ושינויי layout עוקבים.
 
-We're working to fully integrate Suspense with the loading lifecycle of stylesheets, fonts, and images, so that React takes them into account to determine whether the content is ready to be displayed. Without any change to the way you author your React components, updates will behave in a more coherent and pleasing manner. As an optimization, we will also provide a manual way to preload assets like fonts directly from components.
+אנחנו עובדים על טגרציה מלאה של Suspense עם מחזור הטעינה של גיליונות סגנונות, גופנים ותמונות, כך ש-React תביא אותם גם כדי לקבוע מתי התוכן באמת מוכן להראות. בלי לשנות את אופן הכתיבה של הקומפוננטות שלכם, העדכונים ירגישו קוהרנטיים ונעימים יותר. כאופטימיזציה, נספק גם דרך ידנית לבצע טעינה מראש כמו גופנים ממש מתוך קומפונטות.
 
-We are currently implementing these features and will have more to share soon.
+היכולות האלה כרגע במימוש, ונשתף עוד בקרוב.
 
-## Document Metadata {/*document-metadata*/}
+## מטא נתונים של מסמך {/*document-metadata*/}
 
-Different pages and screens in your app may have different metadata like the `<title>` tag, description, and other `<meta>` tags specific to this screen. From the maintenance perspective, it's more scalable to keep this information close to the React component for that page or screen. However, the HTML tags for this metadata need to be in the document `<head>` which is typically rendered in a component at the very root of your app.
+עמודים ומסכים שונים באפליקציה לדרוש metadata שונה, כמו תגית `<title>`, תיאור, ותגיות `<meta>`תוספת. מבחינת תחזוקה, עדיף לשמור מידע קרוב לקומפונת React של אותו עמוד/מסך. אבל בפועל תגיות HTML אלו חייבות להיות בתוך `<head>` של המסמך, שבדרך כלל נרנדר מקומפוננטה בשורש האפליקציה.
 
-Today, people solve this problem with one of the two techniques.
+היום פותרים את זה לרוב באחת משתי דרכים.
 
-One technique is to render a special third-party component that moves `<title>`, `<meta>`, and other tags inside it into the document `<head>`. This works for major browsers but there are many clients which do not run client-side JavaScript, such as Open Graph parsers, and so this technique is not universally suitable.
+דרך אחת היא לרנדר קומפונט צד-שלישי מיוחדת שמעבירה `<title>`, `<meta>` ותגיות נוספות ל-`<head>`. זה עובד בדפדפנים מרכזיים, אבל יש לקוחות שלא מריצים JavaScript בצד אחד, כמו מנתחי גרפים פתוחים, זה לא גישה אוניברסלית.
 
-Another technique is to server-render the page in two parts. First, the main content is rendered and all such tags are collected. Then, the `<head>` is rendered with these tags. Finally, the `<head>` and the main content are sent to the browser. This approach works, but it prevents you from taking advantage of the [React 18's Streaming Server Renderer](/reference/react-dom/server/renderToReadableStream) because you'd have to wait for all content to render before sending the `<head>`.
+דרך היא שנייה לרנדר את העמוד בשרת בשני שלבים: התוכן הקודם נאסף יחד עם כל התגיות הרלוונטיות, ואז מרנדרים `<head>` עם אותם תגיות, רק אז שולחים את הכול לדפדפן. הגישה הזו עובדת, אבל מונעת ניצול של [React 18 Streaming Server Renderer](/reference/react-dom/server/renderToReadableStream), כי צריך לחכות לכל התוכן לפני שליחת `<head>`.
 
-This is why we're adding built-in support for rendering `<title>`, `<meta>`, and metadata `<link>` tags anywhere in your component tree out of the box. It would work the same way in all environments, including fully client-side code, SSR, and in the future, RSC. We will share more details about this soon.
+אנחנו מציעים לך תמיכה מובנית ברינדור `<title>`, `<meta>`, ותות מטא נתונים סטייל `<link>` בכל מקום בעץ הקומפוננטות, מהקופסה. זה יעבוד אותו בכל הסביבה: קוד צד לקוח מלא, SSR, ובעתיד גם RSC. נשתף פרטים נוספים בקרוב.
 
-## React Optimizing Compiler {/*react-optimizing-compiler*/}
+## React אופטימיזציה מהדר {/*react-optimizing-compiler*/}
 
-Since our previous update we've been actively iterating on the design of [React Forget](/blog/2022/06/15/react-labs-what-we-have-been-working-on-june-2022#react-compiler), an optimizing compiler for React. We've previously talked about it as an "auto-memoizing compiler", and that is true in some sense. But building the compiler has helped us understand React's programming model even more deeply. A better way to understand React Forget is as an automatic *reactivity* compiler.
+מאז העדכון הקודם עשינו איטרציה פעילה על העיצוב של [React Forget](/blog/2022/06/15/react-labs-what-we-have-been-working-on-june-2022#react-compiler), קומפיילר אופטימיזציה ל-React. דיברנו בעבר כ-"auto-memoizing compiler", וזה נכון נכון. אבל העבודה עליו העמיקה אצלנו את ההבנה של מודל התכנות ב-React. דרך מדויקת יותר להבין את React שכח שהיא כקומפיילר *תגובתיות* אוטומטית.
 
-The core idea of React is that developers define their UI as a function of the current state. You work with plain JavaScript values — numbers, strings, arrays, objects — and use standard JavaScript idioms — if/else, for, etc — to describe your component logic. The mental model is that React will re-render whenever the application state changes. We believe this simple mental model and keeping close to JavaScript semantics is an important principle in React's programming model.
+המרכזי ב-React הוא מפתחים מגדירים UI כפונקציה של המצב הנוכחי. עובדים עם ערכי JavaScript רגילים - מספרים, מחרוזות, מערכים, אובייקטים - ומשתמשים באידיומים רגילים של JavaScript - `if/else`, `for` וכו' - כדי לתאר את לוגי הקומפוננטה. המודל המנטלי הוא ש-React תרנדר מחדש כשמצב האפליקציה משתנה. אנחנו מאמינים שהמודל הפשוט הזה וההיצמדות לסמנטיקה של JavaScript הם עקרון חשוב ב-React.
 
-The catch is that React can sometimes be *too* reactive: it can re-render too much. For example, in JavaScript we don't have cheap ways to compare if two objects or arrays are equivalent (having the same keys and values), so creating a new object or array on each render may cause React to do more work than it strictly needs to. This means developers have to explicitly memoize components so as to not over-react to changes.
+האתגר הוא שלפעמים React *מגיבה יותר מדי*: היא מרנדרת מחדש יותר מדי. לדוגמה, ב-JavaScript אין דרך זולה להשוות אם שני אובייקטים/מערכים שקולים, יצירת אובייקט חדש בכל render יכול לגרום ל-React לבצע יותר עבודה מהנדרש. מפתחים נאלצים לבצע memoization מפורש כדי לא "להגיב יתר על המידה" לשינויים.
 
-Our goal with React Forget is to ensure that React apps have just the right amount of reactivity by default: that apps re-render only when state values *meaningfully* change. From an implementation perspective this means automatically memoizing, but we believe that the reactivity framing is a better way to understand React and Forget. One way to think about this is that React currently re-renders when object identity changes. With Forget, React re-renders when the semantic value changes — but without incurring the runtime cost of deep comparisons.
+עניין שלנו ב-React שכח את כמות תגובתיות נכונה כברירת מחדל: שהאפליקציה תרנדר מחדש רק כשערכי state משתנים *באופן משמעותי*. מימוש חושב זה אומר memoization אוטומטי, אבל אנחנו ים מבחינת שהכ-reactivity מסביר טוב יותר את React ו-Forget. דרך להבין זאת: כיום React מרנדרת מחדש לפי שינוי בזהות אובייקט. עם תשכחו, React תרנדר מחדש לפי שינוי בערך הסמנטי, בלי לשלם עלות זמן ריצה של השוואות עמוקות.
 
-In terms of concrete progress, since our last update we have substantially iterated on the design of the compiler to align with this automatic reactivity approach and to incorporate feedback from using the compiler internally. After some significant refactors to the compiler starting late last year, we've now begun using the compiler in production in limited areas at Meta. We plan to open-source it once we've proved it in production.
+מבחינת התקדמות קונקרטית, מאז העדכון האחרון עשינו איטרציה להתבצע על עיצוב הקומפיילר כדי ליישר אותו עם הגישה הזו ולשלב משוב משימוש פנימי. אחרי refactors גדולים בסוף השנה, התחלנו להשתמש בקומפיילר בפרודקשן באזורים מוגבלים ב-Meta. אנחנו מתכננים לפתוח אותו לקוד פתוח אחרי שנוכיח אותו בפרודקשן.
 
-Finally, a lot of people have expressed interest in how the compiler works. We're looking forward to sharing a lot more details when we prove the compiler and open-source it. But there are a few bits we can share now:
+בנוסף, הרבה אנשים ביקשו להבין יותר איך הקומפיילר עובד. נשמח לשתף הרבה יותר פרטים אחרי שנוכיח ונפתח אותו. בינתיים אפשר לשתף כמה נקודות:
 
-The core of the compiler is almost completely decoupled from Babel, and the core compiler API is (roughly) old AST in, new AST out (while retaining source location data). Under the hood we use a custom code representation and transformation pipeline in order to do low-level semantic analysis. However, the primary public interface to the compiler will be via Babel and other build system plugins. For ease of testing we currently have a Babel plugin which is a very thin wrapper that calls the compiler to generate a new version of each function and swap it in.
+ליבת הקומפיילר כמעט מנותקת לגמרי מ-Babel, ו-API הליבה הוא בקירוב AST נכנס, AST יוצא (תוך שמירה על מיקומי מקור). מתחת למכסה המנוע אנחנו משתמשים בייצוג קוד מותאם וב-pipeline כדי לבצע ניתוח סמנטי ברמה נמוכה. עם זאת, הממשק הציבורי המרכזי לקומפיילר יהיה דרך בבל ותוספי לבנות נוספים. לצורכי בדיקות לנו כרגע תוסף בבל דק מאוד שקורא לקומפיילר, מייצר גרסה חדשה לכל פונקציה ומחליף אותה.
 
-As we refactored the compiler over the last few months, we wanted to focus on refining the core compilation model to ensure we could handle complexities such as conditionals, loops, reassignment, and mutation. However, JavaScript has a lot of ways to express each of those features: if/else, ternaries, for, for-in, for-of, etc. Trying to support the full language up-front would have delayed the point where we could validate the core model. Instead, we started with a small but representative subset of the language: let/const, if/else, for loops, objects, arrays, primitives, function calls, and a few other features. As we gained confidence in the core model and refined our internal abstractions, we expanded the supported language subset. We're also explicit about syntax we don't yet support, logging diagnostics and skipping compilation for unsupported input. We have utilities to try the compiler on Meta's codebases and see what unsupported features are most common so we can prioritize those next. We'll continue incrementally expanding towards supporting the whole language.
+ה-refactor בימינו נמשך לנו להתמקד בשיפור מודל הקומפילציה המרכזית כדי לוודא שהוא מתמודד עם מורכבות כמו תנאים, לולאות, השמה מחדש ומוטציות. אבל ל-JavaScript יש רבות לבטא כל אחת מהיכולות האלה: `if/else`, ternaries, `for`, `for-in`, `for-of` וכו'. מלאה בכל השפה מראש הייתה מעכבת את התאימות של מודל הליבה. במקום זה התחלנו בת-קבוצה קטנה אך מייצגת: `let/const`, `if/else`, לולאות `for`, אובייקטים, מערכים, פרימיטיבים, קריאות פונקציה ועוד כמה אפשר. ככל שהביטחון במודל גדל והפשטנו את ההפשטות הפנימיות, הרחבנו את תת-הקבוצה הנתמכת. אנחנו גם מסמנים בפורש תחביר שלא נתמך עדיין, מדווחים אבחון ומדלגים על קומפילציה לקלט לא נתמך. יש לנו כלים להריץ את הקומפיילר על בסיסי הקוד של Meta ולזהות אפשריות חסרות הן הנפוצות ביותר כדי לתעדף בהמשך. נמשיך להרחיב בהדרגה עד תמיכה בשפה כולה.
 
-Making plain JavaScript in React components reactive requires a compiler with a deep understanding of semantics so that it can understand exactly what the code is doing. By taking this approach, we're creating a system for reactivity within JavaScript that lets you write product code of any complexity with the full expressivity of the language, instead of being limited to a domain specific language.
+כדי להפוך JavaScript רגיל בקומפוננטות React ל-reactive צריך להגיע להבנה סמנטית עמוקה, כדי להבין בדיוק מה הקוד עושה. בגישה הזו הזו בונים תגובתיות בתוך JavaScript שמאפשרת כתי מוצר מערכת בת בכל רמת מורכבות עם כל העוצמה של השפה, יכולה להיות מוגבלת לשפה ייעודית צרה.
 
-## Offscreen Rendering {/*offscreen-rendering*/}
+## עיבוד מחוץ למסך {/*offscreen-rendering*/}
 
-Offscreen rendering is an upcoming capability in React for rendering screens in the background without additional performance overhead. You can think of it as a version of the [`content-visibility` CSS property](https://developer.mozilla.org/en-US/docs/Web/CSS/content-visibility) that works not only for DOM elements but React components, too. During our research, we've discovered a variety of use cases:
+רינדור מחוץ למסך היא יכולה מתוכננת ב-React לרינדור מסכים ברקע ללא עלות ביצועים נוספים. אפשר לחשוב עליה כגרסה של [`content-visibility` ב-CSS](https://developer.mozilla.org/en-US/docs/Web/CSS/content-visibility) שעובדת לא רק על אלמנטים ב-DOM אלא גם על קומפונטות React. מבחן מצאנו מגוון שימושים:
 
-- A router can prerender screens in the background so that when a user navigates to them, they're instantly available.
-- A tab switching component can preserve the state of hidden tabs, so the user can switch between them without losing their progress.
-- A virtualized list component can prerender additional rows above and below the visible window.
-- When opening a modal or popup, the rest of the app can be put into "background" mode so that events and updates are disabled for everything except the modal.
+- נתת יכול לבצע prerender למסכים ברקע כך שכשה משתמש מנווט הם זמינים מיד.
+- קומפוננטת החלפת טאבים יכולה לשמור את המצב של טאבים מוסתרים, כך שאפשר לעבור ביניהם בלי לאבד התקדמות.
+- קומפוננטה רשימה וירטואלית יכולה לבצע prerender לשורות נוספות מעל ומתחת לאזור הגלוי.
+- בזמן פתיחת מודאל/פופup אפשר להעביר את שאר האפליקציה מצב "רקע" כך שאירועים ועדכונים כבויים לכל מה שמחוץ למודל.
 
-Most React developers will not interact with React's offscreen APIs directly. Instead, offscreen rendering will be integrated into things like routers and UI libraries, and then developers who use those libraries will automatically benefit without additional work.
+רוב מפתחי React לא יעבדו למעשה עם APIs של מחוץ למסך. במקום זה, עיבוד מחוץ למסך תשולב בראוטרים ובספריות UI, ומי שמשתמש בספריות האלה ירווחת בלי עבודה נוספת.
 
-The idea is that you should be able to render any React tree offscreen without changing the way you write your components. When a component is rendered offscreen, it does not actually *mount* until the component becomes visible — its effects are not fired. For example, if a component uses `useEffect` to log analytics when it appears for the first time, prerendering won't mess up the accuracy of those analytics. Similarly, when a component goes offscreen, its effects are unmounted, too. A key feature of offscreen rendering is that you can toggle the visibility of a component without losing its state.
+הרעיון הוא צריך לרנדר כל עץ React ב-offscreen בלי לשנות את אופן כתיבת הקומפוננטות. כשקומפוננת מרונדרת ב-offscreen היא לא באמת *מתבצעת mount* עד שהיא הופכת לגלויה, אז האפקט שלה לא מופעלים. לדוגמה, אם קומפונת משתמשת ב-`useEffect` כדי לרשום אנליטיקה כשהיא הופיעה לראשונה, עיבוד מוקדם לא יפגע בדיוק האנליטיקה. הם עושים ביטול. תכונה מרכזית היא יכולה להחליף נראות בלי לאבד state.
 
-Since our last update, we've tested an experimental version of prerendering internally at Meta in our React Native apps on Android and iOS, with positive performance results. We've also improved how offscreen rendering works with Suspense — suspending inside an offscreen tree will not trigger Suspense fallbacks. Our remaining work involves finalizing the primitives that are exposed to library developers. We expect to publish an RFC later this year, alongside an experimental API for testing and feedback.
+מאז העדכון האחרון בדקנו גרסה ניסיונית פנימית של עיבוד מראש באפליקציות React Native ב-Android וב-iOS עם ביצועים חיוביות. שיפרנו גם את האינטגרציה עם Suspense: השהיה בתוך עץ מחוץ למסך לא תפעיל Suspense fallbacks. העבודה שנותרה היא לסיים את ה-primitives שנחשפים למפתחי ספריות. אנחנו מצפים לפרסם RFC בהמשך השנה יחד עם API ניסיוני לבדיקות ומשוב.
 
-## Transition Tracing {/*transition-tracing*/}
+## מעקב אחר מעבר {/*transition-tracing*/}
 
-The Transition Tracing API lets you detect when [React Transitions](/reference/react/useTransition) become slower and investigate why they may be slow. Following our last update, we have completed the initial design of the API and published an [RFC](https://github.com/reactjs/rfcs/pull/238). The basic capabilities have also been implemented. The project is currently on hold. We welcome feedback on the RFC and look forward to resuming its development to provide a better performance measurement tool for React. This will be particularly useful with routers built on top of React Transitions, like the [Next.js App Router](/learn/start-a-new-react-project#nextjs-app-router).
+Transition Tracing API יכול לזהות מתי [React Transitions](/reference/react/useTransition) נעשים איטיים ולחקור למה. אחרי העדכון האחרון השלמנו את העיצוב הראשוני ופרסמנו [RFC](useTransition היכולות הבסיסיות גם מומשו. כרגע הפרויקט בהשהיה זמנית. נשמח למשוב על ה-RFC ומצפים לחזור לפיתוח כדי לספק כלי מדידה ביצועים טובים יותר ל-React. נתב](/learn/start-a-new-react-project#nextjs-app-router).
 
 * * *
-In addition to this update, our team has made recent guest appearances on community podcasts and livestreams to speak more on our work and answer questions.
+בנוסף לעדכון הזה, הצוות שלנו התארח לאחרונה בפודקאסטים ושידורים חיים של הקהילה כדי לדבר על העבודה שלנו ולענות על שאלות.
 
-* [Dan Abramov](https://twitter.com/dan_abramov) and [Joe Savona](https://twitter.com/en_JS) were interviewed by [Kent C. Dodds on his YouTube channel](https://www.youtube.com/watch?v=h7tur48JSaw), where they discussed concerns around React Server Components.
-* [Dan Abramov](https://twitter.com/dan_abramov) and [Joe Savona](https://twitter.com/en_JS) were guests on the [JSParty podcast](https://jsparty.fm/267) and shared their thoughts about the future of React.
+* [Dan Abramov](https://twitter.com/dan_abramov) ו-[Joe Savona](https://twitter.com/en_JS) התראיינו אצל [Kent C. Dodds ביוטיוב](https://www.youtube.com/watch?v=h7tur48JSaw), ושם דיברו על חששות סביב React Server Components.
+* [דן אברמוב](https://twitter.com/dan_abramov) ו-[Joe Savona](https://twitter.com/en_JS) היו אורחים ב-[JSParty podcast](https://jsparty.fm/267) ושיתפו מחשבות על עתיד React.
 
-Thanks to [Andrew Clark](https://twitter.com/acdlite), [Dan Abramov](https://twitter.com/dan_abramov), [Dave McCabe](https://twitter.com/mcc_abe), [Luna Wei](https://twitter.com/lunaleaps), [Matt Carroll](https://twitter.com/mattcarrollcode), [Sean Keegan](https://twitter.com/DevRelSean), [Sebastian Silbermann](https://twitter.com/sebsilbermann), [Seth Webster](https://twitter.com/sethwebster), and [Sophie Alpert](https://twitter.com/sophiebits) for reviewing this post.
+תודה ל-[אנדרו קלארק](https://twitter.com/acdlite), [דן אברמוב](https://twitter.com/dan_abramov), [דייב מקייב](https://twitter.com/mcc_abe), [לונה ווי](https://twitter.com/lunaleaps), [מאט קרול](https://twitter.com/mattcarrollcode), [שון קיגן](https://twitter.com/DevRelSean), [סבסטיאן זילברסטרמן]_____7K(https://twitter.com/mattcarrollcode),] אלפרט](https://twitter.com/sophiebits) על סקירת הפוסט הזה.
 
-Thanks for reading, and see you in the next update!
+תודה שקראתם, נתראה בעדכון הבא!

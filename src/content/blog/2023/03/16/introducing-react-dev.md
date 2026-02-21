@@ -1,14 +1,14 @@
 ---
-title: "Introducing react.dev"
+title: "הכירו את react.dev"
 ---
 
-March 16, 2023 by [Dan Abramov](https://twitter.com/dan_abramov) and [Rachel Nabors](https://twitter.com/rachelnabors)
+16 במרץ 2023 מאת [דן אברמוב](https://twitter.com/dan_abramov) ו[רחל נאבורס](https://twitter.com/rachelnabors)
 
 ---
 
 <Intro>
 
-Today we are thrilled to launch [react.dev](https://react.dev), the new home for React and its documentation. In this post, we would like to give you a tour of the new site.
+היום אנחנו נרגשים להשיק את [react.dev](https://react.dev), הבית החדש של React והתיעוד שלו. בפוסט זה, ברצוננו לערוך לכם סיור באתר החדש.
 
 </Intro>
 
@@ -16,44 +16,44 @@ Today we are thrilled to launch [react.dev](https://react.dev), the new home for
 
 ## tl;dr {/*tldr*/}
 
-* The new React site ([react.dev](https://react.dev)) teaches modern React with function components and Hooks.
-* We've included diagrams, illustrations, challenges, and over 600 new interactive examples.
-* The previous React documentation site has now moved to [legacy.reactjs.org](https://legacy.reactjs.org).
+* האתר React החדש ([react.dev](https://react.dev)) מלמד React מודרני עם רכיבי פונקציות וHooks.
+* כללנו דיאגרמות, איורים, אתגרים ויותר מ-600 דוגמאות אינטראקטיביות חדשות.
+* אתר התיעוד הקודם React עבר עכשיו אל [legacy.reactjs.org](https://legacy.reactjs.org).
 
-## New site, new domain, new homepage {/*new-site-new-domain-new-homepage*/}
+## אתר חדש, דומיין חדש, דף בית חדש {/*new-site-new-domain-new-homepage*/}
 
-First, a little bit of housekeeping.
+ראשית, קצת שמירה על house.
 
-To celebrate the launch of the new docs and, more importantly, to clearly separate the old and the new content, we've moved to the shorter [react.dev](https://react.dev) domain. The old [reactjs.org](https://reactjs.org) domain will now redirect here.
+כדי לחגוג את השקת המסמכים החדשים, ומשמעותיים, להפריד בבירור בין התוכן הישן והחדש, עברנו לדומיין הקצר יותר [react.dev](https://react.dev). הדומיין הישן [reactjs.org](https://reactjs.org) יפנה לכאן כעת.
 
-The old React docs are now archived at [legacy.reactjs.org](https://legacy.reactjs.org). All existing links to the old content will automatically redirect there to avoid "breaking the web", but the legacy site will not get many more updates.
+המסמכים הישנים של React מאוחסנים כעת בארכיון ב-[legacy.reactjs.org](https://legacy.reactjs.org). כל הקישורים הקיימים לתוכן הישן יופנו באופן אוטומטי כדי למנוע "שבירה באינטרנט", אך האתר מדור קודם לא יקבל עדכונים רבים נוספים.
 
-Believe it or not, React will soon be ten years old. In JavaScript years, it's like a whole century! We've [refreshed the React homepage](https://react.dev) to reflect why we think React is a great way to create user interfaces today, and updated the getting started guides to more prominently mention modern React-based frameworks.
+תאמינו או לא, React ימלאו בקרוב עשר שנים. בעוד JavaScript שנים, זה כמו מאה שלמה! [רעננו את דף הבית של React](https://react.dev) כדי לשקף למה אנחנו חושבים שReact היא דרך מצוינת ליצור ממשקי user כיום, ועדכנו את מדריכי ההתחלה כדי להזכיר בצורה בולטת יותר מסגרות מודרניות מבוססות React.
 
-If you haven't seen the new homepage yet, check it out!
+אם עדיין לא ראית את דף הבית החדש, בדוק אותו!
 
-## Going all-in on modern React with Hooks {/*going-all-in-on-modern-react-with-hooks*/}
+## הולך All-in על React מודרני עם Hooks {/*going-all-in-on-modern-react-with-hooks*/}
 
-When we released React Hooks in 2018, the Hooks docs assumed the reader is familiar with class components. This helped the community adopt Hooks very swiftly, but after a while the old docs failed to serve the new readers. New readers had to learn React twice: once with class components and then once again with Hooks.
+כאשר משחררנו את React Hooks בשנת 2018, המסמכים Hooks הניחו שהקורא מכיר את רכיבי המחלקה. זה עזר לקהילה לאמץ את Hooks במהירות רבה, אך לאחר זמן המסמכים הישנים לא הצליחו לשרת את הקוראים החדשים. קוראים חדשים היו צריכים ללמוד React פעמיים: פעם אחת עם רכיבי כיתה ואז שוב עם Hooks.
 
-**The new docs teach React with Hooks from the beginning.** The docs are divided in two main sections:
+**המסמכים החדשים מלמדים React עם Hooks מההתחלה.** המסמכים מחולקים לשני חלקים עיקריים:
 
-* **[Learn React](/learn)** is a self-paced course that teaches React from scratch.
-* **[API Reference](/reference)** provides the details and usage examples for every React API.
+* **[Learn React](/learn)** הוא קורס בקצב עצמי המלמד React מאפס.
+* **[API Reference](/reference)** מספק את הפרטים ודוגמאות השימוש עבור כל React API.
 
-Let's have a closer look at what you can find in each section.
+בואו נסתכל מקרוב על מה תוכלו למצוא בכל חלק.
 
 <Note>
 
-There are still a few rare class component use cases that do not yet have a Hook-based equivalent. Class components remain supported, and are documented in the [Legacy API](/reference/react/legacy) section of the new site.
+יש עדיין כמה מקרים נדירים של רכיבי מחלקה use שעדיין אין להם מקבילה מבוססת Hook. רכיבי הכיתה נשארים נתמכים ומתועדים בקטע [Legacy API](/reference/react/legacy) של האתר החדש.
 
 </Note>
 
-## Quick start {/*quick-start*/}
+## התחלה מהירה {/*quick-start*/}
 
-The Learn section begins with the [Quick Start](/learn) page. It is a short introductory tour of React. It introduces the syntax for concepts like components, props, and state, but doesn't go into much detail on how to use them.
+הקטע למד מתחיל בדף [התחלה מהירה](/learn). זהו סיור היכרות קצר של React. הוא מציג את התחביר של מושגים כמו רכיבים, props, ו-state, אבל לא מפרט איך use אותם.
 
-If you like to learn by doing, we recommend checking out the [Tic-Tac-Toe Tutorial](/learn/tutorial-tic-tac-toe) next. It walks you through building a little game with React, while teaching the skills you'll use every day. Here's what you'll build:
+אם אתה אוהב ללמוד על ידי עשייה, אנו ממליצים לבדוק את ה-[Tic-Tac-Toe Tutorial](/learn/tutorial-tic-tac-toe) הבא. זה ילמד אותך בבניית משחק קטן עם React, תוך כדי ללמד את המיומנויות use בכל יום. הנה מה שתבנה:
 
 <Sandpack>
 
@@ -222,43 +222,43 @@ body {
 
 </Sandpack>
 
-We'd also like to highlight [Thinking in React](/learn/thinking-in-react)—that's the tutorial that made React "click" for many of us. **We've updated both of these classic tutorials to use function components and Hooks,** so they're as good as new.
+ברצוננו גם להדגיש את [Thinking in React](/learn/thinking-in-react) - זה המדריך שגרם ל-React ל"קליק" עבור רבים מאיתנו. **עדכנו את שני המדריכים הקלאסיים הללו לרכיבי פונקציות use וHooks,** כך שהם טובים כמו חדשים.
 
 <Note>
 
-The example above is a *sandbox*. We've added a lot of sandboxes—over 600!—everywhere throughout the site. You can edit any sandbox, or press "Fork" in the upper right corner to open it in a separate tab. Sandboxes let you quickly play with the React APIs, explore your ideas, and check your understanding.
+הדוגמה היא למעלה *ארגז חול*. הוספנו הרבה ארגזי חול - מעל 600! - בכל מקום באתר. אתה יכול לערוך כל ארגז חול, או ללחוץ על "מזלג" בפינה הימנית העליונה כדי לפתוח אותו בלשונית נפרדת. ארגזי חולים יכול לשחק מהר עם React APIs, לחקור את הרעיונות שלך ולבדוק את ההבנה שלך.
 
 </Note>
 
-## Learn React step by step {/*learn-react-step-by-step*/}
+## למד React שלב אחר שלב {/*learn-react-step-by-step*/}
 
-We'd like everyone in the world to have an equal opportunity to learn React for free on their own.
+אנו רוצים שלכולם בעולם יש הזדמנות שווה ללמוד React בחינם בעצמם.
 
-This is why the Learn section is organized like a self-paced course split into chapters. The first two chapters describe the fundamentals of React. If you're new to React, or want to refresh it in your memory, start here:
+זה מה שהקטע למד מאורגן כמו קורס בקצב עצמי המפוצל לפרקים. שני הפרקים הראשונים מתארים את היסודות של React. אם אתה חדש ב-React, או רוצה לרענן אותו ב-memory שלך, התחל כאן:
 
-- **[Describing the UI](/learn/describing-the-ui)** teaches how to display information with components.
-- **[Adding Interactivity](/learn/adding-interactivity)** teaches how to update the screen in response to user input.
+- **[מתאר את ממשק המשתמש](/learn/describing-the-ui)** מלמד כיצד להציג מידע עם רכיבים.
+- **[הוספת אינטראקטיביות](/learn/adding-interactivity)** מלמד כיצד לעדכן את המסך בתגובה לקלט user.
 
-The next two chapters are more advanced, and will give you a deeper insight into the trickier parts:
+שני הפרקים הבאים מתקדמים יותר, ויתנו לך תובנה עמוקה יותר לגבי החלקים המסובכים יותר:
 
-- **[Managing State](/learn/managing-state)** teaches how to organize your logic as your app grows in complexity.
-- **[Escape Hatches](/learn/escape-hatches)** teaches how you can "step outside" React, and when it makes most sense to do so.
+- **[Managing State](/learn/managing-state)** מלמד איך לארגן את ההיגיון שלך ככל שהאפליקציה שלך גדלה במורכבות.
+- **[Escape Hatches](/learn/escape-hatches)** מלמד איך אתה יכול "לצאת החוצה" React, ומתי הכי הגיוני לעשות זאת.
 
-Every chapter consists of several related pages. Most of these pages teach a specific skill or a technique—for example, [Writing Markup with JSX](/learn/writing-markup-with-jsx), [Updating Objects in State](/learn/updating-objects-in-state), or [Sharing State Between Components](/learn/sharing-state-between-components). Some of the pages focus on explaining an idea—like [Render and Commit](/learn/render-and-commit), or [State as a Snapshot](/learn/state-as-a-snapshot). And there are a few, like [You Might Not Need an Effect](/learn/you-might-not-need-an-effect), that share our suggestions based on what we've learned over these years.
+כל פרק מורכב מכמה דפים קשורים. רוב הדפים הללו מלמדים מיומנות או טכניקה ספציפית - לדוגמה, [כותבת סימון עם JSX](/learn/writing-markup-with-jsx), [עדכון אובייקטים במצב](/learn/updating-objects-in-state) או [Sharing State Between רכיבים](/learn/sharing-state-between-components). חלק מהדפים ממעשיים בהסבר רעיון - כמו [Render and Commit](/learn/render-and-commit), או [State as a Snapshot](/learn/state-as-a-snapshot). ויש כמה, כמו [אולי אתה לא צריך אפקט](/learn/you-might-not-need-an-effect), שחולקים את ההצעות שלנו על סמך מה שלמדנו במהלך השנים הללו.
 
-You don't have to read these chapters as a sequence. Who has the time for this?! But you could. Pages in the Learn section only rely on concepts introduced by the earlier pages. If you want to read it like a book, go for it!
+אתה לא צריך לקרוא את הפרקים האלה כרצף. למי יש זמן לזה?! אבל אתה יכול. דפים במקטע למד מסתמכים רק על מושגים שהוצגו בדפים הקודמים. אם אתה רוצה לקרוא אותו כמו ספר, לך על זה!
 
-### Check your understanding with challenges {/*check-your-understanding-with-challenges*/}
+### בדוק את ההבנה שלך עם אתגרים {/*check-your-understanding-with-challenges*/}
 
-Most pages in the Learn section end with a few challenges to check your understanding. For example, here are a few challenges from the page about [Conditional Rendering](/learn/conditional-rendering#challenges).
+רוב הדפים בקטע למידה מסתיימים בכמה אתגרים כדי לבדוק את ההבנה שלך. לדוגמה, הנה כמה אתרים מהעמוד על [עיבוד מותנה](/learn/conditional-rendering#challenges).
 
-You don't have to solve them right now! Unless you *really* want to.
+אתה לא צריך לפתור אותם עכשיו! אלא אם כן אתה *באמת* רוצה.
 
 <Challenges noTitle={true}>
 
-#### Show an icon for incomplete items with `? :` {/*show-an-icon-for-incomplete-items-with--*/}
+#### הצג סמל עבור פריטים לא שלמים עם `? :` {/*show-an-icon-for-incomplete-items-with--*/}
 
-Use the conditional operator (`cond ? a : b`) to render a ❌ if `isPacked` isn’t `true`.
+השתמש באופרטור המותנה (`cond ? a : b`) כדי להציג ❌ אם `isPacked` אינו `true`.
 
 <Sandpack>
 
@@ -336,15 +336,15 @@ export default function PackingList() {
 
 </Solution>
 
-#### Show the item importance with `&&` {/*show-the-item-importance-with-*/}
+#### הצג את חשיבות הפריט באמצעות `&&` {/*show-the-item-importance-with-*/}
 
-In this example, each `Item` receives a numerical `importance` prop. Use the `&&` operator to render "_(Importance: X)_" in italics, but only for items that have non-zero importance. Your item list should end up looking like this:
+בדוגמה זו, כל `Item` מקבל אבזר `importance` מספרי. השתמש באופרטור `&&` כדי להציג את "_(חשיבות: X)_" באותיות נטוי, אך רק עבור פריטים בעלי חשיבות שאינה אפס. רשימת הדברים שלך אמורה להיראות כך בסוף הדברים:
 
-* Space suit _(Importance: 9)_
-* Helmet with a golden leaf
-* Photo of Tam _(Importance: 6)_
+* חליפת חלל _(חשיבות: 9)_
+*קסדה עם עלה זהב
+* תמונה של תם _(חשיבות: 6)_
 
-Don't forget to add a space between the two labels!
+אל תשכח להוסיף רווח בין שתי התוויות!
 
 <Sandpack>
 
@@ -384,7 +384,7 @@ export default function PackingList() {
 
 <Solution>
 
-This should do the trick:
+זה אמור לעשות את העבודה:
 
 <Sandpack>
 
@@ -426,53 +426,53 @@ export default function PackingList() {
 
 </Sandpack>
 
-Note that you must write `importance > 0 && ...` rather than `importance && ...` so that if the `importance` is `0`, `0` isn't rendered as the result!
+שים לב שעליך לכתוב `importance > 0 && ...` ולא `importance && ...` כך שאם ה-`importance` הוא `0`, `0` לא יוצג למעשה!
 
-In this solution, two separate conditions are used to insert a space between then name and the importance label. Alternatively, you could use a Fragment with a leading space: `importance > 0 && <> <i>...</i></>` or add a space immediately inside the `<i>`:  `importance > 0 && <i> ...</i>`.
+בפתרון זה, שני תנאים נפרדים הם used כדי להכניס רווח בין השם ותווית החשיבות. לחלופין, תוכל להוסיף use ל-Fragment עם רווח מוביל: `importance > 0 && <> <i>...</i></>` או להוסיף רווח מיד בתוך ה-`<i>`: `importance > 0 && <i> ...</i>`.
 
 </Solution>
 
 </Challenges>
 
-Notice the "Show solution" button in the left bottom corner. It's handy if you want to check yourself!
+שימו לב ללחצן "הצג פתרון" בפינה השמאלית התחתונה. זה שימושי אם אתה רוצה לבדוק את עצמך!
 
-### Build an intuition with diagrams and illustrations {/*build-an-intuition-with-diagrams-and-illustrations*/}
+### בנה אינטואיציה עם דיאגרמות ואיורים {/*build-an-intuition-with-diagrams-and-illustrations*/}
 
-When we couldn't figure out how to explain something with code and words alone, we've added diagrams that help provide some intuition. For example, here is one of the diagrams from [Preserving and Resetting State](/learn/preserving-and-resetting-state):
+כשלא הצלחנו להסביר משהו עם קוד ומילים בלבד, הוס דיאגרמות שעוזרות לספק קצת אינטואיציה. לדוגמה, הנה אחד מהדיאגרמות מ-[שימור ואיפוס מצב](/learn/preserving-and-resetting-state):
 
 <Diagram name="preserving_state_diff_same_pt1" height={350} width={794} alt="Diagram with three sections, with an arrow transitioning each section in between. The first section contains a React component labeled 'div' with a single child labeled 'section', which has a single child labeled 'Counter' containing a state bubble labeled 'count' with value 3. The middle section has the same 'div' parent, but the child components have now been deleted, indicated by a yellow 'proof' image. The third section has the same 'div' parent again, now with a new child labeled 'div', highlighted in yellow, also with a new child labeled 'Counter' containing a state bubble labeled 'count' with value 0, all highlighted in yellow.">
 
-When `section` changes to `div`, the `section` is deleted and the new `div` is added
+כאשר `section` משתנה ל-`div`, ה-`section` נמחק וה-`div` החדש מתווסף
 
 </Diagram>
 
-You'll also see some illustrations throughout the docs--here's one of the [browser painting the screen](/learn/render-and-commit#epilogue-browser-paint):
+תראה גם כמה איורים לאורך המסמכים--הנה אחד מה-[דפדפן מצייר את המסך](/learn/render-and-commit#epilogue-browser-paint):
 
 <Illustration alt="A browser painting 'still life with card element'." src="/images/docs/illustrations/i_browser-paint.png" />
 
-We've confirmed with the browser vendors that this depiction is 100% scientifically accurate.
+אישרנו עם ספקי הדפדפן שהתיאור הזה הוא 100% מדויק מבחינה מדעית.
 
-## A new, detailed API Reference {/*a-new-detailed-api-reference*/}
+## API הפניה חדשה ומפורטת {/*a-new-detailed-api-reference*/}
 
-In the [API Reference](/reference/react), every React API now has a dedicated page. This includes all kinds of APIs:
+ב-[API Reference](/reference/react), לכל React API יש עכשיו עמוד ייעודי. זה כולל כל מיני APIs:
 
-- Built-in Hooks like [`useState`](/reference/react/useState).
-- Built-in components like [`<Suspense>`](/reference/react/Suspense).
-- Built-in browser components like [`<input>`](/reference/react-dom/components/input).
-- Framework-oriented APIs like [`renderToPipeableStream`](/reference/react-dom/server/renderToReadableStream).
-- Other React APIs like [`memo`](/reference/react/memo).
+- Hooks מובנה כמו [useState](/reference/react/useState).
+- רכיבים מובנים כמו [useState](/reference/react/Suspense).
+- רכיבי דפדפן מובנים כמו [useState](/reference/react-dom/components/input).
+- APIs מוכווני מסגרת כמו [useState](/reference/react-dom/server/renderToReadableStream).
+- React APIs אחרים כמו [useState](/reference/react/memo).
 
-You'll notice that every API page is split into at least two segments: *Reference* and *Usage*.
+תבחין שכל עמוד API מחולק לשני פלחים לפחות: *הפניה* ו-*שימוש*.
 
-[Reference](/reference/react/useState#reference) describes the formal API signature by listing its arguments and return values. It's concise, but it can feel a bit abstract if you're not familiar with that API. It describes what an API does, but not how to use it.
+[Reference](/reference/react/useState#reference) מתאר את החתימה הרשמית API על ידי רישום הארגומנטים וערכי ההחזר. זה תמציתי, אבל זה יכול להרגיש קצת מופשט אם אתה לא מכיר את ה-API הזה. זה מתאר מה API עושה, אבל לא איך use אותו.
 
-[Usage](/reference/react/useState#usage) shows why and how you would use this API in practice, like a colleague or a friend might explain. It shows the **canonical scenarios for how each API was meant to be used by the React team.** We've added color-coded snippets, examples of using different APIs together, and recipes that you can copy and paste from:
+[שימוש](/reference/react/useState#usage) מראה מדוע וכיצד הייתם use זה API בפועל, כמו שעמית או חבר להסביר להסביר. זה מראה את **התרחישים הקנוניים של האופן שבו כל API נועד להיות used על ידי צוות React.** הוספנו קטעי קוד צבעוניים, דוגמאות לשימוש ב-API שונים ביחד ומתכונים שאפשרו להעתיק ולהדביק מהם:
 
 <Recipes titleText="Basic useState examples" titleId="examples-basic">
 
-#### Counter (number) {/*counter-number*/}
+#### מונה (מספר) {/*counter-number*/}
 
-In this example, the `count` state variable holds a number. Clicking the button increments it.
+בדוגמה זו, המשתנה `count` state מכיל מספר. לחיצה על הכפתור מגדילה אותו.
 
 <Sandpack>
 
@@ -498,9 +498,9 @@ export default function Counter() {
 
 <Solution />
 
-#### Text field (string) {/*text-field-string*/}
+#### שדה טקסט (מחרוזת) {/*text-field-string*/}
 
-In this example, the `text` state variable holds a string. When you type, `handleChange` reads the latest input value from the browser input DOM element, and calls `setText` to update the state. This allows you to display the current `text` below.
+בדוגמה זו, המשתנה `text` state מכיל מחרוזת. כשאתה מקליד, `handleChange`קורא את הערך האחרון ממרכיב הקלט DOM בדפדפן, וקורא ל-`setText` כדי לעדכן את ה-state. זה יכול להראות את ה-`text` הנוכחי למטה.
 
 <Sandpack>
 
@@ -530,9 +530,9 @@ export default function MyInput() {
 
 <Solution />
 
-#### Checkbox (boolean) {/*checkbox-boolean*/}
+#### תיבת סימון (בוליאנית) {/*checkbox-boolean*/}
 
-In this example, the `liked` state variable holds a boolean. When you click the input, `setLiked` updates the `liked` state variable with whether the browser checkbox input is checked. The `liked` variable is used to render the text below the checkbox.
+בדוגמה זו, המשתנה `liked` state מחזיק בוליאני. כאשר אתה לוחץ על הקלט, `setLiked` מעדכן את השינוי `liked` state אם קלט תיבת הסימון בדפדפן מסומן. השינוי `liked` הוא used כדי להציג את הטקסט מתחת לתיבת הסימון.
 
 <Sandpack>
 
@@ -566,9 +566,9 @@ export default function MyCheckbox() {
 
 <Solution />
 
-#### Form (two variables) {/*form-two-variables*/}
+#### טופס (שני משתנים) {/*form-two-variables*/}
 
-You can declare more than one state variable in the same component. Each state variable is completely independent.
+אתה יכול להכריז על יותר מרינג state רכיב אחד. כל ranking state הוא בלתי תלוי לחלוטין.
 
 <Sandpack>
 
@@ -604,42 +604,42 @@ button { display: block; margin-top: 10px; }
 
 </Recipes>
 
-Some API pages also include [Troubleshooting](/reference/react/useEffect#troubleshooting) (for common problems) and [Alternatives](/reference/react-dom/findDOMNode#alternatives) (for deprecated APIs).
+חלק מהדפים API כוללים גם [פתרון בעיות](/reference/react/useEffect#troubleshooting) (לבעיות נפוצות) ו[Alternatives](/reference/react-dom/findDOMNode#alternatives) (עבור APIs שהוצאו משימוש).
 
-We hope that this approach will make the API reference useful not only as a way to look up an argument, but as a way to see all the different things you can do with any given API—and how it connects to the other ones.
+אנו מקווים שגישה זו תהפוך את ההתייחסות API לuse לממלאת לא רק כדרך לחפש טיעון, אלא כדרך לראות את כל הדברים שאתה יכול לעשות עם כל API נתון - וכיצד הוא מתחבר לחבור.
 
-## What's next? {/*whats-next*/}
+## מה הלאה? {/*whats-next*/}
 
-That's a wrap for our little tour! Have a look around the new website, see what you like or don't like, and keep the feedback coming in the [anonymous survey](https://www.surveymonkey.co.uk/r/PYRPF3X) or in our [issue tracker](https://github.com/reactjs/reactjs.org/issues).
+זה כיסוי לסיור הקטן שלנו! עיין באתר החדש, ראה מה אתה אוהב או לא אוהב, והמשיכו לקבל את המשוב ב[סקר האנונימי](https://www.surveymonkey.co.uk/r/PYRPF3X) או ב[מעקב אחר בעיות](https://github.com/reactjs/reactjs.org/issues).) שלנו
 
-We acknowledge this project has taken a long time to ship. We wanted to maintain a high quality bar that the React community deserves. While writing these docs and creating all of the examples, we found mistakes in some of our own explanations, bugs in React, and even gaps in the React design that we are now working to address. We hope that the new documentation will help us hold React itself to a higher bar in the future.
+אנו מודים שהפרויקט הזה לקח הרבה זמן לשלוח אותו. רצינו לשמור על בר איכותי שמגיע לקהילת React. על כתיבת המסמכים הללו ויצירת כל הדוגמאות, מצאנו טעויות בכמה מההסברים שלנו, באגים ב-React, ואף פערים בעיצוב React אנו פועלים כעת בהם. אנו מקווים שהתיעוד החדש יעזור לנו לעשות את React ברף גבוה יותר.
 
-We've heard many of your requests to expand the content and functionality of the website, for example:
+שמענו רבות מהבקשות שלך להרחיב את התוכן והפונקציונליות של האתר, למשל:
 
-- Providing a TypeScript version for all examples;
-- Creating the updated performance, testing, and accessibility guides;
-- Documenting React Server Components independently from the frameworks that support them;
-- Working with our international community to get the new docs translated;
-- Adding missing features to the new website (for example, RSS for this blog).
+- מתן גרסת TypeScript לכל הדוגמאות;
+- יצירת מדריכי הביצועים, הבדיקות והנגישות המעודכנים;
+- תיעוד React רכיבי שרת ללא תלות במסגרות התומכות בהם;
+- עבודה עם הקהילה הבינלאומית שלנו כדי לתרגם את המסמכים החדשים;
+- הוספת תכונות חסרות לאתר החדש (לדוגמה, RSS עבור בלוג זה).
 
-Now that [react.dev](https://react.dev/) is out, we will be able to shift our focus from "catching up" with the third-party React educational resources to adding new information and further improving our new website.
+כעת, כאשר [react.dev](https://react.dev/) יצא, נוכל להעביר את המיקוד שלנו מ"להדביק" את המשאבים החינוכיים React של צד שלישי להוספת מידע חדש ושיפור נוסף של האתר החדש שלנו.
 
-We think there's never been a better time to learn React.
+אנחנו חושבים שמעולם לא היה זמן טוב יותר ללמוד React.
 
-## Who worked on this? {/*who-worked-on-this*/}
+## מי עבד על זה? {/*who-worked-on-this*/}
 
-On the React team, [Rachel Nabors](https://twitter.com/rachelnabors/) led the project (and provided the illustrations), and [Dan Abramov](https://twitter.com/dan_abramov) designed the curriculum. They co-authored most of the content together as well.
+בצוות React, [רחל נבורס](https://twitter.com/dan_abramov) הובילה את הפרויקט (וסיפקה את האיורים) ו[דן אברמוב](https://twitter.com/dan_abramov) עיצבו את התכנית הלימודים. הם גם כתבו יחד את רוב התוכן.
 
-Of course, no project this large happens in isolation. We have a lot of people to thank!
+כמובן, שום פרויקט כזה גדול לא קורה בנפרד. יש לנו הרבה אנשים להודות!
 
-[Sylwia Vargas](https://twitter.com/SylwiaVargas) overhauled our examples to go beyond "foo/bar/baz" and kittens, and feature scientists, artists and cities from around the world. [Maggie Appleton](https://twitter.com/Mappletons) turned our doodles into a clear diagram system.
+[סילביה ורגאס](https://twitter.com/SylwiaVargas) שיפרה את הדוגמאות שלנו כדי לחרוג מ"foo/bar/baz" וחתלתולים, ולהציג מדענים, אמנים וערים מרחבי העולם. [מגי אפלטון](https://twitter.com/Mappletons) הפכה את השרבוטים שלנו למערכת דיאגרמות ברורה.
 
-Thanks to [David McCabe](https://twitter.com/mcc_abe), [Sophie Alpert](https://twitter.com/sophiebits), [Rick Hanlon](https://twitter.com/rickhanlonii), [Andrew Clark](https://twitter.com/acdlite), and [Matt Carroll](https://twitter.com/mattcarrollcode) for additional writing contributions. We'd also like to thank [Natalia Tepluhina](https://twitter.com/n_tepluhina) and [Sebastian Markbåge](https://twitter.com/sebmarkbage) for their ideas and feedback.
+תודה ל[דיוויד מקייב](https://twitter.com/mcc_abe), [סופי אלפרט](https://twitter.com/sophiebits), [ריק הנלון](https://twitter.com/rickhanlonii), [אנדרו קלארק](https://twitter.com/acdlite), ו[מאט קרול](https://twitter.com/mattcarrollcode) על כתיבה נוספת של תרומות. ברצוננו גם להודות ל[נטליה טפלוהינאבסטי]__ו-[מרק עלבסתי]__](אן-[ק-רעיונות) והמשוב שלנו.
 
-Thanks to [Dan Lebowitz](https://twitter.com/lebo) for the site design and [Razvan Gradinar](https://dribbble.com/GradinarRazvan) for the sandbox design.
+תודה ל[דן לבוביץ](https://twitter.com/lebo) על עיצוב האתר ו-[רזבן גרדינר](https://dribbble.com/GradinarRazvan) על עיצוב ארגז החול.
 
-On the development front, thanks to [Jared Palmer](https://twitter.com/jaredpalmer) for prototype development. Thanks to [Dane Grant](https://twitter.com/danecando) and [Dustin Goodman](https://twitter.com/dustinsgoodman) from [ThisDotLabs](https://www.thisdot.co/) for their support on UI development. Thanks to [Ives van Hoorne](https://twitter.com/CompuIves), [Alex Moldovan](https://twitter.com/alexnmoldovan), [Jasper De Moor](https://twitter.com/JasperDeMoor), and [Danilo Woznica](https://twitter.com/danilowoz) from [CodeSandbox](https://codesandbox.io/) for their work with sandbox integration. Thanks to [Rick Hanlon](https://twitter.com/rickhanlonii) for spot development and design work, finessing our colors and finer details. Thanks to [Harish Kumar](https://www.strek.in/) and [Luna Ruan](https://twitter.com/lunaruan) for adding new features to the site and helping maintain it.
+בחזית הפיתוח, תודה ל[ג'ארד פאלמר](https://twitter.com/jaredpalmer) על פיתוח אב טיפוס. תודה ל[דיין גרנט](https://twitter.com/danecando) ו[דסטין גודמן](https://twitter.com/dustinsgoodman) מ-[ThisDotLabs](https://www.thisdot.co/) על תמיכתם בפיתוח ממשק משתמש. תודה ל[Ives van Hoorne](___K](___T](___T)(___T)(___T) ווזניקה](https://twitter.com/danilowoz) מ-[CodeSandbox](https://codesandbox.io/) על עבודתם עם אינטגרציה של ארגז חול. תודה ל[ריק הנלון](https://twitter.com/rickhanlonii) על עבודת פיתוח נקודתית ועיצוב, עידוד הצבעים שלנו ופרטים חדשים עדינים יותר. תודה ל-[Harish Kumar0_](__1K_1_1) בתות והוספת.
 
-Huge thanks to the folks who volunteered their time to participate in the alpha and beta testing program. Your enthusiasm and invaluable feedback helped us shape these docs. A special shout out to our beta tester, [Debbie O'Brien](https://twitter.com/debs_obrien), who gave a talk about her experience using the React docs at React Conf 2021.
+תודה ענקית לאנשים שהתנדבו מזמנם להשתתף בתוכנית בדיקות אלפא ובטא. ההתלהבות והמשוב שלא יסולא בפס יעזרו לנו לעצב את המסמכים האלה. צעקה מיוחדת לבוחן הביטא שלנו, [דבי אובריאן](https://twitter.com/debs_obrien), שנשאה הרצאה על החוויה שלה בשימוש במסמכים React ב-React Conf 2021.
 
-Finally, thanks to the React community for being the inspiration behind this effort. You are the reason we do this, and we hope that the new docs will help you use React to build any user interface that you want.
+לבסוף, תודה לקהילת React על היותה ההשראה מאחורי המאמץ הזה. אתה חושב שאנחנו עושים זאת, ואנו מקווים שהמסמכים החדשים יעזרו לך use React לבנות כל ממשק user שתרצו.

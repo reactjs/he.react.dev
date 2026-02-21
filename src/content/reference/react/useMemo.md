@@ -1,10 +1,10 @@
 ---
-title: useMemo
+title: "useMemo"
 ---
 
 <Intro>
 
-`useMemo` is a React Hook that lets you cache the result of a calculation between re-renders.
+`useMemo` הוא React Hook המאפשר לך לשמור את התוצאה של חישוב בין רינדורים מחדש.
 
 ```js
 const cachedValue = useMemo(calculateValue, dependencies)
@@ -16,11 +16,11 @@ const cachedValue = useMemo(calculateValue, dependencies)
 
 ---
 
-## Reference {/*reference*/}
+## הפניה {/*reference*/}
 
 ### `useMemo(calculateValue, dependencies)` {/*usememo*/}
 
-Call `useMemo` at the top level of your component to cache a calculation between re-renders:
+התקשר ל-`useMemo` ברמה העליונה של הרכיב שלך כדי לשמור חישוב במטמון בין עיבוד מחדש:
 
 ```js
 import { useMemo } from 'react';
@@ -34,39 +34,39 @@ function TodoList({ todos, tab }) {
 }
 ```
 
-[See more examples below.](#usage)
+[ראה דוגמאות נוספות למטה.](#usage)
 
-#### Parameters {/*parameters*/}
+#### פרמטרים {/*parameters*/}
 
-* `calculateValue`: The function calculating the value that you want to cache. It should be pure, should take no arguments, and should return a value of any type. React will call your function during the initial render. On next renders, React will return the same value again if the `dependencies` have not changed since the last render. Otherwise, it will call `calculateValue`, return its result, and store it so it can be reused later.
+* `calculateValue`: הפונקציה המחשבת את הערך שברצונך לשמור במטמון. זה צריך להיות טהור, לא צריך לקחת טיעונים, וצריך להחזיר ערך מכל סוג שהוא. React יקרא לפונקציה שלך במהלך העיבוד הראשוני. בעיבוד הבא, React יחזיר את אותו הערך שוב אם ה-`dependencies` לא השתנה מאז העיבוד האחרון. אחרת, הוא יקרא ל-`calculateValue`, יחזיר את התוצאה שלו ויאחסן אותה כך שניתן יהיה להused מחדש מאוחר יותר.
 
-* `dependencies`: The list of all reactive values referenced inside of the `calculateValue` code. Reactive values include props, state, and all the variables and functions declared directly inside your component body. If your linter is [configured for React](/learn/editor-setup#linting), it will verify that every reactive value is correctly specified as a dependency. The list of dependencies must have a constant number of items and be written inline like `[dep1, dep2, dep3]`. React will compare each dependency with its previous value using the [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) comparison.
+* `dependencies`: רשימת כל הערכים התגובתיים שאליהם מתייחסים בתוך הקוד `calculateValue`. הערכים Reactive כוללים את props, state, ואת כל המשתנים והפונקציות המוצהרות ישירות בתוך גוף הרכיב שלך. אם ה-linter שלך הוא [מוגדר עבור React](/learn/editor-setup#linting), הוא יוודא שכל ערך תגובתי צוין כהלכה כתלות. רשימת התלות חייבת לכלול מספר קבוע של פריטים ולהיכתב בשורה כמו `[dep1, dep2, dep3]`. React ישווה כל תלות עם הערך הקודם שלה באמצעות ההשוואה [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is).
 
-#### Returns {/*returns*/}
+#### מחזירה {/*returns*/}
 
-On the initial render, `useMemo` returns the result of calling `calculateValue` with no arguments.
+בעיבוד הראשוני, `useMemo` מחזיר את התוצאה של קריאה ל-`calculateValue` ללא ארגומנטים.
 
-During next renders, it will either return an already stored value from the last render (if the dependencies haven't changed), or call `calculateValue` again, and return the result that `calculateValue` has returned.
+במהלך הרינדור הבא, הוא יחזיר ערך שכבר מאוחסן מהעיבוד האחרון (אם התלות לא השתנו), או יתקשר שוב ל-`calculateValue`, ויחזיר את התוצאה ש-`calculateValue` החזיר.
 
-#### Caveats {/*caveats*/}
+#### אזהרות {/*caveats*/}
 
-* `useMemo` is a Hook, so you can only call it **at the top level of your component** or your own Hooks. You can't call it inside loops or conditions. If you need that, extract a new component and move the state into it.
-* In Strict Mode, React will **call your calculation function twice** in order to [help you find accidental impurities.](#my-calculation-runs-twice-on-every-re-render) This is development-only behavior and does not affect production. If your calculation function is pure (as it should be), this should not affect your logic. The result from one of the calls will be ignored.
-* React **will not throw away the cached value unless there is a specific reason to do that.** For example, in development, React throws away the cache when you edit the file of your component. Both in development and in production, React will throw away the cache if your component suspends during the initial mount. In the future, React may add more features that take advantage of throwing away the cache--for example, if React adds built-in support for virtualized lists in the future, it would make sense to throw away the cache for items that scroll out of the virtualized table viewport. This should be fine if you rely on `useMemo` solely as a performance optimization. Otherwise, a [state variable](/reference/react/useState#avoiding-recreating-the-initial-state) or a [ref](/reference/react/useRef#avoiding-recreating-the-ref-contents) may be more appropriate.
+* `useMemo` הוא Hook, אז אתה יכול לקרוא לו רק **ברמה העליונה של הרכיב שלך** או Hooks משלך. אתה לא יכול לקרוא לזה בתוך לולאות או תנאים. אם אתה צריך את זה, חלץ רכיב חדש והעביר את ה-state לתוכו.
+* במצב קפדני, React **תתקשר לפונקציית החישוב שלך פעמיים** ​​על מנת [לעזור לך למצוא זיהומים מקריים.](#my-calculation-runs-twoice-on-every-re-render) זוהי התנהגות לפיתוח בלבד ואינה משפיעה על הייצור. אם פונקציית החישוב שלך טהורה (כפי שהיא צריכה להיות), זה לא אמור להשפיע על ההיגיון שלך. התוצאה מאחת השיחות תתעלם.
+* React **לא יזרוק את הערך המאוחסן במטמון אלא אם יש סיבה ספציפית לעשות זאת.** לדוגמה, בפיתוח, React זורק את המטמון כשאתה עורך את הקובץ של הרכיב שלך. גם בפיתוח וגם בייצור, React יזרוק את המטמון אם הרכיב שלך יושעה במהלך ההרכבה הראשונית. בעתיד, React עשוי להוסיף תכונות נוספות המנצלות את זריקת המטמון - לדוגמה, אם React יוסיף בעתיד תמיכה מובנית עבור רשימות וירטואליות, יהיה הגיוני לזרוק את המטמון עבור פריטים שגוללים מתוך יציאת התצוגה הווירטואלית של הטבלה. זה אמור להיות בסדר אם אתה מסתמך על `useMemo` אך ורק כאופטימיזציה של ביצועים. אחרת, משתנה [state](/reference/react/useState#avoiding-recreating-the-initial-state) או [ref](/reference/react/useRef#avoiding-recreating-the-ref-contents) עשויים להיות מתאימים יותר.
 
 <Note>
 
-Caching return values like this is also known as [*memoization*,](https://en.wikipedia.org/wiki/Memoization) which is why this Hook is called `useMemo`.
+ערכי החזרה במטמון כמו זה ידועים גם בשם [*memoization*,](https://en.wikipedia.org/wiki/Memoization) וזו הסיבה שה-Hook הזה נקרא `useMemo`.
 
 </Note>
 
 ---
 
-## Usage {/*usage*/}
+## שימוש {/*usage*/}
 
-### Skipping expensive recalculations {/*skipping-expensive-recalculations*/}
+### דילוג על חישובים מחדש יקרים {/*skipping-expensive-recalculations*/}
 
-To cache a calculation between re-renders, wrap it in a `useMemo` call at the top level of your component:
+כדי לשמור חישוב במטמון בין עיבוד מחדש, עטוף אותו בקריאה `useMemo` ברמה העליונה של הרכיב שלך:
 
 ```js [[3, 4, "visibleTodos"], [1, 4, "() => filterTodos(todos, tab)"], [2, 4, "[todos, tab]"]]
 import { useMemo } from 'react';
@@ -77,20 +77,20 @@ function TodoList({ todos, tab, theme }) {
 }
 ```
 
-You need to pass two things to `useMemo`:
+אתה צריך להעביר שני דברים ל-`useMemo`:
 
-1. A <CodeStep step={1}>calculation function</CodeStep> that takes no arguments, like `() =>`, and returns what you wanted to calculate.
-2. A <CodeStep step={2}>list of dependencies</CodeStep> including every value within your component that's used inside your calculation.
+1. <CodeStep step={1}>פונקציית חישוב</CodeStep> שאינה לוקחת ארגומנטים, כמו `() =>`, ומחזירה את מה שרצית לחשב.
+2. <CodeStep step={2}>רשימת תלות</CodeStep> הכוללת כל ערך בתוך הרכיב שלך שהוא used בחישוב שלך.
 
-On the initial render, the <CodeStep step={3}>value</CodeStep> you'll get from `useMemo` will be the result of calling your <CodeStep step={1}>calculation</CodeStep>.
+בעיבוד הראשוני, <CodeStep step={3}>ערך</CodeStep> שתקבל מ-`useMemo` יהיה התוצאה של קריאה ל<CodeStep step={1}>חישוב</CodeStep> שלך.
 
-On every subsequent render, React will compare the <CodeStep step={2}>dependencies</CodeStep> with the dependencies you passed during the last render. If none of the dependencies have changed (compared with [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is)), `useMemo` will return the value you already calculated before. Otherwise, React will re-run your calculation and return the new value.
+בכל רינדור עוקב, React ישווה את <CodeStep step={2}>התלות</CodeStep> עם התלות שהעברת במהלך העיבוד האחרון. אם אף אחת מהתלות לא השתנתה (בהשוואה ל-[`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is)), `useMemo` יחזיר את הערך שכבר חישבת בעבר. אחרת, React יפעיל מחדש את החישוב שלך ויחזיר את הערך החדש.
 
-In other words, `useMemo` caches a calculation result between re-renders until its dependencies change.
+במילים אחרות, `useMemo` מאחסן תוצאת חישוב במטמון בין רינדור מחדש עד להשתנות התלות שלה.
 
-**Let's walk through an example to see when this is useful.**
+**בואו נעבור על דוגמה כדי לראות מתי זה מלא use.**
 
-By default, React will re-run the entire body of your component every time that it re-renders. For example, if this `TodoList` updates its state or receives new props from its parent, the `filterTodos` function will re-run:
+כברירת מחדל, React יפעיל מחדש את כל הגוף של הרכיב שלך בכל פעם שהוא מעבד מחדש. לדוגמה, אם `TodoList` זה מעדכן את state שלו או מקבל props חדש מהאב שלו, הפונקציה `filterTodos` תפעיל מחדש:
 
 ```js {2}
 function TodoList({ todos, tab, theme }) {
@@ -99,21 +99,21 @@ function TodoList({ todos, tab, theme }) {
 }
 ```
 
-Usually, this isn't a problem because most calculations are very fast. However, if you're filtering or transforming a large array, or doing some expensive computation, you might want to skip doing it again if data hasn't changed. If both `todos` and `tab` are the same as they were during the last render, wrapping the calculation in `useMemo` like earlier lets you reuse `visibleTodos` you've already calculated before.
+בדרך כלל, זו לא בעיה כי use רוב החישובים מהירים מאוד. עם זאת, אם אתה מסנן או משנה מערך גדול, או עושה חישוב יקר, אולי תרצה לדלג על ביצוע זה שוב אם הנתונים לא השתנו. אם גם `todos` וגם `tab` זהים לאלו שהיו במהלך העיבוד האחרון, עטיפה של החישוב ב-`useMemo` כמו קודם מאפשרת לך מחדשuse `visibleTodos` שכבר חישבת בעבר.
 
-This type of caching is called *[memoization.](https://en.wikipedia.org/wiki/Memoization)*
+סוג זה של שמירה במטמון נקרא *[memoization.](https://en.wikipedia.org/wiki/Memoization)*
 
 <Note>
 
-**You should only rely on `useMemo` as a performance optimization.** If your code doesn't work without it, find the underlying problem and fix it first. Then you may add `useMemo` to improve performance.
+**עליך להסתמך רק על `useMemo` כאופטימיזציה של ביצועים.** אם הקוד שלך לא עובד בלעדיו, מצא את הבעיה הבסיסית ותקן אותה תחילה. לאחר מכן תוכל להוסיף `useMemo` כדי לשפר את הביצועים.
 
 </Note>
 
 <DeepDive>
 
-#### How to tell if a calculation is expensive? {/*how-to-tell-if-a-calculation-is-expensive*/}
+#### איך לדעת אם חישוב יקר? {/*how-to-tell-if-a-calculation-is-expensive*/}
 
-In general, unless you're creating or looping over thousands of objects, it's probably not expensive. If you want to get more confidence, you can add a console log to measure the time spent in a piece of code:
+באופן כללי, אלא אם כן אתה יוצר או עובר בלולאה על אלפי אובייקטים, זה כנראה לא יקר. אם אתה רוצה לקבל יותר ביטחון, אתה יכול להוסיף יומן מסוף כדי למדוד את הזמן המושקע בקטע קוד:
 
 ```js {1,3}
 console.time('filter array');
@@ -121,7 +121,7 @@ const visibleTodos = filterTodos(todos, tab);
 console.timeEnd('filter array');
 ```
 
-Perform the interaction you're measuring (for example, typing into the input). You will then see logs like `filter array: 0.15ms` in your console. If the overall logged time adds up to a significant amount (say, `1ms` or more), it might make sense to memoize that calculation. As an experiment, you can then wrap the calculation in `useMemo` to verify whether the total logged time has decreased for that interaction or not:
+בצע את האינטראקציה שאתה מודד (לדוגמה, הקלדה בקלט). לאחר מכן תראה יומנים כמו `filter array: 0.15ms` במסוף שלך. אם הזמן הכולל שנרשם מסתכם בכמות משמעותית (נניח, `1ms` או יותר), זה עשוי להיות הגיוני memoלשנות את החישוב הזה. כניסוי, לאחר מכן תוכל לעטוף את החישוב ב-`useMemo` כדי לוודא אם הזמן הכולל שנרשם ירד עבור האינטראקציה הזו או לא:
 
 ```js
 console.time('filter array');
@@ -131,49 +131,49 @@ const visibleTodos = useMemo(() => {
 console.timeEnd('filter array');
 ```
 
-`useMemo` won't make the *first* render faster. It only helps you skip unnecessary work on updates.
+`useMemo` לא יהפוך את העיבוד *הראשון* למהיר יותר. זה רק עוזר לך לדלג על עבודה מיותרת על עדכונים.
 
-Keep in mind that your machine is probably faster than your users' so it's a good idea to test the performance with an artificial slowdown. For example, Chrome offers a [CPU Throttling](https://developer.chrome.com/blog/new-in-devtools-61/#throttling) option for this.
+זכור שהמכשיר שלך כנראה מהיר יותר מה-users' שלך, אז מומלץ לבדוק את הביצועים עם האטה מלאכותית. לדוגמה, Chrome מציע אפשרות [מחסום CPU](https://developer.chrome.com/blog/new-in-devtools-61/#throttling) עבור זה.
 
-Also note that measuring performance in development will not give you the most accurate results. (For example, when [Strict Mode](/reference/react/StrictMode) is on, you will see each component render twice rather than once.) To get the most accurate timings, build your app for production and test it on a device like your users have.
+שימו לב גם שמדידת ביצועים בפיתוח לא תיתן לכם את התוצאות המדויקות ביותר. (לדוגמה, כאשר [מצב קפדני](/reference/react/StrictMode) פועל, תראה כל רכיב מעובד פעמיים ולא פעם אחת.) כדי לקבל את התזמונים המדויקים ביותר, בנה את האפליקציה שלך לייצור ובדוק אותה במכשיר כמו שיש ל-users שלך.
 
 </DeepDive>
 
 <DeepDive>
 
-#### Should you add useMemo everywhere? {/*should-you-add-usememo-everywhere*/}
+#### האם להוסיף useMemo בכל מקום? {/*should-you-add-usememo-everywhere*/}
 
-If your app is like this site, and most interactions are coarse (like replacing a page or an entire section), memoization is usually unnecessary. On the other hand, if your app is more like a drawing editor, and most interactions are granular (like moving shapes), then you might find memoization very helpful. 
+אם האפליקציה שלך דומה לאתר הזה, ורוב האינטראקציות הן גסות (כמו החלפת דף או קטע שלם), memoאיזון בדרך כלל מיותר. מצד שני, אם האפליקציה שלך דומה יותר לעורך ציור, ורוב האינטראקציות הן פרטניות (כמו צורות זזות), אז אתה עשוי למצוא memoization מועיל מאוד.
 
-Optimizing with `useMemo`  is only valuable in a few cases:
+אופטימיזציה עם `useMemo` היא בעלת ערך רק במקרים בודדים:
 
-- The calculation you're putting in `useMemo` is noticeably slow, and its dependencies rarely change.
-- You pass it as a prop to a component wrapped in [`memo`.](/reference/react/memo) You want to skip re-rendering if the value hasn't changed. Memoization lets your component re-render only when dependencies aren't the same.
-- The value you're passing is later used as a dependency of some Hook. For example, maybe another `useMemo` calculation value depends on it. Or maybe you are depending on this value from [`useEffect.`](/reference/react/useEffect)
+- החישוב שאתה מכניס ל-`useMemo` איטי במידה ניכרת, והתלות שלו משתנות רק לעתים רחוקות.
+- אתה מעביר אותו כעזר לרכיב עטוף ב-[`memo`.](/reference/react/memo) אתה רוצה לדלג על עיבוד מחדש אם הערך לא השתנה. שינון זיכרון מאפשר לרכיב שלך לבצע רינדור מחדש רק כאשר התלות אינן זהות.
+- הערך שאתה מעביר הוא מאוחר יותר used כתלות בכמה Hook. לדוגמה, אולי ערך חישוב אחר של `useMemo` תלוי בו. או אולי אתה תלוי בערך הזה מ-[`useEffect.`](/reference/react/useEffect)
 
-There is no benefit to wrapping a calculation in `useMemo` in other cases. There is no significant harm to doing that either, so some teams choose to not think about individual cases, and memoize as much as possible. The downside of this approach is that code becomes less readable. Also, not all memoization is effective: a single value that's "always new" is enough to break memoization for an entire component.
+אין תועלת לעטוף חישוב ב-`useMemo` במקרים אחרים. גם לעשות את זה אין שום נזק משמעותי, אז חלק מהצוותים בוחרים לא לחשוב על מקרים בודדים, וmemoלבצע כמה שיותר. החיסרון של גישה זו הוא שהקוד הופך פחות קריא. כמו כן, לא כל memoization יעיל: מספיק ערך בודד שהוא "חדש תמיד" כדי לשבור memoization עבור רכיב שלם.
 
-**In practice, you can make a lot of memoization unnecessary by following a few principles:**
+**בפועל, אתה יכול להפוך הרבה memoאיזון למיותר על ידי ביצוע מספר עקרונות:**
 
-1. When a component visually wraps other components, let it [accept JSX as children.](/learn/passing-props-to-a-component#passing-jsx-as-children) This way, when the wrapper component updates its own state, React knows that its children don't need to re-render.
-1. Prefer local state and don't [lift state up](/learn/sharing-state-between-components) any further than necessary. For example, don't keep transient state like forms and whether an item is hovered at the top of your tree or in a global state library.
-1. Keep your [rendering logic pure.](/learn/keeping-components-pure) If re-rendering a component causes a problem or produces some noticeable visual artifact, it's a bug in your component! Fix the bug instead of adding memoization.
-1. Avoid [unnecessary Effects that update state.](/learn/you-might-not-need-an-effect) Most performance problems in React apps are caused by chains of updates originating from Effects that cause your components to render over and over.
-1. Try to [remove unnecessary dependencies from your Effects.](/learn/removing-effect-dependencies) For example, instead of memoization, it's often simpler to move some object or a function inside an Effect or outside the component.
+1. כאשר רכיב עוטף רכיבים אחרים באופן ויזואלי, תן ​​לו [לקבל את JSX כילדים.](/learn/passing-props-to-a-component#passing-jsx-as-children) בדרך זו, כאשר רכיב העטיפה מעדכן את state משלו, React לא צריך React שלו.
+1. העדיפו state מקומי ואל ת [להרים את state למעלה](/learn/sharing-state-between-components) מעבר למה שצריך. לדוגמה, אל תשמור טפסים חולפים כמו state והאם פריט מרחף בראש העץ שלך או בספריית state גלובלית.
+1. שמור על [לוגיקת העיבוד שלך טהורה.](/learn/keeping-components-pure) אם עיבוד מחדש של רכיב גורם לבעיה או מייצר חפץ חזותי בולט, זה באג ברכיב שלך! תקן את הבאג במקום להוסיף memoization.
+1. הימנע מ[אפקטים מיותרים שמעדכנים state.](/learn/you-might-not-need-an-effect) רוב בעיות הביצועים באפליקציות React ניתנות ל-used על ידי שרשראות של עדכונים שמקורן באפקטים שמאפשרים use לעבד את הרכיבים שלך שוב ושוב.
+1. נסה [להסיר תלות מיותרת מהאפקטים שלך.](/learn/removing-effect-dependencies) לדוגמה, במקום memoization, לעתים קרובות יותר פשוט להעביר אובייקט או פונקציה בתוך אפקט או מחוץ לרכיב.
 
-If a specific interaction still feels laggy, [use the React Developer Tools profiler](https://legacy.reactjs.org/blog/2018/09/10/introducing-the-react-profiler.html) to see which components would benefit the most from memoization, and add memoization where needed. These principles make your components easier to debug and understand, so it's good to follow them in any case. In the long term, we're researching [doing granular memoization automatically](https://www.youtube.com/watch?v=lGEMwh32soc) to solve this once and for all.
+אם אינטראקציה ספציפית עדיין מרגישה בפיגור, [use הפרופיל של React Developer Tools](https://legacy.reactjs.org/blog/2018/09/10/introducing-the-react-profiler.html) כדי לראות אילו רכיבים ירוויחו הכי הרבה מ-memoization, והוסיפו memoization במידת הצורך. עקרונות אלו מקלים על ניפוי באגים והבנה של הרכיבים שלכם, אז כדאי לעקוב אחריהם בטווח הארוך, בכל מקרה.' memoization באופן אוטומטי](https://www.youtube.com/watch?v=lGEMwh32soc) כדי לפתור את זה אחת ולתמיד.
 
 </DeepDive>
 
 <Recipes titleText="The difference between useMemo and calculating a value directly" titleId="examples-recalculation">
 
-#### Skipping recalculation with `useMemo` {/*skipping-recalculation-with-usememo*/}
+#### דילוג על חישוב מחדש עם `useMemo` {/*skipping-recalculation-with-usememo*/}
 
-In this example, the `filterTodos` implementation is **artificially slowed down** so that you can see what happens when some JavaScript function you're calling during rendering is genuinely slow. Try switching the tabs and toggling the theme.
+בדוגמה זו, היישום `filterTodos` הוא **האטה באופן מלאכותי** כך שתוכל לראות מה קורה כאשר פונקציית JavaScript כלשהי שאתה קורא במהלך העיבוד היא איטית באמת. נסה להחליף את הכרטיסיות ולהחליף את ערכת הנושא.
 
-Switching the tabs feels slow because it forces the slowed down `filterTodos` to re-execute. That's expected because the `tab` has changed, and so the entire calculation *needs* to re-run. (If you're curious why it runs twice, it's explained [here.](#my-calculation-runs-twice-on-every-re-render))
+החלפת הכרטיסיות מרגישה איטי מכיוון שuse היא מאלצת את ה-`filterTodos` המואט לבצע מחדש. זה צפוי בגלל שuse ה-`tab` השתנה, ולכן כל החישוב *צריך* להפעיל מחדש. (אם אתה סקרן למה זה פועל פעמיים, זה מוסבר [כאן.](#my-calculation-runs-twice-on-every-rerender))
 
-Toggle the theme. **Thanks to `useMemo`, it's fast despite the artificial slowdown!** The slow `filterTodos` call was skipped because both `todos` and `tab` (which you pass as dependencies to `useMemo`) haven't changed since the last render.
+החלף את ערכת הנושא. **תודה ל`useMemo`, זה מהיר למרות ההאטה המלאכותית!** הקריאה האיטית `filterTodos` נדחתה מכיוון שuse הן `todos` והן `tab` (שאותם מעבירים כתלות ל-`useMemo`) לא השתנו מאז העיבוד האחרון.
 
 <Sandpack>
 
@@ -299,11 +299,11 @@ label {
 
 <Solution />
 
-#### Always recalculating a value {/*always-recalculating-a-value*/}
+#### תמיד חישוב מחדש של ערך {/*always-recalculating-a-value*/}
 
-In this example, the `filterTodos` implementation is also **artificially slowed down** so that you can see what happens when some JavaScript function you're calling during rendering is genuinely slow. Try switching the tabs and toggling the theme.
+בדוגמה זו, היישום `filterTodos` הוא גם **האטה באופן מלאכותי** כך שתוכל לראות מה קורה כאשר פונקציית JavaScript כלשהי שאתה קורא במהלך העיבוד היא איטית באמת. נסה להחליף את הכרטיסיות ולהחליף את ערכת הנושא.
 
-Unlike in the previous example, toggling the theme is also slow now! This is because **there is no `useMemo` call in this version,** so the artificially slowed down `filterTodos` gets called on every re-render. It is called even if only `theme` has changed.
+שלא כמו בדוגמה הקודמת, החלפת ערכת הנושא אטית גם כעת! זה בגלל use **אין קריאת `useMemo` בגרסה הזו,** אז הקצב שהאט באופן מלאכותי `filterTodos` נקרא בכל עיבוד מחדש. זה נקרא גם אם רק `theme` השתנה.
 
 <Sandpack>
 
@@ -423,7 +423,7 @@ label {
 
 </Sandpack>
 
-However, here is the same code **with the artificial slowdown removed.** Does the lack of `useMemo` feel noticeable or not?
+עם זאת, הנה אותו קוד **עם הסרת ההאטה המלאכותית.** האם החוסר ב-`useMemo` מרגיש מורגש או לא?
 
 <Sandpack>
 
@@ -538,9 +538,9 @@ label {
 
 </Sandpack>
 
-Quite often, code without memoization works fine. If your interactions are fast enough, you might not need memoization.
+לעתים קרובות למדי, קוד ללא memoization עובד מצוין. אם האינטראקציות שלך מהירות מספיק, ייתכן שלא תזדקק ל-memoization.
 
-You can try increasing the number of todo items in `utils.js` and see how the behavior changes. This particular calculation wasn't very expensive to begin with, but if the number of todos grows significantly, most of the overhead will be in re-rendering rather than in the filtering. Keep reading below to see how you can optimize re-rendering with `useMemo`.
+אתה יכול לנסות להגדיל את מספר פריטי המטלות ב-`utils.js` ולראות כיצד ההתנהגות משתנה. החישוב הספציפי הזה לא היה מאוד יקר מלכתחילה, אבל אם מספר המשימות יגדל באופן משמעותי, רוב התקורה תהיה בעיבוד מחדש ולא בסינון. המשך לקרוא למטה כדי לראות כיצד תוכל לייעל את העיבוד מחדש עם `useMemo`.
 
 <Solution />
 
@@ -548,9 +548,9 @@ You can try increasing the number of todo items in `utils.js` and see how the be
 
 ---
 
-### Skipping re-rendering of components {/*skipping-re-rendering-of-components*/}
+### דילוג על עיבוד מחדש של רכיבים {/*skipping-re-rendering-of-components*/}
 
-In some cases, `useMemo` can also help you optimize performance of re-rendering child components. To illustrate this, let's say this `TodoList` component passes the `visibleTodos` as a prop to the child `List` component:
+במקרים מסוימים, `useMemo` יכול גם לעזור לך לייעל את הביצועים של עיבוד מחדש של רכיבי צאצא. כדי להמחיש זאת, נניח שרכיב `TodoList` זה מעביר את ה-`visibleTodos` כעזר לרכיב `List` הילד:
 
 ```js {5}
 export default function TodoList({ todos, tab, theme }) {
@@ -563,9 +563,9 @@ export default function TodoList({ todos, tab, theme }) {
 }
 ```
 
-You've noticed that toggling the `theme` prop freezes the app for a moment, but if you remove `<List />` from your JSX, it feels fast. This tells you that it's worth trying to optimize the `List` component.
+שמת לב שהחלפת משענת `theme` מקפיאה את האפליקציה לרגע, אבל אם תסיר את `<List />` מה-JSX שלך, זה מרגיש מהיר. זה אומר לך שכדאי לנסות לייעל את רכיב `List`.
 
-**By default, when a component re-renders, React re-renders all of its children recursively.** This is why, when `TodoList` re-renders with a different `theme`, the `List` component *also* re-renders. This is fine for components that don't require much calculation to re-render. But if you've verified that a re-render is slow, you can tell `List` to skip re-rendering when its props are the same as on last render by wrapping it in [`memo`:](/reference/react/memo)
+**כברירת מחדל, כאשר רכיב מעבד מחדש, React מעבד מחדש את כל הילדים שלו באופן רקורסיבי.** זו הסיבה שכאשר `TodoList` מעבד מחדש עם `theme` שונה, הרכיב `List` *גם* מעבד מחדש. זה בסדר עבור רכיבים שאינם דורשים חישוב רב כדי לרנדר מחדש. אבל אם אימתת שעיבוד מחדש איטי, אתה יכול להגיד ל-`List` לדלג על רינדור מחדש כאשר ה-props שלו זהים לעיבוד האחרון על-ידי עטיפה ב-[`memo`:](/reference/react/memo)
 
 ```js {3,5}
 import { memo } from 'react';
@@ -575,7 +575,7 @@ const List = memo(function List({ items }) {
 });
 ```
 
-**With this change, `List` will skip re-rendering if all of its props are the *same* as on the last render.** This is where caching the calculation becomes important! Imagine that you calculated `visibleTodos` without `useMemo`:
+**עם השינוי הזה, `List` ידלג על עיבוד מחדש אם כל ה-props שלו הם *זהים* לאלו בעיבוד האחרון.** זה המקום שבו שמירה במטמון של החישוב הופכת חשובה! תאר לעצמך שחשבת `visibleTodos` ללא `useMemo`:
 
 ```js {2-3,6-7}
 export default function TodoList({ todos, tab, theme }) {
@@ -590,7 +590,7 @@ export default function TodoList({ todos, tab, theme }) {
 }
 ```
 
-**In the above example, the `filterTodos` function always creates a *different* array,** similar to how the `{}` object literal always creates a new object. Normally, this wouldn't be a problem, but it means that `List` props will never be the same, and your [`memo`](/reference/react/memo) optimization won't work. This is where `useMemo` comes in handy:
+**בדוגמה שלמעלה, הפונקציה `filterTodos` תמיד יוצרת מערך *שונה*,** בדומה לאופן שבו האובייקט `{}` מילולי תמיד יוצר אובייקט חדש. בדרך כלל, זו לא תהיה בעיה, אבל זה אומר ש`List` props לעולם לא יהיה אותו הדבר, והאופטימיזציה של [`memo`](/reference/react/memo) שלך לא תעבוד. זה המקום שבו `useMemo` שימושי:
 
 ```js {2-3,5,9-10}
 export default function TodoList({ todos, tab, theme }) {
@@ -609,13 +609,13 @@ export default function TodoList({ todos, tab, theme }) {
 ```
 
 
-**By wrapping the `visibleTodos` calculation in `useMemo`, you ensure that it has the *same* value between the re-renders** (until dependencies change). You don't *have to* wrap a calculation in `useMemo` unless you do it for some specific reason. In this example, the reason is that you pass it to a component wrapped in [`memo`,](/reference/react/memo) and this lets it skip re-rendering. There are a few other reasons to add `useMemo` which are described further on this page.
+**על ידי גלישת חישוב `visibleTodos` ב-`useMemo`, אתה מבטיח שיש לו את אותו ערך בין העיבודים החוזרים** (עד שישתנו תלות). אינך *חייב* לעטוף חישוב ב-`useMemo` אלא אם כן אתה עושה זאת מסיבה מסוימת. בדוגמה זו, הסיבה היא שאתה מעביר אותו לרכיב עטוף ב-[`memo`,](/reference/react/memo) וזה מאפשר לו לדלג על עיבוד מחדש. יש עוד כמה סיבות להוסיף את `useMemo` המתוארות בהמשך דף זה.
 
 <DeepDive>
 
-#### Memoizing individual JSX nodes {/*memoizing-individual-jsx-nodes*/}
+#### זיכרון צמתים בודדים JSX {/*memoizing-individual-jsx-nodes*/}
 
-Instead of wrapping `List` in [`memo`](/reference/react/memo), you could wrap the `<List />` JSX node itself in `useMemo`:
+במקום לעטוף את `List` ב-[`memo`](/reference/react/memo), תוכל לעטוף את הצומת `<List />` JSX עצמו ב-`useMemo`:
 
 ```js {3,6}
 export default function TodoList({ todos, tab, theme }) {
@@ -629,25 +629,25 @@ export default function TodoList({ todos, tab, theme }) {
 }
 ```
 
-The behavior would be the same. If the `visibleTodos` haven't changed, `List` won't be re-rendered.
+ההתנהגות תהיה זהה. אם ה-`visibleTodos` לא השתנה, `List` לא יעובד מחדש.
 
-A JSX node like `<List items={visibleTodos} />` is an object like `{ type: List, props: { items: visibleTodos } }`. Creating this object is very cheap, but React doesn't know whether its contents is the same as last time or not. This is why by default, React will re-render the `List` component.
+צומת JSX כמו `<List items={visibleTodos} />` הוא אובייקט כמו `{ type: List, props: { items: visibleTodos } }`. יצירת האובייקט הזה זולה מאוד, אבל React לא יודע אם התוכן שלו זהה לפעם הקודמת או לא. זו הסיבה שבברירת המחדל, React יעבד מחדש את הרכיב `List`.
 
-However, if React sees the same exact JSX as during the previous render, it won't try to re-render your component. This is because JSX nodes are [immutable.](https://en.wikipedia.org/wiki/Immutable_object) A JSX node object could not have changed over time, so React knows it's safe to skip a re-render. However, for this to work, the node has to *actually be the same object*, not merely look the same in code. This is what `useMemo` does in this example.
+עם זאת, אם React רואה את אותו JSX בדיוק כמו במהלך העיבוד הקודם, הוא לא ינסה לעבד מחדש את הרכיב שלך. זה בגלל שuse JSX צמתים הם [בלתי ניתנים לשינוי.](https://en.wikipedia.org/wiki/Immutable_object) אובייקט צומת JSX לא יכול היה להשתנות לאורך זמן, אז React יודע שבטוח לדלג על רינדור מחדש. עם זאת, כדי שזה יעבוד, הצומת צריך *למעשה להיות אותו אובייקט*, לא רק זה נראה אותו אובייקט ב-___ בקוד. דוגמה.
 
-Manually wrapping JSX nodes into `useMemo` is not convenient. For example, you can't do this conditionally. This is usually why you would wrap components with [`memo`](/reference/react/memo) instead of wrapping JSX nodes.
+עטיפה ידנית של צמתים JSX לתוך `useMemo` אינה נוחה. לדוגמה, אתה לא יכול לעשות זאת בתנאי. זו בדרך כלל הסיבה שאתה עוטף רכיבים עם [`memo`](/reference/react/memo) במקום לעטוף JSX צמתים.
 
 </DeepDive>
 
 <Recipes titleText="The difference between skipping re-renders and always re-rendering" titleId="examples-rerendering">
 
-#### Skipping re-rendering with `useMemo` and `memo` {/*skipping-re-rendering-with-usememo-and-memo*/}
+#### דילוג על עיבוד מחדש עם `useMemo` ו`memo` {/*skipping-re-rendering-with-usememo-and-memo*/}
 
-In this example, the `List` component is **artificially slowed down** so that you can see what happens when a React component you're rendering is genuinely slow. Try switching the tabs and toggling the theme.
+בדוגמה זו, הרכיב `List` מואט באופן מלאכותי** כך שתוכל לראות מה קורה כאשר רכיב React שאתה מעבד איטי באמת. נסה להחליף את הכרטיסיות ולהחליף את ערכת הנושא.
 
-Switching the tabs feels slow because it forces the slowed down `List` to re-render. That's expected because the `tab` has changed, and so you need to reflect the user's new choice on the screen.
+החלפת הלשוניות מרגישה איטי מכיוון שuse היא מאלצת את ה-`List` שהאטו לבצע מחדש. זה צפוי בגלל שuse ה-`tab` השתנה, ולכן עליכם לשקף את הבחירה החדשה של ה-user על המסך.
 
-Next, try toggling the theme. **Thanks to `useMemo` together with [`memo`](/reference/react/memo), it’s fast despite the artificial slowdown!** The `List` skipped re-rendering because the `visibleTodos` array has not changed since the last render. The `visibleTodos` array has not changed because both `todos` and `tab` (which you pass as dependencies to `useMemo`) haven't changed since the last render.
+לאחר מכן, נסה לשנות את ערכת הנושא. **תודות ל-`useMemo` יחד עם [`memo`](/reference/react/memo), זה מהיר למרות ההאטה המלאכותית!** ה-`List` דילג על עיבוד מחדש מכיוון שuse מערך `visibleTodos` לא השתנה מאז העיבוד האחרון. מערך `visibleTodos` לא השתנה מכיוון שuse גם `todos` וגם `tab` (שאותם מעבירים כתלות ל-`useMemo`) לא השתנו מאז העיבוד האחרון.
 
 <Sandpack>
 
@@ -785,11 +785,11 @@ label {
 
 <Solution />
 
-#### Always re-rendering a component {/*always-re-rendering-a-component*/}
+#### תמיד עיבוד מחדש של רכיב {/*always-re-rendering-a-component*/}
 
-In this example, the `List` implementation is also **artificially slowed down** so that you can see what happens when some React component you're rendering is genuinely slow. Try switching the tabs and toggling the theme.
+בדוגמה זו, היישום `List` הוא גם **האטה באופן מלאכותי** כך שתוכל לראות מה קורה כאשר רכיב React כלשהו שאתה מעבד איטי באמת. נסה להחליף את הכרטיסיות ולהחליף את ערכת הנושא.
 
-Unlike in the previous example, toggling the theme is also slow now! This is because **there is no `useMemo` call in this version,** so the `visibleTodos` is always a different array, and the slowed down `List` component can't skip re-rendering.
+שלא כמו בדוגמה הקודמת, החלפת ערכת הנושא אטית גם כעת! This is because **there is no `useMemo` call in this version,** so the `visibleTodos` is always a different array, and the slowed down `List` component can't skip re-rendering.
 
 <Sandpack>
 
@@ -921,7 +921,7 @@ label {
 
 </Sandpack>
 
-However, here is the same code **with the artificial slowdown removed.** Does the lack of `useMemo` feel noticeable or not?
+עם זאת, הנה אותו קוד **עם הסרת ההאטה המלאכותית.** האם החוסר ב-`useMemo` מרגיש מורגש או לא?
 
 <Sandpack>
 
@@ -1046,9 +1046,9 @@ label {
 
 </Sandpack>
 
-Quite often, code without memoization works fine. If your interactions are fast enough, you don't need memoization.
+לעתים קרובות למדי, קוד ללא memoization עובד מצוין. אם האינטראקציות שלך מהירות מספיק, אינך זקוק ל-memoization.
 
-Keep in mind that you need to run React in production mode, disable [React Developer Tools](/learn/react-developer-tools), and use devices similar to the ones your app's users have in order to get a realistic sense of what's actually slowing down your app.
+זכור שעליך להפעיל את React במצב ייצור, להשבית את [React Developer Tools](/learn/react-developer-tools), ו-use מכשירים דומים לאלו שיש ל-users של האפליקציה שלך כדי לקבל תחושה מציאותית של מה בעצם מאט את האפליקציה שלך.
 
 <Solution />
 
@@ -1056,9 +1056,9 @@ Keep in mind that you need to run React in production mode, disable [React Devel
 
 ---
 
-### Memoizing a dependency of another Hook {/*memoizing-a-dependency-of-another-hook*/}
+### שינון תלות של Hook {/*memoizing-a-dependency-of-another-hook*/} אחר
 
-Suppose you have a calculation that depends on an object created directly in the component body:
+נניח שיש לך חישוב שתלוי באובייקט שנוצר ישירות בגוף הרכיב:
 
 ```js {2}
 function Dropdown({ allItems, text }) {
@@ -1070,9 +1070,9 @@ function Dropdown({ allItems, text }) {
   // ...
 ```
 
-Depending on an object like this defeats the point of memoization. When a component re-renders, all of the code directly inside the component body runs again. **The lines of code creating the `searchOptions` object will also run on every re-render.** Since `searchOptions` is a dependency of your `useMemo` call, and it's different every time, React knows the dependencies are different, and recalculate `searchItems` every time.
+Depending on an object like this defeats the point of memoization. When a component re-renders, all of the code directly inside the component body runs again. **שורות הקוד שיוצרות את האובייקט `searchOptions` יפעלו גם בכל עיבוד מחדש.** מכיוון ש`searchOptions` היא תלות של הקריאה `useMemo` שלך, והיא שונה בכל פעם, React יודע שהתלות שונה, ומחשב מחדש את `searchItems` בכל פעם.
 
-To fix this, you could memoize the `searchOptions` object *itself* before passing it as a dependency:
+כדי לתקן זאת, אתה יכול memo לשנות את האובייקט `searchOptions` *עצמו* לפני שתעביר אותו כתלות:
 
 ```js {2-4}
 function Dropdown({ allItems, text }) {
@@ -1086,7 +1086,7 @@ function Dropdown({ allItems, text }) {
   // ...
 ```
 
-In the example above, if the `text` did not change, the `searchOptions` object also won't change. However, an even better fix is to move the `searchOptions` object declaration *inside* of the `useMemo` calculation function:
+בדוגמה למעלה, אם ה-`text` לא השתנה, גם האובייקט `searchOptions` לא ישתנה. עם זאת, תיקון אפילו טוב יותר הוא להעביר את הצהרת האובייקט `searchOptions` *בתוך* של פונקציית החישוב `useMemo`:
 
 ```js {3}
 function Dropdown({ allItems, text }) {
@@ -1097,13 +1097,13 @@ function Dropdown({ allItems, text }) {
   // ...
 ```
 
-Now your calculation depends on `text` directly (which is a string and can't "accidentally" become different).
+כעת החישוב שלך תלוי ב-`text` באופן ישיר (שהוא מחרוזת ואינו יכול "בטעות" להיות שונה).
 
 ---
 
-### Memoizing a function {/*memoizing-a-function*/}
+### שינון פונקציה {/*memoizing-a-function*/}
 
-Suppose the `Form` component is wrapped in [`memo`.](/reference/react/memo) You want to pass a function to it as a prop:
+נניח שהרכיב `Form` עטוף ב-[`memo`.](/reference/react/memo) אתה רוצה להעביר אליו פונקציה בתור אבזר:
 
 ```js {2-7}
 export default function ProductPage({ productId, referrer }) {
@@ -1118,9 +1118,9 @@ export default function ProductPage({ productId, referrer }) {
 }
 ```
 
-Just as `{}` creates a different object, function declarations like `function() {}` and expressions like `() => {}` produce a *different* function on every re-render. By itself, creating a new function is not a problem. This is not something to avoid! However, if the `Form` component is memoized, presumably you want to skip re-rendering it when no props have changed. A prop that is *always* different would defeat the point of memoization.
+בדיוק כפי ש`{}` יוצר אובייקט אחר, הצהרות פונקציות כמו `function() {}` וביטויים כמו `() => {}` מייצרים פונקציה *שונה* בכל עיבוד מחדש. כשלעצמו, יצירת פונקציה חדשה אינה בעיה. זה לא משהו שצריך להימנע ממנו! עם זאת, אם הרכיב `Form` הוא memoized, יש להניח שברצונך לדלג על עיבוד מחדש כאשר לא השתנה props. אביזר שהוא *תמיד* שונה יביס את נקודת ה-memoization.
 
-To memoize a function with `useMemo`, your calculation function would have to return another function:
+כדי memoלהפוך פונקציה עם `useMemo`, פונקציית החישוב שלך תצטרך להחזיר פונקציה אחרת:
 
 ```js {2-3,8-9}
 export default function Page({ productId, referrer }) {
@@ -1137,7 +1137,7 @@ export default function Page({ productId, referrer }) {
 }
 ```
 
-This looks clunky! **Memoizing functions is common enough that React has a built-in Hook specifically for that. Wrap your functions into [`useCallback`](/reference/react/useCallback) instead of `useMemo`** to avoid having to write an extra nested function:
+זה נראה מגושם! **פונקציות זיכרון נפוצות מספיק כדי ל-React יש Hook מובנה במיוחד בשביל זה. עטוף את הפונקציות שלך ב-[`useCallback`](/reference/react/useCallback) במקום `useMemo`** כדי למנוע צורך לכתוב פונקציה מקוננת נוספת:
 
 ```js {2,7}
 export default function Page({ productId, referrer }) {
@@ -1152,15 +1152,15 @@ export default function Page({ productId, referrer }) {
 }
 ```
 
-The two examples above are completely equivalent. The only benefit to `useCallback` is that it lets you avoid writing an extra nested function inside. It doesn't do anything else. [Read more about `useCallback`.](/reference/react/useCallback)
+שתי הדוגמאות לעיל שוות לחלוטין. היתרון היחיד של `useCallback` הוא שהוא מאפשר לך להימנע מכתיבת פונקציה מקוננת נוספת בפנים. זה לא עושה שום דבר אחר. [קרא עוד על `useCallback`.](/reference/react/useCallback)
 
 ---
 
-## Troubleshooting {/*troubleshooting*/}
+## פתרון בעיות {/*troubleshooting*/}
 
-### My calculation runs twice on every re-render {/*my-calculation-runs-twice-on-every-re-render*/}
+### החישוב שלי פועל פעמיים בכל עיבוד מחדש {/*my-calculation-runs-twice-on-every-re-render*/}
 
-In [Strict Mode](/reference/react/StrictMode), React will call some of your functions twice instead of once:
+ב[מצב קפדני](/reference/react/StrictMode), React יקרא לחלק מהפונקציות שלך פעמיים במקום פעם אחת:
 
 ```js {2,5,6}
 function TodoList({ todos, tab }) {
@@ -1174,11 +1174,11 @@ function TodoList({ todos, tab }) {
   // ...
 ```
 
-This is expected and shouldn't break your code.
+זה צפוי ולא אמור לשבור את הקוד שלך.
 
-This **development-only** behavior helps you [keep components pure.](/learn/keeping-components-pure) React uses the result of one of the calls, and ignores the result of the other call. As long as your component and calculation functions are pure, this shouldn't affect your logic. However, if they are accidentally impure, this helps you notice and fix the mistake.
+התנהגות זו של **פיתוח בלבד** עוזרת לך [לשמור על רכיבים טהורים.](/learn/keeping-components-pure) React uses התוצאה של אחת הקריאות, ומתעלמת מהתוצאה של השיחה השנייה. כל עוד הרכיבים ופונקציות החישוב שלך טהורות, זה לא אמור להשפיע על ההיגיון שלך. עם זאת, אם הם בטעות טמאים, זה עוזר לך לשים לב ולתקן את הטעות.
 
-For example, this impure calculation function mutates an array you received as a prop:
+לדוגמה, פונקציית חישוב לא טהורה זו משנה את המערך שקיבלת כאביזר:
 
 ```js {2-3}
   const visibleTodos = useMemo(() => {
@@ -1189,7 +1189,7 @@ For example, this impure calculation function mutates an array you received as a
   }, [todos, tab]);
 ```
 
-React calls your function twice, so you'd notice the todo is added twice. Your calculation shouldn't change any existing objects, but it's okay to change any *new* objects you created during the calculation. For example, if the `filterTodos` function always returns a *different* array, you can mutate *that* array instead:
+React קורא לפונקציה שלך פעמיים, כך שתבחין שהמטלה מתווספת פעמיים. החישוב שלך לא אמור לשנות אובייקטים קיימים, אבל זה בסדר לשנות אובייקטים *חדשים* שיצרת במהלך החישוב. לדוגמה, אם הפונקציה `filterTodos` תמיד מחזירה מערך *שונה*, אתה יכול לבצע מוטציה במערך *זה* במקום זאת:
 
 ```js {3,4}
   const visibleTodos = useMemo(() => {
@@ -1200,15 +1200,15 @@ React calls your function twice, so you'd notice the todo is added twice. Your c
   }, [todos, tab]);
 ```
 
-Read [keeping components pure](/learn/keeping-components-pure) to learn more about purity.
+קרא את [שמירה על רכיבים טהורים](/learn/keeping-components-pure) כדי ללמוד עוד על טוהר.
 
-Also, check out the guides on [updating objects](/learn/updating-objects-in-state) and [updating arrays](/learn/updating-arrays-in-state) without mutation.
+כמו כן, עיין במדריכים בנושא [עדכון אובייקטים](/learn/updating-objects-in-state) ו-[עדכון מערכים](/learn/updating-arrays-in-state) ללא מוטציה.
 
 ---
 
-### My `useMemo` call is supposed to return an object, but returns undefined {/*my-usememo-call-is-supposed-to-return-an-object-but-returns-undefined*/}
+### הקריאה `useMemo` שלי אמורה להחזיר אובייקט, אבל מחזירה {/*my-usememo-call-is-supposed-to-return-an-object-but-returns-undefined*/} לא מוגדרת
 
-This code doesn't work:
+הקוד הזה לא עובד:
 
 ```js {1-2,5}
   // 🔴 You can't return an object from an arrow function with () => {
@@ -1218,7 +1218,7 @@ This code doesn't work:
   }, [text]);
 ```
 
-In JavaScript, `() => {` starts the arrow function body, so the `{` brace is not a part of your object. This is why it doesn't return an object, and leads to mistakes. You could fix it by adding parentheses like `({` and `})`:
+ב-JavaScript, `() => {` מתחיל את גוף פונקציית החץ, כך שהסוגר `{` אינו חלק מהאובייקט שלך. זו הסיבה שהוא לא מחזיר חפץ, ומוביל לטעויות. אתה יכול לתקן את זה על ידי הוספת סוגריים כמו `({` ו-`})`:
 
 ```js {1-2,5}
   // This works, but is easy for someone to break again
@@ -1228,9 +1228,9 @@ In JavaScript, `() => {` starts the arrow function body, so the `{` brace is not
   }), [text]);
 ```
 
-However, this is still confusing and too easy for someone to break by removing the parentheses.
+עם זאת, זה עדיין מבלבל וקל מדי עבור מישהו לשבור על ידי הסרת הסוגריים.
 
-To avoid this mistake, write a `return` statement explicitly:
+כדי למנוע טעות זו, כתוב `return` statement במפורש:
 
 ```js {1-3,6-7}
   // ✅ This works and is explicit
@@ -1244,11 +1244,11 @@ To avoid this mistake, write a `return` statement explicitly:
 
 ---
 
-### Every time my component renders, the calculation in `useMemo` re-runs {/*every-time-my-component-renders-the-calculation-in-usememo-re-runs*/}
+### בכל פעם שהרכיב שלי מעבד, החישוב ב-`useMemo` רץ מחדש {/*every-time-my-component-renders-the-calculation-in-usememo-re-runs*/}
 
-Make sure you've specified the dependency array as a second argument!
+ודא שציינת את מערך התלות כארגומנט שני!
 
-If you forget the dependency array, `useMemo` will re-run the calculation every time:
+אם תשכח את מערך התלות, `useMemo` יריץ מחדש את החישוב בכל פעם:
 
 ```js {2-3}
 function TodoList({ todos, tab }) {
@@ -1257,7 +1257,7 @@ function TodoList({ todos, tab }) {
   // ...
 ```
 
-This is the corrected version passing the dependency array as a second argument:
+זו הגרסה המתוקנת שמעבירה את מערך התלות כארגומנט שני:
 
 ```js {2-3}
 function TodoList({ todos, tab }) {
@@ -1266,14 +1266,14 @@ function TodoList({ todos, tab }) {
   // ...
 ```
 
-If this doesn't help, then the problem is that at least one of your dependencies is different from the previous render. You can debug this problem by manually logging your dependencies to the console:
+אם זה לא עוזר, אז הבעיה היא שלפחות אחת מהתלות שלך שונה מהעיבוד הקודם. אתה יכול לנפות באגים בבעיה זו על ידי רישום ידני של התלות שלך למסוף:
 
 ```js
   const visibleTodos = useMemo(() => filterTodos(todos, tab), [todos, tab]);
   console.log([todos, tab]);
 ```
 
-You can then right-click on the arrays from different re-renders in the console and select "Store as a global variable" for both of them. Assuming the first one got saved as `temp1` and the second one got saved as `temp2`, you can then use the browser console to check whether each dependency in both arrays is the same:
+לאחר מכן תוכל ללחוץ לחיצה ימנית על המערכים מעיבודים חוזרים שונים בקונסולה ולבחור "אחסן כמשתנה גלובלי" עבור שניהם. בהנחה שהראשון נשמר כ-`temp1` והשני נשמר כ-`temp2`, לאחר מכן תוכל use למסוף הדפדפן כדי לבדוק אם כל תלות בשני המערכים זהה:
 
 ```js
 Object.is(temp1[0], temp2[0]); // Is the first dependency the same between the arrays?
@@ -1281,13 +1281,13 @@ Object.is(temp1[1], temp2[1]); // Is the second dependency the same between the 
 Object.is(temp1[2], temp2[2]); // ... and so on for every dependency ...
 ```
 
-When you find which dependency breaks memoization, either find a way to remove it, or [memoize it as well.](#memoizing-a-dependency-of-another-hook)
+כאשר אתה מגלה איזו תלות שוברת את memoization, או מצא דרך להסיר אותה, או [memoהגדל אותה גם כן.](#memoizing-a-dependency-of-other-hook)
 
 ---
 
-### I need to call `useMemo` for each list item in a loop, but it's not allowed {/*i-need-to-call-usememo-for-each-list-item-in-a-loop-but-its-not-allowed*/}
+### אני צריך להתקשר ל-`useMemo` עבור כל פריט רשימה בלולאה, אבל זה אסור {/*i-need-to-call-usememo-for-each-list-item-in-a-loop-but-its-not-allowed*/}
 
-Suppose the `Chart` component is wrapped in [`memo`](/reference/react/memo). You want to skip re-rendering every `Chart` in the list when the `ReportList` component re-renders. However, you can't call `useMemo` in a loop:
+נניח שהרכיב `Chart` עטוף ב-[`memo`](/reference/react/memo). אתה רוצה לדלג על רינדור מחדש של כל `Chart` ברשימה כאשר הרכיב `ReportList` מעבד מחדש. עם זאת, אינך יכול לקרוא ל-`useMemo` בלולאה:
 
 ```js {5-11}
 function ReportList({ items }) {
@@ -1307,7 +1307,7 @@ function ReportList({ items }) {
 }
 ```
 
-Instead, extract a component for each item and memoize data for individual items:
+במקום זאת, חלץ רכיב עבור כל פריט ו-memoשנה נתונים עבור פריטים בודדים:
 
 ```js {5,12-18}
 function ReportList({ items }) {
@@ -1331,7 +1331,7 @@ function Report({ item }) {
 }
 ```
 
-Alternatively, you could remove `useMemo` and instead wrap `Report` itself in [`memo`.](/reference/react/memo) If the `item` prop does not change, `Report` will skip re-rendering, so `Chart` will skip re-rendering too:
+לחלופין, תוכל להסיר את `useMemo` ובמקום זאת לעטוף את `Report` עצמו ב-[`memo`.](/reference/react/memo) אם הפרופס של `item` לא ישתנה, `Report` ידלג על עיבוד מחדש, אז `Chart` ידלג גם על עיבוד מחדש:
 
 ```js {5,6,12}
 function ReportList({ items }) {

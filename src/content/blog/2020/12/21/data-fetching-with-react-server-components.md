@@ -1,31 +1,31 @@
 ---
-title: "Introducing Zero-Bundle-Size React Server Components"
+title: "היכרות עם רכיבי שרת אפס בגודל חבילה React"
 ---
 
-December 21, 2020 by [Dan Abramov](https://twitter.com/dan_abramov), [Lauren Tan](https://twitter.com/potetotes), [Joseph Savona](https://twitter.com/en_JS), and [Sebastian Markbåge](https://twitter.com/sebmarkbage)
+21 בדצמבר 2020 מאת [Dan Abramov](https://twitter.com/dan_abramov), [Lauren Tan](https://twitter.com/potetotes), [Joseph Savona](https://twitter.com/en_JS), ו-[Sebastian Markbåge](https://twitter.com/sebmarkbage)
 
 ---
 
 <Intro>
 
-2020 has been a long year. As it comes to an end we wanted to share a special Holiday Update on our research into zero-bundle-size **React Server Components**.
+2020 הייתה שנה ארוכה. לקראת סיומה רצינו לשתף עדכון חגים מיוחד על המחקר שלנו בנושא **React רכיבי שרת** בגודל חבילה אפסי.
 
 </Intro>
 
 ---
 
-To introduce React Server Components, we have prepared a talk and a demo. If you want, you can check them out during the holidays, or later when work picks back up in the new year.
+כדי להציג את React רכיבי שרת, הכנו הרצאה ודמו. אם תרצו, אפשר לעבור על החגים, או להמשיך כשחוזרים לעבודה בשנה החדשה.
 
 <YouTubeIframe src="https://www.youtube.com/embed/TQQPAU21ZUw" />
 
-**React Server Components are still in research and development.** We are sharing this work in the spirit of transparency and to get initial feedback from the React community. There will be plenty of time for that, so **don't feel like you have to catch up right now!**
+**React רכיבי שרת עדיין נמצאים במחקר ופיתוח.** אנחנו משתפים את העבודה הזו ברוח של שקיפות וכדי לקבל פידבק ראשוני מקהילת React. יהיה לזה עוד הרבה זמן, אז **אין צורך להרגיש שחייבים להדביק הכול עכשיו!**
 
-If you want to check them out, we recommend going in the following order:
+אם אתם רוצים לבדוק אותם, אנחנו ממליצים להתקדם בסדר הבא:
 
-1. **Watch the talk** to learn about React Server Components and see the demo.
+1. **צפו בהרצאה** כדי ללמוד על React רכיבי שרת ולראות את הדמו.
 
-2. **[Clone the demo](http://github.com/reactjs/server-components-demo)** to play with React Server Components on your computer.
+2. **[שכפלו את הדמו](http://github.com/reactjs/server-components-demo)** כדי לשחק עם React רכיבי שרת במחשב שלכם.
 
-3. **[Read the RFC (with FAQ at the end)](https://github.com/reactjs/rfcs/pull/188)** for a deeper technical breakdown and to provide feedback.
+3. **[קראו את ה-RFC (כולל שאלות נפוצות בסוף)](https://github.com/reactjs/rfcs/pull/188)** לפירוק טכני עמוק יותר ולמתן פידבק.
 
-We are excited to hear from you on the RFC or in replies to the [@reactjs](https://twitter.com/reactjs) Twitter handle. Happy holidays, stay safe, and see you next year!
+נשמח לשמוע מכם ב-RFC או בתגובות לחשבון ה-Twitter של [@reactjs](https://twitter.com/reactjs). חג שמח, שמרו על עצמכם, ונתראה בשנה הבאה!

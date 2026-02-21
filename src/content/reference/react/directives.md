@@ -1,23 +1,23 @@
 ---
-title: "Directives"
+title: "הנחיות"
 canary: true
 ---
 
 <Canary>
 
-These directives are needed only if you're [using React Server Components](/learn/start-a-new-react-project#bleeding-edge-react-frameworks) or building a library compatible with them.
+ה-directives האלה רק אם אתם [משתמשים ב-React רכיבי שרת](/learn/start-a-new-react-project#bleeding-edge-react-frameworks) או בונים ספרייה שתואמת.
 
 </Canary>
 
 <Intro>
 
-Directives provide instructions to [bundlers compatible with React Server Components](/learn/start-a-new-react-project#bleeding-edge-react-frameworks).
+הנחיות מספקים הנחיות ל-[bundlers שתואמים ל-React רכיבי שרת](/learn/start-a-new-react-project#bleeding-edge-react-frameworks).
 
 </Intro>
 
 ---
 
-## Source code directives {/*source-code-directives*/}
+## הנחיות בקוד מקור {/*source-code-directives*/}
 
-* [`'use client'`](/reference/react/use-client) lets you mark what code runs on the client.
-* [`'use server'`](/reference/react/use-server) marks server-side functions that can be called from client-side code.
+* [`'use client'`](/reference/react/use-client) יכול לסמן איזה קוד רץ בצד לקוח.
+* [`'use server'`](/reference/react/use-server) מסמן פונקציות צד שרת אפשר לקרוא להן מקוד צד לקוח.

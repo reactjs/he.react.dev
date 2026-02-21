@@ -5,13 +5,13 @@ canary: true
 
 <Canary>
 
-React's extensions to `<script>` are currently only available in React's canary and experimental channels. In stable releases of React `<script>` works only as a [built-in browser HTML component](https://react.dev/reference/react-dom/components#all-html-components). Learn more about [React's release channels here](/community/versioning-policy#all-release-channels).
+ההרחבות של React ל-`<script>` זמינות כרגע רק בערוצי canary ו-experimental של React. בגרסאות יציבות של React, `<script>` פועל רק כ-[רכיב HTML מובנה של הדפדפן](https://react.dev/reference/react-dom/components#all-html-components). מידע נוסף ב-[ערוצי השחרור של React](/community/versioning-policy#all-release-channels).
 
 </Canary>
 
 <Intro>
 
-The [built-in browser `<script>` component](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script) lets you add a script to your document.
+רכיב הדפדפן המובהנה [`<script>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script) אפשר להוסיף סקריפט למסמך.
 
 ```js
 <script> alert("hi!") </script>
@@ -23,71 +23,71 @@ The [built-in browser `<script>` component](https://developer.mozilla.org/en-US/
 
 ---
 
-## Reference {/*reference*/}
+## הפניה {/*reference*/}
 
 ### `<script>` {/*script*/}
 
-To add inline or external scripts to your document, render the [built-in browser `<script>` component](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script). You can render `<script>` from any component and React will [in certain cases](#special-rendering-behavior) place the corresponding DOM element in the document head and de-duplicate identical scripts.
+כדי להוסיף סקריפטים inline או חיצוניים למסמך, רנדרו את רכיב הדפדפן המובנה [`<script>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script). אפשר לרנדר `<script>` מכל קומפוננטה, ו-React [במקרים רצונות כפי](#special-rendering-behavior) תמקם את אלמנט ה-__TK_4 head בסקר-4 זהים.
 
 ```js
 <script> alert("hi!") </script>
 <script src="script.js" />
 ```
 
-[See more examples below.](#usage)
+[עוד דוגמאות נוספות.](#usage)
 
-#### Props {/*props*/}
+#### אבזרים {/*props*/}
 
-`<script>` supports all [common element props.](/reference/react-dom/components/common#props)
+`<script>` תומך בכל [מאפייני האלמנט הנפוצים.](/reference/react-dom/components/common#props)
 
-It should have *either* `children` or a `src` prop.
+הוא צריך לכלול *או* `children` *או* אביזר בשם `src`.
 
-* `children`: a string. The source code of an inline script.
-* `src`: a string. The URL of an external script.
+* `children`: מחרוזת. קוד המקור של סקריפט מוטבע.
+* `src`: מחרוזת. ה-URL של סקריפט חיצוני.
 
-Other supported props:
+אביזרים נתמכים נוספים:
 
-* `async`: a boolean. Allows the browser to defer execution of the script until the rest of the document has been processed — the preferred behavior for performance.
-*  `crossOrigin`: a string. The [CORS policy](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/crossorigin) to use. Its possible values are `anonymous` and `use-credentials`.
-* `fetchPriority`: a string. Lets the browser rank scripts in priority when fetching multiple scripts at the same time. Can be `"high"`, `"low"`, or `"auto"` (the default).
-* `integrity`: a string. A cryptographic hash of the script, to [verify its authenticity](https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity).
-* `noModule`: a boolean. Disables the script in browsers that support ES modules — allowing for a fallback script for browsers that do not.
-* `nonce`: a string. A cryptographic [nonce to allow the resource](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/nonce) when using a strict Content Security Policy.
-* `referrer`: a string. Says [what Referer header to send](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script#referrerpolicy) when fetching the script and any resources that the script fetches in turn. 
-* `type`: a string. Says whether the script is a [classic script, ES module, or import map](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script/type).
+* `async`: ערך בוליאני. לאפשר לדפדפן לדחות את הר הסקרפט עד ששאר המסמך עובד — זו ההתנהגות המועדפת לביצועים.
+* `crossOrigin`: מחרוזת. [מדיניות CORS](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/crossorigin) שימוש. הערכים האפשריים: `anonymous` ו-`use-credentials`.
+* `fetchPriority`: מחרוזת. אפשר לדפדפן לדרג עדיפות לסקריפטים בזמן טעינה של כמה סקריפטים יחד. יכול להיות `"high"`, `"low"`, או `"auto"` (ברירת מחדל).
+* `integrity`: מחרוזת. hash קריפטוגרפיה של הסקריפט לצורך [התאמה אותנטיות](https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity).
+* `noModule`: ערך בוליאני. מבטל את הסקריפט בדפדפנים שתומכים ב-ES modules — ומאפשר סקריפט חלופי לדפדפנים שלא.
+* `nonce`: מחרוזת. [nonce](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/nonce) קריפטוגרפי שמאפשר את המשאב כשמשתמשים ב-Content Security Policy קשוחה.
+* `referrer`: מחרוזת. מציינת [איזו כותרת מפנה הודעה](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script#referrerpolicy) בעת טעינת הסקריפט וכל משאב שהסקריפט טוען לאחר מכן.
+* `type`: מחרוזת. מציינת אם הסקריפט הוא [סקריפט קלאסי, מודול ES, או מפת ייבוא](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script/type).
 
-Props that disable React's [special treatment of scripts](#special-rendering-behavior):
+Props שמבטלים את [הטיפול היחיד של React בסקריפטים](#special-rendering-behavior):
 
-* `onError`: a function. Called when the script fails to load.
-* `onLoad`: a function. Called when the script finishes being loaded.
+* `onError`: פונקציה. נקראת כשהקריפט נכשל בטעינה.
+* `onLoad`: פונקציה. נקראת כשהקריפט מסתיים להיטען.
 
-Props that are **not recommended** for use with React:
+אבזרים ש-**לא מומלץ** להשתמש בהם עם React:
 
-* `blocking`: a string. If set to `"render"`, instructs the browser not to render the page until the scriptsheet is loaded. React provides more fine-grained control using Suspense.
-* `defer`: a string. Prevents the browser from executing the script until the document is done loading. Not compatible with streaming server-rendered components. Use the `async` prop instead.
+* `blocking`: מחרוזת. אם מוגדר ל-`"render"`, מורה לדפדפן לא לרנדר את העמוד עד שה-scriptsheet נטען. React מספקת שליטה מדויקת יותר דרך Suspense.
+* `defer`: מחרוזת. מניע מהדפדפן להריץ את הסקריפט עד שמסמך סיים להיטען. לא תואם לסטרימינג של קומפונטות מרונדרות שרת. השתמשו ב-prop `async` במקום.
 
-#### Special rendering behavior {/*special-rendering-behavior*/}
+#### התנהגות רינדור מיוחדת __K_0__
 
-React can move `<script>` components to the document's `<head>`, de-duplicate identical scripts, and [suspend](/reference/react/Suspense) while the script is loading.
+React יכולה להזיז רכיבי `<script>` ל-`<head>` של המסמך, מניעת כפילות של סקריפטים זהים, ולבצע [suspend](/reference/react/Suspense) בזמן שהקריפט נטען.
 
-To opt into this behavior, provide the `src` and `async={true}` props. React will de-duplicate scripts if they have the same `src`. The `async` prop must be true to allow scripts to be safely moved.
+כדי להפעיל את ההתנהגות הזו, ספקו את ה-props `src` ו-`async={true}`. React תמנע כפילות של סקריפטים אם יש להם אותו `src`. ‏`async` חייב להיות אמיתי כדי שיהיה בטוח להזיז סקריפטים.
 
-If you supply any of the `onLoad` or `onError` props, there is no special behavior, because these props indicate that you are managing the loading of the script manually within your component.
+אם מספקים אחד מה-props `onLoad` או `onError`, אין התנהגות מיוחדת, כי props אלה מציינים שאתם מנהלים ידנית את טעינת הסקריפט בתוך הקומפוננטה.
 
-This special treatment comes with two caveats:
+לטיפול המיוחד הזה יש שתי הסתייגויות:
 
-* React will ignore changes to props after the script has been rendered. (React will issue a warning in development if this happens.)
-* React may leave the script in the DOM even after the component that rendered it has been unmounted. (This has no effect as scripts just execute once when they are inserted into the DOM.)
+* React תתעלם משינויים ב-props אחרי שהקריפט רונדר. (React תציג אזהרה בזמן פיתוח אם זה קורה.)
+* React עשויה להשאיר את הסקריפט ב-DOM גם אחרי שהקומפונטה שרנדרה אותו הוסרה. (אין מורחים לזה כי סקריפטים רק פעם אחת כשהם מוכנסים ל-DOM.)
 
 ---
 
-## Usage {/*usage*/}
+## שימוש {/*usage*/}
 
-### Rendering an external script {/*rendering-an-external-script*/}
+### רינדור סקריפט חיצוני {/*rendering-an-external-script*/}
 
-If a component depends on certain scripts in order to be displayed correctly, you can render a `<script>` within the component.
+אם קומפוננטה תלויה בקריפטים צריך להיות מוצגת נכון, אפשר לרנדר `<script>` בתוך הקומפוננטה.
 
-If you supply an `src` and `async` prop, your component will suspend while the script is loading. React will de-duplicate scripts that have the same `src`, inserting only one of them into the DOM even if multiple components render it.
+אם תספקו props של `src` ו-`async`, הקומפוננטה שלכם תבצע suspend בזמן שהקריפט נטען. React תמנע כפילות של סקריפטים עם אותו `src`, ותכניס רק אחד מהם ל-DOM גם אם כמה קומפוננטות מרנדרות אותו.
 
 <SandpackWithHTMLOutput>
 
@@ -115,12 +115,12 @@ export default function Page() {
 </SandpackWithHTMLOutput>
 
 <Note>
-When you want to use a script, it can be beneficial to call the [preinit](/reference/react-dom/preinit) function. Calling this function may allow the browser to start fetching the script earlier than if you just render a `<script>` component, for example by sending an [HTTP Early Hints response](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/103).
+כאשר הם רוצים להשתמש בסקריפט, יכול להיות מועיל לקרוא לפונקציה [preinit](/reference/react-dom/preinit). קריאה לפעולה הזו עשויה לאפשרפדפן להתחיל להביא את הסקריפט יותר מאשר ברינדור רגיל של `<script>`, למשל לד באמצעות [HTTP תגובת רמזים מוקדמים](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/103).
 </Note>
 
-### Rendering an inline script {/*rendering-an-inline-script*/}
+### רינדור סקריפט מוטבע {/*rendering-an-inline-script*/}
 
-To include an inline script, render the `<script>` component with the script source code as its children. Inline scripts are not de-duplicated or moved to the document `<head>`, and since they don't load any external resources, they will not cause your component to suspend.
+כדי לכלול סקריפט בשורה, רנדרו את הרכיב `<script>` עם קוד המקור של הסקריפט כ-children שלו. סקריפים מוטבעים עוברים דה-כפילות ואינם מועברים ל-`<head>` של המסמך, וכיוון שהם לא טוענים משאבים חיצוניים הם לא יגרמו לקומפוננטה לבצע suspend.
 
 <SandpackWithHTMLOutput>
 

@@ -1,17 +1,17 @@
 ---
-title: useFormStatus
+title: "useFormStatus"
 canary: true
 ---
 
 <Canary>
 
-The `useFormStatus` Hook is currently only available in React's Canary and experimental channels. Learn more about [React's release channels here](/community/versioning-policy#all-release-channels).
+ה-Hook `useFormStatus` זמין כרגע רק בערוצי Canary ו-experimental של React. מידע נוסף ב-[ערוצי השחרור של React](/community/versioning-policy#all-release-channels).
 
 </Canary>
 
 <Intro>
 
-`useFormStatus` is a Hook that gives you status information of the last form submission.
+`useFormStatus` הוא Hook שמספק מידע סטטוס על שליחת הטופס האחרונה.
 
 ```js
 const { pending, data, method, action } = useFormStatus();
@@ -23,11 +23,11 @@ const { pending, data, method, action } = useFormStatus();
 
 ---
 
-## Reference {/*reference*/}
+## הפניה {/*reference*/}
 
 ### `useFormStatus()` {/*use-form-status*/}
 
-The `useFormStatus` Hook provides status information of the last form submission.
+ה-Hook `useFormStatus` מספק מידע סטטוס על שליחת הטופס האחרונה.
 
 ```js {5},[[1, 6, "status.pending"]]
 import { useFormStatus } from "react-dom";
@@ -47,42 +47,42 @@ export default function App() {
 }
 ```
 
-To get status information, the `Submit` component must be rendered within a `<form>`. The Hook returns information like the <CodeStep step={1}>`pending`</CodeStep> property which tells you if the form is actively submitting. 
+כדי לקבל מידע סטטוס, רכיב `Submit` חייב להיות מרונדר בתוך `<form>`. ה-Hook מחזיר מידע כמו המאפיין <CodeStep step={1}>`pending`</CodeStep> שמציין האם הטופס כרגע בשליחה.
 
-In the above example, `Submit` uses this information to disable `<button>` presses while the form is submitting.
+בדוגמה למעלה, `Submit` משתמש במידע הזה כדי להשבית לחיצות על `<button>` בזמן שהטופס נשלח.
 
-[See more examples below.](#usage)
+[עוד דוגמאות נוספות.](#usage)
 
-#### Parameters {/*parameters*/}
+#### פרמטרים {/*parameters*/}
 
-`useFormStatus` does not take any parameters.
+`useFormStatus` לא מקבל פרמטרים.
 
-#### Returns {/*returns*/}
+#### מחזירה {/*returns*/}
 
-A `status` object with the following properties:
+אובייקט `status` עם המאפיינים הבאים:
 
-* `pending`: A boolean. If `true`, this means the parent `<form>` is pending submission. Otherwise, `false`.
+* `pending`: ערך בוליאני. אם TK_1__, היא `<form>` ההורה יש שליחה ממתינה. אחרת `false`.
 
-* `data`: An object implementing the [`FormData interface`](https://developer.mozilla.org/en-US/docs/Web/API/FormData) that contains the data the parent `<form>` is submitting. If there is no active submission or no parent `<form>`, it will be `null`.
+* `data`: אובייקט שמממש את [`FormData interface`](https://developer.mozilla.org/en-US/docs/Web/API/FormData) ומכיל את ש-`<form>` ההורה שולח. אם אין שליחה פעילה או שאין `<form>` הורה, הערך יהיה `null`.
 
-* `method`: A string value of either `'get'` or `'post'`. This represents whether the parent `<form>` is submitting with either a `GET` or `POST` [HTTP method](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods). By default, a `<form>` will use the `GET` method and can be specified by the [`method`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form#method) property.
+* `method`: מחרוזת בערך `'get'` או `'post'`. מעוררת האם ה-`<form>` ההורה שולחת באמצעות `GET` או `POST` [שיטת HTTP](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods). כברירת מחדל, `<form>` תשתמש ב-`GET`, ואפשר להגדיר זאת דרך המאפיין [`method`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form#method).
 
-[//]: # (Link to `<form>` documentation. "Read more on the `action` prop on `<form>`.")
-* `action`: A reference to the function passed to the `action` prop on the parent `<form>`. If there is no parent `<form>`, the property is `null`. If there is a URI value provided to the `action` prop, or no `action` prop specified, `status.action` will be `null`.
+[//]: # (קישור לתיעוד `<form>`. "קרא עוד על אביזר `action` על `<form>`." )
+* `action`: הפניה לפונקציה שהועברה ל-prop בשם `action` של `form` ההורה. אם אין `<form>` הורה, המאפיין הוא `null`. אם סופק ערך URI ל-prop `action`, או שלא צוין `action`, הערך של `status.action` יהיה `null`.
 
-#### Caveats {/*caveats*/}
+#### אזהרות {/*caveats*/}
 
-* The `useFormStatus` Hook must be called from a component that is rendered inside a `<form>`. 
-* `useFormStatus` will only return status information for a parent `<form>`. It will not return status information for any `<form>` rendered in that same component or children components.
+* ה-Hook `useFormStatus` חייב להיקרא מתוך קומפונטה שמרונדרת בתוך `<form>`.
+* `useFormStatus` תחזיר מידע סטטוס רק עבור `<form>` הורה. היא לא תחזיר מידע סטטוס עבור `<form>` שמרונדרת באותו קומפונטה עצמה או בקומפוננטות ילדים.
 
 ---
 
-## Usage {/*usage*/}
+## שימוש {/*usage*/}
 
-### Display a pending state during form submission {/*display-a-pending-state-during-form-submission*/}
-To display a pending state while a form is submitting, you can call the `useFormStatus` Hook in a component rendered in a `<form>` and read the `pending` property returned.
+### הצגת מצב בהמתנה בזמן שליחת טופס {/*display-a-pending-state-during-form-submission*/}
+כדי להציג מצב בהמתנה בזמן שטופס נשלח, אפשר לקרוא ל-Hook `useFormStatus` בקומפוננטה שמרונדרת בתוך `<form>` ולקרוא את מאפיין `pending` שמוחזר.
 
-Here, we use the `pending` property to indicate the form is submitting. 
+כאן אנחנו משתמשים ב-`pending` כדי לציין שהטופס נשלח.
 
 <Sandpack>
 
@@ -129,13 +129,13 @@ export async function submitForm(query) {
   "devDependencies": {}
 }
 ```
-</Sandpack>  
+</Sandpack>
 
 <Pitfall>
 
-##### `useFormStatus` will not return status information for a `<form>` rendered in the same component. {/*useformstatus-will-not-return-status-information-for-a-form-rendered-in-the-same-component*/}
+##### `useFormStatus` לא תחזיר מידע סטטוס עבור `<form>` שמרונדרת באותה קומפונטה. {/*useformstatus-will-not-return-status-information-for-a-form-rendered-in-the-same-component*/}
 
-The `useFormStatus` Hook only returns status information for a parent `<form>` and not for any `<form>` rendered in the same component calling the Hook, or child components.
+ה-Hook `useFormStatus` מחזיר מידע סטטוס רק עבור `<form>` הורה ולא עבור `<form>` שמרונדרת באותה קומפוננטה שקוראת ל-Hook, או בקומפוננטות ילדים.
 
 ```js
 function Form() {
@@ -146,12 +146,12 @@ function Form() {
 }
 ```
 
-Instead call `useFormStatus` from inside a component that is located inside `<form>`.
+במקום זאת, קראו ל-`useFormStatus` מתוך קומפוננתה נמצאת בתוך `<form>`.
 
 ```js
 function Submit() {
   // ✅ `pending` will be derived from the form that wraps the Submit component
-  const { pending } = useFormStatus(); 
+  const { pending } = useFormStatus();
   return <button disabled={pending}>...</button>;
 }
 
@@ -167,11 +167,11 @@ function Form() {
 
 </Pitfall>
 
-### Read the form data being submitted {/*read-form-data-being-submitted*/}
+### קריאת נתוני הטופס שנשלחים {/*read-form-data-being-submitted*/}
 
-You can use the `data` property of the status information returned from `useFormStatus` to display what data is being submitted by the user.
+אפשר להשתמש במאפיין `data` מתוך מידע הסטטוס שמוחזר מ-`useFormStatus` כדי להציג אילו נתונים משתמש שולח.
 
-Here, we have a form where users can request a username. We can use `useFormStatus` to display a temporary status message confirming what username they have requested.
+כאן יש לנו טופס שבו משתמשים יכולים לבקש שם משתמש. אפשר להשתמש ב-`useFormStatus` כדי להציג הודעת סטטוס זמנית שמאשרת איזה משתמש הם ביקשו.
 
 <Sandpack>
 
@@ -245,16 +245,16 @@ button {
   "devDependencies": {}
 }
 ```
-</Sandpack>  
+</Sandpack>
 
 ---
 
-## Troubleshooting {/*troubleshooting*/}
+## פתרון תקלות {/*troubleshooting*/}
 
-### `status.pending` is never `true` {/*pending-is-never-true*/}
+### `status.pending` אף פעם לא `true` {/*pending-is-never-true*/}
 
-`useFormStatus` will only return status information for a parent `<form>`. 
+`useFormStatus` תחזיר מידע סטטוס רק עבור `<form>` הורה.
 
-If the component that calls `useFormStatus` is not nested in a `<form>`, `status.pending` will always return `false`. Verify `useFormStatus` is called in a component that is a child of a `<form>` element.
+אם הקומפוננטה שקוראת ל-`useFormStatus` אינה מקוננת בתוך `<form>`, הערך `status.pending` תמיד יהיה `false`. ודאו ש-`useFormStatus` נקראת בתוך קומפוננטה שהיא ילדה של אלמנט `<form>`.
 
-`useFormStatus` will not track the status of a `<form>` rendered in the same component. See [Pitfall](#useformstatus-will-not-return-status-information-for-a-form-rendered-in-the-same-component) for more details.
+`useFormStatus` לא תעקוב אחרי הסטטוס של `<form>` שמרונדרת במקביל. ראו [pitfall](#useformstatus-will-not-return-status-information-for-a-formed-in-the-the-component) לפרטים נוספים.

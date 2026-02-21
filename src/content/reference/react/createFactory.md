@@ -1,16 +1,16 @@
 ---
-title: createFactory
+title: "createFactory"
 ---
 
 <Deprecated>
 
-This API will be removed in a future major version of React. [See the alternatives.](#alternatives)
+ה-API הזה יוסר בגרסה ראשית עתידית של React. [ראו חלופות.](#alternatives)
 
 </Deprecated>
 
 <Intro>
 
-`createFactory` lets you create a function that produces React elements of a given type.
+`createFactory` מאפשרת ליצור פונקציה שמייצרת React elements סוג נתון.
 
 ```js
 const factory = createFactory(type)
@@ -22,11 +22,11 @@ const factory = createFactory(type)
 
 ---
 
-## Reference {/*reference*/}
+## הפניה {/*reference*/}
 
 ### `createFactory(type)` {/*createfactory*/}
 
-Call `createFactory(type)` to create a factory function which produces React elements of a given `type`.
+קראו ל-`createFactory(type)` כדי ליצור פונקציית factory שמייצרת React elements סטייל `type` נתון.
 
 ```js
 import { createFactory } from 'react';
@@ -34,7 +34,7 @@ import { createFactory } from 'react';
 const button = createFactory('button');
 ```
 
-Then you can use it to create React elements without JSX:
+ואז אפשר להשתמש בה כדי ליצור React אלמנטים בלי JSX:
 
 ```js
 export default function App() {
@@ -46,25 +46,25 @@ export default function App() {
 }
 ```
 
-[See more examples below.](#usage)
+[עוד דוגמאות נוספות.](#usage)
 
-#### Parameters {/*parameters*/}
+#### פרמטרים {/*parameters*/}
 
-* `type`: The `type` argument must be a valid React component type. For example, it could be a tag name string (such as `'div'` or `'span'`), or a React component (a function, a class, or a special component like [`Fragment`](/reference/react/Fragment)).
+* `type`: הארגומנט `type` חייב להיות סוג קומפונטת React תקין. למשל, מחרוזת שם תגית (כמו `'div'` או `'span'`), או קומפונטת React (פונקציה, מחלקה, או קומפוננטה מיוחדת כמו [`Fragment`](/reference/react/Fragment)).
 
-#### Returns {/*returns*/}
+#### מחזירה {/*returns*/}
 
-Returns a factory function. That factory function receives a `props` object as the first argument, followed by a list of `...children` arguments, and returns a React element with the given `type`, `props` and `children`.
+מחזירה פונקציית. פונקציית ה-factory הזו מקבלת אובייקט `props` כארגומנט ראשון, אחריו רשימת ארגומנטים `...children`, ומחזירה React אלמנט עם ה-`type`, ה-`props` וה-`children` בימים.
 
 ---
 
-## Usage {/*usage*/}
+## שימוש {/*usage*/}
 
-### Creating React elements with a factory {/*creating-react-elements-with-a-factory*/}
+### יצירת React אלמנטים עם מפעל {/*creating-react-elements-with-a-factory*/}
 
-Although most React projects use [JSX](/learn/writing-markup-with-jsx) to describe the user interface, JSX is not required. In the past, `createFactory` used to be one of the ways you could describe the user interface without JSX.
+למרות שרוב פרויקטי React משתמשים ב-[JSX](/learn/writing-markup-with-jsx) כדי לתאר את ממשק המשתמש, JSX אינה חובה. בעבר, `createFactory` אחת הדרכים לתאר ממש הייתהק משתמש בלי JSX.
 
-Call `createFactory` to create a *factory function* for a specific element type like `'button'`:
+קראו ל-`createFactory` כדי ליצור *פונקציית מפעל* סוג אלמנט מסוים כמו `'button'`:
 
 ```js
 import { createFactory } from 'react';
@@ -72,7 +72,7 @@ import { createFactory } from 'react';
 const button = createFactory('button');
 ```
 
-Calling that factory function will produce React elements with the props and children you have provided:
+קריאה לפונקציית ה-factory הזו תייצר React אלמנטים עם ה-props וה-ילדים שסיפקתם:
 
 <Sandpack>
 
@@ -92,15 +92,15 @@ export default function App() {
 
 </Sandpack>
 
-This is how `createFactory` was used as an alternative to JSX. However, `createFactory` is deprecated, and you should not call `createFactory` in any new code. See how to migrate away from `createFactory` below.
+כך השתמשו ב-`createFactory` כחלופה ל-JSX. אבל `createFactory` הוצאה משימוש, ולא כדאי לקרוא לה בקוד חדש. ראו בהמשך איך לבצע מיגרציה מ-`createFactory`.
 
 ---
 
-## Alternatives {/*alternatives*/}
+## חלופות {/*alternatives*/}
 
-### Copying `createFactory` into your project {/*copying-createfactory-into-your-project*/}
+### העתקת `createFactory` בתוך הפרויקט שלכם {/*copying-createfactory-into-your-project*/}
 
-If your project has many `createFactory` calls, copy this `createFactory.js` implementation into your project:
+אם בפרויקט שלכם יש הרבה קריאות ל-`createFactory`, העתיקות את המימוש הבא של `createFactory.js` לתוך הפרויקט:
 
 <Sandpack>
 
@@ -128,13 +128,13 @@ export function createFactory(type) {
 
 </Sandpack>
 
-This lets you keep all of your code unchanged except the imports.
+כך אפשר להשאיר את כל הקוד ללא שינוי מלבד הייבואים.
 
 ---
 
-### Replacing `createFactory` with `createElement` {/*replacing-createfactory-with-createelement*/}
+### החלפת `createFactory` ב-`createElement` {/*replacing-createfactory-with-createelement*/}
 
-If you have a few `createFactory` calls that you don't mind porting manually, and you don't want to use JSX, you can replace every call a factory function with a [`createElement`](/reference/react/createElement) call. For example, you can replace this code:
+אם יש לכם מעט קריאות ל-`createFactory` ואתם לא מתנגדים לבצע את המרה ידנית, ואתם לא רוצים להשתמש ב-JSX, אפשר להחליף את כל קריאה לפונקציית factory בקריאה ל-[`createElement`](/reference/react/createElement). למשל, אפשר להחליף את הקוד הזה:
 
 ```js {1,3,6}
 import { createFactory } from 'react';
@@ -150,7 +150,7 @@ export default function App() {
 }
 ```
 
-with this code:
+בקוד הזה:
 
 
 ```js {1,4}
@@ -165,7 +165,7 @@ export default function App() {
 }
 ```
 
-Here is a complete example of using React without JSX:
+הנה דוגמה מלאה ב-React ללא JSX:
 
 <Sandpack>
 
@@ -185,9 +185,9 @@ export default function App() {
 
 ---
 
-### Replacing `createFactory` with JSX {/*replacing-createfactory-with-jsx*/}
+### החלפת `createFactory` ב-JSX {/*replacing-createfactory-with-jsx*/}
 
-Finally, you can use JSX instead of `createFactory`. This is the most common way to use React:
+לבסוף, אפשר להשתמש ב-JSX במקום `createFactory`. זו הדרך הנפוצה ביותר להשתמש ב-React:
 
 <Sandpack>
 
@@ -207,7 +207,7 @@ export default function App() {
 
 <Pitfall>
 
-Sometimes, your existing code might pass some variable as a `type` instead of a constant like `'button'`:
+לפעמים קיים קוד קיים כ-`type` במצב קבוע כמו `'button'`:
 
 ```js {3}
 function Heading({ isSubheading, ...props }) {
@@ -217,7 +217,7 @@ function Heading({ isSubheading, ...props }) {
 }
 ```
 
-To do the same in JSX, you need to rename your variable to start with an uppercase letter like `Type`:
+כדי לעשות את זה ב-JSX, צריך לשנות את שם השינוי כדי לשנות באות גדולות, למשל `Type`:
 
 ```js {2,3}
 function Heading({ isSubheading, ...props }) {
@@ -226,6 +226,6 @@ function Heading({ isSubheading, ...props }) {
 }
 ```
 
-Otherwise React will interpret `<type>` as a built-in HTML tag because it is lowercase.
+אחרת React תפרש `<type>` כתגית HTML מובנית כי היא באותיות קטנות.
 
 </Pitfall>

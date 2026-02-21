@@ -1,203 +1,203 @@
 {
-  "title": "Learn React",
+  "title": "לימוד React",
   "path": "/learn",
   "routes": [
     {
       "hasSectionHeader": true,
-      "sectionHeader": "GET STARTED"
+      "sectionHeader": "התחלה"
     },
     {
-      "title": "Quick Start",
+      "title": "התחלה מהירה",
       "path": "/learn",
       "routes": [
         {
-          "title": "Tutorial: Tic-Tac-Toe",
+          "title": "מדריך: איקס עיגול",
           "path": "/learn/tutorial-tic-tac-toe"
         },
         {
-          "title": "Thinking in React",
+          "title": "חשיבה ב-React",
           "path": "/learn/thinking-in-react"
         }
       ]
     },
     {
-      "title": "Installation",
+      "title": "התקנה",
       "path": "/learn/installation",
       "routes": [
         {
-          "title": "Start a New React Project",
+          "title": "התחלת פרויקט React חדש",
           "path": "/learn/start-a-new-react-project"
         },
         {
-          "title": "Add React to an Existing Project",
+          "title": "הוספת React לפרויקט קיים",
           "path": "/learn/add-react-to-an-existing-project"
         },
         {
-          "title": "Editor Setup",
+          "title": "הגדרת עורך",
           "path": "/learn/editor-setup"
         },
         {
-          "title": "Using TypeScript",
+          "title": "שימוש ב-TypeScript",
           "path": "/learn/typescript"
         },
         {
-          "title": "React Developer Tools",
+          "title": "כלי הפיתוח של React",
           "path": "/learn/react-developer-tools"
         }
       ]
     },
     {
       "hasSectionHeader": true,
-      "sectionHeader": "LEARN REACT"
+      "sectionHeader": "לימוד REACT"
     },
     {
-      "title": "Describing the UI",
+      "title": "תיאור ה-UI",
       "tags": [],
       "path": "/learn/describing-the-ui",
       "routes": [
         {
-          "title": "Your First Component",
+          "title": "הקומפוננטה הראשונה שלכם",
           "path": "/learn/your-first-component"
         },
         {
-          "title": "Importing and Exporting Components",
+          "title": "ייבוא וייצוא קומפוננטות",
           "path": "/learn/importing-and-exporting-components"
         },
         {
-          "title": "Writing Markup with JSX",
+          "title": "כתיבת Markup עם JSX",
           "path": "/learn/writing-markup-with-jsx"
         },
         {
-          "title": "JavaScript in JSX with Curly Braces",
+          "title": "JavaScript ב-JSX עם סוגריים מסולסלים",
           "path": "/learn/javascript-in-jsx-with-curly-braces"
         },
         {
-          "title": "Passing Props to a Component",
+          "title": "העברת Props לקומפוננטה",
           "path": "/learn/passing-props-to-a-component"
         },
         {
-          "title": "Conditional Rendering",
+          "title": "רינדור מותנה",
           "path": "/learn/conditional-rendering"
         },
         {
-          "title": "Rendering Lists",
+          "title": "רינדור רשימות",
           "path": "/learn/rendering-lists"
         },
         {
-          "title": "Keeping Components Pure",
+          "title": "שמירה על קומפוננטות טהורות",
           "path": "/learn/keeping-components-pure"
         },
         {
-          "title": "Your UI as a Tree",
+          "title": "ה-UI שלכם כעץ",
           "path": "/learn/understanding-your-ui-as-a-tree"
         }
       ]
     },
     {
-      "title": "Adding Interactivity",
+      "title": "הוספת אינטראקטיביות",
       "path": "/learn/adding-interactivity",
       "tags": [],
       "routes": [
         {
-          "title": "Responding to Events",
+          "title": "תגובה לאירועים",
           "path": "/learn/responding-to-events"
         },
         {
-          "title": "State: A Component's Memory",
+          "title": "State: הזיכרון של קומפוננטה",
           "path": "/learn/state-a-components-memory"
         },
         {
-          "title": "Render and Commit",
+          "title": "רינדור ו-Commit",
           "path": "/learn/render-and-commit"
         },
         {
-          "title": "State as a Snapshot",
+          "title": "State כתמונת מצב",
           "path": "/learn/state-as-a-snapshot"
         },
         {
-          "title": "Queueing a Series of State Updates",
+          "title": "תור של עדכוני State",
           "path": "/learn/queueing-a-series-of-state-updates"
         },
         {
-          "title": "Updating Objects in State",
+          "title": "עדכון אובייקטים ב-State",
           "path": "/learn/updating-objects-in-state"
         },
         {
-          "title": "Updating Arrays in State",
+          "title": "עדכון מערכים ב-State",
           "path": "/learn/updating-arrays-in-state"
         }
       ]
     },
     {
-      "title": "Managing State",
+      "title": "ניהול State",
       "path": "/learn/managing-state",
       "tags": ["intermediate"],
       "routes": [
         {
-          "title": "Reacting to Input with State",
+          "title": "תגובה לקלט עם State",
           "path": "/learn/reacting-to-input-with-state"
         },
         {
-          "title": "Choosing the State Structure",
+          "title": "בחירת מבנה ה-State",
           "path": "/learn/choosing-the-state-structure"
         },
         {
-          "title": "Sharing State Between Components",
+          "title": "שיתוף State בין קומפוננטות",
           "path": "/learn/sharing-state-between-components"
         },
         {
-          "title": "Preserving and Resetting State",
+          "title": "שימור ואיפוס State",
           "path": "/learn/preserving-and-resetting-state"
         },
         {
-          "title": "Extracting State Logic into a Reducer",
+          "title": "חילוץ לוגיקת State ל-Reducer",
           "path": "/learn/extracting-state-logic-into-a-reducer"
         },
         {
-          "title": "Passing Data Deeply with Context",
+          "title": "העברת נתונים לעומק עם Context",
           "path": "/learn/passing-data-deeply-with-context"
         },
         {
-          "title": "Scaling Up with Reducer and Context",
+          "title": "הגדלה עם Reducer ו-Context",
           "path": "/learn/scaling-up-with-reducer-and-context"
         }
       ]
     },
     {
-      "title": "Escape Hatches",
+      "title": "דרכי מילוט",
       "path": "/learn/escape-hatches",
       "tags": ["advanced"],
       "routes": [
         {
-          "title": "Referencing Values with Refs",
+          "title": "הפניה לערכים עם Refs",
           "path": "/learn/referencing-values-with-refs"
         },
         {
-          "title": "Manipulating the DOM with Refs",
+          "title": "מניפולציה על ה-DOM עם Refs",
           "path": "/learn/manipulating-the-dom-with-refs"
         },
         {
-          "title": "Synchronizing with Effects",
+          "title": "סנכרון עם Effects",
           "path": "/learn/synchronizing-with-effects"
         },
         {
-          "title": "You Might Not Need an Effect",
+          "title": "אולי לא צריך Effect",
           "path": "/learn/you-might-not-need-an-effect"
         },
         {
-          "title": "Lifecycle of Reactive Effects",
+          "title": "מחזור החיים של Effects תגובתיים",
           "path": "/learn/lifecycle-of-reactive-effects"
         },
         {
-          "title": "Separating Events from Effects",
+          "title": "הפרדת אירועים מ-Effects",
           "path": "/learn/separating-events-from-effects"
         },
         {
-          "title": "Removing Effect Dependencies",
+          "title": "הסרת תלויות של Effect",
           "path": "/learn/removing-effect-dependencies"              
         },
         {
-          "title": "Reusing Logic with Custom Hooks",
+          "title": "שימוש חוזר בלוגיקה עם Custom Hooks",
           "path": "/learn/reusing-logic-with-custom-hooks"
         }
       ]

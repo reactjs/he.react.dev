@@ -1,17 +1,17 @@
 ---
-title: useOptimistic
+title: "useOptimistic"
 canary: true
 ---
 
 <Canary>
 
-The `useOptimistic` Hook is currently only available in React's Canary and experimental channels. Learn more about [React's release channels here](/community/versioning-policy#all-release-channels).
+ה-Hook `useOptimistic` זמין כרגע רק בערוצי Canary ו-experimental של React. מידע נוסף ב-[ערוצי השחרור של React](/community/versioning-policy#all-release-channels).
 
 </Canary>
 
 <Intro>
 
-`useOptimistic` is a React Hook that lets you optimistically update the UI.
+`useOptimistic` הוא React Hook שמאפשר לעדכן את ה-UI באופן אופטימי.
 
 ```js
   const [optimisticState, addOptimistic] = useOptimistic(state, updateFn);
@@ -23,13 +23,13 @@ The `useOptimistic` Hook is currently only available in React's Canary and exper
 
 ---
 
-## Reference {/*reference*/}
+## הפניה {/*reference*/}
 
 ### `useOptimistic(state, updateFn)` {/*use*/}
 
-`useOptimistic` is a React Hook that lets you show a different state while an async action is underway. It accepts some state as an argument and returns a copy of that state that can be different during the duration of an async action such as a network request. You provide a function that takes the current state and the input to the action, and returns the optimistic state to be used while the action is pending.
+`useOptimistic` הוא React Hook שמאפשר להציג state שונה בזמן שפעולה אסינכרונית. הוא מקבל state כארגומנט ומחזיר עותק של אותו state יכול להיות שונה לפעולה האסינכרונית, למשל בקשת להיות רשת. אתם מספקים פונקציה שמקבלת את ה-state הנוכחית ואת קלט פעולה, ומחזירה את ה-state שהאופטימי שישמש בזמן ממתינה.
 
-This state is called the "optimistic" state because it is usually used to immediately present the user with the result of performing an action, even though the action actually takes time to complete.
+ה-state הזה נקרא "אופטימי" כי בדרך כלל משתמשים בו כדי להציג למשתמש מיד את תוצאת הפעולה, למרות שבפועל נוקטת זמן להשלים.
 
 ```js
 import { useOptimistic } from 'react';
@@ -46,28 +46,28 @@ function AppContainer() {
 }
 ```
 
-[See more examples below.](#usage)
+[עוד דוגמאות נוספות.](#usage)
 
-#### Parameters {/*parameters*/}
+#### פרמטרים {/*parameters*/}
 
-* `state`: the value to be returned initially and whenever no action is pending.
-* `updateFn(currentState, optimisticValue)`: a function that takes the current state and the optimistic value passed to `addOptimistic` and returns the resulting optimistic state. It must be a pure function. `updateFn` takes in two parameters. The `currentState` and the `optimisticValue`. The return value will be the merged value of the `currentState` and `optimisticValue`.
+* `state`: הערך שיוחזר בתחילה ובכל פעם שאין פעולה ממתינה.
+* `updateFn(currentState, optimisticValue)`: פונקציה שמקבלת את ה-state הנוכחית ואת הערך האופטימי שמועבר ל-`addOptimistic`, ומחזירה את ה-state האופטימי המתקבל. זו חייבת להיות פונקציה טהורה. `updateFn` מקבלת שני פרמטרים: `currentState` ו-`optimisticValue`. הערך המוחזר יהיה הערך העיצוב של `currentState` ו-`optimisticValue`.
 
 
-#### Returns {/*returns*/}
+#### מחזירה {/*returns*/}
 
-* `optimisticState`: The resulting optimistic state. It is equal to `state` unless an action is pending, in which case it is equal to the value returned by `updateFn`.
-* `addOptimistic`: `addOptimistic` is the dispatching function to call when you have an optimistic update. It takes one argument, `optimisticValue`, of any type and will call the `updateFn` with `state` and `optimisticValue`.
+* `optimisticState`: ה-state האופטימי המתקבל. הוא שווה ל-`state` אלא אם יש פעולה ממתינה, ובמקרה כזה הוא שווה לערך שהוחזר מ-`updateFn`.
+* `addOptimistic`: פונקציית שליחת לקריאה כשיש עדכון אופטימי. היא מקבלת ארגומנט אחד, `optimisticValue`, מכל סוג, ותיקרא ל-`updateFn` עם `state` ו-`optimisticValue`.
 
 ---
 
-## Usage {/*usage*/}
+## שימוש {/*usage*/}
 
-### Optimistically updating forms {/*optimistically-updating-with-forms*/}
+### עדכון אופטימי של טפסים {/*optimistically-updating-with-forms*/}
 
-The `useOptimistic` Hook provides a way to optimistically update the user interface before a background operation, like a network request, completes. In the context of forms, this technique helps to make apps feel more responsive. When a user submits a form, instead of waiting for the server's response to reflect the changes, the interface is immediately updated with the expected outcome.
+ה-Hook `useOptimistic` מספק דרך לעדכן את ממשק המשתמש באופן אופטימי לפני שפעולת רקע, כמו בקשת רשת, מסתיימת. בהקשר של טפסים, הטכניקה הזו עוזרת לאפליקציות להרגיש תגובתיות יותר. כשמשתמש טופס, במקום להמתין לתמהשרת כדי לשקף את השינויים, הממשק מתעדכן מיד עם התוצאה צפויה.
 
-For example, when a user types a message into the form and hits the "Send" button, the `useOptimistic` Hook allows the message to immediately appear in the list with a "Sending..." label, even before the message is actually sent to a server. This "optimistic" approach gives the impression of speed and responsiveness. The form then attempts to truly send the message in the background. Once the server confirms the message has been received, the "Sending..." label is removed.
+לדוגמה, כשמשתמש מקליד הודעה בטופס ולוחץ על כפתור "Send", ה-Hook `useOptimistic` יכול להודעה להופיע מיד ברשימה עם תווית "Sending...", עוד לפני שההודעה באמת נשלחת לשרת. הגישה ה"אופטימית" הזו יוצרת תחושת מהירות ותגובתיות. לאחר שהצליח לכתוב את ההודעה ברקע. כשהשרת מאשר שההודעה התקבלה, תווית "שולח..." מוסרת.
 
 <Sandpack>
 

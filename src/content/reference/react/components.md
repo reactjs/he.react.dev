@@ -1,24 +1,24 @@
 ---
-title: "Built-in React Components"
+title: "קומפונטות React מבנות"
 ---
 
 <Intro>
 
-React exposes a few built-in components that you can use in your JSX.
+React חושפת כמה קומפוננטות מבנות שאפשר להשתמש ב-JSX.
 
 </Intro>
 
 ---
 
-## Built-in components {/*built-in-components*/}
+## קומפוננטות מבנות {/*built-in-components*/}
 
-* [`<Fragment>`](/reference/react/Fragment), alternatively written as `<>...</>`, lets you group multiple JSX nodes together.
-* [`<Profiler>`](/reference/react/Profiler) lets you measure rendering performance of a React tree programmatically.
-* [`<Suspense>`](/reference/react/Suspense) lets you display a fallback while the child components are loading.
-* [`<StrictMode>`](/reference/react/StrictMode) enables extra development-only checks that help you find bugs early.
+* [`<Fragment>`](/reference/react/Fragment), אפשר לכתוב גם כ-`<>...</>`, יכול לקבץ כמה צמתים של JSX יחד.
+* [`<Profiler>`](/reference/react/Profiler) יכול למדוד ביצועי רינדור של עץ React באופן פרוגרמטי.
+* [`<Suspense>`](/reference/react/Suspense) אפשר להשתמש ב-fallback בזמן שקומפוננטות ילדים נטענות.
+* [`<StrictMode>`](/reference/react/StrictMode) מפעיל בדיקות נוספות שתקפות רק בפיתוח ועוזות למצוא באגים מוקדם.
 
 ---
 
-## Your own components {/*your-own-components*/}
+## הקומפוננטות שלכם {/*your-own-components*/}
 
-You can also [define your own components](/learn/your-first-component) as JavaScript functions.
+אפשר גם [להגדיר קומפוננטות משלכם](/learn/your-first-component) כפונקציות JavaScript.

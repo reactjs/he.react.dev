@@ -124,7 +124,7 @@ export function HomeContent() {
             React
           </h1>
           <p className="text-4xl font-display max-w-lg md:max-w-full py-1 text-center text-secondary dark:text-primary-dark leading-snug self-center">
-            The library for web and native user interfaces
+            הספרייה לממשקי משתמש לווב ולנייטיב
           </p>
           <div className="mt-5 self-center flex gap-2 w-full sm:w-auto flex-col sm:flex-row">
             <ButtonLink
@@ -132,29 +132,28 @@ export function HomeContent() {
               type="primary"
               size="lg"
               className="w-full sm:w-auto justify-center"
-              label="Learn React">
-              Learn React
+              label="לימוד React">
+              לימוד React
             </ButtonLink>
             <ButtonLink
               href={'/reference/react'}
               type="secondary"
               size="lg"
               className="w-full sm:w-auto justify-center"
-              label="API Reference">
-              API Reference
+              label="מדריך API">
+              מדריך API
             </ButtonLink>
           </div>
         </div>
 
         <Section background="left-card">
           <Center>
-            <Header>Create user interfaces from components</Header>
+            <Header>צרו ממשקי משתמש מקומפוננטות</Header>
             <Para>
-              React lets you build user interfaces out of individual pieces
-              called components. Create your own React components like{' '}
-              <Code>Thumbnail</Code>, <Code>LikeButton</Code>, and{' '}
-              <Code>Video</Code>. Then combine them into entire screens, pages,
-              and apps.
+              React מאפשרת לכם לבנות ממשקי משתמש מחלקים נפרדים שנקראים
+              קומפוננטות. צרו קומפוננטות React משלכם כמו <Code>Thumbnail</Code>,{' '}
+              <Code>LikeButton</Code> ו-<Code>Video</Code>, ואז חברו אותן
+              למסכים, דפים ואפליקציות שלמים.
             </Para>
           </Center>
           <FullBleed>
@@ -162,22 +161,20 @@ export function HomeContent() {
           </FullBleed>
           <Center>
             <Para>
-              Whether you work on your own or with thousands of other
-              developers, using React feels the same. It is designed to let you
-              seamlessly combine components written by independent people,
-              teams, and organizations.
+              בין אם אתם עובדים לבד או יחד עם אלפי מפתחים אחרים, העבודה עם React
+              מרגישה אותו דבר. היא תוכננה כך שתוכלו לשלב בצורה חלקה קומפוננטות
+              שנכתבו על ידי אנשים, צוותים וארגונים שונים.
             </Para>
           </Center>
         </Section>
 
         <Section background="right-card">
           <Center>
-            <Header>Write components with code and markup</Header>
+            <Header>כתבו קומפוננטות עם קוד ו-Markup</Header>
             <Para>
-              React components are JavaScript functions. Want to show some
-              content conditionally? Use an <Code>if</Code> statement.
-              Displaying a list? Try array <Code>map()</Code>. Learning React is
-              learning programming.
+              קומפוננטות React הן פונקציות JavaScript. רוצים להציג תוכן בצורה
+              מותנית? השתמשו במשפט <Code>if</Code>. רוצים להציג רשימה? נסו
+              להשתמש ב-<Code>map()</Code> על מערך. ללמוד React זה ללמוד תכנות.
             </Para>
           </Center>
           <FullBleed>
@@ -185,22 +182,21 @@ export function HomeContent() {
           </FullBleed>
           <Center>
             <Para>
-              This markup syntax is called JSX. It is a JavaScript syntax
-              extension popularized by React. Putting JSX markup close to
-              related rendering logic makes React components easy to create,
-              maintain, and delete.
+              תחביר ה-Markup הזה נקרא JSX. זו הרחבת תחביר של JavaScript ש-React
+              הפכה לפופולרית. כשכותבים JSX קרוב ללוגיקת הרינדור הרלוונטית,
+              קומפוננטות React נעשות קלות יותר ליצירה, תחזוקה והסרה.
             </Para>
           </Center>
         </Section>
 
         <Section background="left-card">
           <Center>
-            <Header>Add interactivity wherever you need it</Header>
+            <Header>הוסיפו אינטראקטיביות בכל מקום שצריך</Header>
             <Para>
-              React components receive data and return what should appear on the
-              screen. You can pass them new data in response to an interaction,
-              like when the user types into an input. React will then update the
-              screen to match the new data.
+              קומפוננטות React מקבלות נתונים ומחזירות את מה שצריך להופיע על
+              המסך. אפשר להעביר להן נתונים חדשים בתגובה לאינטראקציה, למשל
+              כשהמשתמש מקליד בשדה קלט. אחר כך React מעדכנת את המסך כך שיתאים
+              לנתונים החדשים.
             </Para>
           </Center>
           <FullBleed>
@@ -208,16 +204,15 @@ export function HomeContent() {
           </FullBleed>
           <Center>
             <Para>
-              You don’t have to build your whole page in React. Add React to
-              your existing HTML page, and render interactive React components
-              anywhere on it.
+              לא חייבים לבנות את כל הדף ב-React. אפשר להוסיף React לדף HTML
+              קיים, ולרנדר בו קומפוננטות React אינטראקטיביות בכל מקום.
             </Para>
             <div className="flex justify-start w-full lg:justify-center">
               <CTA
                 color="gray"
                 icon="code"
                 href="/learn/add-react-to-an-existing-project">
-                Add React to your page
+                הוסיפו React לעמוד שלכם
               </CTA>
             </div>
           </Center>
@@ -226,14 +221,14 @@ export function HomeContent() {
         <Section background="right-card">
           <Center>
             <Header>
-              Go full-stack <br className="hidden lg:inline" />
-              with a framework
+              עברו ל-full-stack <br className="hidden lg:inline" />
+              עם פריימוורק
             </Header>
             <Para>
-              React is a library. It lets you put components together, but it
-              doesn’t prescribe how to do routing and data fetching. To build an
-              entire app with React, we recommend a full-stack React framework
-              like <Link href="https://nextjs.org">Next.js</Link> or{' '}
+              React היא ספרייה. היא מאפשרת להרכיב קומפוננטות, אבל לא מכתיבה איך
+              לבצע ניתוב ושליפת נתונים. כדי לבנות אפליקציה שלמה עם React, אנחנו
+              ממליצים על פריימוורק React מלא כמו{' '}
+              <Link href="https://nextjs.org">Next.js</Link> או{' '}
               <Link href="https://remix.run">Remix</Link>.
             </Para>
           </Center>
@@ -242,17 +237,17 @@ export function HomeContent() {
           </FullBleed>
           <Center>
             <Para>
-              React is also an architecture. Frameworks that implement it let
-              you fetch data in asynchronous components that run on the server
-              or even during the build. Read data from a file or a database, and
-              pass it down to your interactive components.
+              React היא גם ארכיטקטורה. פריימוורקים שמממשים אותה מאפשרים שליפת
+              נתונים מתוך קומפוננטות אסינכרוניות שרצות בשרת או אפילו בזמן build.
+              אפשר לקרוא נתונים מקובץ או ממסד נתונים ולהעביר אותם לקומפוננטות
+              האינטראקטיביות שלכם.
             </Para>
             <div className="flex justify-start w-full lg:justify-center">
               <CTA
                 color="gray"
                 icon="framework"
                 href="/learn/start-a-new-react-project">
-                Get started with a framework
+                התחילו עם פריימוורק
               </CTA>
             </div>
           </Center>
@@ -260,12 +255,11 @@ export function HomeContent() {
         <Section background="left-card">
           <div className="mx-auto flex flex-col w-full">
             <div className="mx-auto max-w-4xl lg:text-center items-center px-5 flex flex-col">
-              <Header>Use the best from every platform</Header>
+              <Header>קחו את הטוב ביותר מכל פלטפורמה</Header>
               <Para>
-                People love web and native apps for different reasons. React
-                lets you build both web apps and native apps using the same
-                skills. It leans upon each platform’s unique strengths to let
-                your interfaces feel just right on every platform.
+                אנשים אוהבים אפליקציות ווב ונייטיב מסיבות שונות. React מאפשרת
+                לבנות את שתיהן עם אותם כישורים. היא נשענת על החוזקות הייחודיות
+                של כל פלטפורמה כדי שממשקי המשתמש ירגישו נכון בכל מקום.
               </Para>
             </div>
             <div className="max-w-7xl mx-auto flex flex-col lg:flex-row mt-16 mb-20 lg:mb-28 px-5 gap-20 lg:gap-5">
@@ -279,15 +273,14 @@ export function HomeContent() {
                     <div className="bg-wash relative h-14 w-full" />
                     <div className="relative flex items-start justify-center flex-col flex-1 pb-16 pt-5 gap-3 px-5 lg:px-10 lg:pt-8">
                       <h4 className="leading-tight text-primary font-semibold text-3xl lg:text-4xl">
-                        Stay true to the web
+                        נאמנים לווב
                       </h4>
                       <p className="lg:text-xl leading-normal text-secondary">
-                        People expect web app pages to load fast. On the server,
-                        React lets you start streaming HTML while you’re still
-                        fetching data, progressively filling in the remaining
-                        content before any JavaScript code loads. On the client,
-                        React can use standard web APIs to keep your UI
-                        responsive even in the middle of rendering.
+                        משתמשים מצפים שדפי ווב ייטענו מהר. בצד השרת, React
+                        מאפשרת להתחיל להזרים HTML בזמן שעדיין שולפים נתונים,
+                        ולמלא בהדרגה את שאר התוכן עוד לפני שקוד JavaScript נטען.
+                        בצד הלקוח, React יכולה להשתמש ב-Web APIs סטנדרטיים כדי
+                        לשמור על ממשק משתמש תגובתי גם באמצע רינדור.
                       </p>
                     </div>
                   </div>
@@ -365,21 +358,21 @@ export function HomeContent() {
                       </div>
                       <div className="flex flex-col items-start justify-center pt-0 gap-3 px-2.5 lg:pt-8 lg:px-8">
                         <h4 className="leading-tight text-primary dark:text-primary-dark font-semibold text-3xl lg:text-4xl">
-                          Go truly native
+                          עברו לנייטיב אמיתי
                         </h4>
                         <p className="h-full lg:text-xl text-secondary dark:text-secondary-dark leading-normal">
-                          People expect native apps to look and feel like their
-                          platform.{' '}
+                          משתמשים מצפים שאפליקציות נייטיב ייראו וירגישו כמו
+                          הפלטפורמה שלהן.{' '}
                           <Link href="https://reactnative.dev">
                             React Native
                           </Link>{' '}
-                          and{' '}
+                          ו-{' '}
                           <Link href="https://github.com/expo/expo">Expo</Link>{' '}
-                          let you build apps in React for Android, iOS, and
-                          more. They look and feel native because their UIs{' '}
-                          <i>are</i> truly native. It’s not a web view—your
-                          React components render real Android and iOS views
-                          provided by the platform.
+                          מאפשרות לבנות אפליקציות ב-React ל-Android, ל-iOS ולעוד
+                          פלטפורמות. הן נראות ומרגישות נייטיב כי ה-UI שלהן
+                          <i>באמת</i> נייטיב. זו לא תצוגת web view; קומפוננטות
+                          React שלכם מרנדרות תצוגות אמיתיות של Android ו-iOS
+                          שסופקו על ידי הפלטפורמה.
                         </p>
                       </div>
                     </div>
@@ -389,14 +382,14 @@ export function HomeContent() {
             </div>
             <div className="px-5 lg:px-0 max-w-4xl mx-auto lg:text-center text-secondary dark:text-secondary-dark">
               <Para>
-                With React, you can be a web <i>and</i> a native developer. Your
-                team can ship to many platforms without sacrificing the user
-                experience. Your organization can bridge the platform silos, and
-                form teams that own entire features end-to-end.
+                עם React אפשר להיות מפתחי ווב <i>וגם</i> נייטיב. הצוות שלכם יכול
+                לשלוח פיצ׳רים להרבה פלטפורמות בלי להתפשר על חוויית המשתמש.
+                הארגון שלכם יכול לגשר על הפערים בין פלטפורמות ולבנות צוותים
+                שלוקחים בעלות על יכולות מקצה לקצה.
               </Para>
               <div className="flex justify-start w-full lg:justify-center">
                 <CTA color="gray" icon="native" href="https://reactnative.dev/">
-                  Build for native platforms
+                  בנו לפלטפורמות נייטיב
                 </CTA>
               </div>
             </div>
@@ -407,23 +400,21 @@ export function HomeContent() {
           <div className="max-w-7xl mx-auto flex flex-col lg:flex-row px-5">
             <div className="max-w-3xl lg:max-w-7xl gap-5 flex flex-col lg:flex-row lg:px-5">
               <div className="w-full lg:w-6/12 max-w-3xl flex flex-col items-start justify-start lg:ps-5 lg:pe-10">
-                <Header>Upgrade when the future is ready</Header>
+                <Header>שדרגו כשהעתיד מוכן</Header>
                 <Para>
-                  React approaches changes with care. Every React commit is
-                  tested on business-critical surfaces with over a billion
-                  users. Over 100,000 React components at Meta help validate
-                  every migration strategy.
+                  React ניגשת לשינויים בזהירות. כל commit של React נבדק על
+                  משטחים עסקיים קריטיים עם יותר ממיליארד משתמשים. מעל 100,000
+                  קומפוננטות React ב-Meta עוזרות לאמת כל אסטרטגיית מיגרציה.
                 </Para>
                 <div className="order-last pt-5">
                   <Para>
-                    The React team is always researching how to improve React.
-                    Some research takes years to pay off. React has a high bar
-                    for taking a research idea into production. Only proven
-                    approaches become a part of React.
+                    צוות React תמיד חוקר איך לשפר את React. לפעמים לוקח שנים עד
+                    שמחקר מבשיל. ל-React יש רף גבוה לפני שמעבירים רעיון מחקרי
+                    לפרודקשן. רק גישות מוכחות הופכות לחלק מ-React.
                   </Para>
                   <div className="hidden lg:flex justify-start w-full">
                     <CTA color="gray" icon="news" href="/blog">
-                      Read more React news
+                      לקריאת חדשות React נוספות
                     </CTA>
                   </div>
                 </div>
@@ -431,7 +422,7 @@ export function HomeContent() {
               <div className="w-full lg:w-6/12">
                 <p className="uppercase tracking-wide font-bold text-sm text-tertiary dark:text-tertiary-dark flex flex-row gap-2 items-center mt-5 lg:-mt-2 w-full">
                   <IconChevron />
-                  Latest React News
+                  חדשות React האחרונות
                 </p>
                 <div className="flex-col sm:flex-row flex-wrap flex gap-5 text-start my-5">
                   <div className="flex-1 min-w-[40%] text-start">
@@ -449,7 +440,7 @@ export function HomeContent() {
                 </div>
                 <div className="flex lg:hidden justify-start w-full">
                   <CTA color="gray" icon="news" href="/blog">
-                    Read more React news
+                    לקריאת חדשות React נוספות
                   </CTA>
                 </div>
               </div>
@@ -462,13 +453,13 @@ export function HomeContent() {
             <div className="mx-auto flex flex-col max-w-4xl">
               <Center>
                 <Header>
-                  Join a community <br className="hidden lg:inline" />
-                  of millions
+                  הצטרפו לקהילה <br className="hidden lg:inline" />
+                  של מיליונים
                 </Header>
                 <Para>
-                  You’re not alone. Two million developers from all over the
-                  world visit the React docs every month. React is something
-                  that people and teams can agree on.
+                  אתם לא לבד. שני מיליון מפתחים מכל העולם מבקרים בתיעוד של React
+                  בכל חודש. React היא משהו שאנשים וצוותים יכולים להסכים עליו
+                  יחד.
                 </Para>
               </Center>
             </div>
@@ -476,13 +467,11 @@ export function HomeContent() {
             <div className="mx-auto flex flex-col max-w-4xl">
               <Center>
                 <Para>
-                  This is why React is more than a library, an architecture, or
-                  even an ecosystem. React is a community. It’s a place where
-                  you can ask for help, find opportunities, and meet new
-                  friends. You will meet both developers and designers,
-                  beginners and experts, researchers and artists, teachers and
-                  students. Our backgrounds may be very different, but React
-                  lets us all create user interfaces together.
+                  לכן React היא יותר מספרייה, ארכיטקטורה או אפילו אקו-סיסטם.
+                  React היא קהילה. זה מקום שבו אפשר לבקש עזרה, למצוא הזדמנויות
+                  ולהכיר חברים חדשים. תפגשו כאן מפתחים ומעצבים, מתחילים ומומחים,
+                  חוקרים ואמנים, מורים ותלמידים. הרקע שלנו יכול להיות שונה מאוד,
+                  אבל React מאפשרת לכולנו ליצור ממשקי משתמש יחד.
                 </Para>
               </Center>
             </div>
@@ -491,15 +480,12 @@ export function HomeContent() {
           <div className="mt-20 px-5 lg:px-0 mb-6 max-w-4xl text-center text-opacity-80">
             <Logo className="text-link dark:text-link-dark w-24 lg:w-28 mb-10 lg:mb-8 mt-12 h-auto mx-auto self-start" />
             <Header>
-              Welcome to the <br className="hidden lg:inline" />
-              React community
+              ברוכים הבאים ל-
+              <br className="hidden lg:inline" />
+              קהילת React
             </Header>
-            <ButtonLink
-              href={'/learn'}
-              type="primary"
-              size="lg"
-              label="Take the Tutorial">
-              Get Started
+            <ButtonLink href={'/learn'} type="primary" size="lg" label="התחלה">
+              התחלה
             </ButtonLink>
           </div>
         </Section>
@@ -646,40 +632,42 @@ function CTA({children, icon, href}) {
   );
 }
 
-const reactConf2021Cover = '/images/home/conf2021/cover.svg';
-const reactConf2019Cover = '/images/home/conf2019/cover.svg';
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
+
+const reactConf2021Cover = basePath + '/images/home/conf2021/cover.svg';
+const reactConf2019Cover = basePath + '/images/home/conf2019/cover.svg';
 const communityImages = [
   {
-    src: '/images/home/community/react_conf_fun.webp',
-    alt: 'People singing karaoke at React Conf',
+    src: basePath + '/images/home/community/react_conf_fun.webp',
+    alt: 'אנשים שרים קריוקי ב-React Conf',
   },
   {
-    src: '/images/home/community/react_india_sunil.webp',
-    alt: 'Sunil Pai speaking at React India',
+    src: basePath + '/images/home/community/react_india_sunil.webp',
+    alt: 'Sunil Pai מרצה ב-React India',
   },
   {
-    src: '/images/home/community/react_conf_hallway.webp',
-    alt: 'A hallway conversation between two people at React Conf',
+    src: basePath + '/images/home/community/react_conf_hallway.webp',
+    alt: 'שיחת מסדרון בין שני אנשים ב-React Conf',
   },
   {
-    src: '/images/home/community/react_india_hallway.webp',
-    alt: 'A hallway conversation at React India',
+    src: basePath + '/images/home/community/react_india_hallway.webp',
+    alt: 'שיחת מסדרון ב-React India',
   },
   {
-    src: '/images/home/community/react_conf_elizabet.webp',
-    alt: 'Elizabet Oliveira speaking at React Conf',
+    src: basePath + '/images/home/community/react_conf_elizabet.webp',
+    alt: 'Elizabet Oliveira מרצה ב-React Conf',
   },
   {
-    src: '/images/home/community/react_india_selfie.webp',
-    alt: 'People taking a group selfie at React India',
+    src: basePath + '/images/home/community/react_india_selfie.webp',
+    alt: 'אנשים מצלמים סלפי קבוצתי ב-React India',
   },
   {
-    src: '/images/home/community/react_conf_nat.webp',
-    alt: 'Nat Alison speaking at React Conf',
+    src: basePath + '/images/home/community/react_conf_nat.webp',
+    alt: 'Nat Alison מרצה ב-React Conf',
   },
   {
-    src: '/images/home/community/react_india_team.webp',
-    alt: 'Organizers greeting attendees at React India',
+    src: basePath + '/images/home/community/react_india_team.webp',
+    alt: 'מארגנים שמברכים את המשתתפים ב-React India',
   },
 ];
 
@@ -915,8 +903,8 @@ function Example1() {
           <Video
             video={{
               id: 'ex1-0',
-              title: 'My video',
-              description: 'Video description',
+              title: 'הווידאו שלי',
+              description: 'תיאור הווידאו',
               image: 'blue',
               url: null,
             }}
@@ -939,20 +927,20 @@ function Example2() {
   const videos = [
     {
       id: 'ex2-0',
-      title: 'First video',
-      description: 'Video description',
+      title: 'סרטון ראשון',
+      description: 'תיאור הווידאו',
       image: 'blue',
     },
     {
       id: 'ex2-1',
-      title: 'Second video',
-      description: 'Video description',
+      title: 'סרטון שני',
+      description: 'תיאור הווידאו',
       image: 'red',
     },
     {
       id: 'ex2-2',
-      title: 'Third video',
-      description: 'Video description',
+      title: 'סרטון שלישי',
+      description: 'תיאור הווידאו',
       image: 'green',
     },
   ];
@@ -971,7 +959,7 @@ function Example2() {
   const count = videos.length;
   let heading = emptyHeading;
   if (count > 0) {
-    const noun = count > 1 ? 'Videos' : 'Video';
+    const noun = count > 1 ? 'סרטונים' : 'סרטון';
     heading = count + ' ' + noun;
   }
   return (
@@ -1013,36 +1001,36 @@ function Example3() {
     {
       id: 'vids-0',
       title: 'React: The Documentary',
-      description: 'The origin story of React',
-      image: '/images/home/videos/documentary.webp',
+      description: 'סיפור המקור של React',
+      image: basePath + '/images/home/videos/documentary.webp',
       url: 'https://www.youtube.com/watch?v=8pDqJVdNa44',
     },
     {
       id: 'vids-1',
       title: 'Rethinking Best Practices',
       description: 'Pete Hunt (2013)',
-      image: '/images/home/videos/rethinking.jpg',
+      image: basePath + '/images/home/videos/rethinking.jpg',
       url: 'https://www.youtube.com/watch?v=x7cQ3mrcKaY',
     },
     {
       id: 'vids-2',
       title: 'Introducing React Native',
       description: 'Tom Occhino (2015)',
-      image: '/images/home/videos/rn.jpg',
+      image: basePath + '/images/home/videos/rn.jpg',
       url: 'https://www.youtube.com/watch?v=KVZ-P-ZI6W4',
     },
     {
       id: 'vids-3',
       title: 'Introducing React Hooks',
       description: 'Sophie Alpert and Dan Abramov (2018)',
-      image: '/images/home/videos/hooks.jpg',
+      image: basePath + '/images/home/videos/hooks.jpg',
       url: 'https://www.youtube.com/watch?v=V-QO-KO90iQ',
     },
     {
       id: 'vids-4',
-      title: 'Introducing Server Components',
+      title: 'היכרות עם Server Components',
       description: 'Dan Abramov and Lauren Tan (2020)',
-      image: '/images/home/videos/rsc.jpg',
+      image: basePath + '/images/home/videos/rsc.jpg',
       url: 'https://www.youtube.com/watch?v=TQQPAU21ZUw',
     },
   ];
@@ -1070,7 +1058,7 @@ function SearchableVideoList({ videos }) {
         onChange={newText => setSearchText(newText)} />
       <VideoList
         videos={foundVideos}
-        emptyHeading={\`No matches for “\${searchText}”\`} />
+        emptyHeading={\`אין תוצאות עבור “\${searchText}”\`} />
     </>
   );
 }`}</div>
@@ -1084,10 +1072,10 @@ function SearchableVideoList({ videos }) {
             contentMarginTop="72px"
             height="30rem">
             <h1 className="mx-4 mb-1 font-bold text-3xl text-primary">
-              React Videos
+              סרטוני React
             </h1>
             <p className="mx-4 mb-0 leading-snug text-secondary text-xl">
-              A brief history of React
+              היסטוריה קצרה של React
             </p>
             <div className="px-4 pb-4">
               <SearchableVideoList videos={videos} />
@@ -1335,7 +1323,7 @@ function ConferencePage({slug}) {
   const conf = use(fetchConf(slug));
   return (
     <ConferenceLayout conf={conf}>
-      <div data-hover="Suspense">
+      <div data-hover="Suspense" dir="ltr">
         <Suspense fallback={<TalksLoading />}>
           <Talks confId={conf.id} />
         </Suspense>
@@ -1408,7 +1396,7 @@ function SearchableVideoList({videos}) {
       <SearchInput value={searchText} onChange={setSearchText} />
       <VideoList
         videos={foundVideos}
-        emptyHeading={`No matches for “${searchText}”`}
+        emptyHeading={`אין תוצאות עבור “${searchText}”`}
       />
     </div>
   );
@@ -1434,7 +1422,7 @@ function VideoList({videos, emptyHeading}) {
   let heading = emptyHeading;
   const count = videos.length;
   if (count > 0) {
-    const noun = count > 1 ? 'Videos' : 'Video';
+    const noun = count > 1 ? 'סרטונים' : 'סרטון';
     heading = count + ' ' + noun;
   }
   return (
@@ -1461,7 +1449,7 @@ function SearchInput({value, onChange}) {
       data-hover="SearchInput"
       onSubmit={(e) => e.preventDefault()}>
       <label htmlFor={id} className="sr-only">
-        Search
+        חיפוש
       </label>
       <div className="relative w-full">
         <div className="absolute inset-y-0 start-0 flex items-center ps-4 pointer-events-none">
@@ -1471,7 +1459,7 @@ function SearchInput({value, onChange}) {
           type="text"
           id={id}
           className="flex ps-11 py-4 h-10 w-full text-start bg-secondary-button outline-none betterhover:hover:bg-opacity-80 pointer items-center text-primary rounded-full align-middle text-base"
-          placeholder="Search"
+          placeholder="חיפוש"
           value={value}
           onChange={(e) => onChange(e.target.value)}
         />
@@ -2390,39 +2378,39 @@ function fetchTalks(confId) {
         resolve([
           {
             id: 'conf-2021-0',
-            title: 'React 18 Keynote',
-            description: 'The React Team',
+            title: 'הרצאת פתיחה: React 18',
+            description: 'צוות React',
             url: 'https://www.youtube.com/watch?v=FZ0cG47msEk&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=1',
             image: {
               speakers: [
-                '/images/home/conf2021/andrew.jpg',
-                '/images/home/conf2021/lauren.jpg',
-                '/images/home/conf2021/juan.jpg',
-                '/images/home/conf2021/rick.jpg',
+                basePath + '/images/home/conf2021/andrew.jpg',
+                basePath + '/images/home/conf2021/lauren.jpg',
+                basePath + '/images/home/conf2021/juan.jpg',
+                basePath + '/images/home/conf2021/rick.jpg',
               ],
             },
           },
           {
             id: 'conf-2021-1',
-            title: 'React 18 for App Developers',
+            title: 'React 18 למפתחי אפליקציות',
             description: 'Shruti Kapoor',
             url: 'https://www.youtube.com/watch?v=ytudH8je5ko&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=2',
             image: {
-              speakers: ['/images/home/conf2021/shruti.jpg'],
+              speakers: [basePath + '/images/home/conf2021/shruti.jpg'],
             },
           },
           {
             id: 'conf-2021-2',
-            title: 'Streaming Server Rendering with Suspense',
+            title: 'רינדור שרת בסטרימינג עם Suspense',
             description: 'Shaundai Person',
             url: 'https://www.youtube.com/watch?v=pj5N-Khihgc&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=3',
             image: {
-              speakers: ['/images/home/conf2021/shaundai.jpg'],
+              speakers: [basePath + '/images/home/conf2021/shaundai.jpg'],
             },
           },
           {
             id: 'conf-2021-3',
-            title: 'The First React Working Group',
+            title: 'קבוצת העבודה הראשונה של React',
             description: 'Aakansha Doshi',
             url: 'https://www.youtube.com/watch?v=qn7gRClrC9U&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=4',
             image: {
@@ -2431,7 +2419,7 @@ function fetchTalks(confId) {
           },
           {
             id: 'conf-2021-4',
-            title: 'React Developer Tooling',
+            title: 'כלי פיתוח ל-React',
             description: 'Brian Vaughn',
             url: 'https://www.youtube.com/watch?v=oxDfrke8rZg&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=5',
             image: {
@@ -2440,7 +2428,7 @@ function fetchTalks(confId) {
           },
           {
             id: 'conf-2021-5',
-            title: 'React without memo',
+            title: 'React בלי memo',
             description: 'Xuan Huang (黄玄)',
             url: 'https://www.youtube.com/watch?v=lGEMwh32soc&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=6',
             image: {
@@ -2449,7 +2437,7 @@ function fetchTalks(confId) {
           },
           {
             id: 'conf-2021-6',
-            title: 'React Docs Keynote',
+            title: 'הרצאת תיעוד React',
             description: 'Rachel Nabors',
             url: 'https://www.youtube.com/watch?v=mneDaMYOKP8&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=7',
             image: {
@@ -2458,7 +2446,7 @@ function fetchTalks(confId) {
           },
           {
             id: 'conf-2021-7',
-            title: 'Things I Learnt from the New React Docs',
+            title: 'מה למדתי מהתיעוד החדש של React',
             description: "Debbie O'Brien",
             url: 'https://www.youtube.com/watch?v=-7odLW_hG7s&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=8',
             image: {
@@ -2467,7 +2455,7 @@ function fetchTalks(confId) {
           },
           {
             id: 'conf-2021-8',
-            title: 'Learning in the Browser',
+            title: 'למידה בדפדפן',
             description: 'Sarah Rainsberger',
             url: 'https://www.youtube.com/watch?v=5X-WEQflCL0&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=9',
             image: {
@@ -2476,7 +2464,7 @@ function fetchTalks(confId) {
           },
           {
             id: 'conf-2021-9',
-            title: 'The ROI of Designing with React',
+            title: 'ה-ROI של עיצוב עם React',
             description: 'Linton Ye',
             url: 'https://www.youtube.com/watch?v=7cPWmID5XAk&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=10',
             image: {
@@ -2485,7 +2473,7 @@ function fetchTalks(confId) {
           },
           {
             id: 'conf-2021-10',
-            title: 'Interactive Playgrounds with React',
+            title: 'Playgrounds אינטראקטיביים עם React',
             description: 'Delba de Oliveira',
             url: 'https://www.youtube.com/watch?v=zL8cz2W0z34&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=11',
             image: {
@@ -2494,7 +2482,7 @@ function fetchTalks(confId) {
           },
           {
             id: 'conf-2021-11',
-            title: 'Re-introducing Relay',
+            title: 'הצגה מחדש של Relay',
             description: 'Robert Balicki',
             url: 'https://www.youtube.com/watch?v=lhVGdErZuN4&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=12',
             image: {
@@ -2503,7 +2491,7 @@ function fetchTalks(confId) {
           },
           {
             id: 'conf-2021-12',
-            title: 'React Native Desktop',
+            title: 'React Native למחשבים שולחניים',
             description: 'Eric Rozell and Steven Moyes',
             url: 'https://www.youtube.com/watch?v=9L4FFrvwJwY&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=13',
             image: {
@@ -2515,7 +2503,7 @@ function fetchTalks(confId) {
           },
           {
             id: 'conf-2021-13',
-            title: 'On-device Machine Learning for React Native',
+            title: 'למידת מכונה על המכשיר עבור React Native',
             description: 'Roman Rädle',
             url: 'https://www.youtube.com/watch?v=NLj73vrc2I8&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=14',
             image: {
@@ -2524,7 +2512,7 @@ function fetchTalks(confId) {
           },
           {
             id: 'conf-2021-14',
-            title: 'React 18 for External Store Libraries',
+            title: 'React 18 לספריות External Store',
             description: 'Daishi Kato',
             url: 'https://www.youtube.com/watch?v=oPfSC5bQPR8&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=15',
             image: {
@@ -2533,7 +2521,7 @@ function fetchTalks(confId) {
           },
           {
             id: 'conf-2021-15',
-            title: 'Building Accessible Components with React 18',
+            title: 'בניית קומפוננטות נגישות עם React 18',
             description: 'Diego Haz',
             url: 'https://www.youtube.com/watch?v=dcm8fjBfro8&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=16',
             image: {
@@ -2542,7 +2530,7 @@ function fetchTalks(confId) {
           },
           {
             id: 'conf-2021-16',
-            title: 'Accessible Japanese Form Components with React',
+            title: 'קומפוננטות טפסים יפניות נגישות עם React',
             description: 'Tafu Nakazaki',
             url: 'https://www.youtube.com/watch?v=S4a0QlsH0pU&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=17',
             image: {
@@ -2551,7 +2539,7 @@ function fetchTalks(confId) {
           },
           {
             id: 'conf-2021-17',
-            title: 'UI Tools for Artists',
+            title: 'כלי UI לאמנים',
             description: 'Lyle Troxell',
             url: 'https://www.youtube.com/watch?v=b3l4WxipFsE&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=18',
             image: {
@@ -2560,7 +2548,7 @@ function fetchTalks(confId) {
           },
           {
             id: 'conf-2021-18',
-            title: 'Hydrogen + React 18',
+            title: 'Hydrogen ו-React 18',
             description: 'Helen Lin',
             url: 'https://www.youtube.com/watch?v=HS6vIYkSNks&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=19',
             image: {
@@ -2572,7 +2560,7 @@ function fetchTalks(confId) {
         resolve([
           {
             id: 'conf-2019-0',
-            title: 'Keynote (Part 1)',
+            title: 'הרצאת פתיחה (חלק 1)',
             description: 'Tom Occhino',
             url: 'https://www.youtube.com/watch?v=QnZHO7QvjaM&list=PLPxbbTqCLbGHPxZpw4xj_Wwg8-fdNxJRh',
             image: {
@@ -2581,7 +2569,7 @@ function fetchTalks(confId) {
           },
           {
             id: 'conf-2019-1',
-            title: 'Keynote (Part 2)',
+            title: 'הרצאת פתיחה (חלק 2)',
             description: 'Yuzhi Zheng',
             url: 'https://www.youtube.com/watch?v=uXEEL9mrkAQ&list=PLPxbbTqCLbGHPxZpw4xj_Wwg8-fdNxJRh&index=2',
             image: {
@@ -2590,7 +2578,7 @@ function fetchTalks(confId) {
           },
           {
             id: 'conf-2019-2',
-            title: 'Building The New Facebook With React and Relay (Part 1)',
+            title: 'בניית פייסבוק החדשה עם React ו-Relay (חלק 1)',
             description: 'Frank Yan',
             url: 'https://www.youtube.com/watch?v=9JZHodNR184&list=PLPxbbTqCLbGHPxZpw4xj_Wwg8-fdNxJRh&index=3',
             image: {
@@ -2599,7 +2587,7 @@ function fetchTalks(confId) {
           },
           {
             id: 'conf-2019-3',
-            title: 'Building The New Facebook With React and Relay (Part 2)',
+            title: 'בניית פייסבוק החדשה עם React ו-Relay (חלק 2)',
             description: 'Ashley Watkins',
             url: 'https://www.youtube.com/watch?v=KT3XKDBZW7M&list=PLPxbbTqCLbGHPxZpw4xj_Wwg8-fdNxJRh&index=4',
             image: {
@@ -2608,7 +2596,7 @@ function fetchTalks(confId) {
           },
           {
             id: 'conf-2019-4',
-            title: 'How Our Team Is Using React Native to Save The World',
+            title: 'איך הצוות שלנו משתמש ב-React Native כדי להציל את העולם',
             description: 'Tania Papazafeiropoulou',
             url: 'https://www.youtube.com/watch?v=zVHWugBPGBE&list=PLPxbbTqCLbGHPxZpw4xj_Wwg8-fdNxJRh&index=5',
             image: {
@@ -2618,7 +2606,7 @@ function fetchTalks(confId) {
           {
             id: 'conf-2019-5',
             title:
-              'Using Hooks and Codegen to Bring the Benefits of GraphQL to REST APIs',
+              'שימוש ב-Hooks וב-Codegen כדי להביא את היתרונות של GraphQL אל REST APIs',
             description: 'Tejas Kumar',
             url: 'https://www.youtube.com/watch?v=cdsnzfJUqm0&list=PLPxbbTqCLbGHPxZpw4xj_Wwg8-fdNxJRh&index=6',
             image: {
@@ -2627,7 +2615,7 @@ function fetchTalks(confId) {
           },
           {
             id: 'conf-2019-6',
-            title: 'Building a Custom React Renderer',
+            title: 'בניית React Renderer מותאם אישית',
             description: 'Sophie Alpert',
             url: 'https://www.youtube.com/watch?v=CGpMlWVcHok&list=PLPxbbTqCLbGHPxZpw4xj_Wwg8-fdNxJRh&index=7',
             image: {
@@ -2636,7 +2624,7 @@ function fetchTalks(confId) {
           },
           {
             id: 'conf-2019-7',
-            title: 'Is React Translated Yet?',
+            title: 'האם React כבר מתורגמת?',
             description: 'Nat Alison',
             url: 'https://www.youtube.com/watch?v=lLE4Jqaek5k&list=PLPxbbTqCLbGHPxZpw4xj_Wwg8-fdNxJRh&index=12',
             image: {
@@ -2645,7 +2633,7 @@ function fetchTalks(confId) {
           },
           {
             id: 'conf-2019-8',
-            title: 'Building (And Re-Building) the Airbnb Design System',
+            title: 'בניית (ובנייה מחדש של) מערכת העיצוב של Airbnb',
             description: 'Maja Wichrowska and Tae Kim',
             url: 'https://www.youtube.com/watch?v=fHQ1WSx41CA&list=PLPxbbTqCLbGHPxZpw4xj_Wwg8-fdNxJRh&index=13',
             image: {
@@ -2657,7 +2645,7 @@ function fetchTalks(confId) {
           },
           {
             id: 'conf-2019-9',
-            title: 'Accessibility Is a Marathon, Not a Sprint',
+            title: 'נגישות היא מרתון, לא ספרינט',
             description: 'Brittany Feenstra',
             url: 'https://www.youtube.com/watch?v=ONSD-t4gBb8&list=PLPxbbTqCLbGHPxZpw4xj_Wwg8-fdNxJRh&index=14',
             image: {
@@ -2666,7 +2654,7 @@ function fetchTalks(confId) {
           },
           {
             id: 'conf-2019-10',
-            title: 'The State of React State in 2019',
+            title: 'מצב ה-State ב-React בשנת 2019',
             description: 'Becca Bailey',
             url: 'https://www.youtube.com/watch?v=wUMMUyQtMSg&list=PLPxbbTqCLbGHPxZpw4xj_Wwg8-fdNxJRh&index=15',
             image: {
@@ -2675,7 +2663,7 @@ function fetchTalks(confId) {
           },
           {
             id: 'conf-2019-11',
-            title: 'Let’s Program Like It’s 1999',
+            title: 'בואו נתכנת כאילו זו 1999',
             description: 'Lee Byron',
             url: 'https://www.youtube.com/watch?v=vG8WpLr6y_U&list=PLPxbbTqCLbGHPxZpw4xj_Wwg8-fdNxJRh&index=16',
             image: {
@@ -2684,7 +2672,7 @@ function fetchTalks(confId) {
           },
           {
             id: 'conf-2019-12',
-            title: 'React Developer Tooling',
+            title: 'כלי פיתוח ל-React',
             description: 'Brian Vaughn',
             url: 'https://www.youtube.com/watch?v=Mjrfb1r3XEM&list=PLPxbbTqCLbGHPxZpw4xj_Wwg8-fdNxJRh&index=17',
             image: {
@@ -2693,7 +2681,7 @@ function fetchTalks(confId) {
           },
           {
             id: 'conf-2019-13',
-            title: 'Data Fetching With Suspense In Relay',
+            title: 'שליפת נתונים עם Suspense ב-Relay',
             description: 'Joe Savona',
             url: 'https://www.youtube.com/watch?v=Tl0S7QkxFE4&list=PLPxbbTqCLbGHPxZpw4xj_Wwg8-fdNxJRh&index=18',
             image: {
@@ -2702,7 +2690,7 @@ function fetchTalks(confId) {
           },
           {
             id: 'conf-2019-14',
-            title: 'Automatic Visualizations of the Frontend',
+            title: 'ויזואליזציות אוטומטיות של ה-Frontend',
             description: 'Cameron Yick',
             url: 'https://www.youtube.com/watch?v=SbreAPNmZOk&list=PLPxbbTqCLbGHPxZpw4xj_Wwg8-fdNxJRh&index=19',
             image: {
@@ -2711,7 +2699,7 @@ function fetchTalks(confId) {
           },
           {
             id: 'conf-2019-15',
-            title: 'React Is Fiction',
+            title: 'React היא בדיון',
             description: 'Jenn Creighton',
             url: 'https://www.youtube.com/watch?v=kqh4lz2Lkzs&list=PLPxbbTqCLbGHPxZpw4xj_Wwg8-fdNxJRh&index=20',
             image: {
@@ -2720,7 +2708,7 @@ function fetchTalks(confId) {
           },
           {
             id: 'conf-2019-16',
-            title: 'Progressive Web Animations',
+            title: 'אנימציות ווב פרוגרסיביות',
             description: 'Alexandra Holachek',
             url: 'https://www.youtube.com/watch?v=laPsceJ4tTY&list=PLPxbbTqCLbGHPxZpw4xj_Wwg8-fdNxJRh&index=21',
             image: {
@@ -2729,8 +2717,7 @@ function fetchTalks(confId) {
           },
           {
             id: 'conf-2019-17',
-            title:
-              'Creating Games, Animations and Interactions with the Wick Editor',
+            title: 'יצירת משחקים, אנימציות ואינטראקציות עם Wick Editor',
             description: 'Luca Damasco',
             url: 'https://www.youtube.com/watch?v=laPsceJ4tTY&list=PLPxbbTqCLbGHPxZpw4xj_Wwg8-fdNxJRh&index=21',
             image: {
@@ -2739,7 +2726,7 @@ function fetchTalks(confId) {
           },
           {
             id: 'conf-2019-18',
-            title: 'Building React-Select',
+            title: 'בניית React-Select',
             description: 'Jed Watson',
             url: 'https://www.youtube.com/watch?v=yS0jUnmBujE&list=PLPxbbTqCLbGHPxZpw4xj_Wwg8-fdNxJRh&index=25',
             image: {
@@ -2748,7 +2735,7 @@ function fetchTalks(confId) {
           },
           {
             id: 'conf-2019-19',
-            title: 'Promoting Transparency in Government Spending with React',
+            title: 'קידום שקיפות בהוצאות ממשלתיות עם React',
             description: 'Lizzie Salita',
             url: 'https://www.youtube.com/watch?v=CVfXICcNfHE&list=PLPxbbTqCLbGHPxZpw4xj_Wwg8-fdNxJRh&index=26',
             image: {
@@ -2757,7 +2744,7 @@ function fetchTalks(confId) {
           },
           {
             id: 'conf-2019-20',
-            title: 'Wonder-driven Development: Using React to Make a Spaceship',
+            title: 'פיתוח מונחה סקרנות: שימוש ב-React כדי לבנות חללית',
             description: 'Alex Anderson',
             url: 'https://www.youtube.com/watch?v=aV0uOPWHKt4&list=PLPxbbTqCLbGHPxZpw4xj_Wwg8-fdNxJRh&index=27',
             image: {

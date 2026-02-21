@@ -1,65 +1,65 @@
 ---
-title: 'Synchronizing with Effects'
+title: "סנכרון עם אפקטים"
 ---
 
 <Intro>
 
-Some components need to synchronize with external systems. For example, you might want to control a non-React component based on the React state, set up a server connection, or send an analytics log when a component appears on the screen. *Effects* let you run some code after rendering so that you can synchronize your component with some system outside of React.
+חלק מהרכיבים צריכים להסתנכרן עם מערכות חיצוניות. לדוגמה, ייתכן שתרצה לשלוט ברכיב שאינו React בהתבסס על React state, להגדיר חיבור לשרת, או לשלוח יומן ניתוח כאשר רכיב מופיע על המסך. *אפקטים* מאפשרים לך להריץ קצת קוד לאחר רינדור כדי שתוכל לסנכרן את הרכיב שלך עם מערכת כלשהי מחוץ ל-React.
 
 </Intro>
 
 <YouWillLearn>
 
-- What Effects are
-- How Effects are different from events
-- How to declare an Effect in your component
-- How to skip re-running an Effect unnecessarily
-- Why Effects run twice in development and how to fix them
+- מהם אפקטים
+- כיצד אפקטים שונים מאירועים
+- כיצד להכריז על אפקט ברכיב שלך
+- כיצד לדלג על הפעלה מחדש של אפקט שלא לצורך
+- מדוע אפקטים פועלים פעמיים בפיתוח וכיצד לתקן אותם
 
 </YouWillLearn>
 
-## What are Effects and how are they different from events? {/*what-are-effects-and-how-are-they-different-from-events*/}
+## מה הם אפקטים ובמה הם שונים מאירועים? {/*what-are-effects-and-how-are-they-different-from-events*/}
 
-Before getting to Effects, you need to be familiar with two types of logic inside React components:
+לפני שתגיעו לאפקטס, עליכם להכיר שני סוגים של לוגיקה בתוך רכיבי React:
 
-- **Rendering code** (introduced in [Describing the UI](/learn/describing-the-ui)) lives at the top level of your component. This is where you take the props and state, transform them, and return the JSX you want to see on the screen. [Rendering code must be pure.](/learn/keeping-components-pure) Like a math formula, it should only _calculate_ the result, but not do anything else.
+- **קוד רינדור** (הוצג ב-[תיאור ממשק המשתמש](/learn/describing-the-ui)) נמצא ברמה העליונה של הרכיב שלך. זה המקום שבו אתה לוקח את props ואת state, להפוך אותם, ולהחזיר את JSX שאתה רוצה לראות על המסך. [קוד הרינדור חייב להיות טהור.](/learn/keeping-components-pure) כמו נוסחה מתמטית, הוא צריך רק _לחשב_ את התוצאה, אבל לא לעשות שום דבר אחר.
 
-- **Event handlers** (introduced in [Adding Interactivity](/learn/adding-interactivity)) are nested functions inside your components that *do* things rather than just calculate them. An event handler might update an input field, submit an HTTP POST request to buy a product, or navigate the user to another screen. Event handlers contain ["side effects"](https://en.wikipedia.org/wiki/Side_effect_(computer_science)) (they change the program's state) caused by a specific user action (for example, a button click or typing).
+- **מטפלי אירועים** (הוצגו ב-[הוספת אינטראקטיביות](/learn/adding-interactivity)) הם פונקציות מקוננות בתוך הרכיבים שלך ש*עושים* דברים במקום רק מחשבות אותם. מטפל באירועים עשוי לעדכן שדה קלט, לשלוח בקשת HTTP POST לקניית מוצר, או לנווט את ה-user למסך אחר. מטפלי אירועים מכילים ["תופעות לוואי"](https://en.wikipedia.org/wiki/Side_effect_(computer_science)) (הם משנים את ה-state של התוכנית) caused על ידי פעולת user ספציפית (לדוגמה, לחיצה על כפתור או הקלדה).
 
-Sometimes this isn't enough. Consider a `ChatRoom` component that must connect to the chat server whenever it's visible on the screen. Connecting to a server is not a pure calculation (it's a side effect) so it can't happen during rendering. However, there is no single particular event like a click that causes `ChatRoom` to be displayed.
+לפעמים זה לא מספיק. שקול רכיב `ChatRoom` שחייב להתחבר לשרת הצ'אט בכל פעם שהוא גלוי על המסך. חיבור לשרת הוא לא חישוב טהור (זו תופעת לוואי) ולכן זה לא יכול לקרות במהלך העיבוד. עם זאת, אין אירוע מסוים כמו קליק שמאפשר להציג uses `ChatRoom`.
 
-***Effects* let you specify side effects that are caused by rendering itself, rather than by a particular event.** Sending a message in the chat is an *event* because it is directly caused by the user clicking a specific button. However, setting up a server connection is an *Effect* because it should happen no matter which interaction caused the component to appear. Effects run at the end of a [commit](/learn/render-and-commit) after the screen updates. This is a good time to synchronize the React components with some external system (like network or a third-party library).
+***השפעות* מאפשרות לך לציין תופעות לוואי שהן caused על ידי עיבוד עצמו, ולא על ידי אירוע מסוים.** שליחת הודעה בצ'אט היא *אירוע* מכיוון שuse היא מתבצעת ישירות על ידי user לחיצה על כפתור ספציפי. עם זאת, הגדרת חיבור לשרת היא *אפקט* מכיוון שuse זה אמור לקרות לא משנה באיזו אינטראקציה יופיע הרכיב. אפקטים פועלים בסוף [commit](/learn/render-and-commit) לאחר עדכון המסך. זה זמן טוב לסנכרן את רכיבי React עם מערכת חיצונית כלשהי (כמו רשת או ספריית צד שלישי).
 
 <Note>
 
-Here and later in this text, capitalized "Effect" refers to the React-specific definition above, i.e. a side effect caused by rendering. To refer to the broader programming concept, we'll say "side effect".
+כאן ומאוחר יותר בטקסט זה, "אפקט" באותיות רישיות מתייחס להגדרה הספציפית React לעיל, כלומר תופעת לוואי caused על ידי עיבוד. כדי להתייחס למושג התכנות הרחב יותר, נגיד "תופעת לוואי".
 
 </Note>
 
 
-## You might not need an Effect {/*you-might-not-need-an-effect*/}
+## ייתכן שלא תצטרך אפקט {/*you-might-not-need-an-effect*/}
 
-**Don't rush to add Effects to your components.** Keep in mind that Effects are typically used to "step out" of your React code and synchronize with some *external* system. This includes browser APIs, third-party widgets, network, and so on. If your Effect only adjusts some state based on other state, [you might not need an Effect.](/learn/you-might-not-need-an-effect)
+**אל תמהר להוסיף אפקטים לרכיבים שלך.** זכור כי אפקטים הם בדרך כלל used כדי "לצאת" מהקוד React שלך ולהסתנכרן עם מערכת *חיצונית* כלשהי. זה כולל APIs של דפדפן, ווידג'טים של צד שלישי, רשת וכן הלאה. אם האפקט שלך מתאים רק חלק מה-state על סמך state אחר, [ייתכן שלא תצטרך אפקט.](/learn/you-might-not-need-an-effect)
 
-## How to write an Effect {/*how-to-write-an-effect*/}
+## איך לכתוב אפקט {/*how-to-write-an-effect*/}
 
-To write an Effect, follow these three steps:
+כדי לכתוב אפקט, בצע את שלושת השלבים הבאים:
 
-1. **Declare an Effect.** By default, your Effect will run after every render.
-2. **Specify the Effect dependencies.** Most Effects should only re-run *when needed* rather than after every render. For example, a fade-in animation should only trigger when a component appears. Connecting and disconnecting to a chat room should only happen when the component appears and disappears, or when the chat room changes. You will learn how to control this by specifying *dependencies.*
-3. **Add cleanup if needed.** Some Effects need to specify how to stop, undo, or clean up whatever they were doing. For example, "connect" needs "disconnect", "subscribe" needs "unsubscribe", and "fetch" needs either "cancel" or "ignore". You will learn how to do this by returning a *cleanup function*.
+1. **הכרז על אפקט.** כברירת מחדל, האפקט שלך יפעל לאחר כל רינדור.
+2. **ציין את התלות של אפקט.** רוב האפקטים צריכים להפעיל מחדש רק *במידת הצורך* ולא אחרי כל רינדור. לדוגמה, אנימציית דהייה צריכה להפעיל רק כאשר מופיע רכיב. חיבור וניתוק לחדר צ'אט אמור לקרות רק כאשר הרכיב מופיע ונעלם, או כאשר חדר הצ'אט משתנה. תלמד כיצד לשלוט בכך על ידי ציון *תלות.*
+3. **הוסף ניקוי במידת הצורך.** חלק מהאפקטים צריכים לציין כיצד לעצור, לבטל או לנקות את כל מה שהם עשו. לדוגמה, "התחבר" צריך "נתק", "הירשם" צריך "בטל מנוי", ו"אחזור" צריך "בטל" או "התעלם". תלמד כיצד לעשות זאת על ידי החזרת *פונקציית ניקוי*.
 
-Let's look at each of these steps in detail.
+בואו נסתכל על כל אחד מהשלבים הללו בפירוט.
 
-### Step 1: Declare an Effect {/*step-1-declare-an-effect*/}
+### שלב 1: הכרזה על אפקט {/*step-1-declare-an-effect*/}
 
-To declare an Effect in your component, import the [`useEffect` Hook](/reference/react/useEffect) from React:
+כדי להכריז על אפקט ברכיב שלך, ייבא את [`useEffect` Hook](/reference/react/useEffect) מ-React:
 
 ```js
 import { useEffect } from 'react';
 ```
 
-Then, call it at the top level of your component and put some code inside your Effect:
+לאחר מכן, קרא לזה ברמה העליונה של הרכיב שלך והכנס קצת קוד בתוך האפקט שלך:
 
 ```js {2-4}
 function MyComponent() {
@@ -70,15 +70,15 @@ function MyComponent() {
 }
 ```
 
-Every time your component renders, React will update the screen *and then* run the code inside `useEffect`. In other words, **`useEffect` "delays" a piece of code from running until that render is reflected on the screen.**
+בכל פעם שהרכיב שלך מעבד, React יעדכן את המסך *ואז* יפעיל את הקוד בתוך `useEffect`. במילים אחרות, **`useEffect` "מעכב" קטע קוד מהפעלתו עד שהעיבוד הזה ישתקף על המסך.**
 
-Let's see how you can use an Effect to synchronize with an external system. Consider a `<VideoPlayer>` React component. It would be nice to control whether it's playing or paused by passing an `isPlaying` prop to it:
+בוא נראה איך אתה יכול use אפקט לסנכרן עם מערכת חיצונית. שקול רכיב `<VideoPlayer>` React. זה יהיה נחמד לשלוט אם זה משחק או paused על ידי העברת אביזר `isPlaying` אליו:
 
 ```js
 <VideoPlayer isPlaying={isPlaying} />;
 ```
 
-Your custom `VideoPlayer` component renders the built-in browser [`<video>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video) tag:
+רכיב `VideoPlayer` המותאם אישית שלך מעבד את הדפדפן המובנה [`<video>`] (תג https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video):
 
 ```js
 function VideoPlayer({ src, isPlaying }) {
@@ -87,11 +87,11 @@ function VideoPlayer({ src, isPlaying }) {
 }
 ```
 
-However, the browser `<video>` tag does not have an `isPlaying` prop. The only way to control it is to manually call the [`play()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/play) and [`pause()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/pause) methods on the DOM element. **You need to synchronize the value of `isPlaying` prop, which tells whether the video _should_ currently be playing, with calls like `play()` and `pause()`.**
+עם זאת, לתג הדפדפן `<video>` אין אבזר `isPlaying`. הדרך היחידה לשלוט בו היא לקרוא ידנית לשיטות [`play()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/play) ו-[`pause()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/pause) באלמנט DOM. **עליך לסנכרן את הערך של `isPlaying` prop, שאומר אם הסרטון _צריך_ להתנגן כרגע, עם שיחות כמו __TK___ ו__TK_5
 
-We'll need to first [get a ref](/learn/manipulating-the-dom-with-refs) to the `<video>` DOM node.
+נצטרך תחילה [לשיג ref](/learn/manipulating-the-dom-with-refs) לצומת `<video>` DOM.
 
-You might be tempted to try to call `play()` or `pause()` during rendering, but that isn't correct:
+ייתכן שתתפתה לנסות להתקשר ל-`play()` או `pause()` במהלך העיבוד, אבל זה לא נכון:
 
 <Sandpack>
 
@@ -133,11 +133,11 @@ video { width: 250px; }
 
 </Sandpack>
 
-The reason this code isn't correct is that it tries to do something with the DOM node during rendering. In React, [rendering should be a pure calculation](/learn/keeping-components-pure) of JSX and should not contain side effects like modifying the DOM.
+הסיבה שהקוד הזה לא נכון היא שהוא מנסה לעשות משהו עם הצומת DOM במהלך העיבוד. ב-React, [העיבוד צריך להיות חישוב טהור](/learn/keeping-components-pure) של JSX ולא אמור להכיל תופעות לוואי כמו שינוי ה-DOM.
 
-Moreover, when `VideoPlayer` is called for the first time, its DOM does not exist yet! There isn't a DOM node yet to call `play()` or `pause()` on, because React doesn't know what DOM to create until you return the JSX.
+יתרה מכך, כאשר קוראים ל-`VideoPlayer` בפעם הראשונה, ה-DOM שלו עדיין לא קיים! אין עדיין צומת DOM להתקשר ל-`play()` או `pause()`, כי use React לא יודע איזה DOM ליצור עד שתחזיר את ה-JSX.
 
-The solution here is to **wrap the side effect with `useEffect` to move it out of the rendering calculation:**
+הפתרון כאן הוא **לעטוף את תופעת הלוואי ב-`useEffect` כדי להוציא אותה מחישוב העיבוד:**
 
 ```js {6,12}
 import { useEffect, useRef } from 'react';
@@ -157,11 +157,11 @@ function VideoPlayer({ src, isPlaying }) {
 }
 ```
 
-By wrapping the DOM update in an Effect, you let React update the screen first. Then your Effect runs.
+על ידי עטיפה של עדכון DOM באפקט, אתה נותן ל-React לעדכן את המסך תחילה. ואז האפקט שלך פועל.
 
-When your `VideoPlayer` component renders (either the first time or if it re-renders), a few things will happen. First, React will update the screen, ensuring the `<video>` tag is in the DOM with the right props. Then React will run your Effect. Finally, your Effect will call `play()` or `pause()` depending on the value of `isPlaying`.
+כאשר רכיב ה-`VideoPlayer` שלך יוצג (בפעם הראשונה או אם הוא מעבד מחדש), יקרו כמה דברים. ראשית, React יעדכן את המסך, ויוודא שהתג `<video>` נמצא ב-DOM עם ה-props הנכון. ואז React יפעיל את האפקט שלך. לבסוף, האפקט שלך יקרא `play()` או `pause()` בהתאם לערך של `isPlaying`.
 
-Press Play/Pause multiple times and see how the video player stays synchronized to the `isPlaying` value:
+לחץ על Play/Pause מספר פעמים וראה כיצד נגן הווידאו נשאר מסונכרן לערך `isPlaying`:
 
 <Sandpack>
 
@@ -205,13 +205,13 @@ video { width: 250px; }
 
 </Sandpack>
 
-In this example, the "external system" you synchronized to React state was the browser media API. You can use a similar approach to wrap legacy non-React code (like jQuery plugins) into declarative React components.
+בדוגמה זו, "המערכת החיצונית" שסינכרנת ל-React state הייתה מדיה הדפדפן API. אתה יכול use גישה דומה לעטוף קוד מדור קודם שאינו React (כמו תוספי jQuery) לתוך רכיבי React הצהרתיים.
 
-Note that controlling a video player is much more complex in practice. Calling `play()` may fail, the user might play or pause using the built-in browser controls, and so on. This example is very simplified and incomplete.
+שימו לב ששליטה בנגן וידאו היא הרבה יותר מורכבת בפועל. קריאת `play()` עלולה להיכשל, ה-user עשוי לשחק או pause באמצעות פקדי הדפדפן המובנים, וכן הלאה. דוגמה זו היא מאוד פשוטה ולא שלמה.
 
 <Pitfall>
 
-By default, Effects run after *every* render. This is why code like this will **produce an infinite loop:**
+כברירת מחדל, אפקטים פועלים לאחר *כל* רינדור. זו הסיבה שקוד כזה **ייצר לולאה אינסופית:**
 
 ```js
 const [count, setCount] = useState(0);
@@ -220,20 +220,20 @@ useEffect(() => {
 });
 ```
 
-Effects run as a *result* of rendering. Setting state *triggers* rendering. Setting state immediately in an Effect is like plugging a power outlet into itself. The Effect runs, it sets the state, which causes a re-render, which causes the Effect to run, it sets the state again, this causes another re-render, and so on.
+אפקטים פועלים כ*תוצאה* של רינדור. הגדרת state *מפעילה* רינדור. הגדרה של state מיד באפקט היא כמו לחבר שקע חשמל לתוך עצמו. האפקט פועל, הוא מגדיר את state, אשר causes עיבוד מחדש, אשר causes את האפקט לרוץ, הוא מגדיר את state שוב, זה causes עוד עיבוד מחדש, וכן הלאה.
 
-Effects should usually synchronize your components with an *external* system. If there's no external system and you only want to adjust some state based on other state, [you might not need an Effect.](/learn/you-might-not-need-an-effect)
+אפקטים צריכים בדרך כלל לסנכרן את הרכיבים שלך עם מערכת *חיצונית*. אם אין מערכת חיצונית ואתה רוצה להתאים רק חלק מה-state על סמך state אחר, [ייתכן שלא תזדקק לאפקט.](/learn/you-might-not-need-an-effect)
 
 </Pitfall>
 
-### Step 2: Specify the Effect dependencies {/*step-2-specify-the-effect-dependencies*/}
+### שלב 2: ציין את תלות האפקט {/*step-2-specify-the-effect-dependencies*/}
 
-By default, Effects run after *every* render. Often, this is **not what you want:**
+כברירת מחדל, אפקטים פועלים לאחר *כל* רינדור. לעתים קרובות, זה **לא מה שאתה רוצה:**
 
-- Sometimes, it's slow. Synchronizing with an external system is not always instant, so you might want to skip doing it unless it's necessary. For example, you don't want to reconnect to the chat server on every keystroke.
-- Sometimes, it's wrong. For example, you don't want to trigger a component fade-in animation on every keystroke. The animation should only play once when the component appears for the first time.
+- לפעמים זה איטי. סנכרון עם מערכת חיצונית אינו תמיד מיידי, אז אולי כדאי לך לדלג על ביצועו אלא אם כן יש צורך בכך. לדוגמה, אינך רוצה להתחבר מחדש לשרת הצ'אט בכל הקשה.
+- לפעמים זה לא בסדר. לדוגמה, אינך רוצה להפעיל אנימציית דהיית רכיב בכל הקשה. האנימציה אמורה להפעיל פעם אחת בלבד כאשר הרכיב מופיע בפעם הראשונה.
 
-To demonstrate the issue, here is the previous example with a few `console.log` calls and a text input that updates the parent component's state. Notice how typing causes the Effect to re-run:
+כדי להדגים את הבעיה, הנה הדוגמה הקודמת עם כמה קריאות `console.log` וקלט טקסט שמעדכן את ה-state של רכיב האב. שימו לב כיצד הקלדת cause תגרום להפעלה מחדש של האפקט:
 
 <Sandpack>
 
@@ -281,7 +281,7 @@ video { width: 250px; }
 
 </Sandpack>
 
-You can tell React to **skip unnecessarily re-running the Effect** by specifying an array of *dependencies* as the second argument to the `useEffect` call. Start by adding an empty `[]` array to the above example on line 14:
+אתה יכול להגיד לReact **לדלג על הפעלה מחדש שלא לצורך של האפקט** על ידי ציון מערך של *תלות* כארגומנט השני לקריאה `useEffect`. התחל על ידי הוספת מערך `[]` ריק לדוגמה לעיל בשורה 14:
 
 ```js {3}
   useEffect(() => {
@@ -289,7 +289,7 @@ You can tell React to **skip unnecessarily re-running the Effect** by specifying
   }, []);
 ```
 
-You should see an error saying `React Hook useEffect has a missing dependency: 'isPlaying'`:
+אתה אמור לראות שגיאה האומרת `React Hook useEffect has a missing dependency: 'isPlaying'`:
 
 <Sandpack>
 
@@ -337,7 +337,7 @@ video { width: 250px; }
 
 </Sandpack>
 
-The problem is that the code inside of your Effect *depends on* the `isPlaying` prop to decide what to do, but this dependency was not explicitly declared. To fix this issue, add `isPlaying` to the dependency array:
+הבעיה היא שהקוד שבתוך האפקט שלך *תלוי* באבזר `isPlaying` כדי להחליט מה לעשות, אבל התלות הזו לא הוכרזה במפורש. כדי לתקן בעיה זו, הוסף את `isPlaying` למערך התלות:
 
 ```js {2,7}
   useEffect(() => {
@@ -349,7 +349,7 @@ The problem is that the code inside of your Effect *depends on* the `isPlaying` 
   }, [isPlaying]); // ...so it must be declared here!
 ```
 
-Now all dependencies are declared, so there is no error. Specifying `[isPlaying]` as the dependency array tells React that it should skip re-running your Effect if `isPlaying` is the same as it was during the previous render. With this change, typing into the input doesn't cause the Effect to re-run, but pressing Play/Pause does:
+כעת כל התלות מוצהרות, כך שאין שגיאה. ציון `[isPlaying]` כמערך התלות אומר לReact שעליו לדלג על הפעלת האפקט מחדש אם `isPlaying` זהה לזה שהיה במהלך העיבוד הקודם. עם השינוי הזה, הקלדה בקלט לא מאפשרת ל-TK_3__ להפעיל מחדש את האפקט, אבל לחיצה על Play/Pause עושה:
 
 <Sandpack>
 
@@ -397,13 +397,13 @@ video { width: 250px; }
 
 </Sandpack>
 
-The dependency array can contain multiple dependencies. React will only skip re-running the Effect if *all* of the dependencies you specify have exactly the same values as they had during the previous render. React compares the dependency values using the [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) comparison. See the [`useEffect` reference](/reference/react/useEffect#reference) for details.
+מערך התלות יכול להכיל מספר תלות. React ידלג על הפעלה מחדש של האפקט רק אם *כל* התלות שאתה מציין הם בעלי אותם ערכים בדיוק כמו שהיו להם במהלך העיבוד הקודם. React משווה את ערכי התלות באמצעות ההשוואה [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is). עיין בהפניה [`useEffect`](/reference/react/useEffect#reference) לפרטים.
 
-**Notice that you can't "choose" your dependencies.** You will get a lint error if the dependencies you specified don't match what React expects based on the code inside your Effect. This helps catch many bugs in your code. If you don't want some code to re-run, [*edit the Effect code itself* to not "need" that dependency.](/learn/lifecycle-of-reactive-effects#what-to-do-when-you-dont-want-to-re-synchronize)
+**שים לב שאינך יכול "לבחור" את התלות שלך.** תקבל שגיאת מוך אם התלות שציינת אינן תואמות למה שReact מצפה בהתבסס על הקוד בתוך האפקט שלך. זה עוזר לתפוס באגים רבים בקוד שלך. אם אינך רוצה שקוד כלשהו יפעל מחדש, [*ערוך את קוד האפקט עצמו* כדי שלא "יזדקק" לתלות הזו.](/learn/lifecycle-of-reactive-effects#what-to-do-when-you-dont-want-to-re-synchronize)
 
 <Pitfall>
 
-The behaviors without the dependency array and with an *empty* `[]` dependency array are different:
+ההתנהגויות ללא מערך התלות ועם מערך התלות *ריק* `[]` שונות:
 
 ```js {3,7,11}
 useEffect(() => {
@@ -419,15 +419,15 @@ useEffect(() => {
 }, [a, b]);
 ```
 
-We'll take a close look at what "mount" means in the next step.
+נסתכל מקרוב על המשמעות של "הר" בשלב הבא.
 
 </Pitfall>
 
 <DeepDive>
 
-#### Why was the ref omitted from the dependency array? {/*why-was-the-ref-omitted-from-the-dependency-array*/}
+#### מדוע ה-Ref הושמט ממערך התלות? {/*why-was-the-ref-omitted-from-the-dependency-array*/}
 
-This Effect uses _both_ `ref` and `isPlaying`, but only `isPlaying` is declared as a dependency:
+אפקט זה uses _גם_ `ref` ו`isPlaying`, אבל רק `isPlaying` מוכרז כתלות:
 
 ```js {9}
 function VideoPlayer({ src, isPlaying }) {
@@ -441,7 +441,7 @@ function VideoPlayer({ src, isPlaying }) {
   }, [isPlaying]);
 ```
 
-This is because the `ref` object has a *stable identity:* React guarantees [you'll always get the same object](/reference/react/useRef#returns) from the same `useRef` call on every render. It never changes, so it will never by itself cause the Effect to re-run. Therefore, it does not matter whether you include it or not. Including it is fine too:
+זה בגלל שuse לאובייקט `ref` יש *זהות יציבה:* React מבטיח [תמיד תקבל את אותו אובייקט](/reference/react/useRef#returns) מאותה קריאה `useRef` בכל עיבוד. זה אף פעם לא משתנה, אז זה לעולם לא יגרום כשלעצמו להפעיל מחדש את האפקט. לכן, זה לא משנה אם אתה כולל את זה או לא. כולל זה גם בסדר:
 
 ```js {9}
 function VideoPlayer({ src, isPlaying }) {
@@ -455,17 +455,17 @@ function VideoPlayer({ src, isPlaying }) {
   }, [isPlaying, ref]);
 ```
 
-The [`set` functions](/reference/react/useState#setstate) returned by `useState` also have stable identity, so you will often see them omitted from the dependencies too. If the linter lets you omit a dependency without errors, it is safe to do.
+לפונקציות [`set`](/reference/react/useState#setstate) המוחזרות על ידי `useState` יש גם זהות יציבה, כך שלעתים קרובות תראו אותן מושמטות גם מהתלות. אם ה-linter מאפשר לך להשמיט תלות ללא שגיאות, זה בטוח לעשות.
 
-Omitting always-stable dependencies only works when the linter can "see" that the object is stable. For example, if `ref` was passed from a parent component, you would have to specify it in the dependency array. However, this is good because you can't know whether the parent component always passes the same ref, or passes one of several refs conditionally. So your Effect _would_ depend on which ref is passed.
+השמטת תלות יציבה תמיד עובדת רק כאשר ה-linter יכול "לראות" שהאובייקט יציב. לדוגמה, אם `ref` הועבר מרכיב אב, יהיה עליך לציין אותו במערך התלות. עם זאת, זה טוב כי_TK_1__ אתה לא יכול לדעת אם רכיב האב תמיד עובר את אותו השופט, או עובר אחד מכמה שופטים בתנאי. אז האפקט שלך _יהיה_ תלוי באיזה שופט מועבר.
 
 </DeepDive>
 
-### Step 3: Add cleanup if needed {/*step-3-add-cleanup-if-needed*/}
+### שלב 3: הוסף ניקוי במידת הצורך {/*step-3-add-cleanup-if-needed*/}
 
-Consider a different example. You're writing a `ChatRoom` component that needs to connect to the chat server when it appears. You are given a `createConnection()` API that returns an object with `connect()` and `disconnect()` methods. How do you keep the component connected while it is displayed to the user?
+שקול דוגמה אחרת. אתה כותב רכיב `ChatRoom` שצריך להתחבר לשרת הצ'אט כשהוא מופיע. ניתן לך `createConnection()` API שמחזיר אובייקט בשיטות `connect()` ו`disconnect()`. איך שומרים על הרכיב מחובר בזמן שהוא מוצג ב-user?
 
-Start by writing the Effect logic:
+התחל בכתיבת הלוגיקה של אפקט:
 
 ```js
 useEffect(() => {
@@ -474,7 +474,7 @@ useEffect(() => {
 });
 ```
 
-It would be slow to connect to the chat after every re-render, so you add the dependency array:
+זה יהיה איטי להתחבר לצ'אט אחרי כל עיבוד מחדש, אז אתה מוסיף את מערך התלות:
 
 ```js {4}
 useEffect(() => {
@@ -483,9 +483,9 @@ useEffect(() => {
 }, []);
 ```
 
-**The code inside the Effect does not use any props or state, so your dependency array is `[]` (empty). This tells React to only run this code when the component "mounts", i.e. appears on the screen for the first time.**
+**הקוד בתוך האפקט אינו use כל props או state, כך שמערך התלות שלך הוא `[]` (ריק). זה אומר ל-React להפעיל את הקוד הזה רק כאשר הרכיב "מתעלה", כלומר מופיע על המסך בפעם הראשונה.**
 
-Let's try running this code:
+בוא ננסה להריץ את הקוד הזה:
 
 <Sandpack>
 
@@ -522,15 +522,15 @@ input { display: block; margin-bottom: 20px; }
 
 </Sandpack>
 
-This Effect only runs on mount, so you might expect `"✅ Connecting..."` to be printed once in the console. **However, if you check the console, `"✅ Connecting..."` gets printed twice. Why does it happen?**
+אפקט זה פועל רק בהתקנה, כך שאתה עשוי לצפות ש-`"✅ Connecting..."` יודפס פעם אחת במסוף. **עם זאת, אם תבדוק את המסוף, `"✅ Connecting..."` מודפס פעמיים. למה זה קורה?**
 
-Imagine the `ChatRoom` component is a part of a larger app with many different screens. The user starts their journey on the `ChatRoom` page. The component mounts and calls `connection.connect()`. Then imagine the user navigates to another screen--for example, to the Settings page. The `ChatRoom` component unmounts. Finally, the user clicks Back and `ChatRoom` mounts again. This would set up a second connection--but the first connection was never destroyed! As the user navigates across the app, the connections would keep piling up.
+תארו לעצמכם שהרכיב `ChatRoom` הוא חלק מאפליקציה גדולה יותר עם מסכים רבים ושונים. ה-user מתחיל את המסע שלהם בדף `ChatRoom`. הרכיב נטען וקורא ל-`connection.connect()`. לאחר מכן דמיינו שה-user מנווט למסך אחר - לדוגמה, לדף ההגדרות. הרכיב `ChatRoom` מתבטל. לבסוף, ה-user לוחץ על חזרה ו-`ChatRoom` עולה שוב. זה ייצור חיבור שני - אבל החיבור הראשון מעולם לא נהרס! בזמן שה-user מנווט על פני האפליקציה, החיבורים ימשיכו להצטבר.
 
-Bugs like this are easy to miss without extensive manual testing. To help you spot them quickly, in development React remounts every component once immediately after its initial mount.
+קל לפספס באגים כאלה ללא בדיקה ידנית מקיפה. כדי לעזור לך לזהות אותם במהירות, בפיתוח React מעלה מחדש כל רכיב פעם אחת מיד לאחר הטעינה הראשונית שלו.
 
-Seeing the `"✅ Connecting..."` log twice helps you notice the real issue: your code doesn't close the connection when the component unmounts.
+לראות את היומן `"✅ Connecting..."` פעמיים עוזר לך לשים לב לבעיה האמיתית: הקוד שלך לא סוגר את החיבור כאשר הרכיב מתנתק.
 
-To fix the issue, return a *cleanup function* from your Effect:
+כדי לתקן את הבעיה, החזר *פונקציית ניקוי* מהאפקט שלך:
 
 ```js {4-6}
   useEffect(() => {
@@ -542,7 +542,7 @@ To fix the issue, return a *cleanup function* from your Effect:
   }, []);
 ```
 
-React will call your cleanup function each time before the Effect runs again, and one final time when the component unmounts (gets removed). Let's see what happens when the cleanup function is implemented:
+React יקרא לפונקציית הניקוי שלך בכל פעם לפני שהאפקט יפעל שוב, ופעם אחרונה כאשר הרכיב יתנתק (יוסר). בואו נראה מה קורה כאשר פונקציית הניקוי מיושמת:
 
 <Sandpack>
 
@@ -580,27 +580,27 @@ input { display: block; margin-bottom: 20px; }
 
 </Sandpack>
 
-Now you get three console logs in development:
+כעת אתה מקבל שלושה יומני מסוף בפיתוח:
 
 1. `"✅ Connecting..."`
 2. `"❌ Disconnected."`
 3. `"✅ Connecting..."`
 
-**This is the correct behavior in development.** By remounting your component, React verifies that navigating away and back would not break your code. Disconnecting and then connecting again is exactly what should happen! When you implement the cleanup well, there should be no user-visible difference between running the Effect once vs running it, cleaning it up, and running it again. There's an extra connect/disconnect call pair because React is probing your code for bugs in development. This is normal--don't try to make it go away!
+**זו ההתנהגות הנכונה בפיתוח.** על ידי הרכבה מחדש של הרכיב שלך, React מאמת שניווט הרחק ואחורה לא ישבור את הקוד שלך. ניתוק ואז חיבור שוב זה בדיוק מה שצריך לקרות! כאשר אתה מיישם את הניקוי היטב, לא אמור להיות הבדל גלוי של user בין הפעלת האפקט פעם אחת לעומת הפעלתו, ניקויו והפעלתו שוב. יש צמד שיחות נוסף לחיבור/ניתוק מכיוון שuse React בודק את הקוד שלך לאיתור באגים בפיתוח. זה נורמלי - אל תנסה לגרום לזה להיעלם!
 
-**In production, you would only see `"✅ Connecting..."` printed once.** Remounting components only happens in development to help you find Effects that need cleanup. You can turn off [Strict Mode](/reference/react/StrictMode) to opt out of the development behavior, but we recommend keeping it on. This lets you find many bugs like the one above.
+**בייצור, תראה את `"✅ Connecting..."` מודפס פעם אחת בלבד.** הרכבה מחדש של רכיבים מתרחשת רק בפיתוח כדי לעזור לך למצוא אפקטים שדורשים ניקוי. אתה יכול לכבות את [מצב קפדני](/reference/react/StrictMode) כדי לבטל את הסכמתך להתנהגות הפיתוח, אך אנו ממליצים להשאיר אותה פועלת. זה מאפשר לך למצוא באגים רבים כמו זה שלמעלה.
 
-## How to handle the Effect firing twice in development? {/*how-to-handle-the-effect-firing-twice-in-development*/}
+## כיצד להתמודד עם ירי האפקט פעמיים בפיתוח? {/*how-to-handle-the-effect-firing-twice-in-development*/}
 
-React intentionally remounts your components in development to find bugs like in the last example. **The right question isn't "how to run an Effect once", but "how to fix my Effect so that it works after remounting".**
+React מעלה מחדש את הרכיבים שלך בפיתוח כדי למצוא באגים כמו בדוגמה האחרונה. **השאלה הנכונה היא לא "איך להפעיל אפקט פעם אחת", אלא "איך לתקן את האפקט שלי כך שיעבוד לאחר הרכבה מחדש".**
 
-Usually, the answer is to implement the cleanup function.  The cleanup function should stop or undo whatever the Effect was doing. The rule of thumb is that the user shouldn't be able to distinguish between the Effect running once (as in production) and a _setup → cleanup → setup_ sequence (as you'd see in development).
+בדרך כלל, התשובה היא ליישם את פונקציית הניקוי.  פונקציית הניקוי צריכה להפסיק או לבטל את כל מה שהאפקט עשה. כלל האצבע הוא שה-user לא אמור להיות מסוגל להבחין בין האפקט הפועל פעם אחת (כמו בהפקה) לבין _setup → cleanup → setup_ רצף (כפי שהייתם רואים בפיתוח).
 
-Most of the Effects you'll write will fit into one of the common patterns below.
+רוב האפקטים שתכתוב יתאימו לאחת מהדפוסים הנפוצים למטה.
 
-### Controlling non-React widgets {/*controlling-non-react-widgets*/}
+### שליטה בווידג'טים שאינם React {/*controlling-non-react-widgets*/}
 
-Sometimes you need to add UI widgets that aren't written to React. For example, let's say you're adding a map component to your page. It has a `setZoomLevel()` method, and you'd like to keep the zoom level in sync with a `zoomLevel` state variable in your React code. Your Effect would look similar to this:
+לפעמים אתה צריך להוסיף ווידג'טים של ממשק משתמש שלא נכתבו ל-React. לדוגמה, נניח שאתה מוסיף רכיב מפה לדף שלך. יש לו שיטת `setZoomLevel()`, ואתה רוצה לשמור על רמת הזום מסונכרנת עם משתנה `zoomLevel` state בקוד React שלך. האפקט שלך ייראה דומה לזה:
 
 ```js
 useEffect(() => {
@@ -609,9 +609,9 @@ useEffect(() => {
 }, [zoomLevel]);
 ```
 
-Note that there is no cleanup needed in this case. In development, React will call the Effect twice, but this is not a problem because calling `setZoomLevel` twice with the same value does not do anything. It may be slightly slower, but this doesn't matter because it won't remount needlessly in production.
+שימו לב שאין צורך בניקוי במקרה זה. בפיתוח, React יקרא לאפקט פעמיים, אבל זו לא בעיה כי use קורא `setZoomLevel` פעמיים באותו ערך לא עושה כלום. זה אולי קצת יותר איטי, אבל זה לא משנה כי use הוא לא יותקן מחדש מיותר בייצור.
 
-Some APIs may not allow you to call them twice in a row. For example, the [`showModal`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement/showModal) method of the built-in [`<dialog>`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement) element throws if you call it twice. Implement the cleanup function and make it close the dialog:
+ייתכן שחלק מה-APIs לא יאפשרו לך להתקשר אליהם פעמיים ברציפות. לדוגמה, שיטת [`showModal`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement/showModal) של האלמנט המובנה [`<dialog>`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement) זורקת אם תקרא לזה פעמיים. הפעל את פונקציית הניקוי וגרמי לה לסגור את הדו-שיח:
 
 ```js {4}
 useEffect(() => {
@@ -621,11 +621,11 @@ useEffect(() => {
 }, []);
 ```
 
-In development, your Effect will call `showModal()`, then immediately `close()`, and then `showModal()` again. This has the same user-visible behavior as calling `showModal()` once, as you would see in production.
+בפיתוח, האפקט שלך יקרא `showModal()`, ואז מיד `close()`, ואז `showModal()` שוב. יש לזה אותה התנהגות גלויה של user כמו קריאה ל-`showModal()` פעם אחת, כפי שהיית רואה בהפקה.
 
-### Subscribing to events {/*subscribing-to-events*/}
+### הרשמה לאירועים {/*subscribing-to-events*/}
 
-If your Effect subscribes to something, the cleanup function should unsubscribe:
+אם האפקט שלך נרשם למשהו, פונקציית הניקוי צריכה לבטל את המנוי:
 
 ```js {6}
 useEffect(() => {
@@ -637,11 +637,11 @@ useEffect(() => {
 }, []);
 ```
 
-In development, your Effect will call `addEventListener()`, then immediately `removeEventListener()`, and then `addEventListener()` again with the same handler. So there would be only one active subscription at a time. This has the same user-visible behavior as calling `addEventListener()` once, as in production.
+בפיתוח, האפקט שלך יקרא `addEventListener()`, ואז מיד `removeEventListener()`, ואז `addEventListener()` שוב עם אותו מטפל. אז יהיה רק ​​מנוי פעיל אחד בכל פעם. יש לזה אותה התנהגות גלויה של user כמו קריאה ל-`addEventListener()` פעם אחת, כמו בהפקה.
 
-### Triggering animations {/*triggering-animations*/}
+### הפעלת אנימציות {/*triggering-animations*/}
 
-If your Effect animates something in, the cleanup function should reset the animation to the initial values:
+אם האפקט שלך מפעיל משהו, פונקציית הניקוי צריכה לאפס את האנימציה לערכים ההתחלתיים:
 
 ```js {4-6}
 useEffect(() => {
@@ -653,11 +653,11 @@ useEffect(() => {
 }, []);
 ```
 
-In development, opacity will be set to `1`, then to `0`, and then to `1` again. This should have the same user-visible behavior as setting it to `1` directly, which is what would happen in production. If you use a third-party animation library with support for tweening, your cleanup function should reset the timeline to its initial state.
+בפיתוח, האטימות תוגדר ל-`1`, לאחר מכן ל-`0`, ולאחר מכן ל-`1` שוב. זה אמור להיות בעל אותה התנהגות גלויה של user כמו הגדרתו ישירות ל-`1`, וזה מה שיקרה בייצור. אם אתה use ספריית אנימציה של צד שלישי עם תמיכה בטווינינג, פונקציית הניקוי שלך צריכה לאפס את ציר הזמן ל-state הראשוני שלו.
 
-### Fetching data {/*fetching-data*/}
+### מביא נתונים {/*fetching-data*/}
 
-If your Effect fetches something, the cleanup function should either [abort the fetch](https://developer.mozilla.org/en-US/docs/Web/API/AbortController) or ignore its result:
+אם האפקט שלך מביא משהו, פונקציית הניקוי צריכה [להפסיק את האחזור](https://developer.mozilla.org/en-US/docs/Web/API/AbortController) או להתעלם מהתוצאה שלה:
 
 ```js {2,6,13-15}
 useEffect(() => {
@@ -678,11 +678,11 @@ useEffect(() => {
 }, [userId]);
 ```
 
-You can't "undo" a network request that already happened, but your cleanup function should ensure that the fetch that's _not relevant anymore_ does not keep affecting your application. If the `userId` changes from `'Alice'` to `'Bob'`, cleanup ensures that the `'Alice'` response is ignored even if it arrives after `'Bob'`.
+אינך יכול "לבטל" בקשת רשת שכבר התרחשה, אך פונקציית הניקוי שלך אמורה להבטיח שהאחזור ש_לא רלוונטי יותר_ לא ימשיך להשפיע על היישום שלך. אם ה-`userId` משתנה מ-`'Alice'` ל-`'Bob'`, הניקוי מבטיח שמתעלמת מתגובת `'Alice'` גם אם היא מגיעה לאחר `'Bob'`.
 
-**In development, you will see two fetches in the Network tab.** There is nothing wrong with that. With the approach above, the first Effect will immediately get cleaned up so its copy of the `ignore` variable will be set to `true`. So even though there is an extra request, it won't affect the state thanks to the `if (!ignore)` check.
+**בפיתוח, תראה שני אחזורים בלשונית רשת.** אין בזה שום דבר רע. עם הגישה שלמעלה, האפקט הראשון יתנקה מיד כך שהעותק שלו של המשתנה `ignore` יוגדר ל-`true`. אז למרות שיש בקשה נוספת, זה לא ישפיע על ה-state הודות לבדיקת `if (!ignore)`.
 
-**In production, there will only be one request.** If the second request in development is bothering you, the best approach is to use a solution that deduplicates requests and caches their responses between components:
+**בייצור, תהיה רק ​​בקשה אחת.** אם הבקשה השנייה בפיתוח מטרידה אותך, הגישה הטובה ביותר היא use פתרון שמבטל כפילות של בקשות ושומר את התגובות שלהן בין רכיבים:
 
 ```js
 function TodoList() {
@@ -690,31 +690,31 @@ function TodoList() {
   // ...
 ```
 
-This will not only improve the development experience, but also make your application feel faster. For example, the user pressing the Back button won't have to wait for some data to load again because it will be cached. You can either build such a cache yourself or use one of the many alternatives to manual fetching in Effects.
+זה לא רק ישפר את חווית הפיתוח, אלא גם יגרום לאפליקציה שלך להרגיש מהירה יותר. לדוגמה, ה-user הלחיצה על כפתור הקודמת לא תצטרך לחכות לטעינת נתונים שוב מכיוון שuse הם יישמרו במטמון. אתה יכול לבנות מטמון כזה בעצמך או use אחת מהחלופות הרבות לאחזור ידני ב- Effects.
 
 <DeepDive>
 
-#### What are good alternatives to data fetching in Effects? {/*what-are-good-alternatives-to-data-fetching-in-effects*/}
+#### מהן חלופות טובות לאיסוף נתונים ב- Effects? {/*what-are-good-alternatives-to-data-fetching-in-effects*/}
 
-Writing `fetch` calls inside Effects is a [popular way to fetch data](https://www.robinwieruch.de/react-hooks-fetch-data/), especially in fully client-side apps. This is, however, a very manual approach and it has significant downsides:
+כתיבת `fetch` שיחות בתוך Effects היא [דרך פופולרית להביא נתונים](https://www.robinwieruch.de/react-hooks-fetch-data/), במיוחד באפליקציות צד לקוח לחלוטין. עם זאת, זוהי גישה מאוד ידנית ויש לה חסרונות משמעותיים:
 
-- **Effects don't run on the server.** This means that the initial server-rendered HTML will only include a loading state with no data. The client computer will have to download all JavaScript and render your app only to discover that now it needs to load the data. This is not very efficient.
-- **Fetching directly in Effects makes it easy to create "network waterfalls".** You render the parent component, it fetches some data, renders the child components, and then they start fetching their data. If the network is not very fast, this is significantly slower than fetching all data in parallel.
-- **Fetching directly in Effects usually means you don't preload or cache data.** For example, if the component unmounts and then mounts again, it would have to fetch the data again.
-- **It's not very ergonomic.** There's quite a bit of boilerplate code involved when writing `fetch` calls in a way that doesn't suffer from bugs like [race conditions.](https://maxrozen.com/race-conditions-fetching-data-react-with-useeffect)
+- **השפעות אינן פועלות על השרת.** משמעות הדבר היא שהשרת הראשוני שניתנו HTML יכלול רק טעינה state ללא נתונים. מחשב הלקוח יצטרך להוריד את כל JavaScript ולעבד את האפליקציה שלך רק כדי לגלות שעכשיו הוא צריך לטעון את הנתונים. זה לא מאוד יעיל.
+- **שליפה ישירות באפקטים מקלה על יצירת "מפלי רשת".** אתה מעבד את רכיב האב, הוא שואב נתונים מסוימים, מעבד את רכיבי הצאצא, ואז הם מתחילים לאחזר את הנתונים שלהם. אם הרשת לא מהירה במיוחד, זה איטי משמעותית מאשר שליפת כל הנתונים במקביל.
+- **שליפה ישירה באפקטים משמעה בדרך כלל שאינך טוען מראש או מאחסן נתונים.** לדוגמה, אם הרכיב מתנתק ואז נטען שוב, הוא יצטרך לאחזר את הנתונים שוב.
+- **זה לא מאוד ארגונומי.** יש לא מעט קוד בוילפלייס מעורב בעת כתיבת קריאות `fetch` בצורה שאינה סובלת מבאגים כמו [תנאי מירוץ.](https://maxrozen.com/race-conditions-fetching-data-react-with-useeffect)
 
-This list of downsides is not specific to React. It applies to fetching data on mount with any library. Like with routing, data fetching is not trivial to do well, so we recommend the following approaches:
+רשימה זו של חסרונות אינה ספציפית ל-React. זה חל על שליפת נתונים ב-mount עם כל ספרייה. כמו בניתוב, אחזור נתונים אינו טריוויאלי כדי לעשות זאת בצורה טובה, ולכן אנו ממליצים על הגישות הבאות:
 
-- **If you use a [framework](/learn/start-a-new-react-project#production-grade-react-frameworks), use its built-in data fetching mechanism.** Modern React frameworks have integrated data fetching mechanisms that are efficient and don't suffer from the above pitfalls.
-- **Otherwise, consider using or building a client-side cache.** Popular open source solutions include [React Query](https://tanstack.com/query/latest), [useSWR](https://swr.vercel.app/), and [React Router 6.4+.](https://beta.reactrouter.com/en/main/start/overview) You can build your own solution too, in which case you would use Effects under the hood, but add logic for deduplicating requests, caching responses, and avoiding network waterfalls (by preloading data or hoisting data requirements to routes).
+- **אם אתה use [framework](/learn/start-a-new-react-project#production-grade-react-frameworks), use מנגנון אחזור הנתונים המובנה שלו.** במסגרות React מודרניות יש מנגנוני שליפת נתונים משולבים שהם יעילים ואינם סובלים מהמגבלה שלעיל.
+- **אחרת, שקול להשתמש או לבנות מטמון בצד הלקוח.** פתרונות קוד פתוח פופולריים כוללים [React שאילתה](https://tanstack.com/query/latest), [useSWR](https://swr.vercel.app/), ו-[React נתב 6.4+.](https://beta.reactrouter.com/en/main/start/overview) אתה יכול לבנות גם פתרון משלך, אבל במקרה זה תוכל להוסיף פתרון משלך, ובמקרה זה תוסיף ______ ביטול כפילויות של בקשות, שמירת תגובות במטמון והימנעות ממפלי מים ברשת (על ידי טעינת נתונים מראש או הנפת דרישות נתונים למסלולים).
 
-You can continue fetching data directly in Effects if neither of these approaches suit you.
+אתה יכול להמשיך להביא נתונים ישירות ב- Effects אם אף אחת מהגישות הללו לא מתאימה לך.
 
 </DeepDive>
 
-### Sending analytics {/*sending-analytics*/}
+### שליחת ניתוח נתונים {/*sending-analytics*/}
 
-Consider this code that sends an analytics event on the page visit:
+שקול את הקוד הזה ששולח אירוע ניתוח בביקור בדף:
 
 ```js
 useEffect(() => {
@@ -722,15 +722,15 @@ useEffect(() => {
 }, [url]);
 ```
 
-In development, `logVisit` will be called twice for every URL, so you might be tempted to try to fix that. **We recommend keeping this code as is.** Like with earlier examples, there is no *user-visible* behavior difference between running it once and running it twice. From a practical point of view, `logVisit` should not do anything in development because you don't want the logs from the development machines to skew the production metrics. Your component remounts every time you save its file, so it logs extra visits in development anyway.
+בפיתוח, `logVisit` ייקרא פעמיים עבור כל כתובת אתר, אז אולי תתפתו לנסות לתקן את זה. **אנו ממליצים לשמור את הקוד הזה כפי שהוא.** כמו בדוגמאות קודמות, אין הבדל התנהגות *user-visible* בין הפעלתו פעם אחת לבין הפעלתו פעמיים. מנקודת מבט מעשית, `logVisit` לא צריך לעשות שום דבר בפיתוח כי use אתה לא רוצה שהלוגים ממכונות הפיתוח ישטטו את מדדי הייצור. הרכיב שלך מופעל מחדש בכל פעם שאתה שומר את הקובץ שלו, כך שהוא רושם ביקורים נוספים בפיתוח בכל מקרה.
 
-**In production, there will be no duplicate visit logs.**
+**בייצור, לא יהיו יומני ביקור כפולים.**
 
-To debug the analytics events you're sending, you can deploy your app to a staging environment (which runs in production mode) or temporarily opt out of [Strict Mode](/reference/react/StrictMode) and its development-only remounting checks. You may also send analytics from the route change event handlers instead of Effects. For more precise analytics, [intersection observers](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API) can help track which components are in the viewport and how long they remain visible.
+כדי לנפות באגים באירועי הניתוח שאתה שולח, אתה יכול לפרוס את האפליקציה שלך לסביבת סטיג'ינג (שפועלת במצב ייצור) או לבטל את ההצטרפות זמנית ל[מצב קפדני](/reference/react/StrictMode) ובדיקות ההתקנה מחדש שלה לפיתוח בלבד. אתה יכול גם לשלוח ניתוחים ממטפלי אירועי שינוי המסלול במקום אפקטים. לניתוח מדויק יותר, [צופים בצמתים](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API) יכולים לעזור לעקוב אחר הרכיבים שנמצאים בנקודת התצוגה וכמה זמן הם נשארים גלויים.
 
-### Not an Effect: Initializing the application {/*not-an-effect-initializing-the-application*/}
+### לא משפיע: אתחול האפליקציה {/*not-an-effect-initializing-the-application*/}
 
-Some logic should only run once when the application starts. You can put it outside your components:
+לוגיקה מסוימת צריכה לפעול רק פעם אחת כאשר היישום מתחיל. אתה יכול לשים אותו מחוץ לרכיבים שלך:
 
 ```js {2-3}
 if (typeof window !== 'undefined') { // Check if we're running in the browser.
@@ -743,11 +743,11 @@ function App() {
 }
 ```
 
-This guarantees that such logic only runs once after the browser loads the page.
+זה מבטיח שהיגיון כזה פועל רק פעם אחת לאחר שהדפדפן טוען את הדף.
 
-### Not an Effect: Buying a product {/*not-an-effect-buying-a-product*/}
+### לא משפיע: קניית מוצר {/*not-an-effect-buying-a-product*/}
 
-Sometimes, even if you write a cleanup function, there's no way to prevent user-visible consequences of running the Effect twice. For example, maybe your Effect sends a POST request like buying a product:
+לפעמים, גם אם אתה כותב פונקציית ניקוי, אין דרך למנוע השלכות גלויות של user של הפעלת האפקט פעמיים. לדוגמה, אולי האפקט שלך שולח בקשת POST כמו קניית מוצר:
 
 ```js {2-3}
 useEffect(() => {
@@ -756,9 +756,9 @@ useEffect(() => {
 }, []);
 ```
 
-You wouldn't want to buy the product twice. However, this is also why you shouldn't put this logic in an Effect. What if the user goes to another page and then presses Back? Your Effect would run again. You don't want to buy the product when the user *visits* a page; you want to buy it when the user *clicks* the Buy button.
+לא היית רוצה לקנות את המוצר פעמיים. עם זאת, זו גם הסיבה שלא כדאי לשים את ההיגיון הזה באפקט. מה אם ה-user עובר לדף אחר ואז לוחץ על חזרה? האפקט שלך יפעל שוב. אתה לא רוצה לקנות את המוצר כאשר ה-user *מבקר* בדף; אתה רוצה לקנות אותו כאשר ה-user *לוחץ* על כפתור הקנה.
 
-Buying is not caused by rendering; it's caused by a specific interaction. It should run only when the user presses the button. **Delete the Effect and move your `/api/buy` request into the Buy button event handler:**
+הקנייה אינה כused על ידי עיבוד; זה caused על ידי אינטראקציה ספציפית. זה אמור לפעול רק כאשר ה-user לוחץ על הכפתור. **מחק את האפקט והעבר את בקשת `/api/buy` שלך למטפל באירועים של לחצן קנה:**
 
 ```js {2-3}
   function handleClick() {
@@ -767,13 +767,13 @@ Buying is not caused by rendering; it's caused by a specific interaction. It sho
   }
 ```
 
-**This illustrates that if remounting breaks the logic of your application, this usually uncovers existing bugs.** From a user's perspective, visiting a page shouldn't be different from visiting it, clicking a link, then pressing Back to view the page again. React verifies that your components abide by this principle by remounting them once in development.
+**זה ממחיש שאם התקנה מחדש שוברת את ההיגיון של היישום שלך, זה בדרך כלל מגלה באגים קיימים.** מנקודת המבט של user, ביקור בדף לא אמור להיות שונה מביקור בו, לחיצה על קישור ולאחר מכן לחיצה על חזרה כדי להציג את הדף שוב. React מאמת שהרכיבים שלך עומדים בעקרון זה על ידי הרכבה מחדש פעם אחת בפיתוח.
 
-## Putting it all together {/*putting-it-all-together*/}
+## מרכיבים את הכל ביחד {/*putting-it-all-together*/}
 
-This playground can help you "get a feel" for how Effects work in practice.
+מגרש משחקים זה יכול לעזור לך "להרגיש" כיצד אפקטים פועלים בפועל.
 
-This example uses [`setTimeout`](https://developer.mozilla.org/en-US/docs/Web/API/setTimeout) to schedule a console log with the input text to appear three seconds after the Effect runs. The cleanup function cancels the pending timeout. Start by pressing "Mount the component":
+דוגמה זו uses [`setTimeout`](https://developer.mozilla.org/en-US/docs/Web/API/setTimeout) לתזמן יומן מסוף עם טקסט הקלט שיופיע שלוש שניות לאחר הפעלת האפקט. פונקציית הניקוי מבטלת את פסק הזמן הממתין. התחל בלחיצה על "התקן את הרכיב":
 
 <Sandpack>
 
@@ -827,21 +827,21 @@ export default function App() {
 
 </Sandpack>
 
-You will see three logs at first: `Schedule "a" log`, `Cancel "a" log`, and `Schedule "a" log` again. Three second later there will also be a log saying `a`. As you learned earlier, the extra schedule/cancel pair is because React remounts the component once in development to verify that you've implemented cleanup well.
+תראה שלושה יומנים בהתחלה: `Schedule "a" log`, `Cancel "a" log` ו-`Schedule "a" log` שוב. שלוש שניות לאחר מכן יהיה גם יומן שאומר `a`. כפי שלמדת קודם לכן, צמד התזמון/ביטול הנוסף הוא מכיוון שuse React מטעין מחדש את הרכיב פעם אחת בפיתוח כדי לוודא שיישמת את הניקוי בצורה טובה.
 
-Now edit the input to say `abc`. If you do it fast enough, you'll see `Schedule "ab" log` immediately followed by `Cancel "ab" log` and `Schedule "abc" log`. **React always cleans up the previous render's Effect before the next render's Effect.** This is why even if you type into the input fast, there is at most one timeout scheduled at a time. Edit the input a few times and watch the console to get a feel for how Effects get cleaned up.
+כעת ערוך את הקלט כדי לומר `abc`. If you do it fast enough, you'll see `Schedule "ab" log` immediately followed by `Cancel "ab" log` and `Schedule "abc" log`. **React תמיד מנקה את האפקט של העיבוד הקודם לפני האפקט של העיבוד הבא.** זו הסיבה שגם אם אתה מקליד בקלט מהר, יש לכל היותר פסק זמן אחד מתוזמן בכל פעם. ערוך את הקלט כמה פעמים וצפה בקונסולה כדי לקבל תחושה כיצד אפקטים מתנקים.
 
-Type something into the input and then immediately press "Unmount the component". Notice how unmounting cleans up the last render's Effect. Here, it clears the last timeout before it has a chance to fire.
+הקלד משהו בקלט ולאחר מכן לחץ מיד על "בטל את הרכבת הרכיב". שימו לב כיצד ביטול הרכבה מנקה את האפקט של העיבוד האחרון. כאן, הוא מנקה את פסק הזמן האחרון לפני שתהיה לו הזדמנות לירות.
 
-Finally, edit the component above and comment out the cleanup function so that the timeouts don't get cancelled. Try typing `abcde` fast. What do you expect to happen in three seconds? Will `console.log(text)` inside the timeout print the *latest* `text` and produce five `abcde` logs? Give it a try to check your intuition!
+לבסוף, ערוך את הרכיב שלמעלה והעיר את פונקציית הניקוי כדי שפסקי הזמן לא יבוטלו. נסה להקליד `abcde` מהר. מה אתה מצפה שיקרה בעוד שלוש שניות? האם `console.log(text)` בתוך הזמן הקצוב ידפיס את *האחרון* `text` ויפיק חמישה יומני `abcde`? נסה לבדוק את האינטואיציה שלך!
 
-Three seconds later, you should see a sequence of logs (`a`, `ab`, `abc`, `abcd`, and `abcde`) rather than five `abcde` logs. **Each Effect "captures" the `text` value from its corresponding render.**  It doesn't matter that the `text` state changed: an Effect from the render with `text = 'ab'` will always see `'ab'`. In other words, Effects from each render are isolated from each other. If you're curious how this works, you can read about [closures](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures).
+שלוש שניות לאחר מכן, אתה אמור לראות רצף של יומנים (`a`, `ab`, `abc`, `abcd` ו-`abcde`) במקום חמישה יומני `abcde`. **כל אפקט "לוכד" את הערך `text` מהעיבוד המתאים לו.** זה לא משנה שה-`text` state השתנה: אפקט מהעיבוד עם `text = 'ab'` תמיד יראה `'ab'`. במילים אחרות, אפקטים מכל רינדור מבודדים זה מזה. אם אתה סקרן איך זה עובד, אתה יכול לקרוא על [סגירות](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures).
 
 <DeepDive>
 
-#### Each render has its own Effects {/*each-render-has-its-own-effects*/}
+#### לכל עיבוד יש אפקטים משלו {/*each-render-has-its-own-effects*/}
 
-You can think of `useEffect` as "attaching" a piece of behavior to the render output. Consider this Effect:
+אתה יכול לחשוב על `useEffect` כעל "צירוף" קטע של התנהגות לפלט העיבוד. שקול את ההשפעה הזו:
 
 ```js
 export default function ChatRoom({ roomId }) {
@@ -855,18 +855,18 @@ export default function ChatRoom({ roomId }) {
 }
 ```
 
-Let's see what exactly happens as the user navigates around the app.
+בוא נראה מה בדיוק קורה כשה-user מנווט ברחבי האפליקציה.
 
-#### Initial render {/*initial-render*/}
+#### עיבוד ראשוני {/*initial-render*/}
 
-The user visits `<ChatRoom roomId="general" />`. Let's [mentally substitute](/learn/state-as-a-snapshot#rendering-takes-a-snapshot-in-time) `roomId` with `'general'`:
+ה-user מבקר ב-`<ChatRoom roomId="general" />`. בואו [נחליף מנטלית](/learn/state-as-a-snapshot#rendering-takes-snapshot-in-time) `roomId` עם `'general'`:
 
 ```js
   // JSX for the first render (roomId = "general")
   return <h1>Welcome to general!</h1>;
 ```
 
-**The Effect is *also* a part of the rendering output.** The first render's Effect becomes:
+**האפקט הוא *גם* חלק מפלט העיבוד.** האפקט של העיבוד הראשון הופך:
 
 ```js
   // Effect for the first render (roomId = "general")
@@ -879,20 +879,20 @@ The user visits `<ChatRoom roomId="general" />`. Let's [mentally substitute](/le
   ['general']
 ```
 
-React runs this Effect, which connects to the `'general'` chat room.
+React מפעיל את האפקט הזה, שמתחבר לחדר הצ'אט `'general'`.
 
-#### Re-render with same dependencies {/*re-render-with-same-dependencies*/}
+#### עיבוד מחדש עם אותן תלות {/*re-render-with-same-dependencies*/}
 
-Let's say `<ChatRoom roomId="general" />` re-renders. The JSX output is the same:
+נניח ש`<ChatRoom roomId="general" />` מעבד מחדש. הפלט JSX זהה:
 
 ```js
   // JSX for the second render (roomId = "general")
   return <h1>Welcome to general!</h1>;
 ```
 
-React sees that the rendering output has not changed, so it doesn't update the DOM.
+React רואה שפלט העיבוד לא השתנה, ולכן הוא לא מעדכן את ה-DOM.
 
-The Effect from the second render looks like this:
+האפקט מהעיבוד השני נראה כך:
 
 ```js
   // Effect for the second render (roomId = "general")
@@ -905,20 +905,20 @@ The Effect from the second render looks like this:
   ['general']
 ```
 
-React compares `['general']` from the second render with `['general']` from the first render. **Because all dependencies are the same, React *ignores* the Effect from the second render.** It never gets called.
+React משווה את `['general']` מהעיבוד השני ל-`['general']` מהעיבוד הראשון. **בגלל use כל התלות זהים, React *מתעלם* מהאפקט מהעיבוד השני.** זה אף פעם לא נקרא.
 
-#### Re-render with different dependencies {/*re-render-with-different-dependencies*/}
+#### עיבוד מחדש עם תלות שונות {/*re-render-with-different-dependencies*/}
 
-Then, the user visits `<ChatRoom roomId="travel" />`. This time, the component returns different JSX:
+לאחר מכן, ה-user מבקר ב-`<ChatRoom roomId="travel" />`. הפעם, הרכיב מחזיר JSX שונה:
 
 ```js
   // JSX for the third render (roomId = "travel")
   return <h1>Welcome to travel!</h1>;
 ```
 
-React updates the DOM to change `"Welcome to general"` into `"Welcome to travel"`.
+React מעדכן את DOM כדי לשנות את `"Welcome to general"` ל`"Welcome to travel"`.
 
-The Effect from the third render looks like this:
+האפקט מהעיבוד השלישי נראה כך:
 
 ```js
   // Effect for the third render (roomId = "travel")
@@ -931,43 +931,43 @@ The Effect from the third render looks like this:
   ['travel']
 ```
 
-React compares `['travel']` from the third render with `['general']` from the second render. One dependency is different: `Object.is('travel', 'general')` is `false`. The Effect can't be skipped.
+React משווה את `['travel']` מהעיבוד השלישי ל-`['general']` מהעיבוד השני. תלות אחת שונה: `Object.is('travel', 'general')` הוא `false`. לא ניתן לדלג על האפקט.
 
-**Before React can apply the Effect from the third render, it needs to clean up the last Effect that _did_ run.** The second render's Effect was skipped, so React needs to clean up the first render's Effect. If you scroll up to the first render, you'll see that its cleanup calls `disconnect()` on the connection that was created with `createConnection('general')`. This disconnects the app from the `'general'` chat room.
+**לפני שReact יכול להחיל את האפקט מהרינדור השלישי, הוא צריך לנקות את האפקט האחרון ש_כן_ רץ.** האפקט של העיבוד השני דילג, אז React צריך לנקות את האפקט של העיבוד הראשון. אם תגלול עד לעיבוד הראשון, תראה שהניקוי שלו קורא `disconnect()` בחיבור שנוצר עם `createConnection('general')`. פעולה זו מנתקת את האפליקציה מחדר הצ'אט `'general'`.
 
-After that, React runs the third render's Effect. It connects to the `'travel'` chat room.
+לאחר מכן, React מריץ את האפקט של העיבוד השלישי. הוא מתחבר לחדר הצ'אט `'travel'`.
 
-#### Unmount {/*unmount*/}
+#### בטל את הטעינה {/*unmount*/}
 
-Finally, let's say the user navigates away, and the `ChatRoom` component unmounts. React runs the last Effect's cleanup function. The last Effect was from the third render. The third render's cleanup destroys the `createConnection('travel')` connection. So the app disconnects from the `'travel'` room.
+לבסוף, נניח שה-user מנווט משם, והרכיב `ChatRoom` מתבטל. React מריץ את פונקציית הניקוי של האפקט האחרון. האפקט האחרון היה מהעיבוד השלישי. הניקוי של העיבוד השלישי הורס את החיבור `createConnection('travel')`. אז האפליקציה מתנתקת מהחדר `'travel'`.
 
-#### Development-only behaviors {/*development-only-behaviors*/}
+#### התנהגויות לפי פיתוח בלבד {/*development-only-behaviors*/}
 
-When [Strict Mode](/reference/react/StrictMode) is on, React remounts every component once after mount (state and DOM are preserved). This [helps you find Effects that need cleanup](#step-3-add-cleanup-if-needed) and exposes bugs like race conditions early. Additionally, React will remount the Effects whenever you save a file in development. Both of these behaviors are development-only.
+כאשר [מצב קפדני](/reference/react/StrictMode) מופעל, React מבצע התקנה מחדש של כל רכיב פעם אחת לאחר הטעינה (state וDOM נשמרים). זה [עוזר לך למצוא אפקטים שצריכים ניקוי](#step-3-add-cleanup-if-needed) וחושף באגים כמו תנאי מירוץ מוקדם. בנוסף, React יערוך מחדש את האפקטים בכל פעם שתשמור קובץ בפיתוח. שתי ההתנהגויות הללו הן להתפתחות בלבד.
 
 </DeepDive>
 
 <Recap>
 
-- Unlike events, Effects are caused by rendering itself rather than a particular interaction.
-- Effects let you synchronize a component with some external system (third-party API, network, etc).
-- By default, Effects run after every render (including the initial one).
-- React will skip the Effect if all of its dependencies have the same values as during the last render.
-- You can't "choose" your dependencies. They are determined by the code inside the Effect.
-- Empty dependency array (`[]`) corresponds to the component "mounting", i.e. being added to the screen.
-- In Strict Mode, React mounts components twice (in development only!) to stress-test your Effects.
-- If your Effect breaks because of remounting, you need to implement a cleanup function.
-- React will call your cleanup function before the Effect runs next time, and during the unmount.
+- בניגוד לאירועים, אפקטים הם caused על ידי עיבוד עצמו ולא אינטראקציה מסוימת.
+- אפקטים מאפשרים לך לסנכרן רכיב עם מערכת חיצונית כלשהי (צד שלישי API, רשת וכו').
+- כברירת מחדל, אפקטים פועלים לאחר כל רינדור (כולל הראשון).
+- React ידלג על האפקט אם לכל התלות שלו יש את אותם ערכים כמו במהלך העיבוד האחרון.
+- אתה לא יכול "לבחור" את התלות שלך. הם נקבעים על ידי הקוד שבתוך האפקט.
+- מערך תלות ריק (`[]`) מתאים לרכיב "הרכבה", כלומר מתווסף למסך.
+- במצב קפדני, React מעלה רכיבים פעמיים (בפיתוח בלבד!) כדי לבדוק את האפקטים שלך.
+- אם האפקט שלך נשבר בגלל התקנה מחדש, עליך ליישם פונקציית ניקוי.
+- React יקרא לפונקציית הניקוי שלך לפני שהאפקט יפעל בפעם הבאה, ובמהלך ביטול ההרכבה.
 
 </Recap>
 
 <Challenges>
 
-#### Focus a field on mount {/*focus-a-field-on-mount*/}
+#### מיקוד שדה בהר {/*focus-a-field-on-mount*/}
 
-In this example, the form renders a `<MyInput />` component.
+בדוגמה זו, הטופס מעבד רכיב `<MyInput />`.
 
-Use the input's [`focus()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/focus) method to make `MyInput` automatically focus when it appears on the screen. There is already a commented out implementation, but it doesn't quite work. Figure out why it doesn't work, and fix it. (If you're familiar with the `autoFocus` attribute, pretend that it does not exist: we are reimplementing the same functionality from scratch.)
+השתמש בשיטת [`focus()`] (https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/focus)) של הקלט כדי לגרום ל-`MyInput` להתמקד אוטומטית כשהוא מופיע על המסך. יש כבר יישום שהועל, אבל זה לא ממש עובד. גלה למה זה לא עובד ותקן את זה. (אם אתה מכיר את `autoFocus` זה לא קיים בתכונה מחדש, העמיד פנים שהפונקציה אינה קיימת: שריטה.)
 
 <Sandpack>
 
@@ -1043,15 +1043,15 @@ body {
 </Sandpack>
 
 
-To verify that your solution works, press "Show form" and verify that the input receives focus (becomes highlighted and the cursor is placed inside). Press "Hide form" and "Show form" again. Verify the input is highlighted again.
+כדי לוודא שהפתרון שלך עובד, לחץ על "הצג טופס" וודא שהקלט מקבל פוקוס (הופך להיות מודגש והסמן ממוקם בפנים). לחץ שוב על "הסתר טופס" ו"הצג טופס". ודא שהקלט מסומן שוב.
 
-`MyInput` should only focus _on mount_ rather than after every render. To verify that the behavior is right, press "Show form" and then repeatedly press the "Make it uppercase" checkbox. Clicking the checkbox should _not_ focus the input above it.
+`MyInput` צריך להתמקד רק _על mount_ ולא אחרי כל עיבוד. כדי לוודא שההתנהגות נכונה, הקש על "הצג טופס" ולאחר מכן לחץ שוב ושוב על תיבת הסימון "הפוך אותו לאותיות רישיות". לחיצה על תיבת הסימון אמורה _לא_ למקד את הקלט מעליה.
 
 <Solution>
 
-Calling `ref.current.focus()` during render is wrong because it is a *side effect*. Side effects should either be placed inside an event handler or be declared with `useEffect`. In this case, the side effect is _caused_ by the component appearing rather than by any specific interaction, so it makes sense to put it in an Effect.
+הקריאה ל-`ref.current.focus()` במהלך העיבוד היא שגויה מכיוון שuse היא *תופעת לוואי*. יש להציב תופעות לוואי בתוך מטפל באירועים או להצהיר עם `useEffect`. במקרה זה, תופעת הלוואי היא _caused_ על ידי הופעת הרכיב ולא על ידי כל אינטראקציה ספציפית, ולכן הגיוני לשים אותה באפקט.
 
-To fix the mistake, wrap the `ref.current.focus()` call into an Effect declaration. Then, to ensure that this Effect runs only on mount rather than after every render, add the empty `[]` dependencies to it.
+כדי לתקן את הטעות, עטוף את הקריאה `ref.current.focus()` בהצהרת אפקט. לאחר מכן, כדי להבטיח שהאפקט הזה יפעל רק על mount ולא אחרי כל רינדור, הוסף לו את התלות הריקות `[]`.
 
 <Sandpack>
 
@@ -1129,13 +1129,13 @@ body {
 
 </Solution>
 
-#### Focus a field conditionally {/*focus-a-field-conditionally*/}
+#### מיקוד שדה באופן מותנה {/*focus-a-field-conditionally*/}
 
-This form renders two `<MyInput />` components.
+טופס זה מציג שני רכיבי `<MyInput />`.
 
-Press "Show form" and notice that the second field automatically gets focused. This is because both of the `<MyInput />` components try to focus the field inside. When you call `focus()` for two input fields in a row, the last one always "wins".
+לחץ על "הצג טופס" ושם לב שהשדה השני מקבל focused אוטומטית. זה בגלל ששני רכיבי `<MyInput />` מנסים למקד את השדה פנימה. כאשר אתה קורא ל-`focus()` עבור שני שדות קלט ברצף, האחרון תמיד "מנצח".
 
-Let's say you want to focus the first field. The first `MyInput` component now receives a boolean `shouldFocus` prop set to `true`. Change the logic so that `focus()` is only called if the `shouldFocus` prop received by `MyInput` is `true`.
+נניח שאתה רוצה למקד את השדה הראשון. הרכיב `MyInput` הראשון מקבל כעת אבזר בוליאני `shouldFocus` שהוגדר ל-`true`. שנה את ההיגיון כך ש`focus()` ייקרא רק אם התמיכה `shouldFocus` שהתקבלה על ידי `MyInput` היא `true`.
 
 <Sandpack>
 
@@ -1215,17 +1215,17 @@ body {
 
 </Sandpack>
 
-To verify your solution, press "Show form" and "Hide form" repeatedly. When the form appears, only the *first* input should get focused. This is because the parent component renders the first input with `shouldFocus={true}` and the second input with `shouldFocus={false}`. Also check that both inputs still work and you can type into both of them.
+כדי לאמת את הפתרון שלך, לחץ על "הצג טופס" ו"הסתר טופס" שוב ושוב. כאשר הטופס מופיע, רק הקלט *הראשון* אמור לקבל focused. זה בגלל use שרכיב האב מעבד את הקלט הראשון עם `shouldFocus={true}` ואת הקלט השני עם `shouldFocus={false}`. בדוק גם ששתי הכניסות עדיין פועלות ותוכל להקליד בשתיהן.
 
 <Hint>
 
-You can't declare an Effect conditionally, but your Effect can include conditional logic.
+אתה לא יכול להכריז על אפקט באופן מותנה, אבל האפקט שלך יכול לכלול לוגיקה מותנית.
 
 </Hint>
 
 <Solution>
 
-Put the conditional logic inside the Effect. You will need to specify `shouldFocus` as a dependency because you are using it inside the Effect. (This means that if some input's `shouldFocus` changes from `false` to `true`, it will focus after mount.)
+שים את ההיגיון המותנה בתוך האפקט. תצטרך לציין `shouldFocus` כתלות מכיוון שuse אתה משתמש בו בתוך האפקט. (משמעות הדבר היא שאם `shouldFocus` של קלט כלשהו משתנה מ-`false` ל-`true`, הוא יתמקד לאחר הטעינה.)
 
 <Sandpack>
 
@@ -1308,15 +1308,15 @@ body {
 
 </Solution>
 
-#### Fix an interval that fires twice {/*fix-an-interval-that-fires-twice*/}
+#### תקן מרווח שנדלק פעמיים {/*fix-an-interval-that-fires-twice*/}
 
-This `Counter` component displays a counter that should increment every second. On mount, it calls [`setInterval`.](https://developer.mozilla.org/en-US/docs/Web/API/setInterval) This causes `onTick` to run every second. The `onTick` function increments the counter.
+רכיב `Counter` זה מציג מונה שאמור לעלות כל שנייה. בטעינה, הוא קורא ל-[`setInterval`.](https://developer.mozilla.org/en-US/docs/Web/API/setInterval) זה causes `onTick` לפעול כל שנייה. הפונקציה `onTick` מגדילה את המונה.
 
-However, instead of incrementing once per second, it increments twice. Why is that? Find the cause of the bug and fix it.
+עם זאת, במקום לעלות פעם בשנייה, הוא גדל פעמיים. למה זה? מצא את ה-cause של הבאג ותקן אותו.
 
 <Hint>
 
-Keep in mind that `setInterval` returns an interval ID, which you can pass to [`clearInterval`](https://developer.mozilla.org/en-US/docs/Web/API/clearInterval) to stop the interval.
+זכור ש-`setInterval` מחזיר מזהה מרווח, אותו תוכל להעביר אל [`clearInterval`](https://developer.mozilla.org/en-US/docs/Web/API/clearInterval) כדי לעצור את המרווח.
 
 </Hint>
 
@@ -1373,11 +1373,11 @@ body {
 
 <Solution>
 
-When [Strict Mode](/reference/react/StrictMode) is on (like in the sandboxes on this site), React remounts each component once in development. This causes the interval to be set up twice, and this is why each second the counter increments twice.
+כאשר [מצב קפדני](/reference/react/StrictMode) פועל (כמו בארגזי החול באתר זה), React מטעין מחדש כל רכיב פעם אחת בפיתוח. זהו המרווח שיש להגדיר פעמיים, וזו הסיבה שבכל שנייה המונה גדל פעמיים.
 
-However, React's behavior is not the *cause* of the bug: the bug already exists in the code. React's behavior makes the bug more noticeable. The real cause is that this Effect starts a process but doesn't provide a way to clean it up.
+עם זאת, ההתנהגות של React אינה *cause* של הבאג: הבאג כבר קיים בקוד. ההתנהגות של React הופכת את הבאג לבולט יותר. ה-cause האמיתי הוא שהאפקט הזה מתחיל תהליך אבל לא מספק דרך לנקות אותו.
 
-To fix this code, save the interval ID returned by `setInterval`, and implement a cleanup function with [`clearInterval`](https://developer.mozilla.org/en-US/docs/Web/API/clearInterval):
+כדי לתקן את הקוד הזה, שמור את מזהה המרווח שהוחזר על ידי `setInterval`, והטמיע פונקציית ניקוי עם [`clearInterval`](https://developer.mozilla.org/en-US/docs/Web/API/clearInterval):
 
 <Sandpack>
 
@@ -1431,13 +1431,13 @@ body {
 
 </Sandpack>
 
-In development, React will still remount your component once to verify that you've implemented cleanup well. So there will be a `setInterval` call, immediately followed by `clearInterval`, and `setInterval` again. In production, there will be only one `setInterval` call. The user-visible behavior in both cases is the same: the counter increments once per second.
+במהלך הפיתוח, React עדיין יתקין מחדש את הרכיב שלך פעם אחת כדי לוודא שיישמת את הניקוי היטב. אז תהיה קריאה `setInterval`, מיד אחריה `clearInterval`, ושוב `setInterval`. בהפקה, תהיה רק ​​קריאת `setInterval` אחת. ההתנהגות הנראית ל-user בשני המקרים זהה: המונה גדל פעם בשנייה.
 
 </Solution>
 
-#### Fix fetching inside an Effect {/*fix-fetching-inside-an-effect*/}
+#### תקן אחזור בתוך אפקט {/*fix-fetching-inside-an-effect*/}
 
-This component shows the biography for the selected person. It loads the biography by calling an asynchronous function `fetchBio(person)` on mount and whenever `person` changes. That asynchronous function returns a [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) which eventually resolves to a string. When fetching is done, it calls `setBio` to display that string under the select box.
+רכיב זה מציג את הביוגרפיה של האדם הנבחר. זה טוען את הביוגרפיה על ידי קריאה לפונקציה אסינכרונית `fetchBio(person)` ב-mount ובכל פעם ש`person` משתנה. הפונקציה האסינכרונית הזו מחזירה [הבטחה](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) שבסופו של דבר פותרת למחרוזת. כאשר השליפה מתבצעת, היא קוראת ל-`setBio` כדי להציג את המחרוזת הזו מתחת לתיבת הבחירה.
 
 <Sandpack>
 
@@ -1487,30 +1487,30 @@ export async function fetchBio(person) {
 </Sandpack>
 
 
-There is a bug in this code. Start by selecting "Alice". Then select "Bob" and then immediately after that select "Taylor". If you do this fast enough, you will notice that bug: Taylor is selected, but the paragraph below says "This is Bob's bio."
+יש באג בקוד הזה. התחל בבחירת "אליס". לאחר מכן בחר "בוב" ומיד לאחר מכן בחר "טיילור". אם תעשה זאת מהר מספיק, תבחין בבאג הזה: טיילור נבחר, אבל הפיסקה למטה אומרת "זהו הביוגרפיה של בוב".
 
-Why does this happen? Fix the bug inside this Effect.
+למה זה קורה? תקן את הבאג בתוך האפקט הזה.
 
 <Hint>
 
-If an Effect fetches something asynchronously, it usually needs cleanup.
+אם אפקט מביא משהו באופן אסינכרוני, הוא בדרך כלל זקוק לניקוי.
 
 </Hint>
 
 <Solution>
 
-To trigger the bug, things need to happen in this order:
+כדי להפעיל את הבאג, דברים צריכים לקרות בסדר הזה:
 
-- Selecting `'Bob'` triggers `fetchBio('Bob')`
-- Selecting `'Taylor'` triggers `fetchBio('Taylor')`
-- **Fetching `'Taylor'` completes *before* fetching `'Bob'`**
-- The Effect from the `'Taylor'` render calls `setBio('This is Taylor’s bio')`
-- Fetching `'Bob'` completes
-- The Effect from the `'Bob'` render calls `setBio('This is Bob’s bio')`
+- בחירה ב-`'Bob'` מפעילה את `fetchBio('Bob')`
+- בחירה ב-`'Taylor'` מפעילה את `fetchBio('Taylor')`
+- **שליפת `'Taylor'` מסתיימת *לפני* שליפת `'Bob'`**
+- האפקט מהעיבוד `'Taylor'` קורא `setBio('This is Taylor’s bio')`
+- השליפה של `'Bob'` הושלמה
+- ההשפעה מהעיבוד `'Bob'` קורא `setBio('This is Bob’s bio')`
 
-This is why you see Bob's bio even though Taylor is selected. Bugs like this are called [race conditions](https://en.wikipedia.org/wiki/Race_condition) because two asynchronous operations are "racing" with each other, and they might arrive in an unexpected order.
+זו הסיבה שאתה רואה את הביוגרפיה של בוב למרות שטיילור נבחרה. באגים כמו זה נקראים [תנאי מירוץ](https://en.wikipedia.org/wiki/Race_condition) because שתי פעולות אסינכרוניות "דוהרות" אחת עם השנייה, והן עשויות להגיע בסדר לא צפוי.
 
-To fix this race condition, add a cleanup function:
+כדי לתקן את מצב המירוץ הזה, הוסף פונקציית ניקוי:
 
 <Sandpack>
 
@@ -1564,16 +1564,16 @@ export async function fetchBio(person) {
 
 </Sandpack>
 
-Each render's Effect has its own `ignore` variable. Initially, the `ignore` variable is set to `false`. However, if an Effect gets cleaned up (such as when you select a different person), its `ignore` variable becomes `true`. So now it doesn't matter in which order the requests complete. Only the last person's Effect will have `ignore` set to `false`, so it will call `setBio(result)`. Past Effects have been cleaned up, so the `if (!ignore)` check will prevent them from calling `setBio`:
+לאפקט של כל עיבוד יש משתנה `ignore` משלו. בתחילה, המשתנה `ignore` מוגדר ל-`false`. עם זאת, אם אפקט מתנקה (כגון כשאתה בוחר אדם אחר), המשתנה `ignore` שלו הופך ל-`true`. אז עכשיו זה לא משנה באיזה סדר השלמות הבקשות. רק לאפקט של האדם האחרון יהיה `ignore` מוגדר ל-`false`, אז הוא יקרא `setBio(result)`. אפקטים קודמים נוקו, אז הסימון `if (!ignore)` ימנע מהם לקרוא `setBio`:
 
-- Selecting `'Bob'` triggers `fetchBio('Bob')`
-- Selecting `'Taylor'` triggers `fetchBio('Taylor')` **and cleans up the previous (Bob's) Effect**
-- Fetching `'Taylor'` completes *before* fetching `'Bob'`
-- The Effect from the `'Taylor'` render calls `setBio('This is Taylor’s bio')`
-- Fetching `'Bob'` completes
-- The Effect from the `'Bob'` render **does not do anything because its `ignore` flag was set to `true`**
+- בחירה ב-`'Bob'` מפעילה את `fetchBio('Bob')`
+- בחירה ב-`'Taylor'` מפעילה את `fetchBio('Taylor')` **ומנקה את האפקט הקודם (של בוב**)
+- שליפת `'Taylor'` מסתיימת *לפני* שליפת `'Bob'`
+- האפקט מהעיבוד `'Taylor'` קורא `setBio('This is Taylor’s bio')`
+- השליפה של `'Bob'` הושלמה
+- האפקט מהעיבוד `'Bob'` **לא עושה כלום מכיוון שuse הדגל שלו `ignore` הוגדר ל-`true`**
 
-In addition to ignoring the result of an outdated API call, you can also use [`AbortController`](https://developer.mozilla.org/en-US/docs/Web/API/AbortController) to cancel the requests that are no longer needed. However, by itself this is not enough to protect against race conditions. More asynchronous steps could be chained after the fetch, so using an explicit flag like `ignore` is the most reliable way to fix this type of problems.
+בנוסף להתעלמות מהתוצאה של קריאת API מיושנת, אתה יכול גם use [`AbortController`](https://developer.mozilla.org/en-US/docs/Web/API/AbortController) כדי לבטל את הבקשות שאינן נחוצות יותר. עם זאת, כשלעצמו זה לא מספיק כדי להגן מפני תנאי מרוץ. שלבים אסינכרוניים נוספים יכולים להיות משורשרים לאחר השליפה, כך ששימוש בדגל המפורש ביותר של K_1 כמו __T פתרון בעיות זה.
 
 </Solution>
 

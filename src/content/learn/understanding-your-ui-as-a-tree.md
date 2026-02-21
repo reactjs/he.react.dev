@@ -1,41 +1,41 @@
 ---
-title: Understanding Your UI as a Tree
+title: "ה-UI שלכם כעץ"
 ---
 
 <Intro>
 
-Your React app is taking shape with many components being nested within each other. How does React keep track of your app's component structure?
+אפליקציית React שלך מתעצבת כאשר רכיבים רבים מקוננים זה בזה. איך React עוקב אחר מבנה הרכיבים של האפליקציה שלך?
 
-React, and many other UI libraries, model UI as a tree. Thinking of your app as a tree is useful for understanding the relationship between components. This understanding will help you debug future concepts like performance and state management.
+React, וספריות UI אחרים, דגמים את כעץ. חשיבה על האפליקציה שלך כעל עץ שימושית להבנת הקשר בין רכיבים. הבנה זו תעזור לך לנפות באגים במושגים עתידיים כמו ביצועים וניהול state.
 
 </Intro>
 
 <YouWillLearn>
 
-* How React "sees" component structures
-* What a render tree is and what it is useful for
-* What a module dependency tree is and what it is useful for
+* How React "רואה" מבנים של רכיבים
+* מהו עץ טיוח ולמה הוא שימושי
+* מהו עץ תלות מודול ולמה הוא שימושי
 
 </YouWillLearn>
 
-## Your UI as a tree {/*your-ui-as-a-tree*/}
+## ממשק המשתמש שלך כעץ {/*הממשק-שלך-כעץ*/}
 
-Trees are a relationship model between items and UI is often represented using tree structures. For example, browsers use tree structures to model HTML ([DOM](https://developer.mozilla.org/docs/Web/API/Document_Object_Model/Introduction)) and CSS ([CSSOM](https://developer.mozilla.org/docs/Web/API/CSS_Object_Model)). Mobile platforms also use trees to represent their view hierarchy.
+עצים הם מודל קשר בין פריטים וממשק משתמש מי מוצג לרוב באמצעות מבני עצים. לדוגמה, דפדפנים משתמשים במבני עץ למודל HTML ([DOM](https://developer.mozilla.org/docs/Web/API/Document_Object_Model/Introduction)) ו-CSS ([CSSOM](https://developer.mozilla.org/docs/Web/API/CSS_Object_Model)). פלטפורמות משתמשות ניידות גם בעלות כדי להציג את התצוגה ההיררכית.
 
 <Diagram name="preserving_state_dom_tree" height={193} width={864} alt="Diagram with three sections arranged horizontally. In the first section, there are three rectangles stacked vertically, with labels 'Component A', 'Component B', and 'Component C'. Transitioning to the next pane is an arrow with the React logo on top labeled 'React'. The middle section contains a tree of components, with the root labeled 'A' and two children labeled 'B' and 'C'. The next section is again transitioned using an arrow with the React logo on top labeled 'React DOM'. The third and final section is a wireframe of a browser, containing a tree of 8 nodes, which has only a subset highlighted (indicating the subtree from the middle section).">
 
-React creates a UI tree from your components. In this example, the UI tree is then used to render to the DOM.
+React יוצר עץ ממשק משתמש מהרכיבים שלך. בדוגמה זו, עץ ה-UI משמש לאחר מכן לעיבוד ל-DOM.
 </Diagram>
 
-Like browsers and mobile platforms, React also uses tree structures to manage and model the relationship between components in a React app. These trees are useful tools to understand how data flows through a React app and how to optimize rendering and app size.
+כמו דפדפנים ופלטפורמות ניידות, גם React משתמשת במבני עצים כדי לנהל ולדגמן את הקשר בין רכיבים באפליקציית React. עצים אלו הם כל שימושים כדי להבין כיצד נתונים זורמים דרך אפליקציית React וכיצד לייעל את העיבוד ואת גודל האפליקציה.
 
-## The Render Tree {/*the-render-tree*/}
+## עץ הרינדור {/*the-render-tree*/}
 
-A major feature of components is the ability to compose components of other components. As we [nest components](/learn/your-first-component#nesting-and-organizing-components), we have the concept of parent and child components, where each parent component may itself be a child of another component.
+תכונה עיקרית של רכיבים היא כוללת להרכיב רכיבים של רכיבים אחרים. כפי שאנו [רכיבי הקן](/learn/your-first-component#nesting-and-organizing-components), יש לנו את הרעיון של רכיבי אב וילד, שבו כל רכיב הורה עשוי להיות בעצמו ילד של רכיב אחר.
 
-When we render a React app, we can model this relationship in a tree, known as the render tree.
+כאשר אנו מעבדים אפליקציית React, אנו יכולים לדגמן את הקשר הזה בעץ, המכונה עץ העיבוד.
 
-Here is a React app that renders inspirational quotes.
+הנה אפליקציית React שמציגה ציטוטים מעוררי השראה.
 
 <Sandpack>
 
@@ -120,32 +120,32 @@ export default [
 
 <Diagram name="render_tree" height={250} width={500} alt="Tree graph with five nodes. Each node represents a component. The root of the tree is App, with two arrows extending from it to 'InspirationGenerator' and 'FancyText'. The arrows are labelled with the word 'renders'. 'InspirationGenerator' node also has two arrows pointing to nodes 'FancyText' and 'Copyright'.">
 
-React creates a *render tree*, a UI tree, composed of the rendered components.
+React יוצר *עץ רינדור*, עץ ממשק משתמש, המורכב מהרכיבים המעובדים.
 
 
 </Diagram>
 
-From the example app, we can construct the above render tree.
+מהאפליקציה לדוגמה, נוכל לבנות את עץ הרינדור לעיל.
 
-The tree is composed of nodes, each of which represents a component. `App`, `FancyText`, `Copyright`, to name a few, are all nodes in our tree.
+העץ מורכב מצמתים, שכל אחד מהם מייצג רכיב. `אפליקציה`, `FancyText`, `זכויות יוצרים`, אם להזכיר כמה, הם כולם צמתים בעץ שלנו.
 
-The root node in a React render tree is the [root component](/learn/importing-and-exporting-components#the-root-component-file) of the app. In this case, the root component is `App` and it is the first component React renders. Each arrow in the tree points from a parent component to a child component.
+צומת השורש בעץ רינדור React הוא [רכיב השורש](/learn/importing-and-exporting-components#the-root-component-file) של האפליקציה. במקרה זה, רכיב השורש הוא 'אפליקציה' והרכיב הראשון ש-React מעבד. כל חץ בעץ מצביע מרכיב אב לרכיב צאצא.
 
 <DeepDive>
 
-#### Where are the HTML tags in the render tree? {/*where-are-the-html-elements-in-the-render-tree*/}
+#### היכן נמצא תגי ה-HTML בעץ הרינדור? {/*היכן-ה-html-elements-in-the-render-tree*/}
 
-You'll notice in the above render tree, there is no mention of the HTML tags that each component renders. This is because the render tree is only composed of React [components](learn/your-first-component#components-ui-building-blocks).
+תבחין בעץ הרינדור לעיל, אין אזכור לתגיות HTML שכל רכיב מעבד. למה היא שעץ הרינדור מורכבת רק מ-React [רכיבים](למד/הרכיב-הראשון שלך#רכיבי-UI-אבני-בניין).
 
-React, as a UI framework, is platform agnostic. On react.dev, we showcase examples that render to the web, which uses HTML markup as its UI primitives. But a React app could just as likely render to a mobile or desktop platform, which may use different UI primitives like [UIView](https://developer.apple.com/documentation/uikit/uiview) or [FrameworkElement](https://learn.microsoft.com/en-us/dotnet/api/system.windows.frameworkelement?view=windowsdesktop-7.0).
+React, כמסגרת ממשק משתמש, היא אגנוסטית לפלטפורמה. ב-.dev, אנו מציגים דוגמאות לעיבוד משתמשים, משתמש בסימון HTML כפרימיטיביות ממשק המשתמש שלו. אבל אפליקציית React יכולה באותה מידה להיות עיבוד לפלטפורמה ניידת או שולחנית, שעשויה להשתמש בפרימיטיבים שונים של ממשק משתמש כמו [UIView](https://developer.apple.com/documentation/uikit/uiview) או [FrameworkElement](https://learn.microsoft.com/en-us/dotnet/api/system.windows.windows-element.desktop=windows.frameworkelement.de?hl=iw).
 
-These platform UI primitives are not a part of React. React render trees can provide insight to our React app regardless of what platform your app renders to.
+הפרימיטיבים האלה של ממשק המשתמש של הפלטפורמה הזו חלק מ-React. עצי רינדור React יכולים לספק תובנות לאפליקציית React שלנו ללא קשר לאיזו פלטפורמה האפליקציה שלך מעבדת.
 
 </DeepDive>
 
-A render tree represents a single render pass of a React application. With [conditional rendering](/learn/conditional-rendering), a parent component may render different children depending on the data passed.
+עץ רינדור מנקודת מבט רינדור בודד של יישום React. עם [עיבוד מותנה](/learn/conditional-rendering), רכיב אב עשוי לעבד ילדים שונים לנתונים המועברים.
 
-We can update the app to conditionally render either an inspirational quote or color.
+אנחנו יכולים לעדכן את האפליקציה כדי להציג ציטוט או צבע בצורה מותנית.
 
 <Sandpack>
 
@@ -247,54 +247,54 @@ export default [
 
 <Diagram name="conditional_render_tree" height={250} width={561} alt="Tree graph with six nodes. The top node of the tree is labelled 'App' with two arrows extending to nodes labelled 'InspirationGenerator' and 'FancyText'. The arrows are solid lines and are labelled with the word 'renders'. 'InspirationGenerator' node also has three arrows. The arrows to nodes 'FancyText' and 'Color' are dashed and labelled with 'renders?'. The last arrow points to the node labelled 'Copyright' and is solid and labelled with 'renders'.">
 
-With conditional rendering, across different renders, the render tree may render different components.
+עם עיבוד מותנה, על פני עיבודים שונים, עץ העיבוד עשוי לעבד רכיבים שונים.
 
 </Diagram>
 
-In this example, depending on what `inspiration.type` is, we may render `<FancyText>` or `<Color>`. The render tree may be different for each render pass.
+בדוגמה זו, בהתאם למה זה `inspiration.type`, אנו `<FancyText>` או `<Color>`. עיבוד עץ עשוי להיות שונה עבור כל המשך עיבוד.
 
-Although render trees may differ across render passes, these trees are generally helpful for identifying what the *top-level* and *leaf components* are in a React app. Top-level components are the components nearest to the root component and affect the rendering performance of all the components beneath them and often contain the most complexity. Leaf components are near the bottom of the tree and have no child components and are often frequently re-rendered.
+למרות שעצי רינדור משתנים בין מעברי רינדור, עצים אלה מועילים בדרך רמה כללית לזיהוי מה הם *ה העליונה* ורכיבי *העלים* באפליקציית React. רכיבים ברמה העליונה הם הרכיבים הקרובים ביותר לרכיב השורש ומשפיעים על ביצועי הרינדור של כל הרכיבים שמתחתיהם ולעיתים מכילים את המורכבות ביותר. רכיבי העלים נמצאים קרוב לתחתית העץ ואין להם רכיבי צאצא ולעתים קרבות הם עובדים מחדש.
 
-Identifying these categories of components are useful for understanding data flow and performance of your app.
+זיהוי קטגוריות אלו של רכיבים שימושי להבנת זרימת הנתונים והביצועים של האפליקציה שלך.
 
-## The Module Dependency Tree {/*the-module-dependency-tree*/}
+## עץ התלות של המודול {/*the-module-dependency-tree*/}
 
-Another relationship in a React app that can be modeled with a tree are an app's module dependencies. As we [break up our components](/learn/importing-and-exporting-components#exporting-and-importing-a-component) and logic into separate files, we create [JS modules](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules) where we may export components, functions, or constants.
+מערכת יחסים נוספת באפליקציית React ניתן לעצב עם עץ היא התלות במודול של אפליקציה. כאשר אנו [מפרקים את הרכיבים שלנו](/learn/importing-and-exporting-components#exporting-and-importing-a-component) והלוגיקה לקבצים נפרדים, אנו יוצרים [מודולי JS](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules) אנו מספקים תועלת, או לייצא רכיבים קבועים, פונקציות.
 
-Each node in a module dependency tree is a module and each branch represents an `import` statement in that module.
+כל צומת בעץ התלות של מודול הוא מודול וכל ענף מייצג הצהרת 'ייבוא' במודול זה.
 
-If we take the previous Inspirations app, we can build a module dependency tree, or dependency tree for short.
+אם ניקח את אפליקציית Inspirations הקודמת, נוכל לבנות עץ תלות של מודול, או בקיצור עץ תלות.
 
 <Diagram name="module_dependency_tree" height={250} width={658} alt="A tree graph with seven nodes. Each node is labelled with a module name. The top level node of the tree is labelled 'App.js'. There are three arrows pointing to the modules 'InspirationGenerator.js', 'FancyText.js' and 'Copyright.js' and the arrows are labelled with 'imports'. From the 'InspirationGenerator.js' node, there are three arrows that extend to three modules: 'FancyText.js', 'Color.js', and 'inspirations.js'. The arrows are labelled with 'imports'.">
 
-The module dependency tree for the Inspirations app.
+עץ התלות במודול עבור אפליקציית Inspirations.
 
 </Diagram>
 
-The root node of the tree is the root module, also known as the entrypoint file. It often is the module that contains the root component.
+צומת השורש של העץ הוא מודול השורש, הידוע גם כקובץ נקודת הכניסה. לעתים קרובות זה המודול שמכיל את רכיב השורש.
 
-Comparing to the render tree of the same app, there are similar structures but some notable differences:
+בהשוואה לעץ הרינדור של אותה אפליקציה, ישנם מבנים דומים אך כמה הבדלים בולטים:
 
-* The nodes that make-up the tree represent modules, not components.
-* Non-component modules, like `inspirations.js`, are also represented in this tree. The render tree only encapsulates components.
-* `Copyright.js` appears under `App.js` but in the render tree, `Copyright`, the component, appears as a child of `InspirationGenerator`. This is because `InspirationGenerator` accepts JSX as [children props](/learn/passing-props-to-a-component#passing-jsx-as-children), so it renders `Copyright` as a child component but does not import the module.
+* הצמתים המרכיבים את העץ מייצגים מודולים, לא רכיבים.
+* מודולים רכיבים, כמו `inspirations.js`, מי מוצגים גם הם בעץ זה. עץ העיבוד מקפל רק רכיבים.
+* `Copyright.js` מופיע תחת `App.js` אך בעץ הרינדור, `Copyright`, הרכיב, מופיע כצאצא של `InspirationGenerator`. למה היא ש-'InspirationGenerator' מקבלת את JSX כ-[children props](/learn/passing-props-to-a-component#passing-jsx-as-children), אז הוא יוצר את 'זכויות יוצרים' כרכיב צאצא אך אינו מייבא את המודול.
 
-Dependency trees are useful to determine what modules are necessary to run your React app. When building a React app for production, there is typically a build step that will bundle all the necessary JavaScript to ship to the client. The tool responsible for this is called a [bundler](https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Understanding_client-side_tools/Overview#the_modern_tooling_ecosystem), and bundlers will use the dependency tree to determine what modules should be included.
+עצי תלות שימושיים כדי לקבוע אילו מודולים נחוצים להפעלת אפליקציית React שלך. כאשר בונים אפליקציית React לייצור, יש בדרך כלל שלב בנייה שיצרף את כל ה-JavaScript הדרוש למשלוח ללקוח. הכלי שאחראי לשם נקרא [bundler](https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Understanding_client-side_tools/Overview#the_modern_tooling_ecosystem), ו-bunlers ישתמשו בעץ התלות כדי לקבוע אילו מודולים יש לכלול.
 
-As your app grows, often the bundle size does too. Large bundle sizes are expensive for a client to download and run. Large bundle sizes can delay the time for your UI to get drawn. Getting a sense of your app's dependency tree may help with debugging these issues.
+ככל שהאפליקציה שלך גדלה, לעתים קרובות גם גודל החבילה עושה זאת. גדלי חבילות גדולים יקרים ללקוח להוריד ולהפעיל. גדלים גדולים של חבילות יכולים לעכב את זמן הציור של ממשק המשתמש שלך. קבלת תחושה של עץ התלות של האפליקציה שלך עשויה לעזור באיתור בעיות אלו.
 
-[comment]: <> (perhaps we should also deep dive on conditional imports)
+[הערה]: <> (אולי עלינו לצלול לעומק גם ביבוא מותנה)
 
 <Recap>
 
-* Trees are a common way to represent the relationship between entities. They are often used to model UI.
-* Render trees represent the nested relationship between React components across a single render.
-* With conditional rendering, the render tree may change across different renders. With different prop values, components may render different children components.
-* Render trees help identify what the top-level and leaf components are. Top-level components affect the rendering performance of all components beneath them and leaf components are often re-rendered frequently. Identifying them is useful for understanding and debugging rendering performance.
-* Dependency trees represent the module dependencies in a React app.
-* Dependency trees are used by build tools to bundle the necessary code to ship an app.
-* Dependency trees are useful for debugging large bundle sizes that slow time to paint and expose opportunities for optimizing what code is bundled.
+* עצים הם דרך נפוצה לייצג את היחסים בין ישויות. הם משמשים לעתים קרובות למודל ממשק משתמש.
+* עצי רינדור מייצגים את הקשר המקנן בין רכיבי React על פני רינדור בודד.
+* עם עיבוד מותנה, עץ העיבוד עשוי להשתנות בין עיבודים שונים. עם ערכי אב שונים, רכיבים עשויים להציג רכיבי ילדים שונים.
+* עצי עיבוד עוזרים לזהות מהם הרכיבים ברמה העליונה והעלים. רכיבים ברמה העליונה משפיעים על ביצועי הרינדור של כל הרכיבים שמתחתיהם ורכיבי עלים מעובדים לעתים קרובות מחדש. זיהוים שימושי להבנת ביצועי רינדור וניפוי באגים.
+* עצי תלות מייצגים את התלות במודול באפליקציית React.
+* עצי תלות משמשים כלי בנייה כדי לאגד את הקוד הדרוש למשלוח אפליקציה.
+* עצי תלות שימושיים לאיתור באגים בגדלים גדולים של חבילות שמאטות את זמן הצביעה וחושפים הזדמנויות לאופטימיזציה של הקוד שמצורף.
 
 </Recap>
 
-[TODO]: <> (Add challenges)
+[TODO]: <> (הוסף אתגרים)

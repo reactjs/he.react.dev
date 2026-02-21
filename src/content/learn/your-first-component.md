@@ -1,24 +1,24 @@
 ---
-title: Your First Component
+title: הקומפוננטה הראשונה שלכם
 ---
 
 <Intro>
 
-*Components* are one of the core concepts of React. They are the foundation upon which you build user interfaces (UI), which makes them the perfect place to start your React journey!
+*רכיבים* הם אחד ממושגי הליבה של React. הם הבסיס שעליו אתה בונה ממשקי user (UI), מה שהופך אותם למקום המושלם להתחיל את המסע שלך ב-React!
 
 </Intro>
 
 <YouWillLearn>
 
-* What a component is
-* What role components play in a React application
-* How to write your first React component
+* מהו רכיב
+* איזה תפקיד ממלאים רכיבים ביישום React
+* איך לכתוב את הרכיב React הראשון שלך
 
 </YouWillLearn>
 
-## Components: UI building blocks {/*components-ui-building-blocks*/}
+## רכיבים: אבני הבניין של ממשק המשתמש {/*components-ui-building-blocks*/}
 
-On the Web, HTML lets us create rich structured documents with its built-in set of tags like `<h1>` and `<li>`:
+באינטרנט, HTML מאפשר לנו ליצור מסמכים מובנים עשירים עם ערכת התגים המובנית שלו כמו ``<h1>`` ו-``<li>``:
 
 ```html
 <article>
@@ -31,11 +31,11 @@ On the Web, HTML lets us create rich structured documents with its built-in set 
 </article>
 ```
 
-This markup represents this article `<article>`, its heading `<h1>`, and an (abbreviated) table of contents as an ordered list `<ol>`. Markup like this, combined with CSS for style, and JavaScript for interactivity, lies behind every sidebar, avatar, modal, dropdown—every piece of UI you see on the Web.
+סימון זה מייצג את המאמר `<article>`, את הכותרת שלו ``<h1>``, ותוכן עניינים (מקוצר) כרשימה מסודרת ``<ol>``. סימון כזה, בשילוב עם CSS עבור סגנון, ו-JavaScript עבור אינטראקטיביות, נמצא מאחורי כל סרגל צד, דמות, מודאל, תפריט נפתח - כל פיסת ממשק משתמש שאתה רואה באינטרנט.
 
-React lets you combine your markup, CSS, and JavaScript into custom "components", **reusable UI elements for your app.** The table of contents code you saw above could be turned into a `<TableOfContents />` component you could render on every page. Under the hood, it still uses the same HTML tags like `<article>`, `<h1>`, etc.
+React מאפשר לך לשלב את הסימון שלך, CSS ו-JavaScript ל"רכיבים" מותאמים אישית, **רכיבי ממשק משתמש ניתנים לשימוש חוזר עבור האפליקציה שלך.** ניתן להפוך את קוד תוכן העניינים שראית למעלה לרכיב `<TableOfContents />` שתוכל לעבד בכל דף. מתחת למכסה המנוע, זה עדיין use אותם תגיות HTML כמו `<article>`, ``<h1>`` וכו'.
 
-Just like with HTML tags, you can compose, order and nest components to design whole pages. For example, the documentation page you're reading is made out of React components:
+בדיוק כמו עם תגיות HTML, אתה יכול לחבר, להזמין ולקנן רכיבים כדי לעצב דפים שלמים. לדוגמה, דף התיעוד שאתה קורא מורכב ממרכיבי React:
 
 ```js
 <PageLayout>
@@ -51,11 +51,11 @@ Just like with HTML tags, you can compose, order and nest components to design w
 </PageLayout>
 ```
 
-As your project grows, you will notice that many of your designs can be composed by reusing components you already wrote, speeding up your development. Our table of contents above could be added to any screen with `<TableOfContents />`! You can even jumpstart your project with the thousands of components shared by the React open source community like [Chakra UI](https://chakra-ui.com/) and [Material UI.](https://material-ui.com/)
+ככל שהפרויקט שלך יגדל, אתה תבחין שניתן להרכיב רבים מהעיצובים שלך על ידי שימוש חוזר ברכיבים שכבר כתבת, לזרז את הפיתוח שלך. ניתן להוסיף את תוכן העניינים שלנו לעיל לכל מסך עם `<TableOfContents />`! אתה יכול אפילו להזניק את הפרויקט שלך עם אלפי הרכיבים המשותפים לקהילת הקוד הפתוח React כמו [Chakra UI](https://chakra-ui.com/) ו-[Material UI.](https://material-ui.com/)
 
-## Defining a component {/*defining-a-component*/}
+## הגדרת רכיב {/*defining-a-component*/}
 
-Traditionally when creating web pages, web developers marked up their content and then added interaction by sprinkling on some JavaScript. This worked great when interaction was a nice-to-have on the web. Now it is expected for many sites and all apps. React puts interactivity first while still using the same technology: **a React component is a JavaScript function that you can _sprinkle with markup_.** Here's what that looks like (you can edit the example below):
+באופן מסורתי בעת יצירת דפי אינטרנט, מפתחי אינטרנט סימנו את התוכן שלהם ולאחר מכן הוסיפו אינטראקציה על ידי פיזור על כמה JavaScript. זה עבד מצוין כשהאינטראקציה הייתה נחמדה לביצוע באינטרנט. כעת הוא צפוי לאתרים רבים ולכל האפליקציות. React שם את האינטראקטיביות במקום הראשון תוך שימוש באותה טכנולוגיה: **רכיב React הוא פונקציית JavaScript שניתן _לפזר עליה סימון_.** כך זה נראה (תוכל לערוך את הדוגמה למטה):
 
 <Sandpack>
 
@@ -76,33 +76,33 @@ img { height: 200px; }
 
 </Sandpack>
 
-And here's how to build a component:
+והנה איך לבנות רכיב:
 
-### Step 1: Export the component {/*step-1-export-the-component*/}
+### שלב 1: ייצא את הרכיב {/*step-1-export-the-component*/}
 
-The `export default` prefix is a [standard JavaScript syntax](https://developer.mozilla.org/docs/web/javascript/reference/statements/export) (not specific to React). It lets you mark the main function in a file so that you can later import it from other files. (More on importing in [Importing and Exporting Components](/learn/importing-and-exporting-components)!)
+הקידומת `export default` היא [תחביר JavaScript סטנדרטי](https://developer.mozilla.org/docs/web/javascript/reference/statements/export) (לא ספציפית לReact). היא מאפשרת לסמן את הפונקציה הראשית בקובץ, כך שתוכל לייבא אותה מאוחר יותר מקבצים אחרים. (עוד על ייבוא ​​ב-[ייבוא ​​וייצוא רכיבים](/learn/ייבוא)-ו-ייצוא!
 
-### Step 2: Define the function {/*step-2-define-the-function*/}
+### שלב 2: הגדר את הפונקציה {/*step-2-define-the-function*/}
 
-With `function Profile() { }` you define a JavaScript function with the name `Profile`.
+עם `function Profile() { }` אתה מגדיר פונקציה JavaScript עם השם `Profile`.
 
 <Pitfall>
 
-React components are regular JavaScript functions, but **their names must start with a capital letter** or they won't work!
+רכיבי React הם פונקציות JavaScript רגילות, אבל **השמות שלהם חייבים להתחיל באות גדולה** אחרת הם לא יעבדו!
 
 </Pitfall>
 
-### Step 3: Add markup {/*step-3-add-markup*/}
+### שלב 3: הוסף סימון {/*step-3-add-markup*/}
 
-The component returns an `<img />` tag with `src` and `alt` attributes. `<img />` is written like HTML, but it is actually JavaScript under the hood! This syntax is called [JSX](/learn/writing-markup-with-jsx), and it lets you embed markup inside JavaScript.
+הרכיב מחזיר תג `<img />` עם תכונות `src` ו`alt`. `<img />` כתוב כמו HTML, אבל הוא למעשה JavaScript מתחת למכסה המנוע! תחביר זה נקרא [JSX](/learn/writing-markup-with-jsx), והוא מאפשר להטמיע סימון בתוך JavaScript.
 
-Return statements can be written all on one line, as in this component:
+ניתן לכתוב statements להחזרה כולם בשורה אחת, כמו ברכיב זה:
 
 ```js
 return <img src="https://i.imgur.com/MK3eW3As.jpg" alt="Katherine Johnson" />;
 ```
 
-But if your markup isn't all on the same line as the `return` keyword, you must wrap it in a pair of parentheses:
+אבל אם הסימון שלך לא נמצא באותה שורה כמו מילת המפתח `return`, עליך לעטוף אותה בזוג סוגריים:
 
 ```js
 return (
@@ -114,13 +114,13 @@ return (
 
 <Pitfall>
 
-Without parentheses, any code on the lines after `return` [will be ignored](https://stackoverflow.com/questions/2846283/what-are-the-rules-for-javascripts-automatic-semicolon-insertion-asi)!
+ללא סוגריים, כל קוד בשורות שאחרי `return` [יתעלם](https://stackoverflow.com/questions/2846283/what-are-the-rules-for-javascripts-automatic-semicolon-insertion-asi)!
 
 </Pitfall>
 
-## Using a component {/*using-a-component*/}
+## שימוש ברכיב {/*using-a-component*/}
 
-Now that you've defined your `Profile` component, you can nest it inside other components. For example, you can export a `Gallery` component that uses multiple `Profile` components:
+כעת לאחר שהגדרת את רכיב `Profile` שלך, אתה יכול לקנן אותו בתוך רכיבים אחרים. לדוגמה, אתה יכול לייצא רכיב `Gallery` שuse של רכיבי `Profile` מרובים:
 
 <Sandpack>
 
@@ -152,14 +152,14 @@ img { margin: 0 10px 10px 0; height: 90px; }
 
 </Sandpack>
 
-### What the browser sees {/*what-the-browser-sees*/}
+### מה הדפדפן רואה {/*what-the-browser-sees*/}
 
-Notice the difference in casing:
+שימו לב להבדל במארז:
 
-* `<section>` is lowercase, so React knows we refer to an HTML tag.
-* `<Profile />` starts with a capital `P`, so React knows that we want to use our component called `Profile`.
+* ``<section>`` הוא אותיות קטנות, אז React יודע שאנחנו מתייחסים לתג HTML.
+* `<Profile />` מתחיל באות גדולה `P`, אז React יודע שאנחנו רוצים use הרכיב שלנו שנקרא `Profile`.
 
-And `Profile` contains even more HTML: `<img />`. In the end, this is what the browser sees:
+ו-`Profile` מכיל אפילו יותר HTML: `<img />`. בסופו של דבר, זה מה שהדפדפן רואה:
 
 ```html
 <section>
@@ -170,15 +170,15 @@ And `Profile` contains even more HTML: `<img />`. In the end, this is what the b
 </section>
 ```
 
-### Nesting and organizing components {/*nesting-and-organizing-components*/}
+### קינון וארגון רכיבים {/*nesting-and-organizing-components*/}
 
-Components are regular JavaScript functions, so you can keep multiple components in the same file. This is convenient when components are relatively small or tightly related to each other. If this file gets crowded, you can always move `Profile` to a separate file. You will learn how to do this shortly on the [page about imports.](/learn/importing-and-exporting-components)
+רכיבים הם פונקציות JavaScript רגילות, כך שתוכל לשמור רכיבים מרובים באותו קובץ. זה נוח כאשר רכיבים קטנים יחסית או קשורים זה לזה באופן הדוק. אם הקובץ הזה נהיה צפוף, אתה תמיד יכול להעביר את `Profile` לקובץ נפרד. תלמד כיצד לעשות זאת בקרוב ב[דף על ייבוא.](/learn/importing-and-exporting-components)
 
-Because the `Profile` components are rendered inside `Gallery`—even several times!—we can say that `Gallery` is a **parent component,** rendering each `Profile` as a "child". This is part of the magic of React: you can define a component once, and then use it in as many places and as many times as you like.
+Because רכיבי `Profile` מוצגים בתוך `Gallery` - אפילו כמה פעמים! - אנו יכולים לומר ש`Gallery` הוא **רכיב אב,** המציג כל `Profile` כ"ילד". זה חלק מהקסם של React: אתה יכול להגדיר רכיב פעם אחת, ואז use אותו בכמה מקומות וכמה פעמים שתרצה.
 
 <Pitfall>
 
-Components can render other components, but **you must never nest their definitions:**
+רכיבים יכולים לעבד רכיבים אחרים, אבל **אסור לקנן את ההגדרות שלהם:**
 
 ```js {2-5}
 export default function Gallery() {
@@ -190,7 +190,7 @@ export default function Gallery() {
 }
 ```
 
-The snippet above is [very slow and causes bugs.](/learn/preserving-and-resetting-state#different-components-at-the-same-position-reset-state) Instead, define every component at the top level:
+הקטע שלמעלה הוא [מאוד איטי ו-causes באגים.](/learn/preserving-and-resetting-state#different-components-at-the-same-position-reset-state) במקום זאת, הגדר כל רכיב ברמה העליונה:
 
 ```js {5-8}
 export default function Gallery() {
@@ -203,34 +203,34 @@ function Profile() {
 }
 ```
 
-When a child component needs some data from a parent, [pass it by props](/learn/passing-props-to-a-component) instead of nesting definitions.
+כאשר רכיב צאצא זקוק לכמה נתונים מהורה, [העבירו אותם על ידי props](/learn/passing-props-to-a-component) במקום הגדרות קינון.
 
 </Pitfall>
 
 <DeepDive>
 
-#### Components all the way down {/*components-all-the-way-down*/}
+#### רכיבים עד הסוף {/*components-all-the-way-down*/}
 
-Your React application begins at a "root" component. Usually, it is created automatically when you start a new project. For example, if you use [CodeSandbox](https://codesandbox.io/) or if you use the framework [Next.js](https://nextjs.org/), the root component is defined in `pages/index.js`. In these examples, you've been exporting root components.
+היישום React שלך מתחיל ברכיב "שורש". בדרך כלל, הוא נוצר באופן אוטומטי כאשר אתה מתחיל פרויקט חדש. לדוגמה, אם אתה use [CodeSandbox](https://codesandbox.io/) או אם אתה use את המסגרת [Next.js](https://nextjs.org/), רכיב השורש מוגדר ב-`pages/index.js`. בדוגמאות אלה, ייצאת רכיבי בסיס.
 
-Most React apps use components all the way down. This means that you won't only use components for reusable pieces like buttons, but also for larger pieces like sidebars, lists, and ultimately, complete pages! Components are a handy way to organize UI code and markup, even if some of them are only used once.
+רוב האפליקציות React use רכיבים עד הסוף. משמעות הדבר היא שלא רק use רכיבים עבור חלקים לשימוש חוזר כמו כפתורים, אלא גם עבור חלקים גדולים יותר כמו סרגלי צד, רשימות, ובסופו של דבר, דפים שלמים! רכיבים הם דרך שימושית לארגון קוד UI ותגיות, גם אם חלקם used פעם אחת בלבד.
 
-[React-based frameworks](/learn/start-a-new-react-project) take this a step further. Instead of using an empty HTML file and letting React "take over" managing the page with JavaScript, they *also* generate the HTML automatically from your React components. This allows your app to show some content before the JavaScript code loads.
+[React-based frameworks](/learn/start-a-new-react-project) לוקחים את זה צעד קדימה. במקום להשתמש בקובץ HTML ריק ולתת לReact "להשתלט" על ניהול הדף עם JavaScript, הם *גם* מייצרים את HTML באופן אוטומטי ממרכיבי React שלכם. זה מאפשר לאפליקציה שלך להציג תוכן מסוים לפני שהקוד JavaScript נטען.
 
-Still, many websites only use React to [add interactivity to existing HTML pages.](/learn/add-react-to-an-existing-project#using-react-for-a-part-of-your-existing-page) They have many root components instead of a single one for the entire page. You can use as much—or as little—React as you need.
+ובכל זאת, אתרי אינטרנט רבים רק use React כדי [הוסף אינטראקטיביות לדפי HTML קיימים.](/learn/add-react-to-an-existing-project#using-react-for-a-part-of-your-existing-page) יש להם רכיבי בסיס רבים במקום אחד עבור דף אחד. אתה יכול use כמה-או מעט-React כפי שאתה צריך.
 
 </DeepDive>
 
 <Recap>
 
-You've just gotten your first taste of React! Let's recap some key points.
+זה עתה קיבלת את הטעם הראשון שלך מ-React! בואו נסכם כמה נקודות מפתח.
 
-* React lets you create components, **reusable UI elements for your app.**
-* In a React app, every piece of UI is a component.
-* React components are regular JavaScript functions except:
+* React מאפשר לך ליצור רכיבים, **רכיבי ממשק משתמש ניתנים לשימוש חוזר עבור האפליקציה שלך.**
+* באפליקציית React, כל פיסת ממשק משתמש היא רכיב.
+* רכיבי React הם פונקציות JavaScript רגילות למעט:
 
-  1. Their names always begin with a capital letter.
-  2. They return JSX markup.
+1. שמותיהם מתחילים תמיד באות גדולה.
+  2. הם מחזירים סימון JSX.
 
 </Recap>
 
@@ -238,9 +238,9 @@ You've just gotten your first taste of React! Let's recap some key points.
 
 <Challenges>
 
-#### Export the component {/*export-the-component*/}
+#### ייצא את הרכיב {/*export-the-component*/}
 
-This sandbox doesn't work because the root component is not exported:
+ארגז החול הזה לא עובד מכיוון שuse רכיב השורש לא מיוצא:
 
 <Sandpack>
 
@@ -261,11 +261,11 @@ img { height: 181px; }
 
 </Sandpack>
 
-Try to fix it yourself before looking at the solution!
+נסה לתקן את זה בעצמך לפני שתסתכל על הפתרון!
 
 <Solution>
 
-Add `export default` before the function definition like so:
+הוסף `export default` לפני הגדרת הפונקציה כך:
 
 <Sandpack>
 
@@ -286,17 +286,17 @@ img { height: 181px; }
 
 </Sandpack>
 
-You might be wondering why writing `export` alone is not enough to fix this example. You can learn the difference between `export` and `export default` in [Importing and Exporting Components.](/learn/importing-and-exporting-components)
+אולי אתה תוהה מדוע כתיבת `export` לבדה אינה מספיקה כדי לתקן את הדוגמה הזו. אתה יכול ללמוד את ההבדל בין `export` ל-`export default` ב-[יבוא וייצוא רכיבים.](/learn/importing-and-exporting-components)
 
 </Solution>
 
-#### Fix the return statement {/*fix-the-return-statement*/}
+#### תקן את ההחזר statement {/*fix-the-return-statement*/}
 
-Something isn't right about this `return` statement. Can you fix it?
+משהו לא בסדר ב-`return` statement הזה. אתה יכול לתקן את זה?
 
 <Hint>
 
-You may get an "Unexpected token" error while trying to fix this. In that case, check that the semicolon appears *after* the closing parenthesis. Leaving a semicolon inside `return ( )` will cause an error.
+ייתכן שתקבל שגיאת "אסימון בלתי צפוי" בעת ניסיון לתקן זאת. במקרה כזה, בדקו שהנקודה-פסיק מופיע *אחרי* הסוגריים הסוגרים. השארת נקודה-פסיק בתוך `return ( )` תגרום לשגיאהuse.
 
 </Hint>
 
@@ -318,7 +318,7 @@ img { height: 180px; }
 
 <Solution>
 
-You can fix this component by moving the return statement to one line like so:
+אתה יכול לתקן את הרכיב הזה על ידי הזזת statement ההחזרה לשורה אחת כך:
 
 <Sandpack>
 
@@ -334,7 +334,7 @@ img { height: 180px; }
 
 </Sandpack>
 
-Or by wrapping the returned JSX markup in parentheses that open right after `return`:
+או על ידי עטיפה של הסימון JSX המוחזר בסוגריים שנפתחים מיד אחרי `return`:
 
 <Sandpack>
 
@@ -357,9 +357,9 @@ img { height: 180px; }
 
 </Solution>
 
-#### Spot the mistake {/*spot-the-mistake*/}
+#### גלה את הטעות {/*spot-the-mistake*/}
 
-Something's wrong with how the `Profile` component is declared and used. Can you spot the mistake? (Try to remember how React distinguishes components from the regular HTML tags!)
+משהו לא בסדר עם ההכרזה על הרכיב `Profile` וused. האם אתה יכול לזהות את הטעות? (נסה לזכור כיצד React מבדיל רכיבים מהתגיות HTML הרגילות!)
 
 <Sandpack>
 
@@ -393,9 +393,9 @@ img { margin: 0 10px 10px 0; height: 90px; }
 
 <Solution>
 
-React component names must start with a capital letter.
+שמות רכיבים React חייבים להתחיל באות גדולה.
 
-Change `function profile()` to `function Profile()`, and then change every `<profile />` to `<Profile />`:
+שנה את `function profile()` ל-`function Profile()`, ולאחר מכן שנה כל `<profile />` ל-`<Profile />`:
 
 <Sandpack>
 
@@ -429,9 +429,9 @@ img { margin: 0 10px 10px 0; }
 
 </Solution>
 
-#### Your own component {/*your-own-component*/}
+#### רכיב משלך {/*your-own-component*/}
 
-Write a component from scratch. You can give it any valid name and return any markup. If you're out of ideas, you can write a `Congratulations` component that shows `<h1>Good job!</h1>`. Don't forget to export it!
+כתוב רכיב מאפס. אתה יכול לתת לו כל שם חוקי ולהחזיר כל סימון. אם נגמרו לך הרעיונות, תוכל לכתוב רכיב `Congratulations` המציג את ``<h1>`Good job!`</h1>``. אל תשכח לייצא אותו!
 
 <Sandpack>
 
@@ -459,3 +459,4 @@ export default function Congratulations() {
 </Solution>
 
 </Challenges>
+

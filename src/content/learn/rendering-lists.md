@@ -1,24 +1,24 @@
 ---
-title: Rendering Lists
+title: "רשימות עיבוד"
 ---
 
 <Intro>
 
-You will often want to display multiple similar components from a collection of data. You can use the [JavaScript array methods](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array#) to manipulate an array of data. On this page, you'll use [`filter()`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array/filter) and [`map()`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array/map) with React to filter and transform your array of data into an array of components.
+לעתים קרובות תרצה להציג מספר רכיבים דומים מאוסף נתונים. אתה יכול use את [JavaScript שיטות מערך](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array#) כדי לתפעל מערך של נתונים. בדף זה, תבצע use [`filter()`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array/filter) ו-[`map()`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array/map) עם https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array/map) עם https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array/map) עם https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array/map) עם React של רכיבי נתונים של מערך הנתונים שלך ויבצע סינון של מערך נתונים.
 
 </Intro>
 
 <YouWillLearn>
 
-* How to render components from an array using JavaScript's `map()`
-* How to render only specific components using JavaScript's `filter()`
-* When and why to use React keys
+* כיצד לעבד רכיבים ממערך באמצעות `map()` של JavaScript
+* כיצד לעבד רק רכיבים ספציפיים באמצעות `filter()` של JavaScript
+* מתי ומדוע use React מפתחות
 
 </YouWillLearn>
 
-## Rendering data from arrays {/*rendering-data-from-arrays*/}
+## עיבוד נתונים ממערכים {/*rendering-data-from-arrays*/}
 
-Say that you have a list of content.
+אמור שיש לך רשימה של תוכן.
 
 ```js
 <ul>
@@ -30,11 +30,11 @@ Say that you have a list of content.
 </ul>
 ```
 
-The only difference among those list items is their contents, their data. You will often need to show several instances of the same component using different data when building interfaces: from lists of comments to galleries of profile images. In these situations, you can store that data in JavaScript objects and arrays and use methods like [`map()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) and [`filter()`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array/filter) to render lists of components from them.
+ההבדל היחיד בין אותם פריטי רשימה הוא התוכן שלהם, הנתונים שלהם. לעתים קרובות תצטרך להציג מספר מופעים של אותו רכיב באמצעות נתונים שונים בעת בניית ממשקים: מרשימות של הערות ועד גלריות של תמונות פרופיל. במצבים אלה, אתה יכול לאחסן את הנתונים האלה באובייקטים ומערכים JavaScript ובשיטות use כמו [`map()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) ו-[`filter()`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array/filter) כדי להציג רשימות של רכיבים מהם.
 
-Here’s a short example of how to generate a list of items from an array:
+להלן דוגמה קצרה כיצד ליצור רשימה של פריטים ממערך:
 
-1. **Move** the data into an array:
+1. **העבר** את הנתונים למערך:
 
 ```js
 const people = [
@@ -46,19 +46,19 @@ const people = [
 ];
 ```
 
-2. **Map** the `people` members into a new array of JSX nodes, `listItems`:
+2. **מפה** את חברי `people` למערך חדש של צמתים JSX, `listItems`:
 
 ```js
 const listItems = people.map(person => <li>{person}</li>);
 ```
 
-3. **Return** `listItems` from your component wrapped in a `<ul>`:
+3. **החזר** `listItems` מהרכיב שלך עטוף ב-`<ul>`:
 
 ```js
 return <ul>{listItems}</ul>;
 ```
 
-Here is the result:
+הנה התוצאה:
 
 <Sandpack>
 
@@ -85,19 +85,19 @@ li { margin-bottom: 10px; }
 
 </Sandpack>
 
-Notice the sandbox above displays a console error:
+שימו לב שארגז החול שלמעלה מציג שגיאת מסוף:
 
 <ConsoleBlock level="error">
 
-Warning: Each child in a list should have a unique "key" prop.
+אזהרה: לכל ילד ברשימה צריך להיות אביזר "מפתח" ייחודי.
 
 </ConsoleBlock>
 
-You'll learn how to fix this error later on this page. Before we get to that, let's add some structure to your data.
+תלמד כיצד לתקן שגיאה זו בהמשך דף זה. לפני שנגיע לזה, בואו נוסיף קצת מבנה לנתונים שלכם.
 
-## Filtering arrays of items {/*filtering-arrays-of-items*/}
+## סינון מערכי פריטים {/*filtering-arrays-of-items*/}
 
-This data can be structured even more.
+ניתן לבנות את הנתונים הללו אפילו יותר.
 
 ```js
 const people = [{
@@ -121,11 +121,11 @@ const people = [{
 }];
 ```
 
-Let's say you want a way to only show people whose profession is `'chemist'`. You can use JavaScript's `filter()` method to return just those people. This method takes an array of items, passes them through a “test” (a function that returns `true` or `false`), and returns a new array of only those items that passed the test (returned `true`).
+נניח שאתה רוצה דרך להראות רק לאנשים שהמקצוע שלהם הוא `'chemist'`. אתה יכול use JavaScript של `filter()` להחזיר רק את האנשים האלה. שיטה זו לוקחת מערך של פריטים, מעבירה אותם דרך "מבחן" (פונקציה שמחזירה `true` או `false`), ומחזירה מערך חדש של רק אותם פריטים שעברו את המבחן (החזירו `true`).
 
-You only want the items where `profession` is `'chemist'`. The "test" function for this looks like `(person) => person.profession === 'chemist'`. Here's how to put it together:
+אתה רוצה רק את הפריטים שבהם `profession` הוא `'chemist'`. הפונקציה "בדיקה" עבור זה נראית כמו `(person) => person.profession === 'chemist'`. הנה איך להרכיב את זה:
 
-1. **Create** a new array of just “chemist” people, `chemists`, by calling `filter()` on the `people` filtering by `person.profession === 'chemist'`:
+1. **צור** מערך חדש של אנשים "כימאים" בלבד, `chemists`, על ידי קריאה ל-`filter()` ב-`people` סינון לפי `person.profession === 'chemist'`:
 
 ```js
 const chemists = people.filter(person =>
@@ -133,7 +133,7 @@ const chemists = people.filter(person =>
 );
 ```
 
-2. Now **map** over `chemists`:
+2. כעת **מפה** מעל `chemists`:
 
 ```js {1,13}
 const listItems = chemists.map(person =>
@@ -151,7 +151,7 @@ const listItems = chemists.map(person =>
 );
 ```
 
-3. Lastly, **return** the `listItems` from your component:
+3. לבסוף, **החזר** את ה-`listItems` מהרכיב שלך:
 
 ```js
 return <ul>{listItems}</ul>;
@@ -244,7 +244,7 @@ img { width: 100px; height: 100px; border-radius: 50%; }
 
 <Pitfall>
 
-Arrow functions implicitly return the expression right after `=>`, so you didn't need a `return` statement:
+פונקציות חץ מחזירות באופן מרומז את הביטוי מיד אחרי `=>`, כך שלא היית צריך `return` statement:
 
 ```js
 const listItems = chemists.map(person =>
@@ -252,7 +252,7 @@ const listItems = chemists.map(person =>
 );
 ```
 
-However, **you must write `return` explicitly if your `=>` is followed by a `{` curly brace!**
+עם זאת, **עליך לכתוב `return` במפורש אם `=>` שלך מלווה בפלטה מתולתלת `{`!**
 
 ```js
 const listItems = chemists.map(person => { // Curly brace
@@ -260,21 +260,21 @@ const listItems = chemists.map(person => { // Curly brace
 });
 ```
 
-Arrow functions containing `=> {` are said to have a ["block body".](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions#function_body) They let you write more than a single line of code, but you *have to* write a `return` statement yourself. If you forget it, nothing gets returned!
+אומרים שפונקציות חץ המכילות `=> {` בעלות ["גוף חסום".](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions#function_body) הן מאפשרות לך לכתוב יותר משורת קוד בודדת, אבל אתה *חייב* לכתוב `return` statement בעצמך. אם תשכח אותו, שום דבר לא יוחזר!
 
 </Pitfall>
 
-## Keeping list items in order with `key` {/*keeping-list-items-in-order-with-key*/}
+## שמירה על סדר פריטי רשימה עם `key` {/*keeping-list-items-in-order-with-key*/}
 
-Notice that all the sandboxes above show an error in the console:
+שימו לב שכל ארגזי החול שלמעלה מציגים שגיאה במסוף:
 
 <ConsoleBlock level="error">
 
-Warning: Each child in a list should have a unique "key" prop.
+אזהרה: לכל ילד ברשימה צריך להיות אביזר "מפתח" ייחודי.
 
 </ConsoleBlock>
 
-You need to give each array item a `key` -- a string or a number that uniquely identifies it among other items in that array:
+אתה צריך לתת לכל פריט מערך `key` -- מחרוזת או מספר המזהה אותו באופן ייחודי בין שאר הפריטים במערך זה:
 
 ```js
 <li key={person.id}>...</li>
@@ -282,13 +282,13 @@ You need to give each array item a `key` -- a string or a number that uniquely i
 
 <Note>
 
-JSX elements directly inside a `map()` call always need keys!
+אלמנטים JSX ישירות בתוך שיחת `map()` תמיד צריכים מפתחות!
 
 </Note>
 
-Keys tell React which array item each component corresponds to, so that it can match them up later. This becomes important if your array items can move (e.g. due to sorting), get inserted, or get deleted. A well-chosen `key` helps React infer what exactly has happened, and make the correct updates to the DOM tree.
+מקשים אומרים React לאיזה פריט מערך כל רכיב מתאים, כך שהוא יוכל להתאים אותם מאוחר יותר. זה הופך להיות חשוב אם פריטי המערך שלך יכולים לזוז (למשל עקב מיון), להכנס או להימחק. `key` שנבחר היטב עוזר לReact להסיק מה בדיוק קרה, ולבצע את העדכונים הנכונים לעץ DOM.
 
-Rather than generating keys on the fly, you should include them in your data:
+במקום ליצור מפתחות תוך כדי תנועה, עליך לכלול אותם בנתונים שלך:
 
 <Sandpack>
 
@@ -374,11 +374,11 @@ img { width: 100px; height: 100px; border-radius: 50%; }
 
 <DeepDive>
 
-#### Displaying several DOM nodes for each list item {/*displaying-several-dom-nodes-for-each-list-item*/}
+#### הצגת מספר צמתים DOM עבור כל פריט רשימה {/*displaying-several-dom-nodes-for-each-list-item*/}
 
-What do you do when each item needs to render not one, but several DOM nodes?
+מה אתה עושה כאשר כל פריט צריך לרנדר לא אחד, אלא כמה צמתים DOM?
 
-The short [`<>...</>` Fragment](/reference/react/Fragment) syntax won't let you pass a key, so you need to either group them into a single `<div>`, or use the slightly longer and [more explicit `<Fragment>` syntax:](/reference/react/Fragment#rendering-a-list-of-fragments)
+התחביר הקצר [`<>...</>` Fragment](/reference/react/Fragment) לא יאפשר לך להעביר מפתח, אז אתה צריך לקבץ אותם ל-`<div>` בודד, או use את התחביר `<Fragment>` המפורש יותר:](/__reference_TK/reference/referenceK/reference/referenceK/reference)
 
 ```js
 import { Fragment } from 'react';
@@ -393,46 +393,46 @@ const listItems = people.map(person =>
 );
 ```
 
-Fragments disappear from the DOM, so this will produce a flat list of `<h1>`, `<p>`, `<h1>`, `<p>`, and so on.
+Fragments נעלמים מה-DOM, אז זה ייצור רשימה שטוחה של `<h1>`, `<p>`, `<h1>`, `<p>`, וכן הלאה.
 
 </DeepDive>
 
-### Where to get your `key` {/*where-to-get-your-key*/}
+### היכן ניתן להשיג את `key` {/*where-to-get-your-key*/} שלך
 
-Different sources of data provide different sources of keys:
+מקורות נתונים שונים מספקים מקורות מפתח שונים:
 
-* **Data from a database:** If your data is coming from a database, you can use the database keys/IDs, which are unique by nature.
-* **Locally generated data:** If your data is generated and persisted locally (e.g. notes in a note-taking app), use an incrementing counter, [`crypto.randomUUID()`](https://developer.mozilla.org/en-US/docs/Web/API/Crypto/randomUUID) or a package like [`uuid`](https://www.npmjs.com/package/uuid) when creating items.
+* **נתונים ממסד נתונים:** אם הנתונים שלך מגיעים ממסד נתונים, אתה יכול use את מפתחות/מזהי מסד הנתונים, שהם ייחודיים מטבעם.
+* **נתונים שנוצרו באופן מקומי:** אם הנתונים שלך נוצרים ונמשכים באופן מקומי (למשל הערות באפליקציה לרישום הערות), use מונה גדל, [`crypto.randomUUID()`](https://developer.mozilla.org/en-US/docs/Web/API/Crypto/randomUUID) או חבילה כמו [`uuid`](https://www.npmjs.com/package/uuid) בעת יצירת פריטים.
 
-### Rules of keys {/*rules-of-keys*/}
+### כללי המפתחות {/*rules-of-keys*/}
 
-* **Keys must be unique among siblings.** However, it’s okay to use the same keys for JSX nodes in _different_ arrays.
-* **Keys must not change** or that defeats their purpose! Don't generate them while rendering.
+* **מפתחות חייבים להיות ייחודיים בין אחים.** עם זאת, זה בסדר use אותם מפתחות עבור צמתים JSX ב-_מערכים_ שונים.
+* ** אסור לשנות את המפתחות** או שזה מביס את מטרתם! אל תיצור אותם בזמן העיבוד.
 
-### Why does React need keys? {/*why-does-react-need-keys*/}
+### למה React צריך מפתחות? {/*why-does-react-need-keys*/}
 
-Imagine that files on your desktop didn't have names. Instead, you'd refer to them by their order -- the first file, the second file, and so on. You could get used to it, but once you delete a file, it would get confusing. The second file would become the first file, the third file would be the second file, and so on.
+תאר לעצמך שלקבצים בשולחן העבודה שלך לא היו שמות. במקום זאת, תתייחס אליהם לפי הסדר שלהם -- הקובץ הראשון, הקובץ השני וכן הלאה. אתה יכול לקבל used אליו, אבל ברגע שתמחק קובץ, זה היה מבלבל. הקובץ השני יהפוך לקובץ הראשון, הקובץ השלישי יהיה הקובץ השני וכן הלאה.
 
-File names in a folder and JSX keys in an array serve a similar purpose. They let us uniquely identify an item between its siblings. A well-chosen key provides more information than the position within the array. Even if the _position_ changes due to reordering, the `key` lets React identify the item throughout its lifetime.
+שמות קבצים בתיקייה ומפתחות JSX במערך משרתים מטרה דומה. הם מאפשרים לנו לזהות באופן ייחודי פריט בין אחיו. מפתח שנבחר היטב מספק מידע רב יותר מהמיקום בתוך המערך. גם אם ה_מיקום_ משתנה עקב הזמנה מחדש, ה-`key` מאפשר לReact לזהות את הפריט לאורך כל חייו.
 
 <Pitfall>
 
-You might be tempted to use an item's index in the array as its key. In fact, that's what React will use if you don't specify a `key` at all. But the order in which you render items will change over time if an item is inserted, deleted, or if the array gets reordered. Index as a key often leads to subtle and confusing bugs.
+אתה עלול להתפתות ל-use אינדקס של פריט במערך כמפתח שלו. למעשה, זה מה שReact יעשה use אם לא תציין `key` בכלל. אבל הסדר שבו אתה מעבד פריטים ישתנה עם הזמן אם פריט יוכנס, יימחק, או אם המערך יסודר מחדש. אינדקס כמפתח מוביל לרוב לבאגים עדינים ומבלבלים.
 
-Similarly, do not generate keys on the fly, e.g. with `key={Math.random()}`. This will cause keys to never match up between renders, leading to all your components and DOM being recreated every time. Not only is this slow, but it will also lose any user input inside the list items. Instead, use a stable ID based on the data.
+באופן דומה, אל תיצור מפתחות תוך כדי תנועה, למשל. עם `key={Math.random()}`. זה יגרום למפתחות use לעולם לא להתאים בין עיבודים, מה שיוביל לכך שכל הרכיבים שלך וDOM ייצרו מחדש בכל פעם. לא רק שזה איטי, אלא שהוא גם יאבד כל קלט user בתוך פריטי הרשימה. במקום זאת, use מזהה יציב המבוסס על הנתונים.
 
-Note that your components won't receive `key` as a prop. It's only used as a hint by React itself. If your component needs an ID, you have to pass it as a separate prop: `<Profile key={id} userId={id} />`.
+שים לב שהרכיבים שלך לא יקבלו `key` כאביזר. זה רק used כרמז על ידי React עצמו. אם הרכיב שלך צריך מזהה, עליך להעביר אותו כאביזר נפרד: `<Profile key={id} userId={id} />`.
 
 </Pitfall>
 
 <Recap>
 
-On this page you learned:
+בעמוד זה למדת:
 
-* How to move data out of components and into data structures like arrays and objects.
-* How to generate sets of similar components with JavaScript's `map()`.
-* How to create arrays of filtered items with JavaScript's `filter()`.
-* Why and how to set `key` on each component in a collection so React can keep track of each of them even if their position or data changes.
+* איך להעביר נתונים מתוך רכיבים לתוך מבני נתונים כמו מערכים ואובייקטים.
+* כיצד ליצור סטים של רכיבים דומים עם ה-`map()` של JavaScript.
+* כיצד ליצור מערכים של פריטים מסוננים עם `filter()` של JavaScript.
+* למה ואיך להגדיר `key` על כל רכיב באוסף כדי שReact יוכל לעקוב אחר כל אחד מהם גם אם המיקום או הנתונים שלו משתנים.
 
 </Recap>
 
@@ -440,11 +440,11 @@ On this page you learned:
 
 <Challenges>
 
-#### Splitting a list in two {/*splitting-a-list-in-two*/}
+#### פיצול רשימה לשניים {/*splitting-a-list-in-two*/}
 
-This example shows a list of all people.
+דוגמה זו מציגה רשימה של כל האנשים.
 
-Change it to show two separate lists one after another: **Chemists** and **Everyone Else.** Like previously, you can determine whether a person is a chemist by checking if `person.profession === 'chemist'`.
+שנה אותו כדי להציג שתי רשימות נפרדות בזו אחר זו: **כימאים** ו**כל השאר.** כמו בעבר, תוכל לקבוע אם אדם הוא כימאי על ידי בדיקה אם `person.profession === 'chemist'`.
 
 <Sandpack>
 
@@ -535,7 +535,7 @@ img { width: 100px; height: 100px; border-radius: 50%; }
 
 <Solution>
 
-You could use `filter()` twice, creating two separate arrays, and then `map` over both of them:
+אתה יכול use `filter()` פעמיים, ליצור שני מערכים נפרדים, ולאחר מכן `map` על שניהם:
 
 <Sandpack>
 
@@ -648,9 +648,9 @@ img { width: 100px; height: 100px; border-radius: 50%; }
 
 </Sandpack>
 
-In this solution, the `map` calls are placed directly inline into the parent `<ul>` elements, but you could introduce variables for them if you find that more readable.
+בפתרון זה, הקריאות `map` ממוקמות ישירות בשורה ברכיבי האב `<ul>`, אבל אתה יכול להציג עבורם משתנים אם אתה מוצא את זה יותר קריא.
 
-There is still a bit duplication between the rendered lists. You can go further and extract the repetitive parts into a `<ListSection>` component:
+עדיין יש מעט כפילות בין הרשימות המעובדות. אתה יכול ללכת רחוק יותר ולחלץ את החלקים החוזרים על עצמם לתוך רכיב `<ListSection>`:
 
 <Sandpack>
 
@@ -762,9 +762,9 @@ img { width: 100px; height: 100px; border-radius: 50%; }
 
 </Sandpack>
 
-A very attentive reader might notice that with two `filter` calls, we check each person's profession twice. Checking a property is very fast, so in this example it's fine. If your logic was more expensive than that, you could replace the `filter` calls with a loop that manually constructs the arrays and checks each person once.
+קורא קשוב מאוד עשוי לשים לב שבשתי שיחות `filter`, אנו בודקים את המקצוע של כל אדם פעמיים. בדיקת נכס היא מהירה מאוד, אז בדוגמה זו זה בסדר. אם ההיגיון שלך היה יקר מזה, אתה יכול להחליף את הקריאות `filter` בלולאה שבונה ידנית את המערכים ובודקת כל אדם פעם אחת.
 
-In fact, if `people` never change, you could move this code out of your component. From React's perspective, all that matters is that you give it an array of JSX nodes in the end. It doesn't care how you produce that array:
+למעשה, אם `people` לעולם לא ישתנה, תוכל להעביר את הקוד הזה מהרכיב שלך. מנקודת המבט של React, כל מה שחשוב הוא שתיתן לו מערך של JSX צמתים בסופו של דבר. לא אכפת לי איך אתה מייצר את המערך הזה:
 
 <Sandpack>
 
@@ -882,13 +882,13 @@ img { width: 100px; height: 100px; border-radius: 50%; }
 
 </Solution>
 
-#### Nested lists in one component {/*nested-lists-in-one-component*/}
+#### רשימות מקוננות ברכיב אחד {/*nested-lists-in-one-component*/}
 
-Make a list of recipes from this array! For each recipe in the array, display its name as an `<h2>` and list its ingredients in a `<ul>`.
+הכינו רשימה של מתכונים מהמערך הזה! עבור כל מתכון במערך, הצג את שמו כ-`<h2>` ורשום את המרכיבים שלו ב-`<ul>`.
 
 <Hint>
 
-This will require nesting two different `map` calls.
+זה ידרוש קינון של שתי קריאות `map` שונות.
 
 </Hint>
 
@@ -926,7 +926,7 @@ export const recipes = [{
 
 <Solution>
 
-Here is one way you could go about it:
+הנה דרך אחת שתוכל לעשות את זה:
 
 <Sandpack>
 
@@ -972,13 +972,13 @@ export const recipes = [{
 
 </Sandpack>
 
-Each of the `recipes` already includes an `id` field, so that's what the outer loop uses for its `key`. There is no ID you could use to loop over ingredients. However, it's reasonable to assume that the same ingredient won't be listed twice within the same recipe, so its name can serve as a `key`. Alternatively, you could change the data structure to add IDs, or use index as a `key` (with the caveat that you can't safely reorder ingredients).
+כל אחד מה-`recipes` כבר כולל שדה `id`, אז זה מה שהלולאה החיצונית uses עבור `key` שלה. אין תעודה מזהה שאתה יכול use לגלגל מעל מרכיבים. עם זאת, סביר להניח שאותו מרכיב לא יופיע פעמיים באותו מתכון, כך ששמו יכול לשמש כ-`key`. לחלופין, תוכל לשנות את מבנה הנתונים כדי להוסיף מזהים, או לאינדקס use בתור `key` (עם אזהרה שלא תוכל לסדר מחדש בבטחה מרכיבים).
 
 </Solution>
 
-#### Extracting a list item component {/*extracting-a-list-item-component*/}
+#### חילוץ רכיב פריט רשימה {/*extracting-a-list-item-component*/}
 
-This `RecipeList` component contains two nested `map` calls. To simplify it, extract a `Recipe` component from it which will accept `id`, `name`, and `ingredients` props. Where do you place the outer `key` and why?
+רכיב `RecipeList` זה מכיל שתי קריאות `map` מקוננות. כדי לפשט אותו, חלץ ממנו רכיב `Recipe` שיקבל `id`, `name` ו`ingredients` props. היכן ממקמים את ה-`key` החיצוני ומדוע?
 
 <Sandpack>
 
@@ -1026,7 +1026,7 @@ export const recipes = [{
 
 <Solution>
 
-You can copy-paste the JSX from the outer `map` into a new `Recipe` component and return that JSX. Then you can change `recipe.name` to `name`, `recipe.id` to `id`, and so on, and pass them as props to the `Recipe`:
+אתה יכול להעתיק ולהדביק את JSX מה-`map` החיצוני לתוך רכיב `Recipe` חדש ולהחזיר את ה-JSX הזה. לאחר מכן תוכל לשנות את `recipe.name` ל-`name`, `recipe.id` ל-`id` וכן הלאה, ולהעביר אותם כ-props ל-`Recipe`:
 
 <Sandpack>
 
@@ -1078,15 +1078,15 @@ export const recipes = [{
 
 </Sandpack>
 
-Here, `<Recipe {...recipe} key={recipe.id} />` is a syntax shortcut saying "pass all properties of the `recipe` object as props to the `Recipe` component". You could also write each prop explicitly: `<Recipe id={recipe.id} name={recipe.name} ingredients={recipe.ingredients} key={recipe.id} />`.
+כאן, `<Recipe {...recipe} key={recipe.id} />` הוא קיצור תחביר שאומר "העבירו את כל המאפיינים של האובייקט `recipe` כ-props לרכיב `Recipe`". אתה יכול גם לכתוב כל אבזר במפורש: `<Recipe id={recipe.id} name={recipe.name} ingredients={recipe.ingredients} key={recipe.id} />`.
 
-**Note that the `key` is specified on the `<Recipe>` itself rather than on the root `<div>` returned from `Recipe`.** This is because this `key` is needed directly within the context of the surrounding array. Previously, you had an array of `<div>`s so each of them needed a `key`, but now you have an array of `<Recipe>`s. In other words, when you extract a component, don't forget to leave the `key` outside the JSX you copy and paste.
+**שימו לב שה-`key` מצוין ב-`<Recipe>` עצמו ולא בשורש `<div>` שהוחזר מ-`Recipe`.** זה בגלל שuse יש צורך ב-`key` ישירות בהקשר של המערך שמסביב. בעבר, היה לך מערך של `<div>`s אז כל אחד מהם היה צריך `key`, אבל עכשיו יש לך מערך של `<Recipe>`s. במילים אחרות, כאשר אתה מחלץ רכיב, אל תשכח להשאיר את `key` מחוץ ל-JSX שאתה מעתיק והדבק.
 
 </Solution>
 
-#### List with a separator {/*list-with-a-separator*/}
+#### רשימה עם מפריד {/*list-with-a-separator*/}
 
-This example renders a famous haiku by Tachibana Hokushi, with each line wrapped in a `<p>` tag. Your job is to insert an `<hr />` separator between each paragraph. Your resulting structure should look like this:
+דוגמה זו מציגה הייקו מפורסם מאת Tachibana Hokushi, כאשר כל שורה עטופה בתג `<p>`. התפקיד שלך הוא להכניס מפריד `<hr />` בין כל פסקה. המבנה שהתקבל צריך להיראות כך:
 
 ```js
 <article>
@@ -1098,7 +1098,7 @@ This example renders a famous haiku by Tachibana Hokushi, with each line wrapped
 </article>
 ```
 
-A haiku only contains three lines, but your solution should work with any number of lines. Note that `<hr />` elements only appear *between* the `<p>` elements, not in the beginning or the end!
+הייקו מכיל רק שלוש שורות, אבל הפתרון שלך צריך לעבוד עם כל מספר של שורות. שימו לב שאלמנטים `<hr />` מופיעים רק *בין* האלמנטים `<p>`, לא בהתחלה או בסוף!
 
 <Sandpack>
 
@@ -1141,17 +1141,17 @@ hr {
 
 </Sandpack>
 
-(This is a rare case where index as a key is acceptable because a poem's lines will never reorder.)
+(זהו מקרה נדיר שבו אינדקס כמפתח הוא מקובל שכן use שורות של שיר לעולם לא יסדרו מחדש.)
 
 <Hint>
 
-You'll either need to convert `map` to a manual loop, or use a Fragment.
+תצטרך להמיר `map` ללולאה ידנית, או use ל-Fragment.
 
 </Hint>
 
 <Solution>
 
-You can write a manual loop, inserting `<hr />` and `<p>...</p>` into the output array as you go:
+אתה יכול לכתוב לולאה ידנית, תוך הכנסת `<hr />` ו`<p>...</p>` למערך הפלט תוך כדי:
 
 <Sandpack>
 
@@ -1206,9 +1206,9 @@ hr {
 
 </Sandpack>
 
-Using the original line index as a `key` doesn't work anymore because each separator and paragraph are now in the same array. However, you can give each of them a distinct key using a suffix, e.g. `key={i + '-text'}`.
+השימוש באינדקס השורה המקורי בתור `key` לא עובד יותר מכיוון שuse כל מפריד ופסקה נמצאים כעת באותו מערך. עם זאת, אתה יכול לתת לכל אחד מהם מפתח מובחן באמצעות סיומת, למשל. `key={i + '-text'}`.
 
-Alternatively, you could render a collection of Fragments which contain `<hr />` and `<p>...</p>`. However, the `<>...</>` shorthand syntax doesn't support passing keys, so you'd have to write `<Fragment>` explicitly:
+לחלופין, תוכל לעבד אוסף של Fragments המכילים `<hr />` ו-`<p>...</p>`. עם זאת, תחביר הקיצור `<>...</>` אינו תומך בהעברת מפתחות, אז תצטרך לכתוב `<Fragment>` במפורש:
 
 <Sandpack>
 
@@ -1254,7 +1254,7 @@ hr {
 
 </Sandpack>
 
-Remember, Fragments (often written as `<> </>`) let you group JSX nodes without adding extra `<div>`s!
+זכור, Fragments (נכתב לעתים קרובות כ-`<> </>`) מאפשרים לך לקבץ צמתים JSX מבלי להוסיף `<div>`s נוספים!
 
 </Solution>
 

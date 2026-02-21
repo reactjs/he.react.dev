@@ -1,59 +1,59 @@
 ---
-title: Add React to an Existing Project
+title: "הוספת React לפרויקט קיים"
 ---
 
 <Intro>
 
-If you want to add some interactivity to your existing project, you don't have to rewrite it in React. Add React to your existing stack, and render interactive React components anywhere.
+אם אתם רוצים להוסיף אינטראקטיביות לפרויקט קיים, אין צורך לכתוב אותו מחדש ב-React. הוסיפו React ל-stack הקיים שלכם, ורנדרו קומפונטות React אינטראקטיביות בכל מקום.
 
 </Intro>
 
 <Note>
 
-**You need to install [Node.js](https://nodejs.org/en/) for local development.** Although you can [try React](/learn/installation#try-react) online or with a simple HTML page, realistically most JavaScript tooling you'll want to use for development requires Node.js.
+**צריך להתקין [Node.js](https://nodejs.org/en/) לפיתוח מקומי.** למרות שאפשר [לנסות React](/learn/installation#try-react) אונליין או עם דף HTML פשוט, רוב כלי הפיתוח של JavaScript שתרצו להשתמש בדרישות Node.js.
 
 </Note>
 
-## Using React for an entire subroute of your existing website {/*using-react-for-an-entire-subroute-of-your-existing-website*/}
+## שימוש ב-React עבור תת-נתיב (subroute) שלם באתר קיים {/*using-react-for-an-hele-subroute-of-your-existing-site*/}
 
-Let's say you have an existing web app at `example.com` built with another server technology (like Rails), and you want to implement all routes starting with `example.com/some-app/` fully with React.
+נניח שיש לכם אפליקציית ווב קיימת ב-`example.com` שבנויה בטכנולוגית שרת אחרת (בעזרת Rails), ואתם רוצים שכל הנתיבים שמתחילים ב-`example.com/some-app/` ימומשו כוללם עם React.
 
-Here's how we recommend to set it up:
+כך אנחנו ממליצים להגדיר זאת:
 
-1. **Build the React part of your app** using one of the [React-based frameworks](/learn/start-a-new-react-project).
-2. **Specify `/some-app` as the *base path*** in your framework's configuration (here's how: [Next.js](https://nextjs.org/docs/api-reference/next.config.js/basepath), [Gatsby](https://www.gatsbyjs.com/docs/how-to/previews-deploys-hosting/path-prefix/)).
-3. **Configure your server or a proxy** so that all requests under `/some-app/` are handled by your React app.
+1. **בנו את חלק ה-React באפליקציה** באמצעות אחד מ-[frameworks שמבוסים על React](/learn/start-a-new-react-project).
+2. **הגדירו את `/some-app` כ-*בסיס נתיב*** בקונפיגורצית ה-framework (ראו: [Next.js](https://nextjs.org/docs/api-reference/next.config.js/basepath), [גטסבי](https://www.gatsbyjs.com/docs/how-to/previews-deploys-hosting/path-prefix/)).
+3. **הגדירו את השרת או proxy** כך שכל הבקשות תחת `/some-app/` יטופלו על ידי אפליקציית React.
 
-This ensures the React part of your app can [benefit from the best practices](/learn/start-a-new-react-project#can-i-use-react-without-a-framework) baked into those frameworks.
+כך החלק של React באפליקציה [ייהנה ממיטב הפרקטיקות](/learn/start-a-new-react-project#can-i-use-react-without-a-framework) שמובנות ב-frameworks האלה.
 
-Many React-based frameworks are full-stack and let your React app take advantage of the server. However, you can use the same approach even if you can't or don't want to run JavaScript on the server. In that case, serve the HTML/CSS/JS export ([`next export` output](https://nextjs.org/docs/advanced-features/static-html-export) for Next.js, default for Gatsby) at `/some-app/` instead.
+רבים מה-frameworks מבוססי React הם מלאים ומאפשרים לאפליקציית React לנצל את השרת. עם זאת, אפשר להשתמש באותה גישה גם אם אינכם יכולים או לא רוצים להריץ JavaScript על השרת. במקרה כזה, אפשר להגיש תחת `some-app/` פלט סטטי של HTML/CSS/JS ([פלט של `next export`](https://nextjs.org/docs/advanced-features/static-html-export) ב-Next.js, וברירת המחדל ב-Gatsby).
 
-## Using React for a part of your existing page {/*using-react-for-a-part-of-your-existing-page*/}
+## שימוש ב-React עבור חלק מעמוד קיים {/*using-react-for-a-part-of-your-existing-page*/}
 
-Let's say you have an existing page built with another technology (either a server one like Rails, or a client one like Backbone), and you want to render interactive React components somewhere on that page. That's a common way to integrate React--in fact, it's how most React usage looked at Meta for many years!
+נניח שיש לכם עמוד קיים שבנוי בטכנולוגיה אחרת (שרתית כמו Rails או בצד לקוח), ואתם רוצים לרנדר קומפוננטות React אינטראקטיביות באזור מסוים בעמוד. למעשה, כך חלק גדול מהשימוש ב-React ב-Meta נראה שנים רבות.
 
-You can do this in two steps:
+אפשר לעשות זאת בשני שלבים:
 
-1. **Set up a JavaScript environment** that lets you use the [JSX syntax](/learn/writing-markup-with-jsx), split your code into modules with the [`import`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import) / [`export`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/export) syntax, and use packages (for example, React) from the [npm](https://www.npmjs.com/) package registry.
-2. **Render your React components** where you want to see them on the page.
+1. **הגדירו סביבת JavaScript** שמאפשרת להשתמש ב-[תחביר JSX](/learn/writing-markup-with-jsx), לפצל קוד למודולים עם [`import`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import) ו-[`export`](`export`](`export`](`export`)(`export`)(https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/export),_ו[ מ__-__ו[ מ___-וה) React.
+2. **רנדרו קומפוננטות React** במקומות אתם רוצים שיופיעו בעמוד.
 
-The exact approach depends on your existing page setup, so let's walk through some details.
+הגישה המדויקת תלויה ב-setup הנוכחי של העמוד, אז נעבור על הפרטים.
 
-### Step 1: Set up a modular JavaScript environment {/*step-1-set-up-a-modular-javascript-environment*/}
+### שלב 1: הגדרה סביבת JavaScript מודולרית {/*step-1-set-up-a-modular-javascript-environment*/}
 
-A modular JavaScript environment lets you write your React components in individual files, as opposed to writing all of your code in a single file. It also lets you use all the wonderful packages published by other developers on the [npm](https://www.npmjs.com/) registry--including React itself! How you do this depends on your existing setup:
+JavaScript מודולרית יכולה לכתוב קומפוננטות React בקבצים נפרדים במקום למרכז הכול בקובץ אחד. בנוסף, היא יכולה להשתמש בחבילות שזמינות ב-[npm](https://www.npmjs.com/), כולל React בעצמה. איך עושים את זה תלוי ב-setup הקיים שלכם:
 
-* **If your app is already split into files that use `import` statements,** try to use the setup you already have. Check whether writing `<div />` in your JS code causes a syntax error. If it causes a syntax error, you might need to [transform your JavaScript code with Babel](https://babeljs.io/setup), and enable the [Babel React preset](https://babeljs.io/docs/babel-preset-react) to use JSX.
+* **אם האפליקציה שלכם כבר מפוצלת לקבצים שמשתמשים ב-`import`,** נסו להשתמש ב-setup הקיים. בדקו אם כתיבה של `<div />` בקוד JS גורמת לשגיאת תחביר. אם כן, אפשר שתצטרכו [להעביר את הקוד דרך Babel](https://babeljs.io/setup) ולהפעיל את [ההגדרה מראש של Babel React](https://babeljs.io/docs/babel-preset-react) כדי להשתמש ב-JSX.
 
-* **If your app doesn't have an existing setup for compiling JavaScript modules,** set it up with [Vite](https://vitejs.dev/). The Vite community maintains [many integrations with backend frameworks](https://github.com/vitejs/awesome-vite#integrations-with-backends), including Rails, Django, and Laravel. If your backend framework is not listed, [follow this guide](https://vitejs.dev/guide/backend-integration.html) to manually integrate Vite builds with your backend.
+* **אם לאפליקציה שלכם אין התקנה לקומפילציה של מודולי JavaScript,** הגדירו זאת עם [Vite](https://vitejs.dev/). קהילת Vite מתחזקת [אינטגרציות רבות עם backends](https://github.com/vitejs/awesome-vite#integrations-with-backends), כולל Rails כדי, Django ו-Laravel. עם ה-backend.
 
-To check whether your setup works, run this command in your project folder:
+כדי לבדוק שה-setup עובד, הריצו את הפקודה הזו בתיקיית הפרויקט:
 
 <TerminalBlock>
 npm install react react-dom
 </TerminalBlock>
 
-Then add these lines of code at the top of your main JavaScript file (it might be called `index.js` or `main.js`):
+לאחר הוסיפו את הרצף הקוד בראש קובץ ה-JavaScript האלה (כתוב `index.js` או `main.js`):
 
 <Sandpack>
 
@@ -80,17 +80,17 @@ root.render(<h1>Hello, world</h1>);
 
 </Sandpack>
 
-If the entire content of your page was replaced by a "Hello, world!", everything worked! Keep reading.
+אם כל התוכן בעמוד הוחלף ב-"Hello, world!", הכול עבד. המשיכו לקרוא.
 
 <Note>
 
-Integrating a modular JavaScript environment into an existing project for the first time can feel intimidating, but it's worth it! If you get stuck, try our [community resources](/community) or the [Vite Chat](https://chat.vitejs.dev/).
+שילוב סביבת JavaScript מודולרית בפרויקט קיים בפעם הראשונה יכול להרגיש מרתיע, אבל זה שווה את זה. אם נתקעתם, נסו את [משאבי הקהילה](/community) או את [Vite Chat](https://chat.vitejs.dev/).
 
 </Note>
 
-### Step 2: Render React components anywhere on the page {/*step-2-render-react-components-anywhere-on-the-page*/}
+### שלב 2: רינדור קומפונטות React בכל מקום בעמוד {/*step-2-render-react-components-anywhere-on-the-page*/}
 
-In the previous step, you put this code at the top of your main file:
+בשלב הקודם שמתם את הקוד הזה בראש הקובץ הראשי:
 
 ```js
 import { createRoot } from 'react-dom/client';
@@ -103,11 +103,11 @@ const root = createRoot(document.getElementById('app'));
 root.render(<h1>Hello, world</h1>);
 ```
 
-Of course, you don't actually want to clear the existing HTML content!
+כמובן, אתם לא באמת רוצים למחוק את התוכן ה-HTML הקיים.
 
-Delete this code.
+מחקו את הקוד הזה.
 
-Instead, you probably want to render your React components in specific places in your HTML. Open your HTML page (or the server templates that generate it) and add a unique [`id`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/id) attribute to any tag, for example:
+במקום זאת, סביר שתרצו לרנדר קומפונטות React בנקודות ספציפיות ב-HTML שלכם. פתחו את עמוד ה-HTML (או את תבניות השרת שמייצרות אותו) והוסיפו מאפיין [`id`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/id) ייחודי לכל תגית יעד, לדוגמה:
 
 ```html
 <!-- ... somewhere in your html ... -->
@@ -115,7 +115,7 @@ Instead, you probably want to render your React components in specific places in
 <!-- ... more html ... -->
 ```
 
-This lets you find that HTML element with [`document.getElementById`](https://developer.mozilla.org/en-US/docs/Web/API/Document/getElementById) and pass it to [`createRoot`](/reference/react-dom/client/createRoot) so that you can render your own React component inside:
+כך אפשר למצוא את האלמנט ה-HTML עם [`document.getElementById`](https://developer.mozilla.org/en-US/docs/Web/API/Document/getElementById) ולהעביר אותו ל-[`createRoot`](/reference/react-dom/client/createRoot):
 
 <Sandpack>
 
@@ -146,10 +146,10 @@ root.render(<NavigationBar />);
 
 </Sandpack>
 
-Notice how the original HTML content from `index.html` is preserved, but your own `NavigationBar` React component now appears inside the `<nav id="navigation">` from your HTML. Read the [`createRoot` usage documentation](/reference/react-dom/client/createRoot#rendering-a-page-partially-built-with-react) to learn more about rendering React components inside an existing HTML page.
+שימו לב שתוכן ה-HTML המקורי מ-`index.html` נשמר, אבל קומפוננטת React בשם `NavigationBar` מופיעה עכשיו בתוך `<nav id="navigation">`. קראו את [תיעוד שימוש ב-`createRoot`](/reference/react-dom/client/createRoot#rendering-a-page-partially-built-with-react) כדי ללמוד עוד על רינדור קומפונטות React בתוך עמוד HTML קיים.
 
-When you adopt React in an existing project, it's common to start with small interactive components (like buttons), and then gradually keep "moving upwards" until eventually your entire page is built with React. If you ever reach that point, we recommend migrating to [a React framework](/learn/start-a-new-react-project) right after to get the most out of React.
+כשמאמצים React בפרויקט קיים, נפוץ להתחיל בקומפוננטות אינטראקטיביות קטנות (כמו כפתורים), ואז להתקדם בהדרגה "למעלה" עד שלבסוף כל העמוד בנוי ב-React. אם הגעתם לנקודה הזו, אנחנו ממליצים לעבור ל-[React framework](/learn/start-a-new-react-project) כדי להפיק את המקסימום מ-React.
 
-## Using React Native in an existing native mobile app {/*using-react-native-in-an-existing-native-mobile-app*/}
+## שימוש ב-React יליד באפליקציית מובייל יליד קיים {/*using-react-native-in-an-existing-native-mobile-app*/}
 
-[React Native](https://reactnative.dev/) can also be integrated into existing native apps incrementally. If you have an existing native app for Android (Java or Kotlin) or iOS (Objective-C or Swift), [follow this guide](https://reactnative.dev/docs/integration-with-existing-apps) to add a React Native screen to it.
+אפשר לשלב [React Native](https://reactnative.dev/) גם באפליקציות native קיימות בצורה הדרגתית. אם יש לכם אפליקציית native קיימת ל-Android (Java או Kotlin) או ל-iOS (Objective-C או Swift), [עקבו אחרי המדריך הזה](https://reactnative.dev/docs/integration-with-existing-apps) להוסיף 3 מסך __T.

@@ -1,10 +1,10 @@
 ---
-title: "<select>"
+title: "<בחר>"
 ---
 
 <Intro>
 
-The [built-in browser `<select>` component](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select) lets you render a select box with options.
+[רכיב הדפדפן המובנה `<select>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select) מאפשר לך להציג תיבת בחירה עם אפשרויות.
 
 ```js
 <select>
@@ -19,11 +19,11 @@ The [built-in browser `<select>` component](https://developer.mozilla.org/en-US/
 
 ---
 
-## Reference {/*reference*/}
+## הפניה {/*reference*/}
 
 ### `<select>` {/*select*/}
 
-To display a select box, render the [built-in browser `<select>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select) component.
+כדי להציג תיבת בחירה, עבד את [הדפדפן המובנה `<select>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select) רכיב.
 
 ```js
 <select>
@@ -32,55 +32,55 @@ To display a select box, render the [built-in browser `<select>`](https://develo
 </select>
 ```
 
-[See more examples below.](#usage)
+[ראה דוגמאות נוספות למטה.](#usage)
 
-#### Props {/*props*/}
+#### אבזרים {/*props*/}
 
-`<select>` supports all [common element props.](/reference/react-dom/components/common#props)
+`<select>` תומך בכל [הרכיב המשותף props.](/reference/react-dom/components/common#props)
 
-You can [make a select box controlled](#controlling-a-select-box-with-a-state-variable) by passing a `value` prop:
+אתה יכול [להפוך תיבת בחירה לשולטת](#controlling-a-select-box-with-a-state-variable) על ידי העברת אבזר `value`:
 
-* `value`: A string (or an array of strings for [`multiple={true}`](#enabling-multiple-selection)). Controls which option is selected. Every value string match the `value` of some `<option>` nested inside the `<select>`.
+* `value`: מחרוזת (או מערך של מחרוזות עבור [`multiple={true}`](#enabling-multiple-selection)). שולט באיזו אפשרות נבחרה. כל מחרוזת ערכים תואמת את `value` של כמה `<option>` המקוננות בתוך ה-`<select>`.
 
-When you pass `value`, you must also pass an `onChange` handler that updates the passed value.
+כאשר אתה עובר את `value`, עליך לעבור גם מטפל `onChange` שמעדכן את הערך שעבר.
 
-If your `<select>` is uncontrolled, you may pass the `defaultValue` prop instead:
+אם ה-`<select>` שלך לא מבוקר, אתה יכול להעביר את הפרופס של `defaultValue` במקום זאת:
 
-* `defaultValue`: A string (or an array of strings for [`multiple={true}`](#enabling-multiple-selection)). Specifies [the initially selected option.](#providing-an-initially-selected-option)
+* `defaultValue`: מחרוזת (או מערך של מחרוזות עבור [`multiple={true}`](#enabling-multiple-selection)). מציין את [האפשרות שנבחרה בתחילה.](#providing-an-initially-selected-option)
 
-These `<select>` props are relevant both for uncontrolled and controlled select boxes:
+`<select>` props אלו רלוונטיות הן עבור תיבות בחירה בלתי מבוקרות והן עבור תיבות בחירה מבוקרות:
 
-* [`autoComplete`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select#autocomplete): A string. Specifies one of the possible [autocomplete behaviors.](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete#values)
-* [`autoFocus`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select#autofocus): A boolean. If `true`, React will focus the element on mount.
-* `children`: `<select>` accepts [`<option>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/option), [`<optgroup>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/optgroup), and [`<datalist>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/datalist) components as children. You can also pass your own components as long as they eventually render one of the allowed components. If you pass your own components that eventually render `<option>` tags, each `<option>` you render must have a `value`.
-* [`disabled`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select#disabled): A boolean. If `true`, the select box will not be interactive and will appear dimmed.
-* [`form`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select#form): A string. Specifies the `id` of the `<form>` this select box belongs to. If omitted, it's the closest parent form.
-* [`multiple`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select#multiple): A boolean. If `true`, the browser allows [multiple selection.](#enabling-multiple-selection)
-* [`name`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select#name): A string. Specifies the name for this select box that's [submitted with the form.](#reading-the-select-box-value-when-submitting-a-form)
-* `onChange`: An [`Event` handler](/reference/react-dom/components/common#event-handler) function. Required for [controlled select boxes.](#controlling-a-select-box-with-a-state-variable) Fires immediately when the user picks a different option. Behaves like the browser [`input` event.](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/input_event)
-* `onChangeCapture`: A version of `onChange` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onInput`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/input_event): An [`Event` handler](/reference/react-dom/components/common#event-handler) function. Fires immediately when the value is changed by the user. For historical reasons, in React it is idiomatic to use `onChange` instead which works similarly.
-* `onInputCapture`: A version of `onInput` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`onInvalid`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/invalid_event): An [`Event` handler](/reference/react-dom/components/common#event-handler) function. Fires if an input fails validation on form submit. Unlike the built-in `invalid` event, the React `onInvalid` event bubbles.
-* `onInvalidCapture`: A version of `onInvalid` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-* [`required`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select#required): A boolean. If `true`, the value must be provided for the form to submit.
-* [`size`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select#size): A number. For `multiple={true}` selects, specifies the preferred number of initially visible items.
+* [`autoComplete`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select#autocomplete): מחרוזת. מציינת את אחת מההתנהגויות האפשריות של השלמה אוטומטית.](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete#values)
+* [`autoFocus`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select#autofocus): בוליאני. אם `true`, React ימקד את האלמנט ב-mount.
+* `children`: `<select>` מקבל את [`<option>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/option), [`<optgroup>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/optgroup), ו-[`<datalist>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/datalist) רכיבים בתור ילדים. אתה יכול גם להעביר רכיבים משלך כל עוד הם בסופו של דבר מעבדים את אחד מהרכיבים המותרים ___8 מעבדים את הרכיבים המותרים שלך. __ `<option>` שאתה מעבד חייב להיות `value`.
+* [`disabled`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select#disabled): בוליאני. אם `true`, תיבת הבחירה לא תהיה אינטראקטיבית ותופיע מעומעמת.
+* [`form`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select#form): מחרוזת. מציינת את ה-`id` של התיבה `<form>` שאליה שייכת תיבת הבחירה. אם הושמטה, היא טופס האב הקרוב ביותר.
+* [`multiple`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select#multiple): בוליאני. אם `true`, הדפדפן מאפשר [בחירה מרובה.](#enabling-multiple-selection)
+* [`name`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select#name): מחרוזת. מציינת את השם של תיבת הבחירה הזו ש[נשלחה עם הטופס.](#reading-the-select-box-value-when-submitting-a-form)
+* `onChange`: פונקציה [`Event` מטפל](/reference/react-dom/components/common#event-handler). נדרש עבור [תיבות בחירה מבוקרות.](#controlling-a-select-box-with-a-state-variable) מופעל מיד כאשר ה-user בוחר אפשרות אחרת. מתנהג כמו הדפדפן [`input` אירוע.](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/input_event)
+* `onChangeCapture`: גרסה של `onChange` שנורה בשלב [לכידה.](/learn/responding-to-events#capture-phase-events)
+* פונקציה [`onInput`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/input_event): מטפל [`Event`](/reference/react-dom/components/common#event-handler). מופעל מיד כשהערך משתנה על ידי ה-user. מסיבות היסטוריות, ב-React זה עובד בצורה אידיומטית ל-__TK___0.
+* `onInputCapture`: גרסה של `onInput` שנורה בשלב [לכידה.](/learn/responding-to-events#capture-phase-events)
+* פונקציית [`onInvalid`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/invalid_event): מטפל [`Event`](/reference/react-dom/components/common#event-handler). מופעל אם קלט נכשל באימות בשליחת הטופס. בניגוד לאירוע המובנה `invalid`, האירוע React __TK בועות
+* `onInvalidCapture`: גרסה של `onInvalid` שנורה בשלב [לכידה.](/learn/responding-to-events#capture-phase-events)
+* [`required`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select#required): בוליאני. אם `true`, יש לספק את הערך כדי שהטופס יישלח.
+* [`size`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select#size): מספר. עבור `multiple={true}` נבחר, מציין את המספר המועדף של פריטים גלויים בתחילה.
 
-#### Caveats {/*caveats*/}
+#### אזהרות {/*caveats*/}
 
-- Unlike in HTML, passing a `selected` attribute to `<option>` is not supported. Instead, use [`<select defaultValue>`](#providing-an-initially-selected-option) for uncontrolled select boxes and [`<select value>`](#controlling-a-select-box-with-a-state-variable) for controlled select boxes.
-- If a select box receives a `value` prop, it will be [treated as controlled.](#controlling-a-select-box-with-a-state-variable)
-- A select box can't be both controlled and uncontrolled at the same time.
-- A select box cannot switch between being controlled or uncontrolled over its lifetime.
-- Every controlled select box needs an `onChange` event handler that synchronously updates its backing value.
+- שלא כמו ב-HTML, העברת תכונה `selected` ל-`<option>` אינה נתמכת. במקום זאת, use [`<select defaultValue>`](#providing-an-initially-selected-option) עבור תיבות בחירה בלתי מבוקרות ו-[`<select value>`](#controlling-a-select-box-with-a-state-variable) עבור תיבות בחירה מבוקרות.
+- אם תיבת בחירה מקבלת אבזר `value`, היא תטופל כמבוקרה.](#controlling-a-select-box-with-state-variable)
+- תיבת בחירה לא יכולה להיות נשלטת ובלתי נשלטת בו-זמנית.
+- תיבת בחירה לא יכולה לעבור בין להיות מבוקרת או בלתי נשלטת במהלך חייה.
+- כל תיבת בחירה מבוקרת זקוקה למטפל אירועים `onChange` שמעדכן באופן סינכרוני את ערך הגיבוי שלו.
 
 ---
 
-## Usage {/*usage*/}
+## שימוש {/*usage*/}
 
-### Displaying a select box with options {/*displaying-a-select-box-with-options*/}
+### הצגת תיבת בחירה עם אפשרויות {/*displaying-a-select-box-with-options*/}
 
-Render a `<select>` with a list of `<option>` components inside to display a select box. Give each `<option>` a `value` representing the data to be submitted with the form.
+עבד `<select>` עם רשימה של רכיבי `<option>` בפנים כדי להציג תיבת בחירה. תן לכל `<option>` `value` המייצג את הנתונים שיישלחו עם הטופס.
 
 <Sandpack>
 
@@ -107,11 +107,11 @@ select { margin: 5px; }
 
 ---
 
-### Providing a label for a select box {/*providing-a-label-for-a-select-box*/}
+### מתן תווית עבור תיבת בחירה {/*providing-a-label-for-a-select-box*/}
 
-Typically, you will place every `<select>` inside a [`<label>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label) tag. This tells the browser that this label is associated with that select box. When the user clicks the label, the browser will automatically focus the select box. It's also essential for accessibility: a screen reader will announce the label caption when the user focuses the select box.
+בדרך כלל, תציב כל `<select>` בתוך תג [`<label>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label). זה אומר לדפדפן שהתווית הזו משויכת לאותה תיבת בחירה. כאשר ה-user לוחץ על התווית, הדפדפן ימקד אוטומטית את תיבת הבחירה. זה גם חיוני לנגישות: קורא מסך יכריז על כיתוב התווית __T__c_t_K
 
-If you can't nest `<select>` into a `<label>`, associate them by passing the same ID to `<select id>` and [`<label htmlFor>`.](https://developer.mozilla.org/en-US/docs/Web/API/HTMLLabelElement/htmlFor) To avoid conflicts between multiple instances of one component, generate such an ID with [`useId`.](/reference/react/useId)
+אם אינך יכול לקנן את `<select>` לתוך `<label>`, שייך אותם על ידי העברת אותו מזהה ל-`<select id>` ו-[`<label htmlFor>`.](https://developer.mozilla.org/en-US/docs/Web/API/HTMLLabelElement/htmlFor) כדי למנוע התנגשויות בין מופעים מרובים של רכיב אחד, צור מזהה כזה עם [`useId`.](/__TK_6_react/reference)
 
 <Sandpack>
 
@@ -153,9 +153,9 @@ select { margin: 5px; }
 
 ---
 
-### Providing an initially selected option {/*providing-an-initially-selected-option*/}
+### מתן אפשרות שנבחרה תחילה {/*providing-an-initially-selected-option*/}
 
-By default, the browser will select the first `<option>` in the list. To select a different option by default, pass that `<option>`'s `value` as the `defaultValue` to the `<select>` element.
+כברירת מחדל, הדפדפן יבחר את ה-`<option>` הראשון ברשימה. כדי לבחור אפשרות אחרת כברירת מחדל, העבר את ה-`value` של `<option>` זה בתור `defaultValue` לרכיב `<select>`.
 
 <Sandpack>
 
@@ -182,15 +182,15 @@ select { margin: 5px; }
 
 <Pitfall>
 
-Unlike in HTML, passing a `selected` attribute to an individual `<option>` is not supported.
+שלא כמו ב-HTML, העברת תכונה `selected` לאדם `<option>` אינה נתמכת.
 
 </Pitfall>
 
 ---
 
-### Enabling multiple selection {/*enabling-multiple-selection*/}
+### הפעלת בחירה מרובה {/*enabling-multiple-selection*/}
 
-Pass `multiple={true}` to the `<select>` to let the user select multiple options. In that case, if you also specify `defaultValue` to choose the initially selected options, it must be an array.
+העבר את `multiple={true}` ל-`<select>` כדי לאפשר ל-user לבחור אפשרויות מרובות. במקרה כזה, אם אתה מציין גם `defaultValue` כדי לבחור את האפשרויות שנבחרו בתחילה, זה חייב להיות מערך.
 
 <Sandpack>
 
@@ -221,9 +221,9 @@ select { display: block; margin-top: 10px; width: 200px; }
 
 ---
 
-### Reading the select box value when submitting a form {/*reading-the-select-box-value-when-submitting-a-form*/}
+### קריאת ערך תיבת הבחירה בעת שליחת טופס {/*reading-the-select-box-value-when-submitting-a-form*/}
 
-Add a [`<form>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form) around your select box with a [`<button type="submit">`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button) inside. It will call your `<form onSubmit>` event handler. By default, the browser will send the form data to the current URL and refresh the page. You can override that behavior by calling `e.preventDefault()`. Read the form data with [`new FormData(e.target)`](https://developer.mozilla.org/en-US/docs/Web/API/FormData).
+הוסף [`<form>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form) סביב תיבת הבחירה שלך עם [`<button type="submit">`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button) בפנים. זה יקרא למטפל האירועים `<form onSubmit>` שלך. כברירת מחדל, הדפדפן ישלח את נתוני הטופס לכתובת ה-URL הנוכחית וירענן את הדף. תוכל לעקוף התנהגות זו על ידי קריאה ל-`new FormData(e.target)`](__K__נתוני הטופס עם [__K_7)
 <Sandpack>
 
 ```js
@@ -284,25 +284,25 @@ label { margin-bottom: 20px; }
 
 <Note>
 
-Give a `name` to your `<select>`, for example `<select name="selectedFruit" />`. The `name` you specified will be used as a key in the form data, for example `{ selectedFruit: "orange" }`.
+תן `name` ל-`<select>` שלך, למשל `<select name="selectedFruit" />`. ה-`name` שציינת יהיה used כמפתח בנתוני הטופס, למשל `{ selectedFruit: "orange" }`.
 
-If you use `<select multiple={true}>`, the [`FormData`](https://developer.mozilla.org/en-US/docs/Web/API/FormData) you'll read from the form will include each selected value as a separate name-value pair. Look closely at the console logs in the example above.
+אם אתה use `<select multiple={true}>`, ה-[`FormData`](https://developer.mozilla.org/en-US/docs/Web/API/FormData) שתקרא מהטופס יכלול כל ערך שנבחר כצמד שם-ערך נפרד. עיין מקרוב ביומני המסוף בדוגמה למעלה.
 
 </Note>
 
 <Pitfall>
 
-By default, *any* `<button>` inside a `<form>` will submit it. This can be surprising! If you have your own custom `Button` React component, consider returning [`<button type="button">`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/button) instead of `<button>`. Then, to be explicit, use `<button type="submit">` for buttons that *are* supposed to submit the form.
+כברירת מחדל, *כל* `<button>` בתוך `<form>` ישלח אותו. זה יכול להפתיע! אם יש לך רכיב `Button` React מותאם אישית משלך, שקול להחזיר [`<button type="button">`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/button) במקום `<button>`. לאחר מכן, כדי להיות מפורש, use `<button type="submit">` עבור לחצנים ש*אמורים* לשלוח את הטופס.
 
 </Pitfall>
 
 ---
 
-### Controlling a select box with a state variable {/*controlling-a-select-box-with-a-state-variable*/}
+### שליטה בתיבת בחירה עם משתנה state {/*controlling-a-select-box-with-a-state-variable*/}
 
-A select box like `<select />` is *uncontrolled.* Even if you [pass an initially selected value](#providing-an-initially-selected-option) like `<select defaultValue="orange" />`, your JSX only specifies the initial value, not the value right now.
+תיבת בחירה כמו `<select />` היא *לא מבוקרת.* גם אם אתה [עבר ערך שנבחר תחילה](#providing-an-initially-selected-option) כמו `<select defaultValue="orange" />`, ה-JSX שלך מציין רק את הערך ההתחלתי, לא את הערך כרגע.
 
-**To render a _controlled_ select box, pass the `value` prop to it.** React will force the select box to always have the `value` you passed. Typically, you will control a select box by declaring a [state variable:](/reference/react/useState)
+**כדי להציג תיבת בחירה _מבוקרת_, העבירו אליה את האביזר `value`.** React יאלץ את תיבת הבחירה לכלול תמיד את ה-`value` שעברת. בדרך כלל, תוכל לשלוט בתיבת בחירה על ידי הכרזה על משתנה [state:](/reference/react/useState)
 
 ```js {2,6,7}
 function FruitPicker() {
@@ -321,7 +321,7 @@ function FruitPicker() {
 }
 ```
 
-This is useful if you want to re-render some part of the UI in response to every selection.
+זה useמלא אם ברצונך לעבד מחדש חלק כלשהו ממשק המשתמש בתגובה לכל בחירה.
 
 <Sandpack>
 
@@ -377,8 +377,8 @@ select { margin-bottom: 10px; display: block; }
 
 <Pitfall>
 
-**If you pass `value` without `onChange`, it will be impossible to select an option.** When you control a select box by passing some `value` to it, you *force* it to always have the value you passed. So if you pass a state variable as a `value` but forget to update that state variable synchronously during the `onChange` event handler, React will revert the select box after every keystroke back to the `value` that you specified.
+**אם תעבירו את `value` ללא `onChange`, זה יהיה בלתי אפשרי לבחור אפשרות.** כאשר אתם שולטים בתיבת בחירה על ידי העברת כמה `value` אליה, אתם *מאלצים* אותה לקבל תמיד את הערך שהעברת. אז אם תעביר משתנה state בתור `value` אבל תשכח לעדכן את המשתנה state באופן סינכרוני במהלך מטפל האירועים `onChange`, React יחזיר את תיבת הבחירה לאחר כל הקשה בחזרה ל-`value` שציינת.
 
-Unlike in HTML, passing a `selected` attribute to an individual `<option>` is not supported.
+שלא כמו ב-HTML, העברת תכונה `selected` לאדם `<option>` אינה נתמכת.
 
 </Pitfall>

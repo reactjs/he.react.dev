@@ -1,30 +1,30 @@
 ---
-title: Adding Interactivity
+title: הוספת אינטראקטיביות
 ---
 
 <Intro>
 
-Some things on the screen update in response to user input. For example, clicking an image gallery switches the active image. In React, data that changes over time is called *state.* You can add state to any component, and update it as needed. In this chapter, you'll learn how to write components that handle interactions, update their state, and display different output over time.
+כמה דברים על המסך מתעדכנים בתגובה לקלט המשתמש. לדוגמה, לחיצה על גלריית תמונות משנה את התמונה הפעילה. ב-React, נתונים המשתנים עם הזמן נקראים *state.* ניתן להוסיף מצב לכל רכיב, ולעדכן אותו לפי הצורך. בפרק זה, תלמד איך לכתוב רכיבים המטפלים באינטראקציות, לעדכן את הstate ולהציג פלט שונה לאורך זמן.
 
 </Intro>
 
 <YouWillLearn isChapter={true}>
 
-* [How to handle user-initiated events](/learn/responding-to-events)
-* [How to make components "remember" information with state](/learn/state-a-components-memory)
-* [How React updates the UI in two phases](/learn/render-and-commit)
-* [Why state doesn't update right after you change it](/learn/state-as-a-snapshot)
-* [How to queue multiple state updates](/learn/queueing-a-series-of-state-updates)
-* [How to update an object in state](/learn/updating-objects-in-state)
-* [How to update an array in state](/learn/updating-arrays-in-state)
+* [כיצד לרבות באירועים ביוזמת המשתמש](/learn/responding-to-events)
+* [כיצד לגרום לרכיבים "לזכור" מידע עם מצב](/learn/state-a-components-memory)
+* [איך React מעדכן את ממשק משתמש בשני שלבים](/learn/render-and-commit)
+* [מדוע הstate לא מתעדכן מיד אחרי שאתה משנה אותו](/learn/state-as-a-snapshot)
+* [כיצד ונהלה בתור עדכוני מצב מרובים](/learn/queueing-a-series-of-state-updates)
+* [כיצד לעדכן אובייקט בstate](/learn/updating-objects-in-state)
+* [כיצד לעדכן מערך בstate](/learn/updating-arrays-in-state)
 
 </YouWillLearn>
 
-## Responding to events {/*responding-to-events*/}
+## מגיבים לאירועים {/*מגיבים-לאירועים*/}
 
-React lets you add *event handlers* to your JSX. Event handlers are your own functions that will be triggered in response to user interactions like clicking, hovering, focusing on form inputs, and so on.
+תגיב לך להוסיף *מטפלי אירועים* ל-JSX. מטפלי אירועים הם פונקציות משלך שיופעלו בתגובה לאינטראקציות של משתמשים כמו לחיצה, ריחוף, הבדיקות בקלט טפסים וכן הלאה.
 
-Built-in components like `<button>` only support built-in browser events like `onClick`. However, you can also create your own components, and give their event handler props any application-specific names that you like.
+רכיבים מובנים כמו ``<button>`` תומכים רק באירועי דפדפן מובנים כמו `onClick`. עם זאת, אתה יכול גם ליצור רכיבים משלך, ולתת לprops שלהם למטפל באירועים כל שמות פרטים לאפליקציה שאתה אוהב.
 
 <Sandpack>
 
@@ -68,22 +68,22 @@ button { margin-right: 10px; }
 
 <LearnMore path="/learn/responding-to-events">
 
-Read **[Responding to Events](/learn/responding-to-events)** to learn how to add event handlers.
+קרא את **[להגיב לאירועים](/learn/reponding-to-events)** כדי ללמוד כיצד להוסיף מטפלי אירועים.
 
 </LearnMore>
 
-## State: a component's memory {/*state-a-components-memory*/}
+## מצב: זיכרון של רכיב {/*state-a-components-memory*/}
 
-Components often need to change what's on the screen as a result of an interaction. Typing into the form should update the input field, clicking "next" on an image carousel should change which image is displayed, clicking "buy" puts a product in the shopping cart. Components need to "remember" things: the current input value, the current image, the shopping cart. In React, this kind of component-specific memory is called *state.*
+רכיבים צריכים לעשות את מה שמופיע על המסך כמו מאינטראקציה. הקלדה בטופס אמורה לעדכן את שדה הקלט, לחיצה על "הבא" בקרוסלת תמונה אמורה לשנות איזו תמונה מוצגת, לחיצה על "קנה" מכניסה מוצר לסל הקניות. רכיבים צריכים "לזכור" דברים: ערך הקלט הנוכחית, התמונה הנוכחית, עגלת הקניות. ב-React, סוג זה של זיכרון מיוחד לרכיב נקרא *מצב.*
 
-You can add state to a component with a [`useState`](/reference/react/useState) Hook. *Hooks* are special functions that let your components use React features (state is one of those features). The `useState` Hook lets you declare a state variable. It takes the initial state and returns a pair of values: the current state, and a state setter function that lets you update it.
+אתה יכול להוסיף מצב לרכיב עם [`useState`](/reference/react/useState) Hook. *הHooks* הם פונקציות מיוחדות האפשרויות לרכיבים שלך להשתמש בתכונות React (מצב אחד מהתכונות הללו). ה- `useState` Hook יכול לך להכריז על ניהול מצב. זה לוקח את הstate ההתחלתי ומחזיר ערכים זוג: ה__T_5__ הנוכחית ופונקציה קובעת מצב שמאפשרת לעדכן אותו.
 
 ```js
 const [index, setIndex] = useState(0);
 const [showMore, setShowMore] = useState(false);
 ```
 
-Here is how an image gallery uses and updates state on click:
+הנה איך גלריית תמונות משתמשת ומעדכנת מצב בלחיצה:
 
 <Sandpack>
 
@@ -229,19 +229,19 @@ button {
 
 <LearnMore path="/learn/state-a-components-memory">
 
-Read **[State: A Component's Memory](/learn/state-a-components-memory)** to learn how to remember a value and update it on interaction.
+קרא את **[מצב: זיכרון של רכיב](/learn/state-a-components-memory)** כדי ללמוד לזכור ערך ולעדכן אותו באינטראקציה.
 
 </LearnMore>
 
-## Render and commit {/*render-and-commit*/}
+## עיבוד וביצוע {/*עיבוד-וביצוע*/}
 
-Before your components are displayed on the screen, they must be rendered by React. Understanding the steps in this process will help you think about how your code executes and explain its behavior.
+לפני שהרכיבים שלך יוצגו על המסך, הם חייבים לעבוד על ידי React. הבנת את החשבון שלך בפעולה זו תעזור לך על ביצוע הקוד ולהסביר את ההתנהלות.
 
-Imagine that your components are cooks in the kitchen, assembling tasty dishes from ingredients. In this scenario, React is the waiter who puts in requests from customers and brings them their orders. This process of requesting and serving UI has three steps:
+דמיינו שהרכיבים שלכם הם מטבחים במטבח. בתרחיש זה, תגיב הוא המלצר שמגיש בקשות מלקוחות ומביא להם את ההזמנות שלהם. לתהליך זה של בקשה והגשה של ממשק משתמש יש שלושה שלבים:
 
-1. **Triggering** a render (delivering the diner's order to the kitchen)
-2. **Rendering** the component (preparing the order in the kitchen)
-3. **Committing** to the DOM (placing the order on the table)
+1. **הפעלת** עיבוד (משלוח הזמנת הסועד למטבח)
+2. **עיבוד** הרכיב (הכנת ההזמנה במטבח)
+3. **מתחייב** ל-DOM (ביצוע ההזמנה על השולחן)
 
 <IllustrationBlock sequential>
   <Illustration caption="Trigger" alt="React as a server in a restaurant, fetching orders from the users and delivering them to the Component Kitchen." src="/images/docs/illustrations/i_render-and-commit1.png" />
@@ -251,13 +251,13 @@ Imagine that your components are cooks in the kitchen, assembling tasty dishes f
 
 <LearnMore path="/learn/render-and-commit">
 
-Read **[Render and Commit](/learn/render-and-commit)** to learn the lifecycle of a UI update.
+קרא את **[render and Commit](/learn/render-and-commit)** כדי ללמוד את המחזור החיים של עדכון ממשק משתמש.
 
 </LearnMore>
 
-## State as a snapshot {/*state-as-a-snapshot*/}
+## מצב כתמונת מצב {/*מצב-כתמונת-מצב*/}
 
-Unlike regular JavaScript variables, React state behaves more like a snapshot. Setting it does not change the state variable you already have, but instead triggers a re-render. This can be surprising at first!
+צריך למשתני JavaScript רגילים, מצב תגובה מתנהג יותר כמו תמונת מצב. הגדר את זה לא משנה את הstate הstate יש לך, אלא מפעיל עיבוד מחדש. זה יכול להיות מפתיע בהתחלה!
 
 ```js
 console.log(count);  // 0
@@ -265,7 +265,7 @@ setCount(count + 1); // Request a re-render with 1
 console.log(count);  // Still 0!
 ```
 
-This behavior help you avoid subtle bugs. Here is a little chat app. Try to guess what happens if you press "Send" first and *then* change the recipient to Bob. Whose name will appear in the `alert` five seconds later?
+התנהגות זו עוזרת לך להימנע מבאגים עדינים. הנה אפליקציית צ'אט קטנה. נסו לנחש מה קורה אם תלחצו תחילה על "שלח" ו*אחר כך* תשנה את הנמען לבוב. שמו של מי יופיע ב'התראה' חמש שניות מאוחר יותר?
 
 <Sandpack>
 
@@ -314,13 +314,13 @@ label, textarea { margin-bottom: 10px; display: block; }
 
 <LearnMore path="/learn/state-as-a-snapshot">
 
-Read **[State as a Snapshot](/learn/state-as-a-snapshot)** to learn why state appears "fixed" and unchanging inside the event handlers.
+קרא את **[מצב כתמונת מצב](/learn/state-as-a-snapshot)** כדי לדעת מה הstate נראה "קבוע" ולא מדורגות בתוך הרופאי המקומות.
 
 </LearnMore>
 
-## Queueing a series of state updates {/*queueing-a-series-of-state-updates*/}
+## תור לסדרה של עדכוני state {/*תור-סדרה-של-עדכוני-state*/}
 
-This component is buggy: clicking "+3" increments the score only once.
+רכיב זה הוא באגי: לחיצה על "+3" מגדילה את הניקוד פעם אחת בלבד.
 
 <Sandpack>
 
@@ -354,7 +354,7 @@ button { display: inline-block; margin: 10px; font-size: 20px; }
 
 </Sandpack>
 
-[State as a Snapshot](/learn/state-as-a-snapshot) explains why this is happening. Setting state requests a new re-render, but does not change it in the already running code. So `score` continues to be `0` right after you call `setScore(score + 1)`.
+[State as a Snapshot](/learn/state-as-a-snapshot) מסביר מדוע זה קורה. הגדרת בקשת עיבוד מחדש חדש, אך לא משנה אותו בקוד פועל. אז 'ציון' ממשיך להיות '0' מיד אחרי שאתה קורא ל'setScore(score + 1)'.
 
 ```js
 console.log(score);  // 0
@@ -366,7 +366,7 @@ setScore(score + 1); // setScore(0 + 1);
 console.log(score);  // 0
 ```
 
-You can fix this by passing an *updater function* when setting state. Notice how replacing `setScore(score + 1)` with `setScore(s => s + 1)` fixes the "+3" button. This lets you queue multiple state updates.
+אתה יכול לתקן זאת על העברת *פונקציית עדכון* בעת הגדרת הstate. שימו לב כיצד החלפת `setScore(score + 1)` ב-`setScore(s => s + 1)` מתקנת את כפתור "+3". זה יכול לך להכנס לפי עדכוני מצב מרובים.
 
 <Sandpack>
 
@@ -402,15 +402,15 @@ button { display: inline-block; margin: 10px; font-size: 20px; }
 
 <LearnMore path="/learn/queueing-a-series-of-state-updates">
 
-Read **[Queueing a Series of State Updates](/learn/queueing-a-series-of-state-updates)** to learn how to queue a sequence of state updates.
+קרא את **[לעמוד בתור סדרה של עדכוני state](/learn/queueing-a-series-of-state-updates)** כדי ללמוד כיצד להעמיד את הרצף של עדכוני state בתור.
 
 </LearnMore>
 
-## Updating objects in state {/*updating-objects-in-state*/}
+## עדכון אובייקטים בstate {/*עדכון-אובייקטים-בstate*/}
 
-State can hold any kind of JavaScript value, including objects. But you shouldn't change objects and arrays that you hold in the React state directly. Instead, when you want to update an object and array, you need to create a new one (or make a copy of an existing one), and then update the state to use that copy.
+מצב יכול לבנות סוג של ערך __K_0__, כולל כל אובייקטים. אבל אתה לא צריך לשנות אובייקטים וערכים שאתה מחזיק בstate. במקום זאת, כאשר נך לעדכן עצם ומערך, עליך ליצור רצועת חדש (או ליצור עו של קיים), היכן לעדכן את הstate כדי להשתמש בעותק זה.
 
-Usually, you will use the `...` spread syntax to copy objects and arrays that you want to change. For example, updating a nested object could look like this:
+בדרך כלל, תשתמש בתחביר התפשטות `...` כדי להעתיק אובייקטים ומערכים שברצונך לשנות. לדוגמה, עדכון אובייקט מקונן יכול להיראות כך:
 
 <Sandpack>
 
@@ -518,7 +518,7 @@ img { width: 200px; height: 200px; }
 
 </Sandpack>
 
-If copying objects in code gets tedious, you can use a library like [Immer](https://github.com/immerjs/use-immer) to reduce repetitive code:
+אם העתקת להשתמש בספרים בקוד הופכת מייגעת, אתה יכול להשתמש בשימוש כמו [Immer](https://github.com/immerjs/use-immer) כדי להקטין קוד שחוזר על עצמו:
 
 <Sandpack>
 
@@ -633,13 +633,13 @@ img { width: 200px; height: 200px; }
 
 <LearnMore path="/learn/updating-objects-in-state">
 
-Read **[Updating Objects in State](/learn/updating-objects-in-state)** to learn how to update objects correctly.
+קרא את **[עדכון אובייקטים בstate](/learn/updating-objects-in-state)** כדי ללמוד כיצד לעדכן אובייקטים בצורה נכונה.
 
 </LearnMore>
 
-## Updating arrays in state {/*updating-arrays-in-state*/}
+## עדכון מערכים בstate {/*עדכון-מערכים-בstate*/}
 
-Arrays are another type of mutable JavaScript objects you can store in state and should treat as read-only. Just like with objects, when you want to update an array stored in state, you need to create a new one (or make a copy of an existing one), and then set state to use the new array:
+מערכים הם סוג נוסף של אובייקטי JavaScript הניתנים לשינוי שאתה יכול לאחסן בstate וצריך להתייחס אליהם כאל בלבד קריאה. בדיוק כמו עם חפצים, כאשר אתה רוצה לעדכן מערך מאוחסן בstate, אתה צריך ליצור מערך (או ליצור עותק של קיים), הוא להגדיר את הstate לשימוש במערך החדש:
 
 <Sandpack>
 
@@ -705,7 +705,7 @@ function ItemList({ artworks, onToggle }) {
 
 </Sandpack>
 
-If copying arrays in code gets tedious, you can use a library like [Immer](https://github.com/immerjs/use-immer) to reduce repetitive code:
+אם העתקת מערכים בקוד הופכת מייגעת, אתה יכול להשתמש בספרייה כמו [Immer](https://github.com/immerjs/use-immer) כדי להקטין קוד שחוזר על עצמו:
 
 <Sandpack>
 
@@ -789,12 +789,13 @@ function ItemList({ artworks, onToggle }) {
 
 <LearnMore path="/learn/updating-arrays-in-state">
 
-Read **[Updating Arrays in State](/learn/updating-arrays-in-state)** to learn how to update arrays correctly.
+קרא את **[עדכון מערכים בstate](/learn/updating-arrays-in-state)** כדי ללמוד לעדכן מערכים בצורה נכונה.
 
 </LearnMore>
 
-## What's next? {/*whats-next*/}
+## מה הלאה? {/*מה-הבא*/}
 
-Head over to [Responding to Events](/learn/responding-to-events) to start reading this chapter page by page!
+עברו אל [מגיבים לאירועים](/learn/responding-to-events) כדי להתחיל לקרוא פרק זה עמוד אחר עמוד!
 
-Or, if you're already familiar with these topics, why not read about [Managing State](/learn/managing-state)?
+לחלופין, אם אתה כבר מכיר את הנושאים האלה, למה שלא תקרא על [Managing State](/learn/managing-state)?
+

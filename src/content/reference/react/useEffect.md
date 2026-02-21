@@ -1,10 +1,10 @@
 ---
-title: useEffect
+title: "useEffect"
 ---
 
 <Intro>
 
-`useEffect` is a React Hook that lets you [synchronize a component with an external system.](/learn/synchronizing-with-effects)
+`useEffect` הוא React Hook המאפשר לך [לסנכרן רכיב עם מערכת חיצונית.](/learn/synchronizing-with-effects)
 
 ```js
 useEffect(setup, dependencies?)
@@ -16,11 +16,11 @@ useEffect(setup, dependencies?)
 
 ---
 
-## Reference {/*reference*/}
+## הפניה {/*reference*/}
 
 ### `useEffect(setup, dependencies?)` {/*useeffect*/}
 
-Call `useEffect` at the top level of your component to declare an Effect:
+התקשר ל-`useEffect` ברמה העליונה של הרכיב שלך כדי להכריז על אפקט:
 
 ```js
 import { useEffect } from 'react';
@@ -40,43 +40,43 @@ function ChatRoom({ roomId }) {
 }
 ```
 
-[See more examples below.](#usage)
+[ראה דוגמאות נוספות למטה.](#usage)
 
-#### Parameters {/*parameters*/}
+#### פרמטרים {/*parameters*/}
 
-* `setup`: The function with your Effect's logic. Your setup function may also optionally return a *cleanup* function. When your component is added to the DOM, React will run your setup function. After every re-render with changed dependencies, React will first run the cleanup function (if you provided it) with the old values, and then run your setup function with the new values. After your component is removed from the DOM, React will run your cleanup function.
+* `setup`: הפונקציה עם ההיגיון של האפקט שלך. פונקציית ההגדרה שלך עשויה גם להחזיר פונקציית *ניקוי*. כאשר הרכיב שלך יתווסף ל-DOM, React יפעיל את פונקציית ההגדרה שלך. לאחר כל רינדור מחדש עם שינויים תלויים, React יריץ תחילה את פונקציית הניקוי (אם סיפקת אותה) עם הערכים הישנים, ולאחר מכן יריץ את פונקציית ההתקנה שלך עם הערכים החדשים. לאחר הסרת הרכיב שלך מה-DOM, React יפעיל את פונקציית הניקוי שלך.
  
-* **optional** `dependencies`: The list of all reactive values referenced inside of the `setup` code. Reactive values include props, state, and all the variables and functions declared directly inside your component body. If your linter is [configured for React](/learn/editor-setup#linting), it will verify that every reactive value is correctly specified as a dependency. The list of dependencies must have a constant number of items and be written inline like `[dep1, dep2, dep3]`. React will compare each dependency with its previous value using the [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) comparison. If you omit this argument, your Effect will re-run after every re-render of the component. [See the difference between passing an array of dependencies, an empty array, and no dependencies at all.](#examples-dependencies)
+* **אופציונלי** `dependencies`: רשימת כל הערכים התגובתיים שאליהם מתייחסים בתוך הקוד `setup`. הערכים Reactive כוללים את props, state, ואת כל המשתנים והפונקציות המוצהרות ישירות בתוך גוף הרכיב שלך. אם ה-linter שלך הוא [מוגדר עבור React](/learn/editor-setup#linting), הוא יוודא שכל ערך תגובתי צוין כהלכה כתלות. רשימת התלות חייבת לכלול מספר קבוע של פריטים ולהיכתב בשורה כמו `[dep1, dep2, dep3]`. React ישווה כל תלות עם הערך הקודם שלה באמצעות ההשוואה [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is). אם תשמיט ארגומנט זה, האפקט שלך יופעל מחדש לאחר כל רינדור מחדש של הרכיב. [ראה את ההבדל בין העברת מערך של תלות, מערך ריק וללא תלות כלל.](#)examples.
 
-#### Returns {/*returns*/}
+#### מחזירה {/*returns*/}
 
-`useEffect` returns `undefined`.
+`useEffect` מחזירה `undefined`.
 
-#### Caveats {/*caveats*/}
+#### אזהרות {/*caveats*/}
 
-* `useEffect` is a Hook, so you can only call it **at the top level of your component** or your own Hooks. You can't call it inside loops or conditions. If you need that, extract a new component and move the state into it.
+* `useEffect` הוא Hook, אז אתה יכול לקרוא לו רק **ברמה העליונה של הרכיב שלך** או Hooks משלך. אתה לא יכול לקרוא לזה בתוך לולאות או תנאים. אם אתה צריך את זה, חלץ רכיב חדש והעביר את ה-state לתוכו.
 
-* If you're **not trying to synchronize with some external system,** [you probably don't need an Effect.](/learn/you-might-not-need-an-effect)
+* אם אתה **לא מנסה לסנכרן עם מערכת חיצונית כלשהי,** [כנראה לא צריך אפקט.](/learn/you-might-not-need-an-effect)
 
-* When Strict Mode is on, React will **run one extra development-only setup+cleanup cycle** before the first real setup. This is a stress-test that ensures that your cleanup logic "mirrors" your setup logic and that it stops or undoes whatever the setup is doing. If this causes a problem, [implement the cleanup function.](/learn/synchronizing-with-effects#how-to-handle-the-effect-firing-twice-in-development)
+* כאשר מצב קפדני מופעל, React **יריץ הגדרה אחת נוספת לפיתוח בלבד+מחזור ניקוי** לפני ההגדרה האמיתית הראשונה. זהו מבחן מאמץ המבטיח שהלוגיקת הניקוי שלך "משקפת" את היגיון ההתקנה שלך ושהוא עוצר או מבטל את כל מה שההגדרה עושה. אם זה use הוא בעיה, [הטמיע את פונקציית הניקוי.](/learn/synchronizing-with-effects#how-to-handle-the-effect-firing-twice-in-development)
 
-* If some of your dependencies are objects or functions defined inside the component, there is a risk that they will **cause the Effect to re-run more often than needed.** To fix this, remove unnecessary [object](#removing-unnecessary-object-dependencies) and [function](#removing-unnecessary-function-dependencies) dependencies. You can also [extract state updates](#updating-state-based-on-previous-state-from-an-effect) and [non-reactive logic](#reading-the-latest-props-and-state-from-an-effect) outside of your Effect.
+* אם חלק מהתלות שלך הם אובייקטים או פונקציות שהוגדרו בתוך הרכיב, קיים סיכון שהם **cause יפעלו מחדש את האפקט לעתים קרובות יותר מהנדרש.** כדי לתקן זאת, הסר תלות מיותרות [object](#removing-unnecessary-object-dependencies) ו-[function](#removing-unnecessary-dependencies-dependencies. אתה יכול גם [לחלץ עדכונים של state](#עדכונים-state-based-on-previous-state-from-an-effect) ו-[היגיון לא תגובתי](#reading-the-latest-props-and-state-from-an-effect) מחוץ לאפקט שלך.
 
-* If your Effect wasn't caused by an interaction (like a click), React will generally let the browser **paint the updated screen first before running your Effect.** If your Effect is doing something visual (for example, positioning a tooltip), and the delay is noticeable (for example, it flickers), replace `useEffect` with [`useLayoutEffect`.](/reference/react/useLayoutEffect)
+* אם האפקט שלך לא היה caused על ידי אינטראקציה (כמו קליק), React בדרך כלל יאפשר לדפדפן **לצבוע את המסך המעודכן תחילה לפני הפעלת האפקט שלך.** אם האפקט שלך עושה משהו ויזואלי (לדוגמה, מיקום הסבר כלים), והעיכוב מורגש (לדוגמה, הוא מהבהב), החלף את `useEffect` ב-`useEffect` [`useLayoutEffect`.](/reference/react/useLayoutEffect)
 
-* Even if your Effect was caused by an interaction (like a click), **the browser may repaint the screen before processing the state updates inside your Effect.** Usually, that's what you want. However, if you must block the browser from repainting the screen, you need to replace `useEffect` with [`useLayoutEffect`.](/reference/react/useLayoutEffect)
+* גם אם האפקט שלך היה caused על ידי אינטראקציה (כמו קליק), **הדפדפן עשוי לצבוע מחדש את המסך לפני עיבוד עדכוני state בתוך האפקט שלך.** בדרך כלל, זה מה שאתה רוצה. עם זאת, אם עליך לחסום את הדפדפן מלצבוע מחדש את המסך, עליך להחליף את `useEffect` ב-[`useLayoutEffect`.](/reference/react/useLayoutEffect)
 
-* Effects **only run on the client.** They don't run during server rendering.
+* אפקטים **פועלים רק על הלקוח.** הם לא פועלים במהלך עיבוד השרת.
 
 ---
 
-## Usage {/*usage*/}
+## שימוש {/*usage*/}
 
-### Connecting to an external system {/*connecting-to-an-external-system*/}
+### התחברות למערכת חיצונית {/*connecting-to-an-external-system*/}
 
-Some components need to stay connected to the network, some browser API, or a third-party library, while they are displayed on the page. These systems aren't controlled by React, so they are called *external.*
+חלק מהרכיבים צריכים להישאר מחוברים לרשת, חלק מהדפדפן API, או ספריית צד שלישי, בזמן שהם מוצגים בדף. מערכות אלו אינן נשלטות על ידי React, ולכן הן נקראות *חיצוניות.*
 
-To [connect your component to some external system,](/learn/synchronizing-with-effects) call `useEffect` at the top level of your component:
+כדי [לחבר את הרכיב שלך למערכת חיצונית כלשהי,](/learn/synchronizing-with-effects) התקשר ל-`useEffect` ברמה העליונה של הרכיב שלך:
 
 ```js [[1, 8, "const connection = createConnection(serverUrl, roomId);"], [1, 9, "connection.connect();"], [2, 11, "connection.disconnect();"], [3, 13, "[serverUrl, roomId]"]]
 import { useEffect } from 'react';
@@ -96,45 +96,45 @@ function ChatRoom({ roomId }) {
 }
 ```
 
-You need to pass two arguments to `useEffect`:
+עליך להעביר שני טיעונים ל-`useEffect`:
 
-1. A *setup function* with <CodeStep step={1}>setup code</CodeStep> that connects to that system.
-   - It should return a *cleanup function* with <CodeStep step={2}>cleanup code</CodeStep> that disconnects from that system.
-2. A <CodeStep step={3}>list of dependencies</CodeStep> including every value from your component used inside of those functions.
+1. *פונקציית הגדרה* עם <CodeStep step={1}>קוד הגדרה</CodeStep> שמתחברת לאותה מערכת.
+   - היא אמורה להחזיר *פונקציית ניקוי* עם <CodeStep step={2}>קוד ניקוי</CodeStep> שמתנתקת ממערכת זו.
+2. <CodeStep step={3}>רשימת תלות</CodeStep> הכוללת כל ערך מהרכיב used שלך בתוך הפונקציות הללו.
 
-**React calls your setup and cleanup functions whenever it's necessary, which may happen multiple times:**
+**React קורא לפונקציות ההגדרה והניקוי שלך בכל פעם שנדרש, מה שעשוי לקרות מספר פעמים:**
 
-1. Your <CodeStep step={1}>setup code</CodeStep> runs when your component is added to the page *(mounts)*.
-2. After every re-render of your component where the <CodeStep step={3}>dependencies</CodeStep> have changed:
-   - First, your <CodeStep step={2}>cleanup code</CodeStep> runs with the old props and state.
-   - Then, your <CodeStep step={1}>setup code</CodeStep> runs with the new props and state.
-3. Your <CodeStep step={2}>cleanup code</CodeStep> runs one final time after your component is removed from the page *(unmounts).*
+1. <CodeStep step={1}>קוד ההגדרה</CodeStep> שלך פועל כאשר הרכיב שלך מתווסף לדף *(mounts)*.
+2. לאחר כל עיבוד מחדש של הרכיב שלך שבו השתנו <CodeStep step={3}>התלות</CodeStep>:
+   - ראשית, <CodeStep step={2}>קוד הניקוי</CodeStep> שלך פועל עם props וstate הישנים.
+   - לאחר מכן, <CodeStep step={1}>קוד ההגדרה</CodeStep> שלך פועל עם props וstate החדשים.
+3. <CodeStep step={2}>קוד הניקוי</CodeStep> שלך פועל פעם אחת אחרונה לאחר הסרת הרכיב שלך מהדף *(מבוטל).*
 
-**Let's illustrate this sequence for the example above.**  
+**בואו נמחיש את הרצף הזה עבור הדוגמה שלמעלה.**
 
-When the `ChatRoom` component above gets added to the page, it will connect to the chat room with the initial `serverUrl` and `roomId`. If either `serverUrl` or `roomId` change as a result of a re-render (say, if the user picks a different chat room in a dropdown), your Effect will *disconnect from the previous room, and connect to the next one.* When the `ChatRoom` component is removed from the page, your Effect will disconnect one last time.
+כאשר הרכיב `ChatRoom` למעלה יתווסף לדף, הוא יתחבר לחדר הצ'אט עם ה-`serverUrl` וה-`roomId` הראשוניים. אם `serverUrl` או `roomId` משתנים כתוצאה מעיבוד מחדש (נניח, אם ה-user בוחר חדר צ'אט אחר בתפריט נפתח), האפקט שלך *יתנתק מהחדר הקודם, ויתחבר לחדר הבא.* כאשר הרכיב `ChatRoom` יוסר מהדף, האפקט שלך יתנתק פעם אחרונה.
 
-**To [help you find bugs,](/learn/synchronizing-with-effects#step-3-add-cleanup-if-needed) in development React runs <CodeStep step={1}>setup</CodeStep> and <CodeStep step={2}>cleanup</CodeStep> one extra time before the <CodeStep step={1}>setup</CodeStep>.** This is a stress-test that verifies your Effect's logic is implemented correctly. If this causes visible issues, your cleanup function is missing some logic. The cleanup function should stop or undo whatever the setup function was doing. The rule of thumb is that the user shouldn't be able to distinguish between the setup being called once (as in production) and a *setup* → *cleanup* → *setup* sequence (as in development). [See common solutions.](/learn/synchronizing-with-effects#how-to-handle-the-effect-firing-twice-in-development)
+**כדי [לעזור לך למצוא באגים,](/learn/synchronizing-with-effects#step-3-add-cleanup-if-needed) בפיתוח React מפעיל את <CodeStep step={1}>setup</CodeStep> ו-<CodeStep step={2}>cleanup</CodeStep> פעם נוספת אחת לפני <CodeStep> step={1}>setup</CodeStep>.** זהו מבחן מאמץ המוודא שהלוגיקה של האפקט שלך מיושמת כהלכה. אם יש בעיות גלויות לעין, פונקציית הניקוי שלך חסרה היגיון מסוים. פונקציית הניקוי צריכה להפסיק או לבטל את כל מה שפונקציית ההגדרה עשתה. כלל האצבע הוא שה-user לא אמור להבחין בין ההתקנה שנקראת פעם אחת (כמו בייצור) לבין רצף *התקנה* → *ניקוי* → *התקנה* (כמו בפיתוח). [ראה פתרונות נפוצים.](/learn/synchronizing-with-effects#how-to-handle-the-effect-fire-twoice-in-development)
 
-**Try to [write every Effect as an independent process](/learn/lifecycle-of-reactive-effects#each-effect-represents-a-separate-synchronization-process) and [think about a single setup/cleanup cycle at a time.](/learn/lifecycle-of-reactive-effects#thinking-from-the-effects-perspective)** It shouldn't matter whether your component is mounting, updating, or unmounting. When your cleanup logic correctly "mirrors" the setup logic, your Effect is resilient to running setup and cleanup as often as needed.
+**נסה [לכתוב כל אפקט כתהליך עצמאי](/learn/learn/lifecycle-of-reactive-effects#each-effect-represents-a-separat-synchronization-process) ו[לחשוב על מחזור הגדרה/ניקוי יחיד בכל פעם.](/learn/lifecycle-of-reactive-of-reactive-effects-reactive-from-thinking)' הרכיב שלך מותקן, מתעדכן או מבטל. כאשר היגיון הניקוי שלך "משקף" את היגיון ההגדרה בצורה נכונה, האפקט שלך עמיד להפעלת הגדרות וניקוי בתדירות הנדרשת.
 
 <Note>
 
-An Effect lets you [keep your component synchronized](/learn/synchronizing-with-effects) with some external system (like a chat service). Here, *external system* means any piece of code that's not controlled by React, such as:
+אפקט מאפשר לך [לשמור על הרכיב שלך מסונכרן](/למד/סנכרון-עם-אפקטים) עם מערכת חיצונית כלשהי (כמו שירות צ'אט). כאן, *מערכת חיצונית* פירושה כל פיסת קוד שאינה נשלטת על ידי React, כגון:
 
-* A timer managed with <CodeStep step={1}>[`setInterval()`](https://developer.mozilla.org/en-US/docs/Web/API/setInterval)</CodeStep> and <CodeStep step={2}>[`clearInterval()`](https://developer.mozilla.org/en-US/docs/Web/API/clearInterval)</CodeStep>.
-* An event subscription using <CodeStep step={1}>[`window.addEventListener()`](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener)</CodeStep> and <CodeStep step={2}>[`window.removeEventListener()`](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/removeEventListener)</CodeStep>.
-* A third-party animation library with an API like <CodeStep step={1}>`animation.start()`</CodeStep> and <CodeStep step={2}>`animation.reset()`</CodeStep>.
+* טיימר המנוהל באמצעות <CodeStep step={1}>[`setInterval()`](https://developer.mozilla.org/en-US/docs/Web/API/setInterval)</CodeStep> ו-<CodeStep step={2}>[`clearInterval()`](https://developer.mozilla.org/en-US/docs/Web/API/clearInterval)</CodeStep>.
+* מנוי לאירוע באמצעות <CodeStep step={1}>[`window.addEventListener()`](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener)</CodeStep> ו-<CodeStep step={2}>[`window.removeEventListener()`](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/removeEventListener)</CodeStep>.
+* ספריית אנימציה של צד שלישי עם API כמו <CodeStep step={1}>`animation.start()`</CodeStep> ו-<CodeStep step={2}>`animation.reset()`</CodeStep>.
 
-**If you're not connecting to any external system, [you probably don't need an Effect.](/learn/you-might-not-need-an-effect)**
+**אם אינך מתחבר לשום מערכת חיצונית, [כנראה אינך זקוק לאפקט.](/learn/you-might-not-need-an-effect)**
 
 </Note>
 
 <Recipes titleText="Examples of connecting to an external system" titleId="examples-connecting">
 
-#### Connecting to a chat server {/*connecting-to-a-chat-server*/}
+#### מתחבר לשרת צ'אט {/*connecting-to-a-chat-server*/}
 
-In this example, the `ChatRoom` component uses an Effect to stay connected to an external system defined in `chat.js`. Press "Open chat" to make the `ChatRoom` component appear. This sandbox runs in development mode, so there is an extra connect-and-disconnect cycle, as [explained here.](/learn/synchronizing-with-effects#step-3-add-cleanup-if-needed) Try changing the `roomId` and `serverUrl` using the dropdown and the input, and see how the Effect re-connects to the chat. Press "Close chat" to see the Effect disconnect one last time.
+בדוגמה זו, הרכיב `ChatRoom` use הוא אפקט כדי להישאר מחובר למערכת חיצונית המוגדרת ב-`chat.js`. לחץ על "פתח צ'אט" כדי לגרום לרכיב `ChatRoom` להופיע. ארגז החול הזה פועל במצב פיתוח, כך שיש מחזור חיבור וניתוק נוסף, כפי [הסבר כאן.](/learn/synchronizing-with-effects#step-3-add-cleanup-if-needed) נסה לשנות את `roomId` ו`serverUrl` באמצעות התפריט הנפתח והקלט, וראה כיצד האפקט מתחבר מחדש לצ'אט. לחץ על "סגור צ'אט" כדי לראות את האפקט מתנתק בפעם האחרונה.
 
 <Sandpack>
 
@@ -216,9 +216,9 @@ button { margin-left: 10px; }
 
 <Solution />
 
-#### Listening to a global browser event {/*listening-to-a-global-browser-event*/}
+#### האזנה לאירוע דפדפן גלובלי {/*listening-to-a-global-browser-event*/}
 
-In this example, the external system is the browser DOM itself. Normally, you'd specify event listeners with JSX, but you can't listen to the global [`window`](https://developer.mozilla.org/en-US/docs/Web/API/Window) object this way. An Effect lets you connect to the `window` object and listen to its events. Listening to the `pointermove` event lets you track the cursor (or finger) position and update the red dot to move with it.
+בדוגמה זו, המערכת החיצונית היא הדפדפן DOM עצמו. בדרך כלל, היית מציין מאזינים לאירועים עם JSX, אבל אינך יכול להאזין לאובייקט הגלובלי [`window`](https://developer.mozilla.org/en-US/docs/Web/API/Window) בצורה זו. אפקט מאפשר לך להתחבר לאובייקט `window` ולהאזין לאירועים שלו. האזנה לאירוע `pointermove` מאפשרת לך לעקוב אחר הסמן (או האצבע האדומה) כדי לעדכן את המיקום שלו.
 
 <Sandpack>
 
@@ -265,9 +265,9 @@ body {
 
 <Solution />
 
-#### Triggering an animation {/*triggering-an-animation*/}
+#### הפעלת אנימציה {/*triggering-an-animation*/}
 
-In this example, the external system is the animation library in `animation.js`. It provides a JavaScript class called `FadeInAnimation` that takes a DOM node as an argument and exposes `start()` and `stop()` methods to control the animation. This component [uses a ref](/learn/manipulating-the-dom-with-refs) to access the underlying DOM node. The Effect reads the DOM node from the ref and automatically starts the animation for that node when the component appears.
+בדוגמה זו, המערכת החיצונית היא ספריית האנימציה ב-`animation.js`. הוא מספק מחלקה JavaScript בשם `FadeInAnimation` שלוקחת צומת DOM כארגומנט וחושפת שיטות `start()` ו`stop()` לשלוט בהנפשה. הרכיב הזה [uses a ref](/learn/manipulating-the-dom-with-refs) כדי לגשת לצומת DOM הבסיסי. האפקט קורא את הצומת DOM מה-ref ומתחיל אוטומטית את האנימציה עבור אותו צומת כאשר הרכיב מופיע.
 
 <Sandpack>
 
@@ -364,9 +364,9 @@ html, body { min-height: 300px; }
 
 <Solution />
 
-#### Controlling a modal dialog {/*controlling-a-modal-dialog*/}
+#### שליטה בתיבת דו-שיח מודאלית {/*controlling-a-modal-dialog*/}
 
-In this example, the external system is the browser DOM. The `ModalDialog` component renders a [`<dialog>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog) element. It uses an Effect to synchronize the `isOpen` prop to the [`showModal()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement/showModal) and [`close()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement/close) method calls.
+בדוגמה זו, המערכת החיצונית היא הדפדפן DOM. הרכיב `ModalDialog` מעבד אלמנט [`<dialog>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog). זה use הוא אפקט לסנכרן את הפרופס של `isOpen` ל-[`showModal()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement/showModal) ו-[`close()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement/close) קריאות השיטה.
 
 <Sandpack>
 
@@ -424,9 +424,9 @@ body {
 
 <Solution />
 
-#### Tracking element visibility {/*tracking-element-visibility*/}
+#### נראות רכיב מעקב {/*tracking-element-visibility*/}
 
-In this example, the external system is again the browser DOM. The `App` component displays a long list, then a `Box` component, and then another long list. Scroll the list down. Notice that when all of the `Box` component is fully visible in the viewport, the background color changes to black. To implement this, the `Box` component uses an Effect to manage an [`IntersectionObserver`](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API). This browser API notifies you when the DOM element is visible in the viewport.
+בדוגמה זו, המערכת החיצונית היא שוב הדפדפן DOM. הרכיב `App` מציג רשימה ארוכה, לאחר מכן רכיב `Box`, ולאחר מכן רשימה ארוכה נוספת. גלול את הרשימה למטה. שימו לב שכאשר כל הרכיב `Box` גלוי במלואו בנקודת התצוגה, צבע הרקע משתנה לשחור. כדי ליישם זאת, רכיב `Box` use הוא אפקט לניהול [`IntersectionObserver`](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API). דפדפן זה API מודיע לך כאשר אלמנט DOM גלוי בשדה התצוגה.
 
 <Sandpack>
 
@@ -500,11 +500,11 @@ export default function Box() {
 
 ---
 
-### Wrapping Effects in custom Hooks {/*wrapping-effects-in-custom-hooks*/}
+### אפקטי גלישה ב-Hooks {/*wrapping-effects-in-custom-hooks*/} מותאם אישית
 
-Effects are an ["escape hatch":](/learn/escape-hatches) you use them when you need to "step outside React" and when there is no better built-in solution for your use case. If you find yourself often needing to manually write Effects, it's usually a sign that you need to extract some [custom Hooks](/learn/reusing-logic-with-custom-hooks) for common behaviors your components rely on.
+אפקטים הם ["פתח בריחה":](/learn/escape-hatches) אתה use אותם כאשר אתה צריך "לצאת החוצה React" וכאשר אין פתרון מובנה טוב יותר עבור מקרה use שלך. אם אתה מוצא את עצמך לעתים קרובות צריך לכתוב אפקטים באופן ידני, זה בדרך כלל סימן שאתה צריך לחלץ כמה [custom Hooks](/learn/reusing-logic-with-custom-hooks) להתנהגויות נפוצות שהרכיבים שלך מסתמכים עליהן.
 
-For example, this `useChatRoom` custom Hook "hides" the logic of your Effect behind a more declarative API:
+לדוגמה, `useChatRoom` מותאם אישית Hook זה "מסתיר" את ההיגיון של האפקט שלך מאחורי API הצהרתי יותר:
 
 ```js {1,11}
 function useChatRoom({ serverUrl, roomId }) {
@@ -520,7 +520,7 @@ function useChatRoom({ serverUrl, roomId }) {
 }
 ```
 
-Then you can use it from any component like this:
+אז אתה יכול use אותו מכל רכיב כמו זה:
 
 ```js {4-7}
 function ChatRoom({ roomId }) {
@@ -533,15 +533,15 @@ function ChatRoom({ roomId }) {
   // ...
 ```
 
-There are also many excellent custom Hooks for every purpose available in the React ecosystem.
+יש גם הרבה Hooks מותאמים אישית מצוינים לכל מטרה הזמינים במערכת האקולוגית React.
 
-[Learn more about wrapping Effects in custom Hooks.](/learn/reusing-logic-with-custom-hooks)
+[למידע נוסף על גלישת אפקטים ב-Hooks מותאם אישית.](/learn/reusing-logic-with-custom-hooks)
 
 <Recipes titleText="Examples of wrapping Effects in custom Hooks" titleId="examples-custom-hooks">
 
-#### Custom `useChatRoom` Hook {/*custom-usechatroom-hook*/}
+#### מותאם אישית `useChatRoom` Hook {/*custom-usechatroom-hook*/}
 
-This example is identical to one of the [earlier examples,](#examples-connecting) but the logic is extracted to a custom Hook.
+דוגמה זו זהה לאחת [הדוגמאות המוקדמות יותר,](#examples-connecting) אך ההיגיון חולץ ל-Hook מותאם אישית.
 
 <Sandpack>
 
@@ -635,9 +635,9 @@ button { margin-left: 10px; }
 
 <Solution />
 
-#### Custom `useWindowListener` Hook {/*custom-usewindowlistener-hook*/}
+#### מותאם אישית `useWindowListener` Hook {/*custom-usewindowlistener-hook*/}
 
-This example is identical to one of the [earlier examples,](#examples-connecting) but the logic is extracted to a custom Hook.
+דוגמה זו זהה לאחת [הדוגמאות המוקדמות יותר,](#examples-connecting) אך ההיגיון חולץ ל-Hook מותאם אישית.
 
 <Sandpack>
 
@@ -692,9 +692,9 @@ body {
 
 <Solution />
 
-#### Custom `useIntersectionObserver` Hook {/*custom-useintersectionobserver-hook*/}
+#### מותאם אישית `useIntersectionObserver` Hook {/*custom-useintersectionobserver-hook*/}
 
-This example is identical to one of the [earlier examples,](#examples-connecting) but the logic is partially extracted to a custom Hook.
+דוגמה זו זהה לאחת [הדוגמאות המוקדמות יותר,](#examples-connecting) אך ההיגיון חולץ חלקית ל-Hook מותאם אישית.
 
 <Sandpack>
 
@@ -784,11 +784,11 @@ export function useIntersectionObserver(ref) {
 
 ---
 
-### Controlling a non-React widget {/*controlling-a-non-react-widget*/}
+### שליטה בווידג'ט שאינו React {/*controlling-a-non-react-widget*/}
 
-Sometimes, you want to keep an external system synchronized to some prop or state of your component.
+לפעמים, אתה רוצה לשמור על מערכת חיצונית מסונכרנת לאביזר כלשהו או state של הרכיב שלך.
 
-For example, if you have a third-party map widget or a video player component written without React, you can use an Effect to call methods on it that make its state match the current state of your React component. This Effect creates an instance of a `MapWidget` class defined in `map-widget.js`. When you change the `zoomLevel` prop of the `Map` component, the Effect calls the `setZoom()` on the class instance to keep it synchronized:
+לדוגמה, אם יש לך ווידג'ט מפה של צד שלישי או רכיב נגן וידאו שנכתב ללא React, אתה יכול use אפקט להתקשר לשיטות עליו שגורמות ל-state שלו להתאים ל-state הנוכחי של רכיב React שלך. אפקט זה יוצר מופע של מחלקה `MapWidget` המוגדרת ב-`map-widget.js`. כאשר אתה משנה את הפרופס של `zoomLevel` של הרכיב `Map`, האפקט קורא ל-`setZoom()` במופע המחלקה כדי לשמור אותו מסונכרן:
 
 <Sandpack>
 
@@ -888,15 +888,15 @@ button { margin: 5px; }
 
 </Sandpack>
 
-In this example, a cleanup function is not needed because the `MapWidget` class manages only the DOM node that was passed to it. After the `Map` React component is removed from the tree, both the DOM node and the `MapWidget` class instance will be automatically garbage-collected by the browser JavaScript engine.
+בדוגמה זו, אין צורך בפונקציית ניקוי מכיוון שuse המחלקה `MapWidget` מנהלת רק את הצומת DOM שהועבר אליה. לאחר הסרת הרכיב `Map` React מהעץ, גם הצומת DOM וגם מופע המחלקה `MapWidget` ייאספו אוטומטית אשפה על ידי מנוע JavaScript של הדפדפן.
 
 ---
 
-### Fetching data with Effects {/*fetching-data-with-effects*/}
+### שליפת נתונים עם Effects {/*fetching-data-with-effects*/}
 
-You can use an Effect to fetch data for your component. Note that [if you use a framework,](/learn/start-a-new-react-project#production-grade-react-frameworks) using your framework's data fetching mechanism will be a lot more efficient than writing Effects manually.
+אתה יכול use אפקט כדי להביא נתונים עבור הרכיב שלך. שים לב ש[אם אתה use מסגרת,](/learn/start-a-new-react-project#production-grade-react-frameworks) שימוש במנגנון אחזור הנתונים של המסגרת שלך יהיה הרבה יותר יעיל מאשר כתיבת אפקטים באופן ידני.
 
-If you want to fetch data from an Effect manually, your code might look like this:
+אם אתה רוצה להביא נתונים מאפקט באופן ידני, הקוד שלך עשוי להיראות כך:
 
 ```js
 import { useState, useEffect } from 'react';
@@ -922,7 +922,7 @@ export default function Page() {
   // ...
 ```
 
-Note the `ignore` variable which is initialized to `false`, and is set to `true` during cleanup. This ensures [your code doesn't suffer from "race conditions":](https://maxrozen.com/race-conditions-fetching-data-react-with-useeffect) network responses may arrive in a different order than you sent them.
+שימו לב למשתנה `ignore` שמאוחל ל-`false`, ומוגדר ל-`true` במהלך הניקוי. זה מבטיח [הקוד שלך לא סובל מ"תנאי מירוץ":](https://maxrozen.com/race-conditions-fetching-data-react-with-useeffect) תגובות הרשת עשויות להגיע בסדר שונה ממה ששלחת להן.
 
 <Sandpack>
 
@@ -975,7 +975,7 @@ export async function fetchBio(person) {
 
 </Sandpack>
 
-You can also rewrite using the [`async` / `await`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function) syntax, but you still need to provide a cleanup function:
+אתה יכול גם לכתוב מחדש באמצעות [`async` / `await`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function) תחביר, אך עדיין עליך לספק פונקציית ניקוי:
 
 <Sandpack>
 
@@ -1031,33 +1031,33 @@ export async function fetchBio(person) {
 
 </Sandpack>
 
-Writing data fetching directly in Effects gets repetitive and makes it difficult to add optimizations like caching and server rendering later. [It's easier to use a custom Hook--either your own or maintained by the community.](/learn/reusing-logic-with-custom-hooks#when-to-use-custom-hooks)
+כתיבת אחזור נתונים ישירות באפקט חוזרת על עצמה ומקשה על הוספת אופטימיזציות כמו שמירה במטמון ועיבוד שרת מאוחר יותר. [קל יותר use Hook מותאם אישית--בעצמך או שמתוחזק על ידי הקהילה.](/learn/reusing-logic-with-custom-hooks#when-to-use-custom-hooks)
 
 <DeepDive>
 
-#### What are good alternatives to data fetching in Effects? {/*what-are-good-alternatives-to-data-fetching-in-effects*/}
+#### מהן חלופות טובות לאיסוף נתונים ב- Effects? {/*what-are-good-alternatives-to-data-fetching-in-effects*/}
 
-Writing `fetch` calls inside Effects is a [popular way to fetch data](https://www.robinwieruch.de/react-hooks-fetch-data/), especially in fully client-side apps. This is, however, a very manual approach and it has significant downsides:
+כתיבת `fetch` שיחות בתוך Effects היא [דרך פופולרית להביא נתונים](https://www.robinwieruch.de/react-hooks-fetch-data/), במיוחד באפליקציות צד לקוח לחלוטין. עם זאת, זוהי גישה מאוד ידנית ויש לה חסרונות משמעותיים:
 
-- **Effects don't run on the server.** This means that the initial server-rendered HTML will only include a loading state with no data. The client computer will have to download all JavaScript and render your app only to discover that now it needs to load the data. This is not very efficient.
-- **Fetching directly in Effects makes it easy to create "network waterfalls".** You render the parent component, it fetches some data, renders the child components, and then they start fetching their data. If the network is not very fast, this is significantly slower than fetching all data in parallel.
-- **Fetching directly in Effects usually means you don't preload or cache data.** For example, if the component unmounts and then mounts again, it would have to fetch the data again.
-- **It's not very ergonomic.** There's quite a bit of boilerplate code involved when writing `fetch` calls in a way that doesn't suffer from bugs like [race conditions.](https://maxrozen.com/race-conditions-fetching-data-react-with-useeffect)
+- **השפעות אינן פועלות על השרת.** משמעות הדבר היא שהשרת הראשוני שניתנו HTML יכלול רק טעינה state ללא נתונים. מחשב הלקוח יצטרך להוריד את כל JavaScript ולעבד את האפליקציה שלך רק כדי לגלות שעכשיו הוא צריך לטעון את הנתונים. זה לא מאוד יעיל.
+- **שליפה ישירות באפקטים מקלה על יצירת "מפלי רשת".** אתה מעבד את רכיב האב, הוא שואב נתונים מסוימים, מעבד את רכיבי הצאצא, ואז הם מתחילים לאחזר את הנתונים שלהם. אם הרשת לא מהירה במיוחד, זה איטי משמעותית מאשר שליפת כל הנתונים במקביל.
+- **שליפה ישירה באפקטים משמעה בדרך כלל שאינך טוען מראש או מאחסן נתונים.** לדוגמה, אם הרכיב מתנתק ואז נטען שוב, הוא יצטרך לאחזר את הנתונים שוב.
+- **זה לא מאוד ארגונומי.** יש לא מעט קוד בוילפלייס מעורב בעת כתיבת קריאות `fetch` בצורה שאינה סובלת מבאגים כמו [תנאי מירוץ.](https://maxrozen.com/race-conditions-fetching-data-react-with-useeffect)
 
-This list of downsides is not specific to React. It applies to fetching data on mount with any library. Like with routing, data fetching is not trivial to do well, so we recommend the following approaches:
+רשימה זו של חסרונות אינה ספציפית ל-React. זה חל על שליפת נתונים ב-mount עם כל ספרייה. כמו בניתוב, אחזור נתונים אינו טריוויאלי כדי לעשות זאת בצורה טובה, ולכן אנו ממליצים על הגישות הבאות:
 
-- **If you use a [framework](/learn/start-a-new-react-project#production-grade-react-frameworks), use its built-in data fetching mechanism.** Modern React frameworks have integrated data fetching mechanisms that are efficient and don't suffer from the above pitfalls.
-- **Otherwise, consider using or building a client-side cache.** Popular open source solutions include [React Query](https://tanstack.com/query/latest/), [useSWR](https://swr.vercel.app/), and [React Router 6.4+.](https://beta.reactrouter.com/en/main/start/overview) You can build your own solution too, in which case you would use Effects under the hood but also add logic for deduplicating requests, caching responses, and avoiding network waterfalls (by preloading data or hoisting data requirements to routes).
+- **אם אתה use [framework](/learn/start-a-new-react-project#production-grade-react-frameworks), use מנגנון אחזור הנתונים המובנה שלו.** במסגרות React מודרניות יש מנגנוני שליפת נתונים משולבים שהם יעילים ואינם סובלים מהמגבלה שלעיל.
+- **אחרת, שקול להשתמש או לבנות מטמון בצד הלקוח.** פתרונות קוד פתוח פופולריים כוללים [React שאילתה](https://tanstack.com/query/latest/), [useSWR](https://swr.vercel.app/), ו-[React נתב 6.4+.](https://beta.reactrouter.com/en/main/start/overview) אתה יכול לבנות פתרון משלך גם כן, ובמקרה כזה אתה תוסיף __TK_ic עבור ____ ביטול כפילויות של בקשות, שמירת תגובות במטמון והימנעות ממפלי מים ברשת (על ידי טעינת נתונים מראש או הנפת דרישות נתונים למסלולים).
 
-You can continue fetching data directly in Effects if neither of these approaches suit you.
+אתה יכול להמשיך להביא נתונים ישירות ב- Effects אם אף אחת מהגישות הללו לא מתאימה לך.
 
 </DeepDive>
 
 ---
 
-### Specifying reactive dependencies {/*specifying-reactive-dependencies*/}
+### ציון תלות תגובתית {/*specifying-reactive-dependencies*/}
 
-**Notice that you can't "choose" the dependencies of your Effect.** Every <CodeStep step={2}>reactive value</CodeStep> used by your Effect's code must be declared as a dependency. Your Effect's dependency list is determined by the surrounding code:
+**שים לב שאינך יכול "לבחור" את התלות של האפקט שלך.** כל <CodeStep step={2}>ערך תגובתי</CodeStep> used לפי הקוד של האפקט שלך חייב להיות מוכרז כתלות. רשימת התלות של האפקט שלך נקבעת על ידי הקוד שמסביב:
 
 ```js [[2, 1, "roomId"], [2, 2, "serverUrl"], [2, 5, "serverUrl"], [2, 5, "roomId"], [2, 8, "serverUrl"], [2, 8, "roomId"]]
 function ChatRoom({ roomId }) { // This is a reactive value
@@ -1072,9 +1072,9 @@ function ChatRoom({ roomId }) { // This is a reactive value
 }
 ```
 
-If either `serverUrl` or `roomId` change, your Effect will reconnect to the chat using the new values.
+אם `serverUrl` או `roomId` ישתנו, האפקט שלך יתחבר מחדש לצ'אט באמצעות הערכים החדשים.
 
-**[Reactive values](/learn/lifecycle-of-reactive-effects#effects-react-to-reactive-values) include props and all variables and functions declared directly inside of your component.** Since `roomId` and `serverUrl` are reactive values, you can't remove them from the dependencies. If you try to omit them and [your linter is correctly configured for React,](/learn/editor-setup#linting) the linter will flag this as a mistake you need to fix:
+**[Reactive values](/learn/lifecycle-of-reactive-effects#effects-react-to-reactive-values) כוללים את props ואת כל המשתנים והפונקציות המוצהרות ישירות בתוך הרכיב שלך.** מכיוון ש`roomId` ו`serverUrl` הם ערכים תגובתיים, אינך יכול להסיר אותם מהתלות. אם תנסה להשמיט אותם ו[ה-linter שלך מוגדר כהלכה עבור React,](/learn/editor-setup#linting) ה-linter יסמן זאת כטעות שעליך לתקן:
 
 ```js {8}
 function ChatRoom({ roomId }) {
@@ -1089,7 +1089,7 @@ function ChatRoom({ roomId }) {
 }
 ```
 
-**To remove a dependency, you need to ["prove" to the linter that it *doesn't need* to be a dependency.](/learn/removing-effect-dependencies#removing-unnecessary-dependencies)** For example, you can move `serverUrl` out of your component to prove that it's not reactive and won't change on re-renders:
+**כדי להסיר תלות, אתה צריך ["להוכיח" ל-linter שהיא *לא צריכה* להיות תלות.](/learn/removing-effect-dependencies#removing-unnecessary-dependencies)** לדוגמה, אתה יכול להעביר את `serverUrl` מהרכיב שלך כדי להוכיח שהוא לא משתנה ב-Reactive and ישתנה:
 
 ```js {1,8}
 const serverUrl = 'https://localhost:1234'; // Not a reactive value anymore
@@ -1104,7 +1104,7 @@ function ChatRoom({ roomId }) {
 }
 ```
 
-Now that `serverUrl` is not a reactive value (and can't change on a re-render), it doesn't need to be a dependency. **If your Effect's code doesn't use any reactive values, its dependency list should be empty (`[]`):**
+כעת, כאשר `serverUrl` אינו ערך תגובתי (ולא יכול להשתנות בעיבוד מחדש), זה לא צריך להיות תלות. **אם הקוד של האפקט שלך אינו use ערכים תגובתיים כלשהם, רשימת התלות שלו צריכה להיות ריקה (`[]`):**
 
 ```js {1,2,9}
 const serverUrl = 'https://localhost:1234'; // Not a reactive value anymore
@@ -1120,11 +1120,11 @@ function ChatRoom() {
 }
 ```
 
-[An Effect with empty dependencies](/learn/lifecycle-of-reactive-effects#what-an-effect-with-empty-dependencies-means) doesn't re-run when any of your component's props or state change.
+[אפקט עם תלות ריקות](/learn/lifecycle-of-reactive-effects#what-an-effect-with-empty-dependencies-means) אינו פועל מחדש כאשר כל אחד מהרכיבים props או state משתנה.
 
 <Pitfall>
 
-If you have an existing codebase, you might have some Effects that suppress the linter like this:
+אם יש לך בסיס קוד קיים, אולי יהיו לך כמה אפקטים שמדכאים את ה-linter כך:
 
 ```js {3-4}
 useEffect(() => {
@@ -1134,15 +1134,15 @@ useEffect(() => {
 }, []);
 ```
 
-**When dependencies don't match the code, there is a high risk of introducing bugs.** By suppressing the linter, you "lie" to React about the values your Effect depends on. [Instead, prove they're unnecessary.](/learn/removing-effect-dependencies#removing-unnecessary-dependencies)
+**כאשר התלות אינן תואמות לקוד, קיים סיכון גבוה להחדרת באגים.** על ידי דיכוי ה-linter, אתה "משקר" ל-React לגבי הערכים שהאפקט שלך תלוי בהם. [במקום זאת, הוכח שהם מיותרים.](/learn/removing-effect-dependencies#removing-unecessary-dependencies)
 
 </Pitfall>
 
 <Recipes titleText="Examples of passing reactive dependencies" titleId="examples-dependencies">
 
-#### Passing a dependency array {/*passing-a-dependency-array*/}
+#### העברת מערך תלות {/*passing-a-dependency-array*/}
 
-If you specify the dependencies, your Effect runs **after the initial render _and_ after re-renders with changed dependencies.**
+אם תציין את התלות, האפקט שלך יפעל **לאחר הרינדור הראשוני _ו_ לאחר רינדור מחדש עם התלות שהשתנו.**
 
 ```js {3}
 useEffect(() => {
@@ -1150,7 +1150,7 @@ useEffect(() => {
 }, [a, b]); // Runs again if a or b are different
 ```
 
-In the below example, `serverUrl` and `roomId` are [reactive values,](/learn/lifecycle-of-reactive-effects#effects-react-to-reactive-values) so they both must be specified as dependencies. As a result, selecting a different room in the dropdown or editing the server URL input causes the chat to re-connect. However, since `message` isn't used in the Effect (and so it isn't a dependency), editing the message doesn't re-connect to the chat.
+בדוגמה למטה, `serverUrl` ו-`roomId` הם [ערכים תגובתיים,](/learn/lifecycle-of-reactive-effects#effects-react-to-reactive-values) ולכן יש לציין את שניהם כתלות. כתוצאה מכך, בחירת חדר אחר בתפריט הנפתח או עריכת קלט כתובת ה-URL של השרת מאפשרת לצ'אט להתחבר מחדש. עם זאת, מכיוון ש`message` אינו used באפקט (ולכן זה לא תלות), עריכת ההודעה לא מתחברת מחדש לצ'אט.
 
 <Sandpack>
 
@@ -1237,9 +1237,9 @@ button { margin-left: 5px; }
 
 <Solution />
 
-#### Passing an empty dependency array {/*passing-an-empty-dependency-array*/}
+#### העברת מערך תלות ריק {/*passing-an-empty-dependency-array*/}
 
-If your Effect truly doesn't use any reactive values, it will only run **after the initial render.**
+אם האפקט שלך באמת לא use ערכים תגובתיים, הוא יפעל רק **אחרי העיבוד הראשוני.**
 
 ```js {3}
 useEffect(() => {
@@ -1247,10 +1247,10 @@ useEffect(() => {
 }, []); // Does not run again (except once in development)
 ```
 
-**Even with empty dependencies, setup and cleanup will [run one extra time in development](/learn/synchronizing-with-effects#how-to-handle-the-effect-firing-twice-in-development) to help you find bugs.**
+**אפילו עם תלות ריקות, ההתקנה והניקוי [יפעלו פעם נוספת בפיתוח](/learn/synchronizing-with-effects#how-to-handle-the-effect-firing-twice-in-development) כדי לעזור לך למצוא באגים.**
 
 
-In this example, both `serverUrl` and `roomId` are hardcoded. Since they're declared outside the component, they are not reactive values, and so they aren't dependencies. The dependency list is empty, so the Effect doesn't re-run on re-renders.
+בדוגמה זו, גם `serverUrl` וגם `roomId` מקודדים קשה. מכיוון שהם מוכרזים מחוץ לרכיב, הם אינם ערכים תגובתיים, ולכן הם אינם תלות. רשימת התלות ריקה, כך שהאפקט אינו פועל מחדש בעיבוד מחדש.
 
 <Sandpack>
 
@@ -1314,9 +1314,9 @@ export function createConnection(serverUrl, roomId) {
 <Solution />
 
 
-#### Passing no dependency array at all {/*passing-no-dependency-array-at-all*/}
+#### לא עובר מערך תלות בכלל {/*passing-no-dependency-array-at-all*/}
 
-If you pass no dependency array at all, your Effect runs **after every single render (and re-render)** of your component.
+אם אתה לא עובר מערך תלות בכלל, האפקט שלך פועל **אחרי כל רינדור (ועיבוד מחדש)** של הרכיב שלך.
 
 ```js {3}
 useEffect(() => {
@@ -1324,7 +1324,7 @@ useEffect(() => {
 }); // Always runs again
 ```
 
-In this example, the Effect re-runs when you change `serverUrl` and `roomId`, which is sensible. However, it *also* re-runs when you change the `message`, which is probably undesirable. This is why usually you'll specify the dependency array.
+בדוגמה זו, האפקט פועל מחדש כאשר אתה משנה את `serverUrl` ואת `roomId`, וזה הגיוני. עם זאת, זה *גם* פועל מחדש כאשר אתה משנה את ה-`message`, וזה כנראה לא רצוי. זו הסיבה שבדרך כלל תציין את מערך התלות.
 
 <Sandpack>
 
@@ -1415,9 +1415,9 @@ button { margin-left: 5px; }
 
 ---
 
-### Updating state based on previous state from an Effect {/*updating-state-based-on-previous-state-from-an-effect*/}
+### עדכון state בהתבסס על state קודם מאפקט {/*updating-state-based-on-previous-state-from-an-effect*/}
 
-When you want to update state based on previous state from an Effect, you might run into a problem:
+כאשר אתה רוצה לעדכן את state בהתבסס על state קודם מאפקט, אתה עלול להיתקל בבעיה:
 
 ```js {6,9}
 function Counter() {
@@ -1433,9 +1433,9 @@ function Counter() {
 }
 ```
 
-Since `count` is a reactive value, it must be specified in the list of dependencies. However, that causes the Effect to cleanup and setup again every time the `count` changes. This is not ideal. 
+מכיוון ש`count` הוא ערך תגובתי, יש לציין אותו ברשימת התלות. עם זאת, זה נותן את האפקט לניקוי והגדרה מחדש בכל פעם שה-`count` משתנה. זה לא אידיאלי.
 
-To fix this, [pass the `c => c + 1` state updater](/reference/react/useState#updating-state-based-on-the-previous-state) to `setCount`:
+כדי לתקן זאת, [העבירו את עדכון `c => c + 1` state](/reference/react/useState#updating-state-based-on-the-previous-state) אל `setCount`:
 
 <Sandpack>
 
@@ -1470,14 +1470,14 @@ body {
 
 </Sandpack>
 
-Now that you're passing `c => c + 1` instead of `count + 1`, [your Effect no longer needs to depend on `count`.](/learn/removing-effect-dependencies#are-you-reading-some-state-to-calculate-the-next-state) As a result of this fix, it won't need to cleanup and setup the interval again every time the `count` changes.
+כעת, כשאתה מעביר את `c => c + 1` במקום `count + 1`, [האפקט שלך כבר לא צריך להיות תלוי ב-`count`.](/learn/removing-effect-dependencies#are-you-reading-some-state-לחשב-הבא-`count`. זה זכה שוב לתיקון והגדר את התיקון הזה. בכל פעם שה-`count` משתנה.
 
 ---
 
 
-### Removing unnecessary object dependencies {/*removing-unnecessary-object-dependencies*/}
+### הסרת תלות מיותרת באובייקט {/*removing-unnecessary-object-dependencies*/}
 
-If your Effect depends on an object or a function created during rendering, it might run too often. For example, this Effect re-connects after every render because the `options` object is [different for every render:](/learn/removing-effect-dependencies#does-some-reactive-value-change-unintentionally)
+אם האפקט שלך תלוי באובייקט או בפונקציה שנוצרה במהלך העיבוד, הוא עלול לפעול לעתים קרובות מדי. לדוגמה, אפקט זה מתחבר מחדש לאחר כל רינדור מכיוון שהאובייקט `options` הוא [שונה עבור כל רינדור:](/learn/removing-effect-dependencies#does-some-reactive-value-change-unintentionally)
 
 ```js {6-9,12,15}
 const serverUrl = 'https://localhost:1234';
@@ -1498,7 +1498,7 @@ function ChatRoom({ roomId }) {
   // ...
 ```
 
-Avoid using an object created during rendering as a dependency. Instead, create the object inside the Effect:
+הימנע משימוש באובייקט שנוצר במהלך העיבוד כתלות. במקום זאת, צור את האובייקט בתוך האפקט:
 
 <Sandpack>
 
@@ -1572,15 +1572,15 @@ button { margin-left: 10px; }
 
 </Sandpack>
 
-Now that you create the `options` object inside the Effect, the Effect itself only depends on the `roomId` string.
+עכשיו שאתה יוצר את האובייקט `options` בתוך האפקט, האפקט עצמו תלוי רק במחרוזת `roomId`.
 
-With this fix, typing into the input doesn't reconnect the chat. Unlike an object which gets re-created, a string like `roomId` doesn't change unless you set it to another value. [Read more about removing dependencies.](/learn/removing-effect-dependencies)
+עם התיקון הזה, הקלדה בקלט לא מחברת מחדש את הצ'אט. שלא כמו אובייקט שנוצר מחדש, מחרוזת כמו `roomId` לא משתנה אלא אם כן תגדיר אותה לערך אחר. [קרא עוד על הסרת תלות.](/learn/removing-effect-dependencies)
 
 ---
 
-### Removing unnecessary function dependencies {/*removing-unnecessary-function-dependencies*/}
+### הסרת תלות מיותרת בפונקציות {/*removing-unnecessary-function-dependencies*/}
 
-If your Effect depends on an object or a function created during rendering, it might run too often. For example, this Effect re-connects after every render because the `createOptions` function is [different for every render:](/learn/removing-effect-dependencies#does-some-reactive-value-change-unintentionally)
+אם האפקט שלך תלוי באובייקט או בפונקציה שנוצרה במהלך העיבוד, הוא עלול לפעול לעתים קרובות מדי. לדוגמה, אפקט זה מתחבר מחדש לאחר כל רינדור מכיוון שהפונקציה `createOptions` היא [שונה עבור כל רינדור:](/learn/removing-effect-dependencies#does-some-reactive-value-change-unintentionally)
 
 ```js {4-9,12,16}
 function ChatRoom({ roomId }) {
@@ -1602,9 +1602,9 @@ function ChatRoom({ roomId }) {
   // ...
 ```
 
-By itself, creating a function from scratch on every re-render is not a problem. You don't need to optimize that. However, if you use it as a dependency of your Effect, it will cause your Effect to re-run after every re-render.
+כשלעצמה, יצירת פונקציה מאפס בכל עיבוד מחדש אינה בעיה. אתה לא צריך לייעל את זה. עם זאת, אם אתה use זה כתלות של האפקט שלך, זה use האפקט שלך יפעל מחדש לאחר כל עיבוד מחדש.
 
-Avoid using a function created during rendering as a dependency. Instead, declare it inside the Effect:
+הימנע משימוש בפונקציה שנוצרה במהלך העיבוד כתלות. במקום זאת, הכריז על זה בתוך האפקט:
 
 <Sandpack>
 
@@ -1682,21 +1682,21 @@ button { margin-left: 10px; }
 
 </Sandpack>
 
-Now that you define the `createOptions` function inside the Effect, the Effect itself only depends on the `roomId` string. With this fix, typing into the input doesn't reconnect the chat. Unlike a function which gets re-created, a string like `roomId` doesn't change unless you set it to another value. [Read more about removing dependencies.](/learn/removing-effect-dependencies)
+עכשיו כשאתה מגדיר את הפונקציה `createOptions` בתוך האפקט, האפקט עצמו תלוי רק במחרוזת `roomId`. עם התיקון הזה, הקלדה בקלט לא מחברת מחדש את הצ'אט. שלא כמו פונקציה שנוצרת מחדש, מחרוזת כמו `roomId` לא משתנה אלא אם כן תגדיר אותה לערך אחר. [קרא עוד על הסרת תלות.](/learn/removing-effect-dependencies)
 
 ---
 
-### Reading the latest props and state from an Effect {/*reading-the-latest-props-and-state-from-an-effect*/}
+### קריאת ה-props וה-state העדכניים מאפקט {/*reading-the-latest-props-and-state-from-an-effect*/}
 
 <Wip>
 
-This section describes an **experimental API that has not yet been released** in a stable version of React.
+סעיף זה מתאר **ניסוי API שעדיין לא שוחרר** בגרסה יציבה של React.
 
 </Wip>
 
-By default, when you read a reactive value from an Effect, you have to add it as a dependency. This ensures that your Effect "reacts" to every change of that value. For most dependencies, that's the behavior you want.
+כברירת מחדל, כאשר אתה קורא ערך תגובתי מאפקט, עליך להוסיף אותו כתלות. זה מבטיח שהאפקט שלך "מגיב" לכל שינוי של הערך הזה. עבור רוב התלות, זו ההתנהגות שאתה רוצה.
 
-**However, sometimes you'll want to read the *latest* props and state from an Effect without "reacting" to them.** For example, imagine you want to log the number of the items in the shopping cart for every page visit:
+**עם זאת, לפעמים תרצו לקרוא את *האחרונות* props וstate מתוך אפקט מבלי "להגיב" אליהם.** לדוגמה, דמיינו שאתם רוצים לרשום את מספר הפריטים בעגלת הקניות עבור כל ביקור בדף:
 
 ```js {3}
 function Page({ url, shoppingCart }) {
@@ -1707,7 +1707,7 @@ function Page({ url, shoppingCart }) {
 }
 ```
 
-**What if you want to log a new page visit after every `url` change, but *not* if only the `shoppingCart` changes?** You can't exclude `shoppingCart` from dependencies without breaking the [reactivity rules.](#specifying-reactive-dependencies) However, you can express that you *don't want* a piece of code to "react" to changes even though it is called from inside an Effect. [Declare an *Effect Event*](/learn/separating-events-from-effects#declaring-an-effect-event) with the [`useEffectEvent`](/reference/react/experimental_useEffectEvent) Hook, and move the code reading `shoppingCart` inside of it:
+**מה אם אתה רוצה לרשום ביקור חדש בדף אחרי כל שינוי `url`, אבל *לא* אם רק ה-`shoppingCart` משתנה?** אינך יכול לכלול את `shoppingCart` מתלות מבלי לשבור את [כללי התגובה.](#specificing-reactive-dependencies) עם זאת, אתה יכול להביע שאתה *לא רוצה לשנות את הקוד ל"אפקט" אפילו ל"אפקט". [הכרז על אירוע *אפקט*](/learn/separating-events-from-effects#declaring-an-effect-event) עם ה-[`useEffectEvent`](/reference/react/experimental_useEffectEvent) Hook, והזז בתוכו את הקוד שקורא `shoppingCart`:
 
 ```js {2-4,7,8}
 function Page({ url, shoppingCart }) {
@@ -1722,18 +1722,18 @@ function Page({ url, shoppingCart }) {
 }
 ```
 
-**Effect Events are not reactive and must always be omitted from dependencies of your Effect.** This is what lets you put non-reactive code (where you can read the latest value of some props and state) inside of them. By reading `shoppingCart` inside of `onVisit`, you ensure that `shoppingCart` won't re-run your Effect.
+**אירועי אפקט אינם תגובתיים ויש להשמיט אותם תמיד מהתלות של האפקט שלך.** זה מה שמאפשר לך לשים קוד לא תגובתי (שם תוכל לקרוא את הערך האחרון של כמה props וstate) בתוכם. על ידי קריאת `shoppingCart` בתוך `onVisit`, אתה מבטיח ש`shoppingCart` לא יפעיל מחדש את האפקט שלך.
 
-[Read more about how Effect Events let you separate reactive and non-reactive code.](/learn/separating-events-from-effects#reading-latest-props-and-state-with-effect-events)
+[קרא עוד על האופן שבו אפקט אירועים מאפשרים לך להפריד בין קוד תגובתי ולא תגובתי.](/learn/separating-events-from-effects#reading-latest-props-and-state-with-effect-events)
 
 
 ---
 
-### Displaying different content on the server and the client {/*displaying-different-content-on-the-server-and-the-client*/}
+### הצגת תוכן שונה בשרת ובלקוח {/*displaying-different-content-on-the-server-and-the-client*/}
 
-If your app uses server rendering (either [directly](/reference/react-dom/server) or via a [framework](/learn/start-a-new-react-project#production-grade-react-frameworks)), your component will render in two different environments. On the server, it will render to produce the initial HTML. On the client, React will run the rendering code again so that it can attach your event handlers to that HTML. This is why, for [hydration](/reference/react-dom/client/hydrateRoot#hydrating-server-rendered-html) to work, your initial render output must be identical on the client and the server.
+אם האפליקציה שלך use עיבוד שרת (או [ישיר](/reference/react-dom/server) או באמצעות [framework](/learn/start-a-new-react-project#production-grade-react-frameworks)), הרכיב שלך יוצג בשתי סביבות שונות. בשרת, הוא יעבד כדי לייצר את ה-HTML הראשוני. בלקוח, React יריץ שוב את קוד העיבוד כדי שיוכל לצרף את מטפלי האירועים שלך לאותו HTML. זו הסיבה שכדי ש-[hydration](/reference/react-dom/client/hydrateRoot#hydrating-server-rendered-html) יעבוד, פלט העיבוד הראשוני שלך חייב להיות זהה בלקוח ובשרת.
 
-In rare cases, you might need to display different content on the client. For example, if your app reads some data from [`localStorage`](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage), it can't possibly do that on the server. Here is how you could implement this:
+במקרים נדירים, ייתכן שיהיה עליך להציג תוכן שונה בלקוח. לדוגמה, אם האפליקציה שלך קוראת כמה נתונים מ-[`localStorage`](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage), היא לא יכולה לעשות זאת בשרת. כך תוכל ליישם זאת:
 
 ```js
 function MyComponent() {
@@ -1751,27 +1751,27 @@ function MyComponent() {
 }
 ```
 
-While the app is loading, the user will see the initial render output. Then, when it's loaded and hydrated, your Effect will run and set `didMount` to `true`, triggering a re-render. This will switch to the client-only render output. Effects don't run on the server, so this is why `didMount` was `false` during the initial server render.
+בזמן שהאפליקציה נטענת, ה-user יראה את פלט העיבוד הראשוני. לאחר מכן, כאשר הוא נטען ומיועד לחות, האפקט שלך יפעל ויגדיר את `didMount` ל-`true`, ויפעיל עיבוד מחדש. פעולה זו תעבור לפלט העיבוד ללקוח בלבד. אפקטים לא פועלים על השרת, אז זו הסיבה ש`didMount` היה `false` במהלך העיבוד הראשוני של השרת.
 
-Use this pattern sparingly. Keep in mind that users with a slow connection will see the initial content for quite a bit of time--potentially, many seconds--so you don't want to make jarring changes to your component's appearance. In many cases, you can avoid the need for this by conditionally showing different things with CSS.
-
----
-
-## Troubleshooting {/*troubleshooting*/}
-
-### My Effect runs twice when the component mounts {/*my-effect-runs-twice-when-the-component-mounts*/}
-
-When Strict Mode is on, in development, React runs setup and cleanup one extra time before the actual setup.
-
-This is a stress-test that verifies your Effect’s logic is implemented correctly. If this causes visible issues, your cleanup function is missing some logic. The cleanup function should stop or undo whatever the setup function was doing. The rule of thumb is that the user shouldn’t be able to distinguish between the setup being called once (as in production) and a setup → cleanup → setup sequence (as in development).
-
-Read more about [how this helps find bugs](/learn/synchronizing-with-effects#step-3-add-cleanup-if-needed) and [how to fix your logic.](/learn/synchronizing-with-effects#how-to-handle-the-effect-firing-twice-in-development)
+השתמש בתבנית זו במשורה. זכור ש-users עם חיבור איטי יראו את התוכן הראשוני במשך לא מעט זמן - פוטנציאלי, שניות רבות - כך שאינך רוצה לבצע שינויים צורמים במראה הרכיב שלך. במקרים רבים, אתה יכול להימנע מהצורך בכך על ידי הצגה מותנית של דברים שונים עם CSS.
 
 ---
 
-### My Effect runs after every re-render {/*my-effect-runs-after-every-re-render*/}
+## פתרון בעיות {/*troubleshooting*/}
 
-First, check that you haven't forgotten to specify the dependency array:
+### My Effect פועל פעמיים כאשר הרכיב נטען {/*my-effect-runs-twice-when-the-component-mounts*/}
+
+כאשר מצב קפדני מופעל, בפיתוח, React מריץ את ההגדרה והניקוי פעם נוספת לפני ההגדרה בפועל.
+
+זהו מבחן מאמץ המוודא שהלוגיקה של האפקט שלך מיושמת כהלכה. אם יש בעיות גלויות לעין, פונקציית הניקוי שלך חסרה היגיון מסוים. פונקציית הניקוי צריכה להפסיק או לבטל את כל מה שפונקציית ההגדרה עשתה. כלל האצבע הוא שה-user לא אמור להיות מסוגל להבחין בין ההגדרה שנקראת פעם אחת (כמו בייצור) לבין הגדרה → ניקוי → רצף התקנה (כמו בפיתוח).
+
+קרא עוד על [איך זה עוזר למצוא באגים](/learn/synchronizing-with-effects#step-3-add-cleanup-if-needed) ו[איך לתקן את ההיגיון שלך.](/learn/synchronizing-with-effects#how-to-handle-the-effect-fire-twice-in-development)
+
+---
+
+### האפקט שלי פועל לאחר כל עיבוד מחדש {/*my-effect-runs-after-every-re-render*/}
+
+ראשית, בדוק שלא שכחת לציין את מערך התלות:
 
 ```js {3}
 useEffect(() => {
@@ -1779,9 +1779,9 @@ useEffect(() => {
 }); // 🚩 No dependency array: re-runs after every render!
 ```
 
-If you've specified the dependency array but your Effect still re-runs in a loop, it's because one of your dependencies is different on every re-render.
+אם ציינת את מערך התלות אבל האפקט שלך עדיין פועל מחדש בלולאה, זה בגלל שאחת מהתלות שלך שונה בכל רינדור מחדש.
 
-You can debug this problem by manually logging your dependencies to the console:
+אתה יכול לנפות באגים בבעיה זו על ידי רישום ידני של התלות שלך למסוף:
 
 ```js {5}
   useEffect(() => {
@@ -1791,7 +1791,7 @@ You can debug this problem by manually logging your dependencies to the console:
   console.log([serverUrl, roomId]);
 ```
 
-You can then right-click on the arrays from different re-renders in the console and select "Store as a global variable" for both of them. Assuming the first one got saved as `temp1` and the second one got saved as `temp2`, you can then use the browser console to check whether each dependency in both arrays is the same:
+לאחר מכן תוכל ללחוץ לחיצה ימנית על המערכים מעיבודים חוזרים שונים בקונסולה ולבחור "אחסן כמשתנה גלובלי" עבור שניהם. בהנחה שהראשון נשמר כ-`temp1` והשני נשמר כ-`temp2`, לאחר מכן תוכל use למסוף הדפדפן כדי לבדוק אם כל תלות בשני המערכים זהה:
 
 ```js
 Object.is(temp1[0], temp2[0]); // Is the first dependency the same between the arrays?
@@ -1799,39 +1799,39 @@ Object.is(temp1[1], temp2[1]); // Is the second dependency the same between the 
 Object.is(temp1[2], temp2[2]); // ... and so on for every dependency ...
 ```
 
-When you find the dependency that is different on every re-render, you can usually fix it in one of these ways:
+כאשר אתה מוצא את התלות השונה בכל עיבוד מחדש, אתה יכול בדרך כלל לתקן אותה באחת מהדרכים הבאות:
 
-- [Updating state based on previous state from an Effect](#updating-state-based-on-previous-state-from-an-effect)
-- [Removing unnecessary object dependencies](#removing-unnecessary-object-dependencies)
-- [Removing unnecessary function dependencies](#removing-unnecessary-function-dependencies)
-- [Reading the latest props and state from an Effect](#reading-the-latest-props-and-state-from-an-effect)
+- [עדכון state בהתבסס על state קודמת מאפקט] (#עדכון-state-based-on-previous-state-from-an-effect)
+- [הסרת תלות מיותרת של אובייקטים](#removing-unnecessary-object-dependencies)
+- [הסרת תלות מיותרת בפונקציות](#הסרת-תלות-בלתי נחוצות בפונקציות)
+- [קורא את ה-props וה-state העדכניים ביותר מתוך אפקט](#reading-the-latest-props-and-state-from-an-effect)
 
-As a last resort (if these methods didn't help), wrap its creation with [`useMemo`](/reference/react/useMemo#memoizing-a-dependency-of-another-hook) or [`useCallback`](/reference/react/useCallback#preventing-an-effect-from-firing-too-often) (for functions).
-
----
-
-### My Effect keeps re-running in an infinite cycle {/*my-effect-keeps-re-running-in-an-infinite-cycle*/}
-
-If your Effect runs in an infinite cycle, these two things must be true:
-
-- Your Effect is updating some state.
-- That state leads to a re-render, which causes the Effect's dependencies to change.
-
-Before you start fixing the problem, ask yourself whether your Effect is connecting to some external system (like DOM, network, a third-party widget, and so on). Why does your Effect need to set state? Does it synchronize with that external system? Or are you trying to manage your application's data flow with it?
-
-If there is no external system, consider whether [removing the Effect altogether](/learn/you-might-not-need-an-effect) would simplify your logic.
-
-If you're genuinely synchronizing with some external system, think about why and under what conditions your Effect should update the state. Has something changed that affects your component's visual output? If you need to keep track of some data that isn't used by rendering, a [ref](/reference/react/useRef#referencing-a-value-with-a-ref) (which doesn't trigger re-renders) might be more appropriate. Verify your Effect doesn't update the state (and trigger re-renders) more than needed.
-
-Finally, if your Effect is updating the state at the right time, but there is still a loop, it's because that state update leads to one of the Effect's dependencies changing. [Read how to debug dependency changes.](/reference/react/useEffect#my-effect-runs-after-every-re-render)
+כמוצא אחרון (אם שיטות אלו לא עזרו), עטפו את יצירתו ב-[`useMemo`](/reference/react/useMemo#memoizing-a-dependency-of-another-hook) או [`useCallback`](/reference/react/useCallback#preventing-of-firing)-foo).
 
 ---
 
-### My cleanup logic runs even though my component didn't unmount {/*my-cleanup-logic-runs-even-though-my-component-didnt-unmount*/}
+### האפקט שלי ממשיך לפעול מחדש במחזור אינסופי {/*my-effect-keeps-re-running-in-an-infinite-cycle*/}
 
-The cleanup function runs not only during unmount, but before every re-render with changed dependencies. Additionally, in development, React [runs setup+cleanup one extra time immediately after component mounts.](#my-effect-runs-twice-when-the-component-mounts)
+אם האפקט שלך פועל במחזור אינסופי, שני הדברים האלה חייבים להיות נכונים:
 
-If you have cleanup code without corresponding setup code, it's usually a code smell:
+- האפקט שלך מעדכן כמה state.
+- state זה מוביל לעיבוד מחדש, אשר גורם לשינוי התלות של האפקט.
+
+לפני שתתחיל לתקן את הבעיה, שאל את עצמך אם האפקט שלך מתחבר למערכת חיצונית כלשהי (כמו DOM, רשת, ווידג'ט של צד שלישי וכן הלאה). מדוע האפקט שלך צריך להגדיר state? האם זה מסתנכרן עם אותה מערכת חיצונית? או שאתה מנסה לנהל איתו את זרימת הנתונים של האפליקציה שלך?
+
+אם אין מערכת חיצונית, שקול אם [הסרת האפקט לגמרי](/learn/you-might-not-need-an-effect) תפשט את ההיגיון שלך.
+
+אם אתה באמת מסתנכרן עם מערכת חיצונית כלשהי, חשב למה ובאילו תנאים האפקט שלך צריך לעדכן את ה-state. האם השתנה משהו שמשפיע על הפלט החזותי של הרכיב שלך? אם אתה צריך לעקוב אחר נתונים מסוימים שאינם used על ידי רינדור, [ref](/reference/react/useRef#referencing-a-value-with-a-ref) (שאינו מפעיל עיבוד מחדש) עשוי להיות מתאים יותר. ודא שהאפקט שלך לא מעדכן את state (ומפעיל עיבוד מחדש) יותר מהנדרש.
+
+לבסוף, אם האפקט שלך מעדכן את state בזמן הנכון, אבל עדיין יש לולאה, זה בגלל שuse עדכון state מוביל לשינוי אחד מהתלות של האפקט. [קרא כיצד לנפות באגים בשינויי תלות.](/reference/react/useEffect#my-effect-runs-after-every-re-render)
+
+---
+
+### לוגיקת הניקוי שלי פועלת למרות שהרכיב שלי לא ביטל את הטעינה {/*my-cleanup-logic-runs-even-though-my-component-didnt-unmount*/}
+
+פונקציית הניקוי פועלת לא רק במהלך ביטול הרכבה, אלא לפני כל רינדור מחדש עם השתנות תלויות. בנוסף, בפיתוח, React [מריץ את ההתקנה+ניקוי פעם נוספת מיד לאחר הרכבה של הרכיב.](#my-effect-runs-twice-when-the-component-mounts)
+
+אם יש לך קוד ניקוי ללא קוד הגדרה מתאים, זה בדרך כלל ריח של קוד:
 
 ```js {2-5}
 useEffect(() => {
@@ -1842,7 +1842,7 @@ useEffect(() => {
 }, []);
 ```
 
-Your cleanup logic should be "symmetrical" to the setup logic, and should stop or undo whatever setup did:
+היגיון הניקוי שלך צריך להיות "סימטרי" ללוגיקת ההגדרה, ועליו לעצור או לבטל את כל מה שההגדרה עשתה:
 
 ```js {2-3,5}
   useEffect(() => {
@@ -1854,10 +1854,10 @@ Your cleanup logic should be "symmetrical" to the setup logic, and should stop o
   }, [serverUrl, roomId]);
 ```
 
-[Learn how the Effect lifecycle is different from the component's lifecycle.](/learn/lifecycle-of-reactive-effects#the-lifecycle-of-an-effect)
+[למד כיצד מחזור החיים של אפקט שונה ממחזור החיים של הרכיב.](/learn/lifecycle-of-reactive-effects#the-lifecycle-of-an-effect)
 
 ---
 
-### My Effect does something visual, and I see a flicker before it runs {/*my-effect-does-something-visual-and-i-see-a-flicker-before-it-runs*/}
+### האפקט שלי עושה משהו ויזואלי, ואני רואה הבהוב לפני שהוא מריץ {/*my-effect-does-something-visual-and-i-see-a-flicker-before-it-runs*/}
 
-If your Effect must block the browser from [painting the screen,](/learn/render-and-commit#epilogue-browser-paint) replace `useEffect` with [`useLayoutEffect`](/reference/react/useLayoutEffect). Note that **this shouldn't be needed for the vast majority of Effects.** You'll only need this if it's crucial to run your Effect before the browser paint: for example, to measure and position a tooltip before the user sees it.
+אם האפקט שלך חייב לחסום את הדפדפן מ[צביעת המסך,](/learn/render-and-commit#epilogue-browser-paint) החלף את `useEffect` ב-[`useLayoutEffect`](/reference/react/useLayoutEffect). שים לב ש**זה לא אמור להיות נחוץ עבור הרוב המכריע של האפקטים.** תזדקק לזה רק אם זה חיוני להפעיל את האפקט שלך לפני ציור הדפדפן: למשל, למדוד ולמקם הסבר כלים לפני שה-user יראה אותו.

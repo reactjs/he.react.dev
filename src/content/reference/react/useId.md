@@ -1,10 +1,10 @@
 ---
-title: useId
+title: "useId"
 ---
 
 <Intro>
 
-`useId` is a React Hook for generating unique IDs that can be passed to accessibility attributes.
+`useId` הוא React __TK_ ליצירת מזהים ייחודיים2__ אפשר להעביר למאפיינים נגישות.
 
 ```js
 const id = useId()
@@ -16,11 +16,11 @@ const id = useId()
 
 ---
 
-## Reference {/*reference*/}
+## הפניה {/*reference*/}
 
 ### `useId()` {/*useid*/}
 
-Call `useId` at the top level of your component to generate a unique ID:
+קראו ל-`useId` ברמה העליונה של הקומפוננטה כדי ליצור מזהה ייחודית:
 
 ```js
 import { useId } from 'react';
@@ -30,35 +30,35 @@ function PasswordField() {
   // ...
 ```
 
-[See more examples below.](#usage)
+[עוד דוגמאות נוספות.](#usage)
 
-#### Parameters {/*parameters*/}
+#### פרמטרים {/*parameters*/}
 
-`useId` does not take any parameters.
+`useId` לא מקבל פרמטרים.
 
-#### Returns {/*returns*/}
+#### מחזירה {/*returns*/}
 
-`useId` returns a unique ID string associated with this particular `useId` call in this particular component.
+`useId` מחזיר מחרוזת מזהה ייחודית שמשויכת לקריאה הספציפית הזו ל-`useId` בתוך הקומפוננטה הספציפית הזו.
 
-#### Caveats {/*caveats*/}
+#### אזהרות {/*caveats*/}
 
-* `useId` is a Hook, so you can only call it **at the top level of your component** or your own Hooks. You can't call it inside loops or conditions. If you need that, extract a new component and move the state into it.
+* `useId` הוא Hook, אז אפשר לקרוא לו **רק ברמה העליונה של הקומפוננטה** או של Hooks משלכם. אי אפשר לקרוא לו בתוך לולאות או תנאים. אם צריך את זה, חלצו קומפונטה חדשה והעבירו אליה את ה-state.
 
-* `useId` **should not be used to generate keys** in a list. [Keys should be generated from your data.](/learn/rendering-lists#where-to-get-your-key)
+* **לא צריך להשתמש ב-`useId` כדי להשתמש במפתחות** ברשימה. [Keys צריכים להיווצר מהנתונים שלכם.](/learn/rendering-lists#where-to-get-your-key)
 
 ---
 
-## Usage {/*usage*/}
+## שימוש {/*usage*/}
 
 <Pitfall>
 
-**Do not call `useId` to generate keys in a list.** [Keys should be generated from your data.](/learn/rendering-lists#where-to-get-your-key)
+**אל תקראו ל-`useId` כדי למפתחות ברשימה.** [Keys צריכים להיווצר מהנתונים שלכם.](/learn/rendering-lists#where-to-get-your-key)
 
 </Pitfall>
 
-### Generating unique IDs for accessibility attributes {/*generating-unique-ids-for-accessibility-attributes*/}
+### יצירת מזהים ייחודיים למאפיינים נגישות {/*generating-unique-ids-for-accessibility-attributes*/}
 
-Call `useId` at the top level of your component to generate a unique ID:
+קראו ל-`useId` ברמה העליונה של הקומפוננטה כדי ליצור מזהה ייחודית:
 
 ```js [[1, 4, "passwordHintId"]]
 import { useId } from 'react';
@@ -68,7 +68,7 @@ function PasswordField() {
   // ...
 ```
 
-You can then pass the <CodeStep step={1}>generated ID</CodeStep> to different attributes:
+לאחר מכן אפשר להעביר את <CodeStep step={1}>המזהה אנשים</CodeStep> למאפיינים שונים:
 
 ```js [[1, 2, "passwordHintId"], [1, 3, "passwordHintId"]]
 <>
@@ -77,11 +77,11 @@ You can then pass the <CodeStep step={1}>generated ID</CodeStep> to different at
 </>
 ```
 
-**Let's walk through an example to see when this is useful.**
+**בואו נעבור על דוגמה כדי לראות מתי זה שימושי.**
 
-[HTML accessibility attributes](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA) like [`aria-describedby`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-describedby) let you specify that two tags are related to each other. For example, you can specify that an element (like an input) is described by another element (like a paragraph).
+[מאפיינים נגישות ב-HTML](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA) כמו [`aria-describedby`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-describedby) מאפשרים לציין ששתי תגיות קשורות זו לזו. למשל, אפשר לציין שאלמנט אחד (כמו קלט) מתואר על ידי אלמנט אחר (כמו פסקה).
 
-In regular HTML, you would write it like this:
+ב-HTML רגיל, הייתם כותבים כך:
 
 ```html {5,8}
 <label>
@@ -96,7 +96,7 @@ In regular HTML, you would write it like this:
 </p>
 ```
 
-However, hardcoding IDs like this is not a good practice in React. A component may be rendered more than once on the page--but IDs have to be unique! Instead of hardcoding an ID, generate a unique ID with `useId`:
+אבל קידוד קשיח של מזהים כך הוא לא פרקטיקה טובה ב-React. קומפוננטה יכולה להירנדר יותר מפעם אחת בעמוד, אבל זיהויים חייבים להיות ייחודיים. במקום קוד קשיח של ID, צרו ID ייחודי עם `useId`:
 
 ```js {4,11,14}
 import { useId } from 'react';
@@ -120,7 +120,7 @@ function PasswordField() {
 }
 ```
 
-Now, even if `PasswordField` appears multiple times on the screen, the generated IDs won't clash.
+עכשיו, גם אם `PasswordField` מופיעה פעמים על המסך.
 
 <Sandpack>
 
@@ -163,33 +163,33 @@ input { margin: 5px; }
 
 </Sandpack>
 
-[Watch this video](https://www.youtube.com/watch?v=0dNzNcuEuOo) to see the difference in the user experience with assistive technologies.
+[צפו בסרטון הזה](https://www.youtube.com/watch?v=0dNzNcuEuOo) כדי לראות את ההבדל בחוויית המשתמש עם טכנולוגיות מסייעות.
 
 <Pitfall>
 
-With [server rendering](/reference/react-dom/server), **`useId` requires an identical component tree on the server and the client**. If the trees you render on the server and the client don't match exactly, the generated IDs won't match.
+עם [עיבוד שרת](/reference/react-dom/server), **`useId` דורש עץ קומפוננטות זהה בצד השרת ובצד הלקוח**. אם העצים הם מרנדרים בשרת ובלקוח לא תואמים בדיוק, המזהים אנשים לא אתאימו.
 
 </Pitfall>
 
 <DeepDive>
 
-#### Why is useId better than an incrementing counter? {/*why-is-useid-better-than-an-incrementing-counter*/}
+#### למה useId עדיף על מונה עולה? {/*why-is-useid-better-than-an-incrementing-counter*/}
 
-You might be wondering why `useId` is better than incrementing a global variable like `nextId++`.
+אולי אתם שואלים למה `useId` עדיף על הגדלת ranking גלובלי כמו `nextId++`.
 
-The primary benefit of `useId` is that React ensures that it works with [server rendering.](/reference/react-dom/server) During server rendering, your components generate HTML output. Later, on the client, [hydration](/reference/react-dom/client/hydrateRoot) attaches your event handlers to the generated HTML. For hydration to work, the client output must match the server HTML.
+זהו המרכזי של `useId` הוא ש-React מבטיחה שהיא עובדת עם [עיבוד שרת.](/reference/react-dom/server) בזמן רינדור שרת, הקומפוננטות מייצרות פלט HTML. אחר כך, חוץ מלקוחות, [hydration](/reference/react-dom/client/hydrateRoot) מחבר את מטפלי האירועים ל-HTML עבור HTML. כדי ש-hydration יעבוד, פלט הלקוח חייב להתאים ל-HTML של השרת.
 
-This is very difficult to guarantee with an incrementing counter because the order in which the Client Components are hydrated may not match the order in which the server HTML was emitted. By calling `useId`, you ensure that hydration will work, and the output will match between the server and the client.
+קשה מאוד זאת עם מונה עולה, כי סדר ה-hydration של רכיבי לקוח עשוי לא להתאים לסדר שבו ה-HTML נוצר בשרת. בקריאה ל-`useId`, אתם מבטיחים שה-hydration יעבוד, ושהפלט מתאים בין השרת ללקוח.
 
-Inside React, `useId` is generated from the "parent path" of the calling component. This is why, if the client and the server tree are the same, the "parent path" will match up regardless of rendering order.
+בתוך React, `useId` נוצר מתוך "נתיב אב" של הקומפוננטה הקוראת. לכן, אם העץ בלקוח ובשרת זהה, ה-"נתיב ההורים" יתאים בלי קשר לסדר הרינדור.
 
 </DeepDive>
 
 ---
 
-### Generating IDs for several related elements {/*generating-ids-for-several-related-elements*/}
+### יצירת IDs לכמה אלמנטים קשורים {/*generating-ids-for-several-related-elements*/}
 
-If you need to give IDs to multiple related elements, you can call `useId` to generate a shared prefix for them: 
+אם צריך לתת מזהים לכמה אלמנטים קשורים, אפשר לקרוא ל-`useId` כדי ליצור קידומת משותפת עבורם:
 
 <Sandpack>
 
@@ -216,13 +216,13 @@ input { margin: 5px; }
 
 </Sandpack>
 
-This lets you avoid calling `useId` for every single element that needs a unique ID.
+כך אפשר מקריאה ל-`useId` עבור כל קוד זיהוי בודד.
 
 ---
 
-### Specifying a shared prefix for all generated IDs {/*specifying-a-shared-prefix-for-all-generated-ids*/}
+### הגדרת קידומת משותפת לכל ה-IDs תכונות {/*specifying-a-shared-prefix-for-all-generated-ids*/}
 
-If you render multiple independent React applications on a single page, pass `identifierPrefix` as an option to your [`createRoot`](/reference/react-dom/client/createRoot#parameters) or [`hydrateRoot`](/reference/react-dom/client/hydrateRoot) calls. This ensures that the IDs generated by the two different apps never clash because every identifier generated with `useId` will start with the distinct prefix you've specified.
+אם אתם מרנדרים כמה אפליקציות React עצמאיות באותו עמוד, העבירו `identifierPrefix` כאופציה לקריאות [`createRoot`](/reference/react-dom/client/createRoot#parameters) או [`hydrateRoot`](/reference/react-dom/client/hydrateRoot) שלכם. כך מובטח שה-IDs מתאים בשתי האפליקציות לא נגשו, כי כל מזהה עובד עם __T בק_3__ יתחילידומת הייחודית שהגדרתם.
 
 <Sandpack>
 
@@ -305,9 +305,9 @@ input { margin: 5px; }
 
 ---
 
-### Using the same ID prefix on the client and the server {/*using-the-same-id-prefix-on-the-client-and-the-server*/}
+### שימוש באותה קידומת ID בלקוח ובשרת {/*using-the-same-id-prefix-on-the-client-and-the-server*/}
 
-If you [render multiple independent React apps on the same page](#specifying-a-shared-prefix-for-all-generated-ids), and some of these apps are server-rendered, make sure that the `identifierPrefix` you pass to the [`hydrateRoot`](/reference/react-dom/client/hydrateRoot) call on the client side is the same as the `identifierPrefix` you pass to the [server APIs](/reference/react-dom/server) such as [`renderToPipeableStream`.](/reference/react-dom/server/renderToPipeableStream)
+אם אתם [מרנדרים כמה אפליקציות שReact עצמאיות באותו עמוד](#specifying-a-shared-prefix-for-all-generated-ids), וחלק מהאפליקציות האלה מרונדרות בשרת, ודאו שה-`identifierPrefix`הם מעבירים לקריאה ל-[`hydrateRoot`](/reference/react-dom/client-___2) מעבירים ל-[שרת APIs](/reference/react-dom/server), כמו [`renderToPipeableStream`.](/reference/react-dom/server/renderToPipeableStream)
 
 ```js
 // Server
@@ -331,4 +331,4 @@ const root = hydrateRoot(
 );
 ```
 
-You do not need to pass `identifierPrefix` if you only have one React app on the page.
+אין צורך להעביר `identifierPrefix` אם יש לכם רק אפליקציית React אחת בעמוד.

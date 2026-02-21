@@ -1,16 +1,16 @@
 ---
-title: findDOMNode
+title: "findDOMNode"
 ---
 
 <Deprecated>
 
-This API will be removed in a future major version of React. [See the alternatives.](#alternatives)
+API זה יוסר בגרסה עיקרית עתידית של React. [ראה את החלופות.](#alternatives)
 
 </Deprecated>
 
 <Intro>
 
-`findDOMNode` finds the browser DOM node for a React [class component](/reference/react/Component) instance.
+`findDOMNode` מוצא את הצומת DOM של הדפדפן עבור מופע React [מחלקה](/reference/react/Component).
 
 ```js
 const domNode = findDOMNode(componentInstance)
@@ -22,11 +22,11 @@ const domNode = findDOMNode(componentInstance)
 
 ---
 
-## Reference {/*reference*/}
+## הפניה {/*reference*/}
 
 ### `findDOMNode(componentInstance)` {/*finddomnode*/}
 
-Call `findDOMNode` to find the browser DOM node for a given React [class component](/reference/react/Component) instance.
+התקשר ל-`findDOMNode` כדי למצוא את צומת הדפדפן DOM עבור מופע נתון של React [רכיב מחלקה](/reference/react/Component).
 
 ```js
 import { findDOMNode } from 'react-dom';
@@ -34,34 +34,34 @@ import { findDOMNode } from 'react-dom';
 const domNode = findDOMNode(componentInstance);
 ```
 
-[See more examples below.](#usage)
+[ראה דוגמאות נוספות למטה.](#usage)
 
-#### Parameters {/*parameters*/}
+#### פרמטרים {/*parameters*/}
 
-* `componentInstance`: An instance of the [`Component`](/reference/react/Component) subclass. For example, `this` inside a class component.
+* `componentInstance`: מופע של תת-המעמד [`Component`](/reference/react/Component). לדוגמה, `this` בתוך רכיב מחלקה.
 
 
-#### Returns {/*returns*/}
+#### מחזירה {/*returns*/}
 
-`findDOMNode` returns the first closest browser DOM node within the given `componentInstance`. When a component renders to `null`, or renders `false`, `findDOMNode` returns `null`. When a component renders to a string, `findDOMNode` returns a text DOM node containing that value.
+`findDOMNode` מחזיר את צומת הדפדפן DOM הראשון הקרוב ביותר בתוך `componentInstance` הנתון. כאשר רכיב מעבד ל-`null`, או מעבד `false`, `findDOMNode` מחזיר `null`. כאשר רכיב מעבד למחרוזת, `findDOMNode` מחזיר צומת טקסט DOM המכיל את הערך הזה.
 
-#### Caveats {/*caveats*/}
+#### אזהרות {/*caveats*/}
 
-* A component may return an array or a [Fragment](/reference/react/Fragment) with multiple children. In that case `findDOMNode`, will return the DOM node corresponding to the first non-empty child.
+* רכיב עשוי להחזיר מערך או [Fragment](/reference/react/Fragment) עם מספר ילדים. במקרה זה `findDOMNode`, יחזיר את הצומת DOM המתאים לילד הראשון שאינו ריק.
 
-* `findDOMNode` only works on mounted components (that is, components that have been placed in the DOM). If you try to call this on a component that has not been mounted yet (like calling `findDOMNode()` in `render()` on a component that has yet to be created), an exception will be thrown.
+* `findDOMNode` עובד רק על רכיבים רכובים (כלומר, רכיבים שהוצבו ב-DOM). אם תנסה לקרוא לזה על רכיב שעדיין לא הותקן (כמו קריאה ל-`findDOMNode()` ב-`render()` על רכיב שטרם נוצר), ייגרם חריג.
 
-* `findDOMNode` only returns the result at the time of your call. If a child component renders a different node later, there is no way for you to be notified of this change.
+* `findDOMNode` מחזיר את התוצאה רק בזמן השיחה שלך. אם רכיב צאצא יציג צומת אחר מאוחר יותר, אין שום דרך לקבל הודעה על שינוי זה.
 
-* `findDOMNode` accepts a class component instance, so it can't be used with function components.
+* `findDOMNode` מקבל מופע של רכיבי מחלקה, כך שהוא לא יכול להיות used עם רכיבי פונקציה.
 
 ---
 
-## Usage {/*usage*/}
+## שימוש {/*usage*/}
 
-### Finding the root DOM node of a class component {/*finding-the-root-dom-node-of-a-class-component*/}
+### מציאת צומת השורש DOM של רכיב מחלקה {/*finding-the-root-dom-node-of-a-class-component*/}
 
-Call `findDOMNode` with a [class component](/reference/react/Component) instance (usually, `this`) to find the DOM node it has rendered.
+התקשר ל-`findDOMNode` עם מופע [מחלקה](/reference/react/Component) (בדרך כלל, `this`) כדי למצוא את הצומת DOM שהוא הציג.
 
 ```js {3}
 class AutoselectingInput extends Component {
@@ -76,7 +76,7 @@ class AutoselectingInput extends Component {
 }
 ```
 
-Here, the `input` variable will be set to the `<input>` DOM element. This lets you do something with it. For example, when clicking "Show example" below mounts the input, [`input.select()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/select) selects all text in the input:
+כאן, המשתנה `input` יוגדר לאלמנט `<input>` DOM. זה מאפשר לך לעשות עם זה משהו. לדוגמה, כאשר לחיצה על "הצג דוגמה" למטה מעלה את הקלט, [`input.select()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/select) בוחר את כל הטקסט בקלט:
 
 <Sandpack>
 
@@ -120,11 +120,11 @@ export default AutoselectingInput;
 
 ---
 
-## Alternatives {/*alternatives*/}
+## חלופות {/*alternatives*/}
 
-### Reading component's own DOM node from a ref {/*reading-components-own-dom-node-from-a-ref*/}
+### קריאת צומת DOM של הרכיב עצמו מ-ref {/*reading-components-own-dom-node-from-a-ref*/}
 
-Code using `findDOMNode` is fragile because the connection between the JSX node and the code manipulating the corresponding DOM node is not explicit. For example, try wrapping this `<input />` into a `<div>`:
+קוד באמצעות `findDOMNode` הוא שביר מכיוון שהקשר בין הצומת JSX לקוד המפעיל את הצומת DOM המתאים אינו מפורש. לדוגמה, נסה לעטוף את ה-`<input />` הזה לתוך `<div>`:
 
 <Sandpack>
 
@@ -165,9 +165,9 @@ export default AutoselectingInput;
 
 </Sandpack>
 
-This will break the code because now, `findDOMNode(this)` finds the `<div>` DOM node, but the code expects an `<input>` DOM node. To avoid these kinds of problems, use [`createRef`](/reference/react/createRef) to manage a specific DOM node.
+זה ישבור את הקוד מכיוון שuse עכשיו, `findDOMNode(this)` מוצא את הצומת `<div>` DOM, אבל הקוד מצפה לצומת `<input>` DOM. כדי למנוע בעיות מסוג זה, use [`createRef`](/reference/react/createRef) כדי לנהל צומת DOM ספציפי.
 
-In this example, `findDOMNode` is no longer used. Instead, `inputRef = createRef(null)` is defined as an instance field on the class. To read the DOM node from it, you can use `this.inputRef.current`. To attach it to the JSX, you render `<input ref={this.inputRef} />`. This connects the code using the DOM node to its JSX:
+בדוגמה זו, `findDOMNode` אינו עוד used. במקום זאת, `inputRef = createRef(null)` מוגדר כשדות מופע במחלקה. כדי לקרוא את הצומת DOM ממנו, אתה יכול use `this.inputRef.current`. כדי לצרף אותו ל-JSX, אתה מעבד את `<input ref={this.inputRef} />`. זה מחבר את הקוד באמצעות הצומת DOM ל-JSX שלו:
 
 <Sandpack>
 
@@ -212,7 +212,7 @@ export default AutoselectingInput;
 
 </Sandpack>
 
-In modern React without class components, the equivalent code would call [`useRef`](/reference/react/useRef) instead:
+ב-React המודרנית ללא רכיבי מחלקה, הקוד המקביל יקרא [`useRef`](/reference/react/useRef) במקום זאת:
 
 <Sandpack>
 
@@ -251,13 +251,13 @@ export default function AutoselectingInput() {
 
 </Sandpack>
 
-[Read more about manipulating the DOM with refs.](/learn/manipulating-the-dom-with-refs)
+[קרא עוד על מניפולציה של DOM עם refs.](/learn/manipulating-the-dom-with-refs)
 
 ---
 
-### Reading a child component's DOM node from a forwarded ref {/*reading-a-child-components-dom-node-from-a-forwarded-ref*/}
+### קריאת צומת DOM של רכיב צאצא מ-Ref מועבר {/*reading-a-child-components-dom-node-from-a-forwarded-ref*/}
 
-In this example, `findDOMNode(this)` finds a DOM node that belongs to another component. The `AutoselectingInput` renders `MyInput`, which is your own component that renders a browser `<input>`.
+בדוגמה זו, `findDOMNode(this)` מוצא צומת DOM ששייך לרכיב אחר. ה-`AutoselectingInput` מעבד את `MyInput`, שהוא הרכיב שלך שמציג דפדפן `<input>`.
 
 <Sandpack>
 
@@ -305,14 +305,14 @@ export default function MyInput() {
 
 </Sandpack>
 
-Notice that calling `findDOMNode(this)` inside `AutoselectingInput` still gives you the DOM `<input>`--even though the JSX for this `<input>` is hidden inside the `MyInput` component. This seems convenient for the above example, but it leads to fragile code. Imagine that you wanted to edit `MyInput` later and add a wrapper `<div>` around it. This would break the code of `AutoselectingInput` (which expects to find an `<input>`).
+שימו לב שקריאה ל-`findDOMNode(this)` בתוך `AutoselectingInput` עדיין מעניקה לכם את ה-DOM `<input>`--למרות שה-JSX עבור `<input>` זה מוסתר בתוך רכיב `MyInput`. זה נראה נוח עבור הדוגמה שלעיל, אבל זה מוביל לקוד שביר. תאר לעצמך שרצית לערוך `MyInput` מאוחר יותר ולהוסיף עטיפה `<div>` סביבו. זה ישבור את הקוד של `AutoselectingInput` (שמצפה למצוא `<input>`).
 
-To replace `findDOMNode` in this example, the two components need to coordinate:
+כדי להחליף את `findDOMNode` בדוגמה זו, שני הרכיבים צריכים לתאם:
 
-1. `AutoSelectingInput` should declare a ref, like [in the earlier example](#reading-components-own-dom-node-from-a-ref), and pass it to `<MyInput>`.
-2. `MyInput` should be declared with [`forwardRef`](/reference/react/forwardRef) to take that ref and forward it down to the `<input>` node.
+1. `AutoSelectingInput` צריך להכריז על ref, כמו [בדוגמה הקודמת](#reading-components-own-dom-node-from-a-ref), ולהעביר אותו ל-`<MyInput>`.
+2. יש להצהיר על `MyInput` עם [`forwardRef`](/reference/react/forwardRef) כדי לקחת את השופט הזה ולהעביר אותו למטה לצומת `<input>`.
 
-This version does that, so it no longer needs `findDOMNode`:
+הגרסה הזו עושה את זה, אז היא כבר לא צריכה `findDOMNode`:
 
 <Sandpack>
 
@@ -368,7 +368,7 @@ export default MyInput;
 
 </Sandpack>
 
-Here is how this code would look like with function components instead of classes:
+כך ייראה הקוד הזה עם רכיבי פונקציה במקום מחלקות:
 
 <Sandpack>
 
@@ -420,11 +420,11 @@ export default MyInput;
 
 ---
 
-### Adding a wrapper `<div>` element {/*adding-a-wrapper-div-element*/}
+### הוספת אלמנט מעטפת `<div>` {/*adding-a-wrapper-div-element*/}
 
-Sometimes a component needs to know the position and size of its children. This makes it tempting to find the children with `findDOMNode(this)`, and then use DOM methods like [`getBoundingClientRect`](https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect) for measurements.
+לפעמים רכיב צריך לדעת את המיקום והגודל של ילדיו. זה עושה את זה מפתה למצוא את הילדים עם `findDOMNode(this)`, ולאחר מכן use DOM שיטות כמו [`getBoundingClientRect`](https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect) למדידות.
 
-There is currently no direct equivalent for this use case, which is why `findDOMNode` is deprecated but is not yet removed completely from React. In the meantime, you can try rendering a wrapper `<div>` node around the content as a workaround, and getting a ref to that node. However, extra wrappers can break styling.
+כרגע אין מקבילה ישירה למקרה use זה, ולכן `findDOMNode` הוצא משימוש אך עדיין לא הוסר לחלוטין מReact. בינתיים, אתה יכול לנסות לעבד צומת עוטף `<div>` סביב התוכן כפתרון לעקיפת הבעיה, ולקבל רפרנט לצומת זה. עם זאת, עטיפות נוספות יכולות לשבור את הסטיילינג.
 
 ```js
 <div ref={someRef}>
@@ -432,4 +432,4 @@ There is currently no direct equivalent for this use case, which is why `findDOM
 </div>
 ```
 
-This also applies to focusing and scrolling to arbitrary children.
+זה חל גם על התמקדות וגלילה לילדים שרירותיים.

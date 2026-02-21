@@ -1,33 +1,33 @@
 ---
-title: experimental_taintUniqueValue
+title: "experimental_taintUniqueValue"
 ---
 
 <Wip>
 
-**This API is experimental and is not available in a stable version of React yet.**
+**ה-API הזה ניסיוני ועדיין לא זמין בגרסה יציבה של React.**
 
-You can try it by upgrading React packages to the most recent experimental version:
+אפשר לנסות אותו על ידי שדרוג חבילות React לגרסה הניסיונית העדכנית ביותר:
 
 - `react@experimental`
 - `react-dom@experimental`
 - `eslint-plugin-react-hooks@experimental`
 
-Experimental versions of React may contain bugs. Don't use them in production.
+גרסאות ניסיוניות של React עשויות להכיל באגים. אל תשתמשו בהפקה.
 
-This API is only available inside [React Server Components](/reference/react/use-client).
+ה-API הזה זמין רק בתוך [React רכיבי שרת](/reference/react/use-client).
 
 </Wip>
 
 
 <Intro>
 
-`taintUniqueValue` lets you prevent unique values from being passed to Client Components like passwords, keys, or tokens.
+`taintUniqueValue` מאפשרת למנוע העברה של מאפיינים ייחודיים ל-Client Components, כמו סיסמ, מפתחות או אסימונים.
 
 ```js
 taintUniqueValue(errMessage, lifetime, value)
 ```
 
-To prevent passing an object containing sensitive data, see [`taintObjectReference`](/reference/react/experimental_taintObjectReference).
+כדי למנוע העברה של אובייקט שמכיל מידע ראו [`taintObjectReference`](/reference/react/experimental_taintObjectReference).
 
 </Intro>
 
@@ -35,11 +35,11 @@ To prevent passing an object containing sensitive data, see [`taintObjectReferen
 
 ---
 
-## Reference {/*reference*/}
+## הפניה {/*reference*/}
 
 ### `taintUniqueValue(message, lifetime, value)` {/*taintuniquevalue*/}
 
-Call `taintUniqueValue` with a password, token, key or hash to register it with React as something that should not be allowed to be passed to the Client as is:
+קראו ל-`taintUniqueValue` עם סיסמה, אסימון, מפתח או hash כדי לרשום אותם ב-React כמשהו שאסור להעביר ללקוח כפי שהוא:
 
 ```js
 import {experimental_taintUniqueValue} from 'react';
@@ -51,34 +51,34 @@ experimental_taintUniqueValue(
 );
 ```
 
-[See more examples below.](#usage)
+[עוד דוגמאות נוספות.](#usage)
 
-#### Parameters {/*parameters*/}
+#### פרמטרים {/*parameters*/}
 
-* `message`: The message you want to display if `value` is passed to a Client Component. This message will be displayed as a part of the Error that will be thrown if `value` is passed to a Client Component.
+* `message`: ההודעה שתרצו להציג אם `value` מועברת ל-Client Component. הודעה זו תוצג כחלק מה-שגיאה שיושלך אם `value` מועבר ל-Client Component.
 
-* `lifetime`: Any object that indicates how long `value` should be tainted. `value` will be blocked from being sent to any Client Component while this object still exists. For example, passing `globalThis` blocks the value for the lifetime of an app. `lifetime` is typically an object whose properties contains `value`.
+* `lifetime`: כל אובייקט שמבקש כמה זמן __T1__ צריך להיות מסומן כ-tainted. `value` ייחסם משל לכל רכיב לקוח כל עוד האובייקט הזה עדיין קיים. לדוגמה, העברת `globalThis` חוסמת את הערך לאורך כל חיי האפליקציה. לרוב`lifetime` הוא אובייקט את המאפיינים שלו מכילים `value`.
 
-* `value`: A string, bigint or TypedArray. `value` must be a unique sequence of characters or bytes with high entropy such as a cryptographic token, private key, hash, or a long password. `value` will be blocked from being sent to any Client Component.
+* `value`: מחרוזת, bigint או TypedArray. `value` חייב להיות רצף ייחודי של תווים או בתים עם אנטרופיה גבוהה, כמו אסימון קריפטוגרפי, מפתח פרטי, hash או סיסמה ארוכה. `value` ייחסם משליחה לכל רכיב לקוח.
 
-#### Returns {/*returns*/}
+#### מחזירה {/*returns*/}
 
-`experimental_taintUniqueValue` returns `undefined`.
+`experimental_taintUniqueValue` מחזירה `undefined`.
 
-#### Caveats {/*caveats*/}
+#### אזהרות {/*caveats*/}
 
-* Deriving new values from tainted values can compromise tainting protection. New values created by uppercasing tainted values, concatenating tainted string values into a larger string, converting tainted values to base64, substringing tainted values, and other similar transformations are not tainted unless you explicitly call `taintUniqueValue` on these newly created values.
-* Do not use `taintUniqueValue` to protect low-entropy values such as PIN codes or phone numbers. If any value in a request is controlled by an attacker, they could infer which value is tainted by enumerating all possible values of the secret.
+* גזירת ערכים חדשים מערכים מוכתמים עלולה בהנאה כתמים. ערכים חדשים רוזות מהמרת אותיות לגדולות, שרשור מחרוזות tainted למחרוזת גדולה יותר, המרה ל-base64, חיתוך תת-מחת מערכים tainted וטרנספורמציות דומות, הן taintainted אלא אם קוראים במפורש ל-`taintUniqueValue` גם על הערכים החדשים.
+* אל תשתמשו ב-`taintUniqueValue` להגנה על ערכים בעלי אנטרופיה נמוכה כמו קודי PIN או מספרי טלפון. אם תעשה משהו טוב, הוא יעשה בבקשה איזה ערך מסומן יעבור על כל הערכים האפשריים של הסוד.
 
 ---
 
-## Usage {/*usage*/}
+## שימוש {/*usage*/}
 
-### Prevent a token from being passed to Client Components {/*prevent-a-token-from-being-passed-to-client-components*/}
+### מניעת העברת אסימון לרכיבי לקוח {/*prevent-a-token-from-being-passed-to-client-components*/}
 
-To ensure that sensitive information such as passwords, session tokens, or other unique values do not inadvertently get passed to Client Components, the `taintUniqueValue` function provides a layer of protection. When a value is tainted, any attempt to pass it to a Client Component will result in an error. 
+כדי לוודא מידע רגיש כמו סיסמאות, אסימוני הפעלה או ערכים ייחודיים אחרים לא מועברים בטעות לרכיבי לקוח, הפונקציה `taintUniqueValue` מספקת שכבת הגנה. כשערך מסומן כ-tainted, כל הניסיון להעביר אותו לרכיב לקוח יגרום לשגיאה.
 
-The `lifetime` argument defines the duration for which the value remains tainted. For values that should remain tainted indefinitely, objects like [`globalThis`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/globalThis) or `process` can serve as the `lifetime` argument. These objects have a lifespan that spans the entire duration of your app's execution.
+הארגומנט `lifetime` מגדיר את משך הזמן שבו הערך נשאר tainted. לערכים שצריכים נשארים נגועים ללא הגבלת זמן, אובייקטים כמו [`globalThis`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/globalThis) או `process` יכולים לשמש כ-`lifetime`. לאובייקטים האלה יש אורך חיים שחופף לכל משך הרצת האפליקציה.
 
 ```js
 import {experimental_taintUniqueValue} from 'react';
@@ -90,7 +90,7 @@ experimental_taintUniqueValue(
 );
 ```
 
-If the tainted value's lifespan is tied to a object, the `lifetime` should be the object that encapsulates the value. This ensures the tainted value remains protected for the lifetime of the encapsulating object.
+אם אורך החיים של הערך המסומן קשור לאובייקט מסוים, `lifetime` צריך להיות הערך שעוטף את הערך. כך מובטח שהערך המסומן יישאר מוגן לאורך חיי האובייקט העוטף.
 
 ```js
 import {experimental_taintUniqueValue} from 'react';
@@ -106,11 +106,11 @@ export async function getUser(id) {
 }
 ```
 
-In this example, the `user` object serves as the `lifetime` argument. If this object gets stored in a global cache or is accessible by another request, the session token remains tainted.
+בדוגמה הזו, האובייקט `user` משמש כארגומנט `lifetime`. אם האובייקט הזה נשמר ב-global cache או נבקשה אחרת, אסימון ה-Session נשאר נגוע.
 
 <Pitfall>
 
-**Do not rely solely on tainting for security.** Tainting a value doesn't block every possible derived value. For example, creating a new value by upper casing a tainted string will not taint the new value.
+**אל תסתמכו רק על tainting לאבטחה.** סימון ערך כ-tainted לא חוסם כל ערך נגזר אפשרי. לדוגמה, יצירת ערך חדש מהמרת מחרוזת נגועה לאותיות גדולות לא תסמן את הערך החדש.
 
 
 ```js
@@ -127,19 +127,19 @@ experimental_taintUniqueValue(
 const uppercasePassword = password.toUpperCase() // `uppercasePassword` is not tainted
 ```
 
-In this example, the constant `password` is tainted. Then `password` is used to create a new value `uppercasePassword` by calling the `toUpperCase` method on `password`. The newly created `uppercasePassword` is not tainted.
+בדוגמה זו, הקבוע `password` מסומן כ-tainted. לאחר משתמשים ב-`password` ליצירת ערך חדש `uppercasePassword` על ידי קריאה ל-`toUpperCase`. הערך החדש `uppercasePassword` אינו נגוע.
 
-Other similar ways of deriving new values from tainted values like concatenating it into a larger string, converting it to base64, or returning a substring create untained values.
+שיטות דומות נוספות לגזירת ערכים חדשים מערכים נגועים, כמו שרשור למחרוזת גדולה יותר, המרה ל-base64 או החזרת תת-מחרוזת, יוצרות ערכים לא מסומנים.
 
-Tainting only protects against simple mistakes like explicitly passing secret values to the client. Mistakes in calling the `taintUniqueValue` like using a global store outside of React, without the corresponding lifetime object, can cause the tainted value to become untainted. Tainting is a layer of protection; a secure app will have multiple layers of protection, well designed APIs, and isolation patterns.
+Tainting מגינה רק מפני טעויות פשוטות כמו העברה מפורשת של ערכים סודיים ללקוח. טעויות בשימוש ב-`taintUniqueValue`, כמו שימוש ב-global store מחוץ ל-React בלי מעגל חיים תואם, פעולות לגרום לכך שהערך המסומן יאבד את הס. Tainting היא שכבת הגנה אחת; אפליקציה מאובטחת תכלול כמה שכבות הגנה, APIs מתוכננים היטב ודפוסי בידוד.
 
 </Pitfall>
 
 <DeepDive>
 
-#### Using `server-only` and `taintUniqueValue` to prevent leaking secrets {/*using-server-only-and-taintuniquevalue-to-prevent-leaking-secrets*/}
+#### שימוש ב-`server-only` ו-`taintUniqueValue` כדי למנוע דליפת סודות {/*using-server-only-and-taintuniquevalue-to-prevent-leaking-secrets*/}
 
-If you're running a Server Components environment that has access to private keys or passwords such as database passwords, you have to be careful not to pass that to a Client Component.
+אם אתם מריצים סביבת רכיבי שרת יש להפנות למפתחים פרטיים או סיסמאות, כמו סיסמת מסד נתונים, צריך להעביר את זה לרכיב לקוח.
 
 ```js
 export async function Dashboard(props) {
@@ -162,11 +162,11 @@ export async function Overview({ password }) {
 }
 ```
 
-This example would leak the secret API token to the client. If this API token can be used to access data this particular user shouldn't have access to, it could lead to a data breach.
+הדוגמה הזו תדליף את סוד ה-API אסימון ללקוח. אם האסימון הזה לשמש יכול לגשת לנתוני המשתמש הזה לא אמורה להיות גישה אליהם, זהונים להוביל לדליפת מידע.
 
-[comment]: <> (TODO: Link to `server-only` docs once they are written)
+[תגובה]: <> (TODO: קישור למסמכים `server-only` לאחר כתיבתם)
 
-Ideally, secrets like this are abstracted into a single helper file that can only be imported by trusted data utilities on the server. The helper can even be tagged with [`server-only`](https://www.npmjs.com/package/server-only) to ensure that this file isn't imported on the client.
+אידיאלית, סודות כאלה יופשטו לקובץ עוזר יחיד אפשרי לייבא רק מתוך כלי עזר מהימנים בצד השרת. אפשר אפילו לתייג את העוזר עם [`server-only`](https://www.npmjs.com/package/server-only) כדי שהקובץ הזה לא מיובא ללקוח.
 
 ```js
 import "server-only";
@@ -177,8 +177,8 @@ export function fetchAPI(url) {
 }
 ```
 
-Sometimes mistakes happen during refactoring and not all of your colleagues might know about this. 
-To protect against this mistakes happening down the line we can "taint" the actual password:
+לפעמים קורות טעויות על ריפאקטורינג וכל חברי הצוות מודעים לכך.
+כדי להתגונן מפני טעויות כאלה בהמשך, אפשר "לסמן" את הסיסמה עצמה:
 
 ```js
 import "server-only";
@@ -192,7 +192,7 @@ experimental_taintUniqueValue(
 );
 ```
 
-Now whenever anyone tries to pass this password to a Client Component, or send the password to a Client Component with a Server Action, an error will be thrown with message you defined when you called `taintUniqueValue`.
+עכשיו, בכל פעם שמישהו ינסה להעביר את הסיסמה הזו ל-Client Component, או לשלוח אותה ל-Client Component דרך פעולת שרת, תיזרק שגיאה עם ההודעה שהגדרתם בקריאה ל-`taintUniqueValue`.
 
 </DeepDive>
 

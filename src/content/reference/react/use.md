@@ -1,17 +1,17 @@
 ---
-title: use
+title: "use"
 canary: true
 ---
 
 <Canary>
 
-The `use` Hook is currently only available in React's Canary and experimental channels. Learn more about [React's release channels here](/community/versioning-policy#all-release-channels).
+ה-`use` Hook זמין כרגע רק בערוצים הקנריים והניסיוניים של React. למידע נוסף על ערוצי ההפצה של [React כאן](/community/versioning-policy#all-release-channels).
 
 </Canary>
 
 <Intro>
 
-`use` is a React Hook that lets you read the value of a resource like a [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) or [context](/learn/passing-data-deeply-with-context).
+`use` הוא React Hook המאפשר לך לקרוא את הערך של משאב כמו [הבטחה](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) או [הקשר](/learn/passing-data-deeply-with-context).
 
 ```js
 const value = use(resource);
@@ -23,11 +23,11 @@ const value = use(resource);
 
 ---
 
-## Reference {/*reference*/}
+## הפניה {/*reference*/}
 
 ### `use(resource)` {/*use*/}
 
-Call `use` in your component to read the value of a resource like a [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) or [context](/learn/passing-data-deeply-with-context).
+התקשר ל-`use` ברכיב שלך כדי לקרוא את הערך של משאב כמו [הבטחה](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) או [הקשר](/learn/passing-data-deeply-with-context).
 
 ```jsx
 import { use } from 'react';
@@ -38,33 +38,33 @@ function MessageComponent({ messagePromise }) {
   // ...
 ```
 
-Unlike all other React Hooks, `use` can be called within loops and conditional statements like `if`. Like other React Hooks, the function that calls `use` must be a Component or Hook.
+בניגוד לכל React Hooks האחרים, ניתן לקרוא ל-`use` בתוך לולאות ו-stateמנטים מותנים כמו `if`. כמו React Hooks אחרים, הפונקציה שקוראת ל-`use` חייבת להיות Component או Hook.
 
-When called with a Promise, the `use` Hook integrates with [`Suspense`](/reference/react/Suspense) and [error boundaries](/reference/react/Component#catching-rendering-errors-with-an-error-boundary). The component calling `use` *suspends* while the Promise passed to `use` is pending. If the component that calls `use` is wrapped in a Suspense boundary, the fallback will be displayed.  Once the Promise is resolved, the Suspense fallback is replaced by the rendered components using the data returned by the `use` Hook. If the Promise passed to `use` is rejected, the fallback of the nearest Error Boundary will be displayed.
+כאשר קוראים עם הבטחה, ה-`use` Hook משתלב עם [`Suspense`](/reference/react/Suspense) ו-[גבולות שגיאה](/reference/react/Component#catching-rendering-errors-with-an-error-boundary). הרכיב הקורא ל-`use` *משהה* בזמן שההבטחה שהועברה ל-`use` ממתינה. אם הרכיב שקורא ל-`use` עטוף בגבול Suspense, ה-fallback יוצג.  לאחר פתרון ההבטחה, ההחלפה Suspense מוחלפת ברכיבים שניתנו באמצעות הנתונים המוחזרים על ידי `use` Hook. אם ההבטחה שהועברה ל-`use` תדחה, תוצג החזרה של גבול השגיאה הקרוב ביותר.
 
-[See more examples below.](#usage)
+[ראה דוגמאות נוספות למטה.](#usage)
 
-#### Parameters {/*parameters*/}
+#### פרמטרים {/*parameters*/}
 
-* `resource`: this is the source of the data you want to read a value from. A resource can be a [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) or a [context](/learn/passing-data-deeply-with-context).
+* `resource`: זהו המקור של הנתונים שמהם אתה רוצה לקרוא ערך. משאב יכול להיות [הבטחה](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) או [הקשר](/learn/העברת-data-deeply-with-context).
 
-#### Returns {/*returns*/}
+#### מחזירה {/*returns*/}
 
-The `use` Hook returns the value that was read from the resource like the resolved value of a [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) or [context](/learn/passing-data-deeply-with-context).
+ה-`use` Hook מחזיר את הערך שנקרא מהמשאב כמו הערך שנפתר של [הבטחה](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) או [הקשר](/learn/pass-data-deeply-with-context).
 
-#### Caveats {/*caveats*/}
+#### אזהרות {/*caveats*/}
 
-* The `use` Hook must be called inside a Component or a Hook.
-* When fetching data in a [Server Component](/reference/react/use-server), prefer `async` and `await` over `use`. `async` and `await` pick up rendering from the point where `await` was invoked, whereas `use` re-renders the component after the data is resolved.
-* Prefer creating Promises in [Server Components](/reference/react/use-server) and passing them to [Client Components](/reference/react/use-client) over creating Promises in Client Components. Promises created in Client Components are recreated on every render. Promises passed from a Server Component to a Client Component are stable across re-renders. [See this example](#streaming-data-from-server-to-client).
+* יש לקרוא ל-`use` Hook בתוך רכיב או Hook.
+* בעת שליפת נתונים ב-[רכיב שרת](/reference/react/use-שרת), העדיפו `async` ו`await` על פני `use`. `async` ו`await` קולטים רינדור מהנקודה שבה `await` הופעל, ואילו `use` מעבד מחדש את הרכיב לאחר פתרון הנתונים.
+* העדיפו יצירת הבטחות ב-[Server Components](/reference/react/use-server) והעברתם ל-[Client Components](/reference/react/use-client) על פני יצירת הבטחות ברכיבי לקוח. הבטחות שנוצרו ברכיבי לקוח נוצרות מחדש בכל עיבוד. הבטחות המועברות מרכיב שרת לרכיב לקוח יציבות בעיבודים חוזרים. [ראה דוגמה זו](#streaming-data-from-server-to-client).
 
 ---
 
-## Usage {/*usage*/}
+## שימוש {/*usage*/}
 
-### Reading context with `use` {/*reading-context-with-use*/}
+### קריאה בהקשר עם `use` {/*reading-context-with-use*/}
 
-When a [context](/learn/passing-data-deeply-with-context) is passed to `use`, it works similarly to [`useContext`](/reference/react/useContext). While `useContext` must be called at the top level of your component, `use` can be called inside conditionals like `if` and loops like `for`. `use` is preferred over `useContext` because it is more flexible.
+כאשר [הקשר](/learn/העברת-data-deeply-with-context) מועבר ל-`use`, זה עובד בדומה ל-[`useContext`](/reference/react/useContext). בעוד ש-`useContext` חייב להיקרא ברמה העליונה של הרכיב שלך, ניתן לקרוא ל-`use` בתוך תנאים כמו `if` ולולאות כמו `for`. `use` מועדף על פני `useContext` מכיוון שuse הוא גמיש יותר.
 
 ```js [[2, 4, "theme"], [1, 4, "ThemeContext"]]
 import { use } from 'react';
@@ -74,9 +74,9 @@ function Button() {
   // ... 
 ```
 
-`use` returns the <CodeStep step={2}>context value</CodeStep> for the <CodeStep step={1}>context</CodeStep> you passed. To determine the context value, React searches the component tree and finds **the closest context provider above** for that particular context.
+`use` מחזירה את <CodeStep step={2}>ערך ההקשר</CodeStep> עבור <CodeStep step={1}>context</CodeStep> שעברת. כדי לקבוע את ערך ההקשר, React מחפש בעץ הרכיבים ומוצא את **ספק ההקשר הקרוב ביותר לעיל** עבור ההקשר המסוים הזה.
 
-To pass context to a `Button`, wrap it or one of its parent components into the corresponding context provider.
+כדי להעביר הקשר ל-`Button`, עטוף אותו או אחד ממרכיבי האב שלו לספק ההקשר המתאים.
 
 ```js [[1, 3, "ThemeContext"], [2, 3, "\\"dark\\""], [1, 5, "ThemeContext"]]
 function MyPage() {
@@ -92,9 +92,9 @@ function Form() {
 }
 ```
 
-It doesn't matter how many layers of components there are between the provider and the `Button`. When a `Button` *anywhere* inside of `Form` calls `use(ThemeContext)`, it will receive `"dark"` as the value.
+זה לא משנה כמה שכבות של רכיבים יש בין הספק ל-`Button`. כאשר `Button` *בכל מקום* בתוך `Form` קורא `use(ThemeContext)`, הוא יקבל `"dark"` כערך.
 
-Unlike [`useContext`](/reference/react/useContext), <CodeStep step={2}>`use`</CodeStep> can be called in conditionals and loops like <CodeStep step={1}>`if`</CodeStep>.
+בניגוד ל-[`useContext`](/reference/react/useContext), <CodeStep step={2}>`use`</CodeStep> ניתן לקרוא בתנאים וללולאות כמו <CodeStep step={1}>`if`</CodeStep>.
 
 ```js [[1, 2, "if"], [2, 3, "use"]]
 function HorizontalRule({ show }) {
@@ -110,7 +110,7 @@ function HorizontalRule({ show }) {
 
 <Pitfall>
 
-Like `useContext`, `use(context)` always looks for the closest context provider *above* the component that calls it. It searches upwards and **does not** consider context providers in the component from which you're calling `use(context)`.
+כמו `useContext`, `use(context)` תמיד מחפש את ספק ההקשר הקרוב ביותר *מעל* הרכיב שקורא לו. הוא מחפש כלפי מעלה ו**לא** מחשיב ספקי הקשר ברכיב שממנו אתה קורא ל-`use(context)`.
 
 </Pitfall>
 
@@ -212,9 +212,9 @@ function Button({ show, children }) {
 
 </Sandpack>
 
-### Streaming data from the server to the client {/*streaming-data-from-server-to-client*/}
+### הזרמת נתונים מהשרת ללקוח {/*streaming-data-from-server-to-client*/}
 
-Data can be streamed from the server to the client by passing a Promise as a prop from a <CodeStep step={1}>Server Component</CodeStep> to a <CodeStep step={2}>Client Component</CodeStep>.
+ניתן להזרים נתונים מהשרת ללקוח על ידי העברת הבטחה כאביזר מ<CodeStep step={1}>רכיב שרת</CodeStep> ל<CodeStep step={2}>רכיב לקוח</CodeStep>.
 
 ```js [[1, 4, "App"], [2, 2, "Message"], [3, 7, "Suspense"], [4, 8, "messagePromise", 30], [4, 5, "messagePromise"]]
 import { fetchMessage } from './lib.js';
@@ -230,7 +230,7 @@ export default function App() {
 }
 ```
 
-The <CodeStep step={2}>Client Component</CodeStep> then takes <CodeStep step={4}>the Promise it received as a prop</CodeStep> and passes it to the <CodeStep step={5}>`use`</CodeStep> Hook. This allows the <CodeStep step={2}>Client Component</CodeStep> to read the value from <CodeStep step={4}>the Promise</CodeStep> that was initially created by the Server Component.
+<CodeStep step={2}>רכיב לקוח</CodeStep> לאחר מכן לוקח את <CodeStep step={4}>ההבטחה שקיבל כפרופסיה</CodeStep> ומעביר אותה ל-<CodeStep step={5}>`use`</CodeStep> Hook. זה מאפשר ל<CodeStep step={2}>רכיב לקוח</CodeStep> לקרוא את הערך מ<CodeStep step={4}>ההבטחה</CodeStep> שנוצרה בתחילה על ידי רכיב השרת.
 
 ```js [[2, 6, "Message"], [4, 6, "messagePromise"], [4, 7, "messagePromise"], [5, 7, "use"]]
 // message.js
@@ -243,7 +243,7 @@ export function Message({ messagePromise }) {
   return <p>Here is the message: {messageContent}</p>;
 }
 ```
-Because <CodeStep step={2}>`Message`</CodeStep> is wrapped in <CodeStep step={3}>[`Suspense`](/reference/react/Suspense)</CodeStep>, the fallback will be displayed until the Promise is resolved. When the Promise is resolved, the value will be read by the <CodeStep step={5}>`use`</CodeStep> Hook and the <CodeStep step={2}>`Message`</CodeStep> component will replace the Suspense fallback.
+מכיוון שuse <CodeStep step={2}>`Message`</CodeStep> עטוף ב-<CodeStep step={3}>[`Suspense`](/reference/react/Suspense)</CodeStep>, ההחלפה תוצג עד לפתרון ההבטחה. כאשר ההבטחה תיפתר, הערך ייקרא על ידי <CodeStep step={5}>`use`</CodeStep> Hook והרכיב <CodeStep step={2}>`Message`</CodeStep> יחליף את ה-fallback Suspense.
 
 <Sandpack>
 
@@ -325,16 +325,16 @@ root.render(
 
 <Note>
 
-When passing a Promise from a Server Component to a Client Component, its resolved value must be serializable to pass between server and client. Data types like functions aren't serializable and cannot be the resolved value of such a Promise.
+בעת העברת הבטחה מרכיב שרת לרכיב לקוח, הערך שנפתר שלה חייב להיות ניתן לסידרה כדי לעבור בין שרת ללקוח. סוגי נתונים כמו פונקציות אינם ניתנים לסידרה ואינם יכולים להיות הערך הפתור של הבטחה כזו.
 
 </Note>
 
 
 <DeepDive>
 
-#### Should I resolve a Promise in a Server or Client Component? {/*resolve-promise-in-server-or-client-component*/}
+#### האם עלי לפתור הבטחה ברכיב שרת או לקוח? {/*resolve-promise-in-server-or-client-component*/}
 
-A Promise can be passed from a Server Component to a Client Component and resolved in the Client Component with the `use` Hook. You can also resolve the Promise in a Server Component with `await` and pass the required data to the Client Component as a prop.
+ניתן להעביר הבטחה מרכיב שרת לרכיב לקוח ולפתור אותו ברכיב הלקוח עם ה-`use` Hook. אתה יכול גם לפתור את ההבטחה ברכיב שרת עם `await` ולהעביר את הנתונים הנדרשים לרכיב הלקוח בתור אביזר.
 
 ```js
 export default async function App() {
@@ -343,24 +343,24 @@ export default async function App() {
 }
 ```
 
-But using `await` in a [Server Component](/reference/react/components#server-components) will block its rendering until the `await` statement is finished. Passing a Promise from a Server Component to a Client Component prevents the Promise from blocking the rendering of the Server Component.
+אבל שימוש ב-`await` ב-[רכיב שרת](/reference/react/components#server-components) יחסום את העיבוד שלו עד לסיום ה-`await` statement. העברת הבטחה מרכיב שרת לרכיב לקוח מונעת מההבטחה לחסום את העיבוד של רכיב השרת.
 
 </DeepDive>
 
-### Dealing with rejected Promises {/*dealing-with-rejected-promises*/}
+### התמודדות עם הבטחות שנדחו {/*dealing-with-rejected-promises*/}
 
-In some cases a Promise passed to `use` could be rejected. You can handle rejected Promises by either:
+במקרים מסוימים הבטחה שהועברה ל-`use` עלולה להידחות. אתה יכול לטפל בהבטחות שנדחו על ידי:
 
-1. [Displaying an error to users with an error boundary.](#displaying-an-error-to-users-with-error-boundary)
-2. [Providing an alternative value with `Promise.catch`](#providing-an-alternative-value-with-promise-catch)
+1. [הצגת שגיאה ל-users עם גבול שגיאה.](#displaying-an-error-to-users-with-error-boundary)
+2. [מתן ערך חלופי עם `Promise.catch`](#providing-an-alternative-value-with-promise-catch)
 
 <Pitfall>
-`use` cannot be called in a try-catch block. Instead of a try-catch block [wrap your component in an Error Boundary](#displaying-an-error-to-users-with-error-boundary), or [provide an alternative value to use with the Promise's `.catch` method](#providing-an-alternative-value-with-promise-catch).
+לא ניתן לקרוא ל-`use` בבלוק טרי-catch. במקום חסימת try-catch [עטפו את הרכיב שלך ב-Error Boundary](#displaying-an-error-to-users-with-error-boundary), או [ספק ערך חלופי ל-use בשיטת `.catch` של ההבטחה](#providing-an-catch-alternative-mise-value).
 </Pitfall>
 
-#### Displaying an error to users with an error boundary {/*displaying-an-error-to-users-with-error-boundary*/}
+#### הצגת שגיאה ל-users עם גבול שגיאה {/*displaying-an-error-to-users-with-error-boundary*/}
 
-If you'd like to display an error to your users when a Promise is rejected, you can use an [error boundary](/reference/react/Component#catching-rendering-errors-with-an-error-boundary). To use an error boundary, wrap the component where you are calling the `use` Hook in an error boundary. If the Promise passed to `use` is rejected the fallback for the error boundary will be displayed.
+אם תרצה להציג שגיאה ל-users שלך כאשר הבטחה נדחתה, אתה יכול use [גבול שגיאה](/reference/react/Component#catching-rendering-errors-with-an-error-boundary). כדי use גבול שגיאה, עטוף את הרכיב שבו אתה קורא את `use` Hook בגבול שגיאה. אם ההבטחה שהועברה ל-`use` נדחתה, החזרה לגבול השגיאה תוצג.
 
 <Sandpack>
 
@@ -444,9 +444,9 @@ root.render(
 ```
 </Sandpack>
 
-#### Providing an alternative value with `Promise.catch` {/*providing-an-alternative-value-with-promise-catch*/}
+#### מתן ערך חלופי עם `Promise.catch` {/*providing-an-alternative-value-with-promise-catch*/}
 
-If you'd like to provide an alternative value when the Promise passed to `use` is rejected you can use the Promise's <CodeStep step={1}>[`catch`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/catch)</CodeStep> method.
+אם ברצונך לספק ערך חלופי כאשר ההבטחה שהועברה ל-`use` נדחתה, תוכל use שיטת <CodeStep step={1}>[`catch`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/catch)</CodeStep>) של ההבטחה.
 
 ```js [[1, 6, "catch"],[2, 7, "return"]]
 import { Message } from './message.js';
@@ -466,17 +466,17 @@ export default function App() {
 }
 ```
 
-To use the Promise's <CodeStep step={1}>`catch`</CodeStep> method, call <CodeStep step={1}>`catch`</CodeStep> on the Promise object. <CodeStep step={1}>`catch`</CodeStep> takes a single argument: a function that takes an error message as an argument. Whatever is <CodeStep step={2}>returned</CodeStep> by the function passed to <CodeStep step={1}>`catch`</CodeStep> will be used as the resolved value of the Promise.
+כדי use שיטת <CodeStep step={1}>`catch`</CodeStep> של ה-Promise, קרא <CodeStep step={1}>`catch`</CodeStep> באובייקט ה-Promise. <CodeStep step={1}>`catch`</CodeStep> לוקח ארגומנט בודד: פונקציה שלוקחת הודעת שגיאה כארגומנט. כל מה ש<CodeStep step={2}>יוחזר</CodeStep> על ידי הפונקציה המועברת ל-<CodeStep step={1}>`catch`</CodeStep> יהיה used כערך שנפתר של ההבטחה.
 
 ---
 
-## Troubleshooting {/*troubleshooting*/}
+## פתרון בעיות {/*troubleshooting*/}
 
-### "Suspense Exception: This is not a real error!" {/*suspense-exception-error*/}
+### "Suspense חריג: זו לא שגיאה אמיתית!" {/*suspense-exception-error*/}
 
-You are either calling `use` outside of a React component or Hook function, or calling `use` in a try–catch block. If you are calling `use` inside a try–catch block, wrap your component in an error boundary, or call the Promise's `catch` to catch the error and resolve the Promise with another value. [See these examples](#dealing-with-rejected-promises).
+או שאתה קורא ל-`use` מחוץ לרכיב React או פונקציה Hook, או קורא ל-`use` בלוק של try-catch. אם אתה קורא `use` בתוך בלוק try-catch, עטוף את הרכיב שלך בגבול שגיאה, או התקשר ל-`catch` של ההבטחה כדי לתפוס את השגיאה ולפתור את ההבטחה עם ערך אחר. [ראה דוגמאות אלה](#dealing-with-rejected-promises).
 
-If you are calling `use` outside a React component or Hook function, move the `use` call to a React component or Hook function.
+אם אתה קורא ל-`use` מחוץ לרכיב React או פונקציה Hook, העבר את הקריאה `use` לרכיב React או פונקציה Hook.
 
 ```jsx
 function MessageComponent({messagePromise}) {
@@ -486,7 +486,7 @@ function MessageComponent({messagePromise}) {
     // ...
 ```
 
-Instead, call `use` outside any component closures, where the function that calls `use` is a component or Hook.
+במקום זאת, קרא ל-`use` מחוץ לכל סגירת רכיבים, כאשר הפונקציה שקוראת ל-`use` היא רכיב או Hook.
 
 ```jsx
 function MessageComponent({messagePromise}) {

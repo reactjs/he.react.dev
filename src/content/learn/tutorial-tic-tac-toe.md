@@ -1,31 +1,31 @@
 ---
-title: 'Tutorial: Tic-Tac-Toe'
+title: "הדרכה: טיק-טק-טו"
 ---
 
 <Intro>
 
-You will build a small tic-tac-toe game during this tutorial. This tutorial does not assume any existing React knowledge. The techniques you'll learn in the tutorial are fundamental to building any React app, and fully understanding it will give you a deep understanding of React.
+אתה תבנה משחק קטן עם תקלות במהלך הדרכה זו. הדרכה זו אינה מניחה שום ידע קיים React. הטכניקות שתלמדו במדריך הן בסיסיות לבניית כל אפליקציית React, והבנה מלאה שלה תעניק לכם הבנה עמוקה של React.
 
 </Intro>
 
 <Note>
 
-This tutorial is designed for people who prefer to **learn by doing** and want to quickly try making something tangible. If you prefer learning each concept step by step, start with [Describing the UI.](/learn/describing-the-ui)
+הדרכה זו מיועדת לאנשים שמעדיפים **ללמוד מעשה** ורוצים לנסות במהירות לעשות משהו מוחשי. אם אתה מעדיף ללמוד כל מושג שלב אחר שלב, התחל עם [תיאור ממשק המשתמש.](/learn/describing-the-ui)
 
 </Note>
 
-The tutorial is divided into several sections:
+המדריך מחולק למספר חלקים:
 
-- [Setup for the tutorial](#setup-for-the-tutorial) will give you **a starting point** to follow the tutorial.
-- [Overview](#overview) will teach you **the fundamentals** of React: components, props, and state.
-- [Completing the game](#completing-the-game) will teach you **the most common techniques** in React development.
-- [Adding time travel](#adding-time-travel) will give you **a deeper insight** into the unique strengths of React.
+- [הגדרה של המדריך](#הגדרה-עבור-המדריך) ייתן לך **נקודת התחלה** לעקוב אחר המדריך.
+- [סקירה כללית](#overview) ילמד אותך את **היסודות** של React: רכיבים, props וstate.
+- [השלמת המשחק](#completing-the-game) ילמד אותך את **הטכניקות הנפוצות ביותר** בפיתוח React.
+- [הוספת מסע בזמן](#adding-time-travel) יעניק לך **תובנה עמוקה יותר** לגבי החוזקות הייחודיות של React.
 
-### What are you building? {/*what-are-you-building*/}
+### מה אתה בונה? {/*what-are-you-building*/}
 
-In this tutorial, you'll build an interactive tic-tac-toe game with React.
+במדריך זה, תבנה משחק טיק-טק אינטראקטיבי עם React.
 
-You can see what it will look like when you're finished here:
+אתה יכול לראות איך זה ייראה כשתסיים כאן:
 
 <Sandpack>
 
@@ -194,15 +194,15 @@ body {
 
 </Sandpack>
 
-If the code doesn't make sense to you yet, or if you are unfamiliar with the code's syntax, don't worry! The goal of this tutorial is to help you understand React and its syntax.
+אם הקוד עדיין לא נשמע לכם הגיוני, או אם אינכם מכירים את התחביר של הקוד, אל דאגה! המטרה של מדריך זה היא לעזור לך להבין את React ואת התחביר שלו.
 
-We recommend that you check out the tic-tac-toe game above before continuing with the tutorial. One of the features that you'll notice is that there is a numbered list to the right of the game's board. This list gives you a history of all of the moves that have occurred in the game, and it is updated as the game progresses.
+אנו ממליצים שתבדוק את משחק הטיק-טק-בוהן למעלה לפני שתמשיך עם ההדרכה. אחת התכונות שתבחין בהן היא שיש רשימה ממוספרת מימין ללוח המשחק. רשימה זו נותנת לך היסטוריה של כל המהלכים שהתרחשו במשחק, והיא מתעדכנת ככל שהמשחק מתקדם.
 
-Once you've played around with the finished tic-tac-toe game, keep scrolling. You'll start with a simpler template in this tutorial. Our next step is to set you up so that you can start building the game.
+לאחר ששיחקת עם המשחק המוגמר, המשך לגלול. תתחיל עם תבנית פשוטה יותר במדריך זה. הצעד הבא שלנו הוא להגדיר אותך כך שתוכל להתחיל לבנות את המשחק.
 
-## Setup for the tutorial {/*setup-for-the-tutorial*/}
+## הגדרה של המדריך {/*setup-for-the-tutorial*/}
 
-In the live code editor below, click **Fork** in the top-right corner to open the editor in a new tab using the website CodeSandbox. CodeSandbox lets you write code in your browser and preview how your users will see the app you've created. The new tab should display an empty square and the starter code for this tutorial.
+בעורך הקוד החי למטה, לחץ על **Fork** בפינה השמאלית העליונה כדי לפתוח את העורך בכרטיסייה חדשה באמצעות אתר האינטרנט CodeSandbox. CodeSandbox מאפשר לך לכתוב קוד בדפדפן שלך ולראות בתצוגה מקדימה כיצד ה-users שלך יראו את האפליקציה שיצרת. הכרטיסייה החדשה אמורה להציג ריבוע ריק ואת קוד ההתחלה עבור הדרכה זו.
 
 <Sandpack>
 
@@ -261,33 +261,33 @@ body {
 
 <Note>
 
-You can also follow this tutorial using your local development environment. To do this, you need to:
+אתה יכול גם לעקוב אחר הדרכה זו באמצעות סביבת הפיתוח המקומית שלך. כדי לעשות זאת, עליך:
 
-1. Install [Node.js](https://nodejs.org/en/)
-1. In the CodeSandbox tab you opened earlier, press the top-left corner button to open the menu, and then choose **Download Sandbox** in that menu to download an archive of the files locally
-1. Unzip the archive, then open a terminal and `cd` to the directory you unzipped
-1. Install the dependencies with `npm install`
-1. Run `npm start` to start a local server and follow the prompts to view the code running in a browser
+1. התקן את [Node.js](https://nodejs.org/en/)
+1. בלשונית CodeSandbox שפתחת קודם לכן, לחץ על לחצן הפינה השמאלית העליונה כדי לפתוח את התפריט, ולאחר מכן בחר **הורד ארגז חול** בתפריט זה כדי להוריד ארכיון של הקבצים באופן מקומי
+1. פתח את הארכיון, ולאחר מכן פתח מסוף ו`cd` לספרייה שפתחת
+1. התקן את התלות עם `npm install`
+1. הפעל את `npm start` כדי להפעיל שרת מקומי ופעל לפי ההנחיות כדי להציג את הקוד הפועל בדפדפן
 
-If you get stuck, don't let this stop you! Follow along online instead and try a local setup again later.
+אם אתה נתקע, אל תיתן לזה לעצור אותך! עקבו אחרי מקוון במקום זאת ונסה הגדרה מקומית שוב מאוחר יותר.
 
 </Note>
 
-## Overview {/*overview*/}
+## סקירה כללית {/*overview*/}
 
-Now that you're set up, let's get an overview of React!
+כעת, לאחר שהגדרתם, בואו לקבל סקירה כללית של React!
 
-### Inspecting the starter code {/*inspecting-the-starter-code*/}
+### בדיקת קוד ההתחלה {/*inspecting-the-starter-code*/}
 
-In CodeSandbox you'll see three main sections:
+ב-CodeSandbox תראה שלושה חלקים עיקריים:
 
-![CodeSandbox with starter code](../images/tutorial/react-starter-code-codesandbox.png)
+![CodeSandbox עם קוד מתחיל](../images/tutorial/react-starter-code-codesandbox.png)
 
-1. The _Files_ section with a list of files like `App.js`, `index.js`, `styles.css` and a folder called `public`
-1. The _code editor_ where you'll see the source code of your selected file
-1. The _browser_ section where you'll see how the code you've written will be displayed
+1. הקטע _קבצים_ עם רשימה של קבצים כמו `App.js`, `index.js`, `styles.css` ותיקיה בשם `public`
+1. _עורך הקוד_ שבו תראה את קוד המקור של הקובץ שבחרת
+1. הקטע _browser_ שבו תראה כיצד הקוד שכתבת יוצג
 
-The `App.js` file should be selected in the _Files_ section. The contents of that file in the _code editor_ should be:
+יש לבחור את הקובץ `App.js` בקטע _קבצים_. התוכן של הקובץ הזה ב_עורך הקוד_ צריך להיות:
 
 ```jsx
 export default function Square() {
@@ -295,15 +295,15 @@ export default function Square() {
 }
 ```
 
-The _browser_ section should be displaying a square with a X in it like this:
+הקטע _browser_ אמור להציג ריבוע עם X בתוכו כך:
 
-![x-filled square](../images/tutorial/x-filled-square.png)
+![ריבוע מלא ב-x](../images/tutorial/x-filled-square.png)
 
-Now let's have a look at the files in the starter code.
+עכשיו בואו נסתכל על הקבצים בקוד המתנע.
 
 #### `App.js` {/*appjs*/}
 
-The code in `App.js` creates a _component_. In React, a component is a piece of reusable code that represents a part of a user interface. Components are used to render, manage, and update the UI elements in your application. Let's look at the component line by line to see what's going on:
+הקוד ב-`App.js` יוצר _רכיב_. ב-React, רכיב הוא פיסת קוד לשימוש חוזר המייצג חלק מממשק user. הרכיבים הם used כדי לעבד, לנהל ולעדכן את רכיבי ממשק המשתמש באפליקציה שלך. בואו נסתכל על הרכיב שורה אחר שורה כדי לראות מה קורה:
 
 ```js {1}
 export default function Square() {
@@ -311,7 +311,7 @@ export default function Square() {
 }
 ```
 
-The first line defines a function called `Square`. The `export` JavaScript keyword makes this function accessible outside of this file. The `default` keyword tells other files using your code that it's the main function in your file.
+השורה הראשונה מגדירה פונקציה בשם `Square`. מילת המפתח `export` JavaScript הופכת את הפונקציה הזו לנגישה מחוץ לקובץ הזה. מילת המפתח `default` אומרת לקבצים אחרים באמצעות הקוד שלך שזו הפונקציה העיקרית בקובץ שלך.
 
 ```js {2}
 export default function Square() {
@@ -319,15 +319,15 @@ export default function Square() {
 }
 ```
 
-The second line returns a button. The `return` JavaScript keyword means whatever comes after is returned as a value to the caller of the function. `<button>` is a *JSX element*. A JSX element is a combination of JavaScript code and HTML tags that describes what you'd like to display. `className="square"` is a button property or *prop* that tells CSS how to style the button. `X` is the text displayed inside of the button and `</button>` closes the JSX element to indicate that any following content shouldn't be placed inside the button.
+השורה השנייה מחזירה כפתור. מילת המפתח `return` JavaScript פירושה שכל מה שבא לאחר מכן מוחזר כערך לקורא של הפונקציה. `<button>` הוא אלמנט *JSX*. אלמנט JSX הוא שילוב של קוד JavaScript ותגיות HTML שמתאר את מה שתרצה להציג. `className="square"` הוא מאפיין כפתור או *prop* שאומר לCSS איך לסגנן את הכפתור. `X` הוא הטקסט המוצג בתוך הכפתור ו-`</button>` סוגר את האלמנט JSX כדי לציין שאסור למקם את התוכן הבא בתוך הכפתור.
 
 #### `styles.css` {/*stylescss*/}
 
-Click on the file labeled `styles.css` in the _Files_ section of CodeSandbox. This file defines the styles for your React app. The first two _CSS selectors_ (`*` and `body`) define the style of large parts of your app while the `.square` selector defines the style of any component where the `className` property is set to `square`. In your code, that would match the button from your Square component in the `App.js` file.
+לחץ על הקובץ שכותרתו `styles.css` בקטע _Files_ של CodeSandbox. קובץ זה מגדיר את הסגנונות עבור האפליקציה React שלך. שני הבוררים CSS הראשונים_ (`*` ו`body`) מגדירים את הסגנון של חלקים גדולים מהאפליקציה שלך בעוד שהבורר `.square` מגדיר את הסגנון של כל רכיב שבו המאפיין `className` מוגדר ל-`square`. בקוד שלך, זה יתאים ללחצן מרכיב ה- Square שלך ​​בקובץ `App.js`.
 
 #### `index.js` {/*indexjs*/}
 
-Click on the file labeled `index.js` in the _Files_ section of CodeSandbox. You won't be editing this file during the tutorial but it is the bridge between the component you created in the `App.js` file and the web browser.
+לחץ על הקובץ שכותרתו `index.js` בקטע _Files_ של CodeSandbox. לא תערוך את הקובץ הזה במהלך המדריך, אבל זה הגשר בין הרכיב שיצרת בקובץ `App.js` לדפדפן האינטרנט.
 
 ```jsx
 import { StrictMode } from 'react';
@@ -337,20 +337,20 @@ import './styles.css';
 import App from './App';
 ```
 
-Lines 1-5 bring all the necessary pieces together: 
+שורות 1-5 מפגישות את כל החלקים הדרושים:
 
 * React
-* React's library to talk to web browsers (React DOM)
-* the styles for your components
-* the component you created in `App.js`.
+* הספרייה של React כדי לדבר עם דפדפני אינטרנט (React DOM)
+* הסגנונות עבור הרכיבים שלך
+* הרכיב שיצרת ב-`App.js`.
 
-The remainder of the file brings all the pieces together and injects the final product into `index.html` in the `public` folder.
+שאר הקובץ מאחד את כל החלקים ומחדיר את התוצר הסופי לתוך `index.html` בתיקייה `public`.
 
-### Building the board {/*building-the-board*/}
+### בניית הלוח {/*building-the-board*/}
 
-Let's get back to `App.js`. This is where you'll spend the rest of the tutorial.
+בוא נחזור ל-`App.js`. זה המקום שבו תבלה את שאר ההדרכה.
 
-Currently the board is only a single square, but you need nine! If you just try and copy paste your square to make two squares like this:
+כרגע הלוח הוא רק ריבוע בודד, אבל אתה צריך תשעה! אם רק תנסה להעתיק הדבק את הריבוע שלך כדי ליצור שני ריבועים כמו זה:
 
 ```js {2}
 export default function Square() {
@@ -358,15 +358,15 @@ export default function Square() {
 }
 ```
 
-You'll get this error:
+תקבל את השגיאה הזו:
 
 <ConsoleBlock level="error">
 
-/src/App.js: Adjacent JSX elements must be wrapped in an enclosing tag. Did you want a JSX Fragment `<>...</>`?
+/src/App.js: רכיבי JSX סמוכים חייבים להיות עטופים בתג מקיף. האם רצית JSX Fragment `<>...</>`?
 
 </ConsoleBlock>
 
-React components need to return a single JSX element and not multiple adjacent JSX elements like two buttons. To fix this you can use *Fragments* (`<>` and `</>`) to wrap multiple adjacent JSX elements like this:
+רכיבי React צריכים להחזיר אלמנט JSX בודד ולא מספר רכיבי JSX סמוכים כמו שני כפתורים. כדי לתקן זאת אתה יכול use *Fragments* (`<>` ו`</>`) כדי לעטוף מספר רכיבי JSX סמוכים כך:
 
 ```js {3-6}
 export default function Square() {
@@ -379,17 +379,17 @@ export default function Square() {
 }
 ```
 
-Now you should see:
+עכשיו אתה אמור לראות:
 
-![two x-filled squares](../images/tutorial/two-x-filled-squares.png)
+![שני ריבועים מלאי x](../images/tutorial/two-x-filled-squares.png)
 
-Great! Now you just need to copy-paste a few times to add nine squares and...
+גָדוֹל! עכשיו אתה רק צריך להעתיק-הדבק כמה פעמים כדי להוסיף תשעה ריבועים ו...
 
-![nine x-filled squares in a line](../images/tutorial/nine-x-filled-squares.png)
+![תשעה ריבועים מלאי X בשורה](../images/tutorial/nine-x-filled-squares.png)
 
-Oh no! The squares are all in a single line, not in a grid like you need for our board. To fix this you'll need to group your squares into rows with `div`s and add some CSS classes. While you're at it, you'll give each square a number to make sure you know where each square is displayed.
+הו לא! הריבועים כולם בשורה אחת, לא ברשת כמו שאתה צריך עבור הלוח שלנו. כדי לתקן זאת תצטרך לקבץ את הריבועים שלך לשורות עם `div`s ולהוסיף כמה מחלקות CSS. בזמן שאתה עושה את זה, אתה תיתן לכל ריבוע מספר כדי לוודא שאתה יודע היכן כל ריבוע מוצג.
 
-In the `App.js` file, update the `Square` component to look like this:
+בקובץ `App.js`, עדכן את רכיב `Square` כך שייראה כך:
 
 ```js {3-19}
 export default function Square() {
@@ -415,11 +415,11 @@ export default function Square() {
 }
 ```
 
-The CSS defined in `styles.css` styles the divs with the `className` of `board-row`. Now that you've grouped your components into rows with the styled `div`s you have your tic-tac-toe board:
+ה-CSS המוגדר ב-`styles.css` מסגנן את ה-divs עם ה-`className` של `board-row`. כעת, לאחר שקיבוץטת את הרכיבים שלך לשורות עם ה-`div`s המעוצבות, יש לך את לוח הטיק-טק שלך:
 
-![tic-tac-toe board filled with numbers 1 through 9](../images/tutorial/number-filled-board.png)
+![לוח טיק-טאק-בוהן מלא במספרים 1 עד 9](../images/tutorial/number-filled-board.png)
 
-But you now have a problem. Your component named `Square`, really isn't a square anymore. Let's fix that by changing the name to `Board`:
+אבל עכשיו יש לך בעיה. הרכיב שלך בשם `Square`, באמת כבר לא ריבוע. בוא נתקן את זה על ידי שינוי השם ל-`Board`:
 
 ```js {1}
 export default function Board() {
@@ -427,7 +427,7 @@ export default function Board() {
 }
 ```
 
-At this point your code should look something like this:
+בשלב זה הקוד שלך אמור להיראות בערך כך:
 
 <Sandpack>
 
@@ -504,15 +504,15 @@ body {
 
 <Note>
 
-Psssst... That's a lot to type! It's okay to copy and paste code from this page. However, if you're up for a little challenge, we recommend only copying code that you've manually typed at least once yourself.
+Psssst... זה הרבה להקליד! זה בסדר להעתיק ולהדביק קוד מדף זה. עם זאת, אם אתה מוכן לאתגר קטן, אנו ממליצים להעתיק רק קוד שהקלדת ידנית לפחות פעם אחת בעצמך.
 
 </Note>
 
-### Passing data through props {/*passing-data-through-props*/}
+### העברת נתונים דרך props {/*passing-data-through-props*/}
 
-Next, you'll want to change the value of a square from empty to "X" when the user clicks on the square. With how you've built the board so far you would need to copy-paste the code that updates the square nine times (once for each square you have)! Instead of copy-pasting, React's component architecture allows you to create a reusable component to avoid messy, duplicated code.
+לאחר מכן, תרצה לשנות את הערך של ריבוע מריק ל-"X" כאשר ה-user לוחץ על הריבוע. לפי איך שבנית את הלוח עד כה, תצטרך להעתיק ולהדביק את הקוד שמעדכן את הריבוע תשע פעמים (פעם אחת עבור כל ריבוע שיש לך)! במקום העתק-הדבק, ארכיטקטורת הרכיבים של React מאפשרת לך ליצור רכיב לשימוש חוזר כדי למנוע קוד מבולגן ומשוכפל.
 
-First, you are going to copy the line defining your first square (`<button className="square">1</button>`) from your `Board` component into a new `Square` component:
+ראשית, אתה הולך להעתיק את הקו המגדיר את הריבוע הראשון שלך (`<button className="square">1</button>`) מהרכיב `Board` שלך לתוך רכיב `Square` חדש:
 
 ```js {1-3}
 function Square() {
@@ -524,7 +524,7 @@ export default function Board() {
 }
 ```
 
-Then you'll update the Board component to render that `Square` component using JSX syntax:
+לאחר מכן תעדכן את רכיב הלוח כדי לעבד את אותו רכיב `Square` באמצעות תחביר JSX:
 
 ```js {5-19}
 // ...
@@ -551,15 +551,15 @@ export default function Board() {
 }
 ```
 
-Note how unlike the browser `div`s, your own components `Board` and `Square` must start with a capital letter. 
+שימו לב שבניגוד ל-`div`s של הדפדפן, הרכיבים שלכם `Board` ו-`Square` חייבים להתחיל באות גדולה.
 
-Let's take a look:
+בואו נסתכל:
 
-![one-filled board](../images/tutorial/board-filled-with-ones.png)
+![לוח מלא אחד](../images/tutorial/board-filled-with-ones.png)
 
-Oh no! You lost the numbered squares you had before. Now each square says "1". To fix this, you will use *props* to pass the value each square should have from the parent component (`Board`) to its child (`Square`).
+הו לא! איבדת את הריבועים הממוספרים שהיו לך קודם. כעת כל ריבוע אומר "1". כדי לתקן זאת, תבצע use *props* כדי להעביר את הערך שכל ריבוע צריך להיות ממרכיב האב (`Board`) לילד שלו (`Square`).
 
-Update the `Square` component to read the `value` prop that you'll pass from the `Board`:
+עדכן את רכיב `Square` כדי לקרוא את האביזר `value` שתעביר מה-`Board`:
 
 ```js {1}
 function Square({ value }) {
@@ -567,9 +567,9 @@ function Square({ value }) {
 }
 ```
 
-`function Square({ value })` indicates the Square component can be passed a prop called `value`.
+`function Square({ value })` מציין שניתן להעביר את רכיב הריבוע עם אבזר בשם `value`.
 
-Now you want to display that `value` instead of `1` inside every square. Try doing it like this:
+עכשיו אתה רוצה להציג את ה-`value` במקום `1` בתוך כל ריבוע. נסה לעשות את זה ככה:
 
 ```js {2}
 function Square({ value }) {
@@ -577,11 +577,11 @@ function Square({ value }) {
 }
 ```
 
-Oops, this is not what you wanted:
+אופס, זה לא מה שרצית:
 
-![value-filled board](../images/tutorial/board-filled-with-value.png)
+![לוח מלא ב-value](../images/tutorial/board-filled-with-value.png)
 
-You wanted to render the JavaScript variable called `value` from your component, not the word "value". To "escape into JavaScript" from JSX, you need curly braces. Add curly braces around `value` in JSX like so:
+רצית לעבד את המשתנה JavaScript בשם `value` מהרכיב שלך, לא את המילה "ערך". כדי "לברוח לתוך JavaScript" מ-JSX, אתה צריך פלטה מתולתלת. הוסף פלטה מתולתלת סביב `value` ב-JSX כך:
 
 ```js {2}
 function Square({ value }) {
@@ -589,11 +589,11 @@ function Square({ value }) {
 }
 ```
 
-For now, you should see an empty board:
+לעת עתה, אתה אמור לראות לוח ריק:
 
-![empty board](../images/tutorial/empty-board.png)
+![לוח ריק](../images/tutorial/empty-board.png)
 
-This is because the `Board` component hasn't passed the `value` prop to each `Square` component it renders yet. To fix it you'll add the `value` prop to each `Square` component rendered by the `Board` component:
+זה בגלל שuse הרכיב `Board` עדיין לא העביר את הפרופס של `value` לכל רכיב `Square` שהוא מעבד. כדי לתקן את זה, תוסיף את הפרופט `value` לכל רכיב `Square` המעובד על ידי הרכיב `Board`:
 
 ```js {5-7,10-12,15-17}
 export default function Board() {
@@ -619,11 +619,11 @@ export default function Board() {
 }
 ```
 
-Now you should see a grid of numbers again:
+כעת אתה אמור לראות שוב רשת של מספרים:
 
-![tic-tac-toe board filled with numbers 1 through 9](../images/tutorial/number-filled-board.png)
+![לוח טיק-טאק-בוהן מלא במספרים 1 עד 9](../images/tutorial/number-filled-board.png)
 
-Your updated code should look like this:
+הקוד המעודכן שלך אמור להיראות כך:
 
 <Sandpack>
 
@@ -702,9 +702,9 @@ body {
 
 </Sandpack>
 
-### Making an interactive component {/*making-an-interactive-component*/}
+### יצירת רכיב אינטראקטיבי {/*making-an-interactive-component*/}
 
-Let's fill the `Square` component with an `X` when you click it. Declare a function called `handleClick` inside of the `Square`. Then, add `onClick` to the props of the button JSX element returned from the `Square`:
+בוא נמלא את הרכיב `Square` ב-`X` כשתלחץ עליו. הכריז על פונקציה בשם `handleClick` בתוך ה-`Square`. לאחר מכן, הוסף את `onClick` ל-props של רכיב הלחצן JSX שהוחזר מה-`Square`:
 
 ```js {2-4,9}
 function Square({ value }) {
@@ -723,19 +723,19 @@ function Square({ value }) {
 }
 ```
 
-If you click on a square now, you should see a log saying `"clicked!"` in the _Console_ tab at the bottom of the _Browser_ section in CodeSandbox. Clicking the square more than once will log `"clicked!"` again. Repeated console logs with the same message will not create more lines in the console. Instead, you will see an incrementing counter next to your first `"clicked!"` log.
+אם תלחץ על ריבוע כעת, אתה אמור לראות יומן שאומר `"clicked!"` בלשונית _Console_ בתחתית הקטע _Drowser_ ב-CodeSandbox. לחיצה על הריבוע יותר מפעם אחת תירשם שוב את `"clicked!"`. יומני מסוף חוזרים עם אותה הודעה לא ייצרו יותר שורות במסוף. במקום זאת, תראה מונה הולך וגדל ליד יומן ה-`"clicked!"` הראשון שלך.
 
 <Note>
 
-If you are following this tutorial using your local development environment, you need to open your browser's Console. For example, if you use the Chrome browser, you can view the Console with the keyboard shortcut **Shift + Ctrl + J** (on Windows/Linux) or **Option + ⌘ + J** (on macOS).
+אם אתה עוקב אחר הדרכה זו באמצעות סביבת הפיתוח המקומית שלך, עליך לפתוח את המסוף של הדפדפן שלך. לדוגמה, אם אתה use דפדפן Chrome, תוכל להציג את המסוף באמצעות מקשי הקיצור **Shift + Ctrl + J** (ב-Windows/Linux) או **Option + ⌘ + J** (ב-macOS).
 
 </Note>
 
-As a next step, you want the Square component to "remember" that it got clicked, and fill it with an "X" mark. To "remember" things, components use *state*.
+כשלב הבא, אתה רוצה שרכיב הריבוע "יזכור" שנלחץ עליו וימלא אותו בסימון "X". כדי "לזכור" דברים, רכיבים use *state*.
 
-React provides a special function called `useState` that you can call from your component to let it "remember" things. Let's store the current value of the `Square` in state, and change it when the `Square` is clicked.
+React מספק פונקציה מיוחדת בשם `useState` שתוכל לקרוא מהרכיב שלך כדי לאפשר לו "לזכור" דברים. בואו נאחסן את הערך הנוכחי של ה-`Square` ב-state, ונשנה אותו כאשר ה-`Square` נלחץ.
 
-Import `useState` at the top of the file. Remove the `value` prop from the `Square` component. Instead, add a new line at the start of the `Square` that calls `useState`. Have it return a state variable called `value`:
+ייבא `useState` בחלק העליון של הקובץ. הסר את אביזר `value` מהרכיב `Square`. במקום זאת, הוסף שורה חדשה בתחילת ה-`Square` הקוראת `useState`. בקש ממנו להחזיר משתנה state בשם `value`:
 
 ```js {1,3,4}
 import { useState } from 'react';
@@ -747,9 +747,9 @@ function Square() {
     //...
 ```
 
-`value` stores the value and `setValue` is a function that can be used to change the value. The `null` passed to `useState` is used as the initial value for this state variable, so `value` here starts off equal to `null`.
+`value` מאחסן את הערך ו`setValue` היא פונקציה שיכולה להיות used כדי לשנות את הערך. ה-`null` המועבר ל-`useState` הוא used כערך ההתחלתי של משתנה state זה, כך ש-`value` כאן מתחיל שווה ל-`null`.
 
-Since the `Square` component no longer accepts props anymore, you'll remove the `value` prop from all nine of the Square components created by the Board component:
+מכיוון שהרכיב `Square` כבר לא מקבל יותר את props, תסיר את הפרוטוקול `value` מכל תשעת רכיבי הריבוע שנוצרו על ידי רכיב הלוח:
 
 ```js {6-8,11-13,16-18}
 // ...
@@ -776,7 +776,7 @@ export default function Board() {
 }
 ```
 
-Now you'll change `Square` to display an "X" when clicked. Replace the `console.log("clicked!");` event handler with `setValue('X');`. Now your `Square` component looks like this:
+כעת תשנה את `Square` להצגת "X" כאשר תלחץ. החלף את מטפל האירועים `console.log("clicked!");` ב-`setValue('X');`. כעת רכיב ה-`Square` שלך נראה כך:
 
 ```js {5}
 function Square() {
@@ -797,13 +797,13 @@ function Square() {
 }
 ```
 
-By calling this `set` function from an `onClick` handler, you're telling React to re-render that `Square` whenever its `<button>` is clicked. After the update, the `Square`'s `value` will be `'X'`, so you'll see the "X" on the game board. Click on any Square, and "X" should show up:
+על ידי קריאה לפונקציה `set` זו ממטפל `onClick`, אתה אומר לReact לעבד מחדש את ה-`Square` הזה בכל פעם שנלחץ על ה-`<button>` שלו. לאחר העדכון, ה-`value` של ה-`Square` יהיה `'X'`, כך שתראה את ה-"X" על לוח המשחק. לחץ על ריבוע כלשהו, ​​ו"X" אמור להופיע:
 
-![adding xes to board](../images/tutorial/tictac-adding-x-s.gif)
+![הוספת xes ללוח](../images/tutorial/tictac-adding-x-s.gif)
 
-Each Square has its own state: the `value` stored in each Square is completely independent of the others. When you call a `set` function in a component, React automatically updates the child components inside too.
+לכל ריבוע יש state משלו: ה-`value` המאוחסן בכל ריבוע אינו תלוי לחלוטין באחרים. כאשר אתה קורא לפונקציה `set` ברכיב, React מעדכן אוטומטית גם את רכיבי הצאצא בפנים.
 
-After you've made the above changes, your code will look like this:
+לאחר שביצעת את השינויים לעיל, הקוד שלך ייראה כך:
 
 <Sandpack>
 
@@ -897,37 +897,37 @@ body {
 
 </Sandpack>
 
-### React Developer Tools {/*react-developer-tools*/}
+### React כלים למפתחים {/*react-developer-tools*/}
 
-React DevTools let you check the props and the state of your React components. You can find the React DevTools tab at the bottom of the _browser_ section in CodeSandbox:
+React DevTools מאפשרים לך לבדוק את props ואת state של רכיבי React שלך. אתה יכול למצוא את הכרטיסייה React DevTools בתחתית הקטע _דפדפן_ ב-CodeSandbox:
 
-![React DevTools in CodeSandbox](../images/tutorial/codesandbox-devtools.png)
+![React DevTools ב-CodeSandbox](../images/tutorial/codesandbox-devtools.png)
 
-To inspect a particular component on the screen, use the button in the top left corner of React DevTools:
+כדי לבדוק רכיב מסוים על המסך, use הלחצן בפינה השמאלית העליונה של React DevTools:
 
-![Selecting components on the page with React DevTools](../images/tutorial/devtools-select.gif)
+![בחירת רכיבים בדף עם React DevTools](../images/tutorial/devtools-select.gif)
 
 <Note>
 
-For local development, React DevTools is available as a [Chrome](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en), [Firefox](https://addons.mozilla.org/en-US/firefox/addon/react-devtools/), and [Edge](https://microsoftedge.microsoft.com/addons/detail/react-developer-tools/gpphkfbcpidddadnkolkpfckpihlkkil) browser extension. Install it, and the *Components* tab will appear in your browser Developer Tools for sites using React.
+לפיתוח מקומי, React DevTools זמין כ-[Chrome](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en), [Firefox](https://addons.mozilla.org/en-US/firefox/addon/react-devtools/), ו-[Edge](https://microsoftedge.microsoft.com/addons/detail/react-developer-tools/gpphkfbcpidddadnkolkpfckpihlkkil) סיומת דפדפן. התקן אותה, והכרטיסייה *רכיבים* תופיע בכלי המפתחים של הדפדפן שלך עבור אתרים המשתמשים ב-React.
 
 </Note>
 
-## Completing the game {/*completing-the-game*/}
+## השלמת המשחק {/*completing-the-game*/}
 
-By this point, you have all the basic building blocks for your tic-tac-toe game. To have a complete game, you now need to alternate placing "X"s and "O"s on the board, and you need a way to determine a winner.
+בשלב זה, יש לך את כל אבני הבניין הבסיסיות למשחק הטיק-טק שלך. כדי שיהיה לך משחק שלם, כעת עליך להציב לסירוגין "X" ו-"O" על הלוח, ואתה צריך דרך לקבוע מנצח.
 
-### Lifting state up {/*lifting-state-up*/}
+### הרמת state למעלה {/*lifting-state-up*/}
 
-Currently, each `Square` component maintains a part of the game's state. To check for a winner in a tic-tac-toe game, the `Board` would need to somehow know the state of each of the 9 `Square` components.
+נכון לעכשיו, כל רכיב `Square` שומר על חלק מה-state של המשחק. כדי לבדוק אם יש מנצח במשחק, ה-`Board` יצטרך לדעת איכשהו את ה-state של כל אחד מ-9 רכיבי ה-`Square`.
 
-How would you approach that? At first, you might guess that the `Board` needs to "ask" each `Square` for that `Square`'s state. Although this approach is technically possible in React, we discourage it because the code becomes difficult to understand, susceptible to bugs, and hard to refactor. Instead, the best approach is to store the game's state in the parent `Board` component instead of in each `Square`. The `Board` component can tell each `Square` what to display by passing a prop, like you did when you passed a number to each Square.
+איך הייתם ניגשים לזה? בהתחלה, אתה עשוי לנחש שה-`Board` צריך "לבקש" מכל `Square` את ה-state של `Square`. למרות שגישה זו אפשרית מבחינה טכנית ב-React, אנו לא מעודדים אותה מכיוון שuse הקוד הופך להיות קשה להבנה, רגיש לבאגים וקשה לשינוי. במקום זאת, הגישה הטובה ביותר היא לאחסן את state של המשחק ברכיב האב `Board` במקום בכל `Square`. הרכיב `Board` יכול להגיד לכל `Square` מה להציג על ידי העברת אביזר, כמו שעשית כשהעברת מספר לכל ריבוע.
 
-**To collect data from multiple children, or to have two child components communicate with each other, declare the shared state in their parent component instead. The parent component can pass that state back down to the children via props. This keeps the child components in sync with each other and with their parent.**
+**כדי לאסוף נתונים ממספר ילדים, או כדי ששני רכיבי צאצא יתקשרו זה עם זה, הכריז במקום זאת על ה-state המשותף ברכיב האב שלהם. רכיב האב יכול להעביר את ה-state בחזרה לילדים דרך props. זה שומר על רכיבי הילד מסונכרנים זה עם זה ועם ההורה שלהם.**
 
-Lifting state into a parent component is common when React components are refactored.
+העלאת state לרכיב אב היא נפוצה כאשר רכיבי React עוברים מחדש.
 
-Let's take this opportunity to try it out. Edit the `Board` component so that it declares a state variable named `squares` that defaults to an array of 9 nulls corresponding to the 9 squares:
+בואו ננצל את ההזדמנות כדי לנסות את זה. ערוך את הרכיב `Board` כך שיכריז על משתנה state בשם `squares` שברירת המחדל הוא מערך של 9 null המתאימים ל-9 הריבועים:
 
 ```js {3}
 // ...
@@ -939,13 +939,13 @@ export default function Board() {
 }
 ```
 
-`Array(9).fill(null)` creates an array with nine elements and sets each of them to `null`. The `useState()` call around it declares a `squares` state variable that's initially set to that array. Each entry in the array corresponds to the value of a square. When you fill the board in later, the `squares` array will look like this:
+`Array(9).fill(null)` יוצר מערך עם תשעה אלמנטים ומגדיר כל אחד מהם ל-`null`. הקריאה `useState()` מסביבו מכריזה על משתנה `squares` state שמוגדר בתחילה למערך הזה. כל ערך במערך מתאים לערך של ריבוע. כאשר אתה ממלא את הלוח מאוחר יותר, מערך `squares` ייראה כך:
 
 ```jsx
 ['O', null, 'X', 'X', 'X', 'O', 'O', null, null]
 ```
 
-Now your `Board` component needs to pass the `value` prop down to each `Square` that it renders:
+כעת רכיב ה-`Board` שלך צריך להעביר את משענת `value` לכל `Square` שהוא מעבד:
 
 ```js {6-8,11-13,16-18}
 export default function Board() {
@@ -972,7 +972,7 @@ export default function Board() {
 }
 ```
 
-Next, you'll edit the `Square` component to receive the `value` prop from the Board component. This will require removing the Square component's own stateful tracking of `value` and the button's `onClick` prop:
+לאחר מכן, תערוך את הרכיב `Square` כדי לקבל את הפרופורציה `value` מרכיב הלוח. זה ידרוש הסרה של state המעקב המלא של `value` של רכיב ה-Square ושל הרכיב `onClick` של הכפתור:
 
 ```js {1,2}
 function Square({value}) {
@@ -980,11 +980,11 @@ function Square({value}) {
 }
 ```
 
-At this point you should see an empty tic-tac-toe board:
+בשלב זה אתה אמור לראות לוח טיק-טק ריק:
 
-![empty board](../images/tutorial/empty-board.png)
+![לוח ריק](../images/tutorial/empty-board.png)
 
-And your code should look like this:
+והקוד שלך אמור להיראות כך:
 
 <Sandpack>
 
@@ -1066,11 +1066,11 @@ body {
 
 </Sandpack>
 
-Each Square will now receive a `value` prop that will either be `'X'`, `'O'`, or `null` for empty squares.
+כל ריבוע יקבל כעת אבזר `value` שיהיה `'X'`, `'O'` או `null` עבור ריבועים ריקים.
 
-Next, you need to change what happens when a `Square` is clicked. The `Board` component now maintains which squares are filled. You'll need to create a way for the `Square` to update the `Board`'s state. Since state is private to a component that defines it, you cannot update the `Board`'s state directly from `Square`.
+לאחר מכן, עליך לשנות את מה שקורה כאשר לוחצים על `Square`. הרכיב `Board` שומר כעת אילו ריבועים ממולאים. תצטרך ליצור דרך עבור ה-`Square` לעדכן את ה-state של ה-`Board`. מכיוון שstate הוא פרטי לרכיב שמגדיר אותו, לא ניתן לעדכן את ה-state של ה-`Board` ישירות מ-`Square`.
 
-Instead, you'll pass down a function from the `Board` component to the `Square` component, and you'll have `Square` call that function when a square is clicked. You'll start with the function that the `Square` component will call when it is clicked. You'll call that function `onSquareClick`:
+במקום זאת, תעביר פונקציה מהרכיב `Board` לרכיב `Square`, ויהיה לך `Square` לקרוא לפונקציה הזו כאשר לוחצים על ריבוע. תתחיל עם הפונקציה שהרכיב `Square` יקרא כשילחץ עליו. אתה תקרא לפונקציה הזו `onSquareClick`:
 
 ```js {3}
 function Square({ value }) {
@@ -1082,7 +1082,7 @@ function Square({ value }) {
 }
 ```
 
-Next, you'll add the `onSquareClick` function to the `Square` component's props:
+לאחר מכן, תוסיף את הפונקציה `onSquareClick` ל-props של רכיב `Square`:
 
 ```js {1}
 function Square({ value, onSquareClick }) {
@@ -1094,7 +1094,7 @@ function Square({ value, onSquareClick }) {
 }
 ```
 
-Now you'll connect the `onSquareClick` prop to a function in the `Board` component that you'll name `handleClick`. To connect `onSquareClick` to `handleClick` you'll pass a function to the `onSquareClick` prop of the first `Square` component: 
+כעת תחבר את האביזר `onSquareClick` לפונקציה ברכיב `Board` שתקרא לה `handleClick`. כדי לחבר את `onSquareClick` ל-`handleClick` תעביר פונקציה ל-`onSquareClick` אבזר של רכיב ה-`Square` הראשון:
 
 ```js {7}
 export default function Board() {
@@ -1109,7 +1109,7 @@ export default function Board() {
 }
 ```
 
-Lastly, you will define the `handleClick` function inside the Board component to update the `squares` array holding your board's state:
+לבסוף, תגדיר את הפונקציה `handleClick` בתוך רכיב הלוח כדי לעדכן את מערך `squares` המחזיק את ה-state של הלוח שלך:
 
 ```js {4-8}
 export default function Board() {
@@ -1127,17 +1127,17 @@ export default function Board() {
 }
 ```
 
-The `handleClick` function creates a copy of the `squares` array (`nextSquares`) with the JavaScript `slice()` Array method. Then, `handleClick` updates the `nextSquares` array to add `X` to the first (`[0]` index) square.
+הפונקציה `handleClick` יוצרת עותק של מערך `squares` (`nextSquares`) בשיטת JavaScript `slice()` מערך. לאחר מכן, `handleClick` מעדכן את מערך `nextSquares` כדי להוסיף `X` לריבוע הראשון (`[0]` אינדקס).
 
-Calling the `setSquares` function lets React know the state of the component has changed. This will trigger a re-render of the components that use the `squares` state (`Board`) as well as its child components (the `Square` components that make up the board).
+קריאה לפונקציה `setSquares` מאפשרת ל-React לדעת שה-state של הרכיב השתנה. זה יפעיל עיבוד מחדש של הרכיבים שuse ה-`squares` state (`Board`) וכן רכיבי הצאצא שלו (רכיבי `Square` המרכיבים את הלוח).
 
 <Note>
 
-JavaScript supports [closures](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures) which means an inner function (e.g. `handleClick`) has access to variables and functions defined in a outer function (e.g. `Board`). The `handleClick` function can read the `squares` state and call the `setSquares` method because they are both defined inside of the `Board` function.
+JavaScript תומך ב-[סגירות](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures) כלומר לפונקציה פנימית (למשל `handleClick`) יש גישה למשתנים ופונקציות המוגדרות בפונקציה חיצונית (למשל `Board`). הפונקציה `handleClick` יכולה לקרוא את `squares` `handleClick` הן השיטה __TK__ca___ והן קוראים לשיטה __TK__ca___ מוגדר בתוך הפונקציה `Board`.
 
 </Note>
 
-Now you can add X's to the board...  but only to the upper left square. Your `handleClick` function is hardcoded to update the index for the upper left square (`0`). Let's update `handleClick` to be able to update any square. Add an argument `i` to the `handleClick` function that takes the index of the square to update:
+עכשיו אתה יכול להוסיף איקסים ללוח... אבל רק לריבוע השמאלי העליון. הפונקציה `handleClick` שלך מקודדת קשה כדי לעדכן את האינדקס עבור הריבוע השמאלי העליון (`0`). בואו נעדכן את `handleClick` כדי שנוכל לעדכן כל ריבוע. הוסף ארגומנט `i` לפונקציה `handleClick` שלוקח את האינדקס של הריבוע לעדכון:
 
 ```js {4,6}
 export default function Board() {
@@ -1155,27 +1155,27 @@ export default function Board() {
 }
 ```
 
-Next, you will need to pass that `i` to `handleClick`. You could try to set the `onSquareClick` prop of square to be `handleClick(0)` directly in the JSX like this, but it won't work:
+לאחר מכן, תצטרך להעביר את ה-`i` ל-`handleClick`. אתה יכול לנסות להגדיר את משענת `onSquareClick` של הריבוע להיות `handleClick(0)` ישירות ב-JSX כך, אבל זה לא יעבוד:
 
 ```jsx
 <Square value={squares[0]} onSquareClick={handleClick(0)} />
 ```
 
-Here is why this doesn't work. The `handleClick(0)` call will be a part of rendering the board component. Because `handleClick(0)` alters the state of the board component by calling `setSquares`, your entire board component will be re-rendered again. But this runs `handleClick(0)` again, leading to an infinite loop:
+הנה הסיבה שזה לא עובד. הקריאה `handleClick(0)` תהיה חלק מהעיבוד של רכיב הלוח. Because `handleClick(0)` משנה את state של רכיב הלוח על ידי קריאה ל-`setSquares`, כל רכיב הלוח שלך יעובד מחדש שוב. אבל זה מריץ את `handleClick(0)` שוב, מה שמוביל ללולאה אינסופית:
 
 <ConsoleBlock level="error">
 
-Too many re-renders. React limits the number of renders to prevent an infinite loop.
+יותר מדי עיבודים חוזרים. React מגביל את מספר העיבודים כדי למנוע לולאה אינסופית.
 
 </ConsoleBlock>
 
-Why didn't this problem happen earlier?
+למה הבעיה הזו לא קרתה קודם?
 
-When you were passing `onSquareClick={handleClick}`, you were passing the `handleClick` function down as a prop. You were not calling it! But now you are *calling* that function right away--notice the parentheses in `handleClick(0)`--and that's why it runs too early. You don't *want* to call `handleClick` until the user clicks!
+כשעברת את `onSquareClick={handleClick}`, העברת את הפונקציה `handleClick` למטה בתור אביזר. לא קראת לזה! אבל עכשיו אתה *קורא* לפונקציה הזו מיד - שימו לב לסוגריים ב-`handleClick(0)` - וזו הסיבה שהיא פועלת מוקדם מדי. אתה לא *רוצה* להתקשר ל-`handleClick` עד שה-user ילחץ!
 
-You could fix this by creating a function like `handleFirstSquareClick` that calls `handleClick(0)`, a function like `handleSecondSquareClick` that calls `handleClick(1)`, and so on. You would pass (rather than call) these functions down as props like `onSquareClick={handleFirstSquareClick}`. This would solve the infinite loop.
+אתה יכול לתקן זאת על ידי יצירת פונקציה כמו `handleFirstSquareClick` שקוראת ל`handleClick(0)`, פונקציה כמו `handleSecondSquareClick` שקוראת ל`handleClick(1)`, וכן הלאה. אתה תעביר (במקום לקרוא) את הפונקציות האלה בתור props כמו `onSquareClick={handleFirstSquareClick}`. זה יפתור את הלולאה האינסופית.
 
-However, defining nine different functions and giving each of them a name is too verbose. Instead, let's do this:
+עם זאת, הגדרת תשע פונקציות שונות ומתן שם לכל אחת מהן היא מילולית מדי. במקום זאת, בוא נעשה את זה:
 
 ```js {6}
 export default function Board() {
@@ -1189,9 +1189,9 @@ export default function Board() {
 }
 ```
 
-Notice the new `() =>` syntax. Here, `() => handleClick(0)` is an *arrow function,* which is a shorter way to define functions. When the square is clicked, the code after the `=>` "arrow" will run, calling `handleClick(0)`.
+שימו לב לתחביר `() =>` החדש. כאן, `() => handleClick(0)` היא *פונקציית חץ,* שהיא דרך קצרה יותר להגדרת פונקציות. כשלוחצים על הריבוע, הקוד שאחרי ה"חץ" `=>` יפעל, ויקרא `handleClick(0)`.
 
-Now you need to update the other eight squares to call `handleClick` from the arrow functions you pass. Make sure that the argument for each call of the `handleClick` corresponds to the index of the correct square:
+עכשיו אתה צריך לעדכן את שמונה הריבועים האחרים כדי לקרוא `handleClick` מפונקציות החצים שאתה מעביר. ודא שהארגומנט עבור כל קריאה של `handleClick` מתאים לאינדקס של הריבוע הנכון:
 
 ```js {6-8,11-13,16-18}
 export default function Board() {
@@ -1218,13 +1218,13 @@ export default function Board() {
 };
 ```
 
-Now you can again add X's to any square on the board by clicking on them:
+כעת תוכל שוב להוסיף איקסים לכל ריבוע בלוח על ידי לחיצה עליהם:
 
-![filling the board with X](../images/tutorial/tictac-adding-x-s.gif)
+![מילוי הלוח ב-X](../images/tutorial/tictac-adding-x-s.gif)
 
-But this time all the state management is handled by the `Board` component!
+אבל הפעם כל ניהול state מטופל על ידי רכיב `Board`!
 
-This is what your code should look like:
+כך אמור להיראות הקוד שלך:
 
 <Sandpack>
 
@@ -1317,27 +1317,27 @@ body {
 
 </Sandpack>
 
-Now that your state handling is in the `Board` component, the parent `Board` component passes props to the child `Square` components so that they can be displayed correctly. When clicking on a `Square`, the child `Square` component now asks the parent `Board` component to update the state of the board. When the `Board`'s state changes, both the `Board` component and every child `Square` re-renders automatically. Keeping the state of all squares in the `Board` component will allow it to determine the winner in the future.
+כעת, כשהטיפול ב-state שלך נמצא ברכיב `Board`, רכיב האב `Board` מעביר את props לרכיבי ה-`Square` הצאצא כדי שניתן יהיה להציג אותם בצורה נכונה. בעת לחיצה על `Square`, הרכיב `Square` הילד מבקש כעת מהרכיב `Board` האב לעדכן את ה-state של הלוח. כאשר ה-state של `Board` משתנה, גם הרכיב `Board` וגם כל ילד `Square` מעבדים מחדש אוטומטית. שמירת ה-state של כל המשבצות ברכיב `Board` תאפשר לה לקבוע את המנצח בעתיד.
 
-Let's recap what happens when a user clicks the top left square on your board to add an `X` to it:
+בואו נסכם מה קורה כאשר user לוחץ על הריבוע השמאלי העליון בלוח שלך כדי להוסיף לו `X`:
 
-1. Clicking on the upper left square runs the function that the `button` received as its `onClick` prop from the `Square`. The `Square` component received that function as its `onSquareClick` prop from the `Board`. The `Board` component defined that function directly in the JSX. It calls `handleClick` with an argument of `0`.
-1. `handleClick` uses the argument (`0`) to update the first element of the `squares` array from `null` to `X`.
-1. The `squares` state of the `Board` component was updated, so the `Board` and all of its children re-render. This causes the `value` prop of the `Square` component with index `0` to change from `null` to `X`.
+1. לחיצה על הריבוע השמאלי העליון מפעילה את הפונקציה שה-`button` קיבל בתור ה-`onClick` שלו מה-`Square`. הרכיב `Square` קיבל את הפונקציה הזו בתור ה-`onSquareClick` שלו מה-`Board`. הרכיב `Board` הגדיר את הפונקציה הזו ישירות ב-JSX. זה קורא ל-`handleClick` עם ארגומנט של `0`.
+1. `handleClick` uses הארגומנט (`0`) לעדכון האלמנט הראשון של מערך `squares` מ`null` ל`X`.
+1. ה-`squares` state של הרכיב `Board` עודכן, כך שה-`Board` וכל ילדיו מעבדים מחדש. זה כuse הוא הפרופס של `value` של הרכיב `Square` עם אינדקס `0` לשינוי מ`null` ל`X`.
 
-In the end the user sees that the upper left square has changed from empty to having a `X` after clicking it.
+בסופו של דבר ה-user רואה שהריבוע השמאלי העליון השתנה מריק ל-`X` לאחר לחיצה עליו.
 
 <Note>
 
-The DOM `<button>` element's `onClick` attribute has a special meaning to React because it is a built-in component. For custom components like Square, the naming is up to you. You could give any name to the `Square`'s `onSquareClick` prop or `Board`'s `handleClick` function, and the code would work the same. In React, it's conventional to use `onSomething` names for props which represent events and `handleSomething` for the function definitions which handle those events.
+לתכונה `onClick` של האלמנט DOM `<button>` יש משמעות מיוחדת ל-React מכיוון שהוא רכיב מובנה. עבור רכיבים מותאמים אישית כמו Square, השם תלוי בך. אתה יכול לתת כל שם לפונקציה `onSquareClick` של `Square` או לפונקציה `handleClick` של `Board`, והקוד יעבוד אותו הדבר. ב-React, מקובל ל-use `onSomething` שמות עבור props המייצגים אירועים ו`handleSomething` עבור הגדרות הפונקציות המטפלות באותם אירועים.
 
 </Note>
 
-### Why immutability is important {/*why-immutability-is-important*/}
+### מדוע אי-שינוי חשוב {/*why-immutability-is-important*/}
 
-Note how in `handleClick`, you call `.slice()` to create a copy of the `squares` array instead of modifying the existing array. To explain why, we need to discuss immutability and why immutability is important to learn.
+שים לב כיצד ב-`handleClick`, אתה קורא ל-`.slice()` כדי ליצור עותק של מערך `squares` במקום לשנות את המערך הקיים. כדי להסביר מדוע, עלינו לדון בחוסר משתנה ומדוע חשוב ללמוד חוסר משתנה.
 
-There are generally two approaches to changing data. The first approach is to _mutate_ the data by directly changing the data's values. The second approach is to replace the data with a new copy which has the desired changes. Here is what it would look like if you mutated the `squares` array:
+יש בדרך כלל שתי גישות לשינוי נתונים. הגישה הראשונה היא לבצע _מוטציה_ של הנתונים על ידי שינוי ישיר של ערכי הנתונים. הגישה השנייה היא להחליף את הנתונים בעותק חדש שיש בו את השינויים הרצויים. כך זה ייראה אם ​​תשנה את מערך `squares`:
 
 ```jsx
 const squares = [null, null, null, null, null, null, null, null, null];
@@ -1345,7 +1345,7 @@ squares[0] = 'X';
 // Now `squares` is ["X", null, null, null, null, null, null, null, null];
 ```
 
-And here is what it would look like if you changed data without mutating the `squares` array:
+וכך זה ייראה אם ​​תשנה נתונים מבלי לשנות את מערך `squares`:
 
 ```jsx
 const squares = [null, null, null, null, null, null, null, null, null];
@@ -1353,17 +1353,17 @@ const nextSquares = ['X', null, null, null, null, null, null, null, null];
 // Now `squares` is unchanged, but `nextSquares` first element is 'X' rather than `null`
 ```
 
-The result is the same but by not mutating (changing the underlying data) directly, you gain several benefits.
+התוצאה זהה אבל אם לא עוברים מוטציה (שינוי הנתונים הבסיסיים) ישירות, אתה מרוויח מספר יתרונות.
 
-Immutability makes complex features much easier to implement. Later in this tutorial, you will implement a "time travel" feature that lets you review the game's history and "jump back" to past moves. This functionality isn't specific to games--an ability to undo and redo certain actions is a common requirement for apps. Avoiding direct data mutation lets you keep previous versions of the data intact, and reuse them later.
+חוסר שינוי הופכת תכונות מורכבות להרבה יותר קלות ליישום. בהמשך המדריך הזה, תטמיעו תכונה של "מסע בזמן" המאפשרת לכם לסקור את היסטוריית המשחק ו"לקפוץ אחורה" למהלכי העבר. פונקציונליות זו אינה ספציפית למשחקים - היכולת לבטל ולבצע מחדש פעולות מסוימות היא דרישה נפוצה עבור אפליקציות. הימנעות ממוטציה ישירה של נתונים מאפשרת לך לשמור על גרסאות קודמות של הנתונים ללא פגע, ולחזורuse אותן מאוחר יותר.
 
-There is also another benefit of immutability. By default, all child components re-render automatically when the state of a parent component changes. This includes even the child components that weren't affected by the change. Although re-rendering is not by itself noticeable to the user (you shouldn't actively try to avoid it!), you might want to skip re-rendering a part of the tree that clearly wasn't affected by it for performance reasons. Immutability makes it very cheap for components to compare whether their data has changed or not. You can learn more about how React chooses when to re-render a component in [the `memo` API reference](/reference/react/memo).
+יש גם יתרון נוסף של חוסר שינוי. כברירת מחדל, כל רכיבי הצאצא מעבדים מחדש אוטומטית כאשר state של רכיב אב משתנה. זה כולל אפילו את רכיבי הצאצא שלא הושפעו מהשינוי. למרות שעיבוד מחדש אינו מורגש כשלעצמו ל-user (לא כדאי לנסות באופן אקטיבי להימנע ממנו!), ייתכן שתרצה לדלג על עיבוד מחדש של חלק מהעץ שברור שלא הושפע ממנו מסיבות ביצועים. חוסר השינוי עושה את זה זול מאוד עבור רכיבים להשוות בין אם הנתונים שלהם השתנו או לא. תוכל ללמוד עוד על האופן שבו React בוחר מתי לעבד מחדש רכיב ב[ההפניה `memo` API](/reference/react/memo).
 
-### Taking turns {/*taking-turns*/}
+### מתחלפים {/*taking-turns*/}
 
-It's now time to fix a major defect in this tic-tac-toe game: the "O"s cannot be marked on the board.
+הגיע הזמן לתקן פגם גדול במשחק התקתק הזה: לא ניתן לסמן את ה"O" על הלוח.
 
-You'll set the first move to be "X" by default. Let's keep track of this by adding another piece of state to the Board component:
+אתה תגדיר את המהלך הראשון להיות "X" כברירת מחדל. בוא נעקוב אחר זה על ידי הוספת חלק נוסף של state לרכיב הלוח:
 
 ```js {2}
 function Board() {
@@ -1374,7 +1374,7 @@ function Board() {
 }
 ```
 
-Each time a player moves, `xIsNext` (a boolean) will be flipped to determine which player goes next and the game's state will be saved. You'll update the `Board`'s `handleClick` function to flip the value of `xIsNext`:
+בכל פעם ששחקן זז, `xIsNext` (בוליאן) יתהפך כדי לקבוע מי השחקן הבא וה-state של המשחק יישמר. תעדכן את הפונקציה `handleClick` של `Board` כדי להפוך את הערך של `xIsNext`:
 
 ```js {7,8,9,10,11,13}
 export default function Board() {
@@ -1398,15 +1398,15 @@ export default function Board() {
 }
 ```
 
-Now, as you click on different squares, they will alternate between `X` and `O`, as they should!
+כעת, כאשר אתה לוחץ על ריבועים שונים, הם יתחלפו בין `X` ל-`O`, כמו שצריך!
 
-But wait, there's a problem. Try clicking on the same square multiple times:
+אבל רגע, יש בעיה. נסה ללחוץ על אותו ריבוע מספר פעמים:
 
-![O overwriting an X](../images/tutorial/o-replaces-x.gif)
+![O מדרוס X](../images/tutorial/o-replaces-x.gif)
 
-The `X` is overwritten by an `O`! While this would add a very interesting twist to the game, we're going to stick to the original rules for now.
+ה-`X` מוחלף על ידי `O`! למרות שזה יוסיף טוויסט מאוד מעניין למשחק, אנחנו הולכים לדבוק בכללים המקוריים לעת עתה.
 
-When you mark a square with a `X` or an `O` you aren't first checking to see if the square already has a `X` or `O` value. You can fix this by *returning early*. You'll check to see if the square already has a `X` or an `O`. If the square is already filled, you will `return` in the `handleClick` function early--before it tries to update the board state.
+כאשר אתה מסמן ריבוע עם `X` או `O` אתה לא בודק תחילה אם לריבוע כבר יש ערך `X` או `O`. אתה יכול לתקן זאת על ידי *חזרה מוקדמת*. תבדוק אם בריבוע כבר יש `X` או `O`. אם הריבוע כבר מלא, תבצע `return` בפונקציה `handleClick` מוקדם--לפני שהיא תנסה לעדכן את הלוח state.
 
 ```js {2,3,4}
 function handleClick(i) {
@@ -1418,7 +1418,7 @@ function handleClick(i) {
 }
 ```
 
-Now you can only add `X`'s or `O`'s to empty squares! Here is what your code should look like at this point:
+עכשיו אתה יכול להוסיף רק `X` או `O` לריבועים ריקים! כך אמור להיראות הקוד שלך בשלב זה:
 
 <Sandpack>
 
@@ -1520,9 +1520,9 @@ body {
 
 </Sandpack>
 
-### Declaring a winner {/*declaring-a-winner*/}
+### הכרזת זוכה {/*declaring-a-winner*/}
 
-Now that the players can take turns, you'll want to show when the game is won and there are no more turns to make. To do this you'll add a helper function called `calculateWinner` that takes an array of 9 squares, checks for a winner and returns `'X'`, `'O'`, or `null` as appropriate. Don't worry too much about the `calculateWinner` function; it's not specific to React:
+עכשיו כשהשחקנים יכולים להתחלף, תרצה להראות מתי המשחק מנצח ואין יותר תורים לעשות. לשם כך תוסיף פונקציית מסייעת בשם `calculateWinner` שלוקחת מערך של 9 ריבועים, בודקת מנצח ומחזירה `'X'`, `'O'`, או `null` לפי המתאים. אל תדאג יותר מדי לגבי הפונקציה `calculateWinner`; זה לא ספציפי ל-React:
 
 ```js src/App.js
 export default function Board() {
@@ -1552,11 +1552,11 @@ function calculateWinner(squares) {
 
 <Note>
 
-It does not matter whether you define `calculateWinner` before or after the `Board`. Let's put it at the end so that you don't have to scroll past it every time you edit your components.
+זה לא משנה אם אתה מגדיר `calculateWinner` לפני או אחרי ה-`Board`. בוא נשים את זה בסוף כדי שלא תצטרך לגלול מעבר לזה בכל פעם שאתה עורך את הרכיבים שלך.
 
 </Note>
 
-You will call `calculateWinner(squares)` in the `Board` component's `handleClick` function to check if a player has won. You can perform this check at the same time you check if a user has clicked a square that already has a `X` or and `O`. We'd like to return early in both cases:
+אתה תקרא `calculateWinner(squares)` בפונקציית `handleClick` של רכיב `Board` כדי לבדוק אם שחקן ניצח. אתה יכול לבצע בדיקה זו באותו זמן שאתה בודק אם user לחץ על ריבוע שכבר יש לו `X` או ו`O`. נרצה לחזור מוקדם בשני המקרים:
 
 ```js {2}
 function handleClick(i) {
@@ -1568,7 +1568,7 @@ function handleClick(i) {
 }
 ```
 
-To let the players know when the game is over, you can display text such as "Winner: X" or "Winner: O". To do that you'll add a `status` section to the `Board` component. The status will display the winner if the game is over and if the game is ongoing you'll display which player's turn is next:
+כדי ליידע את השחקנים מתי המשחק נגמר, אתה יכול להציג טקסט כגון "זוכה: X" או "מנצח: O". לשם כך תוסיף קטע `status` לרכיב `Board`. הסטטוס יציג את המנצח אם המשחק יסתיים ואם המשחק נמשך תציג את התור הבא של השחקן:
 
 ```js {3-9,13}
 export default function Board() {
@@ -1590,7 +1590,7 @@ export default function Board() {
 }
 ```
 
-Congratulations! You now have a working tic-tac-toe game. And you've just learned the basics of React too. So _you_ are the real winner here. Here is what the code should look like:
+מזל טוב! עכשיו יש לך משחק טיק-טק-בוהן עובד. וזה עתה למדת גם את היסודות של React. אז _אתה_ הזוכה האמיתי כאן. כך אמור להיראות הקוד:
 
 <Sandpack>
 
@@ -1721,17 +1721,17 @@ body {
 
 </Sandpack>
 
-## Adding time travel {/*adding-time-travel*/}
+## הוספת מסע בזמן {/*adding-time-travel*/}
 
-As a final exercise, let's make it possible to "go back in time" to the previous moves in the game.
+כתרגיל אחרון, בואו נאפשר "לחזור אחורה בזמן" למהלכים הקודמים במשחק.
 
-### Storing a history of moves {/*storing-a-history-of-moves*/}
+### אחסון היסטוריה של מהלכים {/*storing-a-history-of-moves*/}
 
-If you mutated the `squares` array, implementing time travel would be very difficult.
+אם שיניתם את מערך `squares`, יישום מסע בזמן יהיה קשה מאוד.
 
-However, you used `slice()` to create a new copy of the `squares` array after every move, and treated it as immutable. This will allow you to store every past version of the `squares` array, and navigate between the turns that have already happened.
+עם זאת, used `slice()` כדי ליצור עותק חדש של מערך `squares` לאחר כל מהלך, והתייחסת אליו כבלתי ניתן לשינוי. זה יאפשר לך לאחסן כל גרסה קודמת של מערך `squares`, ולנווט בין הפניות שכבר קרו.
 
-You'll store the past `squares` arrays in another array called `history`, which you'll store as a new state variable. The `history` array represents all board states, from the first to the last move, and has a shape like this:
+אתה תשמור את מערכי `squares` הקודמים במערך אחר בשם `history`, אותו תשמור כמשתנה state חדש. מערך `history` מייצג את כל ה-states של הלוח, מהמהלך הראשון ועד האחרון, ויש לו צורה כזו:
 
 ```jsx
 [
@@ -1745,13 +1745,13 @@ You'll store the past `squares` arrays in another array called `history`, which 
 ]
 ```
 
-### Lifting state up, again {/*lifting-state-up-again*/}
+### הרמת state למעלה, שוב {/*lifting-state-up-again*/}
 
-You will now write a new top-level component called `Game` to display a list of past moves. That's where you will place the `history` state that contains the entire game history.
+כעת תכתוב רכיב חדש ברמה העליונה בשם `Game` כדי להציג רשימה של מהלכים קודמים. זה המקום שבו תציב את `history` state שמכיל את כל היסטוריית המשחק.
 
-Placing the `history` state into the `Game` component will let you remove the `squares` state from its child `Board` component. Just like you "lifted state up" from the `Square` component into the `Board` component, you will now lift it up from the `Board` into the top-level `Game` component. This gives the `Game` component full control over the `Board`'s data and lets it instruct the `Board` to render previous turns from the `history`.
+הצבת `history` state לתוך הרכיב `Game` תאפשר לך להסיר את `squares` state מהרכיב הצאצא `Board` שלו. בדיוק כמו ש"הרמת state למעלה" מהרכיב `Square` לרכיב `Board`, כעת תעלה אותו מה-`Board` לרכיב `Game` ברמה העליונה. זה נותן לרכיב `Game` שליטה מלאה על הנתונים של `Board` ומאפשר לו להורות ל`Board` לעבד פניות קודמות מה-`history`.
 
-First, add a `Game` component with `export default`. Have it render the `Board` component and some markup:
+ראשית, הוסף רכיב `Game` עם `export default`. בקש ממנו לעבד את הרכיב `Board` וסימון מסוים:
 
 ```js {1,5-16}
 function Board() {
@@ -1772,9 +1772,9 @@ export default function Game() {
 }
 ```
 
-Note that you are removing the `export default` keywords before the `function Board() {` declaration and adding them before the `function Game() {` declaration. This tells your `index.js` file to use the `Game` component as the top-level component instead of your `Board` component. The additional `div`s returned by the `Game` component are making room for the game information you'll add to the board later.
+שים לב שאתה מסיר את מילות המפתח `export default` לפני הצהרת `function Board() {` ומוסיף אותן לפני הצהרת `function Game() {`. זה אומר לקובץ `index.js` שלך use את רכיב `Game` כרכיב ברמה העליונה במקום רכיב `Board` שלך. `div`s הנוספים המוחזרים על ידי רכיב `Game` מפנים מקום למידע המשחק שתוסיף ללוח מאוחר יותר.
 
-Add some state to the `Game` component to track which player is next and the history of moves:
+הוסף קצת state לרכיב `Game` כדי לעקוב אחר השחקן הבא ואחר ההיסטוריה של המהלכים:
 
 ```js {2-3}
 export default function Game() {
@@ -1783,9 +1783,9 @@ export default function Game() {
   // ...
 ```
 
-Notice how `[Array(9).fill(null)]` is an array with a single item, which itself is an array of 9 `null`s.
+שימו לב כיצד `[Array(9).fill(null)]` הוא מערך עם פריט בודד, שהוא עצמו מערך של 9 `null`s.
 
-To render the squares for the current move, you'll want to read the last squares array from the `history`. You don't need `useState` for this--you already have enough information to calculate it during rendering:
+כדי להציג את הריבועים עבור המהלך הנוכחי, תרצה לקרוא את מערך הריבועים האחרון מה-`history`. אתה לא צריך `useState` בשביל זה - כבר יש לך מספיק מידע כדי לחשב אותו במהלך העיבוד:
 
 ```js {4}
 export default function Game() {
@@ -1795,7 +1795,7 @@ export default function Game() {
   // ...
 ```
 
-Next, create a `handlePlay` function inside the `Game` component that will be called by the `Board` component to update the game. Pass `xIsNext`, `currentSquares` and `handlePlay` as props to the `Board` component:
+לאחר מכן, צור פונקציה `handlePlay` בתוך הרכיב `Game` שייקרא על ידי הרכיב `Board` כדי לעדכן את המשחק. העבר את `xIsNext`, `currentSquares` ו`handlePlay` בתור props לרכיב `Board`:
 
 ```js {6-8,13}
 export default function Game() {
@@ -1816,7 +1816,7 @@ export default function Game() {
 }
 ```
 
-Let's make the `Board` component fully controlled by the props it receives. Change the `Board` component to take three props: `xIsNext`, `squares`, and a new `onPlay` function that `Board` can call with the updated squares array when a player makes a move. Next, remove the first two lines of the `Board` function that call `useState`:
+בואו נהפוך את הרכיב `Board` לשלוט מלא על ידי ה-props שהוא מקבל. שנה את הרכיב `Board` כדי לקחת שלושה props: `xIsNext`, `squares`, ופונקציה חדשה `onPlay` ש-`Board` יכול לקרוא עם מערך הריבועים המעודכן כאשר שחקן מבצע תנועה. לאחר מכן, הסר את שתי השורות הראשונות של הפונקציה `Board` שקוראות ל-`useState`:
 
 ```js {1}
 function Board({ xIsNext, squares, onPlay }) {
@@ -1827,7 +1827,7 @@ function Board({ xIsNext, squares, onPlay }) {
 }
 ```
 
-Now replace the `setSquares` and `setXIsNext` calls in `handleClick` in the `Board` component with a single call to your new `onPlay` function so the `Game` component can update the `Board` when the user clicks a square:
+כעת החלף את הקריאות `setSquares` ו`setXIsNext` ב-`handleClick` ברכיב `Board` בקריאה בודדת לפונקציית `onPlay` החדשה שלך כך שרכיב `Game` יוכל לעדכן את ה-`Board` כאשר ה-user לוחץ על ריבוע:
 
 ```js {12}
 function Board({ xIsNext, squares, onPlay }) {
@@ -1847,11 +1847,11 @@ function Board({ xIsNext, squares, onPlay }) {
 }
 ```
 
-The `Board` component is fully controlled by the props passed to it by the `Game` component. You need to implement the `handlePlay` function in the `Game` component to get the game working again.
+הרכיב `Board` נשלט במלואו על ידי ה-props המועבר אליו על ידי הרכיב `Game`. עליך ליישם את הפונקציה `handlePlay` ברכיב `Game` כדי שהמשחק יפעל שוב.
 
-What should `handlePlay` do when called? Remember that Board used to call `setSquares` with an updated array; now it passes the updated `squares` array to `onPlay`.
+מה צריך `handlePlay` לעשות כשקוראים לו? זכור כי לוח used להתקשר ל-`setSquares` עם מערך מעודכן; כעת הוא מעביר את מערך `squares` המעודכן ל-`onPlay`.
 
-The `handlePlay` function needs to update `Game`'s state to trigger a re-render, but you don't have a `setSquares` function that you can call any more--you're now using the `history` state variable to store this information. You'll want to update `history` by appending the updated `squares` array as a new history entry. You also want to toggle `xIsNext`, just as Board used to do:
+הפונקציה `handlePlay` צריכה לעדכן את state של `Game` כדי להפעיל רינדור מחדש, אבל אין לך פונקציה `setSquares` שתוכל לקרוא לה יותר - אתה משתמש כעת במשתנה `history` state כדי לאחסן מידע זה. תרצה לעדכן את `history` על ידי הוספת מערך `squares` המעודכן כערך היסטוריה חדש. אתה גם רוצה לשנות את `xIsNext`, בדיוק כפי שהלוח used צריך לעשות:
 
 ```js {4-5}
 export default function Game() {
@@ -1864,11 +1864,11 @@ export default function Game() {
 }
 ```
 
-Here, `[...history, nextSquares]` creates a new array that contains all the items in `history`, followed by `nextSquares`. (You can read the `...history` [*spread syntax*](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax) as "enumerate all the items in `history`".)
+כאן, `[...history, nextSquares]` יוצר מערך חדש המכיל את כל הפריטים ב-`history`, ואחריו `nextSquares`. (תוכל לקרוא את `...history` [*תחביר התפשטות*](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax) בתור "למנות את כל הפריטים ב-`history`".)
 
-For example, if `history` is `[[null,null,null], ["X",null,null]]` and `nextSquares` is `["X",null,"O"]`, then the new `[...history, nextSquares]` array will be `[[null,null,null], ["X",null,null], ["X",null,"O"]]`.
+לדוגמה, אם `history` הוא `[[null,null,null], ["X",null,null]]` ו`nextSquares` הוא `["X",null,"O"]`, אז המערך `[...history, nextSquares]` החדש יהיה `[[null,null,null], ["X",null,null], ["X",null,"O"]]`.
 
-At this point, you've moved the state to live in the `Game` component, and the UI should be fully working, just as it was before the refactor. Here is what the code should look like at this point:
+בשלב זה, העברת את ה-state לחיות ברכיב `Game`, והממשק משתמש אמור לפעול במלואו, בדיוק כפי שהיה לפני ה-refactor. כך אמור להיראות הקוד בשלב זה:
 
 <Sandpack>
 
@@ -2017,19 +2017,19 @@ body {
 
 </Sandpack>
 
-### Showing the past moves {/*showing-the-past-moves*/}
+### מציג את המהלכים העבר {/*showing-the-past-moves*/}
 
-Since you are recording the tic-tac-toe game's history, you can now display a list of past moves to the player.
+מכיוון שאתה מתעד את ההיסטוריה של משחק התקתק, כעת תוכל להציג רשימה של מהלכי העבר לשחקן.
 
-React elements like `<button>` are regular JavaScript objects; you can pass them around in your application. To render multiple items in React, you can use an array of React elements.
+React אלמנטים כמו `<button>` הם אובייקטים JavaScript רגילים; אתה יכול להעביר אותם באפליקציה שלך. כדי להציג מספר פריטים ב-React, אתה יכול use מערך של אלמנטים React.
 
-You already have an array of `history` moves in state, so now you need to transform it to an array of React elements. In JavaScript, to transform one array into another, you can use the [array `map` method:](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map)
+כבר יש לך מערך של `history` מהלכים ב-state, אז עכשיו אתה צריך להפוך אותו למערך של אלמנטים React. ב-JavaScript, כדי להפוך מערך אחד למשנהו, אתה יכול use בשיטת [מערך `map`:](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map)
 
 ```jsx
 [1, 2, 3].map((x) => x * 2) // [2, 4, 6]
 ```
 
-You'll use `map` to transform your `history` of moves into React elements representing buttons on the screen, and display a list of buttons to "jump" to past moves. Let's `map` over the `history` in the Game component:
+אתה use `map` כדי להפוך את `history` המהלכים שלך לאלמנטים React המייצגים כפתורים על המסך, ותציג רשימה של כפתורים כדי "לקפוץ" למהלכים קודמים. בואו נעבור `map` על ה-`history` ברכיב המשחק:
 
 ```js {11-13,15-27,35}
 export default function Game() {
@@ -2073,13 +2073,13 @@ export default function Game() {
 }
 ```
 
-You can see what your code should look like below. Note that you should see an error in the developer tools console that says: 
+אתה יכול לראות איך הקוד שלך צריך להיראות למטה. שים לב שאתה אמור לראות שגיאה במסוף כלי המפתחים האומרת:
 
 <ConsoleBlock level="warning">
-Warning: Each child in an array or iterator should have a unique "key" prop. Check the render method of &#96;Game&#96;.
+אזהרה: לכל ילד במערך או באיטרטור צריך להיות אביזר "מפתח" ייחודי. בדוק את שיטת העיבוד של 'משחק'.
 </ConsoleBlock>
   
-You'll fix this error in the next section.
+אתה תתקן את השגיאה הזו בסעיף הבא.
 
 <Sandpack>
 
@@ -2247,17 +2247,17 @@ body {
 
 </Sandpack>
 
-As you iterate through `history` array inside the function you passed to `map`, the `squares` argument goes through each element of `history`, and the `move` argument goes through each array index: `0`, `1`, `2`, …. (In most cases, you'd need the actual array elements, but to render a list of moves you will only need indexes.)
+בזמן שאתה חוזר על מערך `history` בתוך הפונקציה שהעברת ל-`map`, הארגומנט `squares` עובר דרך כל אלמנט של `history`, והארגומנט `move` עובר דרך כל אינדקס מערך: `0`, `1`, `2`, …. (ברוב המקרים, תזדקק לרכיבי המערך בפועל, אך כדי לעבד רשימה של מהלכים תצטרך רק אינדקסים.)
 
-For each move in the tic-tac-toe game's history, you create a list item `<li>` which contains a button `<button>`. The button has an `onClick` handler which calls a function called `jumpTo` (that you haven't implemented yet).
+עבור כל מהלך בהיסטוריה של משחק הטיק-טק, אתה יוצר פריט רשימה `<li>` המכיל כפתור `<button>`. לכפתור יש מטפל `onClick` אשר קורא לפונקציה בשם `jumpTo` (שעדיין לא יישמתם).
 
-For now, you should see a list of the moves that occurred in the game and an error in the developer tools console. Let's discuss what the "key" error means.
+לעת עתה, אתה אמור לראות רשימה של המהלכים שהתרחשו במשחק ושגיאה בקונסולת כלי המפתחים. בואו נדון במשמעות השגיאה "מפתח".
 
-### Picking a key {/*picking-a-key*/}
+### בחירת מפתח {/*picking-a-key*/}
 
-When you render a list, React stores some information about each rendered list item. When you update a list, React needs to determine what has changed. You could have added, removed, re-arranged, or updated the list's items.
+כאשר אתה מעבד רשימה, React מאחסן מידע על כל פריט רשימה שעובד. כאשר אתה מעדכן רשימה, React צריך לקבוע מה השתנה. יכולת להוסיף, להסיר, לסדר מחדש או לעדכן את פריטי הרשימה.
 
-Imagine transitioning from
+תאר לעצמך מעבר מ
 
 ```html
 <li>Alexa: 7 tasks left</li>
@@ -2272,7 +2272,7 @@ to
 <li>Alexa: 5 tasks left</li>
 ```
 
-In addition to the updated counts, a human reading this would probably say that you swapped Alexa and Ben's ordering and inserted Claudia between Alexa and Ben. However, React is a computer program and does not know what you intended, so you need to specify a _key_ property for each list item to differentiate each list item from its siblings. If your data was from a database, Alexa, Ben, and Claudia's database IDs could be used as keys.
+בנוסף לספירות המעודכנות, אדם שקורא את זה כנראה יגיד שהחלפת את ההזמנה של אלכסה ובן והכנסת את קלאודיה בין אלכסה ובן. עם זאת, React היא תוכנת מחשב ואינה יודעת למה התכוונת, לכן עליך לציין מאפיין _key_ עבור כל פריט רשימה כדי להבדיל כל פריט רשימה מאחיו. אם הנתונים שלך היו ממסד נתונים, מזהי מסד הנתונים של אלקסה, בן וקלאודיה יכולים להיות used כמפתחות.
 
 ```js {1}
 <li key={user.id}>
@@ -2280,23 +2280,23 @@ In addition to the updated counts, a human reading this would probably say that 
 </li>
 ```
 
-When a list is re-rendered, React takes each list item's key and searches the previous list's items for a matching key. If the current list has a key that didn't exist before, React creates a component. If the current list is missing a key that existed in the previous list, React destroys the previous component. If two keys match, the corresponding component is moved.
+כאשר רשימה מעובדת מחדש, React לוקח את המפתח של כל פריט רשימה ומחפש בפריטים של הרשימה הקודמת מפתח תואם. אם לרשימה הנוכחית יש מפתח שלא היה קיים קודם לכן, React יוצר רכיב. אם ברשימה הנוכחית חסר מפתח שהיה קיים ברשימה הקודמת, React הורס את הרכיב הקודם. אם שני מקשים תואמים, הרכיב המתאים מועבר.
 
-Keys tell React about the identity of each component, which allows React to maintain state between re-renders. If a component's key changes, the component will be destroyed and re-created with a new state.
+מפתחות מספרים לReact על הזהות של כל רכיב, מה שמאפשר לReact לשמור על state בין רינדור מחדש. אם מפתח של רכיב משתנה, הרכיב ייהרס ויווצר מחדש עם state חדש.
 
-`key` is a special and reserved property in React. When an element is created, React extracts the `key` property and stores the key directly on the returned element. Even though `key` may look like it is passed as props, React automatically uses `key` to decide which components to update. There's no way for a component to ask what `key` its parent specified.
+`key` הוא נכס מיוחד ושמור בReact. כאשר אלמנט נוצר, React מחלץ את המאפיין `key` ומאחסן את המפתח ישירות על האלמנט המוחזר. למרות ש-`key` עשוי להיראות כאילו הוא מועבר כ-props, React אוטומטית uses `key` כדי להחליט אילו רכיבים לעדכן. אין דרך לרכיב לשאול מה `key` ההורה שלו ציין.
 
-**It's strongly recommended that you assign proper keys whenever you build dynamic lists.** If you don't have an appropriate key, you may want to consider restructuring your data so that you do.
+**מומלץ מאוד להקצות מפתחות מתאימים בכל פעם שאתה בונה רשימות דינמיות.** אם אין לך מפתח מתאים, מומלץ לשקול ארגון מחדש של הנתונים שלך כך שתעשה זאת.
 
-If no key is specified, React will report an error and use the array index as a key by default. Using the array index as a key is problematic when trying to re-order a list's items or inserting/removing list items. Explicitly passing `key={i}` silences the error but has the same problems as array indices and is not recommended in most cases.
+אם לא צוין מפתח, React ידווח על שגיאה וuse אינדקס המערך כמפתח כברירת מחדל. השימוש באינדקס המערך כמפתח הוא בעייתי כאשר מנסים לסדר מחדש פריטי רשימה או הכנסה/הסרה של פריטי רשימה. מעבר מפורש של `key={i}` משתיק את השגיאה אך יש לו אותן בעיות כמו מדדי מערך ואינו מומלץ ברוב המקרים.
 
-Keys do not need to be globally unique; they only need to be unique between components and their siblings.
+מפתחות אינם צריכים להיות ייחודיים בעולם; הם רק צריכים להיות ייחודיים בין רכיבים לאחים שלהם.
 
-### Implementing time travel {/*implementing-time-travel*/}
+### יישום מסע בזמן {/*implementing-time-travel*/}
 
-In the tic-tac-toe game's history, each past move has a unique ID associated with it: it's the sequential number of the move. Moves will never be re-ordered, deleted, or inserted in the middle, so it's safe to use the move index as a key.
+בהיסטוריה של משחק התקלות, לכל מהלך עבר יש מזהה ייחודי המשויך אליו: זה המספר הרציף של המהלך. מהלכים לעולם לא יסודרו מחדש, יימחקו או יוכנסו באמצע, כך שבטוח use אינדקס המהלך כמפתח.
 
-In the `Game` function, you can add the key as `<li key={move}>`, and if you reload the rendered game, React's "key" error should disappear:
+בפונקציה `Game`, אתה יכול להוסיף את המפתח בתור `<li key={move}>`, ואם תטען מחדש את המשחק המעובד, השגיאה "מפתח" של React אמורה להיעלם:
 
 ```js {4}
 const moves = history.map((squares, move) => {
@@ -2476,7 +2476,7 @@ body {
 
 </Sandpack>
 
-Before you can implement `jumpTo`, you need the `Game` component to keep track of which step the user is currently viewing. To do this, define a new state variable called `currentMove`, defaulting to `0`:
+לפני שתוכל ליישם את `jumpTo`, אתה צריך את הרכיב `Game` כדי לעקוב אחר השלב שבו ה-user מציג כעת. כדי לעשות זאת, הגדר משתנה state חדש בשם `currentMove`, ברירת המחדל הוא `0`:
 
 ```js {4}
 export default function Game() {
@@ -2488,7 +2488,7 @@ export default function Game() {
 }
 ```
 
-Next, update the `jumpTo` function inside `Game` to update that `currentMove`. You'll also set `xIsNext` to `true` if the number that you're changing `currentMove` to is even.
+לאחר מכן, עדכן את הפונקציה `jumpTo` בתוך `Game` כדי לעדכן את ה-`currentMove` הזה. תגדיר גם את `xIsNext` ל-`true` אם המספר שאליו אתה משנה את `currentMove` הוא זוגי.
 
 ```js {4-5}
 export default function Game() {
@@ -2501,10 +2501,10 @@ export default function Game() {
 }
 ```
 
-You will now make two changes to the `Game`'s `handlePlay` function which is called when you click on a square.
+כעת תבצע שני שינויים בפונקציית `handlePlay` של `Game` שנקראת כאשר אתה לוחץ על ריבוע.
 
-- If you "go back in time" and then make a new move from that point, you only want to keep the history up to that point. Instead of adding `nextSquares` after all items (`...` spread syntax) in `history`, you'll add it after all items in `history.slice(0, currentMove + 1)` so that you're only keeping that portion of the old history.
-- Each time a move is made, you need to update `currentMove` to point to the latest history entry.
+- אם אתה "חוזר אחורה בזמן" ואז עושה מהלך חדש מאותה נקודה, אתה רק רוצה לשמור את ההיסטוריה עד לנקודה זו. במקום להוסיף `nextSquares` אחרי כל הפריטים (`...` תחביר מפוזר) ב-`history`, תוסיף אותו אחרי כל הפריטים ב-`history.slice(0, currentMove + 1)` כך שתשמור רק את החלק הזה מההיסטוריה הישנה.
+- בכל פעם שמתבצע מהלך, עליך לעדכן את `currentMove` כדי להצביע על ערך ההיסטוריה האחרון.
 
 ```js {2-4}
 function handlePlay(nextSquares) {
@@ -2515,7 +2515,7 @@ function handlePlay(nextSquares) {
 }
 ```
 
-Finally, you will modify the `Game` component to render the currently selected move, instead of always rendering the final move:
+לבסוף, תשנה את הרכיב `Game` כדי להציג את המהלך שנבחר כעת, במקום לעבד תמיד את המהלך הסופי:
 
 ```js {5}
 export default function Game() {
@@ -2528,7 +2528,7 @@ export default function Game() {
 }
 ```
 
-If you click on any step in the game's history, the tic-tac-toe board should immediately update to show what the board looked like after that step occurred.
+אם אתה לוחץ על שלב כלשהו בהיסטוריית המשחק, לוח הטיק-טאק-בוהן אמור להתעדכן מיד כדי להראות איך הלוח נראה לאחר השלב הזה.
 
 <Sandpack>
 
@@ -2699,11 +2699,11 @@ body {
 
 </Sandpack>
 
-### Final cleanup {/*final-cleanup*/}
+### ניקוי סופי {/*final-cleanup*/}
 
-If you look at the code very closely, you may notice that `xIsNext === true` when `currentMove` is even and `xIsNext === false` when `currentMove` is odd. In other words, if you know the value of `currentMove`, then you can always figure out what `xIsNext` should be.
+אם תסתכל על הקוד מקרוב, ייתכן שתבחין ש`xIsNext === true` כאשר `currentMove` הוא זוגי ו`xIsNext === false` כאשר `currentMove` הוא אי זוגי. במילים אחרות, אם אתה יודע את הערך של `currentMove`, אז אתה תמיד יכול להבין מה צריך להיות `xIsNext`.
 
-There's no reason for you to store both of these in state. In fact, always try to avoid redundant state. Simplifying what you store in state reduces bugs and makes your code easier to understand. Change `Game` so that it doesn't store `xIsNext` as a separate state variable and instead figures it out based on the `currentMove`:
+אין סיבה שתשמור את שניהם ב-state. למעשה, נסה תמיד להימנע מ-state מיותר. הפישוט של מה שאתה מאחסן ב-state מפחית באגים ומקל על ההבנה של הקוד שלך. שנה את `Game` כך שהוא לא יאחסן את `xIsNext` כמשתנה state נפרד ובמקום זאת יבין אותו על סמך ה-`currentMove`:
 
 ```js {4,11,15}
 export default function Game() {
@@ -2725,20 +2725,20 @@ export default function Game() {
 }
 ```
 
-You no longer need the `xIsNext` state declaration or the calls to `setXIsNext`. Now, there's no chance for `xIsNext` to get out of sync with `currentMove`, even if you make a mistake while coding the components.
+אינך זקוק עוד להצהרת `xIsNext` state או את הקריאות אל `setXIsNext`. כעת, אין סיכוי ל-`xIsNext` לצאת מסנכרון עם `currentMove`, גם אם תעשו טעות בזמן קידוד הרכיבים.
 
-### Wrapping up {/*wrapping-up*/}
+### מסיימים את {/*wrapping-up*/}
 
-Congratulations! You've created a tic-tac-toe game that:
+מזל טוב! יצרת משחק תקלות ש:
 
-- Lets you play tic-tac-toe,
-- Indicates when a player has won the game,
-- Stores a game's history as a game progresses,
-- Allows players to review a game's history and see previous versions of a game's board.
+- מאפשר לך לשחק טיק-טק,
+- מציין מתי שחקן ניצח במשחק,
+- מאחסן את ההיסטוריה של המשחק עם התקדמות המשחק,
+- מאפשר לשחקנים לסקור את היסטוריית המשחק ולראות גרסאות קודמות של לוח המשחק.
 
-Nice work! We hope you now feel like you have a decent grasp of how React works.
+עבודה יפה! אנו מקווים שעכשיו אתה מרגיש שיש לך הבנה טובה של איך React עובד.
 
-Check out the final result here:
+בדוק את התוצאה הסופית כאן:
 
 <Sandpack>
 
@@ -2907,12 +2907,12 @@ body {
 
 </Sandpack>
 
-If you have extra time or want to practice your new React skills, here are some ideas for improvements that you could make to the tic-tac-toe game, listed in order of increasing difficulty:
+אם יש לך זמן נוסף או אם אתה רוצה לתרגל את כישורי ה-React החדשים שלך, הנה כמה רעיונות לשיפורים שתוכל לעשות במשחק הטיק-טק-בוהן, המפורטים לפי סדר הקושי הגובר:
 
-1. For the current move only, show "You are at move #..." instead of a button.
-1. Rewrite `Board` to use two loops to make the squares instead of hardcoding them.
-1. Add a toggle button that lets you sort the moves in either ascending or descending order.
-1. When someone wins, highlight the three squares that caused the win (and when no one wins, display a message about the result being a draw).
-1. Display the location for each move in the format (row, col) in the move history list.
+1. עבור המהלך הנוכחי בלבד, הראה "אתה בתנועה מס'..." במקום כפתור.
+1. שכתבו מחדש את `Board` ל-use שתי לולאות כדי ליצור את הריבועים במקום לקודד אותם.
+1. הוסף לחצן החלפת מצב המאפשר לך למיין את המהלכים בסדר עולה או יורד.
+1. כאשר מישהו מנצח, הדגש את שלושת המשבצות שעשו את הניצחון (וכאשר אף אחד לא מנצח, הצג הודעה על כך שהתוצאה היא תיקו).
+1. הצג את המיקום עבור כל מהלך בפורמט (שורה, קול) ברשימת היסטוריית המעבר.
 
-Throughout this tutorial, you've touched on React concepts including elements, components, props, and state. Now that you've seen how these concepts work when building a game, check out [Thinking in React](/learn/thinking-in-react) to see how the same React concepts work when build an app's UI.
+לאורך המדריך הזה, נגעת במושגים של React כולל אלמנטים, רכיבים, props וstate. כעת, לאחר שראית כיצד המושגים הללו עובדים בעת בניית משחק, בדוק את [Thinking in React](/learn/thinking-in-react) כדי לראות כיצד אותם מושגים React פועלים בעת בניית ממשק משתמש של אפליקציה.

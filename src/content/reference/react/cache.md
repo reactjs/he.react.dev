@@ -1,17 +1,17 @@
 ---
-title: cache
+title: "מטמון"
 canary: true
 ---
 
 <Canary>
-* `cache` is only for use with [React Server Components](/blog/2023/03/22/react-labs-what-we-have-been-working-on-march-2023#react-server-components). See [frameworks](/learn/start-a-new-react-project#bleeding-edge-react-frameworks) that support React Server Components.
+* `cache` מיועד רק עבור use עם [React רכיבי שרת](/blog/2023/03/22/react-labs-what-we-have-been-working-on-march-2023#react-server-components). ראה [frameworks](/learn/start-a-new-react-project#bleeding-edge-react-frameworks) התומכים ב-React רכיבי שרת.
 
-* `cache` is only available in React’s [Canary](/community/versioning-policy#canary-channel) and [experimental](/community/versioning-policy#experimental-channel) channels. Please ensure you understand the limitations before using `cache` in production. Learn more about [React's release channels here](/community/versioning-policy#all-release-channels).
+* `cache` זמין רק בערוצים [Canary](/community/versioning-policy#canary-channel) ו-[ניסיוני](/community/versioning-policy#experimental-channel) של React. אנא ודא שאתה מבין את המגבלות לפני השימוש ב-`cache` בייצור. למידע נוסף על ערוצי ההפצה של [React כאן](/community/versioning-policy#all-release-channels).
 </Canary>
 
 <Intro>
 
-`cache` lets you cache the result of a data fetch or computation.
+`cache` מאפשר לך לשמור במטמון את התוצאה של אחזור נתונים או חישוב.
 
 ```js
 const cachedFn = cache(fn);
@@ -23,11 +23,11 @@ const cachedFn = cache(fn);
 
 ---
 
-## Reference {/*reference*/}
+## הפניה {/*reference*/}
 
 ### `cache(fn)` {/*cache*/}
 
-Call `cache` outside of any components to create a version of the function with caching.
+התקשר ל-`cache` מחוץ לרכיבים כלשהם כדי ליצור גרסה של הפונקציה עם שמירה במטמון.
 
 ```js {4,7}
 import {cache} from 'react';
@@ -41,42 +41,42 @@ function Chart({data}) {
 }
 ```
 
-When `getMetrics` is first called with `data`, `getMetrics` will call `calculateMetrics(data)` and store the result in cache. If `getMetrics` is called again with the same `data`, it will return the cached result instead of calling `calculateMetrics(data)` again.
+כאשר `getMetrics` נקרא לראשונה עם `data`, `getMetrics` יקרא ל-`calculateMetrics(data)` ויאחסן את התוצאה במטמון. אם `getMetrics` נקרא שוב עם אותו `data`, הוא יחזיר את התוצאה המאוחסנת במטמון במקום לקרוא שוב ל`calculateMetrics(data)`.
 
-[See more examples below.](#usage)
+[ראה דוגמאות נוספות למטה.](#usage)
 
-#### Parameters {/*parameters*/}
+#### פרמטרים {/*parameters*/}
 
-- `fn`: The function you want to cache results for. `fn` can take any arguments and return any value.
+- `fn`: הפונקציה שעבורה ברצונך לשמור תוצאות במטמון. `fn` יכול לקחת כל ארגומנט ולהחזיר כל ערך.
 
-#### Returns {/*returns*/}
+#### מחזירה {/*returns*/}
 
-`cache` returns a cached version of `fn` with the same type signature. It does not call `fn` in the process.
+`cache` מחזירה גרסה שמור של `fn` עם חתימת סוג זהה. זה לא קורא ל-`fn` בתהליך.
 
-When calling `cachedFn` with given arguments, it first checks if a cached result exists in the cache. If a cached result exists, it returns the result. If not, it calls `fn` with the arguments, stores the result in the cache, and returns the result. The only time `fn` is called is when there is a cache miss.
+כאשר קוראים ל-`cachedFn` עם ארגומנטים נתונים, הוא בודק תחילה אם קיימת תוצאה במטמון במטמון. אם קיימת תוצאה במטמון, היא מחזירה את התוצאה. אם לא, הוא קורא ל-`fn` עם הארגומנטים, מאחסן את התוצאה במטמון ומחזיר את התוצאה. הפעם היחידה שנקראת `fn` היא כשיש פספוס מטמון.
 
 <Note>
 
-The optimization of caching return values based on inputs is known as [_memoization_](https://en.wikipedia.org/wiki/Memoization). We refer to the function returned from `cache` as a memoized function.
+האופטימיזציה של ערכי החזרת מטמון המבוססים על קלט ידועה בשם [memoization_](https://en.wikipedia.org/wiki/Memoization). אנו מתייחסים לפונקציה המוחזרת מ`cache` כפונקציה memoized.
 
 </Note>
 
-#### Caveats {/*caveats*/}
+#### אזהרות {/*caveats*/}
 
-[//]: # 'TODO: add links to Server/Client Component reference once https://github.com/reactjs/react.dev/pull/6177 is merged'
+[//]: # 'מטלות: הוסף קישורים להפניה לרכיב שרת/לקוח לאחר מיזוג https://github.com/reactjs/react.dev/pull/6177'
 
-- React will invalidate the cache for all memoized functions for each server request. 
-- Each call to `cache` creates a new function. This means that calling `cache` with the same function multiple times will return different memoized functions that do not share the same cache.
-- `cachedFn` will also cache errors. If `fn` throws an error for certain arguments, it will be cached, and the same error is re-thrown when `cachedFn` is called with those same arguments.
-- `cache` is for use in [Server Components](/blog/2023/03/22/react-labs-what-we-have-been-working-on-march-2023#react-server-components) only.
+- React יבטל את תוקף המטמון עבור כל הפונקציות memoized עבור כל בקשת שרת. 
+- כל קריאה ל-`cache` יוצרת פונקציה חדשה. המשמעות היא שקריאה ל-`cache` עם אותה פונקציה מספר פעמים תחזיר פונקציות שונות memoized שאינן חולקות את אותו מטמון.
+- `cachedFn` ישמור גם שגיאות במטמון. אם `fn` זורק שגיאה עבור ארגומנטים מסוימים, היא תישמר במטמון, ואותה שגיאה נזרקת מחדש כאשר `cachedFn` נקרא עם אותם ארגומנטים.
+- `cache` מיועד ל-use ב-[רכיבי שרת](/blog/2023/03/22/react-labs-what-we-have-been-working-on-march-2023#react-server-components) בלבד.
 
 ---
 
-## Usage {/*usage*/}
+## שימוש {/*usage*/}
 
-### Cache an expensive computation {/*cache-expensive-computation*/}
+### שמור חישוב יקר {/*cache-expensive-computation*/}
 
-Use `cache` to skip duplicate work.
+השתמש ב-`cache` כדי לדלג על עבודה כפולה.
 
 ```js [[1, 7, "getUserMetrics(user)"],[2, 13, "getUserMetrics(user)"]]
 import {cache} from 'react';
@@ -98,17 +98,17 @@ function TeamReport({users}) {
 }
 ```
 
-If the same `user` object is rendered in both `Profile` and `TeamReport`, the two components can share work and only call `calculateUserMetrics` once for that `user`. 
+אם אותו אובייקט `user` מוצג גם ב-`Profile` וגם ב-`TeamReport`, שני הרכיבים יכולים לשתף עבודה ולהתקשר ל-`calculateUserMetrics` רק פעם אחת עבור אותו `user`.
 
-Assume `Profile` is rendered first. It will call <CodeStep step={1}>`getUserMetrics`</CodeStep>, and check if there is a cached result. Since it is the first time `getUserMetrics` is called with that `user`, there will be a cache miss. `getUserMetrics` will then call `calculateUserMetrics` with that `user` and write the result to cache. 
+נניח ש-`Profile` מוצג ראשון. זה יקרא ל<CodeStep step={1}>`getUserMetrics`</CodeStep>, ויבדוק אם יש תוצאה במטמון. מכיוון שזו הפעם הראשונה ש`getUserMetrics` נקרא עם ה-`user` הזה, תהיה פספוס מטמון. לאחר מכן `getUserMetrics` יקרא ל-`calculateUserMetrics` עם ה-`user` הזה ויכתוב את התוצאה למטמון.
 
-When `TeamReport` renders its list of `users` and reaches the same `user` object, it will call <CodeStep step={2}>`getUserMetrics`</CodeStep> and read the result from cache.
+כאשר `TeamReport` מעבד את רשימת ה-`users` שלו ומגיע לאותו אובייקט `user`, הוא יקרא ל<CodeStep step={2}>`getUserMetrics`</CodeStep> ויקרא את התוצאה מהמטמון.
 
 <Pitfall>
 
-##### Calling different memoized functions will read from different caches. {/*pitfall-different-memoized-functions*/}
+##### קריאה לפונקציות שונות memoized תקרא ממטמונים שונים. {/*pitfall-different-memoized-functions*/}
 
-To access the same cache, components must call the same memoized function.
+כדי לגשת לאותו מטמון, רכיבים חייבים לקרוא לאותה פונקציה memoized.
 
 ```js [[1, 7, "getWeekReport"], [1, 7, "cache(calculateWeekReport)"], [1, 8, "getWeekReport"]]
 // Temperature.js
@@ -137,11 +137,11 @@ export function Precipitation({cityData}) {
 }
 ```
 
-In the above example, <CodeStep step={2}>`Precipitation`</CodeStep> and <CodeStep step={1}>`Temperature`</CodeStep> each call `cache` to create a new memoized function with their own cache look-up. If both components render for the same `cityData`, they will do duplicate work to call `calculateWeekReport`.
+בדוגמה שלמעלה, <CodeStep step={2}>`Precipitation`</CodeStep> ו-<CodeStep step={1}>`Temperature`</CodeStep> קוראים לכל `cache` כדי ליצור פונקציה חדשה memo עם חיפוש מטמון משלהם. אם שני הרכיבים יעבדו עבור אותו `cityData`, הם יבצעו עבודה כפולה כדי לקרוא ל-`calculateWeekReport`.
 
-In addition, `Temperature` creates a <CodeStep step={1}>new memoized function</CodeStep> each time the component is rendered which doesn't allow for any cache sharing.
+בנוסף, `Temperature` יוצר <CodeStep step={1}>פונקציה חדשה memoized</CodeStep> בכל פעם שהרכיב מעובד, מה שלא מאפשר שיתוף מטמון כלשהו.
 
-To maximize cache hits and reduce work, the two components should call the same memoized function to access the same cache. Instead, define the memoized function in a dedicated module that can be [`import`-ed](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import) across components.
+כדי למקסם את כניסות המטמון ולהפחית את העבודה, שני הרכיבים צריכים לקרוא לאותה פונקציה memoized כדי לגשת לאותו מטמון. במקום זאת, הגדר את הפונקציה memoized במודול ייעודי שיכול להיות [`import`-ed](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import) על פני רכיבים.
 
 ```js [[3, 5, "export default cache(calculateWeekReport)"]]
 // getWeekReport.js
@@ -170,12 +170,12 @@ export default function Precipitation({cityData}) {
   // ...
 }
 ```
-Here, both components call the <CodeStep step={3}>same memoized function</CodeStep> exported from `./getWeekReport.js` to read and write to the same cache. 
+כאן, שני הרכיבים קוראים ל-<CodeStep step={3}>אותה פונקציה memoized</CodeStep> המיוצאת מ-`./getWeekReport.js` כדי לקרוא ולכתוב לאותו מטמון.
 </Pitfall>
 
-### Share a snapshot of data {/*take-and-share-snapshot-of-data*/}
+### שתף תמונת מצב של נתונים {/*take-and-share-snapshot-of-data*/}
 
-To share a snapshot of data between components, call `cache` with a data-fetching function like `fetch`. When multiple components make the same data fetch, only one request is made and the data returned is cached and shared across components. All components refer to the same snapshot of data across the server render. 
+כדי לשתף תמונת מצב של נתונים בין רכיבים, התקשר ל-`cache` עם פונקציית שליפת נתונים כמו `fetch`. כאשר מספר רכיבים מבצעים את אותו אחזור נתונים, רק בקשה אחת מתבצעת והנתונים המוחזרים נשמרים במטמון ומשותפים בין רכיבים. כל הרכיבים מתייחסים לאותה תמונת מצב של נתונים על פני עיבוד השרת.
 
 ```js [[1, 4, "city"], [1, 5, "fetchTemperature(city)"], [2, 4, "getTemperature"], [2, 9, "getTemperature"], [1, 9, "city"], [2, 14, "getTemperature"], [1, 14, "city"]]
 import {cache} from 'react';
@@ -196,15 +196,15 @@ async function MinimalWeatherCard({city}) {
 }
 ```
 
-If `AnimatedWeatherCard` and `MinimalWeatherCard` both render for the same <CodeStep step={1}>city</CodeStep>, they will receive the same snapshot of data from the <CodeStep step={2}>memoized function</CodeStep>. 
+אם `AnimatedWeatherCard` ו-`MinimalWeatherCard` שניהם יעבדו עבור אותה <CodeStep step={1}>עיר</CodeStep>, הם יקבלו את אותה תמונת מצב של נתונים מהפונקציה <CodeStep step={2}>memoized</CodeStep>.
 
-If `AnimatedWeatherCard` and `MinimalWeatherCard` supply different <CodeStep step={1}>city</CodeStep> arguments to <CodeStep step={2}>`getTemperature`</CodeStep>, then `fetchTemperature` will be called twice and each call site will receive different data.
+אם `AnimatedWeatherCard` ו-`MinimalWeatherCard` מספקים ארגומנטים שונים של <CodeStep step={1}>city</CodeStep> ל-<CodeStep step={2}>`getTemperature`</CodeStep>, אזי `fetchTemperature` ייקרא פעמיים וכל אתר שיחה יקבל נתונים שונים.
 
-The <CodeStep step={1}>city</CodeStep> acts as a cache key.
+<CodeStep step={1}>city</CodeStep> פועל כמפתח מטמון.
 
 <Note>
 
-[//]: # 'TODO: add links to Server Components when merged.'
+[//]: # 'מטלות: הוסף קישורים לרכיבי שרת בעת מיזוג.'
 
 <CodeStep step={3}>Asynchronous rendering</CodeStep> is only supported for Server Components.
 
@@ -214,14 +214,14 @@ async function AnimatedWeatherCard({city}) {
 	// ...
 }
 ```
-[//]: # 'TODO: add link and mention to use documentation when merged'
-[//]: # 'To render components that use asynchronous data in Client Components, see `use` documentation.'
+[//]: # 'מטלות: הוסף קישור ואזכור לתיעוד use בעת מיזוג'
+[//]: # 'לעיבוד רכיבים שuse נתונים אסינכרוניים ברכיבי לקוח, עיין בתיעוד `use`.'
 
 </Note>
 
-### Preload data {/*preload-data*/}
+### טען מראש נתונים {/*preload-data*/}
 
-By caching a long-running data fetch, you can kick off asynchronous work prior to rendering the component.
+על ידי שמירה במטמון של אחזור נתונים ארוך טווח, אתה יכול להתחיל בעבודה אסינכרונית לפני רינדור הרכיב.
 
 ```jsx [[2, 6, "await getUser(id)"], [1, 17, "getUser(id)"]]
 const getUser = cache(async (id) => {
@@ -250,17 +250,17 @@ function Page({id}) {
 }
 ```
 
-When rendering `Page`, the component calls <CodeStep step={1}>`getUser`</CodeStep> but note that it doesn't use the returned data. This early <CodeStep step={1}>`getUser`</CodeStep> call kicks off the asynchronous database query that occurs while `Page` is doing other computational work and rendering children.
+בעת רינדור `Page`, הרכיב קורא ל<CodeStep step={1}>`getUser`</CodeStep> אך שים לב שהוא לא use הנתונים המוחזרים. קריאת <CodeStep step={1}>`getUser`</CodeStep> המוקדמת הזו מתחילה את שאילתת מסד הנתונים האסינכרונית שמתרחשת בזמן ש`Page` עושה עבודה חישובית אחרת ומציגה ילדים.
 
-When rendering `Profile`, we call <CodeStep step={2}>`getUser`</CodeStep> again. If the initial <CodeStep step={1}>`getUser`</CodeStep> call has already returned and cached the user data, when `Profile` <CodeStep step={2}>asks and waits for this data</CodeStep>, it can simply read from the cache without requiring another remote procedure call. If the <CodeStep step={1}> initial data request</CodeStep> hasn't been completed, preloading data in this pattern reduces delay in data-fetching.
+בעת עיבוד `Profile`, אנו קוראים שוב <CodeStep step={2}>`getUser`</CodeStep>. אם הקריאה הראשונית <CodeStep step={1}>`getUser`</CodeStep> כבר חזרה ושומרה את נתוני user, כאשר `Profile` <CodeStep step={2}>שואל ומחכה לנתונים אלו</CodeStep>, הוא יכול פשוט לקרוא מהמטמון מבלי להידרש לקריאת הליך מרחוק נוסף. אם <CodeStep step={1}> בקשת הנתונים הראשונית</CodeStep> לא הושלמה, טעינת נתונים מראש בדפוס זה מפחיתה את העיכוב באחזור הנתונים.
 
 <DeepDive>
 
-#### Caching asynchronous work {/*caching-asynchronous-work*/}
+#### עבודה אסינכרונית במטמון {/*caching-asynchronous-work*/}
 
-When evaluating an [asynchronous function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function), you will receive a [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) for that work. The promise holds the state of that work (_pending_, _fulfilled_, _failed_) and its eventual settled result.
+בעת הערכת [פונקציה אסינכרונית](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function), תקבלו [הבטחה](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) עבור אותה עבודה. ההבטחה מחזיקה ב-state של אותה עבודה (_בהמתנה_, _מומש_, _נכשל_) והתוצאה הסופית שלה.
 
-In this example, the asynchronous function <CodeStep step={1}>`fetchData`</CodeStep> returns a promise that is awaiting the `fetch`. 
+בדוגמה זו, הפונקציה האסינכרונית <CodeStep step={1}>`fetchData`</CodeStep> מחזירה הבטחה שמחכה ל-`fetch`.
 
 ```js [[1, 1, "fetchData()"], [2, 8, "getData()"], [3, 10, "getData()"]]
 async function fetchData() {
@@ -277,18 +277,18 @@ async function MyComponent() {
 }
 ```
 
-In calling <CodeStep step={2}>`getData`</CodeStep> the first time, the promise returned from <CodeStep step={1}>`fetchData`</CodeStep> is cached. Subsequent look-ups will then return the same promise.
+בקריאה ל-<CodeStep step={2}>`getData`</CodeStep> בפעם הראשונה, ההבטחה שהוחזרה מ-<CodeStep step={1}>`fetchData`</CodeStep> נשמרת במטמון. חיפושים הבאים יחזירו את אותה הבטחה.
 
-Notice that the first <CodeStep step={2}>`getData`</CodeStep> call does not `await` whereas the <CodeStep step={3}>second</CodeStep> does. [`await`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/await) is a JavaScript operator that will wait and return the settled result of the promise. The first <CodeStep step={2}>`getData`</CodeStep> call simply initiates the `fetch` to cache the promise for the second <CodeStep step={3}>`getData`</CodeStep> to look-up.
+שימו לב שהקריאה הראשונה ל-<CodeStep step={2}>`getData`</CodeStep> אינה כוללת `await`, ואילו <CodeStep step={3}>השנייה</CodeStep> כן. [`await`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/await) ממתין לפתרון ההבטחה ומחזיר את הערך שלה. הקריאה הראשונה ל-<CodeStep step={2}>`getData`</CodeStep> מתחילה את `fetch` כדי לשמור את ההבטחה עבור הקריאה השנייה.
 
-If by the <CodeStep step={3}>second call</CodeStep> the promise is still _pending_, then `await` will pause for the result. The optimization is that while we wait on the `fetch`, React can continue with computational work, thus reducing the wait time for the <CodeStep step={3}>second call</CodeStep>. 
+אם בזמן <CodeStep step={3}>הקריאה השנייה</CodeStep> ההבטחה עדיין _בהמתנה_, אז `await` ימתין לתוצאה. האופטימיזציה היא שבזמן ההמתנה ל-`fetch`, React יכול להמשיך בעבודה חישובית, וכך לקצר את זמן ההמתנה של הקריאה השנייה.
 
-If the promise is already settled, either to an error or the _fulfilled_ result, `await` will return that value immediately. In both outcomes, there is a performance benefit.
+אם ההבטחה כבר יושבה (או לשגיאה או לתוצאה _ממומשת_), `await` יחזיר את הערך מיד. בשני המצבים מתקבל שיפור ביצועים.
 </DeepDive>
 
 <Pitfall>
 
-##### Calling a memoized function outside of a component will not use the cache. {/*pitfall-memoized-call-outside-component*/}
+##### קריאה לפונקציה memoized מחוץ לרכיב לא use המטמון. {/*pitfall-memoized-call-outside-component*/}
 
 ```jsx [[1, 3, "getUser"]]
 import {cache} from 'react';
@@ -307,21 +307,21 @@ async function DemoProfile() {
 }
 ```
 
-React only provides cache access to the memoized function in a component. When calling <CodeStep step={1}>`getUser`</CodeStep> outside of a component, it will still evaluate the function but not read or update the cache.
+React מספק רק גישה למטמון לפונקציה memoized ברכיב. בעת קריאה ל-<CodeStep step={1}>`getUser`</CodeStep> מחוץ לרכיב, הוא עדיין יעריך את הפונקציה אך לא יקרא או יעדכן את המטמון.
 
-This is because cache access is provided through a [context](/learn/passing-data-deeply-with-context) which is only accessible from a component. 
+זוהי כיוון שגישה למטמון ניתנת דרך [הקשר](/learn/העברת-data-deeply-with-context) אשר נגיש רק מרכיב.
 
 </Pitfall>
 
 <DeepDive>
 
-#### When should I use `cache`, [`memo`](/reference/react/memo), or [`useMemo`](/reference/react/useMemo)? {/*cache-memo-usememo*/}
+#### מתי עלי use `cache`, [`memo`](/reference/react/memo), או [`useMemo`](/reference/react/useMemo)? {/*cache-memo-usememo*/}
 
-All mentioned APIs offer memoization but the difference is what they're intended to memoize, who can access the cache, and when their cache is invalidated.
+כל ה-APIs המוזכרים מציעים memoization אבל ההבדל הוא מה הם נועדו לmemoize, מי יכול לגשת למטמון, וכאשר המטמון שלהם אינו חוקי.
 
 #### `useMemo` {/*deep-dive-use-memo*/}
 
-In general, you should use [`useMemo`](/reference/react/useMemo) for caching a expensive computation in a Client Component across renders. As an example, to memoize a transformation of data within a component.
+באופן כללי, אתה צריך use [`useMemo`](/reference/react/useMemo) עבור שמירה במטמון של חישוב יקר ברכיב לקוח על פני עיבודים. כדוגמה, כדי memoלבצע טרנספורמציה של נתונים בתוך רכיב.
 
 ```jsx {4}
 'use client';
@@ -341,13 +341,13 @@ function App() {
   );
 }
 ```
-In this example, `App` renders two `WeatherReport`s with the same record. Even though both components do the same work, they cannot share work. `useMemo`'s cache is only local to the component.
+בדוגמה זו, `App` מעבד שני `WeatherReport`s עם אותה רשומה. למרות ששני הרכיבים עושים את אותה עבודה, הם לא יכולים לחלוק עבודה. המטמון של `useMemo` הוא מקומי רק לרכיב.
 
-However, `useMemo` does ensure that if `App` re-renders and the `record` object doesn't change, each component instance would skip work and use the memoized value of `avgTemp`. `useMemo` will only cache the last computation of `avgTemp` with the given dependencies. 
+עם זאת, `useMemo` אכן מבטיח שאם `App` יעבד מחדש והאובייקט `record` לא ישתנה, כל מופע של רכיב ידלג על עבודה וuse הערך memoized של `avgTemp`. `useMemo` ישמור רק את החישוב האחרון של `avgTemp` עם התלות הנתונה.
 
 #### `cache` {/*deep-dive-cache*/}
 
-In general, you should use `cache` in Server Components to memoize work that can be shared across components.
+באופן כללי, עליך להזין use `cache` ברכיבי שרת כדי memoלעצב עבודה שניתן לשתף בין רכיבים.
 
 ```js [[1, 12, "<WeatherReport city={city} />"], [3, 13, "<WeatherReport city={city} />"], [2, 1, "cache(fetchReport)"]]
 const cachedFetchReport = cache(fetchReport);
@@ -367,13 +367,13 @@ function App() {
   );
 }
 ```
-Re-writing the previous example to use `cache`, in this case the <CodeStep step={3}>second instance of `WeatherReport`</CodeStep> will be able to skip duplicate work and read from the same cache as the <CodeStep step={1}>first `WeatherReport`</CodeStep>. Another difference from the previous example is that `cache` is also recommended for <CodeStep step={2}>memoizing data fetches</CodeStep>, unlike `useMemo` which should only be used for computations.
+כתיבה מחדש של הדוגמה הקודמת ל-use `cache`, במקרה זה <CodeStep step={3}>המופע השני של `WeatherReport`</CodeStep> יוכל לדלג על עבודה כפולה ולקרוא מאותו מטמון כמו <CodeStep step={1}>המופע הראשון של `WeatherReport`</CodeStep>. הבדל נוסף מהדוגמה הקודמת הוא ש-`cache` מומלץ גם עבור <CodeStep step={2}>memoizing של שליפות נתונים</CodeStep>, בניגוד ל-`useMemo` שאמור להיות used רק עבור חישובים.
 
-At this time, `cache` should only be used in Server Components and the cache will be invalidated across server requests.
+בשלב זה, `cache` צריך להיות רק used ברכיבי שרת והמטמון יבוטל בכל בקשות השרת.
 
 #### `memo` {/*deep-dive-memo*/}
 
-You should use [`memo`](reference/react/memo) to prevent a component re-rendering if its props are unchanged.
+עליך use [`memo`](reference/react/memo) כדי למנוע עיבוד מחדש של רכיב אם ה-props שלו לא השתנה.
 
 ```js
 'use client';
@@ -396,27 +396,27 @@ function App() {
 }
 ```
 
-In this example, both `MemoWeatherReport` components will call `calculateAvg` when first rendered. However, if `App` re-renders, with no changes to `record`, none of the props have changed and `MemoWeatherReport` will not re-render. 
+בדוגמה זו, שני הרכיבים `MemoWeatherReport` יקראו ל-`calculateAvg` כאשר הם יעבדו לראשונה. עם זאת, אם `App` מעבד מחדש, ללא שינויים ב-`record`, אף אחד מה-props לא השתנה ו-`MemoWeatherReport` לא יעבד מחדש.
 
-Compared to `useMemo`, `memo` memoizes the component render based on props vs. specific computations. Similar to `useMemo`, the memoized component only caches the last render with the last prop values. Once the props change, the cache invalidates and the component re-renders.
+בהשוואה ל-`useMemo`, `memo` memoמגדיל את עיבוד הרכיבים בהתבסס על props לעומת חישובים ספציפיים. בדומה ל-`useMemo`, הרכיב memoized מאחסן רק את העיבוד האחרון עם ערכי העזר האחרונים. ברגע שהשינוי props, המטמון מבטל והרכיב מעבד מחדש.
 
 </DeepDive>
 
 ---
 
-## Troubleshooting {/*troubleshooting*/}
+## פתרון בעיות {/*troubleshooting*/}
 
-### My memoized function still runs even though I've called it with the same arguments {/*memoized-function-still-runs*/}
+### הפונקציה memoized שלי עדיין פועלת למרות שקראתי לה עם אותם ארגומנטים {/*memoized-function-still-runs*/}
 
-See prior mentioned pitfalls
-* [Calling different memoized functions will read from different caches.](#pitfall-different-memoized-functions)
-* [Calling a memoized function outside of a component will not use the cache.](#pitfall-memoized-call-outside-component)
+ראה מלכודות שהוזכרו קודם לכן
+* [קריאה לפונקציות memoized שונות תקרא ממטמונים שונים.](#pitfall-different-memoized-functions)
+* [קריאה לפונקציה memoized מחוץ לרכיב לא תגרום use למטמון.](#pitfall-memoized-call-outside-component)
 
-If none of the above apply, it may be a problem with how React checks if something exists in cache.
+אם אף אחד מהאמור לעיל אינו רלוונטי, ייתכן שזו בעיה עם האופן שבו React בודק אם משהו קיים במטמון.
 
-If your arguments are not [primitives](https://developer.mozilla.org/en-US/docs/Glossary/Primitive) (ex. objects, functions, arrays), ensure you're passing the same object reference.
+אם הארגומנטים שלך אינם [פרימיטיביים](https://developer.mozilla.org/en-US/docs/Glossary/Primitive) (למשל אובייקטים, פונקציות, מערכים), ודא שאתה מעביר את אותה הפניה לאובייקט.
 
-When calling a memoized function, React will look up the input arguments to see if a result is already cached. React will use shallow equality of the arguments to determine if there is a cache hit.
+בעת קריאה לפונקציה memoized, React יחפש את ארגומנטי הקלט כדי לראות אם התוצאה כבר נמצאת במטמון. React יעשה use שוויון רדוד של הארגומנטים כדי לקבוע אם יש פגיעה במטמון.
 
 ```js
 import {cache} from 'react';
@@ -441,9 +441,9 @@ function App() {
 }
 ```
 
-In this case the two `MapMarker`s look like they're doing the same work and calling `calculateNorm` with the same value of `{x: 10, y: 10, z:10}`. Even though the objects contain the same values, they are not the same object reference as each component creates its own `props` object.
+במקרה זה שני `MapMarker`s נראים כאילו הם עושים את אותה עבודה וקוראים `calculateNorm` עם אותו ערך של `{x: 10, y: 10, z:10}`. למרות שהאובייקטים מכילים את אותם ערכים, הם אינם אותה הפניה לאובייקט מכיוון שכל רכיב יוצר אובייקט `props` משלו.
 
-React will call [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) on the input to verify if there is a cache hit.
+React יתקשר ל-[`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) בקלט כדי לוודא אם יש פגיעה במטמון.
 
 ```js {3,9}
 import {cache} from 'react';
@@ -468,9 +468,9 @@ function App() {
 }
 ```
 
-One way to address this could be to pass the vector dimensions to `calculateNorm`. This works because the dimensions themselves are primitives.
+דרך אחת לטפל בזה יכולה להיות להעביר את הממדים הווקטוריים ל-`calculateNorm`. זה עובד מכיוון שuse הממדים עצמם הם פרימיטיביים.
 
-Another solution may be to pass the vector object itself as a prop to the component. We'll need to pass the same object to both component instances.
+פתרון נוסף עשוי להיות להעביר את האובייקט הווקטור עצמו כעזר לרכיב. נצטרך להעביר את אותו אובייקט לשני מופעי הרכיבים.
 
 ```js {3,9,14}
 import {cache} from 'react';
@@ -495,4 +495,3 @@ function App() {
   );
 }
 ```
-

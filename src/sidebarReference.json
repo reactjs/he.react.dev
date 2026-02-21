@@ -1,5 +1,5 @@
 {
-  "title": "API Reference",
+  "title": "מדריך API",
   "path": "/reference/react",
   "routes": [
     {
@@ -7,7 +7,7 @@
       "sectionHeader": "react@18.2.0"
     },
     {
-      "title": "Overview",
+      "title": "סקירה כללית",
       "path": "/reference/react"
     },
     {
@@ -87,7 +87,7 @@
       ]
     },
     {
-      "title": "Components",
+      "title": "קומפוננטות",
       "path": "/reference/react/components",
       "routes": [
         {
@@ -150,7 +150,7 @@
       ]
     },
     {
-      "title": "Directives",
+      "title": "הנחיות",
       "path": "/reference/react/directives",
       "canary": true,
       "routes": [
@@ -187,11 +187,11 @@
       ]
     },
     {
-      "title": "Components",
+      "title": "קומפוננטות",
       "path": "/reference/react-dom/components",
       "routes": [
         {
-          "title": "Common (e.g. <div>)",
+          "title": "נפוצים (למשל <div>)",
           "path": "/reference/react-dom/components/common"
         },
         {
@@ -352,10 +352,10 @@
     },
     {
       "hasSectionHeader": true,
-      "sectionHeader": "Legacy APIs"
+      "sectionHeader": "APIs מיושנים"
     },
     {
-      "title": "Legacy React APIs",
+      "title": "React APIs מיושנים",
       "path": "/reference/react/legacy",
       "routes": [
         {

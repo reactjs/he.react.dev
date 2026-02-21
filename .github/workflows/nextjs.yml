@@ -1,0 +1,88 @@
+name: Deploy React Docs (Next.js) to GitHub Pages
+
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "yarn"
+
+      - name: Setup Yarn Classic
+        run: npm i -g yarn@1.22.22
+
+      - name: Setup GitHub Pages (Next.js)
+        uses: actions/configure-pages@v5
+        with:
+          static_site_generator: next
+
+      - name: Restore Next.js cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            .next/cache
+          key: ${{ runner.os }}-nextjs-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**/*.[jt]s', '**/*.[jt]sx', '**/*.md', '**/*.mdx') }}
+          restore-keys: |
+            ${{ runner.os }}-nextjs-${{ hashFiles('**/yarn.lock') }}-
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Build site
+        run: yarn build
+
+      - name: Patch encoded dynamic chunk filename for GitHub Pages
+        run: |
+          set -e
+          PAGES_CHUNKS_DIR="out/_next/static/chunks/pages"
+          if [ -d "$PAGES_CHUNKS_DIR" ]; then
+            for f in "$PAGES_CHUNKS_DIR"/\[\[...markdownPath\]\]-*.js; do
+              if [ -f "$f" ]; then
+                base="$(basename "$f")"
+                encoded="${base//\[\[...markdownPath\]\]/%5B%5B...markdownPath%5D%5D}"
+                cp "$f" "$PAGES_CHUNKS_DIR/$encoded"
+              fi
+            done
+          fi
+
+      - name: Verify output folder
+        run: |
+          ls -la
+          test -d out || (echo "ERROR: ./out not found after build" && exit 1)
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./out
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

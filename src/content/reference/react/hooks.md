@@ -1,23 +1,23 @@
 ---
-title: "Built-in React Hooks"
+title: "React Hooks מובנים"
 ---
 
 <Intro>
 
-*Hooks* let you use different React features from your components. You can either use the built-in Hooks or combine them to build your own. This page lists all built-in Hooks in React.
+*Hooks* אפשר להשתמש באפשרויות שונות של React מתוך קומפונטות. אפשר להשתמש ב-Hooks המובנים, או לשלב בין כדי לבנות Hooks משלכם. העמוד הזה מציג את כל ה-Hooks המובנים ב-React.
 
 </Intro>
 
 ---
 
-## State Hooks {/*state-hooks*/}
+## מצב Hooks {/*state-hooks*/}
 
-*State* lets a component ["remember" information like user input.](/learn/state-a-components-memory) For example, a form component can use state to store the input value, while an image gallery component can use state to store the selected image index.
+*State* אפשר לקומפוננטה ["לזכור" מידע כמו קלט מהמשתמש.](/learn/state-a-components-memory) לדוגמה, קומפונטת טופס יכולה להשתמש ב-state כדי לשמור את הערך אינטלקטואלי לבחור תמונה, בעוד קומפונטת גלריית לשמור תמונות שיכולה להשתמש ב-stated.
 
-To add state to a component, use one of these Hooks:
+כדי להוסיף state לקומפוננטה, השתמשו באחד מה-Hooks הבאים:
 
-* [`useState`](/reference/react/useState) declares a state variable that you can update directly.
-* [`useReducer`](/reference/react/useReducer) declares a state variable with the update logic inside a [reducer function.](/learn/extracting-state-logic-into-a-reducer)
+* [`useState`](/reference/react/useState) מצהיר על ranking state אפשר לעדכן בכלל.
+* [`useReducer`](/reference/react/useReducer) מצהיר על ranking state עם לוגיקת העדכון בתוך [פונקציית מפחית.](/learn/extracting-state-logic-into-a-reducer)
 
 ```js
 function ImageGallery() {
@@ -27,11 +27,11 @@ function ImageGallery() {
 
 ---
 
-## Context Hooks {/*context-hooks*/}
+## הקשר Hooks {/*context-hooks*/}
 
-*Context* lets a component [receive information from distant parents without passing it as props.](/learn/passing-props-to-a-component) For example, your app's top-level component can pass the current UI theme to all components below, no matter how deep.
+*הקשר* יכול לקומפוננטה [לקבל מהורים רחוקים בלי להעביר אותו מידע כ-props.](/learn/passing-props-to-a-component) למשל, קומפוננטת העליונה של האפליקציה יכולה להעביר את ערכת הנושא הנוכחית לכל הקומפוננטות מתחתיה, לא משנה כמה עמוק הן נמצאות.
 
-* [`useContext`](/reference/react/useContext) reads and subscribes to a context.
+* [`useContext`](/reference/react/useContext) קורא ל-הקשר ונרשם אליו.
 
 ```js
 function Button() {
@@ -43,10 +43,10 @@ function Button() {
 
 ## Ref Hooks {/*ref-hooks*/}
 
-*Refs* let a component [hold some information that isn't used for rendering,](/learn/referencing-values-with-refs) like a DOM node or a timeout ID. Unlike with state, updating a ref does not re-render your component. Refs are an "escape hatch" from the React paradigm. They are useful when you need to work with non-React systems, such as the built-in browser APIs.
+*Refs* מאפשרים לקומפוננטה [להחזיק מידע שלא משמש לרינדור,](/learn/referencing-values-with-refs) כמו DOM node או מזהה פסק זמן. נדרש ל-state, עדכון של ref לא מרנדר מחדש את הקומפוננטה. Refs הם "Escape hatch" מהפרדיגמה של React. הם שימושיים כשצריך לעבוד עם מערכות שאינן React, כמו APIs מובנים של הדפדפן.
 
-* [`useRef`](/reference/react/useRef) declares a ref. You can hold any value in it, but most often it's used to hold a DOM node.
-* [`useImperativeHandle`](/reference/react/useImperativeHandle) lets you customize the ref exposed by your component. This is rarely used.
+* [`useRef`](/reference/react/useRef) מצהיר על ref. אפשר לשמור בו כל ערך, אבל לרוב משתמשים בו כדי לשמור על הצומת DOM.
+* [`useImperativeHandle`](/reference/react/useImperativeHandle) יכול להתאים אישית את ה-ref שהקומפונטה חושפת. זה בשימוש נדיר.
 
 ```js
 function Form() {
@@ -56,11 +56,11 @@ function Form() {
 
 ---
 
-## Effect Hooks {/*effect-hooks*/}
+## אפקט Hooks {/*effect-hooks*/}
 
-*Effects* let a component [connect to and synchronize with external systems.](/learn/synchronizing-with-effects) This includes dealing with network, browser DOM, animations, widgets written using a different UI library, and other non-React code.
+*אפקטים* מאפשרים לקומפוננטה [להתחבר ולהסתנכרן עם מערכות חיצוניות.](/learn/synchronizing-with-effects) זה כולל עבודה עם רשת, DOM של הדפדפן, אנימציות, ווידג'טים שנכתבו בספריית UI אחרת, וקוד נוסף שאינו React.
 
-* [`useEffect`](/reference/react/useEffect) connects a component to an external system.
+* [`useEffect`](/reference/react/useEffect) מחבר קומפוננטה למערכת חיצונית.
 
 ```js
 function ChatRoom({ roomId }) {
@@ -72,23 +72,23 @@ function ChatRoom({ roomId }) {
   // ...
 ```
 
-Effects are an "escape hatch" from the React paradigm. Don't use Effects to orchestrate the data flow of your application. If you're not interacting with an external system, [you might not need an Effect.](/learn/you-might-not-need-an-effect)
+אפקטים הם "פתח בריחה" מהפרדיגמה של React. אל תשתמשו ב-Effects כדי לתזמר את זרימת האפליקציה. אם אתם לא מקיימים אינטראקציה עם חיצונית, [יכול להיות שאין מערכת.] ב-Effect(/learn/you-might-not-need-an-effect)
 
-There are two rarely used variations of `useEffect` with differences in timing:
+יש שתי וריאציות נדירות יותר של `useEffect` עם הבדלים בתזמון:
 
-* [`useLayoutEffect`](/reference/react/useLayoutEffect) fires before the browser repaints the screen. You can measure layout here.
-* [`useInsertionEffect`](/reference/react/useInsertionEffect) fires before React makes changes to the DOM. Libraries can insert dynamic CSS here.
+* [`useLayoutEffect`](/reference/react/useLayoutEffect) מופעל לפני שהדפדפן מצייר מחדש את המסך. אפשר למדוד פריסה כאן.
+* [`useInsertionEffect`](/reference/react/useInsertionEffect) מופעל לפני ש-React מבצעת שינויים ב-DOM. ספריות יכולה להכניס כאן CSS דינמי.
 
 ---
 
-## Performance Hooks {/*performance-hooks*/}
+## ביצועים Hooks {/*performance-hooks*/}
 
-A common way to optimize re-rendering performance is to skip unnecessary work. For example, you can tell React to reuse a cached calculation or to skip a re-render if the data has not changed since the previous render.
+דרך נפוצה לאופטימיזציה של ביצועי רינדור מחדש לד היאלג על עבודה מיותרת. לדוגמה, אפשר לבקש מ-React להשתמש מחדש בחישוב שמור או לדלג על רינדור חוזר אם לא השתנו מאז הרינדור הקודם.
 
-To skip calculations and unnecessary re-rendering, use one of these Hooks:
+כדי לדלג על חישובים ורינדורים מיותרים, השתמשו באחד מה-Hooks הבאים:
 
-- [`useMemo`](/reference/react/useMemo) lets you cache the result of an expensive calculation.
-- [`useCallback`](/reference/react/useCallback) lets you cache a function definition before passing it down to an optimized component.
+- [`useMemo`](/reference/react/useMemo) יכול לשמור במטמון תוצאה של חישוב יקר.
+- [`useCallback`](/reference/react/useCallback) מאפשר לשמור את הגדרת הפונקציה במטמון לפני שמעבירים אותה לקומפוננטה ממוטבת.
 
 ```js
 function TodoList({ todos, tab, theme }) {
@@ -97,22 +97,22 @@ function TodoList({ todos, tab, theme }) {
 }
 ```
 
-Sometimes, you can't skip re-rendering because the screen actually needs to update. In that case, you can improve performance by separating blocking updates that must be synchronous (like typing into an input) from non-blocking updates which don't need to block the user interface (like updating a chart).
+לפעמים אי אפשר לדלג על רינדור מחדש כי המסך באמת צריך להתעדכן. במקרה כזה אפשר לשפר ביצועים על ידי הפרדה בין עדכונים חוסמים שחייבים להיות סינכרוניים (כמו הקלדה בשדה קלט) לבין עדכונים לא-חוסמים שלא צריכים לחסום את ממשק המשתמש (כמו עדכון גרף).
 
-To prioritize rendering, use one of these Hooks:
+כדי לתעדף רינדור, השתמשו באחד מה-Hooks הבאים:
 
-- [`useTransition`](/reference/react/useTransition) lets you mark a state transition as non-blocking and allow other updates to interrupt it.
-- [`useDeferredValue`](/reference/react/useDeferredValue) lets you defer updating a non-critical part of the UI and let other parts update first.
+- [`useTransition`](/reference/react/useTransition) יכול לסמן להמשיך state כלא-חוסם ולאפשר לעדכונים אחרים להפריע לו.
+- [`useDeferredValue`](/reference/react/useDeferredValue) אפשרות לדחות עדכון של חלק לא-קריטי ב-UI ולאפשר לחלקים אחרים להתעדכן קודם.
 
 ---
 
-## Resource Hooks {/*resource-hooks*/}
+## משאב Hooks {/*resource-hooks*/}
 
-*Resources* can be accessed by a component without having them as part of their state. For example, a component can read a message from a Promise or read styling information from a context.
+*משאבים* ניתנים לגישה מתוך קומפונטה גם בלי להיות חלק מה-state שלה. לדוגמה, קומפוננטה יכולה לקרוא הודעה מתוך Promise או עיצוב עיצובי מתוך ההקשר.
 
-To read a value from a resource, use this Hook:
+כדי לקרוא ערך ממשאב, השתמשו ב-Hook הבא:
 
-- [`use`](/reference/react/use) lets you read the value of a resource like a [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) or [context](/learn/passing-data-deeply-with-context).
+- [`use`](/reference/react/use) אפשר לקרוא ערך ממשאב כמו [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) או [context](/learn/passing-data-deeply-with-context).
 
 ```js
 function MessageComponent({ messagePromise }) {
@@ -124,16 +124,16 @@ function MessageComponent({ messagePromise }) {
 
 ---
 
-## Other Hooks {/*other-hooks*/}
+## Hooks נוספים {/*other-hooks*/}
 
-These Hooks are mostly useful to library authors and aren't commonly used in the application code.
+ה-Hooks האלה שימוש בעיקר למחברי ספריות, ולא בשימוש נפוץ בקוד אפליקטיבי.
 
-- [`useDebugValue`](/reference/react/useDebugValue) lets you customize the label React DevTools displays for your custom Hook.
-- [`useId`](/reference/react/useId) lets a component associate a unique ID with itself. Typically used with accessibility APIs.
-- [`useSyncExternalStore`](/reference/react/useSyncExternalStore) lets a component subscribe to an external store.
+- [`useDebugValue`](/reference/react/useDebugValue) מאפשר להתאים את התווית ש-React DevTools מציג עבור custom Hook.
+- [`useId`](/reference/react/useId) יכול לקומפוננטה לשייך לעצמה מזהה ייחודית. לרוב בשילוב עם APIs של נגישות.
+- [`useSyncExternalStore`](/reference/react/useSyncExternalStore) יכול לקומפוננטה להירשם לחנות חיצונית.
 
 ---
 
-## Your own Hooks {/*your-own-hooks*/}
+## Hooks משלכם {/*your-own-hooks*/}
 
-You can also [define your own custom Hooks](/learn/reusing-logic-with-custom-hooks#extracting-your-own-custom-hook-from-a-component) as JavaScript functions.
+אפשר גם [להגדיר custom Hooks משלכם](/learn/reusing-logic-with-custom-hooks#extracting-your-own-custom-hook-from-a-component) כפונקציות JavaScript.

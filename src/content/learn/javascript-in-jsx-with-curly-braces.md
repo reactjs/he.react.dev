@@ -1,25 +1,25 @@
 ---
-title: JavaScript in JSX with Curly Braces
+title: "JavaScript ב-JSX עם סוגרים מסולסלים"
 ---
 
 <Intro>
 
-JSX lets you write HTML-like markup inside a JavaScript file, keeping rendering logic and content in the same place. Sometimes you will want to add a little JavaScript logic or reference a dynamic property inside that markup. In this situation, you can use curly braces in your JSX to open a window to JavaScript.
+JSX יכול לכתוב סימון דמוי HTML בתוך קובץ JavaScript, תוך שמירה על רינדור ההיגיון והתוכן באותו מקום. לפעמים תרצה להוסיף קצת הגיון JavaScript או להתייחס למאפיין דינמי בתוך הסימון הזה. בstate זה, אתה יכול להשתמש בסוגים מסולסלים ב-JSX שלך כדי לפתוח את החלון ל-JavaScript.
 
 </Intro>
 
 <YouWillLearn>
 
-* How to pass strings with quotes
-* How to reference a JavaScript variable inside JSX with curly braces
-* How to call a JavaScript function inside JSX with curly braces
-* How to use a JavaScript object inside JSX with curly braces
+* איך להעביר מחרוזות עם מרכאות
+* בתוך איך תייחס לשינוי JavaScript JSX עם פלטה מסולסלת
+* איך לקרוא לפונקציית JavaScript בתוך JSX עם פלטה מסולסלת
+* איך להשתמש באובייקט בתוך JSX עם פלטה מסולסלת
 
 </YouWillLearn>
 
-## Passing strings with quotes {/*passing-strings-with-quotes*/}
+## מחרוזות עוברות עם מרכאות {/*מעבר-מחרוזות-עם-מרכאות*/}
 
-When you want to pass a string attribute to JSX, you put it in single or double quotes:
+כאשר אתה רוצה להעביר תכונה מחרוזת ל-JSX, אתה במירכאות בודדות אותה או כפולות:
 
 <Sandpack>
 
@@ -41,9 +41,9 @@ export default function Avatar() {
 
 </Sandpack>
 
-Here, `"https://i.imgur.com/7vQD0fPs.jpg"` and `"Gregorio Y. Zara"` are being passed as strings.
+כאן, `"https://i.imgur.com/7vQD0fPs.jpg"` ו`"Gregorio Y. Zara"` מועברים כמחרוזות.
 
-But what if you want to dynamically specify the `src` or `alt` text? You could **use a value from JavaScript by replacing `"` and `"` with `{` and `}`**:
+אבל מה אם אתה רוצה לציין באופן דינמי את הטקסט 'src' או 'alt'? תוכל **להשתמש בערך מ-JavaScript על ידי החלפת `"` ו-`"` ב-`{` ו-`}`**:
 
 <Sandpack>
 
@@ -67,11 +67,11 @@ export default function Avatar() {
 
 </Sandpack>
 
-Notice the difference between `className="avatar"`, which specifies an `"avatar"` CSS class name that makes the image round, and `src={avatar}` that reads the value of the JavaScript variable called `avatar`. That's because curly braces let you work with JavaScript right there in your markup!
+שימו לב להבדל בין `className="avatar"`, המציין את שם מחלקה `"avatar"` שיצר את התמונה עגולה, וכי הוא `src={avatar}` שקורא את הערך של מדרג JavaScript הנקרא `avatar`. למה היא צריכה לעבוד עם JavaScript ממש שם בסימון שלך!
 
-## Using curly braces: A window into the JavaScript world {/*using-curly-braces-a-window-into-the-javascript-world*/}
+## שימוש בפלטה מתולתת: חלון אל עולם ה-JavaScript {/*באמצעות-מתולתל-פלטה-חלון-לעולם-ה-javascript*/}
 
-JSX is a special way of writing JavaScript. That means it’s possible to use JavaScript inside it—with curly braces `{ }`. The example below first declares a name for the scientist, `name`, then embeds it with curly braces inside the `<h1>`:
+JSX היא דרך מיוחדת לכתיבת JavaScript. זה אומר שאפשר להשתמש ב-JavaScript בתוכו - עם סוגים מסולסלים `{ }`. הדוגמה שלהלן מכריזה תחילה על שם למדן, `שם`, והגיעה מטמיעה אותו בסוגריים מסולסלים בתוך ``<h1>``:
 
 <Sandpack>
 
@@ -86,9 +86,9 @@ export default function TodoList() {
 
 </Sandpack>
 
-Try changing the `name`'s value from `'Gregorio Y. Zara'` to `'Hedy Lamarr'`. See how the list title changes?
+נסה לשנות את הערך של ה`שם` מ``גרגוריו Y. Zara`` ל``הדי לאמאר``. ראה איך כותרת הרשימה?
 
-Any JavaScript expression will work between curly braces, including function calls like `formatDate()`:
+כל ביטוי JavaScript יעבוד בין סוג מסולסלים, כולל קריאות לפונקציות כמו `formatDate()`:
 
 <Sandpack>
 
@@ -111,18 +111,18 @@ export default function TodoList() {
 
 </Sandpack>
 
-### Where to use curly braces {/*where-to-use-curly-braces*/}
+### היכן להשתמש בפלטה מתולתלת {/*היכן-לשימוש-פלטה-מתולתלת*/}
 
-You can only use curly braces in two ways inside JSX:
+אתה יכול להשתמש בסוגרים מתולתלים רק בשתי דרכים בתוך JSX:
 
-1. **As text** directly inside a JSX tag: `<h1>{name}'s To Do List</h1>` works, but `<{tag}>Gregorio Y. Zara's To Do List</{tag}>`  will not.
-2. **As attributes** immediately following the `=` sign: `src={avatar}` will read the `avatar` variable, but `src="{avatar}"` will pass the string `"{avatar}"`.
+1. **כטקסט** בתוך תג JSX: ``<h1>`{name}'s to Do List`</h1>`` עובד, אבל `<{tag}>רשימת המשימות של גרגוריו Y. Zara</{tag}>` לא.
+2. **כמאפיינים** מיד אחרי הסימן `=`: `src={avatar}` יקרא את השינוי `avatar`, אבל `src="{avatar}"` יעביר את המחרוזת __K_8__.
 
-## Using "double curlies": CSS and other objects in JSX {/*using-double-curlies-css-and-other-objects-in-jsx*/}
+## שימוש ב-"double curlies": CSS ואובייקטים אחרים ב-JSX {/*using-double-curlies-css-and-other-objects-in-jsx*/}
 
-In addition to strings, numbers, and other JavaScript expressions, you can even pass objects in JSX. Objects are also denoted with curly braces, like `{ name: "Hedy Lamarr", inventions: 5 }`. Therefore, to pass a JS object in JSX, you must wrap the object in another pair of curly braces: `person={{ name: "Hedy Lamarr", inventions: 5 }}`.
+בנוסף למחרוזות, מספרים וביטויי JavaScript אחרים, אתה יכול אפילו להעביר אובייקטים ב-JSX. אובייקטים מסומנים גם בסוגרים מסולסלים, כמו `{ שם: "הדי לאמאר", המצאות: 5 }`. לכן, כדי להעביר אובייקט JS ב-JSX, עליך לתת את האובייקט בזוג אחר של סוגי מתולתלים: `person={{ name: "Hedy Lamarr", המצאות: 5 }}`.
 
-You may see this with inline CSS styles in JSX. React does not require you to use inline styles (CSS classes work great for most cases). But when you need an inline style, you pass an object to the `style` attribute:
+אפשר שתראה זאת עם סגנונות CSS מוטבעים ב-JSX. תגיב לא מחייב אותך להשתמש בסגנונות מוטבעים (שיעורי CSS עובדים מצוין ברוב המקרים). אבל כאשר אתה צריך סגנון מוטבע, אתה מעביר אובייקט לתכונה 'סגנון':
 
 <Sandpack>
 
@@ -148,9 +148,9 @@ ul { padding: 20px 20px 20px 40px; margin: 0; }
 
 </Sandpack>
 
-Try changing the values of `backgroundColor` and `color`.
+נסה לשנות את הערכים של `צבע רקע` ו`צבע`.
 
-You can really see the JavaScript object inside the curly braces when you write it like this:
+אתה באמת יכול לראות את האובייקט ה-JavaScript בתוך הפלטה המתולתת כאשר אתה כותב את זה כך:
 
 ```js {2-5}
 <ul style={
@@ -161,17 +161,17 @@ You can really see the JavaScript object inside the curly braces when you write 
 }>
 ```
 
-The next time you see `{{` and `}}` in JSX, know that it's nothing more than an object inside the JSX curlies!
+בפעם הבאה שתראה את `{{` ו-`}}` ב-JSX, זה לא יותר מאשר אובייקט בתוך ה-JSX curlies!
 
 <Pitfall>
 
-Inline `style` properties are written in camelCase. For example, HTML `<ul style="background-color: black">` would be written as `<ul style={{ backgroundColor: 'black' }}>`  in your component.
+מאפיינים `סגנון` מוטבעים כתובים ב-camelCase. לדוגמה, HTML `<ul style="background-color: black">` ייכתב לפי `<ul style={{ backgroundColor: 'black' }}>` ברכיב שלך.
 
 </Pitfall>
 
-## More fun with JavaScript objects and curly braces {/*more-fun-with-javascript-objects-and-curly-braces*/}
+## יותר כיף עם אובייקטי JavaScript וסוגרים מסולסלים {/*יותר-כיף-עם-javascript-objects-and-curly-braces*/}
 
-You can move several expressions into one object, and reference them in your JSX inside curly braces:
+אתה יכול להעביר מספר ביטויים לתוך אובייקט אחד, ולהתייחס אליהם ב-JSX שלך בתוך סוגים מסולסלים:
 
 <Sandpack>
 
@@ -211,7 +211,7 @@ body > div > div { padding: 20px; }
 
 </Sandpack>
 
-In this example, the `person` JavaScript object contains a `name` string and a `theme` object:
+בדוגמה זו, אובייקט ה-JavaScript 'אדם' מכיל מחרוזת 'שם' ואובייקט 'נושא':
 
 ```js
 const person = {
@@ -223,31 +223,31 @@ const person = {
 };
 ```
 
-The component can use these values from `person` like so:
+הרכיב יכול להשתמש בערכים אלה מ'אדם' כך:
 
 ```js
 <div style={person.theme}>
   <h1>{person.name}'s Todos</h1>
 ```
 
-JSX is very minimal as a templating language because it lets you organize data and logic using JavaScript.
+JSX היא מינימלית כשפת תבניות שמאפשרת לך לארגן נתונים והיגיון באמצעות JavaScript.
 
 <Recap>
 
-Now you know almost everything about JSX:
+עכשיו אתה יודע כמעט הכל על JSX:
 
-* JSX attributes inside quotes are passed as strings.
-* Curly braces let you bring JavaScript logic and variables into your markup.
-* They work inside the JSX tag content or immediately after `=` in attributes.
-* `{{` and `}}` is not special syntax: it's a JavaScript object tucked inside JSX curly braces.
+* תכונות JSX בתוך מרכאות מועברות מחרוזות.
+* סוגרים מסולסלים מאפשרים לך להכניס לוגיקה ומשתנים של JavaScript לתוך הסימון שלך.
+* הם פועלים בתוך תוכן תג JSX או מיד אחרי `=` בתכונות.
+* `{{` ו`}}` אינו תחביר מיוחד: זהו חפץ תחוב בתוך סוגרים מסולסלים של JSX.
 
 </Recap>
 
 <Challenges>
 
-#### Fix the mistake {/*fix-the-mistake*/}
+#### תקן את הטעות {/*תקן-הטעות*/}
 
-This code crashes with an error saying `Objects are not valid as a React child`:
+קוד זה קורס עם שגיאה האומרת 'אובייקטים לא תקפים כילד תגובה':
 
 <Sandpack>
 
@@ -287,15 +287,15 @@ body > div > div { padding: 20px; }
 
 </Sandpack>
 
-Can you find the problem?
+האם אתה יכול למצוא את הבעיה?
 
 <Hint>Look for what's inside the curly braces. Are we putting the right thing there?</Hint>
 
 <Solution>
 
-This is happening because this example renders *an object itself* into the markup rather than a string: `<h1>{person}'s Todos</h1>` is trying to render the entire `person` object! Including raw objects as text content throws an error because React doesn't know how you want to display them.
+זה קורה בגלל שהדוגמה הזו מעבדת * אובייקט עצמו* בתוך הסימון ולא למחרוזת: ``<h1>`{person}'s Todos`</h1>`` מנסה לעבד את כל האובייקט `person`! הכללת אובייקטים גולמיים כתוכן טקסט זורק שגיאה מה ש-React לא יודע איך אתה רוצה להציג אותם.
 
-To fix it, replace `<h1>{person}'s Todos</h1>` with `<h1>{person.name}'s Todos</h1>`:
+כדי לתקן את זה, החלף את ``<h1>`המטלות של {person}`</h1>`` ב-``<h1>`{person.name}'s Todos`</h1>``:
 
 <Sandpack>
 
@@ -337,9 +337,9 @@ body > div > div { padding: 20px; }
 
 </Solution>
 
-#### Extract information into an object {/*extract-information-into-an-object*/}
+#### חילוץ מידע לתוך אובייקט {/*חלץ-מידע-לאובייקט*/}
 
-Extract the image URL into the `person` object.
+חלץ את כתובת האתר של התמונה לאובייקט 'אדם'.
 
 <Sandpack>
 
@@ -381,7 +381,7 @@ body > div > div { padding: 20px; }
 
 <Solution>
 
-Move the image URL into a property called `person.imageUrl` and read it from the `<img>` tag using the curlies:
+העבר את כתובת האתר של התמונה למאפיין בשם `person.imageUrl` וקרא אותו מהתג ``<img>`` באמצעות התלתלים:
 
 <Sandpack>
 
@@ -424,13 +424,13 @@ body > div > div { padding: 20px; }
 
 </Solution>
 
-#### Write an expression inside JSX curly braces {/*write-an-expression-inside-jsx-curly-braces*/}
+#### כתוב ביטוי בתוך סוגרים מתולתלים של JSX {/*כתוב-ביטוי-בפנים-jsx-מתולתל-פלטה*/}
 
-In the object below, the full image URL is split into four parts: base URL, `imageId`, `imageSize`, and file extension.
+באובייקט שלמטה, כתובת האתר המלאה של התמונה מפוצלת לארבעה חלקים: כתובת אתר בסיסית, `imageId`, `imageSize` וסיומת קובץ.
 
-We want the image URL to combine these attributes together: base URL (always `'https://i.imgur.com/'`), `imageId` (`'7vQD0fP'`), `imageSize` (`'s'`), and file extension (always `'.jpg'`). However, something is wrong with how the `<img>` tag specifies its `src`.
+אנו שכתובת ה-URL של התמונה תשלב את התכונות הללו: כתובת אתר בסיס (תמיד `'https://i.imgur.com/'`), `imageId` (`'7vQD0fP'`), `imageSize` (`'s'`), וסיומת קובץ (תמיד `'.jpg'`). עם זאת, משהו לא בסדר עם האופן שבו התג ``<img>`` מציין את `src` שלו.
 
-Can you fix it?
+אתה יכול לתקן את זה?
 
 <Sandpack>
 
@@ -474,15 +474,15 @@ body > div > div { padding: 20px; }
 
 </Sandpack>
 
-To check that your fix worked, try changing the value of `imageSize` to `'b'`. The image should resize after your edit.
+כדי לבדוק את התיקון שלך עבד, נסה לשנות את הערך של `imageSize` ל-`'b'`. התמונה צריכה לשנות את גודלה לאחר העריכה.
 
 <Solution>
 
-You can write it as `src={baseUrl + person.imageId + person.imageSize + '.jpg'}`.
+אתה יכול לכתוב את זה בתור `src={baseUrl + person.imageId + person.imageSize + '.jpg'}`.
 
-1. `{` opens the JavaScript expression
-2. `baseUrl + person.imageId + person.imageSize + '.jpg'` produces the correct URL string
-3. `}` closes the JavaScript expression
+1. `{` פותח את הביטוי JavaScript
+2. `baseUrl + person.imageId + person.imageSize + '.jpg'` מייצרת את מחרוזת כתובת האתר הנכונה
+3. `}` סוגר את הביטוי JavaScript
 
 <Sandpack>
 
@@ -525,7 +525,7 @@ body > div > div { padding: 20px; }
 
 </Sandpack>
 
-You can also move this expression into a separate function like `getImageUrl` below:
+אתה יכול גם להעביר את הביטוי הזה לפונקציה נפרדת כמו `getImageUrl` למטה:
 
 <Sandpack>
 
@@ -580,8 +580,9 @@ body > div > div { padding: 20px; }
 
 </Sandpack>
 
-Variables and functions can help you keep the markup simple!
+משתנים ופונקציות יכולים לעזור לך לשמור על הסימון פשוט!
 
 </Solution>
 
 </Challenges>
+

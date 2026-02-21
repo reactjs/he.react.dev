@@ -1,37 +1,37 @@
 ---
-title: 'Lifecycle of Reactive Effects'
+title: "מחזור החיים של אפקטים תגובתיים"
 ---
 
 <Intro>
 
-Effects have a different lifecycle from components. Components may mount, update, or unmount. An Effect can only do two things: to start synchronizing something, and later to stop synchronizing it. This cycle can happen multiple times if your Effect depends on props and state that change over time. React provides a linter rule to check that you've specified your Effect's dependencies correctly. This keeps your Effect synchronized to the latest props and state.
+לאפקטים יש מחזור חיים. רכיבים רכיבים לעלות, לעד או לטעינה. אפקט יכול לעשות רק שני דברים: להתחיל לסנכרן משהו, ובהמשך להפסיק לסנכרן אותו. מחזור זה יכול לקרות מספר פעמים אם ההשפעה שלך תלויה בprops ובstates המשתנים עם הזמן. React מספק כלל linter כדי לבדוק את התלות של האפקט שלך בצורה נכונה. זה שומר על האפקט שלך מסונכרן עם הprops וstate העדכניים ביותר.
 
 </Intro>
 
 <YouWillLearn>
 
-- How an Effect's lifecycle is different from a component's lifecycle
-- How to think about each individual Effect in isolation
-- When your Effect needs to re-synchronize, and why
-- How your Effect's dependencies are determined
-- What it means for a value to be reactive
-- What an empty dependency array means
-- How React verifies your dependencies are correct with a linter
-- What to do when you disagree with the linter
+- כיצד מחזור החיים של אפקט שונה ממחזור החיים של רכיב
+- איך לחשוב על כל אפקט בנפרד
+- מתי האפקט שלך צריך לסנכרן מחדש, ומדוע
+- כיצד נקבעות התלות של האפקט שלך
+- מה המשמעות של ערך להיות תגובתי
+- מה המשמעות של מערך תלות ריק
+איך תגיב מוודא שהתלות שלך נכונות עם סרגל
+- מה לעשות כאשר אתה לא מסכים עם הלינטר
 
 </YouWillLearn>
 
-## The lifecycle of an Effect {/*the-lifecycle-of-an-effect*/}
+## מחזור החיים של אפקט {/*מחזור-החיים-של-אפקט*/}
 
-Every React component goes through the same lifecycle:
+כל הרכיב של React עובר את אותו מחזור חיים:
 
-- A component _mounts_ when it's added to the screen.
-- A component _updates_ when it receives new props or state, usually in response to an interaction.
-- A component _unmounts_ when it's removed from the screen.
+- רכיב _מועלה_ כאשר הוא מתווסף למסך.
+- רכיב _מתעדכן_ כאשר הוא מקבל props או מצב חדשים, בדרך כלל בתגובה לאינטראקציה.
+- רכיב _מתבטל_ כאשר הוא מוסר מהמסך.
 
-**It's a good way to think about components, but _not_ about Effects.** Instead, try to think about each Effect independently from your component's lifecycle. An Effect describes how to [synchronize an external system](/learn/synchronizing-with-effects) to the current props and state. As your code changes, synchronization will need to happen more or less often.
+**זו דרך טובה לחשוב על רכיבים, אבל _לא_ על אפקטים.** במקום זאת, תנסה לחשוב על כל אפקט באופן עצמאי ממחזור החיים של הרכיב שלך. אפקט מתאר כיצד [לסנכרן מערכת חיצונית](/ללמוד/סנכרון-עם-אפקטים) לprops ולstate הנוכחיים. ככל שהקוד שלך משתנה, הסנכרון יצטרך להתרחש פחות או יותר.
 
-To illustrate this point, consider this Effect connecting your component to a chat server:
+כדי להמחיש נקודה זו, שקול את האפקט הזה המחבר את הרכיב שלך לשרת צ'אט:
 
 ```js
 const serverUrl = 'https://localhost:1234';
@@ -48,7 +48,7 @@ function ChatRoom({ roomId }) {
 }
 ```
 
-Your Effect's body specifies how to **start synchronizing:**
+גוף האפקט שלך מציין כיצד **להתחיל לסנכרן:**
 
 ```js {2-3}
     // ...
@@ -60,7 +60,7 @@ Your Effect's body specifies how to **start synchronizing:**
     // ...
 ```
 
-The cleanup function returned by your Effect specifies how to **stop synchronizing:**
+פונקציית הניקוי המוחזרת מהאפקט שלך מציינת כיצד **להפסיק את הסנכרון:**
 
 ```js {5}
     // ...
@@ -72,19 +72,19 @@ The cleanup function returned by your Effect specifies how to **stop synchronizi
     // ...
 ```
 
-Intuitively, you might think that React would **start synchronizing** when your component mounts and **stop synchronizing** when your component unmounts. However, this is not the end of the story! Sometimes, it may also be necessary to **start and stop synchronizing multiple times** while the component remains mounted.
+באופן אינטואיטיבי, אתה יכול לחשוב ש-React **יתחיל לסנכרן** כאשר הרכיב שלך נטען ו**תפסיק לסנכרן** כאשר הרכיב שלך יתבטל. עם זאת, זה לא סוף הסיפור! לפעמים, ייתכן שיהיה צורך גם **להתחיל ולהיות את הסינכרון מספר פעמים** בזמן שהרכיב נשאר מותקן.
 
-Let's look at _why_ this is necessary, _when_ it happens, and _how_ you can control this behavior.
+בואו נסתכל על _למה_ זה הכרחי, _מתי_ זה קורה, ו_איך_ אתה יכול לשלוט בהתנהגות הזו.
 
 <Note>
 
-Some Effects don't return a cleanup function at all. [More often than not,](/learn/synchronizing-with-effects#how-to-handle-the-effect-firing-twice-in-development) you'll want to return one--but if you don't, React will behave as if you returned an empty cleanup function.
+חלק מהאפקטים לא מחזירים פונקציית ניקוי כללי. [לעתים קרובות יותר מאשר לא,](/learn/synchronizing-with-effects#how-to-handle-the-effect-firing-twice-in-development) תרצה להחזיר אחד--אבל אם לא, תגיב תתנהג כאילו החזרת פונקציית ניקוי ריקה.
 
 </Note>
 
-### Why synchronization may need to happen more than once {/*why-synchronization-may-need-to-happen-more-than-once*/}
+### מדוע ייתכן שהסנכרון צריך להתרחש יותר מפעם אחת {/*למה-למה-סנכרון-ייתכן-צריך-להתרחש-יותר-מפעם-אחת*/}
 
-Imagine this `ChatRoom` component receives a `roomId` prop that the user picks in a dropdown. Let's say that initially the user picks the `"general"` room as the `roomId`. Your app displays the `"general"` chat room:
+תא לעצמך שרכיב `ChatRoom` זה מקבל props `roomId` שהמשתמש בוחר בתפריט נפתח. נניח שבתחילה משתמש בוחר את החדר `"כללי"` בתור `roomId`. האפליקציה שלך מציגה את חדר הצ'אט `"כללי"`:
 
 ```js {3}
 const serverUrl = 'https://localhost:1234';
@@ -95,7 +95,7 @@ function ChatRoom({ roomId /* "general" */ }) {
 }
 ```
 
-After the UI is displayed, React will run your Effect to **start synchronizing.** It connects to the `"general"` room:
+לאחר הצגת ממשק משתמש, React יפעיל את האפקט שלך כדי **להתחיל לסנכרן.** הוא מתחבר לחדר `"כללי"`:
 
 ```js {3,4}
 function ChatRoom({ roomId /* "general" */ }) {
@@ -109,9 +109,9 @@ function ChatRoom({ roomId /* "general" */ }) {
   // ...
 ```
 
-So far, so good.
+עד כאן, כל כך טוב.
 
-Later, the user picks a different room in the dropdown (for example, `"travel"`). First, React will update the UI:
+מאוחר יותר, משתמש בוחר חדר אחר בתפריט הנפתח (לדוגמה, `"נסיעות"`). ראשית, הגיבו יעדכן את ממשק משתמש:
 
 ```js {1}
 function ChatRoom({ roomId /* "travel" */ }) {
@@ -120,20 +120,20 @@ function ChatRoom({ roomId /* "travel" */ }) {
 }
 ```
 
-Think about what should happen next. The user sees that `"travel"` is the selected chat room in the UI. However, the Effect that ran the last time is still connected to the `"general"` room. **The `roomId` prop has changed, so what your Effect did back then (connecting to the `"general"` room) no longer matches the UI.**
+תחשוב מה צריך לקרות אחר כך. משתמש רואה ש`"נסיעות"` הוא חדר הצ'אט הנבחר בממשק משתמש. עם זאת, האפקט שרץ בזמן הקודמת עדיין מחובר לחדר `"כללי"`. **props `roomId` השתנה, אז מה שהאפקט שלך עשה אז (התחברות לחדר `"כללי"`) כבר לא תואם למשק המשתמש.**
 
-At this point, you want React to do two things:
+בתוך זה, אתה רוצה ש-React תעשה שני דברים:
 
-1. Stop synchronizing with the old `roomId` (disconnect from the `"general"` room)
-2. Start synchronizing with the new `roomId` (connect to the `"travel"` room)
+1. הפסק לסנכרן עם `roomId` הישן (נתק מהחדר `"כללי"`)
+2. התחל לסנכרן עם `roomId` החדש (התחבר לחדר `"נסיעות"`)
 
-**Luckily, you've already taught React how to do both of these things!** Your Effect's body specifies how to start synchronizing, and your cleanup function specifies how to stop synchronizing. All that React needs to do now is to call them in the correct order and with the correct props and state. Let's see how exactly that happens.
+**למרבה המזל, כבר לימדת את React איך לעשות את שני הדברים האלה!** הגוף של האפקט שלך צריך להתחיל לסנכרן, ופונקציית הניקוי שלך מציינת איך להפסיק את הסנכרון. כל מה ש-React צריך לעשות עכשיו זה לקרוא להם נכון ועם הprops וstate הנכונים. בוא נראה בדיוק זה קורה.
 
-### How React re-synchronizes your Effect {/*how-react-re-synchronizes-your-effect*/}
+### איך מגיב מסנכרן מחדש את האפקט שלך {/*how-react-re-synchronizes-your-effect*/}
 
-Recall that your `ChatRoom` component has received a new value for its `roomId` prop. It used to be `"general"`, and now it is `"travel"`. React needs to re-synchronize your Effect to re-connect you to a different room.
+זכור שרכיב ה-ChatRoom שלך קיבל ערך חדש עבור ה-roomId שלו. פעם זה היה `"כללי"`, ועכשיו זה `"נסיעות"`. תגיב צריך לסנכרן מחדש את האפקט שלך כדי לחבר אותך מחדש לחדר אחר.
 
-To **stop synchronizing,** React will call the cleanup function that your Effect returned after connecting to the `"general"` room. Since `roomId` was `"general"`, the cleanup function disconnects from the `"general"` room:
+כדי **להפסיק לסנכרן,** תגובה תקרא לפונקציית הניקוי שהאפקט שלך החזיר לאחר התחברות לחדר `"כללי"`. מה ש-`roomId` היה `"כללי"`, פונקציית הניקוי מתנתקת מהחדר `"כללי"`:
 
 ```js {6}
 function ChatRoom({ roomId /* "general" */ }) {
@@ -146,7 +146,7 @@ function ChatRoom({ roomId /* "general" */ }) {
     // ...
 ```
 
-Then React will run the Effect that you've provided during this render. This time, `roomId` is `"travel"` so it will **start synchronizing** to the `"travel"` chat room (until its cleanup function is eventually called too):
+לאחר מכן, תגיב תריץ את האפקט שסיפקת על העיבוד הזה. הפעם, `roomId` `"travel"` כך שהוא **יתחיל להסתנכרן** לחדר הצ'אט `"travel"` (עד שפונקציית הניקוי שלו תיקרא בסוף דבר):
 
 ```js {3,4}
 function ChatRoom({ roomId /* "travel" */ }) {
@@ -156,29 +156,29 @@ function ChatRoom({ roomId /* "travel" */ }) {
     // ...
 ```
 
-Thanks to this, you're now connected to the same room that the user chose in the UI. Disaster averted!
+הודות לכך, אתה מחובר כעת לאותו חדר שהמשתמש בחר בממשק המשתמש. נמנע אסון!
 
-Every time after your component re-renders with a different `roomId`, your Effect will re-synchronize. For example, let's say the user changes `roomId` from `"travel"` to `"music"`. React will again **stop synchronizing** your Effect by calling its cleanup function (disconnecting you from the `"travel"` room). Then it will **start synchronizing** again by running its body with the new `roomId` prop (connecting you to the `"music"` room).
+בכל פעם לאחר שהרכיב שלך יוצג מחדש עם `roomId` אחר, האפקט שלך יסונכרן מחדש. לדוגמה, נניח שהמשתמש משנה את `roomId` מ`"travel"` ל`"music"`. תגיב שוב **תפסיק לסנכרן** את האפקט שלך על ידי קריאת פונקציית הניקוי שלו (תנתק אותך מחדר ה`"נסיעות"`). אז הוא **יתחיל לסנכרן** שוב על ידי הפעלת הגוף שלו עם props `roomId` החדש (חבר אותך לחדר `"מוזיקה").
 
-Finally, when the user goes to a different screen, `ChatRoom` unmounts. Now there is no need to stay connected at all. React will **stop synchronizing** your Effect one last time and disconnect you from the `"music"` chat room.
+לבסוף, כאשר המשתמש עובר למסך אחר, `ChatRoom` מתבטל. עכשיו אין צורך להישאר מחובר בכלל. תגיב **תפסיק לסנכרן** את האפקט שלך בפעם האחרונה ותנתק אותך מחדר הצ'אט `"מוזיקה"`.
 
-### Thinking from the Effect's perspective {/*thinking-from-the-effects-perspective*/}
+### חשיבה מנקודת המבט של האפקט {/*חשיבה-מנקודת-המבט-של-ההשפעות*/}
 
-Let's recap everything that's happened from the `ChatRoom` component's perspective:
+בואו נסכם את כל מה שקרה מנקודת המבט של רכיב ה-ChatRoom:
 
-1. `ChatRoom` mounted with `roomId` set to `"general"`
-1. `ChatRoom` updated with `roomId` set to `"travel"`
-1. `ChatRoom` updated with `roomId` set to `"music"`
-1. `ChatRoom` unmounted
+1. `ChatRoom` מותקן כאשר `roomId` מוגדר ל`"כללי"`
+1. `ChatRoom` עודכן עם `roomId` מוגדר ל`"נסיעות"`
+1. `ChatRoom` עודכן עם `roomId` מוגדר ל`"מוזיקה"`
+1. 'ChatRoom' בוטה
 
-During each of these points in the component's lifecycle, your Effect did different things:
+במהלך כל אחת מהנקודות הללו במחזור החיים של הרכיב, האפקט שלך עשה דברים שונים:
 
-1. Your Effect connected to the `"general"` room
-1. Your Effect disconnected from the `"general"` room and connected to the `"travel"` room
-1. Your Effect disconnected from the `"travel"` room and connected to the `"music"` room
-1. Your Effect disconnected from the `"music"` room
+1. האפקט שלך מחובר לחדר `"כללי"`
+1. האפקט שלך התנתק מהחדר `"כללי"` והתחבר לחדר `"נסיעות"`
+1. האפקט שלך התנתק מחדר `"נסיעות"` והתחבר לחדר `"מוזיקה"`
+1. האפקט שלך מנותק מחדר `"מוזיקה"`
 
-Now let's think about what happened from the perspective of the Effect itself:
+עכשיו בואו נחשוב על מה שקרה מנקודת המבט של האפקט עצמו:
 
 ```js
   useEffect(() => {
@@ -192,21 +192,21 @@ Now let's think about what happened from the perspective of the Effect itself:
   }, [roomId]);
 ```
 
-This code's structure might inspire you to see what happened as a sequence of non-overlapping time periods:
+המבנה של הקוד הזה עשוי לתת לך השראה לראות מה קרה כרצף של פרקי זמן שאינם חופפים:
 
-1. Your Effect connected to the `"general"` room (until it disconnected)
-1. Your Effect connected to the `"travel"` room (until it disconnected)
-1. Your Effect connected to the `"music"` room (until it disconnected)
+1. האפקט שלך התחבר לחדר `"כללי"` (עד שהוא התנתק)
+1. האפקט שלך התחבר לחדר `"נסיעות"` (עד שהוא התנתק)
+1. האפקט שלך התחבר לחדר `"מוזיקה"` (עד שהוא התנתק)
 
-Previously, you were thinking from the component's perspective. When you looked from the component's perspective, it was tempting to think of Effects as "callbacks" or "lifecycle events" that fire at a specific time like "after a render" or "before unmount". This way of thinking gets complicated very fast, so it's best to avoid.
+בעבר, חשבת מנקודת המבט של הרכיב. כשהסתכלת מנקודת המבט של הרכיב, זה היה מפתה לחשוב על אפקטים כעל "התקשרות חוזרת" או "אירועי מחזור חיים" שנורים בזמן מסוים כמו "לאחר עיבוד" או "לפני ביטול ההרכבה". צורת החשיבה הזו מסתבכת מהר מאוד, ולכן עדיף להימנע.
 
-**Instead, always focus on a single start/stop cycle at a time. It shouldn't matter whether a component is mounting, updating, or unmounting. All you need to do is to describe how to start synchronization and how to stop it. If you do it well, your Effect will be resilient to being started and stopped as many times as it's needed.**
+** במקום זאת, התמקד תמיד במחזור התחלה/עצירה בודד בכל פעם. אין זה משנה אם רכיב מותקן, מתעדכן או מבטל. כל מה שאתה צריך לעשות הוא לתאר כיצד להתחיל סנכרון וכיצד לעצור אותו. אם תעשה את זה טוב, האפקט שלך יהיה עמיד בפני הפעלה ועצירה כמה פעמים שיידרש.**
 
-This might remind you how you don't think whether a component is mounting or updating when you write the rendering logic that creates JSX. You describe what should be on the screen, and React [figures out the rest.](/learn/reacting-to-input-with-state)
+זה יכול להאמין לך איך אתה לא אם רכיב מועלה או מתעדכן שאתה כותב את לוגיקת הרינדור יוצר JSX. אתה מתאר מה צריך להיות על המסך, ומגיב [מבין את השאר.](/learn/reacting-to-input-with-state)
 
-### How React verifies that your Effect can re-synchronize {/*how-react-verifies-that-your-effect-can-re-synchronize*/}
+### איך React מאמת שהאפקט שלך יכול להסתנכרן מחדש {/*how-react-verifies-that-your-react-can-re-synchronize*/}
 
-Here is a live example that you can play with. Press "Open chat" to mount the `ChatRoom` component:
+הנה דוגמה חיה אתה צריך לשחק איתה. לחץ על "פתח צ'אט" כדי לטעון את הרכיב `ChatRoom`:
 
 <Sandpack>
 
@@ -272,23 +272,23 @@ button { margin-left: 10px; }
 
 </Sandpack>
 
-Notice that when the component mounts for the first time, you see three logs:
+שים לב שכאשר הרכיב נטען בפעם הראשונה, אתה רואה שלושה יומנים:
 
-1. `✅ Connecting to "general" room at https://localhost:1234...` *(development-only)*
-1. `❌ Disconnected from "general" room at https://localhost:1234.` *(development-only)*
-1. `✅ Connecting to "general" room at https://localhost:1234...`
+1. `✅ מתחבר לחדר "כללי" בכתובת https://localhost:1234...` *(לפיתוח בלבד)*
+1. `❌ מנותק מהחדר "כללי" בכתובת https://localhost:1234.` *(לפיתוח בלבד)*
+1. `✅ מתחבר לחדר "כללי" בכתובת https://localhost:1234...`
 
-The first two logs are development-only. In development, React always remounts each component once.
+שני היומנים הם הראשונים לפיתוח בלבד. בפיתוח, תגיב תמיד מחזיר כל רכיב פעם אחת.
 
-**React verifies that your Effect can re-synchronize by forcing it to do that immediately in development.** This might remind you of opening a door and closing it an extra time to check if the door lock works. React starts and stops your Effect one extra time in development to check [you've implemented its cleanup well.](/learn/synchronizing-with-effects#how-to-handle-the-effect-firing-twice-in-development)
+**הגיב מאמת שהאפקט שלך יכול להסתנכרן מחדש על ידי אילוץ לעשות זאת מיד בפיתוח.** זה עשוי להזכיר לך לפתוח דלת ולסגור אותה פעם נוספת כדי לבדוק אם מנעול הדלת עובד. תגובה מתחילה ומפסיקה את האפקט שלך פעם נוספת בפיתוח כדי לבדוק [ישמת את הניקוי שלו היטב.](/למד/סנכרן-עם-אפקטים#איך- לטפל באפקט-ירי-פעמיים-בפיתוח)
 
-The main reason your Effect will re-synchronize in practice is if some data it uses has changed. In the sandbox above, change the selected chat room. Notice how, when the `roomId` changes, your Effect re-synchronizes.
+מהי התנהלות העבודה שלך. בארגז החול למעלה, שנה את חדר הצ'אט שנבחר. שים לב איך שלך, כאשר ה-'roomId' מתהפך, האפקט מסתנכרן מחדש.
 
-However, there are also more unusual cases in which re-synchronization is necessary. For example, try editing the `serverUrl` in the sandbox above while the chat is open. Notice how the Effect re-synchronizes in response to your edits to the code. In the future, React may add more features that rely on re-synchronization.
+עם זאת, יש גם מקרים חריגים יותר יש צורך בסנכרון מחדש. לדוגמה, נסה לערוך את `serverUrl` בארגז החול למעלה בזמן שהצ'אט פתוח. שימו לב איך האפקט מסתנכרן מחדש בתגובה לעריכות שלכם בקוד. אם אפשר, React עשויה להוסיף תכונה נוספת של הסנכרון מחדש.
 
-### How React knows that it needs to re-synchronize the Effect {/*how-react-knows-that-it-needs-to-re-synchronize-the-effect*/}
+### איך React יודע שהוא צריך לסנכרן מחדש את האפקט {/*how-react-יודע-שצריך-לחדש-לסנכרן-את-האפקט*/}
 
-You might be wondering how React knew that your Effect needed to re-synchronize after `roomId` changes. It's because *you told React* that its code depends on `roomId` by including it in the [list of dependencies:](/learn/synchronizing-with-effects#step-2-specify-the-effect-dependencies)
+אולי אתה תוהה איך React ידע שהאפקט שלך צריך להסתנכרן מחדש לאחר שינויים ב-'roomId'. זה בגלל ש*אמרת ל-React* שהקוד שלו תלוי ב-'roomId' על ידי הכללתו ב-[רשימת התלות:](/learn/synchronizing-with-effects#step-2-specific-the-effect-dependencies)
 
 ```js {1,3,8}
 function ChatRoom({ roomId }) { // The roomId prop may change over time
@@ -302,19 +302,19 @@ function ChatRoom({ roomId }) { // The roomId prop may change over time
   // ...
 ```
 
-Here's how this works:
+הנה איך זה עובד:
 
-1. You knew `roomId` is a prop, which means it can change over time.
-2. You knew that your Effect reads `roomId` (so its logic depends on a value that may change later).
-3. This is why you specified it as your Effect's dependency (so that it re-synchronizes when `roomId` changes).
+1. ידעת ש'roomId' הוא props, מה שאומר שהוא יכול להשתנות עם הזמן.
+2. ידעת שהאפקט שלך קורא `roomId` (כך שהלוגיקה שלו תלויה בערך שעשוי להשתנות מאוחר יותר).
+3. אתה מחפש את זה בתור התלות של האפקט (כך שהוא יסונכרן מחדש כאשר `roomId` מתרוצץ).
 
-Every time after your component re-renders, React will look at the array of dependencies that you have passed. If any of the values in the array is different from the value at the same spot that you passed during the previous render, React will re-synchronize your Effect.
+בכל פעם לאחר עיבוד מחדש של הרכיב שלך, תגיב יסתכל על מערך התלות שעברו. אם אחד מהערכים במערך שונה מהערך בנקודה שעברה בעיבוד הקודם, תגיב יסנכרן מחדש את האפקט שלך.
 
-For example, if you passed `["general"]` during the initial render, and later you passed `["travel"]` during the next render, React will compare `"general"` and `"travel"`. These are different values (compared with [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is)), so React will re-synchronize your Effect. On the other hand, if your component re-renders but `roomId` has not changed, your Effect will remain connected to the same room.
+לדוגמה, אם עברת את `["כללי"]`בהמשך הרנדור הראשוני, ובהמשך עברת את `["נסיעות"]`על הרינדור הבא, הגיבו ישווה את `"כללי"` ו`"נסיעות"`. אלו הם ערכים שונים (בהשוואה ל-[`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is)), אז React יסנכרן מחדש את האפקט שלך. מצד שני, אם הרכיב שלך מעבד מחדש אבל `roomId` לא השתתנה, האפקט שלך יישאר מחובר לאותו חדר.
 
-### Each Effect represents a separate synchronization process {/*each-effect-represents-a-separate-synchronization-process*/}
+### כל אפקט מייצג תהליך סנכרון נפרד {/*כל-אפקט-מייצג-תהליך-סינכרון-נפרד*/}
 
-Resist adding unrelated logic to your Effect only because this logic needs to run at the same time as an Effect you already wrote. For example, let's say you want to send an analytics event when the user visits the room. You already have an Effect that depends on `roomId`, so you might feel tempted to add the analytics call there:
+הימנע מהוספת היגיון לא קשור לאפקט שלך רק בגלל שהלוגיקה הזו צריכה לפעול לפקודת כתבת. לדוגמה, אני רוצה לשלוח אירוע ניתוח כאשר אתה מבקר בחדר. כבר יש לך אפקט שתלוי ב-'roomId', אז אולי תתפתה להוסיף לשם את קריאת הניתוח:
 
 ```js {3}
 function ChatRoom({ roomId }) {
@@ -330,7 +330,7 @@ function ChatRoom({ roomId }) {
 }
 ```
 
-But imagine you later add another dependency to this Effect that needs to re-establish the connection. If this Effect re-synchronizes, it will also call `logVisit(roomId)` for the same room, which you did not intend. Logging the visit **is a separate process** from connecting. Write them as two separate Effects:
+אבל תארו לעצמכם שלאחר הוא תוסיפו תלות נוספות לאפקט הזה שצריכה ליצור מחדש את הקשר. אם אפקט זה יסונכרן מחדש, הוא יקרא גם `logVisit(roomId)` עבור אותו חדר, שלא התכוונת. רישום הביקור **הוא תהליך נפרד** מהחיבור. כתוב אותם כשני אפקטים נפרדים:
 
 ```js {2-4}
 function ChatRoom({ roomId }) {
@@ -346,13 +346,13 @@ function ChatRoom({ roomId }) {
 }
 ```
 
-**Each Effect in your code should represent a separate and independent synchronization process.**
+**כל אפקט בקוד שלך צריך לייצג תהליך סנכרון נפרד ובלתי תלוי.**
 
-In the above example, deleting one Effect wouldn’t break the other Effect's logic. This is a good indication that they synchronize different things, and so it made sense to split them up. On the other hand, if you split up a cohesive piece of logic into separate Effects, the code may look "cleaner" but will be [more difficult to maintain.](/learn/you-might-not-need-an-effect#chains-of-computations) This is why you should think whether the processes are same or separate, not whether the code looks cleaner.
+בדוגמה שלמעלה, מחיקת אפקט אחד לא תשבור את ההיגיון של האפקט השני. זו אינדיקציה טובה שהם מסנכרנים דברים שונים, זה היה הגיוני לפצל אותם. שני, אם תפצל פיסת היגיון מגובשת לאפקטים נפרדים, הקוד עשוי להיראות "נקי" יותר אבל [קשה יותר לתחזוקה.](/learn/you-might-not-need-an-effect#chains-of-computations) אתה צריך לחשוב אם התהליכים האלה או נפרדים, לא אם הקוד נראה נקי יותר.
 
-## Effects "react" to reactive values {/*effects-react-to-reactive-values*/}
+## אפקטים "מגיבים" לערכים תגובתים {/*effects-react-to-reactive-values*/}
 
-Your Effect reads two variables (`serverUrl` and `roomId`), but you only specified `roomId` as a dependency:
+האפקט שלך קורא שני משתנים (`serverUrl` ו-`roomId`), אך ציינת רק `roomId` כתלות:
 
 ```js {5,10}
 const serverUrl = 'https://localhost:1234';
@@ -369,13 +369,13 @@ function ChatRoom({ roomId }) {
 }
 ```
 
-Why doesn't `serverUrl` need to be a dependency?
+למה `serverUrl` לא צריך להיות תלות?
 
-This is because the `serverUrl` never changes due to a re-render. It's always the same no matter how many times the component re-renders and why. Since `serverUrl` never changes, it wouldn't make sense to specify it as a dependency. After all, dependencies only do something when they change over time!
+למה היא חושבת ש-'serverUrl' לעולם לא מדרגת עקב עיבוד מחדש. זה תמיד אותו הדבר, לא משנה כמה פעמים הרכיב יוצג מחדש ולמה. זה ש-'serverUrl' לעולם לא משתנה, לא יהיה הגיוני לציין זאת כתלות. אחרי הכל, תלות עושה משהו רק כשהן משתנות עם הזמן!
 
-On the other hand, `roomId` may be different on a re-render. **Props, state, and other values declared inside the component are _reactive_ because they're calculated during rendering and participate in the React data flow.**
+מצד שני, `roomId` עשוי להיות שונה בעיבוד מחדש. **props, מצב וערכים אחרים המוצהרים בתוך הרכיב הם _reactive_ מה שהם מחושבים על העיבוד והמשתתפים בזרימת יום של React.**
 
-If `serverUrl` was a state variable, it would be reactive. Reactive values must be included in dependencies:
+אם `serverUrl` היה משתנה מצב, הוא היה מגיב. ערכים תגובתיים חייבים להיכלל בתלות:
 
 ```js {2,5,10}
 function ChatRoom({ roomId }) { // Props change over time
@@ -392,9 +392,9 @@ function ChatRoom({ roomId }) { // Props change over time
 }
 ```
 
-By including `serverUrl` as a dependency, you ensure that the Effect re-synchronizes after it changes.
+על ידי הכללת 'serverUrl' כתלות, אתה מבטיח שהאפקט יסונכרן מחדש לאחר שהוא משתנה.
 
-Try changing the selected chat room or edit the server URL in this sandbox:
+נסה לשנות את חדר הצ'אט שנבחר או לערוך את כתובת האתר של השרת בארגז החול הזה:
 
 <Sandpack>
 
@@ -468,11 +468,11 @@ button { margin-left: 10px; }
 
 </Sandpack>
 
-Whenever you change a reactive value like `roomId` or `serverUrl`, the Effect re-connects to the chat server.
+בכל פעם שאתה משנה ערך תגובתי כמו `roomId` או `serverUrl`, האפקט מתחבר מחדש לשרת הצ'אט.
 
-### What an Effect with empty dependencies means {/*what-an-effect-with-empty-dependencies-means*/}
+### המשמעות של אפקט עם תלות ריקות {/*מה-משמעות-אפקט-עם-תלות-ריקות*/}
 
-What happens if you move both `serverUrl` and `roomId` outside the component?
+מה קורה אם אתה מעביר גם `serverUrl` וגם `roomId` מחוץ לרכיב?
 
 ```js {1,2}
 const serverUrl = 'https://localhost:1234';
@@ -490,9 +490,9 @@ function ChatRoom() {
 }
 ```
 
-Now your Effect's code does not use *any* reactive values, so its dependencies can be empty (`[]`).
+כעת הקוד של האפקט שלך אינו משתמש ב*שום* ערכים תגובתיים, ולכן התלות שלו יכולה להיות ריקות (`[]`).
 
-Thinking from the component's perspective, the empty `[]` dependency array means this Effect connects to the chat room only when the component mounts, and disconnects only when the component unmounts. (Keep in mind that React would still [re-synchronize it an extra time](#how-react-verifies-that-your-effect-can-re-synchronize) in development to stress-test your logic.)
+בחשיבה מנקודת המבט של הרכיב, מערך התלות הריק `[]` אומר שהאפקט הזה מתחבר לחדר הצ'אט רק כאשר הרכיב עולה, ומתנתק רק כאשר הרכיב מתנתק. (זכור ש-React עדיין [יסנכרן אותו שוב פעם נוספת](#how-react-verifies-that-your-react-can-re-synchronize) בפיתוח כדי לבחון את ההיגיון שלך.)
 
 
 <Sandpack>
@@ -548,13 +548,13 @@ button { margin-left: 10px; }
 
 </Sandpack>
 
-However, if you [think from the Effect's perspective,](#thinking-from-the-effects-perspective) you don't need to think about mounting and unmounting at all. What's important is you've specified what your Effect does to start and stop synchronizing. Today, it has no reactive dependencies. But if you ever want the user to change `roomId` or `serverUrl` over time (and they would become reactive), your Effect's code won't change. You will only need to add them to the dependencies.
+עם זאת, אם אתה [חושב מנקודת המבט של האפקט,](#חשיבה-מ-the-effects-perspective) אינך צריך לחשוב על הרכבה וביטול כללי. מה שחשוב הוא שציינת מה האפקט שלך עושה כדי להתחיל להפסיק את הסנכרון. היום, אין לו תלות תגוית. אבל אם אי פעם תרצה שהמשתמש ישנה את `roomId` או `serverUrl` לאורך זמן (והם יהפכו לתגובתי), הקוד של האפקט שלך לא ישתנה. תצטרך רק להוסיף אותם לתלות.
 
-### All variables declared in the component body are reactive {/*all-variables-declared-in-the-component-body-are-reactive*/}
+### כל המשתנים המוצהרים בגוף הרכיב הם תגובתיים {/*כל-המשתנים-מוצהרים-בגוף-הרכיב-הם-ריאקטיביים*/}
 
-Props and state aren't the only reactive values. Values that you calculate from them are also reactive. If the props or state change, your component will re-render, and the values calculated from them will also change. This is why all variables from the component body used by the Effect should be in the Effect dependency list.
+props וstate הם לא הערכים התגובתיים היחידים. ערכים מחשבים שהם גם ריאקטיביים. אם הprops או הstate ישתנו, הרכיב שלך יוצג מחדש, וגם הערכים המחושבים מהם ישתנו. צריך להיות ברשימת התלות של אפקט.
 
-Let's say that the user can pick a chat server in the dropdown, but they can also configure a default server in settings. Suppose you've already put the settings state in a [context](/learn/scaling-up-with-reducer-and-context) so you read the `settings` from that context. Now you calculate the `serverUrl` based on the selected server from props and the default server:
+נניח שהמשתמש יכול לבחור שרת צ'אט בתפריט הנפתח, אבל הוא יכול גם להגדיר שרת ברירת מחדל בהגדרות. נניח שמת את מצב ההגדרות ב-[הקשר](/learn/scaling-up-with-reducer-and-context) אז אתה קורא את ההגדרות' מהקשר זה. עכשיו אתה מחשב את ה-serverUrl על סמך השרת שנבחר מprops ושרת ברירת המחדל:
 
 ```js {3,5,10}
 function ChatRoom({ roomId, selectedServerUrl }) { // roomId is reactive
@@ -571,29 +571,29 @@ function ChatRoom({ roomId, selectedServerUrl }) { // roomId is reactive
 }
 ```
 
-In this example, `serverUrl` is not a prop or a state variable. It's a regular variable that you calculate during rendering. But it's calculated during rendering, so it can change due to a re-render. This is why it's reactive.
+בדוגמה זו, `serverUrl` אינו מאפין או שינוי מצב. זה ranking רגיל שאתה מחשב את העיבוד. אבל זה מחושב על העיבוד, כך שהוא יכול להשתנות עקב עיבוד מחדש. אני חושב שהוא מגיב.
 
-**All values inside the component (including props, state, and variables in your component's body) are reactive. Any reactive value can change on a re-render, so you need to include reactive values as Effect's dependencies.**
+**כל הערכים בתוך הרכיב (כולל props, מצב ומשתנים בגוף הרכיב שלך) הם תגובתיים. כל ערך תגובתי יכול להשתנות בעיבוד מחדש, לכן עליך לכלול ערכים תגובתיים כתלות של אפקט.**
 
-In other words, Effects "react" to all values from the component body.
+במילים אחרות, אפקטים "מגיבים" לכל הערכים מגוף הרכיב.
 
 <DeepDive>
 
-#### Can global or mutable values be dependencies? {/*can-global-or-mutable-values-be-dependencies*/}
+#### האם ערכים גלובליים או ניתנים לשינוי יכולים להיות תלות? {/*יכולות-גלובליות-או-שינוי-ערכים-להיות-תלות*/}
 
-Mutable values (including global variables) aren't reactive.
+ערכים הניתנים לשינוי (כולל משתנים גלובליים) אינם מגיבים.
 
-**A mutable value like [`location.pathname`](https://developer.mozilla.org/en-US/docs/Web/API/Location/pathname) can't be a dependency.** It's mutable, so it can change at any time completely outside of the React rendering data flow. Changing it wouldn't trigger a re-render of your component. Therefore, even if you specified it in the dependencies, React *wouldn't know* to re-synchronize the Effect when it changes. This also breaks the rules of React because reading mutable data during rendering (which is when you calculate the dependencies) breaks [purity of rendering.](/learn/keeping-components-pure) Instead, you should read and subscribe to an external mutable value with [`useSyncExternalStore`.](/learn/you-might-not-need-an-effect#subscribing-to-an-external-store)
+**ערך שינוי כמו [`location.pathname`](https://developer.mozilla.org/en-US/docs/Web/API/Location/pathname) לא יכול להיות תלות.** הוא יכול להשתנות, כך שהוא יכול להשתנות בכל עת מחוץ לזרימה של React. שינוי זה לא פעיל עיבוד מחדש של הרכיב שלך. לשינוי העיבוד (שזה כאשר אתה מחשב את התלות) שובר את [טוהר העיבוד.](/learn/keeping-components-pure) במקום זאת, עליך לקרוא ולהירשם לערך חיצוני לשינוי עם [`useSyncExternalStore`.](/learn/you-might-not-need-an-effect#subscribing-to-an-external-store)
 
-**A mutable value like [`ref.current`](/reference/react/useRef#reference) or things you read from it also can't be a dependency.** The ref object returned by `useRef` itself can be a dependency, but its `current` property is intentionally mutable. It lets you [keep track of something without triggering a re-render.](/learn/referencing-values-with-refs) But since changing it doesn't trigger a re-render, it's not a reactive value, and React won't know to re-run your Effect when it changes.
+**ערך ניתן לשינוי כמו [`ref.current`](/reference/react/useRef#reference) או שאתה קורא ממנו גם לא להיות תלות.** דברים רפר שמוחזר על ידי `useRef` עצמו יכול להיות תלות, אבל המאפיין `current` הוא יכול לשנות בכוונה. זה יכול לך להפעיל רינדור מחדש.](/learn/referencing-values-with-refs)
 
-As you'll learn below on this page, a linter will check for these issues automatically.
+כפי שתלמד להלן בדף זה, סרגל יבדוק בעיות אלו באופן אוטומטי.
 
 </DeepDive>
 
-### React verifies that you specified every reactive value as a dependency {/*react-verifies-that-you-specified-every-reactive-value-as-a-dependency*/}
+### React מאמת שציינת כל ערך תגובתי כתלות {/*react-verifies-that-you-speed-every-reactive-value-as-a-dependency*/}
 
-If your linter is [configured for React,](/learn/editor-setup#linting) it will check that every reactive value used by your Effect's code is declared as its dependency. For example, this is a lint error because both `roomId` and `serverUrl` are reactive:
+אם ה-linter שלך הוא [מוגדר עבור React,](/learn/editor-setup#linting) הוא יבדוק שכל ערך תגובתי המשמש את הקוד של האפקט שלך מוכרז כתלות שלו. לדוגמה, זו שגיאת מוך זה גם `roomId` וגם `serverUrl` מגיבים:
 
 <Sandpack>
 
@@ -667,9 +667,9 @@ button { margin-left: 10px; }
 
 </Sandpack>
 
-This may look like a React error, but really React is pointing out a bug in your code. Both `roomId` and `serverUrl` may change over time, but you're forgetting to re-synchronize your Effect when they change. You will remain connected to the initial `roomId` and `serverUrl` even after the user picks different values in the UI.
+זה אולי נראה כמו שגיאת React, אבל באמת React מצביע על באג בקוד שלך. גם `roomId` וגם `serverUrl` משתלבות להשתנות עם הזמן, אבל אתה שוכח לסנכרן מחדש את האפקט שלך כשהם משתנים. אתה תישאר מחובר ל-'roomId' ו-'serverUrl' הראשוניים גם לאחר שהמשתמש יבחר ערכים שונים בממשק המשתמש.
 
-To fix the bug, follow the linter's suggestion to specify `roomId` and `serverUrl` as dependencies of your Effect:
+כדי לתקן את הבאג, עקוב אחר ההצעה של ה-linter כדי לציין `roomId` ו- `serverUrl` כתלות של האפקט שלך:
 
 ```js {9}
 function ChatRoom({ roomId }) { // roomId is reactive
@@ -685,19 +685,19 @@ function ChatRoom({ roomId }) { // roomId is reactive
 }
 ```
 
-Try this fix in the sandbox above. Verify that the linter error is gone, and the chat re-connects when needed.
+נסה את התיקון הזה בארגז החול למעלה. ודא ששגיאת ה-linter נעלמה, והצ'אט מתחבר מחדש בעת הצורך.
 
 <Note>
 
-In some cases, React *knows* that a value never changes even though it's declared inside the component. For example, the [`set` function](/reference/react/useState#setstate) returned from `useState` and the ref object returned by [`useRef`](/reference/react/useRef) are *stable*--they are guaranteed to not change on a re-render. Stable values aren't reactive, so you may omit them from the list. Including them is allowed: they won't change, so it doesn't matter.
+אפשרות, תגובה *יודע* שערך לעולם לא משתנה למרות שהוא מוצהר בתוך הרכיב. לדוגמה, הפונקציה [`set`](/reference/react/useState#setstate) המוחזרת מ`useState` ואובייקט ref המוחזר על ידי [`useRef`](/reference/react/useRef) הם *יציבים*--מובטח שהם לא ישנו בעיבוד מחדש. ערכים יציבים אינם מגיבים, אז אתה יכול להשמיט אותם מהרשימה. לרבות אותם מותר: לא ישתנו, אז זה לא משנה.
 
 </Note>
 
-### What to do when you don't want to re-synchronize {/*what-to-do-when-you-dont-want-to-re-synchronize*/}
+### מה לעשות כשאתה לא רוצה לסנכרן מחדש {/*מה-לעשות-כשאתה-אינך-רוצה-לסנכרן-מחדש*/}
 
-In the previous example, you've fixed the lint error by listing `roomId` and `serverUrl` as dependencies.
+בדוגמה הקודמת, תיקנת את שגיאת המוך על ידי רישום 'roomId' ו-'serverUrl' כתלות.
 
-**However, you could instead "prove" to the linter that these values aren't reactive values,** i.e. that they *can't* change as a result of a re-render. For example, if `serverUrl` and `roomId` don't depend on rendering and always have the same values, you can move them outside the component. Now they don't need to be dependencies:
+**עם זאת, אתה יכול במקום "להוכיח" ל-Linter שערכים אלה הם ערכים תגוב,** כלומר שהם *לא יכולים* להשתנות כמו עיבוד מחדש. לדוגמה, אם `serverUrl` ו`roomId` לא תלויים בעיבוד ותמיד יש להם ערכים, אתה יכול להעביר אותם מחוץ לרכיב. עכשיו הם לא צריכים להיות תלות:
 
 ```js {1,2,11}
 const serverUrl = 'https://localhost:1234'; // serverUrl is not reactive
@@ -715,7 +715,7 @@ function ChatRoom() {
 }
 ```
 
-You can also move them *inside the Effect.* They aren't calculated during rendering, so they're not reactive:
+אתה יכול גם להזיז אותם *בתוך האפקט.* הם לא מחושבים במהלך העיבוד, כך שהם לא מגיבים:
 
 ```js {3,4,10}
 function ChatRoom() {
@@ -732,21 +732,21 @@ function ChatRoom() {
 }
 ```
 
-**Effects are reactive blocks of code.** They re-synchronize when the values you read inside of them change. Unlike event handlers, which only run once per interaction, Effects run whenever synchronization is necessary.
+**אפקטים הם בלHooks תגובתיים של קוד.** הם מסתנכרנים מחדש כאשר הערכים שאתה קורא בתוכם משתנים. שלא כמו מטפלי אירועים, פועלים רק פעם אחת בכל אינטראקציה, אפקטים פועלים בכל פעם שצריך בסנכרון.
 
-**You can't "choose" your dependencies.** Your dependencies must include every [reactive value](#all-variables-declared-in-the-component-body-are-reactive) you read in the Effect. The linter enforces this. Sometimes this may lead to problems like infinite loops and to your Effect re-synchronizing too often. Don't fix these problems by suppressing the linter! Here's what to try instead:
+**אתה לא יכולה "לבחור" את התלות שלך.** התלות שלך חייבת לכלול את כל [ערך תגובתי](#all-variables-declared-in-the-component-body-are-reactive) אתה קורא באפקט. הליטר אוכף את זה. לפעמים זה יכול להוביל לבעיות כמו אינסופיות ולסנכרון מחדש של האפקט שלך בטווח מדי. אל תתקן את הבעיות הללו על ידי דיכוי ה-linter! הנה מה לנסות במקום:
 
-* **Check that your Effect represents an independent synchronization process.** If your Effect doesn't synchronize anything, [it might be unnecessary.](/learn/you-might-not-need-an-effect) If it synchronizes several independent things, [split it up.](#each-effect-represents-a-separate-synchronization-process)
+* **בדוק שהאפקט שלך מייצג לעבוד סנכרון עצמאי.** אם האפקט שלך לא מסנכרן שום דבר, [ייתכן שהוא מיותר.](/learn/you-might-not-need-an-effect)
 
-* **If you want to read the latest value of props or state without "reacting" to it and re-synchronizing the Effect,** you can split your Effect into a reactive part (which you'll keep in the Effect) and a non-reactive part (which you'll extract into something called an _Effect Event_). [Read about separating Events from Effects.](/learn/separating-events-from-effects)
+* **אם אתה רוצה לקרוא את הערך העדכני של props או מצב מצב "להגיב" אליו ולסנכרן מחדש את האפקט,** אתה יכול לפצל את האפקט שלך לחלק תגובתי (שאותו תשמור באפקט) וחלק לא תגובתי (שאותו תחלץ למשהו שנקרא _Effect Event_). [קרא על הפרדת אירועים מהאפקטים.](/learn/separating-events-from-effects)
 
-* **Avoid relying on objects and functions as dependencies.** If you create objects and functions during rendering and then read them from an Effect, they will be different on every render. This will cause your Effect to re-synchronize every time. [Read more about removing unnecessary dependencies from Effects.](/learn/removing-effect-dependencies)
+* **הימנע מהסתמכות על אובייקטים ופונקציות כתלות.** אם אתה יוצר אובייקטים ופונקציות העיבוד הוא קורא אותם מאפקט, הם יהיו שונים בכל עיבוד. זה יגרום לאפקט שלך להסתנכרן מחדש בכל פעם. [קרא עוד על הסרת תלות מיותרת מ- Effects.](/learn/removing-effect-dependencies)
 
 <Pitfall>
 
-The linter is your friend, but its powers are limited. The linter only knows when the dependencies are *wrong*. It doesn't know *the best* way to solve each case. If the linter suggests a dependency, but adding it causes a loop, it doesn't mean the linter should be ignored. You need to change the code inside (or outside) the Effect so that that value isn't reactive and doesn't *need* to be a dependency.
+ה-Linter הוא חבר שלך, אבל כוחותיו מוגבלים. ה-לינטר יודע רק מתי התלות *שגויה*. הוא לא יודע הדרך *הכי טובה* לפתור את כל המקרה. אם ה-linter מציע תלות, אבל הוספה שלו גורמת ללולאה, זה לא אומר להתעלם מה-linter. אתה צריך לשנות את הקוד בתוך (או מחוץ) האפקט כך שהערך הזה לא יהיה תגובתי ולא *צריך* להיות תלות.
 
-If you have an existing codebase, you might have some Effects that suppress the linter like this:
+אם יש לך בסיס קוד קיים, אולי יהיו לך כמה אפקטים שמדכאים את ה-linter כך:
 
 ```js {3-4}
 useEffect(() => {
@@ -756,34 +756,34 @@ useEffect(() => {
 }, []);
 ```
 
-On the [next](/learn/separating-events-from-effects) [pages](/learn/removing-effect-dependencies), you'll learn how to fix this code without breaking the rules. It's always worth fixing!
+ב-[הבא](/learn/separating-events-from-effects) [pages](/learn/removing-effect-dependencies), תלמד כיצד לתקן את הקוד הזה לבד לשבור את הכללים. תמיד כדאי לתקן!
 
 </Pitfall>
 
 <Recap>
 
-- Components can mount, update, and unmount.
-- Each Effect has a separate lifecycle from the surrounding component.
-- Each Effect describes a separate synchronization process that can *start* and *stop*.
-- When you write and read Effects, think from each individual Effect's perspective (how to start and stop synchronization) rather than from the component's perspective (how it mounts, updates, or unmounts).
-- Values declared inside the component body are "reactive".
-- Reactive values should re-synchronize the Effect because they can change over time.
-- The linter verifies that all reactive values used inside the Effect are specified as dependencies.
-- All errors flagged by the linter are legitimate. There's always a way to fix the code to not break the rules.
+- רכיבים יכולים לעלות, לעדכן ולבטל את הטעינה.
+- לכל אפקט יש מחזור חיים נפרד מהרכיב שמסביב.
+- כל אפקט מתאר תהליך סנכרון נפרד שיכול *להתחיל* ו*להפסיק*.
+- כשאתה כותב וקורא אפקטים, חשבו מנקודת המבט של כל אפקט בנפרד (איך להתחיל ולהפסיק את הסנכרון) ולא מנקודת המבט של הרכיב (איך הוא נטען, מתעדכן או מבטל).
+- ערכים המוצהרים בתוך גוף הרכיב הם "ריאקטיביים".
+- ערכים ריאקטיביים צריכים לסנכרן מחדש את האפקט מכיוון שהם יכולים להשתנות עם הזמן.
+- ה-Linter מוודא שכל הערכים התגובתיים המשמשים בתוך האפקט מצוינים כתלות.
+- כל השגיאות המסומנות על ידי ה-linter הן לגיטימיות. תמיד יש דרך לתקן את הקוד כדי לא לשבור את הכללים.
 
 </Recap>
 
 <Challenges>
 
-#### Fix reconnecting on every keystroke {/*fix-reconnecting-on-every-keystroke*/}
+#### תיקון חיבור מחדש בכל הקשה {/*תיקון-חיבור-מחדש-בכל-הקשה*/}
 
-In this example, the `ChatRoom` component connects to the chat room when the component mounts, disconnects when it unmounts, and reconnects when you select a different chat room. This behavior is correct, so you need to keep it working.
+בדוגמה זו, רכיב `ChatRoom` מתחבר לחדר הצ'אט כאשר הרכיב עולה, מתנתק כאשר הוא מתנתק ומתחבר מחדש כאשר אתה בוחר חדר צ'אט אחר. התנהגות זו נכונה, אז אתה צריך להמשיך לעבוד.
 
-However, there is a problem. Whenever you type into the message box input at the bottom, `ChatRoom` *also* reconnects to the chat. (You can notice this by clearing the console and typing into the input.) Fix the issue so that this doesn't happen.
+עם זאת, יש בעיה. בכל פעם שאתה מקליד בתיבת ההודעה בתחתית, `ChatRoom` *גם* מתחבר מחדש לצ'אט. (תוכל להבחין עם על ידי ניקוי המסוף והקלדה בקלט.) תקן את הבעיה כך שזה לא יקרה.
 
 <Hint>
 
-You might need to add a dependency array for this Effect. What dependencies should be there?
+ייתכן שיהיה עליך להוסיף מערך תלות עבור אפקט זה. אילו תלות צריכות להיות שם?
 
 </Hint>
 
@@ -860,7 +860,7 @@ button { margin-left: 10px; }
 
 <Solution>
 
-This Effect didn't have a dependency array at all, so it re-synchronized after every re-render. First, add a dependency array. Then, make sure that every reactive value used by the Effect is specified in the array. For example, `roomId` is reactive (because it's a prop), so it should be included in the array. This ensures that when the user selects a different room, the chat reconnects. On the other hand, `serverUrl` is defined outside the component. This is why it doesn't need to be in the array.
+לאפקט הזה לא היה מערך תלות בכלל, אז הוא הסתנכרן מחדש אחרי כל רינדור מחדש. ראשית, הוסף מערך תלות. לאחר מכן, ודא שכל ערך תגובתי המשמש את האפקט מצוין במערך. לדוגמה, `roomId` הוא תגובתי (בגלל שהוא props), אז יש לכלול אותו במערך. זה מבטיח שכאשר משתמש בוחר חדר אחר, הצ'אט מתחבר מחדש. מצד שני, `serverUrl` מוגדר מחוץ לרכיב. למה אני לא צריך להיות במערך.
 
 <Sandpack>
 
@@ -935,15 +935,15 @@ button { margin-left: 10px; }
 
 </Solution>
 
-#### Switch synchronization on and off {/*switch-synchronization-on-and-off*/}
+#### הפעל וכיבוי הסנכרון {/*הפעל-וכיבוי-סנכרון*/}
 
-In this example, an Effect subscribes to the window [`pointermove`](https://developer.mozilla.org/en-US/docs/Web/API/Element/pointermove_event) event to move a pink dot on the screen. Try hovering over the preview area (or touching the screen if you're on a mobile device), and see how the pink dot follows your movement.
+בדוגמה זו, אפקט נרשם לאירוע החלון [`pointermove`](https://developer.mozilla.org/en-US/docs/Web/API/Element/pointermove_event) כדי להזיז נקודה ורודה על המסך. נסה לרחף מעל אזור התצוגה המקדימה (או לגעת במסך אם אתה במכשיר נייד), וראה כיצד הנקודה הוורודה עוקבת אחר התנועה.
 
-There is also a checkbox. Ticking the checkbox toggles the `canMove` state variable, but this state variable is not used anywhere in the code. Your task is to change the code so that when `canMove` is `false` (the checkbox is ticked off), the dot should stop moving. After you toggle the checkbox back on (and set `canMove` to `true`), the box should follow the movement again. In other words, whether the dot can move or not should stay synchronized to whether the checkbox is checked.
+יש גם תיבת סימון. סימון תיבת הסימון מפעיל את מצב הstate `canMove`, אך מדרג מצב זה אינו בשימוש בשום מקום בקוד. המשימה היא שלך לשנות את הקוד כך שכאשר `canMove` הוא `false` (תיבת הסימון מסומנת), הנקודה צריכה להפסיק לזוז. לאחר שתפעיל מחדש את תיבת הסימון (ותגדיר את 'canMove' ל'true'), התיבה אמורה לעקוב שוב אחר התנועה. במילים אחרות, האם הנקודה יכולה לזוז או לא צריכה להישאר מסונכרנת אם תיבת הסימון מסומנת.
 
 <Hint>
 
-You can't declare an Effect conditionally. However, the code inside the Effect can use conditions!
+אתה לא יכול להכריז על אפקט באופן מותנה. עם זאת, הקוד בתוך האפקט יכול להשתמש בתנאים!
 
 </Hint>
 
@@ -1001,7 +1001,7 @@ body {
 
 <Solution>
 
-One solution is to wrap the `setPosition` call into an `if (canMove) { ... }` condition:
+פתרון אחד הוא לטוף את הקריאה `setPosition` מצב `if (canMove) { ... }`:
 
 <Sandpack>
 
@@ -1057,7 +1057,7 @@ body {
 
 </Sandpack>
 
-Alternatively, you could wrap the *event subscription* logic into an `if (canMove) { ... }` condition:
+לחלופין, תוכל לתת את ההיגיון של *מנוי לאירוע* בתנאי `if (canMove) { ... }`:
 
 <Sandpack>
 
@@ -1113,19 +1113,19 @@ body {
 
 </Sandpack>
 
-In both of these cases, `canMove` is a reactive variable that you read inside the Effect. This is why it must be specified in the list of Effect dependencies. This ensures that the Effect re-synchronizes after every change to its value.
+שני המקרים, `canMove` הוא מחליף תגובתי שאתה קורא בתוך האפקט. יש לציין אותו ברשימת התלות של אפקט. זה מבטיח שהאפקט יסנכרן מחדש לאחר כל שינוי בערך שלו.
 
 </Solution>
 
-#### Investigate a stale value bug {/*investigate-a-stale-value-bug*/}
+#### חקור באג עם ערך מיושן {/*investigate-a-stale-value-bug*/}
 
-In this example, the pink dot should move when the checkbox is on, and should stop moving when the checkbox is off. The logic for this has already been implemented: the `handleMove` event handler checks the `canMove` state variable.
+בדוגמה זו, הנקודה הוורודה צריכה לזוז כאשר תיבת הסימון מופעלת, ועליה להפסיק לזוז כאשר תיבת הסימון כבויה. ההיגיון לכך כבר יושם: המטפל באירוע `handleMove` בודק את סדר הstate `canMove`.
 
-However, for some reason, the `canMove` state variable inside `handleMove` appears to be "stale": it's always `true`, even after you tick off the checkbox. How is this possible? Find the mistake in the code and fix it.
+עם זאת, מסיבה כלשהי, מדרג את הstate `canMove` בתוך `handleMove` "מיושן": הוא תמיד `נכון`, גם לאחר סימון תיבת הסימון. איך זה אפשרי? מצא את הטעות בקוד ותקן אותה.
 
 <Hint>
 
-If you see a linter rule being suppressed, remove the suppression! That's where the mistakes usually are.
+אם אתה רואה חוק מדוכא, הסר את הדיכוי! שם נמצאות הטעויות בדרך כלל.
 
 </Hint>
 
@@ -1187,13 +1187,13 @@ body {
 
 <Solution>
 
-The problem with the original code was suppressing the dependency linter. If you remove the suppression, you'll see that this Effect depends on the `handleMove` function. This makes sense: `handleMove` is declared inside the component body, which makes it a reactive value. Every reactive value must be specified as a dependency, or it can potentially get stale over time!
+הבעיה עם הקוד המקורי הייתה דיכוי ה-dependency linter. אם תסיר את הדיכוי, תראה שהאפקט הזה תלוי בפונקציה 'handleMove'. זה הגיוני: `handleMove` מוצהר בתוך גוף הרכיב, מה שהופך אותו לערך תגובתי. כל ערך תגובתי חייב להיות מוגדר כתלות, אחרת הוא להתייאש עם הזמן!
 
-The author of the original code has "lied" to React by saying that the Effect does not depend (`[]`) on any reactive values. This is why React did not re-synchronize the Effect after `canMove` has changed (and `handleMove` with it). Because React did not re-synchronize the Effect, the `handleMove` attached as a listener is the `handleMove` function created during the initial render. During the initial render, `canMove` was `true`, which is why `handleMove` from the initial render will forever see that value.
+מחבר הקוד המקורי "שיקר" ל-React באומרו שהאפקט אינו תלוי (`[]`) בערכים תגובתים כלשהם. זה מה ש-React לא סינכרן מחדש את האפקט לאחר ש-'canMove' השתנה (ו-'handleMove' איתו). איך ש-React לא סינכרן מחדש את האפקט, ה-'handleMove' המצורף כמאזין הוא הפונקציה 'handleMove' בשימוש העיבוד הראשוני. על העיבוד הראשוני, `canMove` היה `נכון`, וזוהי ש`handleMove` מהרינדור הראשוני יראה לנצח את הערך הזה.
 
-**If you never suppress the linter, you will never see problems with stale values.** There are a few different ways to solve this bug, but you should always start by removing the linter suppression. Then change the code to fix the lint error.
+**אם לעולם לא תדחיק את ה-linter, לעולם לא תראה בעיות עם ערכים מיושנים.** יש כמה דרכים שונות לפתור את הבאג הזה, אבל תמיד כדאי להתחיל בהסרת ה-linter. לאחר שנה את הקוד כדי לתקן את שגיאת המוך.
 
-You can change the Effect dependencies to `[handleMove]`, but since it's going to be a newly defined function for every render, you might as well remove dependencies array altogether. Then the Effect *will* re-synchronize after every re-render:
+אתה יכול לשנות את התלות של אפקט ל-`[handleMove]`, אבל אתה יכול לשנות את כל רינדור. ואז האפקט *יסנכרן* מחדש אחרי כל רינדור מחדש:
 
 <Sandpack>
 
@@ -1250,9 +1250,9 @@ body {
 
 </Sandpack>
 
-This solution works, but it's not ideal. If you put `console.log('Resubscribing')` inside the Effect, you'll notice that it resubscribes after every re-render. Resubscribing is fast, but it would still be nice to avoid doing it so often.
+הפתרון הזה עובד, אבל הוא לא אידיאלי. אם תכניס את `console.log('Resubscribing')` בתוך האפקט, תבחין שהוא נרשם מחדש לאחר כל עיבוד מחדש. ההרשמה מחדש מהירה, אבל היא תהיה נחמדה.
 
-A better fix would be to move the `handleMove` function *inside* the Effect. Then `handleMove` won't be a reactive value, and so your Effect won't depend on a function. Instead, it will need to depend on `canMove` which your code now reads from inside the Effect. This matches the behavior you wanted, since your Effect will now stay synchronized with the value of `canMove`:
+תיקון טוב יותר יהיה להעביר את הפונקציה 'handleMove' *בתוך* האפקט. אז `handleMove` לא יהיה ערך תגובתי, זה האפקט שלך לא יהיה תלוי בפונקציה. במקום זאת, זה יצטרך להיות תלוי ב-'canMove' שהקוד שלך קורא עכשיו מתוך האפקט. זה תואם הכרחי שרצית, מה שהאפקט שלך יישאר מסונן עכשיו עם הערך של `canMove`:
 
 <Sandpack>
 
@@ -1309,21 +1309,21 @@ body {
 
 </Sandpack>
 
-Try adding `console.log('Resubscribing')` inside the Effect body and notice that now it only resubscribes when you toggle the checkbox (`canMove` changes) or edit the code. This makes it better than the previous approach that always resubscribed.
+נסה להוסיף `console.log('Resubscribing')` בתוך גוף האפקט ושימו לב שכעת הוא נרשם מחדש רק כאשר אתה מחליף את תיבת הסימון (`canMove` שינויים) או עורך את הקוד. זה עושה את זה טוב יותר מהגישה הקודמת שתמיד נרשמה מחדש.
 
-You'll learn a more general approach to this type of problem in [Separating Events from Effects.](/learn/separating-events-from-effects)
+תלמדו גישה כללית יותר לסוג זה של בעיות ב-[הפרדת אירועים מאפקטים.](/learn/separating-events-from-effects)
 
 </Solution>
 
-#### Fix a connection switch {/*fix-a-connection-switch*/}
+#### תקן מתג חיבור {/*fix-a-connection-switch*/}
 
-In this example, the chat service in `chat.js` exposes two different APIs: `createEncryptedConnection` and `createUnencryptedConnection`. The root `App` component lets the user choose whether to use encryption or not, and then passes down the corresponding API method to the child `ChatRoom` component as the `createConnection` prop.
+בדוגמה זו, שירות הצ'אט ב- `chat.js` חושף שני ממשקי API שונים: `createEncryptedConnection` ו-`createUencryptedConnection`. יכול רכיב ה-Root `App` למשתמש לבחור אם להשתמש בהצפנה או לא, הוא מעביר את שיטת ה-API המקבילה לרכיב `ChatRoom` הבן בתור הפרופס של `createConnection`.
 
-Notice that initially, the console logs say the connection is not encrypted. Try toggling the checkbox on: nothing will happen. However, if you change the selected room after that, then the chat will reconnect *and* enable encryption (as you'll see from the console messages). This is a bug. Fix the bug so that toggling the checkbox *also* causes the chat to reconnect.
+שימו לב שבתחילה, יומני המסוף אומרים שהחיבור אינו מוצפן. נסה להפעיל את תיבת הסימון: שום דבר לא יקרה. עם זאת, אם תשנה את החדר הנבחר לאחר מכן, הצ'אט יתחבר מחדש *ו* יאפשר הצפנה (כפי שתראה מהודעות המסוף). זהו באג. תקן את הבאג כך שהחלפת תיבת הסימון *גם* תגרום לצ'אט להתחבר מחדש.
 
 <Hint>
 
-Suppressing the linter is always suspicious. Could this be a bug?
+דיכוי ה-linter הוא תמיד פעיל. האם זה יכול להיות באג?
 
 </Hint>
 
@@ -1423,7 +1423,7 @@ label { display: block; margin-bottom: 10px; }
 
 <Solution>
 
-If you remove the linter suppression, you will see a lint error. The problem is that `createConnection` is a prop, so it's a reactive value. It can change over time! (And indeed, it should--when the user ticks the checkbox, the parent component passes a different value of the `createConnection` prop.) This is why it should be a dependency. Include it in the list to fix the bug:
+אם תסיר את דיכוי המוך, תראה שגיאת מוך. הבעיה היא ש-'createConnection' הוא props, אז זה ערך תגובתי. זה יכול להשתנות עם הזמן! (ואכן, זה צריך--כשה משתמש מסמן את תיבת הסימון, רכיב האב יעביר ערך אחר של ה-'createConnection' מאפיין.) זה מה שזה צריך להיות תלות. כלול אותו ברשימה כדי לתקן את הבא:
 
 <Sandpack>
 
@@ -1518,7 +1518,7 @@ label { display: block; margin-bottom: 10px; }
 
 </Sandpack>
 
-It is correct that `createConnection` is a dependency. However, this code is a bit fragile because someone could edit the `App` component to pass an inline function as the value of this prop. In that case, its value would be different every time the `App` component re-renders, so the Effect might re-synchronize too often. To avoid this, you can pass `isEncrypted` down instead:
+נכון ש-'createConnection' הוא תלות. עם זאת, קוד זה מעט שביר מה שמישהו לערוך את הרכיב האפליקציה כדי להעביר פונקציה מוטבעת בתור props זה. במקרה, הערך יהיה שונה פעם אחת רכיב האפליקציה כזה בכל מעבד מחדש, כך שהאפקט הוא להסתנכרן מחדש. כדי להשפיע, אתה מעביר את 'מוצפן' במקום זאת:
 
 <Sandpack>
 
@@ -1613,21 +1613,21 @@ label { display: block; margin-bottom: 10px; }
 
 </Sandpack>
 
-In this version, the `App` component passes a boolean prop instead of a function. Inside the Effect, you decide which function to use. Since both `createEncryptedConnection` and `createUnencryptedConnection` are declared outside the component, they aren't reactive, and don't need to be dependencies. You'll learn more about this in [Removing Effect Dependencies.](/learn/removing-effect-dependencies)
+בגרסה זו, הרכיב 'אפליקציה' מעביר props בוליאני במקום פונקציה. בתוך האפקט, אתה מחליט באיזו פונקציה להשתמש. גם `createEncryptedConnection` וגם `createUencryptedConnection` מוכרזים מחוץ לרכיב, הם אינם מגיבים, ואינם צריכים להיות תלות. תוכל ללמוד עוד על כך ב-[הסרת תלויות אפקטים.](/learn/removing-effect-dependencies)
 
 </Solution>
 
-#### Populate a chain of select boxes {/*populate-a-chain-of-select-boxes*/}
+#### אכלס שרשרת של תיבות נבחרות {/*אכלוס-שרשרת-של-נבחר-תיבות*/}
 
-In this example, there are two select boxes. One select box lets the user pick a planet. Another select box lets the user pick a place *on that planet.* The second box doesn't work yet. Your task is to make it show the places on the chosen planet.
+בדוגמה זו, יש שתי תיבות בחירה. תיבת בחירה אחת מאפשרת למשתמש לבחור כוכב לכת. תיבת בחירה נוספת מאפשרת למשתמש לבחור מקום *בכוכב זה.* התיבה השנייה עדיין לא עובדת. המשימה שלך היא לגרום לזה להראות את המקומות על הפלנטה הנבחרה.
 
-Look at how the first select box works. It populates the `planetList` state with the result from the `"/planets"` API call. The currently selected planet's ID is kept in the `planetId` state variable. You need to find where to add some additional code so that the `placeList` state variable is populated with the result of the `"/planets/" + planetId + "/places"` API call.
+תראה איך פועלת תיבת הבחירה הראשונה. הוא מאכל את המצב `planetList` בתוצאה מקריאת ה-API `"/planets"`. המזהה של כוכב הלכת הנבחר כרגע נשמר בשינוי הstate `planetId`. עליך למצוא היכן להוסיף קוד נוסף כדי לשנות את הstate `placeList` יאוכלס בתוצאה של הקריאה `"/planets/" + planetId + "/places"` ל-API.
 
-If you implement this right, selecting a planet should populate the place list. Changing a planet should change the place list.
+אם אתה מיישם זכות זו, בחירת כוכב לכת אמורה לאכלס את רשימת המקומות. שינוי כוכב לכת אמור לשנות את רשימת המקומות.
 
 <Hint>
 
-If you have two independent synchronization processes, you need to write two separate Effects.
+אם יש לך שני תהליכי סנכרון עצמאיים, עליך לכתוב שני אפקטים נפרדים.
 
 </Hint>
 
@@ -1773,12 +1773,12 @@ label { display: block; margin-bottom: 10px; }
 
 <Solution>
 
-There are two independent synchronization processes:
+ישנם שני תהליכי סנכרון עצמאיים:
 
-- The first select box is synchronized to the remote list of planets.
-- The second select box is synchronized to the remote list of places for the current `planetId`.
+- תיבת הבחירה הראשונה מסונכרנת לרשימת כוכבי הלכת המרוחקת.
+- תיבת הבחירה השנייה מסנכרנת לרשימת המקומות המרוחקת עבור `planetId` הנוכחית.
 
-This is why it makes sense to describe them as two separate Effects. Here's an example of how you could do this:
+זו הסיבה שזה הגיוני לתאר אותם כשני אפקטים נפרדים. הנה דוגמה כיצד תוכל לעשות זאת:
 
 <Sandpack>
 
@@ -1939,9 +1939,9 @@ label { display: block; margin-bottom: 10px; }
 
 </Sandpack>
 
-This code is a bit repetitive. However, that's not a good reason to combine it into a single Effect! If you did this, you'd have to combine both Effect's dependencies into one list, and then changing the planet would refetch the list of all planets. Effects are not a tool for code reuse.
+הקוד הזה קצת חוזר על עצמו. עם זאת, זו לא סיבה טובה לשלב אותו לאפקט אחד! אם תעשה זאת, תצטרך לשלב את שתי התלות של אפקט לרשימה אחת, ואז שינוי כוכב הלכת יביא מחדש את רשימת כל כוכבי הלכת. אפקטים אינם כלי לשימוש חוזר בקוד.
 
-Instead, to reduce repetition, you can extract some logic into a custom Hook like `useSelectOptions` below:
+במקום יכול זאת, כדי להפחית את החזרות, אתה לחלץ קצת היגיון לתוך Hook מותאם אישית כמו 'useSelectOptions' למטה:
 
 <Sandpack>
 
@@ -2102,8 +2102,9 @@ label { display: block; margin-bottom: 10px; }
 
 </Sandpack>
 
-Check the `useSelectOptions.js` tab in the sandbox to see how it works. Ideally, most Effects in your application should eventually be replaced by custom Hooks, whether written by you or by the community. Custom Hooks hide the synchronization logic, so the calling component doesn't know about the Effect. As you keep working on your app, you'll develop a palette of Hooks to choose from, and eventually you won't need to write Effects in your components very often.
+בדוק את הכרטיסייה 'useSelectOptions.js' בארגז החול כדי לראות איך זה עובד. בדרך כלל אידיאלי, רוב הפקטים באפליקציה שלך צריכים להיות מוחלפים לאחר דבר ב-Hooks מותאמים אישית, בין אם נכתבו על ידך או על ידי הקהילה. ה-Custom Hooks מסתירים את ההיגיון הסנכרון, כך שהרכיב המתקשר לא יודע על האפקט. שתמשיך לעבוד על האפליקציה שלך, תפתח פלטת הHooks לבחירה, ובסוף דבר לא תצטרך לכתוב אפקטים ברכיבים שלך קרוב מאוד.
 
 </Solution>
 
 </Challenges>
+

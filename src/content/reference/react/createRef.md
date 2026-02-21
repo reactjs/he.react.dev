@@ -1,16 +1,16 @@
 ---
-title: createRef
+title: "ליצורRef"
 ---
 
 <Pitfall>
 
-`createRef` is mostly used for [class components.](/reference/react/Component) Function components typically rely on [`useRef`](/reference/react/useRef) instead.
+`createRef` בשימוש בעיקר עבור [class components.](/reference/react/Component) קומפוננטות פונקציה בדרך כלל נשענות על [`useRef`](/reference/react/useRef) במקום.
 
 </Pitfall>
 
 <Intro>
 
-`createRef` creates a [ref](/learn/referencing-values-with-refs) object which can contain arbitrary value.
+`createRef` יוצרת אובייקט [ref](/learn/referencing-values-with-refs) יכול להכיל כל ערך.
 
 ```js
 class MyInput extends Component {
@@ -25,11 +25,11 @@ class MyInput extends Component {
 
 ---
 
-## Reference {/*reference*/}
+## הפניה {/*reference*/}
 
 ### `createRef()` {/*createref*/}
 
-Call `createRef` to declare a [ref](/learn/referencing-values-with-refs) inside a [class component.](/reference/react/Component)
+קראו ל-`createRef` כדי להצהיר על [ref](/learn/referencing-values-with-refs) בתוך [רכיב כיתה.](/reference/react/Component)
 
 ```js
 import { createRef, Component } from 'react';
@@ -40,31 +40,31 @@ class MyComponent extends Component {
   // ...
 ```
 
-[See more examples below.](#usage)
+[עוד דוגמאות נוספות.](#usage)
 
-#### Parameters {/*parameters*/}
+#### פרמטרים {/*parameters*/}
 
-`createRef` takes no parameters.
+`createRef` לא מקבלת פרמטרים.
 
-#### Returns {/*returns*/}
+#### מחזירה {/*returns*/}
 
-`createRef` returns an object with a single property:
+`createRef` מחזירה אובייקט עם מאפיין יחיד:
 
-* `current`: Initially, it's set to the `null`. You can later set it to something else. If you pass the ref object to React as a `ref` attribute to a JSX node, React will set its `current` property.
+* `current`: בתחילה מוגדרת ל-`null`. לאחר מכן אפשר להגדיר אותו לערך אחר. אם מעבירים את אובייקט ה-ref ל-React כמאפיין `ref` ל-JSX node, React תגדיר את המאפיין `current` שלו.
 
-#### Caveats {/*caveats*/}
+#### אזהרות {/*caveats*/}
 
-* `createRef` always returns a *different* object. It's equivalent to writing `{ current: null }` yourself.
-* In a function component, you probably want [`useRef`](/reference/react/useRef) instead which always returns the same object.
-* `const ref = useRef()` is equivalent to `const [ref, _] = useState(() => createRef(null))`.
+* `createRef` תמיד מחזירה אובייקט *שונה*. זה שקול לכתיבה ידנית של `{ current: null }`.
+* בקומפוננטת פונקציה, כנראה שתרצו [`useRef`](/reference/react/useRef), שמחזירה תמיד את אותו אובייקט.
+* `const ref = useRef()` שקול ל-`const [ref, _] = useState(() => createRef(null))`.
 
 ---
 
-## Usage {/*usage*/}
+## שימוש {/*usage*/}
 
-### Declaring a ref in a class component {/*declaring-a-ref-in-a-class-component*/}
+### ההרהור על רכיב המחלקה {/*declaring-a-ref-in-a-class-component*/}
 
-To declare a ref inside a [class component,](/reference/react/Component) call `createRef` and assign its result to a class field:
+כדי להצהיר על ref בתוך [רכיב כיתה,](/reference/react/Component) קראו ל-`createRef` והקצו את התוצאה לשדה במחלקה:
 
 ```js {4}
 import { Component, createRef } from 'react';
@@ -76,7 +76,7 @@ class Form extends Component {
 }
 ```
 
-If you now pass `ref={this.inputRef}` to an `<input>` in your JSX, React will populate `this.inputRef.current` with the input DOM node. For example, here is how you make a button that focuses the input:
+אם תעבירו עכשיו `ref={this.inputRef}` ל-`<input>` ב-JSX שלכם, React תאכלס את `this.inputRef.current` עם DOM node של שדה הקלט. לדוגמה, כך יוצרים כפתור שמפקס את השדה הקלט:
 
 <Sandpack>
 
@@ -107,17 +107,17 @@ export default class Form extends Component {
 
 <Pitfall>
 
-`createRef` is mostly used for [class components.](/reference/react/Component) Function components typically rely on [`useRef`](/reference/react/useRef) instead.
+`createRef` בשימוש בעיקר עבור [class components.](/reference/react/Component) קומפוננטות פונקציה בדרך כלל נשענות על [`useRef`](/reference/react/useRef) במקום.
 
 </Pitfall>
 
 ---
 
-## Alternatives {/*alternatives*/}
+## חלופות {/*alternatives*/}
 
-### Migrating from a class with `createRef` to a function with `useRef` {/*migrating-from-a-class-with-createref-to-a-function-with-useref*/}
+### המשך מכיתה עם `createRef` לפונקציה עם `useRef` {/*migrating-from-a-class-with-createref-to-a-function-with-useref*/}
 
-We recommend using function components instead of [class components](/reference/react/Component) in new code. If you have some existing class components using `createRef`, here is how you can convert them. This is the original code:
+אנחנו ממליצים להשתמש בקומפוננטות פונקציה במקום [רכיבי כיתה](/reference/react/Component) בקוד חדש. אם יש לכם רכיבי כיתה קיימות שמשתמשות ב-`createRef`, כך אפשר להמיר אותן. זה הקוד המקורי:
 
 <Sandpack>
 
@@ -146,7 +146,7 @@ export default class Form extends Component {
 
 </Sandpack>
 
-When you [convert this component from a class to a function,](/reference/react/Component#alternatives) replace calls to `createRef` with calls to [`useRef`:](/reference/react/useRef)
+כש-[ממירים את הקומפוננטה הזו מ-class לפונקציה,](/reference/react/Component#alternatives) מחליפים קריאות ל-`createRef` בקריאות ל-[`useRef`:](/reference/react/useRef)
 
 <Sandpack>
 

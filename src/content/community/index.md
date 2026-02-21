@@ -1,32 +1,32 @@
 ---
-title: React Community
+title: "קהילת React"
 ---
 
 <Intro>
 
-React has a community of millions of developers. On this page we've listed some React-related communities that you can be a part of; see the other pages in this section for additional online and in-person learning materials.
+ל-React יש קהילה של מיליוני מפתחים. בעמוד הזה ריכזנו קהילות הקשורות ל-React אפשר להיות חלק מהן; בעמודים אחרים באזור הזה תמצא חומרי לימוד נוספים אונליין ובמפגשים פרונטליים.
 
 </Intro>
 
-## Code of Conduct {/*code-of-conduct*/}
+## קוד התנהגות {/*code-of-conduct*/}
 
-Before participating in React's communities, [please read our Code of Conduct.](https://github.com/facebook/react/blob/main/CODE_OF_CONDUCT.md) We have adopted the [Contributor Covenant](https://www.contributor-covenant.org/) and we expect that all community members adhere to the guidelines within.
+לפני פעילות בקהילות של React, [אנא קראו את קוד ההתנהגות שלנו.](https://github.com/facebook/react/blob/main/CODE_OF_CONDUCT.md) אימצנו את [Covenant Contributor](https://www.contributor-covenant.org/) ואנחנו מצפים חברי הקהילה יעמדו בהנחיית המופיעות בו.
 
-## Stack Overflow {/*stack-overflow*/}
+## גלישת מחסנית {/*stack-overflow*/}
 
-Stack Overflow is a popular forum to ask code-level questions or if you're stuck with a specific error. Read through the [existing questions](https://stackoverflow.com/questions/tagged/reactjs) tagged with **reactjs** or [ask your own](https://stackoverflow.com/questions/ask?tags=reactjs)!
+Stack Overflow הוא פורום פופולרי לשאלות ברמת קוד או כשנתקעים עם שגיאה ספציפית. אפשר לעיין ב-[שאלות הקיים](https://stackoverflow.com/questions/tagged/reactjs) עם התגית **reactjs** או [לשאול שאלה חדשה](https://stackoverflow.com/questions/ask?tags=reactjs)!
 
-## Popular Discussion Forums {/*popular-discussion-forums*/}
+## פורומי דיון פופולריים {/*popular-discussion-forums*/}
 
-There are many online forums which are a great place for discussion about best practices and application architecture as well as the future of React. If you have an answerable code-level question, Stack Overflow is usually a better fit.
+יש הרבה פורומים אונליין שהם מקום מצוין לדיון על שיטות עבודה מומלצות, ארכיטקטורת אפליקציות וגם עתיד של React. אם יש לך שאלה נקודתית אפשר לענות עליה ברמת קוד, בדרך כלל Stack Overflow הוא המקום המתאים יותר.
 
-Each community consists of many thousands of React users.
+כל הקהילה כוללת אלפי משתמשי React.
 
-* [DEV's React community](https://dev.to/t/react)
-* [Hashnode's React community](https://hashnode.com/n/reactjs)
-* [Reactiflux online chat](https://discord.gg/reactiflux)
-* [Reddit's React community](https://www.reddit.com/r/reactjs/)
+* [קהילת React של DEV](https://dev.to/t/react)
+* [קהילת React של Hashnode](https://hashnode.com/n/reactjs)
+* [צ'אט Reactiflux](https://discord.gg/reactiflux)
+* [קהילת React ב-Reddit](https://www.reddit.com/r/reactjs/)
 
-## News {/*news*/}
+## חדשות {/*news*/}
 
-For the latest news about React, [follow **@reactjs** on Twitter](https://twitter.com/reactjs) and the [official React blog](/blog/) on this website.
+לחדשות הודעה על React, [עקבו אחרי **@reactjs** ב-Twitter](React וגם אחרי [הבלוג הרשמי של React](/blog/) באתר הזה.

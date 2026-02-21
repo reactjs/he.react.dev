@@ -1,11 +1,11 @@
 ---
-title: <StrictMode>
+title: "<StrictMode>"
 ---
 
 
 <Intro>
 
-`<StrictMode>` lets you find common bugs in your components early during development.
+`<StrictMode>` מאפשר לך למצוא באגים נפוצים ברכיבים שלך בשלב מוקדם במהלך הפיתוח.
 
 
 ```js
@@ -20,11 +20,11 @@ title: <StrictMode>
 
 ---
 
-## Reference {/*reference*/}
+## הפניה {/*reference*/}
 
 ### `<StrictMode>` {/*strictmode*/}
 
-Use `StrictMode` to enable additional development behaviors and warnings for the component tree inside:
+השתמש ב-`StrictMode` כדי לאפשר התנהגויות פיתוח נוספות ואזהרות עבור עץ הרכיבים בפנים:
 
 ```js
 import { StrictMode } from 'react';
@@ -38,32 +38,32 @@ root.render(
 );
 ```
 
-[See more examples below.](#usage)
+[ראה דוגמאות נוספות למטה.](#usage)
 
-Strict Mode enables the following development-only behaviors:
+מצב קפדני מאפשר את ההתנהגויות הבאות לפיתוח בלבד:
 
-- Your components will [re-render an extra time](#fixing-bugs-found-by-double-rendering-in-development) to find bugs caused by impure rendering.
-- Your components will [re-run Effects an extra time](#fixing-bugs-found-by-re-running-effects-in-development) to find bugs caused by missing Effect cleanup.
-- Your components will [be checked for usage of deprecated APIs.](#fixing-deprecation-warnings-enabled-by-strict-mode)
+- הרכיבים שלך [יעבדו מחדש זמן נוסף](#fixing-bugs-found-by-double-rendering-in-development) כדי למצוא באגים caused על ידי עיבוד לא טהור.
+- הרכיבים שלך [יפעילו מחדש את אפקטים פעם נוספת](#fixing-bugs-found-by-re-running-effects-in-development) כדי למצוא באגים caused על ידי חסר אפקט ניקוי.
+- הרכיבים שלך [ייבדקו עבור שימוש ב-APIs שהוצא משימוש.](#fixing-deprecation-warnings-enabled-by-strict-mode)
 
-#### Props {/*props*/}
+#### אבזרים {/*props*/}
 
-`StrictMode` accepts no props.
+`StrictMode` לא מקבל props.
 
-#### Caveats {/*caveats*/}
+#### אזהרות {/*caveats*/}
 
-* There is no way to opt out of Strict Mode inside a tree wrapped in `<StrictMode>`. This gives you confidence that all components inside `<StrictMode>` are checked. If two teams working on a product disagree whether they find the checks valuable, they need to either reach consensus or move `<StrictMode>` down in the tree.
+* אין דרך לבטל את הסכמתך למצב קפדני בתוך עץ עטוף ב-`<StrictMode>`. זה נותן לך ביטחון שכל הרכיבים בתוך `<StrictMode>` מסומנים. אם שני צוותים שעובדים על מוצר אינם מסכימים אם הם מוצאים שההמחאות חשובות, הם צריכים להגיע לקונצנזוס או להעביר את `<StrictMode>` למטה בעץ.
 
 ---
 
-## Usage {/*usage*/}
+## שימוש {/*usage*/}
 
-### Enabling Strict Mode for entire app {/*enabling-strict-mode-for-entire-app*/}
+### הפעלת מצב קפדני עבור האפליקציה כולה {/*enabling-strict-mode-for-entire-app*/}
 
-Strict Mode enables extra development-only checks for the entire component tree inside the `<StrictMode>` component. These checks help you find common bugs in your components early in the development process.
+מצב קפדני מאפשר בדיקות נוספות לפיתוח בלבד עבור כל עץ הרכיבים בתוך הרכיב `<StrictMode>`. בדיקות אלו עוזרות לך למצוא באגים נפוצים ברכיבים שלך בשלב מוקדם של תהליך הפיתוח.
 
 
-To enable Strict Mode for your entire app, wrap your root component with `<StrictMode>` when you render it:
+כדי להפעיל מצב קפדני עבור כל האפליקציה שלך, עטוף את רכיב השורש שלך ב-`<StrictMode>` כשאתה מעבד אותו:
 
 ```js {6,8}
 import { StrictMode } from 'react';
@@ -77,27 +77,27 @@ root.render(
 );
 ```
 
-We recommend wrapping your entire app in Strict Mode, especially for newly created apps. If you use a framework that calls [`createRoot`](/reference/react-dom/client/createRoot) for you, check its documentation for how to enable Strict Mode.
+אנו ממליצים לעטוף את האפליקציה כולה במצב קפדני, במיוחד עבור אפליקציות חדשות שנוצרו. אם אתה use מסגרת שקוראת ל-[`createRoot`](/reference/react-dom/client/createRoot) עבורך, בדוק את התיעוד שלה כיצד להפעיל מצב קפדני.
 
-Although the Strict Mode checks **only run in development,** they help you find bugs that already exist in your code but can be tricky to reliably reproduce in production. Strict Mode lets you fix bugs before your users report them.
+למרות ש-Strict Mode בודקים **פועלים רק בפיתוח,** הם עוזרים לך למצוא באגים שכבר קיימים בקוד שלך אבל יכול להיות מסובך לשכפול מהימן בייצור. מצב קפדני מאפשר לך לתקן באגים לפני שה-users שלך מדווחים עליהם.
 
 <Note>
 
-Strict Mode enables the following checks in development:
+מצב קפדני מאפשר את הבדיקות הבאות בפיתוח:
 
-- Your components will [re-render an extra time](#fixing-bugs-found-by-double-rendering-in-development) to find bugs caused by impure rendering.
-- Your components will [re-run Effects an extra time](#fixing-bugs-found-by-re-running-effects-in-development) to find bugs caused by missing Effect cleanup.
-- Your components will [be checked for usage of deprecated APIs.](#fixing-deprecation-warnings-enabled-by-strict-mode)
+- הרכיבים שלך [יעבדו מחדש זמן נוסף](#fixing-bugs-found-by-double-rendering-in-development) כדי למצוא באגים caused על ידי עיבוד לא טהור.
+- הרכיבים שלך [יפעילו מחדש את אפקטים פעם נוספת](#fixing-bugs-found-by-re-running-effects-in-development) כדי למצוא באגים caused על ידי חסר אפקט ניקוי.
+- הרכיבים שלך [ייבדקו עבור שימוש ב-APIs שהוצא משימוש.](#fixing-deprecation-warnings-enabled-by-strict-mode)
 
-**All of these checks are development-only and do not impact the production build.**
+**כל הבדיקות הללו הן לפיתוח בלבד ואינן משפיעות על בניית הייצור.**
 
 </Note>
 
 ---
 
-### Enabling Strict Mode for a part of the app {/*enabling-strict-mode-for-a-part-of-the-app*/}
+### הפעלת מצב קפדני עבור חלק מהאפליקציה {/*enabling-strict-mode-for-a-part-of-the-app*/}
 
-You can also enable Strict Mode for any part of your application:
+אתה יכול גם להפעיל מצב קפדני עבור כל חלק ביישום שלך:
 
 ```js {7,12}
 import { StrictMode } from 'react';
@@ -118,25 +118,25 @@ function App() {
 }
 ```
 
-In this example, Strict Mode checks will not run against the `Header` and `Footer` components. However, they will run on `Sidebar` and `Content`, as well as all of the components inside them, no matter how deep.
+בדוגמה זו, בדיקות מצב קפדניות לא יפעלו כנגד הרכיבים `Header` ו`Footer`. עם זאת, הם יפעלו על `Sidebar` ו`Content`, כמו גם על כל הרכיבים שבתוכם, לא משנה כמה עמוק.
 
 ---
 
-### Fixing bugs found by double rendering in development {/*fixing-bugs-found-by-double-rendering-in-development*/}
+### תיקון באגים שנמצאו על ידי רינדור כפול בפיתוח {/*fixing-bugs-found-by-double-rendering-in-development*/}
 
-[React assumes that every component you write is a pure function.](/learn/keeping-components-pure) This means that React components you write must always return the same JSX given the same inputs (props, state, and context).
+[React מניח שכל רכיב שאתה כותב הוא פונקציה טהורה.](/learn/keeping-components-pure) פירוש הדבר שרכיבי React שאתה כותב חייבים תמיד להחזיר את אותו JSX בהינתן אותם כניסות (props, state והקשר).
 
-Components breaking this rule behave unpredictably and cause bugs. To help you find accidentally impure code, Strict Mode calls some of your functions (only the ones that should be pure) **twice in development.** This includes:
+רכיבים המפרים את הכלל הזה מתנהגים בצורה בלתי צפויה ובאגים cause. כדי לעזור לך למצוא בטעות קוד לא טהור, Strict Mode קורא לחלק מהפונקציות שלך (רק אלו שאמורות להיות טהורות) **פעמיים בפיתוח.** זה כולל:
 
-- Your component function body (only top-level logic, so this doesn't include code inside event handlers)
-- Functions that you pass to [`useState`](/reference/react/useState), [`set` functions](/reference/react/useState#setstate), [`useMemo`](/reference/react/useMemo), or [`useReducer`](/reference/react/useReducer)
-- Some class component methods like [`constructor`](/reference/react/Component#constructor), [`render`](/reference/react/Component#render), [`shouldComponentUpdate`](/reference/react/Component#shouldcomponentupdate) ([see the whole list](https://reactjs.org/docs/strict-mode.html#detecting-unexpected-side-effects))
+- גוף פונקציית הרכיב שלך (רק לוגיקה ברמה העליונה, כך שזה לא כולל קוד בתוך מטפלי אירועים)
+- פונקציות שאתה מעביר ל-[`useState`](/reference/react/useState), [`set` functions](/reference/react/useState#setstate), [`useMemo`](/reference/react/useMemo), או [`set`reference](TK__3/8__)
+- שיטות מסוימות של רכיבי מחלקה כמו [`constructor`](/reference/react/Component#constructor), [`render`](/reference/react/Component#render), [`shouldComponentUpdate`](/reference/react/Component#shouldcomponentupdate) ([ראה את כל הרשימה](https://reactjs.org/docs/strict-mode.html#detecting-unexpected-side-effects))
 
-If a function is pure, running it twice does not change its behavior because a pure function produces the same result every time. However, if a function is impure (for example, it mutates the data it receives), running it twice tends to be noticeable (that's what makes it impure!) This helps you spot and fix the bug early.
+אם פונקציה טהורה, הפעלתה פעמיים לא משנה את התנהגותה מכיוון שפונקציה טהורה מפיקה את אותה תוצאה בכל פעם. עם זאת, אם פונקציה אינה טהורה (לדוגמה, היא משנה את הנתונים שהיא מקבלת), הפעלתה פעמיים נוטה להיות מורגשת (זה מה שהופך אותה לאטהורה!) זה עוזר לך לזהות ולתקן את הבאג מוקדם.
 
-**Here is an example to illustrate how double rendering in Strict Mode helps you find bugs early.**
+**הנה דוגמה כדי להמחיש כיצד עיבוד כפול במצב קפדני עוזר לך למצוא באגים מוקדם.**
 
-This `StoryTray` component takes an array of `stories` and adds one last "Create Story" item at the end:
+רכיב `StoryTray` זה לוקח מערך של `stories` ומוסיף פריט "צור סיפור" אחרון בסוף:
 
 <Sandpack>
 
@@ -212,9 +212,9 @@ li {
 
 </Sandpack>
 
-There is a mistake in the code above. However, it is easy to miss because the initial output appears correct.
+יש טעות בקוד למעלה. עם זאת, קל לפספס מכיוון שהפלט הראשוני נראה נכון.
 
-This mistake will become more noticeable if the `StoryTray` component re-renders multiple times. For example, let's make the `StoryTray` re-render with a different background color whenever you hover over it: 
+טעות זו תהפוך בולטת יותר אם הרכיב `StoryTray` יעבד מחדש מספר פעמים. לדוגמה, בוא נגרום ל-`StoryTray` לעבד מחדש עם צבע רקע שונה בכל פעם שאתה מרחף מעליו:
 
 <Sandpack>
 
@@ -299,9 +299,9 @@ li {
 
 </Sandpack>
 
-Notice how every time you hover over the `StoryTray` component, "Create Story" gets added to the list again. The intention of the code was to add it once at the end. But `StoryTray` directly modifies the `stories` array from the props. Every time `StoryTray` renders, it adds "Create Story" again at the end of the same array. In other words, `StoryTray` is not a pure function--running it multiple times produces different results.
+שים לב איך בכל פעם שאתה מרחף מעל הרכיב `StoryTray`, "צור סיפור" יתווסף שוב לרשימה. הכוונה של הקוד הייתה להוסיף אותו פעם אחת בסוף. אבל `StoryTray` משנה ישירות את מערך `stories` מה-props. בכל פעם ש`StoryTray` מעבד, הוא מוסיף "צור סיפור" שוב בסוף אותו מערך. במילים אחרות, `StoryTray` אינה פונקציה טהורה - הפעלתה מספר פעמים מניבה תוצאות שונות.
 
-To fix this problem, you can make a copy of the array, and modify that copy instead of the original one:
+כדי לפתור בעיה זו, אתה יכול ליצור עותק של המערך, ולשנות את העותק במקום המקורי:
 
 ```js {2}
 export default function StoryTray({ stories }) {
@@ -310,9 +310,9 @@ export default function StoryTray({ stories }) {
   items.push({ id: 'create', label: 'Create Story' });
 ```
 
-This would [make the `StoryTray` function pure.](/learn/keeping-components-pure) Each time it is called, it would only modify a new copy of the array, and would not affect any external objects or variables. This solves the bug, but you had to make the component re-render more often before it became obvious that something is wrong with its behavior.
+זה יהפוך את הפונקציה `StoryTray` לטהורה.](/learn/keeping-components-pure) בכל פעם שהיא נקראת, היא תשנה רק עותק חדש של המערך, ולא תשפיע על אובייקטים או משתנים חיצוניים. זה פותר את הבאג, אבל היית צריך לעשות את הרכיב מחדש בתדירות גבוהה יותר לפני שהתברר שמשהו לא בסדר בהתנהגות שלו.
 
-**In the original example, the bug wasn't obvious. Now let's wrap the original (buggy) code in `<StrictMode>`:**
+**בדוגמה המקורית, הבאג לא היה ברור. עכשיו בואו נעטוף את הקוד המקורי (באגי) ב-`<StrictMode>`:**
 
 <Sandpack>
 
@@ -393,7 +393,7 @@ li {
 
 </Sandpack>
 
-**Strict Mode *always* calls your rendering function twice, so you can see the mistake right away** ("Create Story" appears twice). This lets you notice such mistakes early in the process. When you fix your component to render in Strict Mode, you *also* fix many possible future production bugs like the hover functionality from before:
+**מצב קפדני *תמיד* קורא לפונקציית העיבוד שלך פעמיים, כך שתוכל לראות את הטעות מיד** ("צור סיפור" מופיע פעמיים). זה מאפשר לך להבחין בטעויות כאלה בשלב מוקדם של התהליך. כאשר אתה מתקן את הרכיב שלך לרינדור במצב קפדני, אתה *גם* מתקן באגים אפשריים בעתיד בייצור כמו פונקציונליות הריחוף מלפני כן:
 
 <Sandpack>
 
@@ -483,29 +483,29 @@ li {
 
 </Sandpack>
 
-Without Strict Mode, it was easy to miss the bug until you added more re-renders. Strict Mode made the same bug appear right away. Strict Mode helps you find bugs before you push them to your team and to your users.
+ללא מצב קפדני, קל היה לפספס את הבאג עד שהוספת עוד עיבודים מחדש. מצב קפדני גרם לאותו באג להופיע מיד. מצב קפדני עוזר לך למצוא באגים לפני שאתה דוחף אותם לצוות שלך ול-users שלך.
 
-[Read more about keeping components pure.](/learn/keeping-components-pure)
+[קרא עוד על שמירה על ניקיון רכיבים.](/learn/keeping-components-pure)
 
 <Note>
 
-If you have [React DevTools](/learn/react-developer-tools) installed, any `console.log` calls during the second render call will appear slightly dimmed. React DevTools also offers a setting (off by default) to suppress them completely.
+אם מותקן אצלך [React DevTools](/learn/react-developer-tools), כל קריאות `console.log` במהלך קריאת העיבוד השנייה יופיעו מעומעמות מעט. React DevTools מציע גם הגדרה (כבוי כברירת מחדל) כדי לדכא אותם לחלוטין.
 
 </Note>
 
 ---
 
-### Fixing bugs found by re-running Effects in development {/*fixing-bugs-found-by-re-running-effects-in-development*/}
+### תיקון באגים שנמצאו על ידי הפעלה מחדש של אפקטים בפיתוח {/*fixing-bugs-found-by-re-running-effects-in-development*/}
 
-Strict Mode can also help find bugs in [Effects.](/learn/synchronizing-with-effects)
+מצב קפדני יכול גם לעזור למצוא באגים ב-[אפקטים.](/learn/synchronizing-with-effects)
 
-Every Effect has some setup code and may have some cleanup code. Normally, React calls setup when the component *mounts* (is added to the screen) and calls cleanup when the component *unmounts* (is removed from the screen). React then calls cleanup and setup again if its dependencies changed since the last render.
+לכל אפקט יש קוד הגדרה ויכול להיות שיש לו קוד ניקוי כלשהו. בדרך כלל, React קורא להגדרה כאשר הרכיב *מועלה* (נוסף למסך) וקורא לניקוי כאשר הרכיב *מתבטל* (מוסר מהמסך). React אז קורא לניקוי והתקנה שוב אם התלות שלו השתנתה מאז העיבוד האחרון.
 
-When Strict Mode is on, React will also run **one extra setup+cleanup cycle in development for every Effect.** This may feel surprising, but it helps reveal subtle bugs that are hard to catch manually.
+כאשר מצב קפדני מופעל, React יפעיל גם **מחזור הגדרה+ניקוי נוסף בפיתוח עבור כל אפקט.** זה עשוי להרגיש מפתיע, אבל זה עוזר לחשוף באגים עדינים שקשה לתפוס ידנית.
 
-**Here is an example to illustrate how re-running Effects in Strict Mode helps you find bugs early.**
+**הנה דוגמה כדי להמחיש כיצד הפעלה מחדש של אפקטים במצב קפדני עוזרת לך למצוא באגים מוקדם.**
 
-Consider this example that connects a component to a chat:
+שקול את הדוגמה הזו שמחברת רכיב לצ'אט:
 
 <Sandpack>
 
@@ -562,9 +562,9 @@ button { margin-left: 10px; }
 
 </Sandpack>
 
-There is an issue with this code, but it might not be immediately clear.
+יש בעיה עם הקוד הזה, אבל ייתכן שהיא לא ברורה מיד.
 
-To make the issue more obvious, let's implement a feature. In the example below, `roomId` is not hardcoded. Instead, the user can select the `roomId` that they want to connect to from a dropdown. Click "Open chat" and then select different chat rooms one by one. Keep track of the number of active connections in the console:
+כדי להפוך את הבעיה לברורה יותר, בואו ליישם תכונה. בדוגמה למטה, `roomId` אינו מקודד. במקום זאת, ה-user יכול לבחור את ה-`roomId` שאליו הם רוצים להתחבר מתוך תפריט נפתח. לחץ על "פתח צ'אט" ולאחר מכן בחר חדרי צ'אט שונים אחד אחד. עקוב אחר מספר החיבורים הפעילים במסוף:
 
 <Sandpack>
 
@@ -646,7 +646,7 @@ button { margin-left: 10px; }
 
 </Sandpack>
 
-You'll notice that the number of open connections always keeps growing. In a real app, this would cause performance and network problems. The issue is that [your Effect is missing a cleanup function:](/learn/synchronizing-with-effects#step-3-add-cleanup-if-needed)
+תבחין שמספר החיבורים הפתוחים תמיד ממשיך לגדול. באפליקציה אמיתית, זה עלול לגרום לבעיות ביצועים ורשת. הבעיה היא ש[לאפקט שלך חסרה פונקציית ניקוי:](/learn/synchronizing-with-effects#step-3-add-cleanup-if-needed)
 
 ```js {4}
   useEffect(() => {
@@ -656,9 +656,9 @@ You'll notice that the number of open connections always keeps growing. In a rea
   }, [roomId]);
 ```
 
-Now that your Effect "cleans up" after itself and destroys the outdated connections, the leak is solved. However, notice that the problem did not become visible until you've added more features (the select box).
+עכשיו כשהאפקט שלך "מנקה" אחרי עצמו והורס את החיבורים המיושנים, הדליפה נפתרה. עם זאת, שים לב שהבעיה לא נראתה עד שהוספת תכונות נוספות (תיבת הבחירה).
 
-**In the original example, the bug wasn't obvious. Now let's wrap the original (buggy) code in `<StrictMode>`:**
+**בדוגמה המקורית, הבאג לא היה ברור. עכשיו בואו נעטוף את הקוד המקורי (באגי) ב-`<StrictMode>`:**
 
 <Sandpack>
 
@@ -720,9 +720,9 @@ button { margin-left: 10px; }
 
 </Sandpack>
 
-**With Strict Mode, you immediately see that there is a problem** (the number of active connections jumps to 2). Strict Mode runs an extra setup+cleanup cycle for every Effect. This Effect has no cleanup logic, so it creates an extra connection but doesn't destroy it. This is a hint that you're missing a cleanup function.
+**עם Strict Mode רואים מיד שיש בעיה** (מספר החיבורים הפעילים קופץ ל-2). מצב קפדני מפעיל מחזור הגדרה+ניקוי נוסף עבור כל אפקט. לאפקט הזה אין הגיון ניקוי, אז הוא יוצר חיבור נוסף אבל לא הורס אותו. זהו רמז לכך שחסרה לך פונקציית ניקוי.
 
-Strict Mode lets you notice such mistakes early in the process. When you fix your Effect by adding a cleanup function in Strict Mode, you *also* fix many possible future production bugs like the select box from before:
+מצב קפדני מאפשר לך להבחין בטעויות כאלה בשלב מוקדם של התהליך. כאשר אתה מתקן את האפקט שלך על ידי הוספת פונקציית ניקוי במצב קפדני, אתה *גם* מתקן הרבה באגי ייצור עתידיים אפשריים כמו תיבת הבחירה מקודם:
 
 <Sandpack>
 
@@ -810,21 +810,21 @@ button { margin-left: 10px; }
 
 </Sandpack>
 
-Notice how the active connection count in the console doesn't keep growing anymore.
+שימו לב איך ספירת החיבורים הפעילים בקונסולה לא ממשיכה לגדול יותר.
 
-Without Strict Mode, it was easy to miss that your Effect needed cleanup. By running *setup → cleanup → setup* instead of *setup* for your Effect in development, Strict Mode made the missing cleanup logic more noticeable.
+ללא מצב קפדני, קל היה לפספס שהאפקט שלך זקוק לניקוי. על ידי הפעלת *setup → cleanup → setup* במקום *setup* עבור האפקט שלך בפיתוח, מצב קפדני הפך את היגיון הניקוי החסר ליותר בולט.
 
-[Read more about implementing Effect cleanup.](/learn/synchronizing-with-effects#how-to-handle-the-effect-firing-twice-in-development)
+[קרא עוד על יישום אפקט ניקוי.](/learn/synchronizing-with-effects#how-to-handle-the-effect-firing-twoice-in-development)
 
 ---
 
-### Fixing deprecation warnings enabled by Strict Mode {/*fixing-deprecation-warnings-enabled-by-strict-mode*/}
+### תיקון אזהרות הוצאה משימוש מופעל על ידי מצב קפדני {/*fixing-deprecation-warnings-enabled-by-strict-mode*/}
 
-React warns if some component anywhere inside a `<StrictMode>` tree uses one of these deprecated APIs:
+React מזהיר אם רכיב כלשהו בתוך עץ `<StrictMode>` uses אחד מה-APIs שהוצא משימוש:
 
-* [`findDOMNode`](/reference/react-dom/findDOMNode). [See alternatives.](https://reactjs.org/docs/strict-mode.html#warning-about-deprecated-finddomnode-usage)
-* `UNSAFE_` class lifecycle methods like [`UNSAFE_componentWillMount`](/reference/react/Component#unsafe_componentwillmount). [See alternatives.](https://reactjs.org/blog/2018/03/27/update-on-async-rendering.html#migrating-from-legacy-lifecycles) 
-* Legacy context ([`childContextTypes`](/reference/react/Component#static-childcontexttypes), [`contextTypes`](/reference/react/Component#static-contexttypes), and [`getChildContext`](/reference/react/Component#getchildcontext)). [See alternatives.](/reference/react/createContext)
-* Legacy string refs ([`this.refs`](/reference/react/Component#refs)). [See alternatives.](https://reactjs.org/docs/strict-mode.html#warning-about-legacy-string-ref-api-usage)
+* [`findDOMNode`](/reference/react-dom/findDOMNode). [ראה חלופות.](https://reactjs.org/docs/strict-mode.html#warning-about-deprecated-finddomnode-usage)
+* שיטות מחזור חיים בכיתה `UNSAFE_` כמו [`UNSAFE_componentWillMount`](/reference/react/Component#unsafe_componentwillmount). [ראה חלופות.](https://reactjs.org/blog/2018/03/27/update-on-async-rendering.html#migrating-from-legacy-lifecycles) 
+* הקשר מדור קודם ([`childContextTypes`](/reference/react/Component#static-childcontexttypes), [`contextTypes`](/reference/react/Component#static-contexttypes), ו-[`getChildContext`](/reference/react/Component#getchildcontext)). [ראה חלופות.](/reference/react/createContext)
+* רשמי מחרוזת מדור קודם ([`this.refs`](/reference/react/Component#refs)). [ראה חלופות.](https://reactjs.org/docs/strict-mode.html#warning-about-legacy-string-ref-api-usage)
 
-These APIs are primarily used in older [class components](/reference/react/Component) so they rarely appear in modern apps.
+APIs אלה הם בעיקר used ב[רכיבי מחלקה] ישנים יותר (/reference/react/Component) ולכן הם מופיעים רק לעתים רחוקות באפליקציות מודרניות.

@@ -1,35 +1,35 @@
 ---
-title: Escape Hatches
+title: דרכי מילוט
 ---
 
 <Intro>
 
-Some of your components may need to control and synchronize with systems outside of React. For example, you might need to focus an input using the browser API, play and pause a video player implemented without React, or connect and listen to messages from a remote server. In this chapter, you'll learn the escape hatches that let you "step outside" React and connect to external systems. Most of your application logic and data flow should not rely on these features.
+יכול לחלק מהרכיבים שלך יצטרכו לשלוט ולסנכרן עם מערכות מחוץ ל-React. לדוגמא, אפשר ללא צורך למקד קלט באמצעות ה-API של הדפן, להפעיל ולהשהות נגן וידאו מיושם React, או להתחבר ולהאזין להודעות משרת מרוחק. בפרק זה תלמדו את פתחי המילוט המאפשרים לכם "לצאת החוצה" להגיב ולהתחבר למערכות חיצוניות. רוב ההיגיון של היישום והזרימה שלך לא צריך להסתמך על תכונות אלה.
 
 </Intro>
 
 <YouWillLearn isChapter={true}>
 
-* [How to "remember" information without re-rendering](/learn/referencing-values-with-refs)
-* [How to access DOM elements managed by React](/learn/manipulating-the-dom-with-refs)
-* [How to synchronize components with external systems](/learn/synchronizing-with-effects)
-* [How to remove unnecessary Effects from your components](/learn/you-might-not-need-an-effect)
-* [How an Effect's lifecycle is different from a component's](/learn/lifecycle-of-reactive-effects)
-* [How to prevent some values from re-triggering Effects](/learn/separating-events-from-effects)
-* [How to make your Effect re-run less often](/learn/removing-effect-dependencies)
-* [How to share logic between components](/learn/reusing-logic-with-custom-hooks)
+* [כיצד "לזכור" מידע ללא עיבוד מחדש](/learn/referencing-values-with-refs)
+* [כיצד לגשת לרכיבי DOM המנוהל על ידי React](/learn/manipulating-the-dom-with-refs)
+* [כיצד לסנכרן רכיבים עם מערכות חיצוניות](/למד/סנכרון-עם-אפקטים)
+* [כיצד להוציא אפקטים מיותרים מהרכיבים שלך](/learn/you-might-not-need-an-effect)
+* [איך מחזור החיים של אפקט שונה ממחזור החיים של הרכיב](/learn/lifecycle-of-reactive-effects)
+* [כיצד למנוע מכמה ערכים להפעיל מחדש אפקטים](/learn/separating-events-from-effects)
+* [כיצד לגרום לאפקט שלך להופיע מחדש בתדירות נמוכה יותר](/learn/removing-effect-dependencies)
+* [כיצד שיתוף לוגיקה בין רכיבים](/learn/reusing-logic-with-custom-hooks)
 
 </YouWillLearn>
 
-## Referencing values with refs {/*referencing-values-with-refs*/}
+## הפניה לערכים עם refs {/*referencing-values-with-refs*/}
 
-When you want a component to "remember" some information, but you don't want that information to [trigger new renders](/learn/render-and-commit), you can use a *ref*:
+כאשר אתה רוצה רכיב "יזכור" מידע מסוים, אבל אתה לא רוצה שהמידע הזה [תפעיל עיבודים חדשים](/learn/render-and-commit), אתה יכול להשתמש ב-*ref*:
 
 ```js
 const ref = useRef(0);
 ```
 
-Like state, refs are retained by React between re-renders. However, setting state re-renders a component. Changing a ref does not! You can access the current value of that ref through the `ref.current` property.
+בדומה לstate, השופטים נשמרים על ידי תגובה בין עיבודים חוזרים. עם זאת, הגדרת מצב מעבד מחדש רכיב. החלפת שופט לא! אתה יכול לגשת לערך הנוכחי של אותו ref דרך המאפיין 'ref.current'.
 
 <Sandpack>
 
@@ -54,17 +54,17 @@ export default function Counter() {
 
 </Sandpack>
 
-A ref is like a secret pocket of your component that React doesn't track. For example, you can use refs to store [timeout IDs](https://developer.mozilla.org/en-US/docs/Web/API/setTimeout#return_value), [DOM elements](https://developer.mozilla.org/en-US/docs/Web/API/Element), and other objects that don't impact the component's rendering output.
+שופט הוא כמו כיס סודי של הרכיב שלך ש-React לא עוקב אחריו. לדוגמה, אתה יכול להשתמש ב-refs כדי לאחסן [מזהי זמן קצוב](https://developer.mozilla.org/en-US/docs/Web/API/setTimeout#return_value), [רכיבי DOM](https://developer.mozilla.org/en-US/docs רכיב/Web/API/Element פעילים), ואובייקטים עיבוד אחרים
 
 <LearnMore path="/learn/referencing-values-with-refs">
 
-Read **[Referencing Values with Refs](/learn/referencing-values-with-refs)** to learn how to use refs to remember information.
+קרא את **[התייחסות לערכים עם Refs](/learn/referencing-values-with-refs)** כדי ללמוד להשתמש ב-Refs כדי לזכור מידע.
 
 </LearnMore>
 
-## Manipulating the DOM with refs {/*manipulating-the-dom-with-refs*/}
+## מניפולציה של ה-DOM עם שו"פים {/*מניפולציה-של-הדום-עם-שופים*/}
 
-React automatically updates the DOM to match your render output, so your components won't often need to manipulate it. However, sometimes you might need access to the DOM elements managed by React—for example, to focus a node, scroll to it, or measure its size and position. There is no built-in way to do those things in React, so you will need a ref to the DOM node. For example, clicking the button will focus the input using a ref:
+תגיב מותאם אוטומטית את העיבוד, כך שהרכיבים שלך לא יצטרכו בטווח זמן לתפעל אותו. עם זאת, לפעמים אפשר שתזדקק לגישה לרכיבי ה-DOM המנוהל על ידי React - לדוגמה, כדי למקד צומת, לגלול אליו או למדוד את גודלו ומיקומו. אין דרך מובנית לעשות את הדברים האלה ב-React, אז תצטרך ref לצומת DOM. לדוגמה, לחיצה על הכפתור תעסוק בקלט באמצעות ref:
 
 <Sandpack>
 
@@ -93,15 +93,15 @@ export default function Form() {
 
 <LearnMore path="/learn/manipulating-the-dom-with-refs">
 
-Read **[Manipulating the DOM with Refs](/learn/manipulating-the-dom-with-refs)** to learn how to access DOM elements managed by React.
+קרא את **[מניפולציה של ה-DOM עם Refs](/learn/manipulating-the-dom-with-refs)** כדי ללמוד כיצד לגשת לרכיבי DOM המנוהל על ידי React.
 
 </LearnMore>
 
-## Synchronizing with Effects {/*synchronizing-with-effects*/}
+## סנכרון עם אפקטים {/*סנכרון-עם-אפקטים*/}
 
-Some components need to synchronize with external systems. For example, you might want to control a non-React component based on the React state, set up a server connection, or send an analytics log when a component appears on the screen. Unlike event handlers, which let you handle particular events, *Effects* let you run some code after rendering. Use them to synchronize your component with a system outside of React.
+חלק מהרכיבים צריכים להסתנכרן עם מערכות חיצוניות. לדוגמה, אפשר שתרצה לשלוט ברכיב שאינו React בהתבסס על מצב React, להגדיר חיבור לשרת, או לשלוח יומן ניתוח כאשר הוא מופיע על המסך. מטפל באירועים, המאפשרים לך להריץ באירועים, *אפקטים* מאפשרים לך להריץ קוד מסוים לאחר העיבוד. השתמש בהם כדי לסנכרן את הרכיב שלך עם מערכת מחוץ ל-React.
 
-Press Play/Pause a few times and see how the video player stays synchronized to the `isPlaying` prop value:
+הקש על הפעל/השהה כמה פעמים וראה כיצד נגן הווידאו נשאר מסונכרן לערך ה-'isPlaying':
 
 <Sandpack>
 
@@ -145,7 +145,7 @@ video { width: 250px; }
 
 </Sandpack>
 
-Many Effects also "clean up" after themselves. For example, an Effect that sets up a connection to a chat server should return a *cleanup function* that tells React how to disconnect your component from that server:
+אפקטים רבים גם "מנקים" אחרי אנשים. לדוגמה, אפקט שמגדיר חיבור לשרת צ'אט צריך להחזיר *פונקציית ניקוי* שאומרת ל-React איך לנתק את הרכיב שלך מהשרת הזה:
 
 <Sandpack>
 
@@ -183,23 +183,23 @@ input { display: block; margin-bottom: 20px; }
 
 </Sandpack>
 
-In development, React will immediately run and clean up your Effect one extra time. This is why you see `"✅ Connecting..."` printed twice. This ensures that you don't forget to implement the cleanup function.
+בפיתוח, React יפעיל מיד ותנקה את האפקט שלך פעם נוספת. אתה רואה את `"✅ מתחבר..."` מודפס פעמיים. זה מבטיח שלא תשכח ליישם את פונקציית הניקוי.
 
 <LearnMore path="/learn/synchronizing-with-effects">
 
-Read **[Synchronizing with Effects](/learn/synchronizing-with-effects)** to learn how to synchronize components with external systems.
+קרא את **[סנכרון עם אפקטים](/learn/synchronizing-with-effects)** כדי ללמוד כיצד לסנכרן רכיבים עם מערכות חיצוניות.
 
 </LearnMore>
 
-## You Might Not Need An Effect {/*you-might-not-need-an-effect*/}
+## אולי לא תזדקק לאפקט {/*ייתכן-לא-תצטרך-אפקט*/}
 
-Effects are an escape hatch from the React paradigm. They let you "step outside" of React and synchronize your components with some external system. If there is no external system involved (for example, if you want to update a component's state when some props or state change), you shouldn't need an Effect. Removing unnecessary Effects will make your code easier to follow, faster to run, and less error-prone.
+אפקטים הם פתח מילוט מפרדיגמת React. הם מאפשרים לך "לצאת החוצה" מ-React ולסנכרן את הרכיבים שלך עם מערכת חיצונית. אם אין מערכת חיצונית מעורבת (לדוגמה, אם רוצה לעדכן מצב של רכיב כאשר אתה props או מצב משתנים), אתה לא אמור להזדק לאפקט. הסרת אפקטים מיותרים תהפוך את הקוד שלך לקל יותר לעקוב, מהר יותר להפעלה ונוטה פחות לשגיאות.
 
-There are two common cases in which you don't need Effects:
-- **You don't need Effects to transform data for rendering.**
-- **You don't need Effects to handle user events.**
+ישנם שני מקרים נפוצים שבהם אתה לא צריך אפקטים:
+- **לא צריך אפקטים כדי להפוך נתונים לעיבוד.**
+- **לא צריך אפקטים כדי לטפל באירועי משתמש.**
 
-For example, you don't need an Effect to adjust some state based on other state:
+לדוגמה, אתה לא צריך אפקט כדי להתאים מצב מסוים על סמך מצב אחר:
 
 ```js {5-9}
 function Form() {
@@ -215,7 +215,7 @@ function Form() {
 }
 ```
 
-Instead, calculate as much as you can while rendering:
+במקום זאת, חשב כמה שאתה יכול תוך כדי רינדור:
 
 ```js {4-5}
 function Form() {
@@ -227,19 +227,19 @@ function Form() {
 }
 ```
 
-However, you *do* need Effects to synchronize with external systems. 
+עם זאת, אתה *דווקא* צריך אפקטים כדי לסנכרן עם מערכות חיצוניות. 
 
 <LearnMore path="/learn/you-might-not-need-an-effect">
 
-Read **[You Might Not Need an Effect](/learn/you-might-not-need-an-effect)** to learn how to remove unnecessary Effects.
+קרא את **[ייתכן שלא תזדק לאפקט](/learn/you-might-not-need-an-effect)** כדי לממש אפקטים מיותרים.
 
 </LearnMore>
 
-## Lifecycle of reactive effects {/*lifecycle-of-reactive-effects*/}
+## מחזור חיים של אפקטים תגובתיים {/*מחזור-חיים-של-אפקטים-תגובתיים*/}
 
-Effects have a different lifecycle from components. Components may mount, update, or unmount. An Effect can only do two things: to start synchronizing something, and later to stop synchronizing it. This cycle can happen multiple times if your Effect depends on props and state that change over time.
+לאפקטים יש מחזור חיים. רכיבים רכיבים לעלות, לעד או לטעינה. אפקט יכול לעשות רק שני דברים: להתחיל לסנכרן משהו, ובהמשך להפסיק לסנכרן אותו. מחזור זה יכול לקרות מספר פעמים אם ההשפעה שלך תלויה בprops ובstates המשתנים עם הזמן.
 
-This Effect depends on the value of the `roomId` prop. Props are *reactive values,* which means they can change on a re-render. Notice that the Effect *re-synchronizes* (and re-connects to the server) if `roomId` changes:
+אפקט זה תלוי בערך של הפרופס של `roomId`. props הם * ערכים תגובתיים,* מה שאומר שהם יכולים להשתנות בעיבוד מחדש. שימו לב שהאפקט *מסנכרן מחדש* (ומתחבר מחדש לשרת) אם דירוג `roomId`:
 
 <Sandpack>
 
@@ -302,25 +302,25 @@ button { margin-left: 10px; }
 
 </Sandpack>
 
-React provides a linter rule to check that you've specified your Effect's dependencies correctly. If you forget to specify `roomId` in the list of dependencies in the above example, the linter will find that bug automatically.
+React מספק כלל linter כדי לבדוק את התלות של האפקט שלך בצורה נכונה. אם תשכח לציין 'roomId' ברשימת התלות בדוגמה לעיל, ה-linter יביא את הבאג הזה באופן אוטומטי.
 
 <LearnMore path="/learn/lifecycle-of-reactive-effects">
 
-Read **[Lifecycle of Reactive Events](/learn/lifecycle-of-reactive-effects)** to learn how an Effect's lifecycle is different from a component's.
+קרא את **[מחזור חיים של אירועים תגובתיים](/learn/lifecycle-of-reactive-effects)** כדי ללמוד מחזור החיים של אפקט שונה מזה של רכיב.
 
 </LearnMore>
 
-## Separating events from Effects {/*separating-events-from-effects*/}
+## הפרדת אירועים מהאפקטים {/*הפרדת-אירועים-מהאפקטים*/}
 
 <Wip>
 
-This section describes an **experimental API that has not yet been released** in a stable version of React.
+סעיף זה מתאר **API ניסיוני שעדיין לא שוחרר** בגרסה יציבה של React.
 
 </Wip>
 
-Event handlers only re-run when you perform the same interaction again. Unlike event handlers, Effects re-synchronize if any of the values they read, like props or state, are different than during last render. Sometimes, you want a mix of both behaviors: an Effect that re-runs in response to some values but not others.
+פועלי אירועים מחדש רק כאשר אתה מבצע שוב את אותה אינטראקציה. שלא כמו מטפלי אירועים, אפקטים מסתנכרנים מחדש אם אחד מהערכים שהם קוראים, כמו props או מצב, שונה מעבר לעיבוד האחרון. לפעמים, אתה רוצה שילוב של שתי ההתנהגויות: אפקט המופעל מחדש בתגובה להגדרה אך לא מתאימה.
 
-All code inside Effects is *reactive.* It will run again if some reactive value it reads has changed due to a re-render. For example, this Effect will re-connect to the chat if either `roomId` or `theme` have changed:
+כל הקוד בתוך אפקטים הוא *reactive.* הוא יפעל שוב אם הוא קורא השתנה עקב עיבוד מחדש. לדוגמה, אפקט זה יתחבר מחדש לצ'אט אם 'roomId' או 'theme' השתנו:
 
 <Sandpack>
 
@@ -448,7 +448,7 @@ label { display: block; margin-top: 10px; }
 
 </Sandpack>
 
-This is not ideal. You want to re-connect to the chat only if the `roomId` has changed. Switching the `theme` shouldn't re-connect to the chat! Move the code reading `theme` out of your Effect into an *Effect Event*:
+זה לא אידיאלי. אתה רוצה להתחבר מחדש לצ'אט רק אם ה-'roomId' השתנה. החלפת `נושא` לא אמורה להתחבר מחדש לצ'אט! העבר את הקוד שקורא את ה-'theme' מהאפקט שלך ל-*Effect Event*:
 
 <Sandpack>
 
@@ -581,19 +581,19 @@ label { display: block; margin-top: 10px; }
 
 </Sandpack>
 
-Code inside Effect Events isn't reactive, so changing the `theme` no longer makes your Effect re-connect.
+הקוד בתוך אירועי אפקט אינו תגובתי, כך ששינוי `הנושא` כבר לא גורם לאפקט להתחבר מחדש.
 
 <LearnMore path="/learn/separating-events-from-effects">
 
-Read **[Separating Events from Effects](/learn/separating-events-from-effects)** to learn how to prevent some values from re-triggering Effects.
+קרא את **[הפרדת אירועים מאפקטים](/learn/separating-events-from-effects)** כדי ללמוד כיצד למנוע מכמה ערכים להפעיל מחדש אפקטים.
 
 </LearnMore>
 
-## Removing Effect dependencies {/*removing-effect-dependencies*/}
+## הסרת תלויות אפקט {/*הסרת-אפקט-תלות*/}
 
-When you write an Effect, the linter will verify that you've included every reactive value (like props and state) that the Effect reads in the list of your Effect's dependencies. This ensures that your Effect remains synchronized with the latest props and state of your component. Unnecessary dependencies may cause your Effect to run too often, or even create an infinite loop. The way you remove them depends on the case.
+כאשר אתה כותב אפקט, ה-linter יוודא שכללת כל ערך תגובתי (כמו props וstate) שהאפקט קורא ברשימת התלות של האפקט שלך. זה מבטיח שהאפקט שלך יישאר מסונכרן עם הprops וstate העדכניים ביותר של הרכיב שלך. תלות מיותרות עלולה לגרום לאפקט שלך לפעול בזמן, או אפילו ליצור לולאה אינסופית. הדרך תלויה במקרה.
 
-For example, this Effect depends on the `options` object which gets re-created every time you edit the input:
+לדוגמה, אפקט זה תלוי באובייקט 'אפשרויות' שנוצר מחדש בכל פעם שאתה עורך את הקלט:
 
 <Sandpack>
 
@@ -668,7 +668,7 @@ button { margin-left: 10px; }
 
 </Sandpack>
 
-You don't want the chat to re-connect every time you start typing a message in that chat. To fix this problem, move creation of the `options` object inside the Effect so that the Effect only depends on the `roomId` string:
+אתה לא רוצה שהצ'אט יתחבר מחדש בכל פעם שאתה מתחיל להקליד הודעה בצ'אט זה. כדי לתקן זו בעיה, העבר את היצירה של אובייקט ה-'options' בתוך האפקט כך שהאפקט תלוי רק במחרוזת 'roomId':
 
 <Sandpack>
 
@@ -742,19 +742,19 @@ button { margin-left: 10px; }
 
 </Sandpack>
 
-Notice that you didn't start by editing the dependency list to remove the `options` dependency. That would be wrong. Instead, you changed the surrounding code so that the dependency became *unnecessary.* Think of the dependency list as a list of all the reactive values used by your Effect's code. You don't intentionally choose what to put on that list. The list describes your code. To change the dependency list, change the code.
+שים לב שלא התחלת בעריכת רשימת התלות כדי להסיר את התלות 'אפשרויות'. זה יהיה שגוי. במקום זאת, שינית את הקוד שמסביב כך שהתלות הפכה ל*מיותרת.* תחשוב על רשימת התלות כעל רשימה של כל הערכים התגובתיים המשמשים את הקוד של האפקט שלך. אתה לא בוחר בכוונה מה לשים ברשימה הזו. הרשימה מתארת ​​את הקוד שלך. כדי לשנות את רשימת התלות, שנה את הקוד.
 
 <LearnMore path="/learn/removing-effect-dependencies">
 
-Read **[Removing Effect Dependencies](/learn/removing-effect-dependencies)** to learn how to make your Effect re-run less often.
+קרא את **[הסרת תלות אפקט](/learn/removing-effect-dependencies)** כדי ללמוד כיצד לגרום לאפקט לפעול שוב בתדירות נמוכה יותר.
 
 </LearnMore>
 
-## Reusing logic with custom Hooks {/*reusing-logic-with-custom-hooks*/}
+## שימוש חוזר בהיגיון עם ווים מותאמים אישית {/*שימוש-חוזר-בהיגיון-עם-ווים-מותאמים-אישית*/}
 
-React comes with built-in Hooks like `useState`, `useContext`, and `useEffect`. Sometimes, you’ll wish that there was a Hook for some more specific purpose: for example, to fetch data, to keep track of whether the user is online, or to connect to a chat room. To do this, you can create your own Hooks for your application's needs.
+תגובה מגיעה עם Hooks מובנים כמו `useState`, `useContext` ו-`useEffect`. לפעמים, תרצה שיהיה Hook למטרה ספציפית יותר: למשל, נתונים, לעקוב אם אתה משתמש מקומי או להתחבר לחדר צ'אט. כדי לעשות זאת, אתה יכול ליצור Hooks משלך לצרכי האפליקציה שלך.
 
-In this example, the `usePointerPosition` custom Hook tracks the cursor position, while `useDelayedValue` custom Hook returns a value that's "lagging behind" the value you passed by a certain number of milliseconds. Move the cursor over the sandbox preview area to see a moving trail of dots following the cursor:
+בדוגמה זו, ה-Hook המותאם אישית `usePointerPosition` עוקב אחר מיקום הסמן, בעוד `useDelayedValue` Hook המותאם אישית מחזיר ערך ש"פוגר מאחורי" הערך שעברה מספר מסוימות של אלפיות שניות. הזז את ההסמן מעל אזור התצוגה המקדימה של ארגז החול כדי לראות שובל נע של נקודות בעקבות ההסמן:
 
 <Sandpack>
 
@@ -835,14 +835,15 @@ body { min-height: 300px; }
 
 </Sandpack>
 
-You can create custom Hooks, compose them together, pass data between them, and reuse them between components. As your app grows, you will write fewer Effects by hand because you'll be able to reuse custom Hooks you already wrote. There are also many excellent custom Hooks maintained by the React community.
+אתה יכול ליצור הHooks מותאמים באופן אישי, לחבר אותם, להעביר, ולעשות בהם שימוש חוזר בין רכיבים. ככל שהאפליקציה שלך תגדל, תכתוב פחות אפקטים ביד אם תעשה שימוש חוזר ב-Hooks מותאמים אישית כתבת. יש גם הרבה הHooks מותאמים אישיים מצוינים שמתוחזקים על ידי קהילת React.
 
 <LearnMore path="/learn/reusing-logic-with-custom-hooks">
 
-Read **[Reusing Logic with Custom Hooks](/learn/reusing-logic-with-custom-hooks)** to learn how to share logic between components.
+קרא את **[השתמש בבלוגיקה עם ווים מותאמים אישית](/learn/reusing-logic-with-custom-hooks)** כדי ללמוד כיצד לשתף לוגיקה בין רכיבים.
 
 </LearnMore>
 
-## What's next? {/*whats-next*/}
+## מה הלאה? {/*מה-הבא*/}
 
-Head over to [Referencing Values with Refs](/learn/referencing-values-with-refs) to start reading this chapter page by page!
+עברו אל [התייחסות לערכים עם Refs](/learn/referencing-values-with-refs) כדי להתחיל לקרוא פרק זה עמוד אחר עמוד!
+

@@ -1,10 +1,10 @@
 ---
-title: isValidElement
+title: "isValidElement"
 ---
 
 <Intro>
 
-`isValidElement` checks whether a value is a React element.
+`isValidElement` בודקת האם ערך הוא React אלמנט.
 
 ```js
 const isElement = isValidElement(value)
@@ -16,11 +16,11 @@ const isElement = isValidElement(value)
 
 ---
 
-## Reference {/*reference*/}
+## הפניה {/*reference*/}
 
 ### `isValidElement(value)` {/*isvalidelement*/}
 
-Call `isValidElement(value)` to check whether `value` is a React element.
+קראו ל-`isValidElement(value)` כדי לבדוק האם `value` הוא React אלמנט.
 
 ```js
 import { isValidElement, createElement } from 'react';
@@ -35,34 +35,34 @@ console.log(isValidElement('Hello')); // false
 console.log(isValidElement({ age: 42 })); // false
 ```
 
-[See more examples below.](#usage)
+[עוד דוגמאות נוספות.](#usage)
 
-#### Parameters {/*parameters*/}
+#### פרמטרים {/*parameters*/}
 
-* `value`: The `value` you want to check. It can be any a value of any type.
+* `value`: הערך שברצונכם לבדוק. הוא יכול להיות מכל סוג.
 
-#### Returns {/*returns*/}
+#### מחזירה {/*returns*/}
 
-`isValidElement` returns `true` if the `value` is a React element. Otherwise, it returns `false`.
+`isValidElement` מחזירה `true` אם `value` הוא React אלמנט. אחרת היא מחזירה `false`.
 
-#### Caveats {/*caveats*/}
+#### אזהרות {/*caveats*/}
 
-* **Only [JSX tags](/learn/writing-markup-with-jsx) and objects returned by [`createElement`](/reference/react/createElement) are considered to be React elements.** For example, even though a number like `42` is a valid React *node* (and can be returned from a component), it is not a valid React element. Arrays and portals created with [`createPortal`](/reference/react-dom/createPortal) are also *not* considered to be React elements.
+* **רק [JSX תגיות](/learn/writing-markup-with-jsx) ואובייקטים שמוחזרים מ-[`createElement`](/reference/react/createElement) נחשבים ל-React אלמנטים.** למשל, למרות שמספר כמו __MK_1__ הוא לא `42` הוא *ו`42` תחזיר אותו, אלמנט React תקין. גם מערכים ו-פורטלים מיוחדים עם [`createPortal`](/reference/react-dom/createPortal) *לא* נחשבים React אלמנטים.
 
 ---
 
-## Usage {/*usage*/}
+## שימוש {/*usage*/}
 
-### Checking if something is a React element {/*checking-if-something-is-a-react-element*/}
+### בדיקה אם משהו הוא React element {/*checking-if-something-is-a-react-element*/}
 
-Call `isValidElement` to check if some value is a *React element.*
+קראו ל-`isValidElement` כדי לבדוק אם ערך הוא *React אלמנט*.
 
-React elements are:
+React אלמנטים הם:
 
-- Values produced by writing a [JSX tag](/learn/writing-markup-with-jsx)
-- Values produced by calling [`createElement`](/reference/react/createElement)
+- ערכים יוצרים מכתיבת [JSX tag](/learn/writing-markup-with-jsx)
+- ערכים יוצרים מקריאה ל-[`createElement`](/reference/react/createElement)
 
-For React elements, `isValidElement` returns `true`:
+עבור אלמנטים React, `isValidElement` מחזירה `true`:
 
 ```js
 import { isValidElement, createElement } from 'react';
@@ -76,9 +76,9 @@ console.log(isValidElement(createElement('p'))); // true
 console.log(isValidElement(createElement(MyComponent))); // true
 ```
 
-Any other values, such as strings, numbers, or arbitrary objects and arrays, are not React elements.
+כל ערך אחר, כמו מחרוזות, מספרים או אובייקטים וערכים שרירותיים, אינו React אלמנט.
 
-For them, `isValidElement` returns `false`:
+עבורם, `isValidElement` מחזירה `false`:
 
 ```js
 // ❌ These are *not* React elements
@@ -90,15 +90,15 @@ console.log(isValidElement([<div />, <div />])); // false
 console.log(isValidElement(MyComponent)); // false
 ```
 
-It is very uncommon to need `isValidElement`. It's mostly useful if you're calling another API that *only* accepts elements (like [`cloneElement`](/reference/react/cloneElement) does) and you want to avoid an error when your argument is not a React element.
+נדיר מאוד שצריך `isValidElement`. לרוב שימושי רק כשקוראים ל-API אחר ש*מקבל רק אלמנטים* (כמו [`cloneElement`](/reference/react/cloneElement)) ורוצים ממש משגיאה כשהארגומנט אינו React אלמנט.
 
-Unless you have some very specific reason to add an `isValidElement` check, you probably don't need it.
+אלא אם יש לכם סיבה מאוד ספציפית להוסיף בדיקת `isValidElement`, כנראה שאין צורך.
 
 <DeepDive>
 
-#### React elements vs React nodes {/*react-elements-vs-react-nodes*/}
+#### React אלמנטים לעומת React צמתים {/*react-elements-vs-react-nodes*/}
 
-When you write a component, you can return any kind of *React node* from it:
+כשכותבים קומפונטה, אפשר להחזיר ממנה כל סוג של צומת *React*:
 
 ```js
 function MyComponent() {
@@ -106,16 +106,16 @@ function MyComponent() {
 }
 ```
 
-A React node can be:
+צומת React יכול להיות:
 
-- A React element created like `<div />` or `createElement('div')`
-- A portal created with [`createPortal`](/reference/react-dom/createPortal)
-- A string
-- A number
-- `true`, `false`, `null`, or `undefined` (which are not displayed)
-- An array of other React nodes
+- React אלמנט עיצוב כמו `<div />` או `createElement('div')`
+- פורטל מיוחד עם [`createPortal`](/reference/react-dom/createPortal)
+- מחרוזת
+- מספר
+- `true`, `false`, `null`, או `undefined` (שאינם מוצגים)
+- מערך של React צמתים אחרים
 
-**Note `isValidElement` checks whether the argument is a *React element,* not whether it's a React node.** For example, `42` is not a valid React element. However, it is a perfectly valid React node:
+**שימו לב ש-`isValidElement` בודקת האם הארגומנט הוא *React element*, ולא האם הוא React node.** לדוגמה, `42` אינו React אלמנט תקין. עם זאת, הוא React צומת תקין לחלוטין:
 
 ```js
 function MyComponent() {
@@ -123,6 +123,6 @@ function MyComponent() {
 }
 ```
 
-This is why you shouldn't use `isValidElement` as a way to check whether something can be rendered.
+לא כדאי להשתמש ב-`isValidElement` כדי לברר אם משהו ניתן לרינדור.
 
 </DeepDive>

@@ -1,52 +1,52 @@
 ---
-title: "How to Upgrade to React 18"
+title: "כיצד לשדרג ל-React 18"
 ---
 
-March 08, 2022 by [Rick Hanlon](https://twitter.com/rickhanlonii)
+8 במרץ 2022 מאת [ריק הנלון](https://twitter.com/rickhanlonii)
 
 ---
 
 <Intro>
 
-As we shared in the [release post](/blog/2022/03/29/react-v18), React 18 introduces features powered by our new concurrent renderer, with a gradual adoption strategy for existing applications. In this post, we will guide you through the steps for upgrading to React 18.
+כפי שנו ב-[release post](/blog/2022/03/29/react-v18), React 18 הצגת חלק תכלית המופעלות על ידי המעבד החדש שלנו, עם אסטרטגית אימוץ הדרגתית עבור יישומים קיימים. בפוסט זה נדריך אותך בשדרוג ל-React 18.
 
-Please [report any issues](https://github.com/facebook/react/issues/new/choose) you encounter while upgrading to React 18.
+אנא [דווח על בעיות כלשהן](https://github.com/facebook/react/issues/new/choose) שנתקלת בה בעת השדרוג ל-React 18.
 
 </Intro>
 
 <Note>
 
-For React Native users, React 18 will ship in a future version of React Native. This is because React 18 relies on the New React Native Architecture to benefit from the new capabilities presented in this blogpost. For more information, see the [React Conf keynote here](https://www.youtube.com/watch?v=FZ0cG47msEk&t=1530s).
+עבור React Native users, React 18 יישלח בגרסה עתידית של React Native. זה בגלל שuse React 18 מסתמך על הארכיטקטורה המקורית של React כדי ליהנות מהיכולות החדשות המוצגות בפוסט זה בבלוג. למידע נוסף, ראה [React ההרצאה המרכזית כאן](https://www.youtube.com/watch?v=FZ0cG47msEk&t=1530s).
 
 </Note>
 
 ---
 
-## Installing {/*installing*/}
+## התקנת {/*installing*/}
 
-To install the latest version of React:
+כדי להתקין את הגרסה האחרונה של React:
 
 ```bash
 npm install react react-dom
 ```
 
-Or if you’re using yarn:
+או אם אתה משתמש בחוט:
 
 ```bash
 yarn add react react-dom
 ```
 
-## Updates to Client Rendering APIs {/*updates-to-client-rendering-apis*/}
+## עדכונים לעיבוד לקוח APIs {/*updates-to-client-rendering-apis*/}
 
-When you first install React 18, you will see a warning in the console:
+כאשר תתקין לראשונה את React 18, תראה אזהרה במסוף:
 
 <ConsoleBlock level="error">
 
-ReactDOM.render is no longer supported in React 18. Use createRoot instead. Until you switch to the new API, your app will behave as if it's running React 17. Learn more: https://reactjs.org/link/switch-to-createroot
+ReactDOM.render אינו נתמך עוד ב-React 18. השתמש ב-createRoot במקום זאת. עד שתעבור ל-API החדש, האפליקציה שלך תתנהג כאילו היא פועלת React 17. למידע נוסף: https://reactjs.org/link/switch-to-createroot
 
 </ConsoleBlock>
 
-React 18 introduces a new root API which provides better ergonomics for managing roots. The new root API also enables the new concurrent renderer, which allows you to opt-into concurrent features.
+React 18 מציג שורש חדש API הספק ארגונומיה טובה יותר לניהול שורשים. השורש החדש API יכול גם את המעבד החדש, המאפשר לך להצטרף לפתרון.
 
 ```js
 // Before
@@ -61,7 +61,7 @@ const root = createRoot(container); // createRoot(container!) if you use TypeScr
 root.render(<App tab="home" />);
 ```
 
-We’ve also changed `unmountComponentAtNode` to `root.unmount`:
+שינינו גם את `unmountComponentAtNode` ל-`root.unmount`:
 
 ```js
 // Before
@@ -71,7 +71,7 @@ unmountComponentAtNode(container);
 root.unmount();
 ```
 
-We've also removed the callback from render, since it usually does not have the expected result when using Suspense:
+הסרנו גם את ההתקשרות חזרה מעיבוד, מה שבדרך כלל אין לו את התוצאה בעת שימוש ב-Suspense:
 
 ```js
 // Before
@@ -96,11 +96,11 @@ root.render(<AppWithCallbackAfterRender />);
 
 <Note>
 
-There is no one-to-one replacement for the old render callback API — it depends on your use case. See the working group post for [Replacing render with createRoot](https://github.com/reactwg/react-18/discussions/5) for more information.
+אין תחליף אחד לאחד עבור העיבוד הישן API - זה תלוי במקרה use שלך. עיין בפוסט של קבוצת העבודה עבור [החלפת עיבוד ב-createRoot](https://github.com/reactwg/react-18/discussions/5) למידע נוסף.
 
 </Note>
 
-Finally, if your app uses server-side rendering with hydration, upgrade `hydrate` to `hydrateRoot`:
+לבסוף, אם האפליקציה שלך use של עיבוד בצד השרת עם הידרציה, שדרג את `hydrate` ל-`hydrateRoot`:
 
 ```js
 // Before
@@ -115,40 +115,40 @@ const root = hydrateRoot(container, <App tab="home" />);
 // Unlike with createRoot, you don't need a separate root.render() call here.
 ```
 
-For more information, see the [working group discussion here](https://github.com/reactwg/react-18/discussions/5).
+למידע נוסף, עיין ב[דיון בקבוצת העבודה כאן](https://github.com/reactwg/react-18/discussions/5).
 
 <Note>
 
-**If your app doesn't work after upgrading, check whether it's wrapped in `<StrictMode>`.** [Strict Mode has gotten stricter in React 18](#updates-to-strict-mode), and not all your components may be resilient to the new checks it adds in development mode. If removing Strict Mode fixes your app, you can remove it during the upgrade, and then add it back (either at the top or for a part of the tree) after you fix the issues that it's pointing out.
+**אם האפליקציה שלך לא עובדת לאחר השדרוג, בדוק אם היא עטופה ב-`<StrictMode>`.** [מצב קפדני מחמיר ב-React 18](#updates-to-strict-mode), וייתכן שלא כל הרכיבים שלך יהיו עמידים לבדיקות חדשות שהיא מוסיפה פיתוח במצב. אם הסרת מצב קפדני מסדרת את האפליקציה שלך, תוכל לשלוח אותה לאחר השדרוג, להוסיף אותה בחזרה (בחלק העליון או עבור חלק מהעץ) לאחר שתתקן את הבעיות שהיא מציינת.
 
 </Note>
 
-## Updates to Server Rendering APIs {/*updates-to-server-rendering-apis*/}
+## עדכונים לעיבוד שרת APIs {/*updates-to-server-rendering-apis*/}
 
-In this release, we’re revamping our `react-dom/server` APIs to fully support Suspense on the server and Streaming SSR. As part of these changes, we're deprecating the old Node streaming API, which does not support incremental Suspense streaming on the server.
+במהדורה זו, אנו משפצים את ה-`react-dom/server` APIs כדי שלנו לתמוך באופן מלא ב-Suspense בשרת וב- Streaming SSR. כחלק משינויים אלה, אנו מוציאים משימוש את הזרמת Node API הישנה, ​​שיינה תומכת בהזרמת Suspense מצטברת בשרת.
 
-Using this API will now warn:
+שימוש ב-API הזה יזהיר עכשיו:
 
-* `renderToNodeStream`: **Deprecated ⛔️️**
+* `renderToNodeStream`: **הוצא שימוש ⛔️️**
 
-Instead, for streaming in Node environments, use:
-* `renderToPipeableStream`: **New ✨**
+במקום זאת, עבור סטרימינג בסביבות Node, use:
+* `renderToPipeableStream`: **חדש ✨**
 
-We're also introducing a new API to support streaming SSR with Suspense for modern edge runtime environments, such as Deno and Cloudflare workers:
-* `renderToReadableStream`: **New ✨**
+אנו גם מציגים API חדש לתמיכה בהזרמת SSR עם Suspense עבור סביבות זמן ריצה קצה מודרניות, בין עובדי Deno ו-Cloudflare:
+* `renderToReadableStream`: **חדש ✨**
 
-The following APIs will continue working, but with limited support for Suspense:
-* `renderToString`: **Limited** ⚠️
-* `renderToStaticMarkup`: **Limited** ⚠️
+ה-APIs הבאים ימשיכו לעבוד, אך עם תמיכה מוגבלת עבור Suspense:
+* `renderToString`: **מוגבל** ⚠️
+* `renderToStaticMarkup`: **מוגבל** ⚠️
 
-Finally, this API will continue to work for rendering e-mails:
+לבסוף, API זה ימשיך לעבוד לעיבוד הודעות דואר אלקטרוני:
 * `renderToStaticNodeStream`
 
-For more information on the changes to server rendering APIs, see the working group post on [Upgrading to React 18 on the server](https://github.com/reactwg/react-18/discussions/22), a [deep dive on the new Suspense SSR Architecture](https://github.com/reactwg/react-18/discussions/37), and [Shaundai Person’s](https://twitter.com/shaundai) talk on [Streaming Server Rendering with Suspense](https://www.youtube.com/watch?v=pj5N-Khihgc) at React Conf 2021.
+למידע נוסף על השינויים בעיבוד APIs בשרת, ראה את הפוסט של קבוצת העבודה בנושא [שדרוג ל-React 18 בשרת](https://github.com/reactwg/react-18/discussions/22), [צלילה עמוקה בארכיטקטורת Suspense SSR החדשה](https://github.com/reactwg/react-18/discussions/37),ה עמוקה ו-[Shaundai Person_2] Suspense SSR](https://github.com/reactwg/react-18/discussions/37), ו-[Shaundai Person's](__TK_2) Suspense](https://www.youtube.com/watch?v=pj5N-Khihgc) ב-React Conf 2021.
 
-## Updates to TypeScript definitions {/*updates-to-typescript-definitions*/}
+## עדכונים להגדרות TypeScript {/*updates-to-typescript-definitions*/}
 
-If your project uses TypeScript, you will need to update your `@types/react` and `@types/react-dom` dependencies to the latest versions. The new types are safer and catch issues that used to be ignored by the type checker. The most notable change is that the `children` prop now needs to be listed explicitly when defining props, for example:
+אם הפרויקט שלך uses TypeScript, תצטרך לעדכן את התלות `@types/react` ו`@types/react-dom` שלך לגרסאות משפטיות. הסוגים החדשים בטוחים יותר ותופסים בעיות שuse יתעלמו מהן על ידי בודק הסוגים. השינוי הבולט ביותר הוא שכעת יש לרשום את הפריט `children` במפורש בעת הגדרת props, לדוגמה:
 
 ```typescript{3}
 interface MyButtonProps {
@@ -157,13 +157,13 @@ interface MyButtonProps {
 }
 ```
 
-See the [React 18 typings pull request](https://github.com/DefinitelyTyped/DefinitelyTyped/pull/56210) for a full list of type-only changes. It links to example fixes in library types so you can see how to adjust your code. You can use the [automated migration script](https://github.com/eps1lon/types-react-codemod) to help port your application code to the new and safer typings faster.
+ראה את [React 18 בקשת המשיכה של 18 הקלדות](https://github.com/DefinitelyTyped/DefinitelyTyped/pull/56210) לרשימה מלאה של שינויים סטייליים בלבד. הוא קשור לתיקונים לדוגמה בסוגי ספריות כדי לראות איך להתאים את הקוד שלך.
 
-If you find a bug in the typings, please [file an issue](https://github.com/DefinitelyTyped/DefinitelyTyped/discussions/new?category=issues-with-a-types-package) in the DefinitelyTyped repo.
+אם אתה מוצא באג בהקלדות, אנא [הגש בעיה](https://github.com/DefinitelyTyped/DefinitelyTyped/discussions/new?category=issues-with-a-types-package) ב-repo DefinitelyTyped.
 
-## Automatic Batching {/*automatic-batching*/}
+## אצווה אוטומטית {/*automatic-batching*/}
 
-React 18 adds out-of-the-box performance improvements by doing more batching by default. Batching is when React groups multiple state updates into a single re-render for better performance. Before React 18, we only batched updates inside React event handlers. Updates inside of promises, setTimeout, native event handlers, or any other event were not batched in React by default:
+React 18 מוסיף שיפורי ביצועים מחוץ לקופסה על ידי ביצוע יותר אצווה כבר מחדל. אצווה היא כאשר React מקבץ עדכוני state מרובים לעיבוד מחדש יחיד לביצועים טובים יותר. לפני React 18, צירפנו רק עדכונים בתוך מטפלי אירועים של React. עדכונים בתוך הבטחות, setTimeout, מטפל אירועים מקוריים או כל אירוע אחר לא צורפו ב-React כברירת מחדל:
 
 ```js
 // Before React 18 only React events were batched
@@ -182,7 +182,7 @@ setTimeout(() => {
 ```
 
 
-Starting in React 18 with `createRoot`, all updates will be automatically batched, no matter where they originate from. This means that updates inside of timeouts, promises, native event handlers or any other event will batch the same way as updates inside of React events:
+החל מ-React 18 עם `createRoot`, כל העדכונים יצטברו באופן אוטומטי, לא משנה מהיכן הם מגיעים. משמעות הדבר היא שעדכונים בתוך פסק זמן, הבטחות, רופא אירועים מקוריים או כל אירוע אחר יתבצע באותו אופן כמו עדכונים אירועי React:
 
 ```js
 // After React 18 updates inside of timeouts, promises,
@@ -201,7 +201,7 @@ setTimeout(() => {
 }, 1000);
 ```
 
-This is a breaking change, but we expect this to result in less work rendering, and therefore better performance in your applications. To opt-out of automatic batching, you can use `flushSync`:
+זהו שינוי שובר, אך אנו מצפים שזה יביא לעיבוד פחות עבודה, ביצועים טובים יותר. כדי לבטל את הסכמתך לאיסוף אוטומטי, אתה יכול use `flushSync`:
 
 ```js
 import { flushSync } from 'react-dom';
@@ -218,26 +218,26 @@ function handleClick() {
 }
 ```
 
-For more information, see the [Automatic batching deep dive](https://github.com/reactwg/react-18/discussions/21).
+למידע נוסף, ראה [צלילת אצווה עמוקה אוטומטית](https://github.com/reactwg/react-18/discussions/21).
 
-## New APIs for Libraries {/*new-apis-for-libraries*/}
+## APIs חדשות לספריות {/*new-apis-for-libraries*/}
 
-In the React 18 Working Group we worked with library maintainers to create new APIs needed to support concurrent rendering for use cases specific to their use case in areas like styles, and external stores. To support React 18, some libraries may need to switch to one of the following APIs:
+בקבוצת העבודה React 18 עבדנו עם מנהלי ספריות כדי ליצור APIs חדשים הדרושים כדי לתמוך בעיבוד מקביל עבור use מקרים מיוחדים למארז use שלהם אזורים כמו סגנונות וחנויות חיצוניות. כדי לתמוך ב-React 18, אפשר שחלק מהספריות יצטרכו לעבור לאחד מה-APIs הבאים:
 
-* `useSyncExternalStore` is a new Hook that allows external stores to support concurrent reads by forcing updates to the store to be synchronous. This new API is recommended for any library that integrates with state external to React. For more information, see the [useSyncExternalStore overview post](https://github.com/reactwg/react-18/discussions/70) and [useSyncExternalStore API details](https://github.com/reactwg/react-18/discussions/86).
-* `useInsertionEffect` is a new Hook that allows CSS-in-JS libraries to address performance issues of injecting styles in render. Unless you've already built a CSS-in-JS library we don't expect you to ever use this. This Hook will run after the DOM is mutated, but before layout effects read the new layout. This solves an issue that already exists in React 17 and below, but is even more important in React 18 because React yields to the browser during concurrent rendering, giving it a chance to recalculate layout. For more information, see the [Library Upgrade Guide for `<style>`](https://github.com/reactwg/react-18/discussions/110).
+* `useSyncExternalStore` הוא Hook חדש המאפשר לחנויות חיצוניות לתמוך בקריאה במקביל על ידי אילוץ עדכונים לחנות להיות סינכרוניים. API חדש זה מומלץ לכל ספרייה השתלבת עם state חיצונית ל-React. למידע נוסף, עיין ב[useSyncExternalStore פוסט סקירה](https://github.com/reactwg/react-18/discussions/70) ו-[useSyncExternalStore API פרטים](https://github.com/reactwg/react-18/discussions/86).
+* `useInsertionEffect` הוא Hook חדש המאפשר לספריות CSS-in-JS לטפל בבעיות ביצועים של הזרקת סגנונות בעיבוד. אלא אם כן כבר בנית ספריית CSS-in-JS, אנחנו לא מצפים ממך אי פעם use זה. Hook זה יפעל לאחר שה-DOM יעבור מוטציה, אך לפני אפקטי פריסה קרא את הפריסה החדשה. זה פותר בעיה שכבר קיימת ב-React 17 ומטה, אך חשובה עוד יותר ב-React 18 כי use React תשואות לדפדפן במהלך עיבוד במקביל, מה שנותן לו הזדמנות לחשב מחדש את הפריסה. למידע נוסף, עיין ב[מדריך לשדרוג הספרייה עבור `<style>`](https://github.com/reactwg/react-18/discussions/110).
 
-React 18 also introduces new APIs for concurrent rendering such as `startTransition`, `useDeferredValue` and `useId`, which we share more about in the [release post](/blog/2022/03/29/react-v18).
+React 18 מציג גם APIs חדשות לעיבוד מקביל כמו `startTransition`, `useDeferredValue` ו`useId`, עליהם אנו חולים עוד ב-[release post](/blog/2022/03/29/react-v18).
 
-## Updates to Strict Mode {/*updates-to-strict-mode*/}
+## עדכונים מצב קפדני {/*updates-to-strict-mode*/}
 
-In the future, we'd like to add a feature that allows React to add and remove sections of the UI while preserving state. For example, when a user tabs away from a screen and back, React should be able to immediately show the previous screen. To do this, React would unmount and remount trees using the same component state as before.
+אפשר, נרצה להוסיף תכונה המאפשרת ל-React להוסיף ולהסיר חלקים של ממשק המשתמש תוך שמירה על state. לדוגמה, כאשר user מתרחק מהמסך ובחזרה, React אמור להיות מסוגל להסתכל מיד את המסך הקודם. לשם כך, React יבטל את הטעינה והרכבה מחדש של עצים באמצעות אותו רכיב state כמו קודם.
 
-This feature will give React better performance out-of-the-box, but requires components to be resilient to effects being mounted and destroyed multiple times. Most effects will work without any changes, but some effects assume they are only mounted or destroyed once.
+תכונה זו תעניק ל-React ביצועים טובים יותר מהקופסה, אך מחייבת רכיבים להיות עמידים בפני אפקטים שהוא תקנו והושמדו מספר פעמים. רוב האפקטים יפעלו ללא כל שינוי, אבל חלק מהאפקטים מנחים שהם מוקנים או מושמדים רק פעם אחת.
 
-To help surface these issues, React 18 introduces a new development-only check to Strict Mode. This new check will automatically unmount and remount every component, whenever a component mounts for the first time, restoring the previous state on the second mount.
+כדי לעזור לשטח את הבעיות הללו, React 18 מציג בדיקה חדשה לפיתוח בלבד מצב קפדני. הסימון החדש הזה יבטל את הטעינה והרכבה מחדש של כל רכיב, בכל פעם שרכיב נטען בפעם הראשונה, וישחזר את ה-state הקודם בהרכבה השנייה.
 
-Before this change, React would mount the component and create the effects:
+לפני השינוי הזה, React היה מעלה את הרכיב ויוצר את האפקטים:
 
 ```
 * React mounts the component.
@@ -245,7 +245,7 @@ Before this change, React would mount the component and create the effects:
     * Effect effects are created.
 ```
 
-With Strict Mode in React 18, React will simulate unmounting and remounting the component in development mode:
+עם מצב קפדני ב-React 18, React ידמה ביטול הרכבה והרכבה מחדש של הרכיב במצב פיתוח:
 
 ```
 * React mounts the component.
@@ -259,70 +259,70 @@ With Strict Mode in React 18, React will simulate unmounting and remounting the 
     * Effect setup code runs
 ```
 
-For more information, see the Working Group posts for [Adding Reusable State to StrictMode](https://github.com/reactwg/react-18/discussions/19) and [How to support Reusable State in Effects](https://github.com/reactwg/react-18/discussions/18).
+למידע נוסף, עיין בפוסטים של קבוצת העבודה עבור [הוספת מצב חוזר חוזר ל-StrictMode](https://github.com/reactwg/react-18/discussions/19) ו-[כיצד לתמוך במצב בר-שימוש חוזר בהשפעות](https://github.com/reactwg/react-18/discussions/18).
 
-## Configuring Your Testing Environment {/*configuring-your-testing-environment*/}
+## הגדרת סביבת הבדיקה שלך {/*configuring-your-testing-environment*/}
 
-When you first update your tests to use `createRoot`, you may see this warning in your test console:
+כשתעדכן לראשונה את הבדיקה שלך ל-use `createRoot`, אפשר שתראה אזהרה זו במסוף הבדיקה שלך:
 
 <ConsoleBlock level="error">
 
-The current testing environment is not configured to support act(...)
+סביבת הבדיקה הנוכחית מוגדרת לתמוך ב-act(...)
 
 </ConsoleBlock>
 
-To fix this, set `globalThis.IS_REACT_ACT_ENVIRONMENT` to `true` before running your test:
+כדי לתקן זאת, הגדר את `globalThis.IS_REACT_ACT_ENVIRONMENT` ל-`true` לפני הפעלת הבדיקה שלך:
 
 ```js
 // In your test setup file
 globalThis.IS_REACT_ACT_ENVIRONMENT = true;
 ```
 
-The purpose of the flag is to tell React that it's running in a unit test-like environment. React will log helpful warnings if you forget to wrap an update with `act`.
+מטרת הדגל לומר היא ל-React שהוא פועל בסביבה דמוית בדיקה של יחידה. React ירשום אזהרות מועילות אם תשכח לעטוף עדכון עם `act`.
 
-You can also set the flag to `false` to tell React that `act` isn't needed. This can be useful for end-to-end tests that simulate a full browser environment.
+אתה יכול גם להגדיר את הדגל ל-`false` כדי לומר ל-React שאין צורך ב-`act`. זה יכול להיות useמלא עבור בדיקות מקצה לקצה המדמות סביבת דפדפן מלאה.
 
-Eventually, we expect testing libraries will configure this for you automatically. For example, the [next version of React Testing Library has built-in support for React 18](https://github.com/testing-library/react-testing-library/issues/509#issuecomment-917989936) without any additional configuration.
+בסוף דבר, אנו מצפים שספריות בדיקה יגדירו זאת באופן אוטומטי. לדוגמה, [הגרסה הבאה של React ספריית בדיקות כוללת תמיכה מובנית עבור React 18](https://github.com/testing-library/react-testing-library/issues/509#issuecomment-917989936) ללא כל תצורה נוספת.
 
-[More background on the `act` testing API and related changes](https://github.com/reactwg/react-18/discussions/102) is available in the working group.
+[רקע נוסף על בדיקת `act` API ושינויים קשורים] (https://github.com/reactwg/react-18/discussions/102) זמין בקבוצת העבודה.
 
-## Dropping Support for Internet Explorer {/*dropping-support-for-internet-explorer*/}
+## ביטול התמיכה עבור Internet Explorer {/*dropping-support-for-internet-explorer*/}
 
-In this release, React is dropping support for Internet Explorer, which is [going out of support on June 15, 2022](https://blogs.windows.com/windowsexperience/2021/05/19/the-future-of-internet-explorer-on-windows-10-is-in-microsoft-edge). We’re making this change now because new features introduced in React 18 are built using modern browser features such as microtasks which cannot be adequately polyfilled in IE.
+במהדורה זו, React מפסיקה את התמיכה ב-Internet Explorer, [הפסקת התמיכה ב-15 ביוני 2022](https://blogs.windows.com/windowsexperience/2021/05/19/the-future-of-internet-explorer-on-windows-10-is-in-microsoft-edge). אנו מבצעים את השינוי הזה עכשיו שuse תכונות חדשות שהוצגו ב-React 18 נבנות שלא באמצעות תכונות דפד כפנויות ב-IE.
 
-If you need to support Internet Explorer we recommend you stay with React 17.
+אם אתה צריך לתמוך ב-Internet Explorer, אנו ממליצים להישאר עם React 17.
 
-## Deprecations {/*deprecations*/}
+## הוצאה שימוש {/*deprecations*/}
 
-* `react-dom`: `ReactDOM.render` has been deprecated. Using it will warn and run your app in React 17 mode.
-* `react-dom`: `ReactDOM.hydrate` has been deprecated. Using it will warn and run your app in React 17 mode.
-* `react-dom`: `ReactDOM.unmountComponentAtNode` has been deprecated.
-* `react-dom`: `ReactDOM.renderSubtreeIntoContainer` has been deprecated.
-* `react-dom/server`: `ReactDOMServer.renderToNodeStream` has been deprecated.
+* `react-dom`: `ReactDOM.render` הוצא משימוש. עבודה בו יזהיר ויפעיל את האפליקציה שלך במצב React 17.
+* `react-dom`: `ReactDOM.hydrate` הוצא משימוש. עבודה בו יזהיר ויפעיל את האפליקציה שלך במצב React 17.
+* `react-dom`: `ReactDOM.unmountComponentAtNode` הוצא משימוש.
+* `react-dom`: `ReactDOM.renderSubtreeIntoContainer` הוצא משימוש.
+* `react-dom/server`: `ReactDOMServer.renderToNodeStream` הוצא משימוש.
 
-## Other Breaking Changes {/*other-breaking-changes*/}
+## שינויים חוזרים אחרים {/*other-breaking-changes*/}
 
-* **Consistent useEffect timing**: React now always synchronously flushes effect functions if the update was triggered during a discrete user input event such as a click or a keydown event. Previously, the behavior wasn't always predictable or consistent.
-* **Stricter hydration errors**: Hydration mismatches due to missing or extra text content are now treated like errors instead of warnings. React will no longer attempt to "patch up" individual nodes by inserting or deleting a node on the client in an attempt to match the server markup, and will revert to client rendering up to the closest `<Suspense>` boundary in the tree. This ensures the hydrated tree is consistent and avoids potential privacy and security holes that can be caused by hydration mismatches.
-* **Suspense trees are always consistent:** If a component suspends before it's fully added to the tree, React will not add it to the tree in an incomplete state or fire its effects. Instead, React will throw away the new tree completely, wait for the asynchronous operation to finish, and then retry rendering again from scratch. React will render the retry attempt concurrently, and without blocking the browser.
-* **Layout Effects with Suspense**: When a tree re-suspends and reverts to a fallback, React will now clean up layout effects, and then re-create them when the content inside the boundary is shown again. This fixes an issue which prevented component libraries from correctly measuring layout when used with Suspense.
-* **New JS Environment Requirements**: React now depends on modern browsers features including `Promise`, `Symbol`, and `Object.assign`. If you support older browsers and devices such as Internet Explorer which do not provide modern browser features natively or have non-compliant implementations, consider including a global polyfill in your bundled application.
+* **תזמון useEffect עקבי**: React מסלק באופן אוטומטי סינכרון את הפונקציות האפקט אם עדכון הפעל אירוע קלט נפרד של user קליק קליק או אירוע מקלדת. בעבר, ההתנהגות לא תמיד הייתה צפויה או עקבית.
+* **שגיאות היד מחמירות**: איותר התאמה של הידרציה עקב תוכן טקסט חסר או מי מטופלות עכשיו כשגיאות במקום אזהרות. React לא ינסה עוד "לתקן" צמתים בודדים על ידי הכנסה או מחיקה של צומת לקוח בניסיון להתאים את סימון השרת, ויחזור לעיבוד לקוח עד לגבול `<Suspense>` הקרוב ביותר בעץ. זה מבטיח שהעץ המשתלח יהיה עקבי ונמנע מחורים פוטנציאליים של פרטיות ואבטחה שיכולים להיגרם כused על ידי אי התאמה של הידרציה.
+* **Suspense עצים תמיד עקביים:** אם רכיב מושהה לפני שהוא מתווסף לגמרי לעץ, React לא יוסיף אותו לעץ ב-state לא שלם או יפעיל את ההשפעות שלו. במקום זאת, React יזרוק את העץ החדש לחלוטין, ימתין לסיום פעולה הא-סינכרונית, ואז ינסה שוב לעבד שוב מאפס. React יציג את ניסיון החוזר בעבודה, ומבלי לחסום את הדפדפן.
+* **אפקטי פריסה עם Suspense**: כאשר עץ מושהה מחדש וחוזר ל-fallback, React ינקה כעת כאשר אפקטי פריסה, הוא ייצור אותם מחדש כאשר התוכן בתוך הגבול יוצג שוב. זה פותר בעיה שמנעה מספריות רכיבים למדוד נכון את הפריסה כאשר used עם Suspense.
+* **דרישות סביבת JS חדשות**: React תלוי כעת בשימוש הדפדפנים מודרניות כולל `Promise`, `Symbol` ו-`Object.assign`. אם אתה תומך בדפדפנים ובמכשירים יש יותר כגון Internet Explorer צור אותם מספקים תכלית דפדפן מודרנית מקורי או שיש יישומים מזמינים תואמים, שכלול polyfill גלובלי ביישום המף שלך.
 
-## Other Notable Changes {/*other-notable-changes*/}
+## שינויים בולטים אחרים {/*other-notable-changes*/}
 
 ### React {/*react*/}
 
-* **Components can now render `undefined`:** React no longer warns if you return `undefined` from a component. This makes the allowed component return values consistent with values that are allowed in the middle of a component tree. We suggest to use a linter to prevent mistakes like forgetting a `return` statement before JSX.
-* **In tests, `act` warnings are now opt-in:** If you're running end-to-end tests, the `act` warnings are unnecessary. We've introduced an [opt-in](https://github.com/reactwg/react-18/discussions/102) mechanism so you can enable them only for unit tests where they are useful and beneficial.
-* **No warning about `setState` on unmounted components:** Previously, React warned about memory leaks when you call `setState` on an unmounted component. This warning was added for subscriptions, but people primarily run into it in scenarios where setting state is fine, and workarounds make the code worse. We've [removed](https://github.com/facebook/react/pull/22114) this warning.
-* **No suppression of console logs:** When you use Strict Mode, React renders each component twice to help you find unexpected side effects. In React 17, we've suppressed console logs for one of the two renders to make the logs easier to read. In response to [community feedback](https://github.com/facebook/react/issues/21783) about this being confusing, we've removed the suppression. Instead, if you have React DevTools installed, the second log's renders will be displayed in grey, and there will be an option (off by default) to suppress them completely.
-* **Improved memory usage:** React now cleans up more internal fields on unmount, making the impact from unfixed memory leaks that may exist in your application code less severe.
+* **רכיבים יכולים לעבד את `undefined`:** React כבר לא מזהיר אם אתה מחזיר `undefined` צריך. זה יוצר את ערכי החזרת הרכיב המותר לעולים בקנה אחד עם הערכים המותרים באמצע רכיבי עץ. אנו מציעים use לנטר כדי למנוע טעויות כמו שכחת `return` statement לפני JSX.
+* **בבדיקות, אזהרות `act` הן כרגע הסכמה:** אם אתה מפעיל בדיקות מקצה לקצה, אזהרות `act` אינן נחוצות. הצגנו מנגנון [הצטרפות](https://github.com/reactwg/react-18/discussions/102) כך אתם צריכים להפעיל אותם רק עבור בדיקות יחידה שבהן הם use מועילים.
+* **אין אזהרה לגבי `setState` על רכיבים לא מורכבים:** בעבר, React הזהיר על דליפות memory כאשר אתה קורא ל-`setState` על רכיב לא מותקן. אזהרה זו נוספה עבור מנויים, אבל נתקלים בה בעיקר בתרחישים היא הגדרת הגדרה `setState` בסדר, ופתרונות עוקים מחמירים את הקוד. [הסרנו](https://github.com/facebook/react/pull/22114) אזהרה זו.
+* **אין דיכוי של יומני מסוף:** כאשר אתה use מצב קפדני, React מעבד כל רכיב פעמיים כדי לעזור לך למצוא לוואי בלתי צפויות. ב-React 17, דיחקנו את יומני המסוף עבור אחד משני העיבודים כדי להקל על הקריאה של היומנים. בתגובה ל-[משוב מהקהילה](`undefined` לגבי זה מבלבל, הסרנו את הדיכוי. במקום זאת, אם התקנתם את React DevTools, העיבודים של היומן השני יוצגו באפור, ותהיה אפשרות (כבוי כברירת מחדל) לדכא אותם לחלוטין.
+* **שימוש משופר ב-memory:** React מנקה עכשיו שדות פנימיות נוספות בעת ביטול הרכבה, מה שהופך את ההשפעה של דליפות memory לא מתוקנות שעשויות להתקיים בקוד האפליקציה שלך פחות חמורה.
 
-### React DOM Server {/*react-dom-server*/}
+### React DOM שרת {/*react-dom-server*/}
 
-* **`renderToString`:** Will no longer error when suspending on the server. Instead, it will emit the fallback HTML for the closest `<Suspense>` boundary and then retry rendering the same content on the client. It is still recommended that you switch to a streaming API like `renderToPipeableStream` or `renderToReadableStream` instead.
-* **`renderToStaticMarkup`:** Will no longer error when suspending on the server. Instead, it will emit the fallback HTML for the closest `<Suspense>` boundary.
+* **`renderToString`:** לא ישוגה עוד בזמן השעיה בשרת. במקום זאת, הוא יפלוט את ה-fallback HTML עבור גבול `<Suspense>` הקרוב ביותר כאשר ינסה שוב לעבד אותו תוכן בלקוח. עדיין מומלץ לעבור לסטרימינג API כמו `renderToPipeableStream` או `renderToReadableStream` במקום זאת.
+* **`renderToStaticMarkup`:** לא ישוגה עוד בזמן השעיה בשרת. במקום זאת, הוא יפלוט את ה-fallback HTML עבור גבול `<Suspense>` הקרוב ביותר.
 
-## Changelog {/*changelog*/}
+## יומן שינויים {/*changelog*/}
 
-You can view the [full changelog here](https://github.com/facebook/react/blob/main/CHANGELOG.md).
+אתה יכול לראות את [יומן השינויים המלא כאן](https://github.com/facebook/react/blob/main/CHANGELOG.md).

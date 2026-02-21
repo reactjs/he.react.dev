@@ -1,16 +1,16 @@
 ---
-title: PureComponent
+title: "PureComponent"
 ---
 
 <Pitfall>
 
-We recommend defining components as functions instead of classes. [See how to migrate.](#alternatives)
+אנחנו ממליצים להגדיר קומפוננטות כפונקציות במקום שיעורים. [ראו איך לבצע מיגרציה.](#alternatives)
 
 </Pitfall>
 
 <Intro>
 
-`PureComponent` is similar to [`Component`](/reference/react/Component) but it skips re-renders for same props and state. Class components are still supported by React, but we don't recommend using them in new code.
+`PureComponent` דומה ל-[`Component`](/reference/react/Component) אבל מדלגת על רינדורים חוזרים עבורם props ו-state. כיתת קומפוננטות עדיין נתמכות ב-React, אבל אנחנו לא ממליצים להשתמש בקוד חדש.
 
 ```js
 class Greeting extends PureComponent {
@@ -26,11 +26,11 @@ class Greeting extends PureComponent {
 
 ---
 
-## Reference {/*reference*/}
+## הפניה {/*reference*/}
 
 ### `PureComponent` {/*purecomponent*/}
 
-To skip re-rendering a class component for same props and state, extend `PureComponent` instead of [`Component`:](/reference/react/Component)
+כדי לדלג על רינדור חוזר של רכיב המחלקה עבורם props ו-state, הרחיבו את `PureComponent` במקום את [`Component`:](/reference/react/Component)
 
 ```js
 import { PureComponent } from 'react';
@@ -42,18 +42,18 @@ class Greeting extends PureComponent {
 }
 ```
 
-`PureComponent` is a subclass of `Component` and supports [all the `Component` APIs.](/reference/react/Component#reference) Extending `PureComponent` is equivalent to defining a custom [`shouldComponentUpdate`](/reference/react/Component#shouldcomponentupdate) method that shallowly compares props and state.
+`PureComponent` היא תת-מחלקה של `Component` ותומכת [בכל ה-APIs של `Component`.](/reference/react/Component#reference) הרחבה של `PureComponent` שק לולה הגדרת מתודת [`shouldComponentUpdate`](/reference/hould/component את#) ווה אישי/react/Component את# ה-props וה-state.
 
 
-[See more examples below.](#usage)
+[עוד דוגמאות נוספות.](#usage)
 
 ---
 
-## Usage {/*usage*/}
+## שימוש {/*usage*/}
 
-### Skipping unnecessary re-renders for class components {/*skipping-unnecessary-re-renders-for-class-components*/}
+### דילוג על רינדורים חוזרים מיותרים עבור רכיבי הכיתה {/*skipping-unnecessary-re-renders-for-class-components*/}
 
-React normally re-renders a component whenever its parent re-renders. As an optimization, you can create a component that React will not re-render when its parent re-renders so long as its new props and state are the same as the old props and state. [Class components](/reference/react/Component) can opt into this behavior by extending `PureComponent`:
+React בדרך כלל מרנדרת קומפוננת מחדש בכל פעם שהורה שלה מרונדר מחדש. כאופטימיזציה, אפשר ליצור פוננטה ש-React לא תרנדר מחדש כשההורה מרונדר מחדש, כל עוד ה-props וה-state החדשים שלהן לישנים. [רכיבי כיתה](/reference/react/Component) יכולים להצטרף להתנהגות הזו על ידי הרחבת `PureComponent`:
 
 ```js {1}
 class Greeting extends PureComponent {
@@ -63,9 +63,9 @@ class Greeting extends PureComponent {
 }
 ```
 
-A React component should always have [pure rendering logic.](/learn/keeping-components-pure) This means that it must return the same output if its props, state, and context haven't changed. By using `PureComponent`, you are telling React that your component complies with this requirement, so React doesn't need to re-render as long as its props and state haven't changed. However, your component will still re-render if a context that it's using changes.
+לקומפוננטת React תמיד צריכה להיות [לוגיקת רינדור טהורה.](/learn/keeping-components-pure) כלומר, היא חייבת להחזיר אותו פלט אם ה-props, ה-state וה-הקשר לא השתתנו. בשימוש ב-`PureComponent` אתם מצירים בפני React שהקומפוננתה עומדת בדרישה הזו, לכן React לא צריכה לרנדר מחדש כל עוד ה-props וה-state לא השתנתנו. עם זאת, הקומפוננטה עדיין תרונדר מחדש אם ההקשר שבו היא משתמשת.
 
-In this example, notice that the `Greeting` component re-renders whenever `name` is changed (because that's one of its props), but not when `address` is changed (because it's not passed to `Greeting` as a prop):
+בדוגמה הזו שימו לב שקומפונטת `Greeting` מרונדרת מחדש בכל פעם ש-`name` ranking (כי זה אחד ה-props שלה), אבל לא כש-`address` (כי הוא לא מועבר ל-`Greeting` כ-prop):
 
 <Sandpack>
 
@@ -109,17 +109,17 @@ label {
 
 <Pitfall>
 
-We recommend defining components as functions instead of classes. [See how to migrate.](#alternatives)
+אנחנו ממליצים להגדיר קומפוננטות כפונקציות במקום שיעורים. [ראו איך לבצע מיגרציה.](#alternatives)
 
 </Pitfall>
 
 ---
 
-## Alternatives {/*alternatives*/}
+## חלופות {/*alternatives*/}
 
-### Migrating from a `PureComponent` class component to a function {/*migrating-from-a-purecomponent-class-component-to-a-function*/}
+### מיגרציה מ-`PureComponent` class component לפונקציה {/*migrating-from-a-purecomponent-class-component-to-a-function*/}
 
-We recommend using function components instead of [class components](/reference/react/Component) in new code. If you have some existing class components using `PureComponent`, here is how you can convert them. This is the original code:
+אנחנו ממליצים להשתמש בקומפוננטות פונקציה במקום [רכיבי כיתה](/reference/react/Component) בקוד חדש. אם יש לכם רכיבי כיתה קיימות שמשתמשות ב-`PureComponent`, כך אפשר להמיר אותן. זה הקוד המקורי:
 
 <Sandpack>
 
@@ -161,7 +161,7 @@ label {
 
 </Sandpack>
 
-When you [convert this component from a class to a function,](/reference/react/Component#alternatives) wrap it in [`memo`:](/reference/react/memo)
+כש-[ממירים את הקומפוננטה הזו מ-class לפונקציה,](/reference/react/Component#alternatives) עטפו אותה ב-[`memo`:](/reference/react/memo)
 
 <Sandpack>
 
@@ -203,6 +203,6 @@ label {
 
 <Note>
 
-Unlike `PureComponent`, [`memo`](/reference/react/memo) does not compare the new and the old state. In function components, calling the [`set` function](/reference/react/useState#setstate) with the same state [already prevents re-renders by default,](/reference/react/memo#updating-a-memoized-component-using-state) even without `memo`.
+נדרש ל-`PureComponent`, [`memo`](/reference/react/memo) לא משווה בין state חדש לישן. בקומפוננטות פונקציה, קריאה ל-[פונקציית `set`](/reference/react/useState#setstate) עם אותו state [כבר מונעת רינדורים חוזרים כברירתם מחדל,](/reference/react/memo#updating-a-memoized-component-using-state) גם בלי `memo`.
 
 </Note>

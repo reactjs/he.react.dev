@@ -1,24 +1,24 @@
 ---
-title: Conditional Rendering
+title: "עיבוד מותנה"
 ---
 
 <Intro>
 
-Your components will often need to display different things depending on different conditions. In React, you can conditionally render JSX using JavaScript syntax like `if` statements, `&&`, and `? :` operators.
+הרכיבים שלך יצטרכו לעתים קרובות להציג דברים שונים בהתאם לתנאים שונים. ב-React, אתה יכול לעבד JSX באופן מותנה באמצעות תחביר JavaScript כמו `if` statements, `&&` ו`? :` אופרטורים.
 
 </Intro>
 
 <YouWillLearn>
 
-* How to return different JSX depending on a condition
-* How to conditionally include or exclude a piece of JSX
-* Common conditional syntax shortcuts you’ll encounter in React codebases
+* כיצד להחזיר JSX שונה בהתאם לתנאי
+* כיצד לכלול או לא לכלול חלק של JSX באופן מותנה
+* קיצורי דרך תחביר מותנים נפוצים שתתקלו בבסיסי קוד React
 
 </YouWillLearn>
 
-## Conditionally returning JSX {/*conditionally-returning-jsx*/}
+## החזרת JSX {/*conditionally-returning-jsx*/} על תנאי
 
-Let’s say you have a `PackingList` component rendering several `Item`s, which can be marked as packed or not:
+נניח שיש לך רכיב `PackingList` המציג מספר `Item`s, שניתן לסמן כארוז או לא:
 
 <Sandpack>
 
@@ -52,9 +52,9 @@ export default function PackingList() {
 
 </Sandpack>
 
-Notice that some of the `Item` components have their `isPacked` prop set to `true` instead of `false`. You want to add a checkmark (✔) to packed items if `isPacked={true}`.
+שימו לב שלחלק מהרכיבים `Item` יש `isPacked` אבזר שלהם מוגדר ל-`true` במקום `false`. אתה רוצה להוסיף סימן ביקורת (✔) לפריטים ארוזים אם `isPacked={true}`.
 
-You can write this as an [`if`/`else` statement](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/if...else) like so:
+אתה יכול לכתוב את זה בתור [`if`/`else` statement](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/if...else) כך:
 
 ```js
 if (isPacked) {
@@ -63,7 +63,7 @@ if (isPacked) {
 return <li className="item">{name}</li>;
 ```
 
-If the `isPacked` prop is `true`, this code **returns a different JSX tree.** With this change, some of the items get a checkmark at the end:
+אם הפריט `isPacked` הוא `true`, הקוד הזה **מחזיר עץ JSX אחר.** עם השינוי הזה, חלק מהפריטים מקבלים סימן ביקורת בסוף:
 
 <Sandpack>
 
@@ -100,13 +100,13 @@ export default function PackingList() {
 
 </Sandpack>
 
-Try editing what gets returned in either case, and see how the result changes!
+נסה לערוך את מה שמוחזר בכל מקרה, וראה כיצד התוצאה משתנה!
 
-Notice how you're creating branching logic with JavaScript's `if` and `return` statements. In React, control flow (like conditions) is handled by JavaScript.
+שימו לב כיצד אתם יוצרים לוגיקה מסועפת עם `if` ו-`return` state של JavaScript. ב-React, זרימת הבקרה (כמו תנאים) מטופלת על ידי JavaScript.
 
-### Conditionally returning nothing with `null` {/*conditionally-returning-nothing-with-null*/}
+### לא מחזיר דבר על תנאי עם `null` {/*conditionally-returning-nothing-with-null*/}
 
-In some situations, you won't want to render anything at all. For example, say you don't want to show packed items at all. A component must return something. In this case, you can return `null`:
+במצבים מסוימים, לא תרצה לרנדר שום דבר בכלל. לדוגמה, תגיד שאתה לא רוצה להציג פריטים ארוזים בכלל. רכיב חייב להחזיר משהו. במקרה זה, תוכל להחזיר את `null`:
 
 ```js
 if (isPacked) {
@@ -115,7 +115,7 @@ if (isPacked) {
 return <li className="item">{name}</li>;
 ```
 
-If `isPacked` is true, the component will return nothing, `null`. Otherwise, it will return JSX to render.
+אם `isPacked` נכון, הרכיב לא יחזיר דבר, `null`. אחרת, הוא יחזיר את JSX לעיבוד.
 
 <Sandpack>
 
@@ -152,23 +152,23 @@ export default function PackingList() {
 
 </Sandpack>
 
-In practice, returning `null` from a component isn't common because it might surprise a developer trying to render it. More often, you would conditionally include or exclude the component in the parent component's JSX. Here's how to do that!
+בפועל, החזרת `null` מרכיב אינה נפוצה מכיוון שuse היא עשויה להפתיע מפתח שמנסה לרנדר אותו. לעתים קרובות יותר, תכלול או לא תכלול את הרכיב ב-JSX של רכיב האב. הנה איך לעשות את זה!
 
-## Conditionally including JSX {/*conditionally-including-jsx*/}
+## כולל JSX {/*conditionally-including-jsx*/} באופן מותנה
 
-In the previous example, you controlled which (if any!) JSX tree would be returned by the component. You may already have noticed some duplication in the render output:
+בדוגמה הקודמת, שלטת איזה (אם בכלל!) עץ JSX יוחזר על ידי הרכיב. ייתכן שכבר שמת לב לשכפול מסוים בפלט העיבוד:
 
 ```js
 <li className="item">{name} ✔</li>
 ```
 
-is very similar to
+דומה מאוד ל
 
 ```js
 <li className="item">{name}</li>
 ```
 
-Both of the conditional branches return `<li className="item">...</li>`:
+שני הענפים המותנים מחזירים `<li className="item">...</li>`:
 
 ```js
 if (isPacked) {
@@ -177,13 +177,13 @@ if (isPacked) {
 return <li className="item">{name}</li>;
 ```
 
-While this duplication isn't harmful, it could make your code harder to maintain. What if you want to change the `className`? You'd have to do it in two places in your code! In such a situation, you could conditionally include a little JSX to make your code more [DRY.](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself)
+אמנם שכפול זה אינו מזיק, אך הוא עלול להקשות על תחזוקת הקוד שלך. מה אם אתה רוצה לשנות את ה-`className`? תצטרך לעשות זאת בשני מקומות בקוד שלך! במצב כזה, אתה יכול לכלול מעט JSX כדי להפוך את הקוד שלך ליותר [יבש.](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself)
 
-### Conditional (ternary) operator (`? :`) {/*conditional-ternary-operator--*/}
+### אופרטור מותנה (שלישי) (`? :`) {/*conditional-ternary-operator--*/}
 
-JavaScript has a compact syntax for writing a conditional expression -- the [conditional operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_Operator) or "ternary operator".
+ל-JavaScript יש תחביר קומפקטי לכתיבת ביטוי מותנה -- האופרטור המותנה](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_Operator) או "אופרטור טרירי".
 
-Instead of this:
+במקום זה:
 
 ```js
 if (isPacked) {
@@ -192,7 +192,7 @@ if (isPacked) {
 return <li className="item">{name}</li>;
 ```
 
-You can write this:
+אתה יכול לכתוב את זה:
 
 ```js
 return (
@@ -202,17 +202,17 @@ return (
 );
 ```
 
-You can read it as *"if `isPacked` is true, then (`?`) render `name + ' ✔'`, otherwise (`:`) render `name`"*.
+אתה יכול לקרוא את זה בתור *"אם `isPacked` הוא אמיתי, אז (`?`) render `name + ' ✔'`, אחרת (`:`) render `name`"*.
 
 <DeepDive>
 
-#### Are these two examples fully equivalent? {/*are-these-two-examples-fully-equivalent*/}
+#### האם שתי הדוגמאות הללו שוות לחלוטין? {/*are-these-two-examples-fully-equivalent*/}
 
-If you're coming from an object-oriented programming background, you might assume that the two examples above are subtly different because one of them may create two different "instances" of `<li>`. But JSX elements aren't "instances" because they don't hold any internal state and aren't real DOM nodes. They're lightweight descriptions, like blueprints. So these two examples, in fact, *are* completely equivalent. [Preserving and Resetting State](/learn/preserving-and-resetting-state) goes into detail about how this works.
+אם אתה מגיע מרקע תכנות מונחה עצמים, אתה עשוי להניח ששתי הדוגמאות שלמעלה שונות בתכלית מכיוון שuse אחת מהן עשויה ליצור שני "מופעים" שונים של `<li>`. אבל אלמנטים JSX אינם "מופעים" מכיוון שuse הם אינם מכילים שום state פנימי ואינם צמתים DOM אמיתיים. הם תיאורים קלים, כמו שרטוטים. כך ששתי הדוגמאות הללו, למעשה, *שוות* לחלוטין. [מצב שימור ואיפוס](/learn/preserving-and-resetting-state) מפרט כיצד זה עובד.
 
 </DeepDive>
 
-Now let's say you want to wrap the completed item's text into another HTML tag, like `<del>` to strike it out. You can add even more newlines and parentheses so that it's easier to nest more JSX in each of the cases:
+כעת נניח שאתה רוצה לעטוף את הטקסט של הפריט שהושלם בתג HTML אחר, כמו `<del>` כדי למחוק אותו. אתה יכול להוסיף עוד שורות חדשות וסוגריים כדי שיהיה קל יותר לקנן עוד JSX בכל אחד מהמקרים:
 
 <Sandpack>
 
@@ -256,11 +256,11 @@ export default function PackingList() {
 
 </Sandpack>
 
-This style works well for simple conditions, but use it in moderation. If your components get messy with too much nested conditional markup, consider extracting child components to clean things up. In React, markup is a part of your code, so you can use tools like variables and functions to tidy up complex expressions.
+סגנון זה עובד היטב עבור תנאים פשוטים, אבל use אותו במידה. אם הרכיבים שלך מבולגנים עם יותר מדי סימון מותנה מקונן, שקול לחלץ רכיבי צאצא כדי לנקות דברים. ב-React, סימון הוא חלק מהקוד שלך, אז אתה יכול use כלים כמו משתנים ופונקציות כדי לסדר ביטויים מורכבים.
 
-### Logical AND operator (`&&`) {/*logical-and-operator-*/}
+### אופרטור AND לוגי (`&&`) {/*logical-and-operator-*/}
 
-Another common shortcut you'll encounter is the [JavaScript logical AND (`&&`) operator.](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_AND#:~:text=The%20logical%20AND%20(%20%26%26%20)%20operator,it%20returns%20a%20Boolean%20value.) Inside React components, it often comes up when you want to render some JSX when the condition is true, **or render nothing otherwise.** With `&&`, you could conditionally render the checkmark only if `isPacked` is `true`:
+קיצור דרך נפוץ נוסף שתתקל בו הוא האופרטור [JavaScript לוגי AND (`&&`).](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_AND#:~:text=The%20logical%20AND%20(%20%26%26%20)%20operator,it%20returns%20a%20Boolean%20value.) בתוך רכיבי React, הוא מופיע לעתים קרובות כאשר אתה רוצה לעבד כמה JSX כשהתנאי נכון, **או לעבד שום דבר אחרת.** עם https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_AND#:~:text=The%20logical%20AND%20(%20%26%26%20)%20operator,it%20returns%20a%20Boolean%20value.) ברכיבי React, אתה יכול לסמן את התנאי K2 רק_1__ `true`:
 
 ```js
 return (
@@ -270,9 +270,9 @@ return (
 );
 ```
 
-You can read this as *"if `isPacked`, then (`&&`) render the checkmark, otherwise, render nothing"*.
+אתה יכול לקרוא את זה בתור *"אם `isPacked`, אז (`&&`) עבד את סימן הביקורת, אחרת, לא עבד כלום"*.
 
-Here it is in action:
+הנה זה בפעולה:
 
 <Sandpack>
 
@@ -310,30 +310,30 @@ export default function PackingList() {
 
 </Sandpack>
 
-A [JavaScript && expression](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_AND) returns the value of its right side (in our case, the checkmark) if the left side (our condition) is `true`. But if the condition is `false`, the whole expression becomes `false`. React considers `false` as a "hole" in the JSX tree, just like `null` or `undefined`, and doesn't render anything in its place.
+ביטוי [JavaScript &&](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_AND) מחזיר את הערך של הצד הימני שלו (במקרה שלנו, סימן הביקורת) אם הצד השמאלי (המצב שלנו) הוא `true`. אבל אם התנאי הוא `false`, הביטוי כולו הופך ל`false`. React מחשיב את __TK__3 כמו __TK__3 בעץ, בדיוק כמו __TK__3 `null` או `undefined`, ואינו מעבד שום דבר במקומו.
 
 
 <Pitfall>
 
-**Don't put numbers on the left side of `&&`.**
+**אל תשים מספרים בצד שמאל של `&&`.**
 
-To test the condition, JavaScript converts the left side to a boolean automatically. However, if the left side is `0`, then the whole expression gets that value (`0`), and React will happily render `0` rather than nothing.
+כדי לבדוק את התנאי, JavaScript ממיר את הצד השמאלי לבוליאני באופן אוטומטי. עם זאת, אם הצד השמאלי הוא `0`, אז הביטוי כולו מקבל את הערך הזה (`0`), ו-React יציג בשמחה את `0` ולא כלום.
 
-For example, a common mistake is to write code like `messageCount && <p>New messages</p>`. It's easy to assume that it renders nothing when `messageCount` is `0`, but it really renders the `0` itself!
+לדוגמה, טעות נפוצה היא לכתוב קוד כמו `messageCount && <p>New messages</p>`. קל להניח שהוא לא מציג כלום כאשר `messageCount` הוא `0`, אבל זה באמת מעבד את `0` עצמו!
 
-To fix it, make the left side a boolean: `messageCount > 0 && <p>New messages</p>`.
+כדי לתקן את זה, הפוך את הצד השמאלי לבוליאני: `messageCount > 0 && <p>New messages</p>`.
 
 </Pitfall>
 
-### Conditionally assigning JSX to a variable {/*conditionally-assigning-jsx-to-a-variable*/}
+### הקצאה מותנית של JSX למשתנה {/*conditionally-assigning-jsx-to-a-variable*/}
 
-When the shortcuts get in the way of writing plain code, try using an `if` statement and a variable. You can reassign variables defined with [`let`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let), so start by providing the default content you want to display, the name:
+כאשר קיצורי הדרך מפריעים לכתיבת קוד רגיל, נסה להשתמש ב-`if` statement ובמשתנה. אתה יכול להקצות מחדש משתנים שהוגדרו באמצעות [`let`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let), אז התחל על ידי מתן תוכן ברירת המחדל שברצונך להציג, השם:
 
 ```js
 let itemContent = name;
 ```
 
-Use an `if` statement to reassign a JSX expression to `itemContent` if `isPacked` is `true`:
+השתמש ב-`if` statement כדי להקצות מחדש ביטוי JSX ל-`itemContent` אם `isPacked` הוא `true`:
 
 ```js
 if (isPacked) {
@@ -341,7 +341,7 @@ if (isPacked) {
 }
 ```
 
-[Curly braces open the "window into JavaScript".](/learn/javascript-in-jsx-with-curly-braces#using-curly-braces-a-window-into-the-javascript-world) Embed the variable with curly braces in the returned JSX tree, nesting the previously calculated expression inside of JSX:
+[סוגריים מתולתלים פותחים את "החלון אל JavaScript".](/learn/javascript-in-jsx-with-curly-braces#using-curly-braces-a-window-into-the-javascript-world) הטמע את המשתנה עם סוגרים מתולתלים בסוג JSX שהוחזר בתוך העץ __K_2 שחושב קודם לכן ב-__K: __K
 
 ```js
 <li className="item">
@@ -349,7 +349,7 @@ if (isPacked) {
 </li>
 ```
 
-This style is the most verbose, but it's also the most flexible. Here it is in action:
+סגנון זה הוא המלל ביותר, אך הוא גם הגמיש ביותר. הנה זה בפעולה:
 
 <Sandpack>
 
@@ -391,7 +391,7 @@ export default function PackingList() {
 
 </Sandpack>
 
-Like before, this works not only for text, but for arbitrary JSX too:
+כמו קודם, זה עובד לא רק עבור טקסט, אלא גם עבור JSX שרירותי:
 
 <Sandpack>
 
@@ -437,16 +437,16 @@ export default function PackingList() {
 
 </Sandpack>
 
-If you're not familiar with JavaScript, this variety of styles might seem overwhelming at first. However, learning them will help you read and write any JavaScript code -- and not just React components! Pick the one you prefer for a start, and then consult this reference again if you forget how the other ones work.
+אם אינך מכיר את JavaScript, מגוון הסגנונות הזה עשוי להיראות מהמם בהתחלה. עם זאת, לימוד אותם יעזור לך לקרוא ולכתוב כל קוד JavaScript -- ולא רק רכיבי React! בחר את זה שאתה מעדיף בתור התחלה, ולאחר מכן עיין בהפניה זו שוב אם אתה שוכח איך האחרים עובדים.
 
 <Recap>
 
-* In React, you control branching logic with JavaScript.
-* You can return a JSX expression conditionally with an `if` statement.
-* You can conditionally save some JSX to a variable and then include it inside other JSX by using the curly braces.
-* In JSX, `{cond ? <A /> : <B />}` means *"if `cond`, render `<A />`, otherwise `<B />`"*.
-* In JSX, `{cond && <A />}` means *"if `cond`, render `<A />`, otherwise nothing"*.
-* The shortcuts are common, but you don't have to use them if you prefer plain `if`.
+* ב-React, אתה שולט בלוגיקת הסתעפות עם JavaScript.
+* אתה יכול להחזיר ביטוי JSX באופן מותנה עם `if` statement.
+* אתה יכול לשמור כמה JSX במשתנה ואז לכלול אותו בתוך JSX אחר על ידי שימוש בסוגריים המתולתלים.
+* ב-JSX, `{cond ? <A /> : <B />}` פירושו *"אם `cond`, עיבוד `<A />`, אחרת `<B />`"*.
+* ב-JSX, `{cond && <A />}` פירושו *"אם `cond`, render `<A />`, אחרת כלום"*.
+* קיצורי הדרך נפוצים, אבל אתה לא צריך use אותם אם אתה מעדיף `if` רגיל.
 
 </Recap>
 
@@ -454,9 +454,9 @@ If you're not familiar with JavaScript, this variety of styles might seem overwh
 
 <Challenges>
 
-#### Show an icon for incomplete items with `? :` {/*show-an-icon-for-incomplete-items-with--*/}
+#### הצג סמל עבור פריטים לא שלמים עם `? :` {/*show-an-icon-for-incomplete-items-with--*/}
 
-Use the conditional operator (`cond ? a : b`) to render a ❌ if `isPacked` isn’t `true`.
+השתמש באופרטור המותנה (`cond ? a : b`) כדי להציג ❌ אם `isPacked` אינו `true`.
 
 <Sandpack>
 
@@ -534,15 +534,15 @@ export default function PackingList() {
 
 </Solution>
 
-#### Show the item importance with `&&` {/*show-the-item-importance-with-*/}
+#### הצג את חשיבות הפריט באמצעות `&&` {/*show-the-item-importance-with-*/}
 
-In this example, each `Item` receives a numerical `importance` prop. Use the `&&` operator to render "_(Importance: X)_" in italics, but only for items that have non-zero importance. Your item list should end up looking like this:
+בדוגמה זו, כל `Item` מקבל אבזר `importance` מספרי. השתמש באופרטור `&&` כדי להציג את "_(חשיבות: X)_" באותיות נטוי, אך רק עבור פריטים בעלי חשיבות שאינה אפס. רשימת הפריטים שלך אמורה להיראות כך בסופו של דבר:
 
-* Space suit _(Importance: 9)_
-* Helmet with a golden leaf
-* Photo of Tam _(Importance: 6)_
+* חליפת חלל _(חשיבות: 9)_
+*קסדה עם עלה זהב
+* תמונה של תם _(חשיבות: 6)_
 
-Don't forget to add a space between the two labels!
+אל תשכח להוסיף רווח בין שתי התוויות!
 
 <Sandpack>
 
@@ -582,7 +582,7 @@ export default function PackingList() {
 
 <Solution>
 
-This should do the trick:
+זה אמור לעשות את העבודה:
 
 <Sandpack>
 
@@ -624,15 +624,15 @@ export default function PackingList() {
 
 </Sandpack>
 
-Note that you must write `importance > 0 && ...` rather than `importance && ...` so that if the `importance` is `0`, `0` isn't rendered as the result!
+שים לב שעליך לכתוב `importance > 0 && ...` ולא `importance && ...` כך שאם ה-`importance` הוא `0`, `0` לא יוצג כתוצאה!
 
-In this solution, two separate conditions are used to insert a space between the name and the importance label. Alternatively, you could use a Fragment with a leading space: `importance > 0 && <> <i>...</i></>` or add a space immediately inside the `<i>`:  `importance > 0 && <i> ...</i>`.
+בפתרון זה, שני תנאים נפרדים הם used כדי להוסיף רווח בין השם לתווית החשיבות. לחלופין, תוכל להוסיף use ל-Fragment עם רווח מוביל: `importance > 0 && <> <i>...</i></>` או להוסיף רווח מיד בתוך ה-`<i>`: `importance > 0 && <i> ...</i>`.
 
 </Solution>
 
-#### Refactor a series of `? :` to `if` and variables {/*refactor-a-series-of---to-if-and-variables*/}
+#### משנה סדרה של `? :` עד `if` ומשתנים {/*refactor-a-series-of---to-if-and-variables*/}
 
-This `Drink` component uses a series of `? :` conditions to show different information depending on whether the `name` prop is `"tea"` or `"coffee"`. The problem is that the information about each drink is spread across multiple conditions. Refactor this code to use a single `if` statement instead of three `? :` conditions.
+רכיב `Drink` זה use הוא סדרה של `? :` תנאים כדי להציג מידע שונה בהתאם לשאלה אם התמיכה `name` היא `"tea"` או `"coffee"`. הבעיה היא שהמידע על כל משקה מתפזר על פני מספר תנאים. Refactor this code to use a single `if` statement instead of three `? :` conditions.
 
 <Sandpack>
 
@@ -665,11 +665,11 @@ export default function DrinkList() {
 
 </Sandpack>
 
-Once you've refactored the code to use `if`, do you have further ideas on how to simplify it?
+לאחר שחזרת את הקוד ל-use `if`, האם יש לך רעיונות נוספים כיצד לפשט אותו?
 
 <Solution>
 
-There are multiple ways you could go about this, but here is one starting point:
+ישנן מספר דרכים שבהן תוכל לעשות זאת, אך הנה נקודת התחלה אחת:
 
 <Sandpack>
 
@@ -712,9 +712,9 @@ export default function DrinkList() {
 
 </Sandpack>
 
-Here the information about each drink is grouped together instead of being spread across multiple conditions. This makes it easier to add more drinks in the future.
+כאן המידע על כל משקה מקובץ יחד במקום להתפזר על פני מספר תנאים. זה מקל על הוספת משקאות נוספים בעתיד.
 
-Another solution would be to remove the condition altogether by moving the information into objects:
+פתרון אחר יהיה להסיר את המצב לחלוטין על ידי העברת המידע לאובייקטים:
 
 <Sandpack>
 

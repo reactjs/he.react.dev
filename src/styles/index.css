@@ -639,7 +639,7 @@ ol.mdx-illustration-block {
   transform: translateY(-50%);
   width: 60px;
   height: 49px;
-  background: center / contain no-repeat url('/images/g_arrow.png');
+  background: center / contain no-repeat url("" + (process.env.NEXT_PUBLIC_BASE_PATH || '') + "/images/g_arrow.png");
 }
 .mdx-illustration-block li:first-child:after {
   content: ' ';

@@ -1,57 +1,57 @@
 ---
-title: Updating Objects in State
+title: "עדכון אובייקטים ב-State"
 ---
 
 <Intro>
 
-State can hold any kind of JavaScript value, including objects. But you shouldn't change objects that you hold in the React state directly. Instead, when you want to update an object, you need to create a new one (or make a copy of an existing one), and then set the state to use that copy.
+מצב יכול להחזיק כל סוג של ערך JavaScript, כולל אובייקטים. אבל אתה לא צריך לשנות אובייקטים שאתה מחזיק ב-React state ישירות. במקום זאת, כאשר ברצונך לעדכן אובייקט, עליך ליצור אובייקט חדש (או ליצור עותק של אובייקט קיים), ולאחר מכן להגדיר את ה-state ל-use העותק הזה.
 
 </Intro>
 
 <YouWillLearn>
 
-- How to correctly update an object in React state
-- How to update a nested object without mutating it
-- What immutability is, and how not to break it
-- How to make object copying less repetitive with Immer
+- כיצד לעדכן נכון אובייקט ב-React state
+- כיצד לעדכן אובייקט מקונן מבלי לשנות אותו
+- מהי אי-שינוי, ואיך לא לשבור אותה
+- איך להפוך את העתקת האובייקטים לפחות חוזרת על עצמה עם Immer
 
 </YouWillLearn>
 
-## What's a mutation? {/*whats-a-mutation*/}
+## מהי מוטציה? {/*whats-a-mutation*/}
 
-You can store any kind of JavaScript value in state.
+אתה יכול לאחסן כל סוג של ערך JavaScript ב-state.
 
 ```js
 const [x, setX] = useState(0);
 ```
 
-So far you've been working with numbers, strings, and booleans. These kinds of JavaScript values are "immutable", meaning unchangeable or "read-only". You can trigger a re-render to _replace_ a value:
+עד כה עבדת עם מספרים, מחרוזות ובוליאנים. סוגים אלה של ערכי JavaScript הם "בלתי ניתנים לשינוי", כלומר בלתי ניתנים לשינוי או "לקריאה בלבד". אתה יכול להפעיל עיבוד מחדש ל-_replace_ ערך:
 
 ```js
 setX(5);
 ```
 
-The `x` state changed from `0` to `5`, but the _number `0` itself_ did not change. It's not possible to make any changes to the built-in primitive values like numbers, strings, and booleans in JavaScript.
+ה-`x` state השתנה מ-`0` ל-`5`, אך ה-_מספר `0` עצמו_ לא השתנה. לא ניתן לבצע שינויים כלשהם בערכים הפרימיטיביים המובנים כמו מספרים, מחרוזות ובוליאנים ב-JavaScript.
 
-Now consider an object in state:
+עכשיו שקול אובייקט ב-state:
 
 ```js
 const [position, setPosition] = useState({ x: 0, y: 0 });
 ```
 
-Technically, it is possible to change the contents of _the object itself_. **This is called a mutation:**
+מבחינה טכנית, אפשר לשנות את התוכן של _האובייקט עצמו_. **זה נקרא מוטציה:**
 
 ```js
 position.x = 5;
 ```
 
-However, although objects in React state are technically mutable, you should treat them **as if** they were immutable--like numbers, booleans, and strings. Instead of mutating them, you should always replace them.
+עם זאת, למרות שאובייקטים ב-React state ניתנים לשינוי מבחינה טכנית, עליך להתייחס אליהם **כאילו** הם בלתי ניתנים לשינוי - כמו מספרים, בוליאנים ומחרוזות. במקום לשנות אותם, תמיד כדאי להחליף אותם.
 
-## Treat state as read-only {/*treat-state-as-read-only*/}
+## התייחס ל-state כאל קריאה בלבד {/*treat-state-as-read-only*/}
 
-In other words, you should **treat any JavaScript object that you put into state as read-only.**
+במילים אחרות, עליך **להתייחס לכל אובייקט JavaScript שהכנסת ל-state כאל קריאה בלבד.**
 
-This example holds an object in state to represent the current pointer position. The red dot is supposed to move when you touch or move the cursor over the preview area. But the dot stays in the initial position:
+דוגמה זו מכילה אובייקט ב-state כדי לייצג את מיקום המצביע הנוכחי. הנקודה האדומה אמורה לזוז כאשר אתה נוגע או מעביר את הסמן מעל אזור התצוגה המקדימה. אבל הנקודה נשארת במיקום ההתחלתי:
 
 <Sandpack>
 
@@ -94,7 +94,7 @@ body { margin: 0; padding: 0; height: 250px; }
 
 </Sandpack>
 
-The problem is with this bit of code.
+הבעיה היא עם קטע הקוד הזה.
 
 ```js
 onPointerMove={e => {
@@ -103,9 +103,9 @@ onPointerMove={e => {
 }}
 ```
 
-This code modifies the object assigned to `position` from [the previous render.](/learn/state-as-a-snapshot#rendering-takes-a-snapshot-in-time) But without using the state setting function, React has no idea that object has changed. So React does not do anything in response. It's like trying to change the order after you've already eaten the meal. While mutating state can work in some cases, we don't recommend it. You should treat the state value you have access to in a render as read-only.
+קוד זה משנה את האובייקט שהוקצה ל`position` מ[העיבוד הקודם.](/learn/state-as-a-snapshot#rendering-takes-a-snapshot-in-time) אבל ללא שימוש בפונקציית ההגדרה state, לReact אין מושג שהאובייקט השתנה. אז React לא עושה שום דבר בתגובה. זה כמו לנסות לשנות את הסדר אחרי שכבר אכלת את הארוחה. למרות ששינוי state יכול לעבוד במקרים מסוימים, אנחנו לא ממליצים על זה. עליך להתייחס לערך state שיש לך גישה אליו בעיבוד כקריאה בלבד.
 
-To actually [trigger a re-render](/learn/state-as-a-snapshot#setting-state-triggers-renders) in this case, **create a *new* object and pass it to the state setting function:**
+כדי למעשה [להפעיל עיבוד מחדש](/learn/state-as-a-snapshot#setting-state-triggers-renders) במקרה זה, **צור אובייקט *חדש* והעביר אותו לפונקציית ההגדרה state:**
 
 ```js
 onPointerMove={e => {
@@ -116,12 +116,12 @@ onPointerMove={e => {
 }}
 ```
 
-With `setPosition`, you're telling React:
+עם `setPosition`, אתה אומר לReact:
 
-* Replace `position` with this new object
-* And render this component again
+* החלף את `position` באובייקט חדש זה
+* ועבד את הרכיב הזה שוב
 
-Notice how the red dot now follows your pointer when you touch or hover over the preview area:
+שים לב כיצד הנקודה האדומה עוקבת כעת אחר המצביע שלך כאשר אתה נוגע או מרחף מעל אזור התצוגה המקדימה:
 
 <Sandpack>
 
@@ -168,16 +168,16 @@ body { margin: 0; padding: 0; height: 250px; }
 
 <DeepDive>
 
-#### Local mutation is fine {/*local-mutation-is-fine*/}
+#### מוטציה מקומית בסדר {/*local-mutation-is-fine*/}
 
-Code like this is a problem because it modifies an *existing* object in state:
+קוד כזה הוא בעיה כיuse הוא משנה אובייקט *קיים* בstate:
 
 ```js
 position.x = e.clientX;
 position.y = e.clientY;
 ```
 
-But code like this is **absolutely fine** because you're mutating a fresh object you have *just created*:
+אבל קוד כזה הוא **בהחלט בסדר** כיuse אתה עושה מוטציה לאובייקט חדש שיצרת *זה עתה*:
 
 ```js
 const nextPosition = {};
@@ -186,7 +186,7 @@ nextPosition.y = e.clientY;
 setPosition(nextPosition);
 ```
 
-In fact, it is completely equivalent to writing this:
+למעשה, זה שווה לחלוטין לכתוב את זה:
 
 ```js
 setPosition({
@@ -195,15 +195,15 @@ setPosition({
 });
 ```
 
-Mutation is only a problem when you change *existing* objects that are already in state. Mutating an object you've just created is okay because *no other code references it yet.* Changing it isn't going to accidentally impact something that depends on it. This is called a "local mutation". You can even do local mutation [while rendering.](/learn/keeping-components-pure#local-mutation-your-components-little-secret) Very convenient and completely okay!
+מוטציה היא בעיה רק ​​כאשר אתה משנה אובייקטים *קיימים* שכבר נמצאים ב-state. שינוי של אובייקט שזה עתה יצרת זה בסדר מכיוון שעדיין אין קוד אחר שמפנה אליו.* שינוי זה לא ישפיע בטעות על משהו שתלוי בו. זה נקרא "מוטציה מקומית". אתה יכול אפילו לעשות מוטציה מקומית [תוך כדי רינדור.](/learn/keeping-components-pure#local-mutation-your-components-little-secret) מאוד נוח ובסדר לגמרי!
 
 </DeepDive>  
 
-## Copying objects with the spread syntax {/*copying-objects-with-the-spread-syntax*/}
+## העתקת אובייקטים עם תחביר הפיזור {/*copying-objects-with-the-spread-syntax*/}
 
-In the previous example, the `position` object is always created fresh from the current cursor position. But often, you will want to include *existing* data as a part of the new object you're creating. For example, you may want to update *only one* field in a form, but keep the previous values for all other fields.
+בדוגמה הקודמת, האובייקט `position` נוצר תמיד טרי ממיקום הסמן הנוכחי. אבל לעתים קרובות, תרצה לכלול נתונים *קיימים* כחלק מהאובייקט החדש שאתה יוצר. לדוגמה, ייתכן שתרצה לעדכן *רק אחד* שדה בטופס, אך השאר את הערכים הקודמים עבור כל שאר השדות.
 
-These input fields don't work because the `onChange` handlers mutate the state:
+שדות קלט אלה אינם פועלים מכיוון שuse המטפלים `onChange` משנים את ה-state:
 
 <Sandpack>
 
@@ -269,13 +269,13 @@ input { margin-left: 5px; margin-bottom: 5px; }
 
 </Sandpack>
 
-For example, this line mutates the state from a past render:
+לדוגמה, שורה זו משנה את ה-state מעיבוד עבר:
 
 ```js
 person.firstName = e.target.value;
 ```
 
-The reliable way to get the behavior you're looking for is to create a new object and pass it to `setPerson`. But here, you want to also **copy the existing data into it** because only one of the fields has changed:
+הדרך האמינה לקבל את ההתנהגות שאתה מחפש היא ליצור אובייקט חדש ולהעביר אותו ל-`setPerson`. אבל כאן, אתה רוצה גם **להעתיק את הנתונים הקיימים לתוכו** מכיוון שרק אחד מהשדות השתנה:
 
 ```js
 setPerson({
@@ -285,7 +285,7 @@ setPerson({
 });
 ```
 
-You can use the `...` [object spread](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax#spread_in_object_literals) syntax so that you don't need to copy every property separately.
+אתה יכול use את התחביר `...` [תחביר אובייקט](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax#spread_in_object_literals) כך שלא תצטרך להעתיק כל מאפיין בנפרד.
 
 ```js
 setPerson({
@@ -294,9 +294,9 @@ setPerson({
 });
 ```
 
-Now the form works! 
+עכשיו הטופס עובד!
 
-Notice how you didn't declare a separate state variable for each input field. For large forms, keeping all data grouped in an object is very convenient--as long as you update it correctly!
+שימו לב איך לא הכרזתם על משתנה state נפרד עבור כל שדה קלט. עבור טפסים גדולים, שמירה על כל הנתונים מקובצים באובייקט נוחה מאוד - כל עוד אתה מעדכן אותו כראוי!
 
 <Sandpack>
 
@@ -371,13 +371,13 @@ input { margin-left: 5px; margin-bottom: 5px; }
 
 </Sandpack>
 
-Note that the `...` spread syntax is "shallow"--it only copies things one level deep. This makes it fast, but it also means that if you want to update a nested property, you'll have to use it more than once. 
+שימו לב שהתחביר התפשטות `...` הוא "רדוד" - הוא מעתיק רק דברים לעומק ברמה אחת. זה הופך אותו למהיר, אבל זה גם אומר שאם אתה רוצה לעדכן מאפיין מקונן, תצטרך use אותו יותר מפעם אחת.
 
 <DeepDive>
 
-#### Using a single event handler for multiple fields {/*using-a-single-event-handler-for-multiple-fields*/}
+#### שימוש במטפל אירוע יחיד עבור שדות מרובים {/*using-a-single-event-handler-for-multiple-fields*/}
 
-You can also use the `[` and `]` braces inside your object definition to specify a property with dynamic name. Here is the same example, but with a single event handler instead of three different ones:
+אתה יכול גם use את הסוגרים `[` ו`]` בתוך הגדרת האובייקט שלך כדי לציין מאפיין עם שם דינמי. הנה אותה דוגמה, אבל עם מטפל באירוע בודד במקום שלושה שונים:
 
 <Sandpack>
 
@@ -441,13 +441,13 @@ input { margin-left: 5px; margin-bottom: 5px; }
 
 </Sandpack>
 
-Here, `e.target.name` refers to the `name` property given to the `<input>` DOM element.
+כאן, `e.target.name` מתייחס למאפיין `name` שניתן לרכיב ``<input>`` DOM.
 
 </DeepDive>
 
-## Updating a nested object {/*updating-a-nested-object*/}
+## עדכון אובייקט מקונן {/*updating-a-nested-object*/}
 
-Consider a nested object structure like this:
+שקול מבנה אובייקט מקונן כמו זה:
 
 ```js
 const [person, setPerson] = useState({
@@ -460,13 +460,13 @@ const [person, setPerson] = useState({
 });
 ```
 
-If you wanted to update `person.artwork.city`, it's clear how to do it with mutation:
+אם רצית לעדכן את `person.artwork.city`, ברור איך לעשות את זה עם מוטציה:
 
 ```js
 person.artwork.city = 'New Delhi';
 ```
 
-But in React, you treat state as immutable! In order to change `city`, you would first need to produce the new `artwork` object (pre-populated with data from the previous one), and then produce the new `person` object which points at the new `artwork`:
+אבל ב-React, אתה מתייחס ל-state כבלתי ניתן לשינוי! כדי לשנות את `city`, תחילה יהיה עליך לייצר את האובייקט `artwork` החדש (מאוכלס מראש בנתונים מהקודם), ולאחר מכן לייצר את האובייקט `person` החדש שמצביע על `artwork` החדש:
 
 ```js
 const nextArtwork = { ...person.artwork, city: 'New Delhi' };
@@ -474,7 +474,7 @@ const nextPerson = { ...person, artwork: nextArtwork };
 setPerson(nextPerson);
 ```
 
-Or, written as a single function call:
+או, כתוב כקריאת פונקציה אחת:
 
 ```js
 setPerson({
@@ -486,7 +486,7 @@ setPerson({
 });
 ```
 
-This gets a bit wordy, but it works fine for many cases:
+זה נהיה קצת מלל, אבל זה עובד מצוין עבור מקרים רבים:
 
 <Sandpack>
 
@@ -596,9 +596,9 @@ img { width: 200px; height: 200px; }
 
 <DeepDive>
 
-#### Objects are not really nested {/*objects-are-not-really-nested*/}
+#### אובייקטים לא ממש מקוננים {/*objects-are-not-really-nested*/}
 
-An object like this appears "nested" in code:
+אובייקט כמו זה מופיע "מקנן" בקוד:
 
 ```js
 let obj = {
@@ -611,7 +611,7 @@ let obj = {
 };
 ```
 
-However, "nesting" is an inaccurate way to think about how objects behave. When the code executes, there is no such thing as a "nested" object. You are really looking at two different objects:
+עם זאת, "קינון" הוא דרך לא מדויקת לחשוב על איך חפצים מתנהגים. כאשר הקוד מופעל, אין דבר כזה אובייקט "קנן". אתה באמת מסתכל על שני אובייקטים שונים:
 
 ```js
 let obj1 = {
@@ -626,7 +626,7 @@ let obj2 = {
 };
 ```
 
-The `obj1` object is not "inside" `obj2`. For example, `obj3` could "point" at `obj1` too:
+האובייקט `obj1` אינו "בתוך" `obj2`. לדוגמה, `obj3` יכול "להצביע" גם על `obj1`:
 
 ```js
 let obj1 = {
@@ -646,13 +646,13 @@ let obj3 = {
 };
 ```
 
-If you were to mutate `obj3.artwork.city`, it would affect both `obj2.artwork.city` and `obj1.city`. This is because `obj3.artwork`, `obj2.artwork`, and `obj1` are the same object. This is difficult to see when you think of objects as "nested". Instead, they are separate objects "pointing" at each other with properties.
+אם היית משנה את `obj3.artwork.city`, זה ישפיע גם על `obj2.artwork.city` וגם על `obj1.city`. זה בגלל שuse `obj3.artwork`, `obj2.artwork` ו`obj1` הם אותו אובייקט. קשה לראות את זה כשחושבים על חפצים כ"מקוננים". במקום זאת, הם אובייקטים נפרדים "המצביעים" זה על זה עם מאפיינים.
 
 </DeepDive>  
 
-### Write concise update logic with Immer {/*write-concise-update-logic-with-immer*/}
+### כתוב היגיון עדכון תמציתי עם Immer {/*write-concise-update-logic-with-immer*/}
 
-If your state is deeply nested, you might want to consider [flattening it.](/learn/choosing-the-state-structure#avoid-deeply-nested-state) But, if you don't want to change your state structure, you might prefer a shortcut to nested spreads. [Immer](https://github.com/immerjs/use-immer) is a popular library that lets you write using the convenient but mutating syntax and takes care of producing the copies for you. With Immer, the code you write looks like you are "breaking the rules" and mutating an object:
+אם ה-state שלך מקונן עמוק, אולי תרצה לשקול [לשטח אותו.](/learn/choosing-the-state-structure#avoid-deeply-nested-state) אבל, אם אינך רוצה לשנות את מבנה ה-state שלך, אולי תעדיף קיצור דרך למכשולים מקוננים. [Immer](https://github.com/immerjs/use-immer) היא ספרייה פופולרית המאפשרת לך לכתוב באמצעות התחביר הנוח אך המשתנה ודואגת לייצר עבורך את העותקים. עם Immer, הקוד שאתה כותב נראה כאילו אתה "שובר את הכללים" ומשנה אובייקט:
 
 ```js
 updatePerson(draft => {
@@ -660,22 +660,22 @@ updatePerson(draft => {
 });
 ```
 
-But unlike a regular mutation, it doesn't overwrite the past state!
+אבל בניגוד למוטציה רגילה, היא לא מחליפה את העבר state!
 
 <DeepDive>
 
-#### How does Immer work? {/*how-does-immer-work*/}
+#### איך Immer עובד? {/*how-does-immer-work*/}
 
-The `draft` provided by Immer is a special type of object, called a [Proxy](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy), that "records" what you do with it. This is why you can mutate it freely as much as you like! Under the hood, Immer figures out which parts of the `draft` have been changed, and produces a completely new object that contains your edits.
+ה-`draft` שמסופק על ידי Immer הוא סוג מיוחד של אובייקט, הנקרא [Proxy](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy), ש"מתעד" את מה שאתה עושה איתו. זו הסיבה שאתה יכול לבצע מוטציה חופשית ככל שתרצה! מתחת למכסה המנוע, Immer מגלה אילו חלקים של `draft` שונו, ומייצר אובייקט חדש לחלוטין שמכיל את ה-its שלך.
 
 </DeepDive>
 
-To try Immer:
+כדי לנסות את Immer:
 
-1. Run `npm install use-immer` to add Immer as a dependency
-2. Then replace `import { useState } from 'react'` with `import { useImmer } from 'use-immer'`
+1. הפעל את `npm install use-immer` כדי להוסיף Immer כתלות
+2. לאחר מכן החלף את `import { useState } from 'react'` ב-`import { useImmer } from 'use-immer'`
 
-Here is the above example converted to Immer:
+להלן הדוגמה שלמעלה המרה ל-Immer:
 
 <Sandpack>
 
@@ -788,33 +788,33 @@ img { width: 200px; height: 200px; }
 
 </Sandpack>
 
-Notice how much more concise the event handlers have become. You can mix and match `useState` and `useImmer` in a single component as much as you like. Immer is a great way to keep the update handlers concise, especially if there's nesting in your state, and copying objects leads to repetitive code.
+שימו לב לכמה יותר תמציתיים הפכו מטפלי האירועים. אתה יכול לערבב ולהתאים את `useState` ו`useImmer` ברכיב בודד כמה שתרצה. Immer היא דרך מצוינת לשמור על מטפלי העדכונים תמציתיים, במיוחד אם יש קינון ב-state שלך, והעתקת אובייקטים מובילה לקוד שחוזר על עצמו.
 
 <DeepDive>
 
-#### Why is mutating state not recommended in React? {/*why-is-mutating-state-not-recommended-in-react*/}
+#### מדוע לא מומלץ לבצע מוטציה ב-state ב-React? {/*why-is-mutating-state-not-recommended-in-react*/}
 
-There are a few reasons:
+יש כמה סיבות:
 
-* **Debugging:** If you use `console.log` and don't mutate state, your past logs won't get clobbered by the more recent state changes. So you can clearly see how state has changed between renders.
-* **Optimizations:** Common React [optimization strategies](/reference/react/memo) rely on skipping work if previous props or state are the same as the next ones. If you never mutate state, it is very fast to check whether there were any changes. If `prevObj === obj`, you can be sure that nothing could have changed inside of it.
-* **New Features:** The new React features we're building rely on state being [treated like a snapshot.](/learn/state-as-a-snapshot) If you're mutating past versions of state, that may prevent you from using the new features.
-* **Requirement Changes:** Some application features, like implementing Undo/Redo, showing a history of changes, or letting the user reset a form to earlier values, are easier to do when nothing is mutated. This is because you can keep past copies of state in memory, and reuse them when appropriate. If you start with a mutative approach, features like this can be difficult to add later on.
-* **Simpler Implementation:** Because React does not rely on mutation, it does not need to do anything special with your objects. It does not need to hijack their properties, always wrap them into Proxies, or do other work at initialization as many "reactive" solutions do. This is also why React lets you put any object into state--no matter how large--without additional performance or correctness pitfalls.
+* **ניפוי באגים:** אם תעשה use `console.log` ולא תשנה את state, יומני העבר שלך לא יקבלו את השינויים האחרונים ב-state. אז אתה יכול לראות בבירור כיצד state השתנה בין עיבודים.
+* **אופטימיזציות:** React נפוצות [אסטרטגיות אופטימיזציה](/reference/react/memo) מסתמכות על דילוג על עבודה אם props או state קודמים זהים לאלה הבאים. אם אף פעם לא תבצע מוטציה ב-state, זה מהר מאוד לבדוק אם היו שינויים כלשהם. אם `prevObj === obj`, אתה יכול להיות בטוח ששום דבר לא יכול היה להשתנות בתוכו.
+* **תכונות חדשות:** התכונות החדשות של React שאנו בונים מסתמכות על כך ש-state יטופלו כמו תמונת מצב.](/learn/state-as-a-snapshot) אם אתה משנה גרסאות קודמות של state, זה עלול למנוע ממך להשתמש בתכונות החדשות.
+* **שינויי דרישה:** תכונות מסוימות של יישום, כמו הטמעת ביטול/בצע מחדש, הצגת היסטוריית שינויים או מתן אפשרות ל-user לאפס טופס לערכים קודמים יותר, קלות יותר לביצוע כאשר שום דבר לא משתנה. זה בגלל use אתה יכול לשמור עותקים קודמים של state ב-memory, ולחדשuse אותם כאשר מתאים. אם אתה מתחיל עם גישה מוטטיבית, תכונות כמו זו יכול להיות קשה להוסיף מאוחר יותר.
+* **יישום פשוט יותר:** Because React אינו מסתמך על מוטציה, הוא לא צריך לעשות שום דבר מיוחד עם החפצים שלך. זה לא צריך לחטוף את המאפיינים שלהם, תמיד לעטוף אותם לתוך Proxies, או לעשות עבודה אחרת באתחול כפי שעושים הרבה פתרונות "ריאקטיביים". זו גם הסיבה ש-React מאפשר לך להכניס כל אובייקט לתוך state--לא משנה כמה גדול--ללא מלכודות ביצועים נוספות או נכונות.
 
-In practice, you can often "get away" with mutating state in React, but we strongly advise you not to do that so that you can use new React features developed with this approach in mind. Future contributors and perhaps even your future self will thank you!
+בפועל, לעתים קרובות אתה יכול "לברוח" עם מוטציה של state ב-React, אך אנו ממליצים בחום לא לעשות זאת כדי שתוכלו use תכונות חדשות של React שפותחו תוך מחשבה על גישה זו. תורמים עתידיים ואולי אפילו העצמי העתידי שלך יודו לך!
 
 </DeepDive>
 
 <Recap>
 
-* Treat all state in React as immutable.
-* When you store objects in state, mutating them will not trigger renders and will change the state in previous render "snapshots".
-* Instead of mutating an object, create a *new* version of it, and trigger a re-render by setting state to it.
-* You can use the `{...obj, something: 'newValue'}` object spread syntax to create copies of objects.
-* Spread syntax is shallow: it only copies one level deep.
-* To update a nested object, you need to create copies all the way up from the place you're updating.
-* To reduce repetitive copying code, use Immer.
+* התייחס לכל state ב-React כבלתי ניתנים לשינוי.
+* כאשר אתה מאחסן אובייקטים ב-state, מוטציה שלהם לא תפעיל עיבודים ותשנה את ה-state ב-"תצלומי מצב" קודמים.
+* במקום לבצע מוטציה של אובייקט, צור גרסה *חדשה* שלו, והפעל עיבוד מחדש על ידי הגדרת state אליו.
+* אתה יכול use את תחביר הפצת האובייקט `{...obj, something: 'newValue'}` כדי ליצור עותקים של אובייקטים.
+* תחביר התפשטות רדוד: הוא מעתיק רק רמה אחת לעומק.
+* כדי לעדכן אובייקט מקונן, עליך ליצור עותקים עד למעלה מהמקום שאתה מעדכן.
+* כדי להפחית קוד העתקה חוזרת, use Immer.
 
 </Recap>
 
@@ -822,11 +822,11 @@ In practice, you can often "get away" with mutating state in React, but we stron
 
 <Challenges>
 
-#### Fix incorrect state updates {/*fix-incorrect-state-updates*/}
+#### תקן עדכוני state שגויים {/*fix-incorrect-state-updates*/}
 
-This form has a few bugs. Click the button that increases the score a few times. Notice that it does not increase. Then edit the first name, and notice that the score has suddenly "caught up" with your changes. Finally, edit the last name, and notice that the score has disappeared completely.
+בטופס הזה יש כמה באגים. לחץ על הכפתור שמעלה את הניקוד כמה פעמים. שימו לב שזה לא עולה. לאחר מכן ערכו את השם הפרטי, ושימו לב שהניקוד פתאום "הדביק" את השינויים שלכם. לבסוף, ערכו את שם המשפחה ושימו לב שהניקוד נעלם לחלוטין.
 
-Your task is to fix all of these bugs. As you fix them, explain why each of them happens.
+המשימה שלך היא לתקן את כל הבאגים האלה. כשתתקן אותם, הסביר מדוע כל אחד מהם קורה.
 
 <Sandpack>
 
@@ -894,7 +894,7 @@ input { margin-left: 5px; margin-bottom: 5px; }
 
 <Solution>
 
-Here is a version with both bugs fixed:
+הנה גרסה עם שני הבאגים שתוקנו:
 
 <Sandpack>
 
@@ -964,23 +964,23 @@ input { margin-left: 5px; margin-bottom: 5px; }
 
 </Sandpack>
 
-The problem with `handlePlusClick` was that it mutated the `player` object. As a result, React did not know that there's a reason to re-render, and did not update the score on the screen. This is why, when you edited the first name, the state got updated, triggering a re-render which _also_ updated the score on the screen.
+הבעיה עם `handlePlusClick` הייתה שהוא שינה את האובייקט `player`. כתוצאה מכך, React לא ידע שיש סיבה לעיבוד מחדש, ולא עדכן את הניקוד על המסך. זו הסיבה שכאשר ערכת את השם הפרטי, ה-state עודכן, והפעיל עיבוד מחדש אשר _גם_ עדכן את הניקוד על המסך.
 
-The problem with `handleLastNameChange` was that it did not copy the existing `...player` fields into the new object. This is why the score got lost after you edited the last name.
+הבעיה עם `handleLastNameChange` הייתה שהוא לא העתיק את שדות `...player` הקיימים לאובייקט החדש. זו הסיבה שהניקוד הלך לאיבוד לאחר שערכת את שם המשפחה.
 
 </Solution>
 
-#### Find and fix the mutation {/*find-and-fix-the-mutation*/}
+#### מצא ותקן את המוטציה {/*find-and-fix-the-mutation*/}
 
-There is a draggable box on a static background. You can change the box's color using the select input.
+יש תיבה הניתנת לגרירה על רקע סטטי. אתה יכול לשנות את צבע התיבה באמצעות קלט הבחירה.
 
-But there is a bug. If you move the box first, and then change its color, the background (which isn't supposed to move!) will "jump" to the box position. But this should not happen: the `Background`'s `position` prop is set to `initialPosition`, which is `{ x: 0, y: 0 }`. Why is the background moving after the color change?
+אבל יש באג. אם תזיז קודם את הקופסה, ולאחר מכן תשנה את צבעה, הרקע (שאינו אמור לזוז!) "יקפוץ" למיקום התיבה. אבל זה לא אמור לקרות: התמיכה `position` של `Background` מוגדרת ל-`initialPosition`, שהיא `{ x: 0, y: 0 }`. מדוע הרקע זז לאחר שינוי הצבע?
 
-Find the bug and fix it.
+מצא את הבאג ותקן אותו.
 
 <Hint>
 
-If something unexpected changes, there is a mutation. Find the mutation in `App.js` and fix it.
+אם משהו לא צפוי משתנה, יש מוטציה. מצא את המוטציה ב-`App.js` ותקן אותה.
 
 </Hint>
 
@@ -1130,9 +1130,9 @@ select { margin-bottom: 10px; }
 
 <Solution>
 
-The problem was in the mutation inside `handleMove`. It mutated `shape.position`, but that's the same object that `initialPosition` points at. This is why both the shape and the background move. (It's a mutation, so the change doesn't reflect on the screen until an unrelated update--the color change--triggers a re-render.)
+הבעיה הייתה במוטציה בתוך `handleMove`. זה שינה את `shape.position`, אבל זה אותו אובייקט ש`initialPosition` מצביע עליו. זו הסיבה שגם הצורה וגם הרקע זזים. (זו מוטציה, כך שהשינוי לא משתקף על המסך עד שעדכון לא קשור - שינוי הצבע - מפעיל עיבוד מחדש.)
 
-The fix is to remove the mutation from `handleMove`, and use the spread syntax to copy the shape. Note that `+=` is a mutation, so you need to rewrite it to use a regular `+` operation.
+התיקון הוא להסיר את המוטציה מ`handleMove`, וuse את תחביר התפשטות כדי להעתיק את הצורה. שימו לב ש-`+=` היא מוטציה, לכן עליכם לשכתב אותה ל-use פעולת `+` רגילה.
 
 <Sandpack>
 
@@ -1285,9 +1285,9 @@ select { margin-bottom: 10px; }
 
 </Solution>
 
-#### Update an object with Immer {/*update-an-object-with-immer*/}
+#### עדכן אובייקט באמצעות Immer {/*update-an-object-with-immer*/}
 
-This is the same buggy example as in the previous challenge. This time, fix the mutation by using Immer. For your convenience, `useImmer` is already imported, so you need to change the `shape` state variable to use it.
+זו אותה דוגמה באגי כמו באתגר הקודם. הפעם, תקן את המוטציה באמצעות Immer. לנוחיותך, `useImmer` כבר מיובא, אז עליך לשנות את המשתנה `shape` state ל-use אותו.
 
 <Sandpack>
 
@@ -1454,7 +1454,7 @@ select { margin-bottom: 10px; }
 
 <Solution>
 
-This is the solution rewritten with Immer. Notice how the event handlers are written in a mutating fashion, but the bug does not occur. This is because under the hood, Immer never mutates the existing objects.
+זה הפתרון שנכתב מחדש עם Immer. שימו לב כיצד המטפלים באירועים נכתבים בצורה משתנה, אך הבאג אינו מתרחש. זה בגלל use מתחת למכסה המנוע, Immer אף פעם לא משנה את האובייקטים הקיימים.
 
 <Sandpack>
 
@@ -1622,3 +1622,4 @@ select { margin-bottom: 10px; }
 </Solution>
 
 </Challenges>
+

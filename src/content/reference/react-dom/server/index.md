@@ -1,49 +1,49 @@
 ---
-title: Server React DOM APIs
+title: "שרת React DOM APIs"
 ---
 
 <Intro>
 
-The `react-dom/server` APIs let you render React components to HTML on the server. These APIs are only used on the server at the top level of your app to generate the initial HTML. A [framework](/learn/start-a-new-react-project#production-grade-react-frameworks) may call them for you. Most of your components don't need to import or use them.
+ה-APIs של `react-dom/server` מאפשרים לרנדר קומפונטות React ל-HTML בצד שרת. ה-APIs האלה משתמשים רק בצד שרת, ברמה העליונה של האפליקציה, כדי להשתמש ב-HTML הראשוני. [Framework](/learn/start-a-new-react-project#production-grade-react-frameworks) יכול לקרוא להם עבורכם. רוב הקומפוננטות שלכם לא צריכות לייבא או להשתמש בהם.
 
 </Intro>
 
 ---
 
-## Server APIs for Node.js Streams {/*server-apis-for-nodejs-streams*/}
+## שרת APIs עבור Node.js זרמים {/*server-apis-for-nodejs-streams*/}
 
-These methods are only available in the environments with [Node.js Streams:](https://nodejs.org/api/stream.html)
+המתודות האלה זמינות רק בסביבות עם [Node.js זרמים:](https://nodejs.org/api/stream.html)
 
-* [`renderToPipeableStream`](/reference/react-dom/server/renderToPipeableStream) renders a React tree to a pipeable [Node.js Stream.](https://nodejs.org/api/stream.html)
-* [`renderToStaticNodeStream`](/reference/react-dom/server/renderToStaticNodeStream) renders a non-interactive React tree to a [Node.js Readable Stream.](https://nodejs.org/api/stream.html#readable-streams)
-
----
-
-## Server APIs for Web Streams {/*server-apis-for-web-streams*/}
-
-These methods are only available in the environments with [Web Streams](https://developer.mozilla.org/en-US/docs/Web/API/Streams_API), which includes browsers, Deno, and some modern edge runtimes:
-
-* [`renderToReadableStream`](/reference/react-dom/server/renderToReadableStream) renders a React tree to a [Readable Web Stream.](https://developer.mozilla.org/en-US/docs/Web/API/ReadableStream)
+* [`renderToPipeableStream`](/reference/react-dom/server/renderToPipeableStream) מרנדר עץ React ל-[Node.js Stream](https://nodejs.org/api/stream.html) ניתן לבצע לו piping.
+* [`renderToStaticNodeStream`](/reference/react-dom/server/renderToStaticNodeStream) מרנדר עץ React לא אינטראקטיבי ל-[Node.js קריא זרם.](https://nodejs.org/api/stream.html#readable-streams)
 
 ---
 
-## Server APIs for non-streaming environments {/*server-apis-for-non-streaming-environments*/}
+## שרת APIs עבור זרמי אינטרנט {/*server-apis-for-web-streams*/}
 
-These methods can be used in the environments that don't support streams:
+המתודות האלה זמינות רק בסביבות עם [זרמי אינטרנט](https://developer.mozilla.org/en-US/docs/Web/API/Streams_API), כולל דפדפנים, Deno, וחלק מסביבות edge מודרניות:
 
-* [`renderToString`](/reference/react-dom/server/renderToString) renders a React tree to a string.
-* [`renderToStaticMarkup`](/reference/react-dom/server/renderToStaticMarkup) renders a non-interactive React tree to a string.
-
-They have limited functionality compared to the streaming APIs.
+* [`renderToReadableStream`](/reference/react-dom/server/renderToReadableStream) מרנדר עץ React ל-[זרם אינטרנט קריא.](https://developer.mozilla.org/en-US/docs/Web/API/ReadableStream)
 
 ---
 
-## Deprecated server APIs {/*deprecated-server-apis*/}
+## שרת APIs עבור סביבות ללא סטרימינג {/*server-apis-for-non-streaming-environments*/}
+
+אפשר להשתמש במתודות האלה בסביבות שלא תומכות ב-streams:
+
+* [`renderToString`](/reference/react-dom/server/renderToString) מרנדר עץ React למחרוזת.
+* [`renderToStaticMarkup`](/reference/react-dom/server/renderToStaticMarkup) מרנדר עץ React לא אינטראקטיבי למחרוזת.
+
+יש להן פונקציונליות מוגבלת בהשוואה ל-APIs של סטרימינג.
+
+---
+
+## שרת APIs שהוצאו לשימוש {/*deprecated-server-apis*/}
 
 <Deprecated>
 
-These APIs will be removed in a future major version of React.
+ה-APIs האלה יוסרו בגרסה ראשית עתידית של React.
 
 </Deprecated>
 
-* [`renderToNodeStream`](/reference/react-dom/server/renderToNodeStream) renders a React tree to a [Node.js Readable stream.](https://nodejs.org/api/stream.html#readable-streams) (Deprecated.)
+* [`renderToNodeStream`](/reference/react-dom/server/renderToNodeStream) מרנדר עץ React ל-[Node.js זרם קריא.](https://nodejs.org/api/stream.html#readable-streams) (הוצא לשימוש.)

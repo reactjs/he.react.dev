@@ -1,10 +1,10 @@
 ---
-title: <Fragment> (<>...</>)
+title: "<Fragment> (<>...</>)"
 ---
 
 <Intro>
 
-`<Fragment>`, often used via `<>...</>` syntax, lets you group elements without a wrapper node.
+`<Fragment>`, שלרוב משתמשים דרך בה התחביר `<>...</>`, יכול לקבץ אלמנטים בלי צומת עוטף.
 
 ```js
 <>
@@ -19,29 +19,29 @@ title: <Fragment> (<>...</>)
 
 ---
 
-## Reference {/*reference*/}
+## הפניה {/*reference*/}
 
 ### `<Fragment>` {/*fragment*/}
 
-Wrap elements in `<Fragment>` to group them together in situations where you need a single element. Grouping elements in `Fragment` has no effect on the resulting DOM; it is the same as if the elements were not grouped. The empty JSX tag `<></>` is shorthand for `<Fragment></Fragment>` in most cases.
+עטפו אלמנטים בתוך `<Fragment>` כדי לקבץ אותם במצבים צריכים אלמנט יחיד. קיבוץ אלמנטים בתוך `Fragment` לא משפיע על ה-DOM המתקבל; התוצאה זה מצב שבו האלמנטים לא קוב. תגית JSX ריקה `<></>` היא קיצור של `<Fragment></Fragment>` ברוב המקרים.
 
-#### Props {/*props*/}
+#### אבזרים {/*props*/}
 
-- **optional** `key`: Fragments declared with the explicit `<Fragment>` syntax may have [keys.](/learn/rendering-lists#keeping-list-items-in-order-with-key)
+- **אופציונלי** `key`: Fragments שמוצהרים בתחביר מפורש של `<Fragment>` יכולים לקבל [מפתחות.](/learn/rendering-lists#keeping-list-items-in-order-with-key)
 
-#### Caveats {/*caveats*/}
+#### אזהרות {/*caveats*/}
 
-- If you want to pass `key` to a Fragment, you can't use the `<>...</>` syntax. You have to explicitly import `Fragment` from `'react'` and render `<Fragment key={yourKey}>...</Fragment>`.
+- אם אתם רוצים להעביר `key` ל-Fragment, אי אפשר להשתמש בתחביר `<>...</>`. צריך לייבא מפורשות את `Fragment` מתוך `'react'` ולרנדר `<Fragment key={yourKey}>...</Fragment>`.
 
-- React does not [reset state](/learn/preserving-and-resetting-state) when you go from rendering `<><Child /></>` to `[<Child />]` or back, or when you go from rendering `<><Child /></>` to `<Child />` and back. This only works a single level deep: for example, going from `<><><Child /></></>` to `<Child />` resets the state. See the precise semantics [here.](https://gist.github.com/clemmy/b3ef00f9507909429d8aa0d3ee4f986b)
+- React לא [מאפסת state](/learn/preserving-and-resetting-state) כשעוברים מרינדור `<><Child /></>` ל-`[<Child />]` או בחזרה, או כשעוברים מרינדור `<><Child /></>` ל-`<Child />` ובחזרה. זה עובד רק לעומק של רמה אחת: למשל, להמשיך מ-`<><><Child /></></>` ל-`<Child />` כן מאפס את ה-state. אפשר לראות את הסמנטיקה המדויקת [כאן.](https://gist.github.com/clemmy/b3ef00f9507909429d8aa0d3ee4f986b)
 
 ---
 
-## Usage {/*usage*/}
+## שימוש {/*usage*/}
 
-### Returning multiple elements {/*returning-multiple-elements*/}
+### החזרת כמה אלמנטים {/*returning-multiple-elements*/}
 
-Use `Fragment`, or the equivalent `<>...</>` syntax, to group multiple elements together. You can use it to put multiple elements in any place where a single element can go. For example, a component can only return one element, but by using a Fragment you can group multiple elements together and then return them as a group:
+השתמשו ב-`Fragment`, או בתחביר המקביל `<>...</>`, כדי לקבץ כמה אלמנטים יחד. אפשר להשתמש בזה כדי לשים כמה אלמנטים בכל מקום שבו אלמנט יחיד יכול להופיע. לדוגמה, אפשר להחזיר כמה אלמנטים ולהחזיר אותם כקבוצה:
 
 ```js {3,6}
 function Post() {
@@ -54,7 +54,7 @@ function Post() {
 }
 ```
 
-Fragments are useful because grouping elements with a Fragment has no effect on layout or styles, unlike if you wrapped the elements in another container like a DOM element. If you inspect this example with the browser tools, you'll see that all `<h1>` and `<article>` DOM nodes appear as siblings without wrappers around them:
+Fragments שימושיים כי אלמנטים עם Fragment לא משפיעים על layout או styles, האם לעיטוף הקיבוץ אלמנטים בתוך מיכל נוסף כמו אלמנט DOM. אם תבדקו את הדוגמה בכלי הדפדפן, תראו שכל ה-DOM צמתים של `<h1>` ושל `<article>` מופיעים כאחים בלי עטיפות סביבם:
 
 <Sandpack>
 
@@ -94,9 +94,9 @@ function PostBody({ body }) {
 
 <DeepDive>
 
-#### How to write a Fragment without the special syntax? {/*how-to-write-a-fragment-without-the-special-syntax*/}
+#### איך לכתוב Fragment בלי התחביר מיוחד? {/*how-to-write-a-fragment-without-the-special-syntax*/}
 
-The example above is equivalent to importing `Fragment` from React:
+הדוגמה שקטה למעלה לייבוא ​​`Fragment` מתוך React:
 
 ```js {1,5,8}
 import { Fragment } from 'react';
@@ -111,15 +111,15 @@ function Post() {
 }
 ```
 
-Usually you won't need this unless you need to [pass a `key` to your `Fragment`.](#rendering-a-list-of-fragments)
+בדרך כלל לא תצטרכו את זה אלא אם צריך [להעביר `key` ל-`Fragment`.](#rendering-a-list-of-fragments)
 
 </DeepDive>
 
 ---
 
-### Assigning multiple elements to a variable {/*assigning-multiple-elements-to-a-variable*/}
+### השמת כמה אלמנטים לשינוי {/*assigning-multiple-elements-to-a-variable*/}
 
-Like any other element, you can assign Fragment elements to variables, pass them as props, and so on:
+כמו כל אלמנט אחר, אפשר לשייך Fragment אלמנטים למשתנים, להעביר אותם כ-props וכן הלאה:
 
 ```js
 function CloseDialog() {
@@ -139,9 +139,9 @@ function CloseDialog() {
 
 ---
 
-### Grouping elements with text {/*grouping-elements-with-text*/}
+### קיבוץ אלמנטים עם טקסט {/*grouping-elements-with-text*/}
 
-You can use `Fragment` to group text together with components:
+אפשר להשתמש ב-`Fragment` כדי לקבץ טקסט יחד עם קומפונטות:
 
 ```js
 function DateRangePicker({ start, end }) {
@@ -158,9 +158,9 @@ function DateRangePicker({ start, end }) {
 
 ---
 
-### Rendering a list of Fragments {/*rendering-a-list-of-fragments*/}
+### רינדור רשימת Fragments {/*rendering-a-list-of-fragments*/}
 
-Here's a situation where you need to write `Fragment` explicitly instead of using the `<></>` syntax. When you [render multiple elements in a loop](/learn/rendering-lists), you need to assign a `key` to each element. If the elements within the loop are Fragments, you need to use the normal JSX element syntax in order to provide the `key` attribute:
+זה מצב שבו צריך לכתוב `Fragment` במפורש במקום תחביר `<></>`. כש-[מרנדרים כמה אלמנטים בלולאה](/learn/rendering-lists), צריך להקצות `key` לכל אלמנט. אם האלמנטים בלולאה הם Fragments, חייבים להשתמש בתחביר JSX רגיל כדי לספק את המאפיין `key`:
 
 ```js {3,6}
 function Blog() {
@@ -173,7 +173,7 @@ function Blog() {
 }
 ```
 
-You can inspect the DOM to verify that there are no wrapper elements around the Fragment children:
+אפשר לבדוק ב-DOM שאין אלמנטים עוטים סביב ילדי ה-Fragment:
 
 <Sandpack>
 

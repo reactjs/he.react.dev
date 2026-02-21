@@ -1,10 +1,10 @@
 ---
-title: useDeferredValue
+title: "useDeferredValue"
 ---
 
 <Intro>
 
-`useDeferredValue` is a React Hook that lets you defer updating a part of the UI.
+`useDeferredValue` הוא React Hook המאפשר לך לדחות עדכון של חלק מהממשק.
 
 ```js
 const deferredValue = useDeferredValue(value)
@@ -16,11 +16,11 @@ const deferredValue = useDeferredValue(value)
 
 ---
 
-## Reference {/*reference*/}
+## הפניה {/*reference*/}
 
 ### `useDeferredValue(value)` {/*usedeferredvalue*/}
 
-Call `useDeferredValue` at the top level of your component to get a deferred version of that value.
+התקשר ל-`useDeferredValue` ברמה העליונה של הרכיב שלך כדי לקבל גרסה נדחית של הערך הזה.
 
 ```js
 import { useState, useDeferredValue } from 'react';
@@ -32,37 +32,37 @@ function SearchPage() {
 }
 ```
 
-[See more examples below.](#usage)
+[ראה דוגמאות נוספות למטה.](#usage)
 
-#### Parameters {/*parameters*/}
+#### פרמטרים {/*parameters*/}
 
-* `value`: The value you want to defer. It can have any type.
+* `value`: הערך שברצונך לדחות. זה יכול להיות כל סוג.
 
-#### Returns {/*returns*/}
+#### מחזירה {/*returns*/}
 
-During the initial render, the returned deferred value will be the same as the value you provided. During updates, React will first attempt a re-render with the old value (so it will return the old value), and then try another re-render in background with the new value (so it will return the updated value). 
+במהלך העיבוד הראשוני, הערך הדחוי המוחזר יהיה זהה לערך שסיפקת. במהלך עדכונים, React ינסה תחילה עיבוד מחדש עם הערך הישן (כך הוא יחזיר את הערך הישן), ולאחר מכן ינסה עיבוד מחדש ברקע עם הערך החדש (כך הוא יחזיר את הערך המעודכן).
 
-#### Caveats {/*caveats*/}
+#### אזהרות {/*caveats*/}
 
-- The values you pass to `useDeferredValue` should either be primitive values (like strings and numbers) or objects created outside of rendering. If you create a new object during rendering and immediately pass it to `useDeferredValue`, it will be different on every render, causing unnecessary background re-renders.
+- הערכים שתעביר ל-`useDeferredValue` צריכים להיות ערכים פרימיטיביים (כמו מחרוזות ומספרים) או אובייקטים שנוצרו מחוץ לעיבוד. אם אתה יוצר אובייקט חדש במהלך הרינדור ומיד מעביר אותו ל-`useDeferredValue`, הוא יהיה שונה בכל רינדור, ויגרום לעיבוד מחדש של רקע מיותר.
 
-- When `useDeferredValue` receives a different value (compared with [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is)), in addition to the current render (when it still uses the previous value), it schedules a re-render in the background with the new value. The background re-render is interruptible: if there's another update to the `value`, React will restart the background re-render from scratch. For example, if the user is typing into an input faster than a chart receiving its deferred value can re-render, the chart will only re-render after the user stops typing.
+- כאשר `useDeferredValue` מקבל ערך שונה (בהשוואה ל-[`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is)), בנוסף לעיבוד הנוכחי (כאשר הוא עדיין use הוא הערך הקודם), הוא מתזמן עיבוד מחדש ברקע עם הערך החדש. העיבוד מחדש ברקע ניתן להפסקה: אם יש עדכון נוסף לרקע __K_2 יתחיל מחדש את הרקע __K_2 scratch לדוגמה, אם ה-user מקליד בקלט מהר יותר ממה שתרשים שמקבל את הערך הנדחה שלו יכול לעבד מחדש, התרשים יוצג מחדש רק לאחר שה-user יפסיק להקליד.
 
-- `useDeferredValue` is integrated with [`<Suspense>`.](/reference/react/Suspense) If the background update caused by a new value suspends the UI, the user will not see the fallback. They will see the old deferred value until the data loads.
+- `useDeferredValue` משולב עם [`<Suspense>`.](/reference/react/Suspense) אם עדכון הרקע caused על ידי ערך חדש משעה את ממשק המשתמש, ה-user לא יראה את החזרה. הם יראו את הערך הדחוי הישן עד לטעינת הנתונים.
 
-- `useDeferredValue` does not by itself prevent extra network requests.
+- `useDeferredValue` אינו מונע כשלעצמו בקשות רשת נוספות.
 
-- There is no fixed delay caused by `useDeferredValue` itself. As soon as React finishes the original re-render, React will immediately start working on the background re-render with the new deferred value. Any updates caused by events (like typing) will interrupt the background re-render and get prioritized over it.
+- אין עיכוב קבוע caused על ידי `useDeferredValue` עצמו. ברגע שReact מסיים את העיבוד מחדש המקורי, React יתחיל מיד לעבוד על העיבוד מחדש ברקע עם הערך הדחוי החדש. כל עדכונים caused על ידי אירועים (כמו הקלדה) יפריעו לעיבוד מחדש ברקע ויקבלו עדיפות על פניו.
 
-- The background re-render caused by `useDeferredValue` does not fire Effects until it's committed to the screen. If the background re-render suspends, its Effects will run after the data loads and the UI updates.
+- העיבוד מחדש של הרקע caused על ידי `useDeferredValue` אינו מפעיל אפקטים עד שהוא מחויב למסך. אם העיבוד מחדש ברקע מושעה, האפקטים שלו יפעלו לאחר טעינת הנתונים ועדכוני ממשק המשתמש.
 
 ---
 
-## Usage {/*usage*/}
+## שימוש {/*usage*/}
 
-### Showing stale content while fresh content is loading {/*showing-stale-content-while-fresh-content-is-loading*/}
+### מציג תוכן מיושן בזמן טעינת תוכן טרי {/*showing-stale-content-while-fresh-content-is-loading*/}
 
-Call `useDeferredValue` at the top level of your component to defer updating some part of your UI.
+התקשר ל-`useDeferredValue` ברמה העליונה של הרכיב שלך כדי לדחות עדכון של חלק כלשהו מהממשק שלך.
 
 ```js [[1, 5, "query"], [2, 5, "deferredQuery"]]
 import { useState, useDeferredValue } from 'react';
@@ -74,26 +74,26 @@ function SearchPage() {
 }
 ```
 
-During the initial render, the <CodeStep step={2}>deferred value</CodeStep> will be the same as the <CodeStep step={1}>value</CodeStep> you provided.
+במהלך העיבוד הראשוני, <CodeStep step={2}>הערך הדחוי</CodeStep> יהיה זהה ל<CodeStep step={1}>ערך</CodeStep> שסיפקת.
 
-During updates, the <CodeStep step={2}>deferred value</CodeStep> will "lag behind" the latest <CodeStep step={1}>value</CodeStep>. In particular, React will first re-render *without* updating the deferred value, and then try to re-render with the newly received value in background.
+במהלך עדכונים, <CodeStep step={2}>הערך הדחוי</CodeStep> "יפגר מאחורי" ה<CodeStep step={1}>ערך</CodeStep> האחרון. בפרט, React תחילה יעבד מחדש *ללא* לעדכן את הערך הנדחה, ולאחר מכן ינסה לעבד מחדש עם הערך החדש שהתקבל ברקע.
 
-**Let's walk through an example to see when this is useful.**
+**בואו נעבור על דוגמה כדי לראות מתי זה מלא use.**
 
 <Note>
 
-This example assumes you use a Suspense-enabled data source:
+דוגמה זו מניחה שאתה use מקור נתונים מאופשר Suspense:
 
-- Data fetching with Suspense-enabled frameworks like [Relay](https://relay.dev/docs/guided-tour/rendering/loading-states/) and [Next.js](https://nextjs.org/docs/getting-started/react-essentials)
-- Lazy-loading component code with [`lazy`](/reference/react/lazy)
-- Reading the value of a Promise with [`use`](/reference/react/use)
+- אחזור נתונים עם מסגרות התומכות ב-Suspense כמו [Relay](https://relay.dev/docs/guided-tour/rendering/loading-states/) ו-[Next.js](https://nextjs.org/docs/getting-started/react-essentials)
+- קוד רכיב בטעינה עצלנית עם [`lazy`](/reference/react/lazy)
+- קריאת הערך של הבטחה עם [`use`](/reference/react/use)
 
-[Learn more about Suspense and its limitations.](/reference/react/Suspense)
+[למידע נוסף על Suspense והמגבלות שלו.](/reference/react/Suspense)
 
 </Note>
 
 
-In this example, the `SearchResults` component [suspends](/reference/react/Suspense#displaying-a-fallback-while-content-is-loading) while fetching the search results. Try typing `"a"`, waiting for the results, and then editing it to `"ab"`. The results for `"a"` get replaced by the loading fallback.
+בדוגמה זו, הרכיב `SearchResults` [משהה](/reference/react/Suspense#displaying-a-fallback-while-content-in-loading) בזמן שליפת תוצאות החיפוש. נסה להקליד `"a"`, להמתין לתוצאות, ולאחר מכן לערוך אותו ל-`"ab"`. התוצאות עבור `"a"` מוחלפות ב-fallback הטעינה.
 
 <Sandpack>
 
@@ -285,7 +285,7 @@ input { margin: 10px; }
 
 </Sandpack>
 
-A common alternative UI pattern is to *defer* updating the list of results and to keep showing the previous results until the new results are ready. Call `useDeferredValue` to pass a deferred version of the query down: 
+דפוס משתמש חלופי נפוץ הוא *לדחות* את עדכון רשימת התוצאות ולהמשיך להציג את התוצאות הקודמות עד שהתוצאות החדשות יהיו מוכנות. התקשר ל-`useDeferredValue` כדי להעביר גרסה נדחית של השאילתה:
 
 ```js {3,11}
 export default function App() {
@@ -305,9 +305,9 @@ export default function App() {
 }
 ```
 
-The `query` will update immediately, so the input will display the new value. However, the `deferredQuery` will keep its previous value until the data has loaded, so `SearchResults` will show the stale results for a bit.
+ה-`query` יתעדכן מיד, כך שהקלט יציג את הערך החדש. עם זאת, ה-`deferredQuery` ישמור על הערך הקודם שלו עד שהנתונים ייטענו, אז `SearchResults` יציג את התוצאות המעופשות לזמן מה.
 
-Enter `"a"` in the example below, wait for the results to load, and then edit the input to `"ab"`. Notice how instead of the Suspense fallback, you now see the stale result list until the new results have loaded:
+הזן `"a"` בדוגמה למטה, המתן לטעינת התוצאות ולאחר מכן ערוך את הקלט ל-`"ab"`. שים לב כיצד במקום ה-fallback Suspense, אתה רואה כעת את רשימת התוצאות המיושנת עד לטעינת התוצאות החדשות:
 
 <Sandpack>
 
@@ -502,25 +502,25 @@ input { margin: 10px; }
 
 <DeepDive>
 
-#### How does deferring a value work under the hood? {/*how-does-deferring-a-value-work-under-the-hood*/}
+#### איך עובדת דחיית ערך מתחת למכסה המנוע? {/*how-does-deferring-a-value-work-under-the-hood*/}
 
-You can think of it as happening in two steps:
+אתה יכול לחשוב שזה קורה בשני שלבים:
 
-1. **First, React re-renders with the new `query` (`"ab"`) but with the old `deferredQuery` (still `"a")`.** The `deferredQuery` value, which you pass to the result list, is *deferred:* it "lags behind" the `query` value.
+1. **ראשית, React מעבד מחדש עם `query` החדש (`"ab"`) אבל עם `deferredQuery` הישן (עדיין `"a")`.** הערך `deferredQuery`, שאתה מעביר לרשימת התוצאות, *נדחה:* הוא "פוגר אחרי" הערך __TK_
 
-2. **In background, React tries to re-render with *both* `query` and `deferredQuery` updated to `"ab"`.** If this re-render completes, React will show it on the screen. However, if it suspends (the results for `"ab"` have not loaded yet), React will abandon this rendering attempt, and retry this re-render again after the data has loaded. The user will keep seeing the stale deferred value until the data is ready.
+2. **ברקע, React מנסה לעבד מחדש עם *גם* `query` וגם `deferredQuery` מעודכנות ל-`"ab"`.** אם העיבוד מחדש הזה יסתיים, React יציג אותו על המסך. עם זאת, אם הוא מושהה (התוצאות עבור `"ab"` עדיין לא נטענו), React ינטוש את ניסיון העיבוד הזה, וינסה שוב לבצע עיבוד מחדש לאחר טעינת הנתונים. ה-user ימשיך לראות את הערך הדחוי המעופש עד שהנתונים יהיו מוכנים.
 
-The deferred "background" rendering is interruptible. For example, if you type into the input again, React will abandon it and restart with the new value. React will always use the latest provided value.
+עיבוד ה"רקע" הנדחה ניתן להפסקה. לדוגמה, אם תקליד שוב בקלט, React ינטוש אותו ויתחיל מחדש עם הערך החדש. React תמיד use הערך האחרון שסופק.
 
-Note that there is still a network request per each keystroke. What's being deferred here is displaying results (until they're ready), not the network requests themselves. Even if the user continues typing, responses for each keystroke get cached, so pressing Backspace is instant and doesn't fetch again.
+שימו לב שעדיין ישנה בקשת רשת בכל הקשה. מה שנדחה כאן הוא הצגת תוצאות (עד שהן מוכנות), לא בקשות הרשת עצמן. גם אם ה-user ממשיך להקליד, התגובות עבור כל הקשה על המקשים נשמרות במטמון, כך שהקשה על Backspace היא מיידית ואינה מביאה שוב.
 
 </DeepDive>
 
 ---
 
-### Indicating that the content is stale {/*indicating-that-the-content-is-stale*/}
+### מציין שהתוכן מיושן {/*indicating-that-the-content-is-stale*/}
 
-In the example above, there is no indication that the result list for the latest query is still loading. This can be confusing to the user if the new results take a while to load. To make it more obvious to the user that the result list does not match the latest query, you can add a visual indication when the stale result list is displayed:
+בדוגמה שלמעלה, אין אינדיקציה שרשימת התוצאות עבור השאילתה האחרונה עדיין בטעינה. זה יכול לבלבל את ה-user אם התוצאות החדשות ייקח זמן מה לטעון. כדי שיהיה ברור יותר ל-user שרשימת התוצאות אינה תואמת את השאילתה העדכנית ביותר, תוכל להוסיף אינדיקציה חזותית כאשר רשימת התוצאות המיושנת מוצגת:
 
 ```js {2}
 <div style={{
@@ -530,7 +530,7 @@ In the example above, there is no indication that the result list for the latest
 </div>
 ```
 
-With this change, as soon as you start typing, the stale result list gets slightly dimmed until the new result list loads. You can also add a CSS transition to delay dimming so that it feels gradual, like in the example below:
+עם השינוי הזה, ברגע שאתה מתחיל להקליד, רשימת התוצאות המיושנת מתעמעמת מעט עד שרשימת התוצאות החדשה נטענת. אתה יכול גם להוסיף מעבר CSS להשהיית עמעום כך שירגיש הדרגתי, כמו בדוגמה למטה:
 
 <Sandpack>
 
@@ -731,11 +731,11 @@ input { margin: 10px; }
 
 ---
 
-### Deferring re-rendering for a part of the UI {/*deferring-re-rendering-for-a-part-of-the-ui*/}
+### דחיית עיבוד מחדש עבור חלק ממשק המשתמש {/*deferring-re-rendering-for-a-part-of-the-ui*/}
 
-You can also apply `useDeferredValue` as a performance optimization. It is useful when a part of your UI is slow to re-render, there's no easy way to optimize it, and you want to prevent it from blocking the rest of the UI.
+אתה יכול גם להחיל `useDeferredValue` כאופטימיזציה של ביצועים. זה useמלא כאשר חלק מהממשק שלך איטי לעיבוד מחדש, אין דרך קלה לייעל אותו ואתה רוצה למנוע ממנו לחסום את שאר ממשק המשתמש.
 
-Imagine you have a text field and a component (like a chart or a long list) that re-renders on every keystroke:
+תאר לעצמך שיש לך שדה טקסט ורכיב (כמו תרשים או רשימה ארוכה) שמוצגים מחדש בכל הקשה:
 
 ```js
 function App() {
@@ -749,7 +749,7 @@ function App() {
 }
 ```
 
-First, optimize `SlowList` to skip re-rendering when its props are the same. To do this, [wrap it in `memo`:](/reference/react/memo#skipping-re-rendering-when-props-are-unchanged)
+ראשית, בצע אופטימיזציה של `SlowList` כדי לדלג על עיבוד מחדש כאשר ה-props שלו זהים. כדי לעשות זאת, [עטפו אותו ב-`memo`:](/reference/react/memo#skipping-re-rendering-when-props-are-unchanged)
 
 ```js {1,3}
 const SlowList = memo(function SlowList({ text }) {
@@ -757,9 +757,9 @@ const SlowList = memo(function SlowList({ text }) {
 });
 ```
 
-However, this only helps if the `SlowList` props are *the same* as during the previous render. The problem you're facing now is that it's slow when they're *different,* and when you actually need to show different visual output.
+עם זאת, זה עוזר רק אם `SlowList` props הם *זהים* כמו במהלך העיבוד הקודם. הבעיה שאת מתמודדת איתה עכשיו היא שזה איטי כשהם *שונים* וכשאתה באמת צריך להראות פלט חזותי שונה.
 
-Concretely, the main performance problem is that whenever you type into the input, the `SlowList` receives new props, and re-rendering its entire tree makes the typing feel janky. In this case, `useDeferredValue` lets you prioritize updating the input (which must be fast) over updating the result list (which is allowed to be slower):
+באופן קונקרטי, בעיית הביצועים העיקרית היא שבכל פעם שאתה מקליד בקלט, ה-`SlowList` מקבל props חדש, ורינדור מחדש של כל העץ שלו גורם להקלדה להרגיש מופרכת. במקרה זה, `useDeferredValue` מאפשר לך לתעדף את עדכון הקלט (שחייב להיות מהיר) על פני עדכון רשימת התוצאות (אשר מותר להיות איטי יותר):
 
 ```js {3,7}
 function App() {
@@ -774,13 +774,13 @@ function App() {
 }
 ```
 
-This does not make re-rendering of the `SlowList` faster. However, it tells React that re-rendering the list can be deprioritized so that it doesn't block the keystrokes. The list will "lag behind" the input and then "catch up". Like before, React will attempt to update the list as soon as possible, but will not block the user from typing.
+זה לא הופך את העיבוד מחדש של ה-`SlowList` למהיר יותר. עם זאת, הוא אומר ל-React שניתן לבטל את סדר העדיפויות של עיבוד מחדש של הרשימה כך שלא יחסום את ההקשות. הרשימה "תעכב מאחורי" הקלט ולאחר מכן "תדביק". כמו קודם, React ינסה לעדכן את הרשימה בהקדם האפשרי, אך לא יחסום את user מהקלדה.
 
 <Recipes titleText="The difference between useDeferredValue and unoptimized re-rendering" titleId="examples">
 
-#### Deferred re-rendering of the list {/*deferred-re-rendering-of-the-list*/}
+#### עיבוד מחדש נדחה של הרשימה {/*deferred-re-rendering-of-the-list*/}
 
-In this example, each item in the `SlowList` component is **artificially slowed down** so that you can see how `useDeferredValue` lets you keep the input responsive. Type into the input and notice that typing feels snappy while the list "lags behind" it.
+בדוגמה זו, כל פריט ברכיב `SlowList` מואט באופן מלאכותי** כך שתוכל לראות כיצד `useDeferredValue` מאפשר לך לשמור על הקלט תגובה. הקלד את הקלט ושם לב שההקלדה מרגישה מהירה בזמן שהרשימה "נגררת" אחריה.
 
 <Sandpack>
 
@@ -854,11 +854,11 @@ export default SlowList;
 
 <Solution />
 
-#### Unoptimized re-rendering of the list {/*unoptimized-re-rendering-of-the-list*/}
+#### עיבוד מחדש ללא אופטימיזציה של הרשימה {/*unoptimized-re-rendering-of-the-list*/}
 
-In this example, each item in the `SlowList` component is **artificially slowed down**, but there is no `useDeferredValue`.
+בדוגמה זו, כל פריט ברכיב `SlowList` הוא **האטה באופן מלאכותי**, אך אין `useDeferredValue`.
 
-Notice how typing into the input feels very janky. This is because without `useDeferredValue`, each keystroke forces the entire list to re-render immediately in a non-interruptible way.
+שים לב איך הקלדה בקלט מרגישה מאוד מטופשת. זה בגלל use ללא `useDeferredValue`, כל הקשה מאלצת את הרשימה כולה לעיבוד מחדש באופן מיידי בצורה בלתי ניתנת להפסקה.
 
 <Sandpack>
 
@@ -935,25 +935,25 @@ export default SlowList;
 
 <Pitfall>
 
-This optimization requires `SlowList` to be wrapped in [`memo`.](/reference/react/memo) This is because whenever the `text` changes, React needs to be able to re-render the parent component quickly. During that re-render, `deferredText` still has its previous value, so `SlowList` is able to skip re-rendering (its props have not changed). Without [`memo`,](/reference/react/memo) it would have to re-render anyway, defeating the point of the optimization.
+אופטימיזציה זו מחייבת את `SlowList` לעטוף ב-[`memo`.](/reference/react/memo) זה בגלל use בכל פעם שה-`text` משתנה, React צריך להיות מסוגל לעבד מחדש את רכיב האב במהירות. במהלך העיבוד מחדש, ל-`deferredText` עדיין יש את הערך הקודם שלו, כך ש-`SlowList` מסוגל לדלג על רינדור מחדש (props שלו לא השתנה). ללא [`memo`,](/reference/react/memo) הוא יצטרך בכל מקרה לעבד מחדש, ולהביס את נקודת האופטימיזציה.
 
 </Pitfall>
 
 <DeepDive>
 
-#### How is deferring a value different from debouncing and throttling? {/*how-is-deferring-a-value-different-from-debouncing-and-throttling*/}
+#### במה שונה דחיית ערך מהקפצה ומצערת? {/*how-is-deferring-a-value-different-from-debouncing-and-throttling*/}
 
-There are two common optimization techniques you might have used before in this scenario:
+ישנן שתי טכניקות אופטימיזציה נפוצות שעשויות להיות לך used בעבר בתרחיש זה:
 
-- *Debouncing* means you'd wait for the user to stop typing (e.g. for a second) before updating the list.
-- *Throttling* means you'd update the list every once in a while (e.g. at most once a second).
+- *הקפצה* פירושה שתמתין עד שה-user יפסיק להקליד (למשל לשנייה) לפני שתעדכן את הרשימה.
+- *מחסנת* פירושה שתעדכן את הרשימה מדי פעם (למשל, לכל היותר פעם בשנייה).
 
-While these techniques are helpful in some cases, `useDeferredValue` is better suited to optimizing rendering because it is deeply integrated with React itself and adapts to the user's device.
+בעוד שטכניקות אלו מועילות במקרים מסוימים, `useDeferredValue` מתאימה יותר לאופטימיזציה של רינדור מכיוון שהיא משולבת עמוקות עם React עצמה ומסתגלת למכשיר של user.
 
-Unlike debouncing or throttling, it doesn't require choosing any fixed delay. If the user's device is fast (e.g. powerful laptop), the deferred re-render would happen almost immediately and wouldn't be noticeable. If the user's device is slow, the list would "lag behind" the input proportionally to how slow the device is.
+בניגוד להקפצה או מצערת, זה לא מצריך בחירת השהיה קבועה כלשהי. אם המכשיר של ה-user מהיר (לדוגמה, מחשב נייד חזק), הרינדור החוזר הנדחה יתרחש כמעט מיד ולא יהיה מורגש. אם המכשיר של ה-user איטי, הרשימה "תפגר מאחורי" הקלט באופן פרופורציונלי לאיטי המכשיר.
 
-Also, unlike with debouncing or throttling, deferred re-renders done by `useDeferredValue` are interruptible by default. This means that if React is in the middle of re-rendering a large list, but the user makes another keystroke, React will abandon that re-render, handle the keystroke, and then start rendering in background again. By contrast, debouncing and throttling still produce a janky experience because they're *blocking:* they merely postpone the moment when rendering blocks the keystroke.
+כמו כן, בשונה מהקפצה או מצערת, עיבוד מחדש דחוי שנעשה על ידי `useDeferredValue` ניתנים להפסקה כברירת מחדל. זה אומר שאם React נמצא באמצע עיבוד מחדש של רשימה גדולה, אבל ה-user מבצע הקשה נוספת, React ינטוש את העיבוד המחודש הזה, יטפל בהקשה ואז יתחיל לעבד ברקע שוב. לעומת זאת, ניתוק ומצערת עדיין מייצרים חוויה מטורפת מכיוון שהם *חוסמים:* הם פשוט דוחים את הרגע שבו העיבוד חוסם את הקשה.
 
-If the work you're optimizing doesn't happen during rendering, debouncing and throttling are still useful. For example, they can let you fire fewer network requests. You can also use these techniques together.
+אם העבודה שאתה מבצע אופטימיזציה לא מתרחשת במהלך הרינדור, ההקפצה והמצערת עדיין מלאות use. לדוגמה, הם יכולים לאפשר לך להפעיל פחות בקשות רשת. אתה יכול גם use טכניקות אלה ביחד.
 
 </DeepDive>

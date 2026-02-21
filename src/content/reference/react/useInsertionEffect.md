@@ -1,16 +1,16 @@
 ---
-title: useInsertionEffect
+title: "useInsertionEffect"
 ---
 
 <Pitfall>
 
-`useInsertionEffect` is for CSS-in-JS library authors. Unless you are working on a CSS-in-JS library and need a place to inject the styles, you probably want [`useEffect`](/reference/react/useEffect) or [`useLayoutEffect`](/reference/react/useLayoutEffect) instead.
+`useInsertionEffect` מיועד למחברי ספריות CSS-in-JS. אלא אם אתם עובדים על ספריית CSS-in-JS וצריכים מקום להזרקת סגנונות, כנראה שתרצו להשתמש ב-[`useEffect`](/reference/react/useEffect) או ב-[`useLayoutEffect`](/reference/react/useLayoutEffect) במקום.
 
 </Pitfall>
 
 <Intro>
 
-`useInsertionEffect` allows inserting elements into the DOM before any layout effects fire.
+`useInsertionEffect` יכול להכניס אלמנטים ל-DOM לפני מופעים של אפקטים של שכל layout.
 
 ```js
 useInsertionEffect(setup, dependencies?)
@@ -22,11 +22,11 @@ useInsertionEffect(setup, dependencies?)
 
 ---
 
-## Reference {/*reference*/}
+## הפניה {/*reference*/}
 
 ### `useInsertionEffect(setup, dependencies?)` {/*useinsertioneffect*/}
 
-Call `useInsertionEffect` to insert styles before any effects fire that may need to read layout:
+קראו ל-`useInsertionEffect` כדי להכניס סגנונות לפני שמופעלים אפקטים שעלולים להזדקק לקריאת פריסת:
 
 ```js
 import { useInsertionEffect } from 'react';
@@ -40,32 +40,32 @@ function useCSS(rule) {
 }
 ```
 
-[See more examples below.](#usage)
+[עוד דוגמאות נוספות.](#usage)
 
-#### Parameters {/*parameters*/}
+#### פרמטרים {/*parameters*/}
 
-* `setup`: The function with your Effect's logic. Your setup function may also optionally return a *cleanup* function. When your component is added to the DOM, but before any layout effects fire, React will run your setup function. After every re-render with changed dependencies, React will first run the cleanup function (if you provided it) with the old values, and then run your setup function with the new values. When your component is removed from the DOM, React will run your cleanup function.
- 
-* **optional** `dependencies`: The list of all reactive values referenced inside of the `setup` code. Reactive values include props, state, and all the variables and functions declared directly inside your component body. If your linter is [configured for React](/learn/editor-setup#linting), it will verify that every reactive value is correctly specified as a dependency. The list of dependencies must have a constant number of items and be written inline like `[dep1, dep2, dep3]`. React will compare each dependency with its previous value using the [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) comparison algorithm. If you don't specify the dependencies at all, your Effect will re-run after every re-render of the component.
+* `setup`: פונקציה עם לוגיקת ה-Effect שלכם. פונקציית ה-setup יכולה גם להחזיר אופציונלית פונקציית *ניקוי*. כשהקומפונטה מתווספת ל-DOM, אבל לפני שכל אפקטים של layout רצים, React תריץ את הפונקציית ההתקנה שלכם. אחרי כל עיבוד מחדש עם תלות שהשתנו, React תריץ קודם את הפונקציית ה-cleanup (אם סיפקתם כאלה) עם הערכים הישנים, ואז תריץ את הפונקציית ההתקנה עם הערכים החדשים. כשהקומפוננטה מוסרת מה-DOM, React תריץ את פונקציית ה-cleanup שלכם.
 
-#### Returns {/*returns*/}
+* **אופציונלי** `dependencies`: רשימה של כל הערכים הריאקטיביים שמופנים בתוך קוד ה-`setup`. ערכים ריאקטיביים כוללים props, state, וכל המשתנים והפונקציות שמוגדרים באופן עצמאי בתוך גוף הקומפוננטה. אם ה-linter שלכם [מוגדר ל-React](/learn/editor-setup#linting), הוא יוודא שכל ערך ריאקטיבי מצוין נכון כ-dependency. רשימת התלות חייבת להיות מספר פריטים קבועים וכתב מוטבע כמו `[dep1, dep2, dep3]`. React תשווה כל תלות לערך הקודם שלו באמצעות אלגוריתם ההשוואה [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is). אם לא תציינו dependencies בכלל, ה-Effect ירוץ מחדש אחרי כל עיבוד מחדש של הקומפוננטה.
 
-`useInsertionEffect` returns `undefined`.
+#### מחזירה {/*returns*/}
 
-#### Caveats {/*caveats*/}
+`useInsertionEffect` מחזיר `undefined`.
 
-* Effects only run on the client. They don't run during server rendering.
-* You can't update state from inside `useInsertionEffect`.
-* By the time `useInsertionEffect` runs, refs are not attached yet.
-* `useInsertionEffect` may run either before or after the DOM has been updated. You shouldn't rely on the DOM being updated at any particular time.
-* Unlike other types of Effects, which fire cleanup for every Effect and then setup for every Effect, `useInsertionEffect` will fire both cleanup and setup one component at a time. This results in an "interleaving" of the cleanup and setup functions.
+#### אזהרות {/*caveats*/}
+
+* אפקטים רצים רק בצד הלקוח. הם לא רצים בזמן רינדור שרת.
+* אי אפשר לעדכן state מתוך `useInsertionEffect`.
+* בזמן ש-`useInsertionEffect` רץ, רצים עדיין לא מחוברים.
+* `useInsertionEffect` עשוי לרוץ לפני או אחרי שה-DOM מתעדכן. לא כדאי להסתמך על כך שה-DOM יתעדכן בזמן מסוים.
+* סוג לסוגי אפקטים אחרים, שמריצים ניקוי לכל אפקט והתקנה לכל אפקט, `useInsertionEffect` תריץ גם ניקוי וגם התקנה קומפוננתה-אחר-קומפונטה. זה יוצר "interleaving" של פונקציות ה-cleanup וה-setup.
 ---
 
-## Usage {/*usage*/}
+## שימוש {/*usage*/}
 
-### Injecting dynamic styles from CSS-in-JS libraries {/*injecting-dynamic-styles-from-css-in-js-libraries*/}
+### הזרקת סגנונות דינמיים מספריות CSS-in-JS {/*injecting-dynamic-styles-from-css-in-js-libraries*/}
 
-Traditionally, you would style React components using plain CSS.
+באופן טבעי, הייתם מעצבים קומפונטות React בעזרת CSS רגיל.
 
 ```js
 // In your JS file:
@@ -75,20 +75,20 @@ Traditionally, you would style React components using plain CSS.
 .success { color: green; }
 ```
 
-Some teams prefer to author styles directly in JavaScript code instead of writing CSS files. This usually requires using a CSS-in-JS library or a tool. There are three common approaches to CSS-in-JS:
+חלק מהצוותים מעדיפים לכתוב סגנונות למעשה בקוד JavaScript במקום בקובצי CSS. זה בדרך כלל דורש שימוש בספריית CSS-in-JS או בכל מתאים. יש שלוש גישות נפוצות ל-CSS-in-JS:
 
-1. Static extraction to CSS files with a compiler
-2. Inline styles, e.g. `<div style={{ opacity: 1 }}>`
-3. Runtime injection of `<style>` tags
+1. חילוץ סטטי לקובצי CSS באמצעות קומפיילר
+2. סגנונות מוטבעים, למשל `<div style={{ opacity: 1 }}>`
+3. הזרקה בזמן ריצה של תגיות `<style>`
 
-If you use CSS-in-JS, we recommend a combination of the first two approaches (CSS files for static styles, inline styles for dynamic styles). **We don't recommend runtime `<style>` tag injection for two reasons:**
+אם אתם משתמשים ב-CSS-in-JS, אנחנו ממליצים על שילוב של שתי הגישות הראשונות (קובצי CSS לסגנונות סטטיים, סגנונות מוטבעים לסגנונות דינמיים). **אנחנו לא ממליצים על הזרקת תגיות `<style>` בזמן ריצה משתי סיבות:**
 
-1. Runtime injection forces the browser to recalculate the styles a lot more often.
-2. Runtime injection can be very slow if it happens at the wrong time in the React lifecycle.
+1. הזרקה בזמן ריצה מאלצת את הדפדפן לחשב סגנונות בתדירות גבוהה יותר.
+2. הזרקה בזמן ריצה יכולה להיות איטית מאוד אם היא מתרחשת בזמן לא נכון במחזור החיים של React.
 
-The first problem is not solvable, but `useInsertionEffect` helps you solve the second problem.
+את הבעיה הראשונה אי אפשר לפתור, אבל `useInsertionEffect` עוזרת לפתור את הבעיה השנייה.
 
-Call `useInsertionEffect` to insert the styles before any layout effects fire:
+קראו ל-`useInsertionEffect` כדי להכניס סגנונות לפני אפקטים של שכל פריסה מופעים:
 
 ```js {4-11}
 // Inside your CSS-in-JS library
@@ -111,7 +111,7 @@ function Button() {
 }
 ```
 
-Similarly to `useEffect`, `useInsertionEffect` does not run on the server. If you need to collect which CSS rules have been used on the server, you can do it during rendering:
+בדומה ל-`useEffect`, `useInsertionEffect` לא רצה בשרת. אם אתם צריכים לאסוף אילו כללי CSS שימשו בשרת, אפשר לעשות זאת בזמן הרינדור:
 
 ```js {1,4-6}
 let collectedRulesSet = new Set();
@@ -127,14 +127,14 @@ function useCSS(rule) {
 }
 ```
 
-[Read more about upgrading CSS-in-JS libraries with runtime injection to `useInsertionEffect`.](https://github.com/reactwg/react-18/discussions/110)
+[קראו עוד על שדרוג ספריות CSS-in-JS עם הזרקה בזמן ריצה ל-`useInsertionEffect`.](https://github.com/reactwg/react-18/discussions/110)
 
 <DeepDive>
 
-#### How is this better than injecting styles during rendering or useLayoutEffect? {/*how-is-this-better-than-injecting-styles-during-rendering-or-uselayouteffect*/}
+#### איך זה עדיף על הזרקת סגנונות בזמן רינדור או useLayoutEffect? {/*how-is-this-better-than-injecting-styles-during-rendering-or-uselayouteffect*/}
 
-If you insert styles during rendering and React is processing a [non-blocking update,](/reference/react/useTransition#marking-a-state-update-as-a-non-blocking-transition) the browser will recalculate the styles every single frame while rendering a component tree, which can be **extremely slow.**
+אם מכניסים סגנונות בזמן רינדור ו-React מעבדת [עדכון לא חוסם,](/reference/react/useTransition#marking-a-state-update-as-a-non-blocking-transition) הדפדפן יחשוב מחדש סגנונות בכל מסגרת בזמן רינדור קומפוננטות, מאוד יכול להיות.
 
-`useInsertionEffect` is better than inserting styles during [`useLayoutEffect`](/reference/react/useLayoutEffect) or [`useEffect`](/reference/react/useEffect) because it ensures that by the time other Effects run in your components, the `<style>` tags have already been inserted. Otherwise, layout calculations in regular Effects would be wrong due to outdated styles.
+`useInsertionEffect` עדיפה על הזרקת סגנונות בזמן [`useLayoutEffect`](/reference/react/useLayoutEffect) או [`useEffect`](/reference/react/useEffect), כי היא מבטיחה שעד שה-Effects אחרים בקומפוננטות שלכם רצים, תגיות __כנסTK_3__ כבר. אחרת, פריסת חישובי ב-Effects רגילים יהיו שגויים בגלל סגנונות לא מעודכנים.
 
 </DeepDive>

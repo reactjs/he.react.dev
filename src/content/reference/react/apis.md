@@ -1,17 +1,17 @@
 ---
-title: "Built-in React APIs"
+title: "React APIs מובנים"
 ---
 
 <Intro>
 
-In addition to [Hooks](/reference/react) and [Components](/reference/react/components), the `react` package exports a few other APIs that are useful for defining components. This page lists all the remaining modern React APIs.
+בנוסף ל-[Hooks](/reference/react) ול-[Components](/reference/react/components), החבילה `react` מייצאת עוד כמה APIs שימושים להגדרת קומפוננטות. העמוד הזה מפרט את שאר ה-APIs המודרניים של React.
 
 </Intro>
 
 ---
 
-* [`createContext`](/reference/react/createContext) lets you define and provide context to the child components. Used with [`useContext`.](/reference/react/useContext)
-* [`forwardRef`](/reference/react/forwardRef) lets your component expose a DOM node as a ref to the parent. Used with [`useRef`.](/reference/react/useRef)
-* [`lazy`](/reference/react/lazy) lets you defer loading a component's code until it's rendered for the first time.
-* [`memo`](/reference/react/memo) lets your component skip re-renders with same props. Used with [`useMemo`](/reference/react/useMemo) and [`useCallback`.](/reference/react/useCallback)
-* [`startTransition`](/reference/react/startTransition) lets you mark a state update as non-urgent. Similar to [`useTransition`.](/reference/react/useTransition)
+* [`createContext`](/reference/react/createContext) יכול להגדיר ולהעביר הקשר לקומפוננטות לילדים. בשימוש יחד עם [`useContext`.](/reference/react/useContext)
+* [`forwardRef`](/reference/react/forwardRef) יכול לקומפוננטה לחשוף DOM צומת בתור ref לקומפוננטת הורה. בשימוש יחד עם [`useRef`.](/reference/react/useRef)
+* [`lazy`](/reference/react/lazy) יכול לדחות את טעינת קוד הקומפוננטה עד לרינדור הראשון שלה.
+* [`memo`](/reference/react/memo) יכול לקומפוננטה לדלג על רינדורים חוזרים עם אותם props. בשימוש יחד עם [`useMemo`](/reference/react/useMemo) ו-[`useCallback`.](/reference/react/useCallback)
+* [`startTransition`](/reference/react/startTransition) מאפשר לסמן עדכון state כלא-דחוף. דומה ל-[`useTransition`.](/reference/react/useTransition)

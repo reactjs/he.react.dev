@@ -1,10 +1,10 @@
 ---
-title: lazy
+title: "עָצֵל"
 ---
 
 <Intro>
 
-`lazy` lets you defer loading component's code until it is rendered for the first time.
+`lazy` מאפשרת לדחות טעינה של קוד קומפוננטה עד לרינדור הראשון שלה.
 
 ```js
 const SomeComponent = lazy(load)
@@ -16,11 +16,11 @@ const SomeComponent = lazy(load)
 
 ---
 
-## Reference {/*reference*/}
+## הפניה {/*reference*/}
 
 ### `lazy(load)` {/*lazy*/}
 
-Call `lazy` outside your components to declare a lazy-loaded React component:
+קראו ל-`lazy` מחוץ לקומפוננטות שלכם כדי להצהיר על קומפונטת React בטעינה עצלה:
 
 ```js
 import { lazy } from 'react';
@@ -28,41 +28,41 @@ import { lazy } from 'react';
 const MarkdownPreview = lazy(() => import('./MarkdownPreview.js'));
 ```
 
-[See more examples below.](#usage)
+[עוד דוגמאות נוספות.](#usage)
 
-#### Parameters {/*parameters*/}
+#### פרמטרים {/*parameters*/}
 
-* `load`: A function that returns a [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) or another *thenable* (a Promise-like object with a `then` method). React will not call `load` until the first time you attempt to render the returned component. After React first calls `load`, it will wait for it to resolve, and then render the resolved value's `.default` as a React component. Both the returned Promise and the Promise's resolved value will be cached, so React will not call `load` more than once. If the Promise rejects, React will `throw` the rejection reason for the nearest Error Boundary to handle.
+* `load`: פונקציה שמחזירה [הבטחה](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) או *thenable* אחר פונקציה אישית דמוית הבטחה עם מתודת `then`). React לא תקרא ל-`load` עד הפעם הראשונה שבה תנסו לרנדר היא את הקומפוננטה המוחזרת. תיפתר, ואז תרנדר את `.default` של הערך כקומפוננטת React גם ה-Promise המוחזר וגם הערך שנפתר ממנו ישמרו במטמון, כך ש-React לא תקרא ל-`load` יותר מ-TK_5__ יותר מ-TK_5__ יותר מ-TK_5__ יותר מה-TK___12 הבטחה אחת. שגיאה Boundary בקרוב כדי שיטפל בה.
 
-#### Returns {/*returns*/}
+#### מחזירה {/*returns*/}
 
-`lazy` returns a React component you can render in your tree. While the code for the lazy component is still loading, attempting to render it will *suspend.* Use [`<Suspense>`](/reference/react/Suspense) to display a loading indicator while it's loading.
-
----
-
-### `load` function {/*load*/}
-
-#### Parameters {/*load-parameters*/}
-
-`load` receives no parameters.
-
-#### Returns {/*load-returns*/}
-
-You need to return a [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) or some other *thenable* (a Promise-like object with a `then` method). It needs to eventually resolve to an object whose `.default` property is a valid React component type, such as a function, [`memo`](/reference/react/memo), or a [`forwardRef`](/reference/react/forwardRef) component.
+`lazy` מחזירה קומפונטת React אפשר לרנדר בעץ שלכם. בזמן שקוד הקומפוננטה העצלה עדיין נטען, ניסיון לרנדר אותה יגרום ל-*השעיה*. השתמשו ב-[`<Suspense>`](/reference/react/Suspense) כדי להציג אינדיקציית טעינה בזמן שהיא נטענת.
 
 ---
 
-## Usage {/*usage*/}
+### פונקציית `load` {/*load*/}
 
-### Lazy-loading components with Suspense {/*suspense-for-code-splitting*/}
+#### פרמטרים {/*load-parameters*/}
 
-Usually, you import components with the static [`import`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import) declaration:
+`load` לא מקבלת פרמטרים.
+
+#### מחזירה {/*load-returns*/}
+
+צריך להחזיר [הבטחה](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) או *thenable* אחר (אובייקט דמוי הבטחה עם מתודת `then`). בסופו של דבר היא צריכה להיפתר לאובייקט שהמאפיין `.default` שלו הוא סוג קומפוננטת React תקין, כמו פונקציה, קומפונטת [__/__/TK_2__]Kreference. קומפונטת [`forwardRef`](/reference/react/forwardRef).
+
+---
+
+## שימוש {/*usage*/}
+
+### טעינת קומפונטות בעצלות עם Suspense {/*suspense-for-code-splitting*/}
+
+בדרך כלל מייבאים קומפונטות באמצעות הצהרת [`import`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import) סטטיסטית:
 
 ```js
 import MarkdownPreview from './MarkdownPreview.js';
 ```
 
-To defer loading this component's code until it's rendered for the first time, replace this import with:
+כדי לדחות טעינה של קוד הקומפוננטה הזו עד לרינדור הראשון שלה, החליפו את הייבוא הזה ב:
 
 ```js
 import { lazy } from 'react';
@@ -70,9 +70,9 @@ import { lazy } from 'react';
 const MarkdownPreview = lazy(() => import('./MarkdownPreview.js'));
 ```
 
-This code relies on [dynamic `import()`,](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/import) which might require support from your bundler or framework. Using this pattern requires that the lazy component you're importing was exported as the `default` export.
+הקוד נשען על [`import()` דינמי](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/import), שעשוי לדרוש תמיכה מה-bundler או מה-framework שלכם. שימוש בדפוס הזה דורש שהקומפוננטה העצמה שהם מייבאים יוצאים כ-`default` ייצוא.
 
-Now that your component's code loads on demand, you also need to specify what should be displayed while it is loading. You can do this by wrapping the lazy component or any of its parents into a [`<Suspense>`](/reference/react/Suspense) boundary:
+עכשיו, כשהקוד של הקומפוננטה נטען לפי דרישה, צריך גם לציין מה יוצג בזמן הטעינה. אפשר לעשות זאת על ידי עטיפת הקומפוננת העצלה או אחד מההורים שלה בתוך גבול [`<Suspense>`](/reference/react/Suspense):
 
 ```js {1,4}
 <Suspense fallback={<Loading />}>
@@ -81,7 +81,7 @@ Now that your component's code loads on demand, you also need to specify what sh
  </Suspense>
 ```
 
-In this example, the code for `MarkdownPreview` won't be loaded until you attempt to render it. If `MarkdownPreview` hasn't loaded yet, `Loading` will be shown in its place. Try ticking the checkbox:
+בדוגמה הזו, הקוד של `MarkdownPreview` לא ייטען עד שתנסו לרנדר אותו. אם `MarkdownPreview` עדיין לא נטען, `Loading` יוצג במקומו. נסו לסמן את תיבת הסימון:
 
 <Sandpack>
 
@@ -175,17 +175,17 @@ body {
 
 </Sandpack>
 
-This demo loads with an artificial delay. The next time you untick and tick the checkbox, `Preview` will be cached, so there will be no loading state. To see the loading state again, click "Reset" on the sandbox.
+הדמו הזה נטען עם השהיה מלאכותית. בפעם הבאה שתבטלו ותסמנו שוב את תיבת הסימון, `Preview` כבר תהיה במטמון, לא תהיה מצב טעינה. כדי לראות שוב את מצב הטעינה, לחצו על "איפוס" ב-sandbox.
 
-[Learn more about managing loading states with Suspense.](/reference/react/Suspense)
+[קראו עוד על ניהול מצבי טעינה עם Suspense.](/reference/react/Suspense)
 
 ---
 
-## Troubleshooting {/*troubleshooting*/}
+## פתרון תקלות {/*troubleshooting*/}
 
-### My `lazy` component's state gets reset unexpectedly {/*my-lazy-components-state-gets-reset-unexpectedly*/}
+### ה-state של קומפונטת `lazy` מתאפס באופן לא צפוי {/*my-lazy-components-state-gets-reset-unexpectedly*/}
 
-Do not declare `lazy` components *inside* other components:
+אל תצהירו על קומפונטות `lazy` *בתוך* קומפונטות אחרות:
 
 ```js {4-5}
 import { lazy } from 'react';
@@ -197,7 +197,7 @@ function Editor() {
 }
 ```
 
-Instead, always declare them at the top level of your module:
+במקום זאת, תמיד הצהירו עליהן ברמה העליונה של המודול:
 
 ```js {3-4}
 import { lazy } from 'react';

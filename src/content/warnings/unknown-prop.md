@@ -1,24 +1,24 @@
 ---
-title: Unknown Prop Warning
+title: "אזהרת לא ידוע פרופס"
 ---
 
-The unknown-prop warning will fire if you attempt to render a DOM element with a prop that is not recognized by React as a legal DOM attribute/property. You should ensure that your DOM elements do not have spurious props floating around.
+האזהרה unknown-prop תופיע אם תנסו לרנדר אלמנט DOM עם prop ש-React לא מזהה כ-DOM attribute/property חוקי. חשוב לשמור על האלמנטים שלכם ב-props מיותרים שמועברים בטעות.
 
-There are a couple of likely reasons this warning could be appearing:
+יש כמה סיבות נפוצות לאזהרה הזו:
 
-1. Are you using `{...props}` or `cloneElement(element, props)`? When copying props to a child component, you should ensure that you are not accidentally forwarding props that were intended only for the parent component. See common fixes for this problem below.
+1. האם אתם משתמשים ב-`{...props}` או `cloneElement(element, props)`? כשמעתיקים props לקומפוננטת ילד, צריך לוודא שלא מעבירים בטעות props שנועדו רק לקומפוננטת הורה. מופיעים תיקונים נפוצים לבעיה הזו.
 
-2. You are using a non-standard DOM attribute on a native DOM node, perhaps to represent custom data. If you are trying to attach custom data to a standard DOM element, consider using a custom data attribute as described [on MDN](https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Using_data_attributes).
+2. אתם משתמשים ב-DOM תכונה לא סטנדרטי על DOM no רגיל, אולי כדי להציג נתונים מותאמים אישית. אם צריך להצמיד נתונים מותאמים לאלמנט DOM סטנדרטי, כדאי להשתמש ב-custom data attribute כפי שמוסבר [ב-MDN](https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Using_data_attributes).
 
-3. React does not yet recognize the attribute you specified. This will likely be fixed in a future version of React. React will allow you to pass it without a warning if you write the attribute name lowercase.
+3. React עדיין לא מזהה את המאפיין שציינתם. סביר שזה יטוקן בגרסה עתידית של React. React תאפשר להעביר אותו בלי אזהרה אם תכתבו את שם המאפיין באותיות קטנות.
 
-4. You are using a React component without an upper case, for example `<myButton />`. React interprets it as a DOM tag because React JSX transform uses the upper vs. lower case convention to distinguish between user-defined components and DOM tags. For your own React components, use PascalCase. For example, write `<MyButton />` instead of `<myButton />`.
+4. אתם משתמשים בקומפונטת React בלי אות ראשית השם, למשל `<myButton />`. React מפרשת את זה כתגית DOM כי ה-JSX טרנספורמציה של React משתמש בכלל אותיות גדולות/קטנות כדי להבדיל בין קומפונטות מוגדרות-משתמש על תגיות DOM. לקומפוננטות שלכם השתמשו ב-PascalCase. לדוגמה, כתבו `<MyButton />` במקום `<myButton />`.
 
 ---
 
-If you get this warning because you pass props like `{...props}`, your parent component needs to "consume" any prop that is intended for the parent component and not intended for the child component. Example:
+אם עניין את האזהרה כי העברתם props כמו `{...props}`, קומפוננטת ה-parent צריכה "לצרוך" כל פרופס שמיועד ל-parent ולא ל-child. דוגמה:
 
-**Bad:** Unexpected `layout` prop is forwarded to the `div` tag.
+**רע:** ה-prop הלא צפוי `layout` מועבר לתגית `div`.
 
 ```js
 function MyDiv(props) {
@@ -32,7 +32,7 @@ function MyDiv(props) {
 }
 ```
 
-**Good:** The spread syntax can be used to pull variables off props, and put the remaining props into a variable.
+**טוב:** אפשר להשתמש ב-spread תחביר כדי לחלץ משתנים מ-props, ולהכניס את השאר ה-props לשינוי נפרד.
 
 ```js
 function MyDiv(props) {
@@ -45,7 +45,7 @@ function MyDiv(props) {
 }
 ```
 
-**Good:** You can also assign the props to a new object and delete the keys that you're using from the new object. Be sure not to delete the props from the original `this.props` object, since that object should be considered immutable.
+**טוב:** אפשר גם להעתיק את props לאובייקט חדש ולמחוק ממנו את המפתחות עם משתמשים. חשוב לא למחוק props מה אובייקט המקורי `this.props`, כי צריך להתייחס אליו כ-בלתי ניתן לשינוי.
 
 ```js
 function MyDiv(props) {

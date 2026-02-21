@@ -1,52 +1,52 @@
 ---
-title: Updating Arrays in State
+title: "עדכון מערכים ב-State"
 ---
 
 <Intro>
 
-Arrays are mutable in JavaScript, but you should treat them as immutable when you store them in state. Just like with objects, when you want to update an array stored in state, you need to create a new one (or make a copy of an existing one), and then set state to use the new array.
+מערכים ניתנים לשינוי ב-JavaScript, אך עליך להתייחס אליהם כאל ניתנים לשינוי כאשר אתה מאחסן אותם ב-state. בדיוק כמו עם אובייקטים, כאשר אתה רוצה לעדכן מערך המאוחסן ב-state, אתה צריך ליצור אחד חדש (או ליצור עותק של אחד קיים), ולאחר מכן להגדיר את state ל-use את המערך החדש.
 
 </Intro>
 
 <YouWillLearn>
 
-- How to add, remove, or change items in an array in React state
-- How to update an object inside of an array
-- How to make array copying less repetitive with Immer
+- כיצד להוסיף, להסיר או לשנות פריטים במערך ב-React state
+- כיצד לעדכן אובייקט בתוך מערך
+- כיצד להפוך את העתקת המערך לפחות חוזרת על עצמה עם Immer
 
 </YouWillLearn>
 
-## Updating arrays without mutation {/*updating-arrays-without-mutation*/}
+## עדכון מערכים ללא מוטציה {/*updating-arrays-without-mutation*/}
 
-In JavaScript, arrays are just another kind of object. [Like with objects](/learn/updating-objects-in-state), **you should treat arrays in React state as read-only.** This means that you shouldn't reassign items inside an array like `arr[0] = 'bird'`, and you also shouldn't use methods that mutate the array, such as `push()` and `pop()`.
+ב-JavaScript, מערכים הם רק סוג אחר של אובייקט. [כמו עם אובייקטים](/learn/updating-objects-in-state), **עליך להתייחס למערכים ב-React state כקריאה בלבד.** זה אומר שאסור לך להקצות מחדש פריטים בתוך מערך כמו `arr[0] = 'bird'`, ואתה גם אמור להשתיק את השיטה כמו `arr[0] = 'bird'`, כמו גם `arr[0] = 'bird'`. `push()` ו-`pop()`.
 
-Instead, every time you want to update an array, you'll want to pass a *new* array to your state setting function. To do that, you can create a new array from the original array in your state by calling its non-mutating methods like `filter()` and `map()`. Then you can set your state to the resulting new array.
+במקום זאת, בכל פעם שתרצה לעדכן מערך, תרצה להעביר מערך *חדש* לפונקציית ההגדרה state שלך. כדי לעשות זאת, אתה יכול ליצור מערך חדש מהמערך המקורי ב-state שלך על ידי קריאה לשיטות הלא-מוטציות שלו כמו `filter()` ו-`map()`. לאחר מכן תוכל להגדיר את state שלך למערך החדש שנוצר.
 
-Here is a reference table of common array operations. When dealing with arrays inside React state, you will need to avoid the methods in the left column, and instead prefer the methods in the right column:
+להלן טבלת התייחסות של פעולות מערך נפוצות. כאשר עוסקים במערכים בתוך React state, תצטרכו להימנע מהשיטות בעמודה השמאלית, ובמקום זאת להעדיף את השיטות בעמודה הימנית:
 
-|           | avoid (mutates the array)           | prefer (returns a new array)                                        |
+|           | למנוע (משנה את המערך) | מעדיף (מחזיר מערך חדש) |
 | --------- | ----------------------------------- | ------------------------------------------------------------------- |
-| adding    | `push`, `unshift`                   | `concat`, `[...arr]` spread syntax ([example](#adding-to-an-array)) |
-| removing  | `pop`, `shift`, `splice`            | `filter`, `slice` ([example](#removing-from-an-array))              |
-| replacing | `splice`, `arr[i] = ...` assignment | `map` ([example](#replacing-items-in-an-array))                     |
-| sorting   | `reverse`, `sort`                   | copy the array first ([example](#making-other-changes-to-an-array)) |
+| מוסיף | `push`, `unshift` | `concat`, `[...arr]` התחביר התפשט ([דוגמה](#הוספת-למערך)) |
+| הסרת | `pop`, `shift`, `splice` | `filter`, `slice` ([דוגמה](#removing-from-an-array)) |
+| מחליף | `splice`, `arr[i] = ...` מטלה | `map` ([דוגמה](#replaceing-items-in-an-array)) |
+| מיון | `reverse`, `sort` | תחילה העתק את המערך ([דוגמה](#ביצוע-אחר-שינויים-למערך)) |
 
-Alternatively, you can [use Immer](#write-concise-update-logic-with-immer) which lets you use methods from both columns.
+לחלופין, אתה יכול [use Immer](#write-concise-update-logic-with-immer) המאפשר לך use שיטות משתי העמודות.
 
 <Pitfall>
 
-Unfortunately, [`slice`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/slice) and [`splice`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/splice) are named similarly but are very different:
+למרבה הצער, [`slice`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/slice) ו-[`splice`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/splice) נקראות באופן דומה אך שונות מאוד:
 
-* `slice` lets you copy an array or a part of it.
-* `splice` **mutates** the array (to insert or delete items).
+* `slice` מאפשר לך להעתיק מערך או חלק ממנו.
+* `splice` **משנה** את המערך (כדי להכניס או למחוק פריטים).
 
-In React, you will be using `slice` (no `p`!) a lot more often because you don't want to mutate objects or arrays in state. [Updating Objects](/learn/updating-objects-in-state) explains what mutation is and why it's not recommended for state.
+ב-React, אתה תשתמש ב-`slice` (ללא `p`!) לעתים קרובות יותר מכיוון שuse אינך רוצה לבצע מוטציה של אובייקטים או מערכים ב-state. [עדכון אובייקטים](/learn/updating-objects-in-state) מסביר מהי מוטציה ומדוע היא לא מומלצת עבור state.
 
 </Pitfall>
 
-### Adding to an array {/*adding-to-an-array*/}
+### הוספה למערך {/*adding-to-an-array*/}
 
-`push()` will mutate an array, which you don't want:
+`push()` יבצע מוטציה של מערך, שאינך רוצה:
 
 <Sandpack>
 
@@ -88,7 +88,7 @@ button { margin-left: 5px; }
 
 </Sandpack>
 
-Instead, create a *new* array which contains the existing items *and* a new item at the end. There are multiple ways to do this, but the easiest one is to use the `...` [array spread](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax#spread_in_array_literals) syntax:
+במקום זאת, צור מערך *חדש* המכיל את הפריטים הקיימים *ו* פריט חדש בסוף. ישנן מספר דרכים לעשות זאת, אבל הקלה שבהן היא use את `...` [פיזור המערך](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax#spread_in_array_literals) תחביר:
 
 ```js
 setArtists( // Replace the state
@@ -99,7 +99,7 @@ setArtists( // Replace the state
 );
 ```
 
-Now it works correctly:
+עכשיו זה עובד כמו שצריך:
 
 <Sandpack>
 
@@ -141,7 +141,7 @@ button { margin-left: 5px; }
 
 </Sandpack>
 
-The array spread syntax also lets you prepend an item by placing it *before* the original `...artists`:
+תחביר התפשטות המערך מאפשר לך להוסיף פריט מראש על ידי הצבתו *לפני* ה-`...artists` המקורי:
 
 ```js
 setArtists([
@@ -150,11 +150,11 @@ setArtists([
 ]);
 ```
 
-In this way, spread can do the job of both `push()` by adding to the end of an array and `unshift()` by adding to the beginning of an array. Try it in the sandbox above!
+בדרך זו, התפשטות יכולה לעשות את העבודה של `push()` גם על ידי הוספה לסוף מערך וגם של `unshift()` על ידי הוספה לתחילת מערך. נסה את זה בארגז החול למעלה!
 
-### Removing from an array {/*removing-from-an-array*/}
+### הסרה ממערך {/*removing-from-an-array*/}
 
-The easiest way to remove an item from an array is to *filter it out*. In other words, you will produce a new array that will not contain that item. To do this, use the `filter` method, for example:
+הדרך הקלה ביותר להסיר פריט ממערך היא *לסנן אותו*. במילים אחרות, תייצר מערך חדש שלא יכיל את הפריט הזה. לשם כך, use שיטת `filter`, לדוגמה:
 
 <Sandpack>
 
@@ -198,7 +198,7 @@ export default function List() {
 
 </Sandpack>
 
-Click the "Delete" button a few times, and look at its click handler.
+לחץ על כפתור "מחק" כמה פעמים, והסתכל על מטפל הקליקים שלו.
 
 ```js
 setArtists(
@@ -206,13 +206,13 @@ setArtists(
 );
 ```
 
-Here, `artists.filter(a => a.id !== artist.id)` means "create an array that consists of those `artists` whose IDs are different from `artist.id`". In other words, each artist's "Delete" button will filter _that_ artist out of the array, and then request a re-render with the resulting array. Note that `filter` does not modify the original array.
+כאן, `artists.filter(a => a.id !== artist.id)` פירושו "צור מערך המורכב מאותם `artists` שהזיהויים שלהם שונים מ`artist.id`". במילים אחרות, כפתור "מחק" של כל אמן יסנן את _אותו_ האמן מחוץ למערך, ולאחר מכן יבקש עיבוד מחדש עם המערך שיתקבל. שימו לב ש`filter` לא משנה את המערך המקורי.
 
-### Transforming an array {/*transforming-an-array*/}
+### שינוי מערך {/*transforming-an-array*/}
 
-If you want to change some or all items of the array, you can use `map()` to create a **new** array. The function you will pass to `map` can decide what to do with each item, based on its data or its index (or both).
+אם ברצונך לשנות חלק או את כל הפריטים של המערך, אתה יכול use `map()` כדי ליצור מערך **חדש**. הפונקציה שתעביר ל-`map` יכולה להחליט מה לעשות עם כל פריט, על סמך הנתונים שלו או האינדקס שלו (או שניהם).
 
-In this example, an array holds coordinates of two circles and a square. When you press the button, it moves only the circles down by 50 pixels. It does this by producing a new array of data using `map()`:
+בדוגמה זו, מערך מכיל קואורדינטות של שני עיגולים וריבוע. כאשר אתה לוחץ על הכפתור, הוא מזיז רק את העיגולים למטה ב-50 פיקסלים. זה עושה זאת על ידי הפקת מערך חדש של נתונים באמצעות `map()`:
 
 <Sandpack>
 
@@ -278,11 +278,11 @@ body { height: 300px; }
 
 </Sandpack>
 
-### Replacing items in an array {/*replacing-items-in-an-array*/}
+### החלפת פריטים במערך {/*replacing-items-in-an-array*/}
 
-It is particularly common to want to replace one or more items in an array. Assignments like `arr[0] = 'bird'` are mutating the original array, so instead you'll want to use `map` for this as well.
+נפוץ במיוחד לרצות להחליף פריט אחד או יותר במערך. מטלות כמו `arr[0] = 'bird'` מבצעות מוטציה של המערך המקורי, אז במקום זאת תרצה use `map` גם עבור זה.
 
-To replace an item, create a new array with `map`. Inside your `map` call, you will receive the item index as the second argument. Use it to decide whether to return the original item (the first argument) or something else:
+כדי להחליף פריט, צור מערך חדש עם `map`. בתוך הקריאה `map` שלך, תקבל את אינדקס הפריט כארגומנט השני. השתמש בו כדי להחליט אם להחזיר את הפריט המקורי (הארגומנט הראשון) או משהו אחר:
 
 <Sandpack>
 
@@ -332,11 +332,11 @@ button { margin: 5px; }
 
 </Sandpack>
 
-### Inserting into an array {/*inserting-into-an-array*/}
+### הכנסה למערך {/*inserting-into-an-array*/}
 
-Sometimes, you may want to insert an item at a particular position that's neither at the beginning nor at the end. To do this, you can use the `...` array spread syntax together with the `slice()` method. The `slice()` method lets you cut a "slice" of the array. To insert an item, you will create an array that spreads the slice _before_ the insertion point, then the new item, and then the rest of the original array.
+לפעמים, ייתכן שתרצה להוסיף פריט במיקום מסוים שהוא לא בהתחלה ולא בסוף. כדי לעשות זאת, אתה יכול use את תחביר התפשטות המערך `...` יחד עם שיטת `slice()`. שיטת `slice()` מאפשרת לך לחתוך "פרוסה" מהמערך. כדי להכניס פריט, תיצור מערך שמפיץ את הפרוסה _לפני_ נקודת ההכנסה, לאחר מכן את הפריט החדש, ולאחר מכן את שאר המערך המקורי.
 
-In this example, the Insert button always inserts at the index `1`:
+בדוגמה זו, כפתור הוספה תמיד מוסיף באינדקס `1`:
 
 <Sandpack>
 
@@ -396,13 +396,13 @@ button { margin-left: 5px; }
 
 </Sandpack>
 
-### Making other changes to an array {/*making-other-changes-to-an-array*/}
+### ביצוע שינויים אחרים במערך {/*making-other-changes-to-an-array*/}
 
-There are some things you can't do with the spread syntax and non-mutating methods like `map()` and `filter()` alone. For example, you may want to reverse or sort an array. The JavaScript `reverse()` and `sort()` methods are mutating the original array, so you can't use them directly.
+יש כמה דברים שאתה לא יכול לעשות עם תחביר התפשטות ושיטות ללא מוטציה כמו `map()` ו`filter()` לבד. לדוגמה, ייתכן שתרצה להפוך או למיין מערך. השיטות JavaScript `reverse()` ו`sort()` מבצעות מוטציה של המערך המקורי, כך שאינך יכול use אותם ישירות.
 
-**However, you can copy the array first, and then make changes to it.**
+**עם זאת, תוכל להעתיק את המערך תחילה, ולאחר מכן לבצע בו שינויים.**
 
-For example:
+לְדוּגמָה:
 
 <Sandpack>
 
@@ -441,9 +441,9 @@ export default function List() {
 
 </Sandpack>
 
-Here, you use the `[...list]` spread syntax to create a copy of the original array first. Now that you have a copy, you can use mutating methods like `nextList.reverse()` or `nextList.sort()`, or even assign individual items with `nextList[0] = "something"`.
+כאן, אתה use את תחביר התפשטות `[...list]` כדי ליצור תחילה עותק של המערך המקורי. כעת, לאחר שיש לך עותק, תוכל לבצע use מוטציה בשיטות כמו `nextList.reverse()` או `nextList.sort()`, או אפילו להקצות פריטים בודדים עם `nextList[0] = "something"`.
 
-However, **even if you copy an array, you can't mutate existing items _inside_ of it directly.** This is because copying is shallow--the new array will contain the same items as the original one. So if you modify an object inside the copied array, you are mutating the existing state. For example, code like this is a problem.
+עם זאת, **גם אם תעתיק מערך, לא תוכל לבצע מוטציה ישירה של פריטים קיימים _בתוך_ שלו.** זה בגלל שההעתקה use היא רדודה--המערך החדש יכיל את אותם פריטים כמו המקורי. אז אם אתה משנה אובייקט בתוך המערך המועתק, אתה משנה את ה-state הקיים. לדוגמה, קוד כזה הוא בעיה.
 
 ```js
 const nextList = [...list];
@@ -451,15 +451,15 @@ nextList[0].seen = true; // Problem: mutates list[0]
 setList(nextList);
 ```
 
-Although `nextList` and `list` are two different arrays, **`nextList[0]` and `list[0]` point to the same object.** So by changing `nextList[0].seen`, you are also changing `list[0].seen`. This is a state mutation, which you should avoid! You can solve this issue in a similar way to [updating nested JavaScript objects](/learn/updating-objects-in-state#updating-a-nested-object)--by copying individual items you want to change instead of mutating them. Here's how.
+למרות ש`nextList` ו`list` הם שני מערכים שונים, **`nextList[0]` ו`list[0]` מצביעים על אותו אובייקט.** אז על ידי שינוי `nextList[0].seen`, אתם גם משנים את `list[0].seen`. זוהי מוטציה state, שכדאי להימנע ממנה! אתה יכול לפתור בעיה זו בצורה דומה ל-[עדכון JavaScript אובייקטים מקוננים](/learn/updating-objects-in-state#updating-a-nested-object)--על ידי העתקת פריטים בודדים שברצונך לשנות במקום לשנות אותם. הנה איך.
 
-## Updating objects inside arrays {/*updating-objects-inside-arrays*/}
+## עדכון אובייקטים בתוך מערכים {/*updating-objects-inside-arrays*/}
 
-Objects are not _really_ located "inside" arrays. They might appear to be "inside" in code, but each object in an array is a separate value, to which the array "points". This is why you need to be careful when changing nested fields like `list[0]`. Another person's artwork list may point to the same element of the array!
+אובייקטים אינם _באמת_ ממוקמים "בתוך" מערכים. הם עשויים להיראות "בפנים" בקוד, אבל כל אובייקט במערך הוא ערך נפרד, שאליו המערך "מצביע". זו הסיבה שאתה צריך להיות זהיר בעת שינוי שדות מקוננים כמו `list[0]`. רשימת יצירות האמנות של אדם אחר עשויה להצביע על אותו אלמנט של המערך!
 
-**When updating nested state, you need to create copies from the point where you want to update, and all the way up to the top level.** Let's see how this works.
+**כאשר מעדכנים את state המקוננות, אתה צריך ליצור עותקים מהנקודה שבה אתה רוצה לעדכן, וכל הדרך עד לרמה העליונה.** בואו נראה איך זה עובד.
 
-In this example, two separate artwork lists have the same initial state. They are supposed to be isolated, but because of a mutation, their state is accidentally shared, and checking a box in one list affects the other list:
+בדוגמה זו, לשתי רשימות גרפיקה נפרדות יש את אותו ההתחלה state. הם אמורים להיות מבודדים, אבל בגלל use של מוטציה, ה-state שלהם משותף בטעות, וסימון תיבה ברשימה אחת משפיע על הרשימה השנייה:
 
 <Sandpack>
 
@@ -539,7 +539,7 @@ function ItemList({ artworks, onToggle }) {
 
 </Sandpack>
 
-The problem is in code like this:
+הבעיה היא בקוד כזה:
 
 ```js
 const myNextList = [...myList];
@@ -548,9 +548,9 @@ artwork.seen = nextSeen; // Problem: mutates an existing item
 setMyList(myNextList);
 ```
 
-Although the `myNextList` array itself is new, the *items themselves* are the same as in the original `myList` array. So changing `artwork.seen` changes the *original* artwork item. That artwork item is also in `yourList`, which causes the bug. Bugs like this can be difficult to think about, but thankfully they disappear if you avoid mutating state.
+למרות שמערך `myNextList` עצמו חדש, *הפריטים עצמם* זהים למערך `myList` המקורי. אז שינוי `artwork.seen` משנה את פריט הגרפיקה *המקורי*. פריט הגרפיקה הזה נמצא גם ב-`yourList`, מה שuse הוא הבאג. קשה לחשוב על באגים כאלה, אבל למרבה המזל הם נעלמים אם נמנעים משינוי של state.
 
-**You can use `map` to substitute an old item with its updated version without mutation.**
+**אתה יכול use `map` להחליף פריט ישן בגרסה המעודכנת שלו ללא מוטציה.**
 
 ```js
 setMyList(myList.map(artwork => {
@@ -564,9 +564,9 @@ setMyList(myList.map(artwork => {
 }));
 ```
 
-Here, `...` is the object spread syntax used to [create a copy of an object.](/learn/updating-objects-in-state#copying-objects-with-the-spread-syntax)
+כאן, `...` הוא תחביר הפצת האובייקט used ל[יצירת עותק של אובייקט.](/learn/updating-objects-in-state#copying-objects-with-the-spread-syntax)
 
-With this approach, none of the existing state items are being mutated, and the bug is fixed:
+עם גישה זו, אף אחד מהפריטים state הקיימים לא עובר מוטציה, והבאג תוקן:
 
 <Sandpack>
 
@@ -652,16 +652,16 @@ function ItemList({ artworks, onToggle }) {
 
 </Sandpack>
 
-In general, **you should only mutate objects that you have just created.** If you were inserting a *new* artwork, you could mutate it, but if you're dealing with something that's already in state, you need to make a copy.
+באופן כללי, **עליך לבצע מוטציה רק ​​של אובייקטים שזה עתה יצרת.** אם היית מוסיף יצירת אמנות *חדשה*, אתה יכול לשנות אותה, אבל אם יש לך עסק עם משהו שכבר נמצא ב-state, עליך ליצור עותק.
 
-### Write concise update logic with Immer {/*write-concise-update-logic-with-immer*/}
+### כתוב היגיון עדכון תמציתי עם Immer {/*write-concise-update-logic-with-immer*/}
 
-Updating nested arrays without mutation can get a little bit repetitive. [Just as with objects](/learn/updating-objects-in-state#write-concise-update-logic-with-immer):
+עדכון מערכים מקוננים ללא מוטציה יכול לחזור על עצמו מעט. [בדיוק כמו עם אובייקטים](/learn/updating-objects-in-state#write-concise-update-logic-with-immer):
 
-- Generally, you shouldn't need to update state more than a couple of levels deep. If your state objects are very deep, you might want to [restructure them differently](/learn/choosing-the-state-structure#avoid-deeply-nested-state) so that they are flat.
-- If you don't want to change your state structure, you might prefer to use [Immer](https://github.com/immerjs/use-immer), which lets you write using the convenient but mutating syntax and takes care of producing the copies for you.
+- בדרך כלל, לא צריך לעדכן את state יותר מכמה רמות עמוקות. אם האובייקטים state שלך עמוקים מאוד, אולי תרצה [לבנות אותם מחדש](/learn/choosing-the-state-structure#avoid-deeply-nested-state) כך שהם יהיו שטוחים.
+- אם אינך רוצה לשנות את מבנה ה-state שלך, אולי תעדיף use [Immer](https://github.com/immerjs/use-immer), המאפשר לך לכתוב באמצעות התחביר הנוח אך המשתנה ודואג להפיק עבורך את העותקים.
 
-Here is the Art Bucket List example rewritten with Immer:
+הנה הדוגמה של רשימת דלי האמנות שנכתבה מחדש עם Immer:
 
 <Sandpack>
 
@@ -762,7 +762,7 @@ function ItemList({ artworks, onToggle }) {
 
 </Sandpack>
 
-Note how with Immer, **mutation like `artwork.seen = nextSeen` is now okay:**
+שימו לב איך עם Immer, **מוטציה כמו `artwork.seen = nextSeen` היא עכשיו בסדר:**
 
 ```js
 updateMyTodos(draft => {
@@ -771,17 +771,17 @@ updateMyTodos(draft => {
 });
 ```
 
-This is because you're not mutating the _original_ state, but you're mutating a special `draft` object provided by Immer. Similarly, you can apply mutating methods like `push()` and `pop()` to the content of the `draft`.
+זה בגלל שuse אתה לא משנה את ה_מקורי_ state, אלא אתה משנה אובייקט `draft` מיוחד שסופק על ידי Immer. באופן דומה, אתה יכול להחיל שיטות מוטציה כמו `push()` ו-`pop()` על התוכן של ה-`draft`.
 
-Behind the scenes, Immer always constructs the next state from scratch according to the changes that you've done to the `draft`. This keeps your event handlers very concise without ever mutating state.
+מאחורי הקלעים, Immer תמיד בונה את ה-state הבא מאפס בהתאם לשינויים שעשיתם ב-`draft`. זה שומר על מטפלי האירועים שלך תמציתיים מאוד מבלי לשנות את state.
 
 <Recap>
 
-- You can put arrays into state, but you can't change them.
-- Instead of mutating an array, create a *new* version of it, and update the state to it.
-- You can use the `[...arr, newItem]` array spread syntax to create arrays with new items.
-- You can use `filter()` and `map()` to create new arrays with filtered or transformed items.
-- You can use Immer to keep your code concise.
+- אתה יכול להכניס מערכים לתוך state, אבל אתה לא יכול לשנות אותם.
+- במקום לבצע מוטציה של מערך, צור גרסה *חדשה* שלו, ועדכן את ה-state אליו.
+- אתה יכול use את תחביר התפשטות המערך `[...arr, newItem]` כדי ליצור מערכים עם פריטים חדשים.
+- אתה יכול use `filter()` ו `map()` כדי ליצור מערכים חדשים עם פריטים מסוננים או שעבר טרנספורמציה.
+- אתה יכול use לשקוע כדי לשמור על הקוד שלך תמציתי.
 
 </Recap>
 
@@ -789,9 +789,9 @@ Behind the scenes, Immer always constructs the next state from scratch according
 
 <Challenges>
 
-#### Update an item in the shopping cart {/*update-an-item-in-the-shopping-cart*/}
+#### עדכן פריט בעגלת הקניות {/*update-an-item-in-the-shopping-cart*/}
 
-Fill in the `handleIncreaseClick` logic so that pressing "+" increases the corresponding number:
+מלא את ההיגיון `handleIncreaseClick` כך שהקשה על "+" תגדיל את המספר המתאים:
 
 <Sandpack>
 
@@ -849,7 +849,7 @@ button { margin: 5px; }
 
 <Solution>
 
-You can use the `map` function to create a new array, and then use the `...` object spread syntax to create a copy of the changed object for the new array:
+אתה יכול use את הפונקציה `map` כדי ליצור מערך חדש, ולאחר מכן use את תחביר הפצת האובייקט `...` כדי ליצור עותק של האובייקט שהשתנה עבור המערך החדש:
 
 <Sandpack>
 
@@ -916,9 +916,9 @@ button { margin: 5px; }
 
 </Solution>
 
-#### Remove an item from the shopping cart {/*remove-an-item-from-the-shopping-cart*/}
+#### הסר פריט לעגלת הקניות {/*remove-an-item-from-the-shopping-cart*/}
 
-This shopping cart has a working "+" button, but the "–" button doesn't do anything. You need to add an event handler to it so that pressing it decreases the `count` of the corresponding product. If you press "–" when the count is 1, the product should automatically get removed from the cart. Make sure it never shows 0.
+לעגלת הקניות הזו יש כפתור "+" עובד, אבל הכפתור "–" לא עושה כלום. עליך להוסיף לו מטפל באירועים כדי שהלחיצה עליו תפחית את ה-`count` של המוצר המתאים. אם תלחץ על "–" כאשר הספירה היא 1, המוצר אמור להסיר אוטומטית מהסל. ודא שהוא לעולם לא מראה 0.
 
 <Sandpack>
 
@@ -988,7 +988,7 @@ button { margin: 5px; }
 
 <Solution>
 
-You can first use `map` to produce a new array, and then `filter` to remove products with a `count` set to `0`:
+אתה יכול תחילה use `map` כדי לייצר מערך חדש, ולאחר מכן `filter` כדי להסיר מוצרים עם `count` מוגדר ל-`0`:
 
 <Sandpack>
 
@@ -1077,9 +1077,9 @@ button { margin: 5px; }
 
 </Solution>
 
-#### Fix the mutations using non-mutative methods {/*fix-the-mutations-using-non-mutative-methods*/}
+#### תקן את המוטציות באמצעות שיטות לא-מוטטיביות {/*fix-the-mutations-using-non-mutative-methods*/}
 
-In this example, all of the event handlers in `App.js` use mutation. As a result, editing and deleting todos doesn't work. Rewrite `handleAddTodo`, `handleChangeTodo`, and `handleDeleteTodo` to use the non-mutative methods:
+בדוגמה זו, כל המטפלים באירועים במוטציה `App.js` use. כתוצאה מכך, עריכה ומחיקה של מטלות לא עובדות. כתוב מחדש את `handleAddTodo`, `handleChangeTodo` ו`handleDeleteTodo` ל-use את השיטות הלא-מוטטיביות:
 
 <Sandpack>
 
@@ -1242,7 +1242,7 @@ ul, li { margin: 0; padding: 0; }
 
 <Solution>
 
-In `handleAddTodo`, you can use the array spread syntax. In `handleChangeTodo`, you can create a new array with `map`. In `handleDeleteTodo`, you can create a new array with `filter`. Now the list works correctly:
+ב-`handleAddTodo`, אתה יכול use את תחביר הפצת המערך. ב-`handleChangeTodo`, אתה יכול ליצור מערך חדש עם `map`. ב-`handleDeleteTodo`, אתה יכול ליצור מערך חדש עם `filter`. עכשיו הרשימה עובדת כמו שצריך:
 
 <Sandpack>
 
@@ -1410,9 +1410,9 @@ ul, li { margin: 0; padding: 0; }
 </Solution>
 
 
-#### Fix the mutations using Immer {/*fix-the-mutations-using-immer*/}
+#### תקן את המוטציות באמצעות Immer {/*fix-the-mutations-using-immer*/}
 
-This is the same example as in the previous challenge. This time, fix the mutations by using Immer. For your convenience, `useImmer` is already imported, so you need to change the `todos` state variable to use it.
+זו אותה דוגמה כמו באתגר הקודם. הפעם, תקן את המוטציות באמצעות Immer. לנוחיותך, `useImmer` כבר מיובא, אז עליך לשנות את המשתנה `todos` state ל-use אותו.
 
 <Sandpack>
 
@@ -1594,7 +1594,7 @@ ul, li { margin: 0; padding: 0; }
 
 <Solution>
 
-With Immer, you can write code in the mutative fashion, as long as you're only mutating parts of the `draft` that Immer gives you. Here, all mutations are performed on the `draft` so the code works:
+עם Immer, אתה יכול לכתוב קוד בצורה מוטטיבית, כל עוד אתה משנה רק חלקים מה-`draft` ש-Immer נותן לך. כאן, כל המוטציות מבוצעות ב-`draft` כך שהקוד עובד:
 
 <Sandpack>
 
@@ -1780,9 +1780,9 @@ ul, li { margin: 0; padding: 0; }
 
 </Sandpack>
 
-You can also mix and match the mutative and non-mutative approaches with Immer.
+אתה יכול גם לערבב ולהתאים את הגישות המוטטיביות והלא-מוטטיביות עם Immer.
 
-For example, in this version `handleAddTodo` is implemented by mutating the Immer `draft`, while `handleChangeTodo` and `handleDeleteTodo` use the non-mutative `map` and `filter` methods:
+לדוגמה, בגרסה זו `handleAddTodo` מיושם על ידי שינוי ב-Immer `draft`, בעוד `handleChangeTodo` ו-`handleDeleteTodo` use השיטות `map` ו`filter` הלא-מוטטיביות:
 
 <Sandpack>
 
@@ -1965,8 +1965,9 @@ ul, li { margin: 0; padding: 0; }
 
 </Sandpack>
 
-With Immer, you can pick the style that feels the most natural for each separate case.
+עם Immer, אתה יכול לבחור את הסגנון שמרגיש הכי טבעי עבור כל מקרה נפרד.
 
 </Solution>
 
 </Challenges>
+

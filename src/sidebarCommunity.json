@@ -1,42 +1,42 @@
 {
-  "title": "Community",
+  "title": "קהילה",
   "path": "/community",
   "routes": [
     {
       "hasSectionHeader": true,
-      "sectionHeader": "GET INVOLVED"
+      "sectionHeader": "הצטרפו"
     },
     {
-      "title": "Community",
+      "title": "קהילה",
       "path": "/community",
       "skipBreadcrumb": true,
       "routes": [
         {
-          "title": "React Conferences",
+          "title": "כנסי React",
           "path": "/community/conferences"
         },
         {
-          "title": "React Meetups",
+          "title": "מיטאפים של React",
           "path": "/community/meetups"
         },
         {
-          "title": "React Videos",
+          "title": "סרטוני React",
           "path": "/community/videos"
         },
         {
-          "title": "Meet the Team",
+          "title": "הכירו את הצוות",
           "path": "/community/team"
         },
         {
-          "title": "Docs Contributors",
+          "title": "תורמי התיעוד",
           "path": "/community/docs-contributors"
         },
         {
-          "title": "Acknowledgements",
+          "title": "תודות",
           "path": "/community/acknowledgements"
         },
         {
-          "title": "Versioning Policy",
+          "title": "מדיניות גרסאות",
           "path": "/community/versioning-policy"
         }
       ]

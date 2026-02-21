@@ -1,29 +1,29 @@
 ---
-title: Quick Start
+title: התחלה מהירה
 ---
 
 <Intro>
 
-Welcome to the React documentation! This page will give you an introduction to the 80% of React concepts that you will use on a daily basis.
+ברוכים הבאים לתיעוד של תגובה! הדף ייתן לכם היכרות עם 80% מהמושגים ב-React תשתמשו ביום-יום.
 
 </Intro>
 
 <YouWillLearn>
 
-- How to create and nest components
-- How to add markup and styles
-- How to display data
-- How to render conditions and lists
-- How to respond to events and update the screen
-- How to share data between components
+- איך ליצור קומפוננטות ולקנן ביניהן
+- איך להוסיף סימון (סימון) ועיצוב (סגנונות)
+- איך להציג נתונים
+- איך לרנדר תנאים ורשימות
+- איך להגיב לאירועים ולעדכן את המסך
+- איך לשתף נתונים בין קומפוננטות
 
 </YouWillLearn>
 
-## Creating and nesting components {/*components*/}
+## יצירה אוקינון של קומפונטות {/*components*/}
 
-React apps are made out of *components*. A component is a piece of the UI (user interface) that has its own logic and appearance. A component can be as small as a button, or as large as an entire page.
+אפליקציות React בנויות מ-*קומפונטות*. קומפונטה היא חלק מה-UI (ממשק משתמש) שיש לו לוגיקה ומראה משל עצמו. קומפוננטה יכולה להיות קטנה כמו כפתור, או גדולה כמו עמוד שלם.
 
-React components are JavaScript functions that return markup:
+קומפוננטות React הן פונקציות JavaScript שמחזירות סימון (סימון):
 
 ```js
 function MyButton() {
@@ -33,7 +33,7 @@ function MyButton() {
 }
 ```
 
-Now that you've declared `MyButton`, you can nest it into another component:
+עכשיו אחרי שהגדרתם את `MyButton`, אפשר לקנן אותה בתוך קומפונטה אחרת:
 
 ```js {5}
 export default function MyApp() {
@@ -46,9 +46,9 @@ export default function MyApp() {
 }
 ```
 
-Notice that `<MyButton />` starts with a capital letter. That's how you know it's a React component. React component names must always start with a capital letter, while HTML tags must be lowercase.
+שימו לב ש-`<MyButton />` מתחיל באות גדולה. כך מזהים קומפונטת React. שמות קומפוננטות React חייבים להתחיל באות גדולות, בעוד שתגיות HTML חייבות להיות באותיות קטנות.
 
-Have a look at the result:
+הנה התוצאה:
 
 <Sandpack>
 
@@ -73,13 +73,13 @@ export default function MyApp() {
 
 </Sandpack>
 
-The `export default` keywords specify the main component in the file. If you're not familiar with some piece of JavaScript syntax, [MDN](https://developer.mozilla.org/en-US/docs/web/javascript/reference/statements/export) and [javascript.info](https://javascript.info/import-export) have great references.
+המילים `ייצוא ברית מחדל` מציינות את הקומפוננטה טפסים בקובץ. אם חלק מתחביר JavaScript לא מוכר לכם, ל-[MDN](https://developer.mozilla.org/en-US/docs/web/javascript/reference/statements/export) ול-[javascript.info](https://javascript.info/import-export) יש מקורות מעולים.
 
-## Writing markup with JSX {/*writing-markup-with-jsx*/}
+## כתיבת סימון עם JSX {/*writing-markup-with-jsx*/}
 
-The markup syntax you've seen above is called *JSX*. It is optional, but most React projects use JSX for its convenience. All of the [tools we recommend for local development](/learn/installation) support JSX out of the box.
+תחביר הסימון (סימון) שראיתם למעלה נקראת *JSX*. הוא אופציונלי, אבל רוב פרויקטי React users בו בגלל הנוחות שלו. כל [הכלים שאנו ממליצים עליהם לפיתוח מקומי](/learn/installation) תומך ב-JSX מהקופסה.
 
-JSX is stricter than HTML. You have to close tags like `<br />`. Your component also can't return multiple JSX tags. You have to wrap them into a shared parent, like a `<div>...</div>` or an empty `<>...</>` wrapper:
+JSX מחמיר יותר מ-HTML. צריך לסגור תגיות כמו `<br />`. הקומפוננטה שלכם גם לא יכולה להחזיר כמה תגיות JSX נפרדות. צריך לתת להם בהורה משותף, כמו ``<div>`...`</div>`` או עטיפה ריקה `<>...</>`:
 
 ```js {3,6}
 function AboutPage() {
@@ -92,17 +92,17 @@ function AboutPage() {
 }
 ```
 
-If you have a lot of HTML to port to JSX, you can use an [online converter.](https://transform.tools/html-to-jsx)
+אם יש לכם הרבה HTML להמיר ל-JSX, אפשר להשתמש ב-[ממיר אונליין](https://transform.tools/html-to-jsx).
 
-## Adding styles {/*adding-styles*/}
+## הוספת עיצובים {/*adding-styles*/}
 
-In React, you specify a CSS class with `className`. It works the same way as the HTML [`class`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class) attribute:
+ב-React מגדירים מחלקת CSS בעזרת `className`. זה עובד כמו המאפיין [`class`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class) של HTML:
 
 ```js
 <img className="avatar" />
 ```
 
-Then you write the CSS rules for it in a separate CSS file:
+לאחר כותבים את הכללי ה-CSS בקובץ CSS נפרד:
 
 ```css
 /* In your CSS */
@@ -111,11 +111,11 @@ Then you write the CSS rules for it in a separate CSS file:
 }
 ```
 
-React does not prescribe how you add CSS files. In the simplest case, you'll add a [`<link>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link) tag to your HTML. If you use a build tool or a framework, consult its documentation to learn how to add a CSS file to your project.
+תגובה לא כתיבה איך להוסיף קובצי CSS. במקרה הפשוט ביותר, תגית [`<link>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link) ל-HTML. אם אתם משתמשים בכלי בנייה (כלי בנייה) או בפריימורק (מסגרת), בדקו בתיעוד שלהם איך להוסיף קובץ CSS לפרויקט.
 
-## Displaying data {/*displaying-data*/}
+## הצגת נתונים {/*displaying-data*/}
 
-JSX lets you put markup into JavaScript. Curly braces let you "escape back" into JavaScript so that you can embed some variable from your code and display it to the user. For example, this will display `user.name`:
+JSX יכול להכניס סימון (סימון) ל-JavaScript. סוגרים מסולסלים מאפשרים "לחזור" ל-JavaScript כדי להטמיע מהקוד ולהציג אותו למשתמש. לדוגמה, זה יציג את `user.name`:
 
 ```js {3}
 return (
@@ -125,7 +125,7 @@ return (
 );
 ```
 
-You can also "escape into JavaScript" from JSX attributes, but you have to use curly braces *instead of* quotes. For example, `className="avatar"` passes the `"avatar"` string as the CSS class, but `src={user.imageUrl}` reads the JavaScript `user.imageUrl` variable value, and then passes that value as the `src` attribute:
+אפשר גם "לברוח ל-JavaScript" מתוך מאפיינים JSX, אבל צריך להשתמש בסוגריים מסולסלים *במקום* מירכאות. למשל, `className="avatar"` מעביר את המחרוזת `"avatar"` כמחלקת CSS, אבל `src={user.imageUrl}` קורא את הערך של השינוי `user.imageUrl` ב-JavaScript, ואז מעביר אותו למאפיין `src`:
 
 ```js {3,4}
 return (
@@ -136,7 +136,7 @@ return (
 );
 ```
 
-You can put more complex expressions inside the JSX curly braces too, for example, [string concatenation](https://javascript.info/operators#string-concatenation-with-binary):
+אפשר לשים גם ביטויים מורכבים יותר סוגריים מסולסלים של JSX, למשל [שרשור מחרוזות](https://javascript.info/operators#string-concatenation-with-binary):
 
 <Sandpack>
 
@@ -177,11 +177,11 @@ export default function Profile() {
 
 </Sandpack>
 
-In the above example, `style={{}}` is not a special syntax, but a regular `{}` object inside the `style={ }` JSX curly braces. You can use the `style` attribute when your styles depend on JavaScript variables.
+בדוגמה למעלה, `style={{}}` הוא לא תחביר מיוחד, אלא אובייקט `{}` בתוך סוגריים מסולסלים של `style={ }` ב-JSX. אפשר להשתמש במאפיין `סגנון` עיצובים תלויים במשתני JavaScript.
 
-## Conditional rendering {/*conditional-rendering*/}
+## רינדור מותנה {/*עיבוד-מותנה*/}
 
-In React, there is no special syntax for writing conditions. Instead, you'll use the same techniques as you use when writing regular JavaScript code. For example, you can use an [`if`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/if...else) statement to conditionally include JSX:
+ב-React אין תחביר מיוחד לתנאי תנאי. במקום זה משתמשים באותן טכניקות של JavaScript רגיל. לדוגמה, אפשר להשתמש במשפט [`if`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/if...else) כדי לכלול את JSX בתנאי:
 
 ```js
 let content;
@@ -197,7 +197,7 @@ return (
 );
 ```
 
-If you prefer more compact code, you can use the [conditional `?` operator.](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_Operator) Unlike `if`, it works inside JSX:
+אם מעדיפים קוד תמציתי יותר, אפשר להשתמש ב-[אופרטור תנאי `?`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_Operator). צריך ל-`אם`, הוא עובד בתוך JSX:
 
 ```js
 <div>
@@ -209,7 +209,7 @@ If you prefer more compact code, you can use the [conditional `?` operator.](htt
 </div>
 ```
 
-When you don't need the `else` branch, you can also use a shorter [logical `&&` syntax](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_AND#short-circuit_evaluation):
+כשלא צריך ענף `else`, אפשר להשתמש גם בתחביר קצר של [אופרטור לו `&&`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_AND#short-circuit_evaluation):
 
 ```js
 <div>
@@ -217,13 +217,13 @@ When you don't need the `else` branch, you can also use a shorter [logical `&&` 
 </div>
 ```
 
-All of these approaches also work for conditionally specifying attributes. If you're unfamiliar with some of this JavaScript syntax, you can start by always using `if...else`.
+כל ההגישות האלה עובדות גם למנות של מאפיינים (תכונות). אם חלק מהתחביר הזה של JavaScript לא מוכר לכם, אפשר להתחיל תמיד עם `אם...אחר`.
 
-## Rendering lists {/*rendering-lists*/}
+## רינדור רשימות {/*רשימות-עיבוד*/}
 
-You will rely on JavaScript features like [`for` loop](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for) and the [array `map()` function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) to render lists of components.
+תשתמשו ביכולות JavaScript כמו [`for` לולאה](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for) ופונקציית [מערך `map()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Ob/Global lists_Ob) קומספו/Global_Ob רשימות/Global_Ob רשימות.
 
-For example, let's say you have an array of products:
+לדוגמה, נניח שיש לכם מערך של מוצרים:
 
 ```js
 const products = [
@@ -233,7 +233,7 @@ const products = [
 ];
 ```
 
-Inside your component, use the `map()` function to transform an array of products into an array of `<li>` items:
+בתוך הקומפוננטה, השתמשו ב-`map()` כדי ליצור עוד מוצרים למערך פריטי ``<li>``:
 
 ```js
 const listItems = products.map(product =>
@@ -247,7 +247,7 @@ return (
 );
 ```
 
-Notice how `<li>` has a `key` attribute. For each item in a list, you should pass a string or a number that uniquely identifies that item among its siblings. Usually, a key should be coming from your data, such as a database ID. React uses your keys to know what happened if you later insert, delete, or reorder the items.
+שימו לב של-``<li>`` יש מאפיין (תכונה) בשם `מפתח`. עבור כל פריט ברשימה, צריך להעביר מחרוזת או מספר שמזה את הפריט בצורה ייחודית לאחים שלו. בדרך כלל `מפתח` מגיע מהנתונים, כמו ID ממסד נתונים. React Usert ב-keys לדעת מה קרה אם ירצה עוד, מוחקים או שנים סדר של פריטים.
 
 <Sandpack>
 
@@ -278,9 +278,9 @@ export default function ShoppingList() {
 
 </Sandpack>
 
-## Responding to events {/*responding-to-events*/}
+## תגובה לאירועים {/*מגיבים-לאירועים*/}
 
-You can respond to events by declaring *event handler* functions inside your components:
+אפשר להגיב לאירועים על ידי הגדרת פונקציות *מטפל באירועים* בתוך הקומפוננטות:
 
 ```js {2-4,7}
 function MyButton() {
@@ -296,19 +296,19 @@ function MyButton() {
 }
 ```
 
-Notice how `onClick={handleClick}` has no parentheses at the end! Do not _call_ the event handler function: you only need to *pass it down*. React will call your event handler when the user clicks the button.
+שימו לב של-`onClick={handleClick}` אין סוגרים בסוף. אל _תקראו_ לפונקציית המטפל בעצמכם, צריך רק *להעביר אותה*. תגיב תקרא לרופא כשהמשתמש ילחץ על הכפתור.
 
-## Updating the screen {/*updating-the-screen*/}
+## עדכון המסך {/*עדכון-המסך*/}
 
-Often, you'll want your component to "remember" some information and display it. For example, maybe you want to count the number of times a button is clicked. To do this, add *state* to your component.
+קרוב תרצו שהקומפונטה "תזכור" מידע ותציג אותו. למשל, אפשר לספור כמה פעמים נלחץ כפתור. כדי לעשות את זה, משתמשים ב-*state*.
 
-First, import [`useState`](/reference/react/useState) from React:
+קודם מייבאים את [`useState`](/reference/react/useState) מ-React:
 
 ```js
 import { useState } from 'react';
 ```
 
-Now you can declare a *state variable* inside your component:
+עכשיו אפשר להגדיר מדרג `state` בתוך הקומפוננטה:
 
 ```js
 function MyButton() {
@@ -316,9 +316,9 @@ function MyButton() {
   // ...
 ```
 
-You’ll get two things from `useState`: the current state (`count`), and the function that lets you update it (`setCount`). You can give them any names, but the convention is to write `[something, setSomething]`.
+`useState` מחזיר שני דברים: ה-`state` הנוכחי (`count`) ופונקציה שמעדכנת אותו (`setCount`). אפשר לתת להם כל שם, אבל הקונבנציה היא `[משהו, setSomething]`.
 
-The first time the button is displayed, `count` will be `0` because you passed `0` to `useState()`. When you want to change state, call `setCount()` and pass the new value to it. Clicking this button will increment the counter:
+בפעם הראשונה שהכפתור מוצג, `count` יהיה `0` כי העברתם `0` ל-`useState()`. כשרוצים לשנות, קוראים ל`setCount()` ומעבירים אליו את הערך החדש. לחיצה על הכפתור תגדיל את המונה:
 
 ```js {5}
 function MyButton() {
@@ -336,9 +336,9 @@ function MyButton() {
 }
 ```
 
-React will call your component function again. This time, `count` will be `1`. Then it will be `2`. And so on.
+תגובה תקרא לפונקציית הקומפוננטה שוב. הפעם `ספירה` תהיה `1`. אחר כך `2`, וכן הלאה.
 
-If you render the same component multiple times, each will get its own state. Click each button separately:
+אם מרנדרים את אותה קומפוננטה כמה פעמים, כל מופע יקבל `state` משלו. נסו ללחוץ על כל כפתור בנפרד:
 
 <Sandpack>
 
@@ -379,59 +379,59 @@ button {
 
 </Sandpack>
 
-Notice how each button "remembers" its own `count` state and doesn't affect other buttons.
+לב שכל כפתור "זוכר" את ה-`count` שלו, ולא משפיע על הכפתורים אחרים.
 
-## Using Hooks {/*using-hooks*/}
+## שימוש ב-Hooks {/*using-hooks*/}
 
-Functions starting with `use` are called *Hooks*. `useState` is a built-in Hook provided by React. You can find other built-in Hooks in the [API reference.](/reference/react) You can also write your own Hooks by combining the existing ones.
+לפונקציות שמתחילות ב-`use` קוראים *Hooks*. `useState` הוא Hook מובנה ש-React מספקת. אפשר למצוא Hooks מובנים נוספים ב-[מדריך ה-API](/reference/react). אפשר גם לכתוב Hooks משלכם על ידי שילוב Hooks קיימים.
 
-Hooks are more restrictive than other functions. You can only call Hooks *at the top* of your components (or other Hooks). If you want to use `useState` in a condition or a loop, extract a new component and put it there.
+ל-Hooks יש מגבלות מחמירות יותר מפונקציות אחרות. אפשר לקרוא ל-Hooks רק *בראש* הקומפוננטות (או Hooks אחרים). אם להשתמש ב-`useState` בתוך תנאי או לולאה, צריך לחלץ קומפונטה חדשה ולהשתמש בו שם.
 
-## Sharing data between components {/*sharing-data-between-components*/}
+## שיתוף נתונים בין קומפונטות {/*sharing-data-between-components*/}
 
-In the previous example, each `MyButton` had its own independent `count`, and when each button was clicked, only the `count` for the button clicked changed:
+בדוגמה הקודמת, לכל `MyButton` היה `count` עצמאי, וכשלחצו על כפתור רק ה-`count` של אותו כפתור השתנה:
 
 <DiagramGroup>
 
-<Diagram name="sharing_data_child" height={367} width={407} alt="Diagram showing a tree of three components, one parent labeled MyApp and two children labeled MyButton. Both MyButton components contain a count with value zero.">
+<Diagram name="sharing_data_child" height={367} width={407} alt="תרשים שמציג עץ של שלוש קומפוננטות: הורה אחד בשם MyApp ושני ילדים בשם MyButton. שתי קומפוננטות MyButton מכילות count בערך אפס.">
 
-Initially, each `MyButton`'s `count` state is `0`
+בהתחלה, ה-`count` של כל `MyButton` הוא `0`
 
 </Diagram>
 
-<Diagram name="sharing_data_child_clicked" height={367} width={407} alt="The same diagram as the previous, with the count of the first child MyButton component highlighted indicating a click with the count value incremented to one. The second MyButton component still contains value zero." >
+<Diagram name="sharing_data_child_clicked" height={367} width={407} alt="אותו תרשים כמו קודם, עם הדגשה על count של קומפוננטת MyButton הראשונה כדי לציין לחיצה שהגדילה את הערך לאחד. קומפוננטת MyButton השנייה עדיין בערך אפס." >
 
-The first `MyButton` updates its `count` to `1`
+ה-`MyButton` הראשון מעדכן את ה-`count` שלו ל-`1`
 
 </Diagram>
 
 </DiagramGroup>
 
-However, often you'll need components to *share data and always update together*.
+עם זאת, הרבה פעמים צריך שקומפוננטות *ישתפו נתונים ויתעדכנו יחד תמיד*.
 
-To make both `MyButton` components display the same `count` and update together, you need to move the state from the individual buttons "upwards" to the closest component containing all of them.
+כדי לשתות קומפוננטות `MyButton` יציגו אותו `count` ויתעדכנו יחד, צריך להרים את ה-`state` מהכפתורים למעלה אל הקומפוננטה הקרובה שמכילה את שתיהן.
 
-In this example, it is `MyApp`:
+בדוגמה הזו זו `MyApp`:
 
 <DiagramGroup>
 
-<Diagram name="sharing_data_parent" height={385} width={410} alt="Diagram showing a tree of three components, one parent labeled MyApp and two children labeled MyButton. MyApp contains a count value of zero which is passed down to both of the MyButton components, which also show value zero." >
+<Diagram name="sharing_data_parent" height={385} width={410} alt="תרשים שמציג עץ של שלוש קומפוננטות: הורה אחד בשם MyApp ושני ילדים בשם MyButton. ל-MyApp יש count בערך אפס שמועבר לשתי קומפוננטות MyButton, וגם הן מציגות ערך אפס." >
 
-Initially, `MyApp`'s `count` state is `0` and is passed down to both children
+בהתחלה, ה-`count` של `MyApp` הוא `0`, והוא מועבר לשני הילדים
 
 </Diagram>
 
-<Diagram name="sharing_data_parent_clicked" height={385} width={410} alt="The same diagram as the previous, with the count of the parent MyApp component highlighted indicating a click with the value incremented to one. The flow to both of the children MyButton components is also highlighted, and the count value in each child is set to one indicating the value was passed down." >
+<Diagram name="sharing_data_parent_clicked" height={385} width={410} alt="אותו תרשים כמו קודם, עם הדגשה על count של קומפוננטת ההורה MyApp שמציינת לחיצה והגדלה של הערך לאחד. גם הזרימה לשתי קומפוננטות MyButton מודגשת, וערך ה-count בכל ילד מוגדר לאחד כדי להראות שהערך הועבר מלמעלה." >
 
-On click, `MyApp` updates its `count` state to `1` and passes it down to both children
+בלחיצה, `MyApp` מעדכנת את ה-`count` ל-`1` ומעבירה אותו לשני הילדים
 
 </Diagram>
 
 </DiagramGroup>
 
-Now when you click either button, the `count` in `MyApp` will change, which will change both of the counts in `MyButton`. Here's how you can express this in code.
+עכשיו, כשלוחצים על אחד הכפתורים, ה-`ספירה` ב-`MyApp` מסתובבת, וזה משנה את שני ה-counts בתוך `MyButton`. כך עושים את זה בקוד.
 
-First, *move the state up* from `MyButton` into `MyApp`:
+קודם *מעבירים את ה-state למעלה* מ-`MyButton` ל-`MyApp`:
 
 ```js {2-6,18}
 export default function MyApp() {
@@ -456,7 +456,7 @@ function MyButton() {
 
 ```
 
-Then, *pass the state down* from `MyApp` to each `MyButton`, together with the shared click handler. You can pass information to `MyButton` using the JSX curly braces, just like you previously did with built-in tags like `<img>`:
+לאחר *מעבירים את ה-state למטה* מ-`MyApp` לכל `MyButton`, יחד עם מטפל בלחיצה משותף. אפשר להעביר מידע ל-`MyButton` באמצעות סוגריים מסולסלים ב-JSX, בדיוק כמו שעשינו קודם עם תגיות מובנות כמו ``<img>``:
 
 ```js {11-12}
 export default function MyApp() {
@@ -476,9 +476,9 @@ export default function MyApp() {
 }
 ```
 
-The information you pass down like this is called _props_. Now the `MyApp` component contains the `count` state and the `handleClick` event handler, and *passes both of them down as props* to each of the buttons.
+למידע שמעבירים כך קוראים _props_. עכשיו `MyApp` מחזיקה את ה-`state` בשם `count` ואת מטפל `handleClick`, ו-*מעבירה את שניהם כ-props* לכל אחד מהכפתורים.
 
-Finally, change `MyButton` to *read* the props you have passed from its parent component:
+לבסוף, משנים את `MyButton` כך ש-*תקרא* את ה-`props` שעברו מקומפוננטת ההורה שלה:
 
 ```js {1,3}
 function MyButton({ count, onClick }) {
@@ -490,7 +490,7 @@ function MyButton({ count, onClick }) {
 }
 ```
 
-When you click the button, the `onClick` handler fires. Each button's `onClick` prop was set to the `handleClick` function inside `MyApp`, so the code inside of it runs. That code calls `setCount(count + 1)`, incrementing the `count` state variable. The new `count` value is passed as a prop to each button, so they all show the new value. This is called "lifting state up". By moving state up, you've shared it between components.
+כאשר לוחצים על כפתור, מטפל `onClick` מופעל. ה-prop `onClick` של כל כפתור מצביע לפונקציה `handleClick` בתוך `MyApp`, אז הקוד שלה רץ. הקוד הזה קורא ל-`setCount(count + 1)` ומעדכן את ה-`state` בשם `count`. הערך החדש של `count` מועבר כ-prop לכל כפתור, כך שכולם מציגים אותו ערך. לזה קוראים "להרים state למעלה" (הרמת state למעלה).
 
 <Sandpack>
 
@@ -531,8 +531,8 @@ button {
 
 </Sandpack>
 
-## Next Steps {/*next-steps*/}
+## השלבים הבאים {/*next-steps*/}
 
-By now, you know the basics of how to write React code!
+הזה אתם כבר מכירים את היסודות של כתיבת קוד ב-React!
 
-Check out the [Tutorial](/learn/tutorial-tic-tac-toe) to put them into practice and build your first mini-app with React.
+עברו ל-[המדריך](/learn/tutorial-tic-tac-toe) כדי לתרגל ולבנות את המיני-אפליקציה הראשונה שלכם ב-React.

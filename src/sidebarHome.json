@@ -1,49 +1,49 @@
 {
-  "title": "React Docs",
+  "title": "תיעוד React",
   "path": "/",
   "routes": [
     {
       "hasSectionHeader": true,
-      "sectionHeader": "GET STARTED"
+      "sectionHeader": "התחלה"
     },
     {
-      "title": "Quick Start",
+      "title": "התחלה מהירה",
       "path": "/learn"
     },
     {
-      "title": "Installation",
+      "title": "התקנה",
       "path": "/learn/installation"
     },
     {
       "hasSectionHeader": true,
-      "sectionHeader": "LEARN REACT"
+      "sectionHeader": "לימוד React"
     },
     {
-      "title": "Describing the UI",
+      "title": "תיאור ה-UI",
       "path": "/learn/describing-the-ui"
     },
     {
-      "title": "Adding Interactivity",
+      "title": "הוספת אינטראקטיביות",
       "path": "/learn/adding-interactivity"
     },
     {
-      "title": "Managing State",
+      "title": "ניהול State",
       "path": "/learn/managing-state"
     },
     {
-      "title": "Escape Hatches",
+      "title": "דרכי מילוט",
       "path": "/learn/escape-hatches"
     },
     {
       "hasSectionHeader": true,
-      "sectionHeader": "REACT API"
+      "sectionHeader": "React API"
     },
     {
-      "title": "Hooks",
+      "title": "Hooks מובנים",
       "path": "/reference/react"
     },
     {
-      "title": "Components",
+      "title": "קומפוננטות",
       "path": "/reference/react/components"
     },
     {
@@ -51,15 +51,15 @@
       "path": "/reference/react/apis"
     },
     {
-      "title": "Legacy APIs",
+      "title": "APIs מיושנים",
       "path": "/reference/react/legacy"
     },
     {
       "hasSectionHeader": true,
-      "sectionHeader": "REACT DOM API"
+      "sectionHeader": "React DOM API"
     },
     {
-      "title": "Components",
+      "title": "קומפוננטות",
       "path": "/reference/react-dom/components"
     },
     {
@@ -76,18 +76,18 @@
     },
     {
       "hasSectionHeader": true,
-      "sectionHeader": "GET INVOLVED"
+      "sectionHeader": "הצטרפו"
     },
     {
-      "title": "React Community",
+      "title": "קהילת React",
       "path": "/community"
     },
     {
       "hasSectionHeader": true,
-      "sectionHeader": "STAY INFORMED"
+      "sectionHeader": "הישארו מעודכנים"
     },
     {
-      "title": "React Blog",
+      "title": "בלוג React",
       "path": "/blog"
     }
   ]

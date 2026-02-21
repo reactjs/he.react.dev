@@ -1,23 +1,23 @@
 ---
-title: preload
+title: "טעינה מראש"
 canary: true
 ---
 
 <Canary>
 
-The `preload` function is currently only available in React's Canary and experimental channels. Learn more about [React's release channels here](/community/versioning-policy#all-release-channels).
+הפונקציה `preload` זמינה כרגע רק בערוצי Canary ו-experimental של React. מידע נוסף ב-[ערוצי השחרור של React](/community/versioning-policy#all-release-channels).
 
 </Canary>
 
 <Note>
 
-[React-based frameworks](/learn/start-a-new-react-project) frequently handle resource loading for you, so you might not have to call this API yourself. Consult your framework's documentation for details.
+[Frameworks מבוססי React](/learn/start-a-new-react-project) מטפלים יכולים לעתים קרובות בטעינת משאבים בשבילכם, אז ייתכן שלא תצטרכו לקרוא ל-API הזה בעצמכם. לפרטים, עיינו בתיעוד של ה-framework שלכם.
 
 </Note>
 
 <Intro>
 
-`preload` lets you eagerly fetch a resource such as a stylesheet, font, or external script that you expect to use.
+`preload` מותר להביא מראש משאב כמו גיליון סגנונות, גופן, או סקריפט חיצוני עם מצפים להשתמש בו.
 
 ```js
 preload("https://example.com/font.woff2", {as: "font"});
@@ -29,11 +29,11 @@ preload("https://example.com/font.woff2", {as: "font"});
 
 ---
 
-## Reference {/*reference*/}
+## הפניה {/*reference*/}
 
 ### `preload(href, options)` {/*preload*/}
 
-To preload a resource, call the `preload` function from `react-dom`.
+כדי לבצע טעינה מראש למשאב, קראו לפונקציה `preload` מתוך `react-dom`.
 
 ```js
 import { preload } from 'react-dom';
@@ -45,47 +45,47 @@ function AppRoot() {
 
 ```
 
-[See more examples below.](#usage)
+[עוד דוגמאות נוספות.](#usage)
 
-The `preload` function provides the browser with a hint that it should start downloading the given resource, which can save time.
+הפונקציה `preload` מספקת לדפדפן רמז שכדאי להתחיל להוריד את המשאב הנתון, מה יכול לחסוך זמן.
 
-#### Parameters {/*parameters*/}
+#### פרמטרים {/*parameters*/}
 
-* `href`: a string. The URL of the resource you want to download.
-* `options`: an object. It contains the following properties:
-  *  `as`: a required string. The type of resource. Its [possible values](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link#as) are `audio`, `document`, `embed`, `fetch`, `font`, `image`, `object`, `script`, `style`, `track`, `video`, `worker`.
-  *  `crossOrigin`: a string. The [CORS policy](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/crossorigin) to use. Its possible values are `anonymous` and `use-credentials`. It is required when `as` is set to `"fetch"`.
-  *  `referrerPolicy`: a string. The [Referrer header](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link#referrerpolicy) to send when fetching. Its possible values are `no-referrer-when-downgrade` (the default), `no-referrer`, `origin`, `origin-when-cross-origin`, and `unsafe-url`.
-  *  `integrity`: a string. A cryptographic hash of the resource, to [verify its authenticity](https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity).
-  *  `type`: a string. The MIME type of the resource.
-  *  `nonce`: a string. A cryptographic [nonce to allow the resource](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/nonce) when using a strict Content Security Policy. 
-  *  `fetchPriority`: a string. Suggests a relative priority for fetching the resource. The possible values are `auto` (the default), `high`, and `low`.
-  *  `imageSrcSet`: a string. For use only with `as: "image"`. Specifies the [source set of the image](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images).
-  *  `imageSizes`: a string. For use only with `as: "image"`. Specifies the [sizes of the image](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images).
+* `href`: מחרוזת. ה-URL של המשאב שברצונכם הורד.
+* `options`: אובייקט. כולל את המאפיינים הבאים:
+  * `as`: מחרוזת חובה. סוג המשאב. [הערכים האפשריים](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link#as): `audio`, `document`, `embed`, `fetch`, `font`, `image`, `object`, `script`, `style`, __TK_12, `track`, `track`.
+  * `crossOrigin`: מחרוזת. [מדיניות CORS](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/crossorigin) שימוש. הערכים האפשריים: `anonymous` ו-`use-credentials`. חובה כשהערך של `as` הוא `"fetch"`.
+  * `referrerPolicy`: מחרוזת. [כותרת מפנה](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link#referrerpolicy) שתישלח בזמן הטעינה. הערכים האפשריים: `no-referrer-when-downgrade` (ברירת מחדל), `no-referrer`, `origin`, `origin-when-cross-origin`, ו-`unsafe-url`.
+  * `integrity`: מחרוזת. hash קריפטוגרפיה של המשאב לצורך [תאימות אותנטיות]https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity).
+  * `type`: מחרוזת. סוג ה-MIME של המשאב.
+  * `nonce`: מחרוזת. [nonce](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/nonce) קריפטוגרפי שמאפשר את המשאב כשמשתמשים ב-Content Security Policy קשוחה.
+  * `fetchPriority`: מחרוזת. מציעה עדיפות יחסית לטעינת המשאב. הערכים האפשריים: `auto` (ברירת מחדל), `high`, ו-`low`.
+  * `imageSrcSet`: מחרוזת. שימוש רק עם `as: "image"`. מציינת את [ערכת מקור של התמונה](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images).
+  * `imageSizes`: מחרוזת. שימוש רק עם `as: "image"`. מציינת את [הגדלים של התמונה](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images).
 
-#### Returns {/*returns*/}
+#### מחזירה {/*returns*/}
 
-`preload` returns nothing.
+`preload` לא מחזירה דבר.
 
-#### Caveats {/*caveats*/}
+#### אזהרות {/*caveats*/}
 
-* Multiple equivalent calls to `preload` have the same effect as a single call. Calls to `preload` are considered equivalent according to the following rules:
-  * Two calls are equivalent if they have the same `href`, except:
-  * If `as` is set to `image`, two calls are equivalent if they have the same `href`, `imageSrcSet`, and `imageSizes`.
-* In the browser, you can call `preload` in any situation: while rendering a component, in an effect, in an event handler, and so on.
-* In server-side rendering or when rendering Server Components, `preload` only has an effect if you call it while rendering a component or in an async context originating from rendering a component. Any other calls will be ignored.
+* כמה קריאות שקולות ל-`preload` משפיעות כמו קריאה אחת. קריאות ל-`preload` נחשבות שקולות לפי הכללים האלה:
+  * שתי קריאות שקולות אם יש להן אותו `href`, חוץ מהמקרה הבא:
+  * אם `as` מוגדר כ-`image`, שתי קריאות שקולות אם יש להן אותו `href`, `imageSrcSet`, ו-`imageSizes`.
+* בדפדפן אפשר לקרוא ל-`preload` בכל מצב: בזמן רינדור קומפונטה, בתוך אפקט, בתוך מטפל באירועים, וכן הלאה.
+* ברינדור צד שרת או ברינדור רכיבי שרת, ל-`preload` יש רק רק אם קוראים לה בזמן רינדור קומפוננטה או בהקשר אסינכרון שמקורו ברינדור קומפוננטה. קריאות אחרות ייחסמו.
 
 ---
 
-## Usage {/*usage*/}
+## שימוש {/*usage*/}
 
-### Preloading when rendering {/*preloading-when-rendering*/}
+### טעינה מראש בזמן רינדור {/*preloading-when-rendering*/}
 
-Call `preload` when rendering a component if you know that it or its children will use a specific resource.
+קראו ל-`preload` בזמן רינדור קומפוננטה אם אתם יודעים שהיא או הילדים שלה ישתמשו במשאב ספציפי.
 
 <Recipes titleText="Examples of preloading">
 
-#### Preloading an external script {/*preloading-an-external-script*/}
+#### טעינה מראש לסקריפט חיצונית {/*preloading-an-external-script*/}
 
 ```js
 import { preload } from 'react-dom';
@@ -96,11 +96,11 @@ function AppRoot() {
 }
 ```
 
-If you want the browser to start executing the script immediately (rather than just downloading it), use [`preinit`](/reference/react-dom/preinit) instead. If you want to load an ESM module, use [`preloadModule`](/reference/react-dom/preloadModule).
+אם אתם רוצים שהדפדפן יתחיל להריץ את הסקריפט מיד (ולא רק להוריד אותו), השתמשו ב-[`preinit`](/reference/react-dom/preinit) במקום. אם רוצים לטעון מודול ESM, השתמשו ב-[`preloadModule`](/reference/react-dom/preloadModule).
 
 <Solution />
 
-#### Preloading a stylesheet {/*preloading-a-stylesheet*/}
+#### טעינה מראש לגיליון סגנונות {/*preloading-a-stylesheet*/}
 
 ```js
 import { preload } from 'react-dom';
@@ -111,11 +111,11 @@ function AppRoot() {
 }
 ```
 
-If you want the stylesheet to be inserted into the document immediately (which means the browser will start parsing it immediately rather than just downloading it), use [`preinit`](/reference/react-dom/preinit) instead.
+אם אתם רוצים שה-stylesheet יוכנס למסמך מיד (כלומר שהדפדפן יתחיל לפרש אותו מייד ולא רק להוריד אותו), השתמשו ב-[`preinit`](/reference/react-dom/preinit) במקום.
 
 <Solution />
 
-#### Preloading a font {/*preloading-a-font*/}
+#### טעינה מראש לפונט {/*preloading-a-font*/}
 
 ```js
 import { preload } from 'react-dom';
@@ -127,11 +127,11 @@ function AppRoot() {
 }
 ```
 
-If you preload a stylesheet, it's smart to also preload any fonts that the stylesheet refers to. That way, the browser can start downloading the font before it's downloaded and parsed the stylesheet.
+אם אתם מבצעים טען מראש ל-stylesheet, חכם לבצע טען מראש גם לפונטים שה-stylesheet מפנה אליהם. כך הדפדפן להתחיל להוריד את הפונט עוד לפני שה-stylesheet יורד ומפורש.
 
 <Solution />
 
-#### Preloading an image {/*preloading-an-image*/}
+#### טעינה מראש לתמונה {/*preloading-an-image*/}
 
 ```js
 import { preload } from 'react-dom';
@@ -146,15 +146,15 @@ function AppRoot() {
 }
 ```
 
-When preloading an image, the `imageSrcSet` and `imageSizes` options help the browser [fetch the correctly sized image for the size of the screen](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images).
+כשמבצעים לטעון מראש לתמונה, האפשרויות `imageSrcSet` ו-`imageSizes` עוזרות לדפדפן [להביא את התמונה בגודל הנכון לגודל המסך](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images).
 
 <Solution />
 
 </Recipes>
 
-### Preloading in an event handler {/*preloading-in-an-event-handler*/}
+### טוען מראש בתוך מטפל באירועים {/*preloading-in-an-event-handler*/}
 
-Call `preload` in an event handler before transitioning to a page or state where external resources will be needed. This gets the process started earlier than if you call it during the rendering of the new page or state.
+קראו ל-`preload` בתוך מטפל באירועים לפני מעבר או מצב יידרשו משאבים חיצוניים. כך מתחילים להמשך קריאה בזמן רינדור העמוד או המצב החדש.
 
 ```js
 import { preload } from 'react-dom';

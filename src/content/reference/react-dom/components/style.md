@@ -5,13 +5,13 @@ canary: true
 
 <Canary>
 
-React's extensions to `<style>` are currently only available in React's canary and experimental channels. In stable releases of React `<style>` works only as a [built-in browser HTML component](https://react.dev/reference/react-dom/components#all-html-components). Learn more about [React's release channels here](/community/versioning-policy#all-release-channels).
+ההרחבות של React ל-`<style>` זמינות כרגע רק בערוצי canary ו-experimental של React. בגרסאות יציבות של React, `<style>` פועל רק כ-[רכיב HTML מובנה של הדפדפן](https://react.dev/reference/react-dom/components#all-html-components). מידע נוסף ב-[ערוצי השחרור של React](/community/versioning-policy#all-release-channels).
 
 </Canary>
 
 <Intro>
 
-The [built-in browser `<style>` component](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/style) lets you add inline CSS stylesheets to your document.
+רכיב הדפדפן המובנה [`<style>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/style) אפשר להוסיף גיליונות סגנונות של CSS מוטבעים למסמך.
 
 ```js
 <style>{` p { color: red; } `}</style>
@@ -23,53 +23,53 @@ The [built-in browser `<style>` component](https://developer.mozilla.org/en-US/d
 
 ---
 
-## Reference {/*reference*/}
+## הפניה {/*reference*/}
 
 ### `<style>` {/*style*/}
 
-To add inline styles to your document, render the [built-in browser `<style>` component](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/style). You can render `<style>` from any component and React will [in certain cases](#special-rendering-behavior) place the corresponding DOM element in the document head and de-duplicate identical styles.
+כדי להוסיף סגנונות מוטבעים למסמך, רנדרו את רכיב הדפדפן המובנה [`<style>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/style). אפשר לרנדר `<style>` מכל קומפוננטה ו-React [במקרים אישור](#special-rendering-behavior) תמקם את הרכיבים המתאימים למסמך ה-DOM המתאים בתוך זה.
 
 ```js
 <style>{` p { color: red; } `}</style>
 ```
 
-[See more examples below.](#usage)
+[עוד דוגמאות נוספות.](#usage)
 
-#### Props {/*props*/}
+#### אבזרים {/*props*/}
 
-`<style>` supports all [common element props.](/reference/react-dom/components/common#props)
+`<style>` תומך בכל [מאפייני האלמנט הנפוצים.](/reference/react-dom/components/common#props)
 
-* `children`: a string, required. The contents of the stylesheet.
-* `precedence`: a string. Tells React where to rank the `<style>` DOM node relative to others in the document `<head>`, which determines which stylesheet can override the other. Its value can be (in order of precedence) `"reset"`, `"low"`, `"medium"`, `"high"`. Stylesheets with the same precedence go together whether they are `<link>` or inline `<style>` tags or loaded using the [`preload`](/reference/react-dom/preload) or [`preinit`](/reference/react-dom/preinit) functions.
-* `href`: a string. Allows React to [de-duplicate styles](#special-rendering-behavior) that have the same `href`.
-* `media`: a string. Restricts the spreadsheet to a certain [media query](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_media_queries/Using_media_queries).
-* `nonce`: a string. A cryptographic [nonce to allow the resource](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/nonce) when using a strict Content Security Policy.
-* `title`: a string. Specifies the name of an [alternative stylesheet](https://developer.mozilla.org/en-US/docs/Web/CSS/Alternative_style_sheets).
+* `children`: מחרוזת, חובה. תוכן גיליון הסגנונות.
+* `precedence`: מחרוזת. אומרת ל-React איך לדרג את `<style>` DOM node איזה מתנגד בתוך `<head>` של המסמך, מה שקובע סגנונות יכול לעקוף איזה. הערכים האפשריים (לפי סדר קדימות): `"reset"`, `"low"`, `"medium"`, `"high"`. סגנונות עם קדימות מקובצים יחד בין אם הם תגיות `<link>`, תגיות inline `<style>`, או כאלה שנטענו בעזרת [`preload`](/reference/react-dom/preload) או [`preinit`](/reference/react-dom/preinit).
+* `href`: מחרוזת. מאפשרת ל-React [למנוע כפילות של סגנונות](#special-rendering-behavior) שיש להם אותו `href`.
+* `media`: מחרוזת. מגבילה את ה-spreadsheet ל-[שאילתת מדיה](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_media_queries/Using_media_queries) מסוימות.
+* `nonce`: מחרוזת. [nonce](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/nonce) קריפטוגרפי שמאפשר את המשאב כשמשתמשים ב-Content Security Policy קשוחה.
+* `title`: מחרוזת. מציינת שם של [גיליון סגנונות חלופי](https://developer.mozilla.org/en-US/docs/Web/CSS/Alternative_style_sheets).
 
-Props that are **not recommended** for use with React:
+אבזרים ש-**לא מומלץ** להשתמש בהם עם React:
 
-* `blocking`: a string. If set to `"render"`, instructs the browser not to render the page until the stylesheet is loaded. React provides more fine-grained control using Suspense.
+* `blocking`: מחרוזת. אם מוגדר ל-`"render"`, מורה לדפדפן לא לרנדר את העמוד עד שה-stylesheet נטען. React מספקת שליטה מדויקת יותר דרך Suspense.
 
-#### Special rendering behavior {/*special-rendering-behavior*/}
+#### התנהגות רינדור מיוחדת __K_0__
 
-React can move `<style>` components to the document's `<head>`, de-duplicate identical stylesheets, and [suspend](http://localhost:3000/reference/react/Suspense) while the stylesheet is loading.
+React יכולה להזיז רכיבי `<style>` ל-`<head>` של המסמכים, מניעת כפילות של stylesheets זהים, ולבצע [suspend](http://localhost:3000/reference/react/Suspense) בזמן שה-stylesheet נטען.
 
-To opt into this behavior, provide the `href` and `precedence` props. React will de-duplicate styles if they have the same `href`. The precedence prop tells React where to rank the `<style>` DOM node relative to others in the document `<head>`, which determines which stylesheet can override the other.
+כדי להפעיל את ההתנהגות הזו, ספקו את ה-props `href` ו-`precedence`. React תמנע כפילות של סגנונות אם יש להם אותו `href`. ה-prop `precedence` אומר ל-React איך לדרג את `<style>` DOM node ביחס בתוך `<head>` של המסמך, מה שקובע איזה גיליון סגנונות יכול לעקוף איזה.
 
-This special treatment comes with two caveats:
+לטיפול המיוחד הזה יש שתי הסתייגויות:
 
-* React will ignore changes to props after the style has been rendered. (React will issue a warning in development if this happens.)
-* React may leave the style in the DOM even after the component that rendered it has been unmounted.
+* React תתעלם משינויים ב-props אחרי שה-style רונדר. (React תציג אזהרה בזמן פיתוח אם זה קורה.)
+* React עשויה להשאיר את הסגנון ב-DOM גם אחרי שהקומפונטה שרנדרה אותו הוסרה.
 
 ---
 
-## Usage {/*usage*/}
+## שימוש {/*usage*/}
 
-### Rendering an inline CSS stylesheet {/*rendering-an-inline-css-stylesheet*/}
+### גיליון סגנונות רינדור של CSS מוטבע {/*rendering-an-inline-css-stylesheet*/}
 
-If a component depends on certain CSS styles in order to be displayed correctly, you can render an inline stylesheet within the component.
+אם קומפוננטה תלויה בסגנונות CSS כדי להיות מוצגת נכון, אפשר גיליון סגנונות לרנדר בתוך הקומפוננטה.
 
-If you supply an `href` and `precedence` prop, your component will suspend while the stylesheet is loading. (Even with inline stylesheets, there may be a loading time due to fonts and images that the stylesheet refers to.) The `href` prop should uniquely identify the stylesheet, because React will de-duplicate stylesheets that have the same `href`.
+אם מספקים `href` ו-`precedence`, הקומפוננטה תבצע suspend בזמן שה-stylesheet נטען. (גם עם גיליונות סגנונות מוטבעים, אפשר זמן טעינה בגלל פונטים ותמונות שה-stylesheet מפנה.) ה-`href` צריך לזהות בצורה ייחודית את גיליון הסגנונות, כי React תמנע כפילות של גיליונות סגנונות עם אותו `href`.
 
 <SandpackWithHTMLOutput>
 

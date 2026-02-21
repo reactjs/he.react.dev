@@ -1,26 +1,26 @@
 ---
-title: Passing Props to a Component
+title: "העברת אביזרים לרכיב"
 ---
 
 <Intro>
 
-React components use *props* to communicate with each other. Every parent component can pass some information to its child components by giving them props. Props might remind you of HTML attributes, but you can pass any JavaScript value through them, including objects, arrays, and functions.
+React רכיבים use *props* כדי לתקשר אחד עם השני. כל רכיב אב יכול להעביר מידע מסוים לרכיבי הצאצא שלו על ידי מתן props. אביזרים עשויים להזכיר לך את תכונות HTML, אבל אתה יכול להעביר דרכם כל ערך JavaScript, כולל אובייקטים, מערכים ופונקציות.
 
 </Intro>
 
 <YouWillLearn>
 
-* How to pass props to a component
-* How to read props from a component
-* How to specify default values for props
-* How to pass some JSX to a component
-* How props change over time
+* איך להעביר את props לרכיב
+* איך לקרוא props מתוך רכיב
+* כיצד לציין ערכי ברירת מחדל עבור props
+* איך להעביר כמה JSX לרכיב
+* איך props משתנה עם הזמן
 
 </YouWillLearn>
 
-## Familiar props {/*familiar-props*/}
+## מוכר props {/*familiar-props*/}
 
-Props are the information that you pass to a JSX tag. For example, `className`, `src`, `alt`, `width`, and `height` are some of the props you can pass to an `<img>`:
+אביזרים הם המידע שאתה מעביר לתג JSX. לדוגמה, `className`, `src`, `alt`, `width` ו-`height` הם חלק מה-props שתוכלו להעביר ל-`<img>`:
 
 <Sandpack>
 
@@ -51,11 +51,11 @@ body { min-height: 120px; }
 
 </Sandpack>
 
-The props you can pass to an `<img>` tag are predefined (ReactDOM conforms to [the HTML standard](https://www.w3.org/TR/html52/semantics-embedded-content.html#the-img-element)). But you can pass any props to *your own* components, such as `<Avatar>`, to customize them. Here's how!
+ה-props שאתה יכול להעביר לתג `<img>` מוגדרים מראש (ReactDOM תואם [לתקן HTML](https://www.w3.org/TR/html52/semantics-embedded-content.html#the-img-element)). אבל אתה יכול להעביר כל props לרכיבים *שלכם*, כמו `<Avatar>`, כדי להתאים אותם. הנה איך להתאים אותם!
 
-## Passing props to a component {/*passing-props-to-a-component*/}
+## העברת props לרכיב {/*passing-props-to-a-component*/}
 
-In this code, the `Profile` component isn't passing any props to its child component, `Avatar`:
+בקוד זה, הרכיב `Profile` אינו מעביר שום props לרכיב הצאצא שלו, `Avatar`:
 
 ```js
 export default function Profile() {
@@ -65,11 +65,11 @@ export default function Profile() {
 }
 ```
 
-You can give `Avatar` some props in two steps.
+אתה יכול לתת ל-`Avatar` כמה props בשני שלבים.
 
-### Step 1: Pass props to the child component {/*step-1-pass-props-to-the-child-component*/}
+### שלב 1: העבר props לרכיב הצאצא {/*step-1-pass-props-to-the-child-component*/}
 
-First, pass some props to `Avatar`. For example, let's pass two props: `person` (an object), and `size` (a number):
+ראשית, העבירו כמה props ל-`Avatar`. לדוגמה, בוא נעביר שניים props: `person` (אובייקט), ו-`size` (מספר):
 
 ```js
 export default function Profile() {
@@ -84,15 +84,15 @@ export default function Profile() {
 
 <Note>
 
-If double curly braces after `person=` confuse you, recall [they're merely an object](/learn/javascript-in-jsx-with-curly-braces#using-double-curlies-css-and-other-objects-in-jsx) inside the JSX curlies.
+אם סוגרים כפולים מתולתלים אחרי `person=` confuse אותך, זכור [הם רק אובייקט](/learn/javascript-in-jsx-with-curly-braces#using-double-curlies-css-and-other-objects-in-jsx) בתוך ה-JSX.
 
 </Note>
 
-Now you can read these props inside the `Avatar` component.
+עכשיו אתה יכול לקרוא את props אלה בתוך רכיב `Avatar`.
 
-### Step 2: Read props inside the child component {/*step-2-read-props-inside-the-child-component*/}
+### שלב 2: קרא את props בתוך רכיב הילד {/*step-2-read-props-inside-the-child-component*/}
 
-You can read these props by listing their names `person, size` separated by the commas inside `({` and `})` directly after `function Avatar`. This lets you use them inside the `Avatar` code, like you would with a variable.
+אתה יכול לקרוא את props אלה על ידי רישום שמותיהם `person, size` מופרדים בפסיקים בתוך `({` ו`})` ישירות אחרי `function Avatar`. זה מאפשר לך use אותם בתוך קוד `Avatar`, כמו שהיית עושה עם משתנה.
 
 ```js
 function Avatar({ person, size }) {
@@ -100,9 +100,9 @@ function Avatar({ person, size }) {
 }
 ```
 
-Add some logic to `Avatar` that uses the `person` and `size` props for rendering, and you're done.
+הוסף קצת היגיון ל`Avatar` שuse הוא `person` ו`size` props לעיבוד, וסיימתם.
 
-Now you can configure `Avatar` to render in many different ways with different props. Try tweaking the values!
+כעת אתה יכול להגדיר את `Avatar` לעיבוד בדרכים רבות ושונות עם props שונה. נסה לשנות את הערכים!
 
 <Sandpack>
 
@@ -168,9 +168,9 @@ body { min-height: 120px; }
 
 </Sandpack>
 
-Props let you think about parent and child components independently. For example, you can change the `person` or the `size` props inside `Profile` without having to think about how `Avatar` uses them. Similarly, you can change how the `Avatar` uses these props, without looking at the `Profile`.
+אביזרים מאפשרים לך לחשוב על מרכיבי הורה וילד באופן עצמאי. לדוגמה, אתה יכול לשנות את ה-`person` או את ה-`size` props בתוך `Profile` מבלי שתצטרך לחשוב איך `Avatar` use מפעיל אותם. באופן דומה, אתה יכול לשנות את האופן שבו `Avatar` use הם props, מבלי להסתכל על `Profile`.
 
-You can think of props like "knobs" that you can adjust. They serve the same role as arguments serve for functions—in fact, props _are_ the only argument to your component! React component functions accept a single argument, a `props` object:
+אתה יכול לחשוב על props כמו "כפתורים" שאתה יכול להתאים. הם משרתים את אותו תפקיד שבו ארגומנטים משמשים עבור פונקציות - למעשה, props _הם_ הארגומנט היחיד לרכיב שלך! פונקציות רכיב React מקבלים ארגומנט בודד, אובייקט `props`:
 
 ```js
 function Avatar(props) {
@@ -180,11 +180,11 @@ function Avatar(props) {
 }
 ```
 
-Usually you don't need the whole `props` object itself, so you destructure it into individual props.
+בדרך כלל אתה לא צריך את כל האובייקט `props` עצמו, אז אתה מפרק אותו ל-props בודד.
 
 <Pitfall>
 
-**Don't miss the pair of `{` and `}` curlies** inside of `(` and `)` when declaring props:
+**אל תפספסו את צמד התלתלים `{` ו`}`** בתוך `(` ו`)` בעת הצהרה על props:
 
 ```js
 function Avatar({ person, size }) {
@@ -192,7 +192,7 @@ function Avatar({ person, size }) {
 }
 ```
 
-This syntax is called ["destructuring"](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment#Unpacking_fields_from_objects_passed_as_a_function_parameter) and is equivalent to reading properties from a function parameter:
+תחביר זה נקרא ["destructuring"](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment#Unpacking_fields_from_objects_passed_as_a_function_parameter) והוא שווה ערך לקריאת מאפיינים מפרמטר פונקציה:
 
 ```js
 function Avatar(props) {
@@ -204,9 +204,9 @@ function Avatar(props) {
 
 </Pitfall>
 
-## Specifying a default value for a prop {/*specifying-a-default-value-for-a-prop*/}
+## ציון ערך ברירת מחדל עבור אבזר {/*specifying-a-default-value-for-a-prop*/}
 
-If you want to give a prop a default value to fall back on when no value is specified, you can do it with the destructuring by putting `=` and the default value right after the parameter:
+אם אתה רוצה לתת לפרופס ערך ברירת מחדל לחזור עליו כאשר לא צוין ערך, אתה יכול לעשות זאת עם הרס על ידי הצבת `=` וערך ברירת המחדל מיד אחרי הפרמטר:
 
 ```js
 function Avatar({ person, size = 100 }) {
@@ -214,13 +214,13 @@ function Avatar({ person, size = 100 }) {
 }
 ```
 
-Now, if `<Avatar person={...} />` is rendered with no `size` prop, the `size` will be set to `100`.
+כעת, אם `<Avatar person={...} />` מוצג ללא אבזר `size`, ה-`size` יוגדר ל-`100`.
 
-The default value is only used if the `size` prop is missing or if you pass `size={undefined}`. But if you pass `size={null}` or `size={0}`, the default value will **not** be used.
+ערך ברירת המחדל הוא used בלבד אם האביזר `size` חסר או אם עוברים את `size={undefined}`. אבל אם תעבור את `size={null}` או `size={0}`, ערך ברירת המחדל יהיה **לא** used.
 
-## Forwarding props with the JSX spread syntax {/*forwarding-props-with-the-jsx-spread-syntax*/}
+## העברת props עם תחביר התפשטות JSX {/*forwarding-props-with-the-jsx-spread-syntax*/}
 
-Sometimes, passing props gets very repetitive:
+לפעמים, מעבר props חוזר על עצמו מאוד:
 
 ```js
 function Profile({ person, size, isSepia, thickBorder }) {
@@ -237,7 +237,7 @@ function Profile({ person, size, isSepia, thickBorder }) {
 }
 ```
 
-There's nothing wrong with repetitive code—it can be more legible. But at times you may value conciseness. Some components forward all of their props to their children, like how this `Profile` does with `Avatar`. Because they don't use any of their props directly, it can make sense to use a more concise "spread" syntax:
+אין שום דבר רע בקוד שחוזר על עצמו - הוא יכול להיות קריא יותר. אבל לפעמים אתה עשוי להעריך תמציתיות. חלק מהרכיבים מעבירים את כל ה-props שלהם לילדים שלהם, כמו איך שה-`Profile` הזה עושה עם `Avatar`. בגלל use הם לא use שום props שלהם ישירות, זה יכול להיות הגיוני use תחביר "מפוזר" תמציתי יותר:
 
 ```js
 function Profile(props) {
@@ -249,13 +249,13 @@ function Profile(props) {
 }
 ```
 
-This forwards all of `Profile`'s props to the `Avatar` without listing each of their names.
+זה מעביר את כל ה-props של `Profile` ל-`Avatar` מבלי לרשום כל אחד מהשמות שלהם.
 
-**Use spread syntax with restraint.** If you're using it in every other component, something is wrong. Often, it indicates that you should split your components and pass children as JSX. More on that next!
+**השתמש בתחביר התפשטות עם איפוק.** אם אתה משתמש בו בכל רכיב אחר, משהו לא בסדר. לעתים קרובות, זה מציין שאתה צריך לפצל את הרכיבים שלך ולהעביר ילדים בתור JSX. עוד על כך בהמשך!
 
-## Passing JSX as children {/*passing-jsx-as-children*/}
+## עוברים JSX בתור ילדים {/*passing-jsx-as-children*/}
 
-It is common to nest built-in browser tags:
+מקובל לקנן תגיות דפדפן מובנות:
 
 ```js
 <div>
@@ -263,7 +263,7 @@ It is common to nest built-in browser tags:
 </div>
 ```
 
-Sometimes you'll want to nest your own components the same way:
+לפעמים תרצה לקנן את הרכיבים שלך באותו אופן:
 
 ```js
 <Card>
@@ -271,7 +271,7 @@ Sometimes you'll want to nest your own components the same way:
 </Card>
 ```
 
-When you nest content inside a JSX tag, the parent component will receive that content in a prop called `children`. For example, the `Card` component below will receive a `children` prop set to `<Avatar />` and render it in a wrapper div:
+כאשר אתה מקנן תוכן בתוך תג JSX, רכיב האב יקבל את התוכן הזה באביזר שנקרא `children`. לדוגמה, הרכיב `Card` להלן יקבל אבזר `children` שנקבע ל-`<Avatar />` ויעבד אותו ב-diver wrapper:
 
 <Sandpack>
 
@@ -347,17 +347,17 @@ export function getImageUrl(person, size = 's') {
 
 </Sandpack>
 
-Try replacing the `<Avatar>` inside `<Card>` with some text to see how the `Card` component can wrap any nested content. It doesn't need to "know" what's being rendered inside of it. You will see this flexible pattern in many places.
+נסה להחליף את `<Avatar>` בתוך `<Card>` בטקסט כלשהו כדי לראות כיצד הרכיב `Card` יכול לעטוף כל תוכן מקונן. זה לא צריך "לדעת" מה מוצג בתוכו. אתה תראה את הדפוס הגמיש הזה במקומות רבים.
 
-You can think of a component with a `children` prop as having a "hole" that can be "filled in" by its parent components with arbitrary JSX. You will often use the `children` prop for visual wrappers: panels, grids, etc.
+אתה יכול לחשוב על רכיב עם אבזר `children` כבעל "חור" שניתן "למלא" על ידי רכיבי האב שלו עם JSX שרירותי. לעתים קרובות אתה use אביזר `children` עבור עטיפות חזותיות: לוחות, רשתות וכו'.
 
 <Illustration src="/images/docs/illustrations/i_children-prop.png" alt='A puzzle-like Card tile with a slot for "children" pieces like text and Avatar' />
 
-## How props change over time {/*how-props-change-over-time*/}
+## איך props משתנה עם הזמן {/*how-props-change-over-time*/}
 
-The `Clock` component below receives two props from its parent component: `color` and `time`. (The parent component's code is omitted because it uses [state](/learn/state-a-components-memory), which we won't dive into just yet.)
+הרכיב `Clock` למטה מקבל שני props מהרכיב האב שלו: `color` ו-`time`. (קוד רכיב האב מושמט בגלל uses [state](/learn/state-a-components-memory), שעדיין לא נצלול אליו.)
 
-Try changing the color in the select box below:
+נסה לשנות את הצבע בתיבת הבחירה למטה:
 
 <Sandpack>
 
@@ -407,21 +407,21 @@ export default function App() {
 
 </Sandpack>
 
-This example illustrates that **a component may receive different props over time.** Props are not always static! Here, the `time` prop changes every second, and the `color` prop changes when you select another color. Props reflect a component's data at any point in time, rather than only in the beginning.
+דוגמה זו ממחישה כי **רכיב עשוי לקבל props שונה לאורך זמן.** האביזרים אינם תמיד סטטיים! כאן, אביזר `time` משתנה כל שנייה, ואביזר `color` משתנה כאשר אתה בוחר צבע אחר. אביזרים משקפים נתונים של רכיב בכל נקודת זמן, ולא רק בהתחלה.
 
-However, props are [immutable](https://en.wikipedia.org/wiki/Immutable_object)—a term from computer science meaning "unchangeable". When a component needs to change its props (for example, in response to a user interaction or new data), it will have to "ask" its parent component to pass it _different props_—a new object! Its old props will then be cast aside, and eventually the JavaScript engine will reclaim the memory taken by them.
+עם זאת, props הם [בלתי ניתנים לשינוי](https://en.wikipedia.org/wiki/Immutable_object)—a מונח ממדעי המחשב שפירושו "בלתי ניתן לשינוי". כאשר רכיב צריך לשנות את props שלו (לדוגמה, בתגובה לאינטראקציה user או נתונים חדשים), הוא יצטרך "לבקש" מהרכיב האב שלו להעביר אותו __K_4__ אובייקט ישן!___ לאחר מכן props יושלך הצידה, ובסופו של דבר מנוע JavaScript ידרוש בחזרה את memory שנלקח על ידם.
 
-**Don't try to "change props".** When you need to respond to the user input (like changing the selected color), you will need to "set state", which you can learn about in [State: A Component's Memory.](/learn/state-a-components-memory)
+**אל תנסה "לשנות את props".** כאשר אתה צריך להגיב לקלט user (כמו שינוי הצבע שנבחר), תצטרך "להגדיר state", עליו תוכל ללמוד ב-[State: A Component's Memory.](/learn/state-TK_3____)ry
 
 <Recap>
 
-* To pass props, add them to the JSX, just like you would with HTML attributes.
-* To read props, use the `function Avatar({ person, size })` destructuring syntax.
-* You can specify a default value like `size = 100`, which is used for missing and `undefined` props.
-* You can forward all props with `<Avatar {...props} />` JSX spread syntax, but don't overuse it!
-* Nested JSX like `<Card><Avatar /></Card>` will appear as `Card` component's `children` prop.
-* Props are read-only snapshots in time: every render receives a new version of props.
-* You can't change props. When you need interactivity, you'll need to set state.
+* כדי לעבור את props, הוסף אותם ל-JSX, בדיוק כמו שהיית עושה עם תכונות HTML.
+* כדי לקרוא את props, use את תחביר ההסרה של `function Avatar({ person, size })`.
+* אתה יכול לציין ערך ברירת מחדל כמו `size = 100`, שהוא used עבור חסר ו`undefined` props.
+* אתה יכול להעביר את כל props עם `<Avatar {...props} />` JSX התחביר התפשט, אבל אל תגזים עםuse!
+* JSX מקונן כמו `<Card><Avatar /></Card>` יופיע בתור רכיב `children` של רכיב `Card`.
+* אביזרים הם צילומי מצב לקריאה בלבד בזמן: כל עיבוד מקבל גרסה חדשה של props.
+* אתה לא יכול לשנות את props. כאשר אתה צריך אינטראקטיביות, תצטרך להגדיר state.
 
 </Recap>
 
@@ -429,9 +429,9 @@ However, props are [immutable](https://en.wikipedia.org/wiki/Immutable_object)�
 
 <Challenges>
 
-#### Extract a component {/*extract-a-component*/}
+#### חלץ רכיב {/*extract-a-component*/}
 
-This `Gallery` component contains some very similar markup for two profiles. Extract a `Profile` component out of it to reduce the duplication. You'll need to choose what props to pass to it.
+רכיב `Gallery` זה מכיל סימון דומה מאוד עבור שני פרופילים. חלץ ממנו רכיב `Profile` כדי להפחית את הכפילות. תצטרך לבחור איזה props להעביר אליו.
 
 <Sandpack>
 
@@ -524,15 +524,15 @@ li { margin: 5px; }
 
 <Hint>
 
-Start by extracting the markup for one of the scientists. Then find the pieces that don't match it in the second example, and make them configurable by props.
+התחל בחילוץ הסימון עבור אחד המדענים. לאחר מכן מצא את החלקים שאינם תואמים לו בדוגמה השנייה, והפוך אותם לניתנים להגדרה באמצעות props.
 
 </Hint>
 
 <Solution>
 
-In this solution, the `Profile` component accepts multiple props: `imageId` (a string), `name` (a string), `profession` (a string), `awards` (an array of strings), `discovery` (a string), and `imageSize` (a number).
+בפתרון זה, הרכיב `Profile` מקבל props מרובות: `imageId` (מחרוזת), `name` (מחרוזת), `profession` (מחרוזת), `awards` (מערך של מחרוזות), `discovery` (מחרוזת), ו__TK_6).
 
-Note that the `imageSize` prop has a default value, which is why we don't pass it to the component.
+שימו לב שלפרוט `imageSize` יש ערך ברירת מחדל, וזו הסיבה שאנחנו לא מעבירים אותו לרכיב.
 
 <Sandpack>
 
@@ -630,9 +630,9 @@ li { margin: 5px; }
 
 </Sandpack>
 
-Note how you don't need a separate `awardCount` prop if `awards` is an array. Then you can use `awards.length` to count the number of awards. Remember that props can take any values, and that includes arrays too!
+שים לב כיצד אינך זקוק לאביזר `awardCount` נפרד אם `awards` הוא מערך. אז אתה יכול use `awards.length` לספור את מספר הפרסים. זכור שprops יכול לקחת כל ערכים, וזה כולל גם מערכים!
 
-Another solution, which is more similar to the earlier examples on this page, is to group all information about a person in a single object, and pass that object as one prop:
+פתרון אחר, שדומה יותר לדוגמאות המוקדמות יותר בדף זה, הוא לקבץ את כל המידע על אדם באובייקט בודד, ולהעביר את האובייקט הזה כאביזר אחד:
 
 <Sandpack>
 
@@ -727,15 +727,15 @@ li { margin: 5px; }
 
 </Sandpack>
 
-Although the syntax looks slightly different because you're describing properties of a JavaScript object rather than a collection of JSX attributes, these examples are mostly equivalent, and you can pick either approach.
+למרות שהתחביר נראה מעט שונה מכיוון שuse אתה מתאר מאפיינים של אובייקט JavaScript ולא אוסף של תכונות JSX, דוגמאות אלו מקבילות ברובן, ואתה יכול לבחור בכל אחת מהשיטות.
 
 </Solution>
 
-#### Adjust the image size based on a prop {/*adjust-the-image-size-based-on-a-prop*/}
+#### התאם את גודל התמונה על סמך אביזר {/*adjust-the-image-size-based-on-a-prop*/}
 
-In this example, `Avatar` receives a numeric `size` prop which determines the `<img>` width and height. The `size` prop is set to `40` in this example. However, if you open the image in a new tab, you'll notice that the image itself is larger (`160` pixels). The real image size is determined by which thumbnail size you're requesting.
+בדוגמה זו, `Avatar` מקבל אבזר `size` מספרי שקובע את הרוחב והגובה של `<img>`. התמיכה `size` מוגדרת ל-`40` בדוגמה זו. עם זאת, אם תפתחו את התמונה בלשונית חדשה, תבחינו שהתמונה עצמה גדולה יותר (`160` פיקסלים). גודל התמונה האמיתי נקבע לפי גודל התמונה הממוזערת שאתה מבקש.
 
-Change the `Avatar` component to request the closest image size based on the `size` prop. Specifically, if the `size` is less than `90`, pass `'s'` ("small") rather than `'b'` ("big") to the `getImageUrl` function. Verify that your changes work by rendering avatars with different values of the `size` prop and opening images in a new tab.
+שנה את הרכיב `Avatar` כדי לבקש את גודל התמונה הקרוב ביותר בהתבסס על `size` מאפיין. באופן ספציפי, אם ה-`size` קטן מ-`90`, העבר את `'s'` ("קטן") ולא `'b'` ("גדול") לפונקציה `getImageUrl`. ודא שהשינויים שלך פועלים על ידי רינדור אווטרים עם ערכים שונים של האביזר `size` ופתיחת תמונות בכרטיסייה חדשה.
 
 <Sandpack>
 
@@ -786,7 +786,7 @@ export function getImageUrl(person, size) {
 
 <Solution>
 
-Here is how you could go about it:
+הנה איך אתה יכול ללכת על זה:
 
 <Sandpack>
 
@@ -848,7 +848,7 @@ export function getImageUrl(person, size) {
 
 </Sandpack>
 
-You could also show a sharper image for high DPI screens by taking [`window.devicePixelRatio`](https://developer.mozilla.org/en-US/docs/Web/API/Window/devicePixelRatio) into account:
+תוכל גם להציג תמונה חדה יותר עבור מסכי DPI גבוהים על ידי התחשבות ב-[`window.devicePixelRatio`](https://developer.mozilla.org/en-US/docs/Web/API/Window/devicePixelRatio):
 
 <Sandpack>
 
@@ -919,13 +919,13 @@ export function getImageUrl(person, size) {
 
 </Sandpack>
 
-Props let you encapsulate logic like this inside the `Avatar` component (and change it later if needed) so that everyone can use the `<Avatar>` component without thinking about how the images are requested and resized.
+אביזרים מאפשרים לך לכלול לוגיקה כזו בתוך רכיב `Avatar` (ולשנות אותו מאוחר יותר במידת הצורך) כך שכולם יוכלו use את רכיב `<Avatar>` מבלי לחשוב על איך התמונות מתבקשות וגודלן.
 
 </Solution>
 
-#### Passing JSX in a `children` prop {/*passing-jsx-in-a-children-prop*/}
+#### העברת JSX באבזר `children` {/*passing-jsx-in-a-children-prop*/}
 
-Extract a `Card` component from the markup below, and use the `children` prop to pass different JSX to it:
+חלץ רכיב `Card` מהסימון שלמטה, ו-use את האביזר `children` כדי להעביר אליו JSX שונה:
 
 <Sandpack>
 
@@ -983,13 +983,13 @@ h1 {
 
 <Hint>
 
-Any JSX you put inside of a component's tag will be passed as the `children` prop to that component.
+כל JSX שתשים בתוך תג של רכיב יועבר כאביזר `children` לאותו רכיב.
 
 </Hint>
 
 <Solution>
 
-This is how you can use the `Card` component in both places:
+כך תוכל use את הרכיב `Card` בשני המקומות:
 
 <Sandpack>
 
@@ -1051,7 +1051,7 @@ h1 {
 
 </Sandpack>
 
-You can also make `title` a separate prop if you want every `Card` to always have a title:
+אתה יכול גם להפוך את `title` לאביזר נפרד אם אתה רוצה שלכל `Card` יהיה תמיד כותרת:
 
 <Sandpack>
 

@@ -5,7 +5,32 @@
 /**
  * @type {import('next').NextConfig}
  **/
+// detect when we're building for GitHub Pages so we can set the
+// correct base path. the workflow sets GITHUB_REPOSITORY which looks
+// like "user/repo"; the repository name is used as the basePath.
+const isGitHubActions = process.env.GITHUB_ACTIONS === 'true';
+const repoName = isGitHubActions
+  ? '/' + process.env.GITHUB_REPOSITORY.split('/')[1]
+  : '';
+
 const nextConfig = {
+  // when exporting we need to tell Next.js to write to `out` and also
+  // make sure all asset references are prefixed with the base path
+  output: 'export',
+  basePath: repoName,
+  assetPrefix: repoName,
+  trailingSlash: true,
+  images: {
+    // Required for static export (GitHub Pages).
+    unoptimized: true,
+  },
+  env: {
+    // if we don't set this explicitly, the value would be empty at
+    // runtime in the browser. components that build their own
+    // `<img src="/…"/>` paths rely on this to know the correct prefix.
+    NEXT_PUBLIC_BASE_PATH: repoName,
+  },
+
   pageExtensions: ['jsx', 'js', 'ts', 'tsx', 'mdx', 'md'],
   reactStrictMode: true,
   experimental: {
@@ -14,7 +39,6 @@ const nextConfig = {
     scrollRestoration: true,
     legacyBrowsers: false,
   },
-  env: {},
   webpack: (config, {dev, isServer, ...options}) => {
     if (process.env.ANALYZE) {
       const {BundleAnalyzerPlugin} = require('webpack-bundle-analyzer');

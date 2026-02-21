@@ -1,7 +1,7 @@
 ---
-title: react-test-renderer Deprecation Warning
+title: "אזהרת הוצאה שימוש של react-test-renderer"
 ---
 
-react-test-renderer is deprecated. A warning will fire whenever calling ReactTestRenderer.create() or ReactShallowRender.render(). The react-test-renderer package will remain available on NPM but will not be maintained and may break with new React features or changes to React's internals.
+`react-test-renderer` הוצאה משימוש. אזהרה תופי בכל קריאה ל-`ReactTestRenderer.create()` או `ReactShallowRender.render()`. החבילה `react-test-renderer` תישאר זמינה ב-NPM, אבל לא תתוחזק ועלולה להישבר עם פיצ'רים חדשים של React או עם שינויים פנימיים של React.
 
-The React Team recommends migrating your tests to [@testing-library/react](https://testing-library.com/docs/react-testing-library/intro/) or [@testing-library/react-native](https://callstack.github.io/react-native-testing-library/docs/getting-started) for a modern and well supported testing experience.
+צוות React ממליץ להעביר את הבדיקות ל-[`@testing-library/react`](https://testing-library.com/docs/react-testing-library/intro/) או ל-[`@testing-library/react-native`](https://callstack.github.io/react-native-testing-library/docs/getting-started) עבור חוויית בדיקות מודרנית ונתמכת היטב.

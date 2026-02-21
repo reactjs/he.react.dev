@@ -1,41 +1,41 @@
 ---
-title: Keeping Components Pure
+title: "שמירה על טהרת הרכיבים"
 ---
 
 <Intro>
 
-Some JavaScript functions are *pure.* Pure functions only perform a calculation and nothing more. By strictly only writing your components as pure functions, you can avoid an entire class of baffling bugs and unpredictable behavior as your codebase grows. To get these benefits, though, there are a few rules you must follow.
+חלק מפונקציות JavaScript הן *טהורות.* פונקציות טהורות מבצעות רק חישוב ותו לא. על ידי כתיבת הרכיבים שלך כפונקציות טהורות בלבד, אתה יכול למנוע מחלקה שלמה של באגים מביכים והתנהגות בלתי צפויה ככל שבסיס הקוד שלך גדל. עם זאת, כדי לקבל את ההטבות הללו, יש כמה כללים שעליך לעקוב אחריהם.
 
 </Intro>
 
 <YouWillLearn>
 
-* What purity is and how it helps you avoid bugs
-* How to keep components pure by keeping changes out of the render phase
-* How to use Strict Mode to find mistakes in your components
+* מהי טוהר וכיצד זה עוזר לך להימנע מבאגים
+* איך לשמור על רכיבים טהורים על ידי שמירת שינויים משלב העיבוד
+* איך use מצב קפדני כדי למצוא טעויות ברכיבים שלך
 
 </YouWillLearn>
 
-## Purity: Components as formulas {/*purity-components-as-formulas*/}
+## טוהר: רכיבים כנוסחאות {/*purity-components-as-formulas*/}
 
-In computer science (and especially the world of functional programming), [a pure function](https://wikipedia.org/wiki/Pure_function) is a function with the following characteristics:
+במדעי המחשב (ובמיוחד בעולם התכנות הפונקציונלי), [פונקציה טהורה](https://wikipedia.org/wiki/Pure_function) היא פונקציה בעלת המאפיינים הבאים:
 
-* **It minds its own business.** It does not change any objects or variables that existed before it was called.
-* **Same inputs, same output.** Given the same inputs, a pure function should always return the same result.
+* **זה מתעסק בעניינים שלו.** זה לא משנה אובייקטים או משתנים שהיו קיימים לפני שהוא נקרא.
+* **אותן כניסות, אותו פלט.** בהינתן אותן כניסות, פונקציה טהורה צריכה תמיד להחזיר את אותה תוצאה.
 
-You might already be familiar with one example of pure functions: formulas in math.
+אולי אתה כבר מכיר דוגמה אחת לפונקציות טהורות: נוסחאות במתמטיקה.
 
-Consider this math formula: <Math><MathI>y</MathI> = 2<MathI>x</MathI></Math>.
+שקול את הנוסחה המתמטית הזו: <Math><MathI>y</MathI> = 2<MathI>x</MathI></Math>.
 
-If <Math><MathI>x</MathI> = 2</Math> then <Math><MathI>y</MathI> = 4</Math>. Always. 
+אם <Math><MathI>x</MathI> = 2</Math> אז <Math><MathI>y</MathI> = 4</Math>. תָמִיד.
 
-If <Math><MathI>x</MathI> = 3</Math> then <Math><MathI>y</MathI> = 6</Math>. Always. 
+אם <Math><MathI>x</MathI> = 3</Math> אז <Math><MathI>y</MathI> = 6</Math>. תָמִיד.
 
-If <Math><MathI>x</MathI> = 3</Math>, <MathI>y</MathI> won't sometimes be <Math>9</Math> or <Math>–1</Math> or <Math>2.5</Math> depending on the time of day or the state of the stock market. 
+אם <Math><MathI>x</MathI> = 3</Math>, <MathI>y</MathI> לפעמים לא יהיה <Math>9</Math> או <Math>–1</Math> או <Math>2.5</Math> בהתאם לשעה ביום או ל-state של שוק המניות.
 
-If <Math><MathI>y</MathI> = 2<MathI>x</MathI></Math> and <Math><MathI>x</MathI> = 3</Math>, <MathI>y</MathI> will _always_ be <Math>6</Math>. 
+אם <Math><MathI>y</MathI> = 2<MathI>x</MathI></Math> ו-<Math><MathI>x</MathI> = 3</Math>, <MathI>y</MathI> יהיה _תמיד_ <Math>6</Math>.
 
-If we made this into a JavaScript function, it would look like this:
+אם נהפוך את זה לפונקציה JavaScript, זה ייראה כך:
 
 ```js
 function double(number) {
@@ -43,9 +43,9 @@ function double(number) {
 }
 ```
 
-In the above example, `double` is a **pure function.** If you pass it `3`, it will return `6`. Always.
+בדוגמה שלמעלה, `double` היא **פונקציה טהורה.** אם תעביר אותה `3`, היא תחזיר `6`. תָמִיד.
 
-React is designed around this concept. **React assumes that every component you write is a pure function.** This means that React components you write must always return the same JSX given the same inputs:
+React עוצב סביב הרעיון הזה. **React מניח שכל רכיב שאתה כותב הוא פונקציה טהורה.** זה אומר שרכיבי React שאתה כותב חייבים תמיד להחזיר את אותו JSX בהינתן אותן כניסות:
 
 <Sandpack>
 
@@ -75,21 +75,21 @@ export default function App() {
 
 </Sandpack>
 
-When you pass `drinkers={2}` to `Recipe`, it will return JSX containing `2 cups of water`. Always. 
+כאשר תעביר את `drinkers={2}` ל-`Recipe`, הוא יחזיר את JSX המכיל `2 cups of water`. תָמִיד.
 
-If you pass `drinkers={4}`, it will return JSX containing `4 cups of water`. Always.
+אם תעבור את `drinkers={4}`, הוא יחזיר את JSX המכיל `4 cups of water`. תָמִיד.
 
-Just like a math formula. 
+ממש כמו נוסחה מתמטית.
 
-You could think of your components as recipes: if you follow them and don't introduce new ingredients during the cooking process, you will get the same dish every time. That "dish" is the JSX that the component serves to React to [render.](/learn/render-and-commit)
+אתה יכול לחשוב על הרכיבים שלך כעל מתכונים: אם תעקבו אחריהם ולא תכניסו מרכיבים חדשים בתהליך הבישול, תקבלו את אותה המנה בכל פעם. ה"צלחת" הזו היא ה-JSX שהרכיב מגיש ל-React ל-[עיבוד.](/learn/render-and-commit)
 
 <Illustration src="/images/docs/illustrations/i_puritea-recipe.png" alt="A tea recipe for x people: take x cups of water, add x spoons of tea and 0.5x spoons of spices, and 0.5x cups of milk" />
 
-## Side Effects: (un)intended consequences {/*side-effects-unintended-consequences*/}
+## תופעות לוואי: השלכות (לא) מתוכננות {/*side-effects-unintended-consequences*/}
 
-React's rendering process must always be pure. Components should only *return* their JSX, and not *change* any objects or variables that existed before rendering—that would make them impure!
+תהליך העיבוד של React חייב להיות טהור תמיד. רכיבים צריכים רק *להחזיר* את JSX שלהם, ולא *לשנות* אובייקטים או משתנים שהיו קיימים לפני העיבוד - מה שיהפוך אותם לטמאים!
 
-Here is a component that breaks this rule:
+הנה רכיב ששובר את הכלל הזה:
 
 <Sandpack>
 
@@ -115,11 +115,11 @@ export default function TeaSet() {
 
 </Sandpack>
 
-This component is reading and writing a `guest` variable declared outside of it. This means that **calling this component multiple times will produce different JSX!** And what's more, if _other_ components read `guest`, they will produce different JSX, too, depending on when they were rendered! That's not predictable.
+רכיב זה קורא וכותב משתנה `guest` המוצהר מחוץ לו. זה אומר ש**קריאה לרכיב זה מספר פעמים תפיק JSX שונה!** ויותר מכך, אם _שאר_ רכיבים יקראו `guest`, הם יפיקו גם JSX שונה, בהתאם למועד העיבוד שלהם! זה לא צפוי.
 
-Going back to our formula <Math><MathI>y</MathI> = 2<MathI>x</MathI></Math>, now even if <Math><MathI>x</MathI> = 2</Math>, we cannot trust that <Math><MathI>y</MathI> = 4</Math>. Our tests could fail, our users would be baffled, planes would fall out of the sky—you can see how this would lead to confusing bugs!
+אם נחזור לנוסחה שלנו <Math><MathI>y</MathI> = 2<MathI>x</MathI></Math>, כעת גם אם <Math><MathI>x</MathI> = 2</Math>, איננו יכולים לסמוך על כך ש<Math><MathI>y</MathI> = 4</Math>. הבדיקות שלנו עלולות להיכשל, ה-users שלנו יהיו מבולבלים, מטוסים ייפלו מהשמיים - אתם יכולים לראות איך זה יוביל לבאגים מבלבלים!
 
-You can fix this component by [passing `guest` as a prop instead](/learn/passing-props-to-a-component):
+אתה יכול לתקן את הרכיב הזה על ידי [העברת `guest` כאביזר במקום](/learn/passing-props-to-a-component):
 
 <Sandpack>
 
@@ -141,31 +141,31 @@ export default function TeaSet() {
 
 </Sandpack>
 
-Now your component is pure, as the JSX it returns only depends on the `guest` prop.
+כעת הרכיב שלך טהור, מכיוון שה-JSX שהוא מחזיר תלוי רק באביזר `guest`.
 
-In general, you should not expect your components to be rendered in any particular order. It doesn't matter if you call <Math><MathI>y</MathI> = 2<MathI>x</MathI></Math> before or after <Math><MathI>y</MathI> = 5<MathI>x</MathI></Math>: both formulas will resolve independently of each other. In the same way, each component should only "think for itself", and not attempt to coordinate with or depend upon others during rendering. Rendering is like a school exam: each component should calculate JSX on their own!
+באופן כללי, אין לצפות שהרכיבים שלך יוצגו בסדר מסוים. זה לא משנה אם אתה קורא <Math><MathI>y</MathI> = 2<MathI>x</MathI></Math> לפני או אחרי <Math><MathI>y</MathI> = 5<MathI>x</MathI></Math>: שתי הנוסחאות ייפתרו ללא תלות זו בזו. באותו אופן, כל רכיב צריך רק "לחשוב על עצמו", ולא לנסות לתאם או להיות תלוי באחרים במהלך העיבוד. עיבוד הוא כמו בחינה בבית הספר: כל רכיב צריך לחשב JSX בעצמו!
 
 <DeepDive>
 
-#### Detecting impure calculations with StrictMode {/*detecting-impure-calculations-with-strict-mode*/}
+#### זיהוי חישובים לא טהורים עם StrictMode {/*detecting-impure-calculations-with-strict-mode*/}
 
-Although you might not have used them all yet, in React there are three kinds of inputs that you can read while rendering: [props](/learn/passing-props-to-a-component), [state](/learn/state-a-components-memory), and [context.](/learn/passing-data-deeply-with-context) You should always treat these inputs as read-only.
+למרות שאולי עדיין לא useד את כולם, ב-React ישנם שלושה סוגים של קלט שניתן לקרוא תוך כדי רינדור: [props](/learn/passing-props-to-a-component), [state](/learn/state__-a-component) [הקשר.](/learn/passing-data-deeply-with-context) אתה תמיד צריך להתייחס לקלט אלה כאל קריאה בלבד.
 
-When you want to *change* something in response to user input, you should [set state](/learn/state-a-components-memory) instead of writing to a variable. You should never change preexisting variables or objects while your component is rendering.
+כאשר אתה רוצה *לשנות* משהו בתגובה לקלט user, עליך [להגדיר state](/learn/state-a-components-memory) במקום לכתוב למשתנה. לעולם אל תשנה משתנים או אובייקטים קיימים בזמן שהרכיב שלך מעבד.
 
-React offers a "Strict Mode" in which it calls each component's function twice during development. **By calling the component functions twice, Strict Mode helps find components that break these rules.**
+React מציע "מצב קפדני" בו הוא קורא לפונקציה של כל רכיב פעמיים במהלך הפיתוח. **על ידי קריאה לפונקציות הרכיב פעמיים, מצב קפדני עוזר למצוא רכיבים שמפרים את הכללים האלה.**
 
-Notice how the original example displayed "Guest #2", "Guest #4", and "Guest #6" instead of "Guest #1", "Guest #2", and "Guest #3". The original function was impure, so calling it twice broke it. But the fixed pure version works even if the function is called twice every time. **Pure functions only calculate, so calling them twice won't change anything**--just like calling `double(2)` twice doesn't change what's returned, and solving <Math><MathI>y</MathI> = 2<MathI>x</MathI></Math> twice doesn't change what <MathI>y</MathI> is. Same inputs, same outputs. Always.
+שימו לב כיצד הדוגמה המקורית הציגה "אורח מס' 2", "אורח מס' 4" ו"אורח מס' 6" במקום "אורח מס' 1", "אורח מס' 2" ו"אורח מס' 3". הפונקציה המקורית הייתה לא טהורה, אז הקריאה לה פעמיים שברה אותה. אבל הגרסה הטהורה הקבועה עובדת גם אם הפונקציה נקראת פעמיים בכל פעם. **פונקציות טהורות מחושבות רק, כך שקריאה להן פעמיים לא תשנה שום דבר**--בדיוק כמו שקריאה ל-`double(2)` פעמיים לא משנה את מה שמוחזר, ופתרון <Math><MathI>y</MathI> = 2<MathI>x</MathI></Math> פעמיים לא משנה מה זה <MathI>y</MathI>. אותן כניסות, אותן יציאות. תָמִיד.
 
-Strict Mode has no effect in production, so it won't slow down the app for your users. To opt into Strict Mode, you can wrap your root component into `<React.StrictMode>`. Some frameworks do this by default.
+למצב קפדני אין השפעה בייצור, כך שהוא לא יאט את האפליקציה עבור ה-users שלכם. כדי להצטרף למצב קפדני, אתה יכול לעטוף את רכיב השורש שלך לתוך `<React.StrictMode>`. מסגרות מסוימות עושות זאת כברירת מחדל.
 
 </DeepDive>
 
-### Local mutation: Your component's little secret {/*local-mutation-your-components-little-secret*/}
+### מוטציה מקומית: הסוד הקטן של הרכיב שלך {/*local-mutation-your-components-little-secret*/}
 
-In the above example, the problem was that the component changed a *preexisting* variable while rendering. This is often called a **"mutation"** to make it sound a bit scarier. Pure functions don't mutate variables outside of the function's scope or objects that were created before the call—that makes them impure!
+בדוגמה שלמעלה, הבעיה הייתה שהרכיב שינה משתנה *קיים* בזמן הרינדור. זה נקרא לעתים קרובות **"מוטציה"** כדי לגרום לזה להישמע קצת יותר מפחיד. פונקציות טהורות אינן מבצעות מוטציה של משתנים מחוץ להיקף הפונקציה או לאובייקטים שנוצרו לפני הקריאה - מה שהופך אותם לטמאים!
 
-However, **it's completely fine to change variables and objects that you've *just* created while rendering.** In this example, you create an `[]` array, assign it to a `cups` variable, and then `push` a dozen cups into it:
+עם זאת, **זה בסדר גמור לשנות משתנים ואובייקטים שיצרת *רק* תוך כדי רינדור.** בדוגמה זו, אתה יוצר מערך `[]`, מקצה אותו למשתנה `cups` ולאחר מכן `push` תריסר כוסות לתוכו:
 
 <Sandpack>
 
@@ -185,43 +185,43 @@ export default function TeaGathering() {
 
 </Sandpack>
 
-If the `cups` variable or the `[]` array were created outside the `TeaGathering` function, this would be a huge problem! You would be changing a *preexisting* object by pushing items into that array.
+אם המשתנה `cups` או מערך `[]` נוצרו מחוץ לפונקציה `TeaGathering`, זו תהיה בעיה ענקית! היית משנה אובייקט *קיים* על ידי דחיפת פריטים למערך הזה.
 
-However, it's fine because you've created them *during the same render*, inside `TeaGathering`. No code outside of `TeaGathering` will ever know that this happened. This is called **"local mutation"**—it's like your component's little secret.
+עם זאת, זה בסדר כי use יצרת אותם *במהלך אותו עיבוד*, בתוך `TeaGathering`. אף קוד מחוץ ל-`TeaGathering` לא יידע לעולם שזה קרה. זה נקרא **"מוטציה מקומית"** - זה כמו הסוד הקטן של הרכיב שלך.
 
-## Where you _can_ cause side effects {/*where-you-_can_-cause-side-effects*/}
+## איפה אתה _יכול_ לתתuse תופעות לוואי {/*where-you-_can_-cause-side-effects*/}
 
-While functional programming relies heavily on purity, at some point, somewhere, _something_ has to change. That's kind of the point of programming! These changes—updating the screen, starting an animation, changing the data—are called **side effects.** They're things that happen _"on the side"_, not during rendering.
+בעוד שתכנות פונקציונלי מסתמך במידה רבה על טוהר, בשלב מסוים, איפשהו, _משהו_ חייב להשתנות. זו בדיוק הנקודה של התכנות! השינויים האלה - עדכון המסך, התחלת אנימציה, שינוי הנתונים - נקראים **תופעות לוואי.** אלו דברים שקורים _"בצד"_, לא במהלך העיבוד.
 
-In React, **side effects usually belong inside [event handlers.](/learn/responding-to-events)** Event handlers are functions that React runs when you perform some action—for example, when you click a button. Even though event handlers are defined *inside* your component, they don't run *during* rendering! **So event handlers don't need to be pure.**
+ב-React, **תופעות הלוואי בדרך כלל שייכות ל[מטפלים באירועים.](/learn/reponding-to-events)** מטפלי אירועים הם פונקציות ש-React פועלות כאשר אתה מבצע פעולה כלשהי - לדוגמה, כאשר אתה לוחץ על כפתור. למרות שמטפלי אירועים מוגדרים *בתוך* הרכיב שלך, הם לא פועלים *במהלך* רינדור! **אז מטפלי אירועים לא צריכים להיות טהורים.**
 
-If you've exhausted all other options and can't find the right event handler for your side effect, you can still attach it to your returned JSX with a [`useEffect`](/reference/react/useEffect) call in your component. This tells React to execute it later, after rendering, when side effects are allowed. **However, this approach should be your last resort.**
+אם מיצית את כל האפשרויות האחרות ואינך מוצא את המטפל המתאים לאירועים עבור תופעת הלוואי שלך, אתה עדיין יכול לצרף אותו ל-JSX שהוחזר באמצעות קריאה [`useEffect`](/reference/react/useEffect) ברכיב שלך. זה אומר לReact לבצע אותו מאוחר יותר, לאחר רינדור, כאשר תופעות לוואי מותרות. **עם זאת, גישה זו צריכה להיות המוצא האחרון שלך.**
 
-When possible, try to express your logic with rendering alone. You'll be surprised how far this can take you!
+במידת האפשר, נסה להביע את ההיגיון שלך באמצעות רינדור בלבד. תופתעו כמה רחוק זה יכול לקחת אתכם!
 
 <DeepDive>
 
-#### Why does React care about purity? {/*why-does-react-care-about-purity*/}
+#### למה ל-React אכפת מהטוהר? {/*why-does-react-care-about-purity*/}
 
-Writing pure functions takes some habit and discipline. But it also unlocks marvelous opportunities:
+כתיבת פונקציות טהורות דורשת קצת הרגל ומשמעת. אבל זה גם פותח הזדמנויות נפלאות:
 
-* Your components could run in a different environment—for example, on the server! Since they return the same result for the same inputs, one component can serve many user requests.
-* You can improve performance by [skipping rendering](/reference/react/memo) components whose inputs have not changed. This is safe because pure functions always return the same results, so they are safe to cache.
-* If some data changes in the middle of rendering a deep component tree, React can restart rendering without wasting time to finish the outdated render. Purity makes it safe to stop calculating at any time.
+* הרכיבים שלך יכולים לפעול בסביבה אחרת - לדוגמה, בשרת! מכיוון שהם מחזירים את אותה תוצאה עבור אותן קלט, רכיב אחד יכול לשרת בקשות user רבות.
+* אתה יכול לשפר את הביצועים על ידי [דילוג על רינדור](/reference/react/memo) רכיבים שהקלט שלהם לא השתנה. זה בטוח מכיוון שפונקציות טהורות תמיד מחזירות את אותן תוצאות, כך שהן בטוחות לאחסון במטמון.
+* אם נתונים מסוימים משתנים באמצע רינדור עץ רכיבים עמוק, React יכול להתחיל את הרינדור מבלי לבזבז זמן כדי לסיים את הרינדור המיושן. טוהר מבטיח להפסיק את החישוב בכל עת.
 
-Every new React feature we're building takes advantage of purity. From data fetching to animations to performance, keeping components pure unlocks the power of the React paradigm.
+כל תכונה חדשה של React שאנו בונים מנצלת את הטוהר. מאחזור נתונים ועד אנימציות ועד ביצועים, שמירה על ניקיון הרכיבים פותחת את הכוח של פרדיגמת React.
 
 </DeepDive>
 
 <Recap>
 
-* A component must be pure, meaning:
-  * **It minds its own business.** It should not change any objects or variables that existed before rendering.
-  * **Same inputs, same output.** Given the same inputs, a component should always return the same JSX. 
-* Rendering can happen at any time, so components should not depend on each others' rendering sequence.
-* You should not mutate any of the inputs that your components use for rendering. That includes props, state, and context. To update the screen, ["set" state](/learn/state-a-components-memory) instead of mutating preexisting objects.
-* Strive to express your component's logic in the JSX you return. When you need to "change things", you'll usually want to do it in an event handler. As a last resort, you can `useEffect`.
-* Writing pure functions takes a bit of practice, but it unlocks the power of React's paradigm.
+* רכיב חייב להיות טהור, כלומר:
+  * **זה דואג לעניינים שלו.** זה לא אמור לשנות אובייקטים או משתנים שהיו קיימים לפני העיבוד.
+  * **אותן כניסות, אותו פלט.** בהינתן אותן כניסות, רכיב צריך תמיד להחזיר את אותו JSX. 
+* עיבוד יכול להתרחש בכל עת, כך שרכיבים לא צריכים להיות תלויים ברצף העיבוד של זה.
+* אסור לשנות אף אחת מהכניסות שהרכיבים שלך use לעיבוד. זה כולל props, state והקשר. כדי לעדכן את המסך, ["הגדר" state](/learn/state-a-components-memory) במקום לבצע מוטציה של אובייקטים קיימים.
+* השתדל לבטא את ההיגיון של הרכיב שלך ב-JSX שאתה מחזיר. כאשר אתה צריך "לשנות דברים", בדרך כלל תרצה לעשות זאת במטפל באירועים. כמוצא אחרון, אתה יכול `useEffect`.
+* כתיבת פונקציות טהורות דורשת מעט תרגול, אבל היא פותחת את הכוח של הפרדיגמה של React.
 
 </Recap>
 
@@ -229,15 +229,15 @@ Every new React feature we're building takes advantage of purity. From data fetc
   
 <Challenges>
 
-#### Fix a broken clock {/*fix-a-broken-clock*/}
+#### תקן שעון מקולקל {/*fix-a-broken-clock*/}
 
-This component tries to set the `<h1>`'s CSS class to `"night"` during the time from midnight to six hours in the morning, and `"day"` at all other times. However, it doesn't work. Can you fix this component?
+רכיב זה מנסה להגדיר את המחלקה CSS של `<h1>` ל-`"night"` במהלך הזמן מחצות עד שש שעות בבוקר, ו`"day"` בכל הזמנים האחרים. עם זאת, זה לא עובד. האם אתה יכול לתקן את הרכיב הזה?
 
-You can verify whether your solution works by temporarily changing the computer's timezone. When the current time is between midnight and six in the morning, the clock should have inverted colors!
+תוכל לוודא אם הפתרון שלך עובד על ידי שינוי זמני של אזור הזמן של המחשב. כאשר השעה הנוכחית היא בין חצות לשש בבוקר, השעון צריך להיות בצבעים הפוכים!
 
 <Hint>
 
-Rendering is a *calculation*, it shouldn't try to "do" things. Can you express the same idea differently?
+רינדור הוא *חישוב*, הוא לא צריך לנסות "לעשות" דברים. האם אתה יכול לבטא את אותו רעיון אחרת?
 
 </Hint>
 
@@ -301,7 +301,7 @@ body > * {
 
 <Solution>
 
-You can fix this component by calculating the `className` and including it in the render output:
+אתה יכול לתקן את הרכיב הזה על ידי חישוב ה-`className` והכללתו בפלט העיבוד:
 
 <Sandpack>
 
@@ -362,19 +362,19 @@ body > * {
 
 </Sandpack>
 
-In this example, the side effect (modifying the DOM) was not necessary at all. You only needed to return JSX.
+בדוגמה זו, תופעת הלוואי (שינוי ה-DOM) לא הייתה הכרחית כלל. אתה רק צריך להחזיר JSX.
 
 </Solution>
 
-#### Fix a broken profile {/*fix-a-broken-profile*/}
+#### תקן פרופיל שבור {/*fix-a-broken-profile*/}
 
-Two `Profile` components are rendered side by side with different data. Press "Collapse" on the first profile, and then "Expand" it. You'll notice that both profiles now show the same person. This is a bug.
+שני רכיבי `Profile` מוצגים זה לצד זה עם נתונים שונים. לחץ על "כווץ" בפרופיל הראשון ולאחר מכן "הרחב" אותו. תבחין ששני הפרופילים מציגים כעת את אותו אדם. זהו באג.
 
-Find the cause of the bug and fix it.
+מצא את ה-cause של הבאג ותקן אותו.
 
 <Hint>
 
-The buggy code is in `Profile.js`. Make sure you read it all from top to bottom!
+קוד הבאגי נמצא ב-`Profile.js`. הקפד לקרוא הכל מלמעלה למטה!
 
 </Hint>
 
@@ -475,9 +475,9 @@ h1 { margin: 5px; font-size: 18px; }
 
 <Solution>
 
-The problem is that the `Profile` component writes to a preexisting variable called `currentPerson`, and the `Header` and `Avatar` components read from it. This makes *all three of them* impure and difficult to predict.
+הבעיה היא שהרכיב `Profile` כותב למשתנה קיים שנקרא `currentPerson`, והרכיבים `Header` ו`Avatar` קוראים ממנו. זה הופך את *שלושתם* לטמאים וקשים לניבוי.
 
-To fix the bug, remove the `currentPerson` variable. Instead, pass all information from `Profile` to `Header` and `Avatar` via props. You'll need to add a `person` prop to both components and pass it all the way down.
+כדי לתקן את הבאג, הסר את המשתנה `currentPerson`. במקום זאת, העבר את כל המידע מ-`Profile` ל-`Header` ו-`Avatar` דרך props. תצטרך להוסיף אבזר `person` לשני הרכיבים ולהעביר אותו עד הסוף.
 
 <Sandpack>
 
@@ -571,15 +571,15 @@ h1 { margin: 5px; font-size: 18px; }
 
 </Sandpack>
 
-Remember that React does not guarantee that component functions will execute in any particular order, so you can't communicate between them by setting variables. All communication must happen through props.
+זכור שReact אינו מבטיח שפונקציות רכיבים יבוצעו בסדר מסוים, כך שלא תוכל לתקשר ביניהן על ידי הגדרת משתנים. כל תקשורת חייבת להתרחש דרך props.
 
 </Solution>
 
-#### Fix a broken story tray {/*fix-a-broken-story-tray*/}
+#### תקן מגש סיפור שבור {/*fix-a-broken-story-tray*/}
 
-The CEO of your company is asking you to add "stories" to your online clock app, and you can't say no. You've written a `StoryTray` component that accepts a list of `stories`, followed by a "Create Story" placeholder.
+המנכ"ל של החברה שלך מבקש ממך להוסיף "סיפורים" לאפליקציית השעון המקוון שלך, ואתה לא יכול להגיד לא. כתבת רכיב `StoryTray` שמקבל רשימה של `stories`, ואחריו מציין מיקום "צור סיפור".
 
-You implemented the "Create Story" placeholder by pushing one more fake story at the end of the `stories` array that you receive as a prop. But for some reason, "Create Story" appears more than once. Fix the issue.
+יישמת את מציין המיקום "צור סיפור" על ידי דחיפה של סיפור מזויף אחד נוסף בסוף מערך `stories` שאתה מקבל כאביזר. אבל משום מה, "צור סיפור" מופיע יותר מפעם אחת. תקן את הבעיה.
 
 <Sandpack>
 
@@ -675,11 +675,11 @@ li {
 
 <Solution>
 
-Notice how whenever the clock updates, "Create Story" is added *twice*. This serves as a hint that we have a mutation during rendering--Strict Mode calls components twice to make these issues more noticeable.
+שימו לב איך בכל פעם שהשעון מתעדכן, "צור סיפור" מתווסף *פעמיים*. זה משמש כרמז לכך שיש לנו מוטציה במהלך העיבוד - מצב קפדני קורא לרכיבים פעמיים כדי להפוך את הבעיות הללו לבולטות יותר.
 
-`StoryTray` function is not pure. By calling `push` on the received `stories` array (a prop!), it is mutating an object that was created *before* `StoryTray` started rendering. This makes it buggy and very difficult to predict.
+פונקציית `StoryTray` אינה טהורה. על ידי קריאה ל-`push` במערך `stories` שהתקבל (אחיזה!), זה משנה אובייקט שנוצר *לפני* `StoryTray` התחיל לעבד. זה הופך אותו לכרכרי וקשה מאוד לחזות אותו.
 
-The simplest fix is to not touch the array at all, and render "Create Story" separately:
+התיקון הפשוט ביותר הוא לא לגעת במערך כלל, ולעבד את "צור סיפור" בנפרד:
 
 <Sandpack>
 
@@ -763,7 +763,7 @@ li {
 
 </Sandpack>
 
-Alternatively, you could create a _new_ array (by copying the existing one) before you push an item into it:
+לחלופין, תוכל ליצור מערך _new_ (על ידי העתקת הקיים) לפני שאתה דוחף פריט לתוכו:
 
 <Sandpack>
 
@@ -855,9 +855,9 @@ li {
 
 </Sandpack>
 
-This keeps your mutation local and your rendering function pure. However, you still need to be careful: for example, if you tried to change any of the array's existing items, you'd have to clone those items too.
+זה שומר על המוטציה שלך מקומית ופונקציית העיבוד שלך טהורה. עם זאת, אתה עדיין צריך להיות זהיר: למשל, אם ניסית לשנות כל אחד מהפריטים הקיימים של המערך, תצטרך לשכפל גם את הפריטים האלה.
 
-It is useful to remember which operations on arrays mutate them, and which don't. For example, `push`, `pop`, `reverse`, and `sort` will mutate the original array, but `slice`, `filter`, and `map` will create a new one.
+זה useמלא לזכור אילו פעולות על מערכים מבצעות מוטציה שלהם, ואילו לא. לדוגמה, `push`, `pop`, `reverse` ו-`sort` ישתנו את המערך המקורי, אבל `slice`, `filter` ו`map` ייצרו מערך חדש.
 
 </Solution>
 

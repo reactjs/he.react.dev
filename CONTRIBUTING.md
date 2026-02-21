@@ -1,135 +1,125 @@
 # Contributing
 
-Thank you for your interest in contributing to the React Docs!
+תודה על הרצון לתרום לתיעוד של React.
 
 ## Code of Conduct
 
-Facebook has adopted a Code of Conduct that we expect project
-participants to adhere to. Please [read the full text](https://code.facebook.com/codeofconduct)
-so that you can understand what actions will and will not be tolerated.
+יש לפעול לפי קוד ההתנהגות של הפרויקט:
+https://code.facebook.com/codeofconduct
 
-## Technical Writing Tips
+## הנחיות כתיבה
 
-This is a [good summary](https://medium.com/@kvosswinkel/coding-like-a-journalist-ee52360a16bc) for things to keep in mind when writing technical docs.
+לתיעוד יש אזורים שונים עם מטרות שונות, ולכן גם סגנון שונה. כשעורכים דף קיים, שומרים על הטון של אותו אזור.
 
-## Guidelines for Text
+1. `Learn React`:
+   - בנוי כלמידה הדרגתית
+   - יש להימנע מתלויות מחזוריות בין דפים
+   - קורא אמור להיות מסוגל לעבור מהדף הראשון לאחרון ללא "קפיצות קדימה"
+2. `API Reference`:
+   - מאורגן לפי APIs
+   - צריך להיות מקיף ומדויק
+   - מקרי קצה והמלצות מפורטות צריכים להופיע כאן
 
-**Different sections intentionally have different styles.**
+## הנחיות לקוד בדוגמאות
 
-The documentation is divided into sections to cater to different learning styles and use cases. When editing an article, try to match the surrounding text in tone and style. When creating a new article, try to match the tone of the other articles in the same section. Learn about the motivation behind each section below.
+1. העדיפו JSX על `createElement` (אלא אם הדף עוסק ספציפית ב-`createElement`).
+2. העדיפו `const`, ואם צריך אז `let`; לא להשתמש ב-`var`.
+3. אם אין יתרון ברור ל-ES6 חדש, אפשר להשתמש ב-ES5 ברור ופשוט.
+4. לדוגמאות ברמת top-level, לרוב עדיף `function` בשם מאשר arrow function.
+5. אין להשתמש ביכולות לא סטנדרטיות בלי לציין במפורש שהן ניסיוניות.
 
-**[Learn React](https://react.dev/learn)** is designed to introduce fundamental concepts in a step-by-step way. Each individual article in Learn React builds on the knowledge from the previous ones, so make sure not to add any "cyclical dependencies" between them. It is important that the reader can start with the first article and work their way to the last Learn React article without ever having to "look ahead" for a definition. This explains some ordering choices (e.g. that state is explained before events, or that "thinking in React" doesn't use refs). Learn React also serves as a reference manual for React concepts, so it is important to be very strict about their definitions and relationships between them.
+## סגנון קוד
 
-**[API Reference](https://react.dev/reference/react)** is organized by APIs rather than concepts. It is intended to be exhaustive. Any corner cases or recommendations that were skipped for brevity in Learn React should be mentioned in the reference documentation for the corresponding APIs.
+1. להשתמש ב-`;`
+2. אין רווח בין שם פונקציה לסוגריים
+3. במקרה של ספק, להיצמד ל-Prettier
 
-**Try to follow your own instructions.**
+## הדגשת שורות בקוד Markdown
 
-When writing step-by-step instructions (e.g. how to install something), try to forget everything you know about the topic, and actually follow the instructions you wrote, a single step at time. Often you will discover that there is implicit knowledge that you forgot to mention, or that there are missing or out-of-order steps in the instructions. Bonus points for getting *somebody else* to follow the steps and watching what they struggle with. Often it would be something very simple that you have not anticipated.
+שפת הדגשה:
 
-## Guidelines for Code Examples
-
-### Syntax
-
-#### Prefer JSX to `createElement`.
-
-Ignore this if you're specifically describing `createElement`.
-
-#### Use `const` where possible, otherwise `let`. Don't use `var`.
-
-Ignore this if you're specifically writing about ES5.
-
-#### Don't use ES6 features when equivalent ES5 features have no downsides.
-
-Remember that ES6 is still new to a lot of people. While we use it in many places (`const` / `let`, classes, arrow functions), if the equivalent ES5 code is just as straightforward and readable, consider using it.
-
-In particular, you should prefer named `function` declarations over `const myFunction = () => ...` arrows for top-level functions. However, you *should* use arrow functions where they provide a tangible improvement (such as preserving `this` context inside a component). Consider both sides of the tradeoff when deciding whether to use a new feature.
-
-#### Don't use features that aren't standardized yet.
-
-For example, **don't** write this:
-
-```js
-class MyComponent extends React.Component {
-  state = {value: ''};
-  handleChange = (e) => {
-    this.setState({value: e.target.value});
-  };
-}
-```
-
-Instead, **do** write this:
-
-```js
-class MyComponent extends React.Component {
-  constructor(props) {
-    super(props);
-    this.handleChange = this.handleChange.bind(this);
-    this.state = {value: ''};
-  }
-  handleChange(e) {
-    this.setState({value: e.target.value});
-  }
-}
-```
-
-Ignore this rule if you're specifically describing an experimental proposal. Make sure to mention its experimental nature in the code and in the surrounding text.
-
-### Style
-
-- Use semicolons.
-- No space between function names and parens (`method() {}` not `method () {}`).
-- When in doubt, use the default style favored by [Prettier](https://prettier.io/playground/).
-
-### Highlighting
-
-Use `js` as the highlighting language in Markdown code blocks:
-
-````
+````md
 ```js
 // code
 ```
 ````
 
-Sometimes you'll see blocks with numbers.  
-They tell the website to highlight specific lines.
+הדגשת שורה בודדת:
 
-You can highlight a single line:
-
-````
+````md
 ```js {2}
 function hello() {
-  // this line will get highlighted
+  // highlighted
 }
 ```
 ````
 
-A range of lines:
+טווח שורות:
 
-````
+````md
 ```js {2-4}
 function hello() {
-  // these lines
-  // will get
-  // highlighted
+  // highlighted range
 }
 ```
 ````
 
-Or even multiple ranges:
+כמה טווחים:
 
-````
+````md
 ```js {2-4,6}
 function hello() {
-  // these lines
-  // will get
-  // highlighted
+  // highlighted lines
   console.log('hello');
-  // also this one
+  // also highlighted
   console.log('there');
 }
 ```
 ````
 
-Be mindful that if you move some code in an example with highlighting, you also need to update the highlighting.
+אם מזיזים קוד בדוגמה, צריך לעדכן גם את שורות ההדגשה.
 
-Don't be afraid to often use highlighting! It is very valuable when you need to focus the reader's attention on a particular detail that's easy to miss.
+## תהליך עבודה
+
+### יצירת branch
+
+1. עברו ל-`main` מכל תיקייה בריפו המקומי:
+   - `git checkout main`
+2. משכו את העדכונים האחרונים:
+   - `git pull origin main`
+3. צרו branch חדש עם שם מתאים:
+   - `git checkout -b the-name-of-my-branch`
+
+### ביצוע השינוי
+
+1. פעלו לפי הוראות `Running locally`.
+2. שמרו את הקבצים ובדקו בדפדפן.
+3. שינויים בקומפוננטות React תחת `src` ייטענו עם `hot-reload`.
+4. שינויים בקובצי Markdown תחת `content` ייטענו עם `hot-reload`.
+5. אם עובדים עם plugins, ייתכן שתצטרכו למחוק את תיקיית `.cache` ולהפעיל את השרת מחדש.
+
+### בדיקות
+
+1. אם אפשר, בדקו כל שינוי ויזואלי בגרסאות האחרונות של דפדפנים נפוצים, גם בדסקטופ וגם במובייל.
+2. הריצו:
+   - `yarn check-all`
+3. הפקודה מריצה `Prettier`, `ESLint` ובדיקת types.
+
+### Commit ו-Push
+
+1. בצעו stage ו-commit:
+   - `git add -A && git commit -m "My message"`
+2. העלו את ה-branch:
+   - `git push my-fork-name the-name-of-my-branch`
+3. היכנסו לריפו של `react.dev` ב-GitHub ותראו את ה-branches שהועלו לאחרונה.
+4. המשיכו לפי ההנחיות של GitHub לפתיחת PR.
+5. אם אפשר, צרפו צילומי מסך לשינויים ויזואליים. לאחר push ל-GitHub יופעל גם preview build.
+
+## תרגום לעברית
+
+בעת תרגום דפים:
+
+1. משאירים קוד, שמות APIs, פונקציות ופקודות באנגלית.
+2. מתרגמים כותרות, פסקאות והסברים לעברית.
+3. שומרים על מבנה Markdown/MDX ועל Frontmatter תקין.
+4. שומרים על עקביות מונחים בין דפים.

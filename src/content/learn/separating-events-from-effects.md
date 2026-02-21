@@ -1,37 +1,37 @@
 ---
-title: 'Separating Events from Effects'
+title: "הפרדת אירועים מ-אפקטים"
 ---
 
 <Intro>
 
-Event handlers only re-run when you perform the same interaction again. Unlike event handlers, Effects re-synchronize if some value they read, like a prop or a state variable, is different from what it was during the last render. Sometimes, you also want a mix of both behaviors: an Effect that re-runs in response to some values but not others. This page will teach you how to do that.
+מטפלי אירועים פועלים מחדש רק כאשר אתה מבצע שוב את אותה אינטראקציה. שלא כמו מטפלים באירועים, אפקטים מסתנכרנים מחדש אם ערך כלשהו שהם קוראים, כמו אב או משתנה מצב, שונה ממה שהיה במהלך העיבוד האחרון. לפעמים, אתה גם רוצה שילוב של שתי ההתנהגויות: אפקט המופעל מחדש בתגובה לערכים מסוימים אך לא לאחרים. הדף הזה ילמד אותך איך לעשות זאת.
 
 </Intro>
 
 <YouWillLearn>
 
-- How to choose between an event handler and an Effect
-- Why Effects are reactive, and event handlers are not
-- What to do when you want a part of your Effect's code to not be reactive
-- What Effect Events are, and how to extract them from your Effects
-- How to read the latest props and state from Effects using Effect Events
+- כיצד לבחור בין מטפל באירועים לבין אפקט
+- מדוע אפקטים מגיבים, ומטפלי אירועים אינם
+- מה לעשות כאשר אתה רוצה שחלק מהקוד של האפקט שלך לא יהיה תגובתי
+- מהם אירועי אפקט וכיצד לחלץ אותם מהאפקטים שלך
+- הכי לקרוא את הprops וstate העדכניים מאפקטים באמצעות אפקט אירועים
 
 </YouWillLearn>
 
-## Choosing between event handlers and Effects {/*choosing-between-event-handlers-and-effects*/}
+## בחירה בין מטפלי אירועים לאפקטים {/*בחירה-בין-event-handlers-and-effects*/}
 
-First, let's recap the difference between event handlers and Effects.
+ראשית, בואו נסכם את ההבדל בין מטפלי אירועים לאפקטים.
 
-Imagine you're implementing a chat room component. Your requirements look like this:
+תאר לעצמך שאתה מיישם רכיב של חדר צ'אט. הדרישות שלך נראות כך:
 
-1. Your component should automatically connect to the selected chat room.
-1. When you click the "Send" button, it should send a message to the chat.
+1. הרכיב שלך אמור להתחבר אוטומטית לחדר הצ'אט הנבחר.
+1. כאשר אתה לוחץ על כפתור "שלח", זה אמור לשלוח הודעה לצ'אט.
 
-Let's say you've already implemented the code for them, but you're not sure where to put it. Should you use event handlers or Effects? Every time you need to answer this question, consider [*why* the code needs to run.](/learn/synchronizing-with-effects#what-are-effects-and-how-are-they-different-from-events)
+נניח את הקודם אבל אתה לא בטוח איפה לשים אותו. האם להשתמש ברופאי אירועים או אפקטים? בכל פעם שאתה צריך לענות על שאלה זו, שקול*למה* הקוד צריך לפעול.](/learn/synchronizing-with-effects#what-are-effects-and-how-the-the-different-from-events)
 
-### Event handlers run in response to specific interactions {/*event-handlers-run-in-response-to-specific-interactions*/}
+### מטפלי אירועים פועלים בתגובה לאינטראקציות {/*event-handlers-run-in-response-to-specific-interactions*/}
 
-From the user's perspective, sending a message should happen *because* the particular "Send" button was clicked. The user will get rather upset if you send their message at any other time or for any other reason. This is why sending a message should be an event handler. Event handlers let you handle specific interactions:
+מנקודת המבט של המשתמש, שליחת הודעה צריכה להתרחש *מכיוון* שנלחצה על כפתור ה"שלח" המסוים. המשתמש יתעצבן למדי אם תשלח את ההודעה שלו בכל זמן אחר או מכל סיבה אחרת. זו הסיבה ששליחת הודעה צריכה להיות מטפל באירועים. מטפלי אירועים מאפשרים לך לטפל באינטראקציות ספציפיות:
 
 ```js {4-6}
 function ChatRoom({ roomId }) {
@@ -50,13 +50,13 @@ function ChatRoom({ roomId }) {
 }
 ```
 
-With an event handler, you can be sure that `sendMessage(message)` will *only* run if the user presses the button.
+עם מטפל באירועים, אתה יכול להיות בטוח ש'סendMessage(message)' יפעל *רק* אם המשתמש ילחץ על הכפתור.
 
-### Effects run whenever synchronization is needed {/*effects-run-whenever-synchronization-is-needed*/}
+### אפקטים פועלים בכל פעם שיש צורך בסנכרון {/*effects-run-whenever-synchronization-is-needed*/}
 
-Recall that you also need to keep the component connected to the chat room. Where does that code go?
+זכור כי אתה גם צריך לשמור את הרכיב מחובר לחדר הצ'אט. לאן הולך הקוד הזה?
 
-The *reason* to run this code is not some particular interaction. It doesn't matter why or how the user navigated to the chat room screen. Now that they're looking at it and could interact with it, the component needs to stay connected to the selected chat server. Even if the chat room component was the initial screen of your app, and the user has not performed any interactions at all, you would *still* need to connect. This is why it's an Effect:
+*הסיבה* להפעיל את הקוד הזה אינה אינטראקציה מסוימת. זה לא משנה למה או איך המשתמש נווט למסך חדר הצ'אט. כעת, כשהם מסתכלים עליו ויכולים ליצור איתו אינטראקציה, הרכיב צריך להישאר מחובר לשרת הצ'אט שנבחר. גם אם רכיב חדר הצ'אט היה המסך הראשוני של האפליקציה שלך, והמשתמש לא ביצע אינטראקציות כלל, תצטרך *עדיין* להתחבר. זו הסיבה שזה אפקט:
 
 ```js {3-9}
 function ChatRoom({ roomId }) {
@@ -72,7 +72,7 @@ function ChatRoom({ roomId }) {
 }
 ```
 
-With this code, you can be sure that there is always an active connection to the currently selected chat server, *regardless* of the specific interactions performed by the user. Whether the user has only opened your app, selected a different room, or navigated to another screen and back, your Effect ensures that the component will *remain synchronized* with the currently selected room, and will [re-connect whenever it's necessary.](/learn/lifecycle-of-reactive-effects#why-synchronization-may-need-to-happen-more-than-once)
+עם קוד זה, אתה יכול להיות בטוח שתמיד יש חיבור פעיל לשרת הצ'אט שנבחר כעת, *ללא קשר* לאינטראקציות הספציפיות שמבצע משתמש. בין אם משתמש רק פתח את האפליקציה שלך, בחר חדר אחר או ניווט למסך אחר ובחזרה, האפקט שלך מבטיח שהרכיב *יישאר מסונכרן* עם החדר שנבחר עכשיו, ו[יתחבר מחדש בכל פעם שנדרש.](/learn/lifecycle-of-reactive-effects#why-synchronization-cany-reactive-to-han
 
 <Sandpack>
 
@@ -154,13 +154,13 @@ input, select { margin-right: 20px; }
 
 </Sandpack>
 
-## Reactive values and reactive logic {/*reactive-values-and-reactive-logic*/}
+## ערכים ריאקטיביים והיגיון תגובתי {/*reactive-values-and-reactive-logic*/}
 
-Intuitively, you could say that event handlers are always triggered "manually", for example by clicking a button. Effects, on the other hand, are "automatic": they run and re-run as often as it's needed to stay synchronized.
+באופן אינטואיטיבי, אפשר לומר שמטפלי אירועים תמיד מופעלים "ידנית", למשל על ידי לחיצה על כפתור. האפקטים, לעומת זאת, הם "אוטומטיים": הם פועלים ומופעלים מחדש בתדירות הנדרשת כדי להישאר מסונכרנים.
 
-There is a more precise way to think about this.
+יש דרך יותר מדויקת לחשוב על זה.
 
-Props, state, and variables declared inside your component's body are called <CodeStep step={2}>reactive values</CodeStep>. In this example, `serverUrl` is not a reactive value, but `roomId` and `message` are. They participate in the rendering data flow:
+props, מצב ומשתנים המוצהרים בתוך גוף הרכיב שלך נקראים <CodeStep step={2}> ערכים תגובתיים</CodeStep>. בדוגמה זו, `serverUrl` אינו ערך תגובתי, אבל `roomId` ו-`message` כן. הם משתתפים בעיבוד:
 
 ```js [[2, 3, "roomId"], [2, 4, "message"]]
 const serverUrl = 'https://localhost:1234';
@@ -172,16 +172,16 @@ function ChatRoom({ roomId }) {
 }
 ```
 
-Reactive values like these can change due to a re-render. For example, the user may edit the `message` or choose a different `roomId` in a dropdown. Event handlers and Effects respond to changes differently:
+ערכים תגובתיים כמו אלה יכולים להשתנות עקב עיבוד מחדש. לדוגמה, יכול להשתמש לערוך את ההודעה' או לבחור 'roomId' אחר בתפריט נפתח. מטפלי אירועים ואפקטים מגיבים לשינויים בצורה שונה:
 
-- **Logic inside event handlers is *not reactive.*** It will not run again unless the user performs the same interaction (e.g. a click) again. Event handlers can read reactive values without "reacting" to their changes.
-- **Logic inside Effects is *reactive.*** If your Effect reads a reactive value, [you have to specify it as a dependency.](/learn/lifecycle-of-reactive-effects#effects-react-to-reactive-values) Then, if a re-render causes that value to change, React will re-run your Effect's logic with the new value.
+- **ההיגיון בתוך מטפלי אירועים הוא *לא תגובתי.*** זה לא יפעל שוב אלא אם המשתמש יבצע שוב את אותה אינטראקציה (למשל, קליק). מטפלי אירועים יכולים לקרוא ערכים תגובתיים מבלי "להגיב" לשינויים שלהם.
+- **ההיגיון בתוך אפקטים הוא *reactive.*** אם האפקט שלך קורא ערך תגובתי, [עליך לציין אותו כתלות.](/learn/lifecycle-of-reactive-effects#effects-react-to-reactive-values) לאחר מכן, אם עיבוד גורם לערך זה החדש החידוש, React יפעיל את החידוש החדש שלך.
 
-Let's revisit the previous example to illustrate this difference.
+בואו נחזור על הדוגמה הקודמת כדי להמחיש את ההבדל הזה.
 
-### Logic inside event handlers is not reactive {/*logic-inside-event-handlers-is-not-reactive*/}
+### ההיגיון בתוך רופא אירועים אינו תגובתי {/*logic-inside-event-handlers-is-not-reactive*/}
 
-Take a look at this line of code. Should this logic be reactive or not?
+תסתכל על שורת הקוד הזו. האם ההיגיון הזה צריך להיות תגובתי או לא?
 
 ```js [[2, 2, "message"]]
     // ...
@@ -189,7 +189,7 @@ Take a look at this line of code. Should this logic be reactive or not?
     // ...
 ```
 
-From the user's perspective, **a change to the `message` does _not_ mean that they want to send a message.** It only means that the user is typing. In other words, the logic that sends a message should not be reactive. It should not run again only because the <CodeStep step={2}>reactive value</CodeStep> has changed. That's why it belongs in the event handler:
+מנקודת המבט של המשתמש, **שינוי ב'הודעה' _לא_ אומר שהוא רוצה לשלוח הודעה.** זה רק שהמשתמש מקליד. במילים אחרים, ההיגיון ששולח הודעה לא צריך להיות תגובתי. זה לא אמור לפעול רק בגלל ש<CodeStep step={2}>ערך התגובה</CodeStep> השתנה. בשביל זה שייך לרופא באירועים:
 
 ```js {2}
   function handleSendClick() {
@@ -197,11 +197,11 @@ From the user's perspective, **a change to the `message` does _not_ mean that th
   }
 ```
 
-Event handlers aren't reactive, so `sendMessage(message)` will only run when the user clicks the Send button.
+מרפאה אירועים אירועים ריאקטיביים, כך ששלחו הודעה(הודעה)' יפעל רק כאשר המשתמש ילחץ על כפתור השליחה.
 
-### Logic inside Effects is reactive {/*logic-inside-effects-is-reactive*/}
+### ההיגיון בתוך אפקטים הוא תגובתי {/*logic-inside-effects-is-reactive*/}
 
-Now let's return to these lines:
+כעת נחזור לשורות אלו:
 
 ```js [[2, 2, "roomId"]]
     // ...
@@ -210,7 +210,7 @@ Now let's return to these lines:
     // ...
 ```
 
-From the user's perspective, **a change to the `roomId` *does* mean that they want to connect to a different room.** In other words, the logic for connecting to the room should be reactive. You *want* these lines of code to "keep up" with the <CodeStep step={2}>reactive value</CodeStep>, and to run again if that value is different. That's why it belongs in an Effect:
+מנקודת המבט של המשתמש, **שינוי ב-`roomId` *משמעו* שהם רוצים להתחבר לחדר אחר.** במילים אחרות, ההיגיון לחיבור לחדר צריך להיות תגובתי. אתה *רוצה* ששורות הקוד האלה "יעמדה בקצב" עם <CodeStep step={2}>הערך הריאקטיבי</CodeStep>, ויפעלו שוב אם הערך הזה שונה. בשביל זה שייך לאפקט:
 
 ```js {2-3}
   useEffect(() => {
@@ -222,13 +222,13 @@ From the user's perspective, **a change to the `roomId` *does* mean that they wa
   }, [roomId]);
 ```
 
-Effects are reactive, so `createConnection(serverUrl, roomId)` and `connection.connect()` will run for every distinct value of `roomId`. Your Effect keeps the chat connection synchronized to the currently selected room.
+האפקטים הם תגובתיים, אז `createConnection(serverUrl, roomId)` ו-`connection.connect()` יפעלו עבור כל ערך מובחן של `roomId`. האפקט שלך שומר על חיבור הצ'אט מסונכרן לחדר שנבחר עכשיו.
 
-## Extracting non-reactive logic out of Effects {/*extracting-non-reactive-logic-out-of-effects*/}
+## חילוץ לוגיקה לא-ריאקטיבית מתוך אפקטים {/*חילוץ-לא-ריאקטיבי-לוגיקה-מחוץ-להשפעות*/}
 
-Things get more tricky when you want to mix reactive logic with non-reactive logic.
+דברים נעשים מסובכים יותר כאשר אתה רוצה לערבב לוגיקה תגובתית עם לוגיקה לא תגובתית.
 
-For example, imagine that you want to show a notification when the user connects to the chat. You read the current theme (dark or light) from the props so that you can show the notification in the correct color:
+לדוגמה, דמיינו רוצים להציג את המשתמש כאשר אתה מתחבר לצ'אט. אתה קורא את הנושא הנוכחי (כהה או בהיר) מprops כדי להציג את ההודעה בהתאמה נכונה:
 
 ```js {1,4-6}
 function ChatRoom({ roomId, theme }) {
@@ -241,7 +241,7 @@ function ChatRoom({ roomId, theme }) {
     // ...
 ```
 
-However, `theme` is a reactive value (it can change as a result of re-rendering), and [every reactive value read by an Effect must be declared as its dependency.](/learn/lifecycle-of-reactive-effects#react-verifies-that-you-specified-every-reactive-value-as-a-dependency) Now you have to specify `theme` as a dependency of your Effect:
+עם זאת, `theme` הוא ערך תגובתי (הוא יכול להשתנות כמו עיבוד מחדש), ו[כל ערך תגובתי הנקרא על ידי אפקט חייב להיות מוכרז כתלות שלו.](/learn/lifecycle-of-reactive-effects#react-verifies-that-you-specificated-every-reactive-value-the-reactive-me-the-dependence:
 
 ```js {5,11}
 function ChatRoom({ roomId, theme }) {
@@ -258,7 +258,7 @@ function ChatRoom({ roomId, theme }) {
   // ...
 ```
 
-Play with this example and see if you can spot the problem with this user experience:
+שחק עם הדוגמה הזו וראה אם ​​אתה יכול לזהות את הבעיה בחוויית המשתמש הזו:
 
 <Sandpack>
 
@@ -386,9 +386,9 @@ label { display: block; margin-top: 10px; }
 
 </Sandpack>
 
-When the `roomId` changes, the chat re-connects as you would expect. But since `theme` is also a dependency, the chat *also* re-connects every time you switch between the dark and the light theme. That's not great!
+כאשר ה-'roomId' משתנה, הצ'אט מתחבר מחדש כפי שהיית מצפה. אבל תלמת ש'נושא' הוא גם תות, הצ'אט *גם* מתחבר מחדש בכל פעם שאתה מחליף בין הנושא הכהה והבהיר. זה לא נהדר!
 
-In other words, you *don't* want this line to be reactive, even though it is inside an Effect (which is reactive):
+במילים אחרות, אתה *לא* רוצה שהשורה הזו תהיה תגובתית, למרות שהיא בתוך אפקט (שהוא תגובתי):
 
 ```js
       // ...
@@ -396,17 +396,17 @@ In other words, you *don't* want this line to be reactive, even though it is ins
       // ...
 ```
 
-You need a way to separate this non-reactive logic from the reactive Effect around it.
+אתה צריך דרך להפריד את ההיגיון הלא תגובתי הזה מהאפקט התגובתי סביבו.
 
-### Declaring an Effect Event {/*declaring-an-effect-event*/}
+### הכרזה על אירוע אפקט {/*הכרזה-על-אירוע-אפקט*/}
 
 <Wip>
 
-This section describes an **experimental API that has not yet been released** in a stable version of React.
+סעיף זה מתאר **API ניסיוני שעדיין לא שוחרר** בגרסה יציבה של React.
 
 </Wip>
 
-Use a special Hook called [`useEffectEvent`](/reference/react/experimental_useEffectEvent) to extract this non-reactive logic out of your Effect:
+השתמש בהוק מיוחד בשם [`useEffectEvent`](/reference/react/experimental_useEffectEvent) כדי לחלץ את ההיגיון הלא תגובתי הזה מהאפקט שלך:
 
 ```js {1,4-6}
 import { useEffect, useEffectEvent } from 'react';
@@ -418,9 +418,9 @@ function ChatRoom({ roomId, theme }) {
   // ...
 ```
 
-Here, `onConnected` is called an *Effect Event.* It's a part of your Effect logic, but it behaves a lot more like an event handler. The logic inside it is not reactive, and it always "sees" the latest values of your props and state.
+כאן, `onConnected` נקרא *Effect Event.* זה חלק מהלוגיקת האפקט שלך, אבל הוא מתנהג הרבה יותר כמו מטפל באירועים. ההיגיון בתוכו אינו תגובתי, והוא תמיד "רואה" את הערכים העדכניים ביותר של הprops וstate שלך.
 
-Now you can call the `onConnected` Effect Event from inside your Effect:
+עכשיו אתה יכול לקרוא לאירוע 'onConnected' אפקט מתוך האפקט שלך:
 
 ```js {2-4,9,13}
 function ChatRoom({ roomId, theme }) {
@@ -439,9 +439,9 @@ function ChatRoom({ roomId, theme }) {
   // ...
 ```
 
-This solves the problem. Note that you had to *remove* `onConnected` from the list of your Effect's dependencies. **Effect Events are not reactive and must be omitted from dependencies.**
+זה פותר את הבעיה. שים לב שהיית צריך *להסיר* את 'onConnected' מרשימת התלות של האפקט שלך. **אירועי אפקט הם ריאקטיביים ויש להשמיט אותם מהתלות.**
 
-Verify that the new behavior works as you would expect:
+ודא שההתנהגות החדשה פועלת כפי שהיית מצפה:
 
 <Sandpack>
 
@@ -574,19 +574,19 @@ label { display: block; margin-top: 10px; }
 
 </Sandpack>
 
-You can think of Effect Events as being very similar to event handlers. The main difference is that event handlers run in response to a user interactions, whereas Effect Events are triggered by you from Effects. Effect Events let you "break the chain" between the reactivity of Effects and code that should not be reactive.
+אתה יכול לחשוב על אפקט אירועים כדומים מאוד למטפלי אירועים. היבט עיקרי הוא שרופאי אירועים פועלים בתגובה לאינטראקציות של משתמש, בעוד שאירועי אפקט מופעלים על ידך מ- Effects. אפקט אירועים מאפשרים לך "לשבור את השרשרת" בין התגובתיות של אפקטים לקוד שלא אמור להיות תגובתי.
 
-### Reading latest props and state with Effect Events {/*reading-latest-props-and-state-with-effect-events*/}
+### קריאת הprops אחר וstate עם אפקט אירועים {/*reading-latest-props-and-state-with-effect-events*/}
 
 <Wip>
 
-This section describes an **experimental API that has not yet been released** in a stable version of React.
+סעיף זה מתאר **API ניסיוני שעדיין לא שוחרר** בגרסה יציבה של React.
 
 </Wip>
 
-Effect Events let you fix many patterns where you might be tempted to suppress the dependency linter.
+אירועי אפקט מאפשרים לך לתקן דפוסים רבים שבהם אתה עלול להתפתות לדכא את קו התלות.
 
-For example, say you have an Effect to log the page visits:
+לדוגמה, נניח שיש לך אפקט לרישום הביקורים בדף:
 
 ```js
 function Page() {
@@ -597,7 +597,7 @@ function Page() {
 }
 ```
 
-Later, you add multiple routes to your site. Now your `Page` component receives a `url` prop with the current path. You want to pass the `url` as a part of your `logVisit` call, but the dependency linter complains:
+מאוחר יותר, אתה מוסיף מספר מסלולים לאתר. רכיב ה'דף' שלך מקבל props 'כתובת אתר' עם הנתיב הנוכחי. אתה רוצה להעביר את ה-URL כחלק משיחת ה-'logVisit' שלך, אבל קו התלות מתלונן:
 
 ```js {1,3}
 function Page({ url }) {
@@ -608,7 +608,7 @@ function Page({ url }) {
 }
 ```
 
-Think about what you want the code to do. You *want* to log a separate visit for different URLs since each URL represents a different page. In other words, this `logVisit` call *should* be reactive with respect to the `url`. This is why, in this case, it makes sense to follow the dependency linter, and add `url` as a dependency:
+תחשוב מה אתה רוצה שהקוד יעשה. אתה *רוצה* לרשום ביקור עבור כתובות אתרים שונות זו שכל כתובת אתר מייצגת דף אחר. במילים אחרות, קריאת `logVisit` זו *צריכה* להיות תגובתית לכתוב לכתובת ה-URL. זו הסיבה, שבמקרה זה, הגיוני לעקוב אחר קו התלות ולהוסיף 'כתובת אתר' בתור תלות:
 
 ```js {4}
 function Page({ url }) {
@@ -619,7 +619,7 @@ function Page({ url }) {
 }
 ```
 
-Now let's say you want to include the number of items in the shopping cart together with every page visit:
+כעת נניח שברצונך לכלול את מספר הפריטים בעגלת הקניות יחד עם כל ביקור בדף:
 
 ```js {2-3,6}
 function Page({ url }) {
@@ -633,9 +633,9 @@ function Page({ url }) {
 }
 ```
 
-You used `numberOfItems` inside the Effect, so the linter asks you to add it as a dependency. However, you *don't* want the `logVisit` call to be reactive with respect to `numberOfItems`. If the user puts something into the shopping cart, and the `numberOfItems` changes, this *does not mean* that the user visited the page again. In other words, *visiting the page* is, in some sense, an "event". It happens at a precise moment in time.
+השתמשת ב-'numberOfItems' בתוך האפקט, אז ה-Linter מבקש ממך להוסיף אותו כתלות. עם זאת, אתה *לא* רוצה שהקריאה 'logVisit' תהיה תגובתית ביחס ל'numberOfItems'. אם משתמש מכניס משהו לעגלת הקניות, ו-'numberOfItems' ranking, זה *לא* אומר שהמשתמש ביקר שוב בעמוד. במילים אחרות, *ביקור בדף* הוא, במידה מסוימת, "אירוע". זה קורה בדיוק בזמן.
 
-Split the code in two parts:
+פצל את הקוד לשני חלקים:
 
 ```js {5-7,10}
 function Page({ url }) {
@@ -653,15 +653,15 @@ function Page({ url }) {
 }
 ```
 
-Here, `onVisit` is an Effect Event. The code inside it isn't reactive. This is why you can use `numberOfItems` (or any other reactive value!) without worrying that it will cause the surrounding code to re-execute on changes.
+כאן, 'onVisit' הוא אירוע אפקט. הקוד שבתוכו אינו מגיב. אתה יכול להשתמש ב-'numberOfItems' (או בכל ערך תגובתי אחר!) אלא לדאוג שזה יגרום לקוד שמסביב להפעיל מחדש בשינויים.
 
-On the other hand, the Effect itself remains reactive. Code inside the Effect uses the `url` prop, so the Effect will re-run after every re-render with a different `url`. This, in turn, will call the `onVisit` Effect Event.
+מצד שני, האפקט נשאר עצמו תגובתי. הקוד בתוך האפקט משתמש בprops `url`, כך שהאפקט יפעל מחדש לאחר כל רינדור מחדש עם `url` אחר. זה, בתורו, יקרא את אירוע אפקט 'onVisit'.
 
-As a result, you will call `logVisit` for every change to the `url`, and always read the latest `numberOfItems`. However, if `numberOfItems` changes on its own, this will not cause any of the code to re-run.
+כתוצאה מכך, תתקשר ל-'logVisit' עבור כל שינוי ב-'url', ותמיד תקרא את ה-'numberOfItems' העדכני ביותר. עם זאת, אם 'numberOfItems' משתנה מעצמו, זה לא יגרום לאף אחד מהקודים להפעיל מחדש.
 
 <Note>
 
-You might be wondering if you could call `onVisit()` with no arguments, and read the `url` inside it:
+אולי אתה תוהה אם אתה יכול לקרוא ל- `onVisit()` ללא ארגומנטים, ולקרוא את ה-URL שבתוכו:
 
 ```js {2,6}
   const onVisit = useEffectEvent(() => {
@@ -673,7 +673,7 @@ You might be wondering if you could call `onVisit()` with no arguments, and read
   }, [url]);
 ```
 
-This would work, but it's better to pass this `url` to the Effect Event explicitly. **By passing `url` as an argument to your Effect Event, you are saying that visiting a page with a different `url` constitutes a separate "event" from the user's perspective.** The `visitedUrl` is a *part* of the "event" that happened:
+זה יעבוד, אבל עדיף להעביר את ה-URL הזה לאירוע אפקט במפורש. **על ידי העברת שלך 'כתובת אתר' כטיעון לאירוע האפקט, אתה אומר שביקור בדף עם 'כתובת אתר' שונה שונה "אירוע" נפרד מנקודת המבט של המשתמש.** ה-'visitedUrl' *חלק* מה"אירוע" שקרה:
 
 ```js {1-2,6}
   const onVisit = useEffectEvent(visitedUrl => {
@@ -685,9 +685,9 @@ This would work, but it's better to pass this `url` to the Effect Event explicit
   }, [url]);
 ```
 
-Since your Effect Event explicitly "asks" for the `visitedUrl`, now you can't accidentally remove `url` from the Effect's dependencies. If you remove the `url` dependency (causing distinct page visits to be counted as one), the linter will warn you about it. You want `onVisit` to be reactive with regards to the `url`, so instead of reading the `url` inside (where it wouldn't be reactive), you pass it *from* your Effect.
+זה שאירוע הקט שלך "מבקש" במפורש את ה-'visitedUrl', כעת אינך יכול לפתוח בטעות 'url' מהתלות של האפקט. אם תסיר את התלות של 'כתובת האתר' (מה ששלח לביקורים נפרדים בדפים להיספר כאחד), ה-linter יזהיר אותך על כך. אתה רוצה ש-'onVisit' יהיה תגובתי ביחס ל-'url', אז במקום לקרוא את ה-'url' בפנים (היכן שהוא לא יהיה תגובתי), אתה מעביר אותו *מה* אפקט שלך.
 
-This becomes especially important if there is some asynchronous logic inside the Effect:
+זה הופך להיות חשוב במיוחד אם יש היגיון אסינכרוני כלשהו בתוך האפקט:
 
 ```js {6,8}
   const onVisit = useEffectEvent(visitedUrl => {
@@ -701,15 +701,15 @@ This becomes especially important if there is some asynchronous logic inside the
   }, [url]);
 ```
 
-Here, `url` inside `onVisit` corresponds to the *latest* `url` (which could have already changed), but `visitedUrl` corresponds to the `url` that originally caused this Effect (and this `onVisit` call) to run.
+כאן, `url` בתוך `onVisit` תואם ל`כתובת האתר` *האחרונה* (שיכולה כבר הייתה להשתנות), אבל `visitedUrl` תואמת את ה-url שבמקור גרמה לאפקט הזה (ולקריאת `onVisit` זו) לפעול.
 
 </Note>
 
 <DeepDive>
 
-#### Is it okay to suppress the dependency linter instead? {/*is-it-okay-to-suppress-the-dependency-linter-instead*/}
+#### האם זה בסדר לדכא את קו התלות במקום זאת? {/*האם-זה-בסדר-להדכא-לנטרל-תלות-במקום-זאת*/}
 
-In the existing codebases, you may sometimes see the lint rule suppressed like this:
+בבסיסי הקוד הקיימים, לפעמים אתה עשוי לראות את כלל המוך מודחק כך:
 
 ```js {7-9}
 function Page({ url }) {
@@ -725,13 +725,13 @@ function Page({ url }) {
 }
 ```
 
-After `useEffectEvent` becomes a stable part of React, we recommend **never suppressing the linter**.
+לאחר ש-'useEffectEvent' גורם לחלק יציב ב-React, אנו ממליצים **לעולם לא לדכא את ה-linter**.
 
-The first downside of suppressing the rule is that React will no longer warn you when your Effect needs to "react" to a new reactive dependency you've introduced to your code. In the earlier example, you added `url` to the dependencies *because* React reminded you to do it. You will no longer get such reminders for any future edits to that Effect if you disable the linter. This leads to bugs.
+החיסרון הראשון של דיכוי הכלל הוא ש-React כבר לא מזהיר אותך כשהאפקט שלך צריך "להגיב" לתלות תגובתית חדשה שהכנסת לקוד שלך. בדוגמה הקודמת, הוספת 'url' לתלויות *כי* React הזכיר לך לעשות זאת. לא תקבל עוד תזכורות כאלה עבור כל עריכה עתידית של אפקט זה אם תשבית את ה-linter. זה מוביל לבאגים.
 
-Here is an example of a confusing bug caused by suppressing the linter. In this example, the `handleMove` function is supposed to read the current `canMove` state variable value in order to decide whether the dot should follow the cursor. However, `canMove` is always `true` inside `handleMove`.
+הנה דוגמה לבאג מבלבל שנגרם על ידי דיכוי ה-linter. בדוגמה זו, הפונקציה `handleMove` אמורה לקרוא את הערך משתנה הstate הנוכחית `canMove` על מנת להחליט אם הנקודה צריכה לעקוב אחר הסמן. עם זאת, `canMove` תמיד `נכון` בתוך `handleMove`.
 
-Can you see why?
+אתה יכול לראות למה?
 
 <Sandpack>
 
@@ -790,13 +790,13 @@ body {
 </Sandpack>
 
 
-The problem with this code is in suppressing the dependency linter. If you remove the suppression, you'll see that this Effect should depend on the `handleMove` function. This makes sense: `handleMove` is declared inside the component body, which makes it a reactive value. Every reactive value must be specified as a dependency, or it can potentially get stale over time!
+הבעיה עם הקוד הזה היא בדיכוי. אם תסיר את הדיכוי, תראה שהאפקט הזה צריך להיות תלוי בפעולה 'handleMove'. זה הגיוני: `handleMove` מוצהר בתוך גוף הרכיב, מה שהופך אותו לערך תגובתי. כל ערך תגובתי חייב להיות מוגדר כתלות, אחרת הוא להתייאש עם הזמן!
 
-The author of the original code has "lied" to React by saying that the Effect does not depend (`[]`) on any reactive values. This is why React did not re-synchronize the Effect after `canMove` has changed (and `handleMove` with it). Because React did not re-synchronize the Effect, the `handleMove` attached as a listener is the `handleMove` function created during the initial render. During the initial render, `canMove` was `true`, which is why `handleMove` from the initial render will forever see that value.
+מחבר הקוד המקורי "שיקר" ל-React באומרו שהאפקט אינו תלוי (`[]`) בערכים תגובתים כלשהם. זה מה ש-React לא סינכרן מחדש את האפקט לאחר ש-'canMove' השתנה (ו-'handleMove' איתו). איך ש-React לא סינכרן מחדש את האפקט, ה-'handleMove' המצורף כמאזין הוא הפונקציה 'handleMove' עיבוד עיבוד הראשוני. על העיבוד הראשוני, `canMove` היה `נכון`, וזוהי ש`handleMove` מהרינדור הראשוני יראה לנצח את הערך הזה.
 
-**If you never suppress the linter, you will never see problems with stale values.**
+**אם לעולם לא תדחיק את ה-linter, לעולם לא תראה בעיות עם ערכים מיושנים.**
 
-With `useEffectEvent`, there is no need to "lie" to the linter, and the code works as you would expect:
+עם `useEffectEvent`, אין צורך "לשקר" ל-linter, והקוד עובד כפי שהיית מצפה:
 
 <Sandpack>
 
@@ -870,26 +870,26 @@ body {
 
 </Sandpack>
 
-This doesn't mean that `useEffectEvent` is *always* the correct solution. You should only apply it to the lines of code that you don't want to be reactive. In the above sandbox, you didn't want the Effect's code to be reactive with regards to `canMove`. That's why it made sense to extract an Effect Event.
+זה לא ש-'useEffectEvent' הוא *תמיד* אומר הפתרון הנכון. עליך להחיל אותו רק על שורות הקוד שאינך רוצה שיהיו תגובתיים. בארגז החול שלמעלה, לא רצית שהקוד של האפקט יהיה תגובתי לגבי `canMove`. זה היה הגיוני לחלץ אירוע אפקט.
 
-Read [Removing Effect Dependencies](/learn/removing-effect-dependencies) for other correct alternatives to suppressing the linter.
+קרא את [הסרת תלות אפקט](/learn/removing-effect-dependencies) לקבלת חלופות נכונות אחרות לדיכוי ה-linter.
 
 </DeepDive>
 
-### Limitations of Effect Events {/*limitations-of-effect-events*/}
+### מגבלות של אירוע אפקט {/*limitations-of-effect-events*/}
 
 <Wip>
 
-This section describes an **experimental API that has not yet been released** in a stable version of React.
+סעיף זה מתאר **API ניסיוני שעדיין לא שוחרר** בגרסה יציבה של React.
 
 </Wip>
 
-Effect Events are very limited in how you can use them:
+אירועי אפקט מוגבלים מאוד איך אתה יכול להשתמש בהם:
 
-* **Only call them from inside Effects.**
-* **Never pass them to other components or Hooks.**
+* **התקשר אליהם רק מתוך אפקטים.**
+* **לעולם אל תעביר אותם לרכיבים אחרים או לווים.**
 
-For example, don't declare and pass an Effect Event like this:
+לדוגמה, אל תצהיר ותעביר אירוע אפקט בצורה הבאה:
 
 ```js {4-6,8}
 function Timer() {
@@ -916,7 +916,7 @@ function useTimer(callback, delay) {
 }
 ```
 
-Instead, always declare Effect Events directly next to the Effects that use them:
+במקום זאת, תמיד הכריז על אפקט אירועים ישירות ליד האפקטים המשתמשים בהם:
 
 ```js {10-12,16,21}
 function Timer() {
@@ -943,31 +943,31 @@ function useTimer(callback, delay) {
 }
 ```
 
-Effect Events are non-reactive "pieces" of your Effect code. They should be next to the Effect using them.
+אירועי אפקט הם "חלקים" לא תגובתיים של קוד האפקט שלך. הם צריכים להיות ליד האפקט המשתמש בהם.
 
 <Recap>
 
-- Event handlers run in response to specific interactions.
-- Effects run whenever synchronization is needed.
-- Logic inside event handlers is not reactive.
-- Logic inside Effects is reactive.
-- You can move non-reactive logic from Effects into Effect Events.
-- Only call Effect Events from inside Effects.
-- Don't pass Effect Events to other components or Hooks.
+- מטפלי אירועים פועלים בתגובה לאינטראקציות ספציפיות.
+- אפקטים פועלים בכל פעם שיש צורך בסנכרון.
+- ההיגיון בתוך מטפלי אירועים אינו תגובתי.
+- ההיגיון בתוך אפקטים הוא תגובתי.
+- אתה יכול להעביר לוגיקה לא תגובתית מאפקטים לאירועי אפקט.
+- התקשר רק ל-Effect Events מתוך אפקטים.
+- אל תעביר אירועי אפקט לרכיבים אחרים או הHooks.
 
 </Recap>
 
 <Challenges>
 
-#### Fix a variable that doesn't update {/*fix-a-variable-that-doesnt-update*/}
+#### תקן משתנה שלא מתעדכן {/*תקן-משתנה-שלא-מעדכן*/}
 
-This `Timer` component keeps a `count` state variable which increases every second. The value by which it's increasing is stored in the `increment` state variable. You can control the `increment` variable with the plus and minus buttons.
+רכיב 'טימר' זה שומר על ranking מצב 'ספירה' אשר גדל כל שנייה. הערך שבאמצעותו הוא גדל מאוחסן בהstate 'increment'. אתה יכול לשלוט בשינוי 'increment' עם לחצני הפלוס והמינוס.
 
-However, no matter how many times you click the plus button, the counter is still incremented by one every second. What's wrong with this code? Why is `increment` always equal to `1` inside the Effect's code? Find the mistake and fix it.
+עם זאת, לא משנה כמה פעמים תלחץ על כפתור הפלוס, המונה עדיין גדל באחד בכל שנייה. מה רע בקוד הזה? למה `increment` תמיד שווה ל`1` בתוך הקוד של האפקט? מצא את הטעות ותקן אותה.
 
 <Hint>
 
-To fix this code, it's enough to follow the rules.
+כדי לתקן את הקוד הזה, מספיק לעקוב אחר הכללים.
 
 </Hint>
 
@@ -1020,9 +1020,9 @@ button { margin: 10px; }
 
 <Solution>
 
-As usual, when you're looking for bugs in Effects, start by searching for linter suppressions.
+כרגיל, אתה מחפש באגים ב- Effects, התחל בחיפוש אחר דיכוי לנטר.
 
-If you remove the suppression comment, React will tell you that this Effect's code depends on `increment`, but you "lied" to React by claiming that this Effect does not depend on any reactive values (`[]`). Add `increment` to the dependency array:
+אם תסיר את הערת הדיכוי, React יגיד לך שהקוד של אפקט זה תלוי ב-`increment`, אבל "שיקרת" ל-React בטענה שהאפקט הזה אינו תלוי בשום ערכים תגובתיים (`[]`). הוסף 'increment' למערך התלות:
 
 <Sandpack>
 
@@ -1070,19 +1070,19 @@ button { margin: 10px; }
 
 </Sandpack>
 
-Now, when `increment` changes, React will re-synchronize your Effect, which will restart the interval.
+כעת, כאשר ה'increment' משתנה, React יסנכרן מחדש את האפקט שלך, מה שיפעיל מחדש את המרווח.
 
 </Solution>
 
-#### Fix a freezing counter {/*fix-a-freezing-counter*/}
+#### תקן מונה הקפאה {/*תיקון-א-הקפאה-מונה*/}
 
-This `Timer` component keeps a `count` state variable which increases every second. The value by which it's increasing is stored in the `increment` state variable, which you can control it with the plus and minus buttons. For example, try pressing the plus button nine times, and notice that the `count` now increases each second by ten rather than by one.
+רכיב 'טימר' זה שומר על ranking מצב 'ספירה' אשר גדל כל שנייה. הערך שבאמצעותו הוא גדל מאוחסן בהstate 'increment', שבו אתה יכול לשלוט בו באמצעות לחצני הלוס והמינוס. לדוגמה, נסה ללחוץ על כפתור הפלוס תשע פעמים, ושם לב שה'ספירה' גדלה עכשיו בכל שנייה בשאר במקום באחת.
 
-There is a small issue with this user interface. You might notice that if you keep pressing the plus or minus buttons faster than once per second, the timer itself seems to pause. It only resumes after a second passes since the last time you've pressed either button. Find why this is happening, and fix the issue so that the timer ticks on *every* second without interruptions.
+יש בעיה קטנה בממשק המשתמש הזה. אולי תשים לב שאם תמשיך ללחוץ על כפתורי הפלוס או המינוס מהר יותר מפעם בשנייה, נראה שהטיימר עצמו נעצר. זה מתחדש רק לאחר שעוברת שנייה מאז הפעם האחרונה שלחצת על אחד מהלחצנים. מצא מדוע זה קורה, ותקן את הבעיה כך שהטיימר יפעל *כל* שנייה ללא הפרעות.
 
 <Hint>
 
-It seems like the Effect which sets up the timer "reacts" to the `increment` value. Does the line that uses the current `increment` value in order to call `setCount` really need to be reactive?
+זה נראה כאילו האפקט שמגדיר את הטיימר "מגיב" לערך ה'increment'. האם השורה שמשתמשת בערך ה-'increment' הנוכחי כדי לקרוא ל-'setCount' באמת צריכה להיות תגובתית?
 
 </Hint>
 
@@ -1151,9 +1151,9 @@ button { margin: 10px; }
 
 <Solution>
 
-The issue is that the code inside the Effect uses the `increment` state variable. Since it's a dependency of your Effect, every change to `increment` causes the Effect to re-synchronize, which causes the interval to clear. If you keep clearing the interval every time before it has a chance to fire, it will appear as if the timer has stalled.
+הבעיה היא משתנה בתוך האפקט משתמש ב-Hstate 'increment'. מה שגורם למרווח להתנקות. אם תמשיך לנקות את הרווח בכל פעם לפני שתהיה לו הזדמנות לירות, זה נראה כאילו הטיימר נתקע.
 
-To solve the issue, extract an `onTick` Effect Event from the Effect:
+כדי לפתור את הבעיה, חלץ אירוע אפקט 'onTick' מהאפקט:
 
 <Sandpack>
 
@@ -1223,17 +1223,17 @@ button { margin: 10px; }
 
 </Sandpack>
 
-Since `onTick` is an Effect Event, the code inside it isn't reactive. The change to `increment` does not trigger any Effects.
+מה ש-'onTick' הוא אירוע אפקט, הקוד שבתוכו אינו מגיב. השינוי ל'increment' אינו מפעיל אפקטים.
 
 </Solution>
 
-#### Fix a non-adjustable delay {/*fix-a-non-adjustable-delay*/}
+#### תקן השהייה שאינה ניתנת להתאמה {/*fix-a-non-adjustable-delay*/}
 
-In this example, you can customize the interval delay. It's stored in a `delay` state variable which is updated by two buttons. However, even if you press the "plus 100 ms" button until the `delay` is 1000 milliseconds (that is, a second), you'll notice that the timer still increments very fast (every 100 ms). It's as if your changes to the `delay` are ignored. Find and fix the bug.
+בדוגמה זו, אתה יכול להתאים אישית את השהיית המרווחים. הוא מאוחסן במשתנה מצב 'עיכוב' שמתעדכן על ידי שני כפתורים. עם זאת, גם אם תלחץ על כפתור "פלוס 100 ms" עד שה-`השהיה` תהיה 1000 אלפיות השנייה (כלומר, שנייה), תבחין שהטיימר עדיין עולה מהר מאוד (כל 100 אלפיות השנייה). זה כאילו שמתעלמים מהשינויים שלך ב-`השהיה`. מצא ותקן את הבאג.
 
 <Hint>
 
-Code inside Effect Events is not reactive. Are there cases in which you would _want_ the `setInterval` call to re-run?
+הקוד בתוך אירועי אפקט אינו תגובתי. האם יש מקרים דורשים _תרצה_ שהקריאה 'setInterval' תפעל מחדש?
 
 </Hint>
 
@@ -1322,7 +1322,7 @@ button { margin: 10px; }
 
 <Solution>
 
-The problem with the above example is that it extracted an Effect Event called `onMount` without considering what the code should actually be doing. You should only extract Effect Events for a specific reason: when you want to make a part of your code non-reactive. However, the `setInterval` call *should* be reactive with respect to the `delay` state variable. If the `delay` changes, you want to set up the interval from scratch! To fix this code, pull all the reactive code back inside the Effect:
+הבעיה עם הדוגמה שלמעלה היא חילצה אירוע אפקט שנ 'onMount' מבלי לשקול מה הקוד אמור לעשות. עליך לחלץ אירוע אפקט רק מסיבה מסוימת: כאשר אתה רוצה להפוך חלק מהקוד שלך ללא תגובתי. עם זאת, הקריאה 'setInterval' *צריכה* להיות תגובתית לשינוי הstate 'השהיה'. אם 'השהיה' מתרוצץ, אתה רוצה להגדיר את המרווח מאפס! כדי לתקן את הקוד הזה, משוך את כל הקוד התגובתי בחזרה לתוך האפקט:
 
 <Sandpack>
 
@@ -1402,21 +1402,21 @@ button { margin: 10px; }
 
 </Sandpack>
 
-In general, you should be suspicious of functions like `onMount` that focus on the *timing* rather than the *purpose* of a piece of code. It may feel "more descriptive" at first but it obscures your intent. As a rule of thumb, Effect Events should correspond to something that happens from the *user's* perspective. For example, `onMessage`, `onTick`, `onVisit`, or `onConnected` are good Effect Event names. Code inside them would likely not need to be reactive. On the other hand, `onMount`, `onUpdate`, `onUnmount`, or `onAfterRender` are so generic that it's easy to accidentally put code that *should* be reactive into them. This is why you should name your Effect Events after *what the user thinks has happened,* not when some code happened to run.
+באופן כללי, אתה צריך לחשוד בפונקציות 'onMount' המעשה כמוות ב*תזמון* ולא ב*מטרה* של קטע קוד. זה אולי מרגיש "יותר תיאורי" בהתחלה אבל זה מטשטש את הכוונה שלך. כל אצבע, אירועי אפקט צריכים להתאים למשהו שקורה מנקודת המבט של *המשתמש*. לדוגמה, `onMessage`, `onTick`, `onVisit` או `onConnected` הם שמות אירועי אפקט טובים. סביר להניח שהקוד בתוכם לא יצטרך להיות תגובתי. מצד שני, `onMount`, `onUpdate`, `onUnmount` או `onAfterRender` הם כל כך גנריים שקל להכניס בהם בטעות קוד ש*צריך* להיות תגובתי. אתה צריך לקרוא ל-Effect Events שלך על שם *מה שהמשתמש חושב שקרה,* לא כאשר במקרה רץ קודש.
 
 </Solution>
 
-#### Fix a delayed notification {/*fix-a-delayed-notification*/}
+#### תקן התראה מושהית {/*fix-a-delayed-notification*/}
 
-When you join a chat room, this component shows a notification. However, it doesn't show the notification immediately. Instead, the notification is artificially delayed by two seconds so that the user has a chance to look around the UI.
+כאשר אתה מצטרף לחדר צ'אט, רכיב זה מציג התראה. עם זאת, זה לא מציג את ההודעה מיד. במקום זאת, ההודעה מתעכבת באופן מלאכותי בשתי שניות, כך שלמשתמש יש הזדמנות להסתכל סביב ממשק המשתמש.
 
-This almost works, but there is a bug. Try changing the dropdown from "general" to "travel" and then to "music" very quickly. If you do it fast enough, you will see two notifications (as expected!) but they will *both* say "Welcome to music".
+זה כמעט עובד, אבל יש באג. נסה לשנות את התפריט הנפתח מ"כללי" ל"נסיעות" ואז ל"מוזיקה" מהר מאוד. אם תעשה את זה מספיק מהר, תראה שתי התראות (כצפוי!) אבל *שתיהן* יגידו "ברוכים הבאים למוזיקה".
 
-Fix it so that when you switch from "general" to "travel" and then to "music" very quickly, you see two notifications, the first one being "Welcome to travel" and the second one being "Welcome to music". (For an additional challenge, assuming you've *already* made the notifications show the correct rooms, change the code so that only the latter notification is displayed.)
+תקן את זה כך שכשאתה עובר מ"כללי" ל"נסיעות" ואז ל"מוזיקה" מהר מאוד, תראה שתי התראות, הראשונה היא "ברוכים הבאים לנסיעה" והשנייה היא "ברוכים הבאים למוזיקה". (לאתגר נוסף, בהנחה ש*כבר* גרמת להודעות להציג את החדרים הנכונים, שנה את הקוד כך שרק ההודעה האחרונה תוצג).
 
 <Hint>
 
-Your Effect knows which room it connected to. Is there any information that you might want to pass to your Effect Event?
+האפקט שלך יודע לאיזה חדר הוא התחבר. האם יש מידע שאולי תרצה להעביר לאירוע האפקט שלך?
 
 </Hint>
 
@@ -1555,11 +1555,11 @@ label { display: block; margin-top: 10px; }
 
 <Solution>
 
-Inside your Effect Event, `roomId` is the value *at the time Effect Event was called.*
+בתוך אירוע האפקט שלך, 'roomId' הוא הערך *בזמן הקריאה לאירוע אפקט.*
 
-Your Effect Event is called with a two second delay. If you're quickly switching from the travel to the music room, by the time the travel room's notification shows, `roomId` is already `"music"`. This is why both notifications say "Welcome to music".
+אירוע האפקט שלך נקרא בהשהייה של שתי שניות. אם אתה עובר במהירות מהנסיעה לחדר המוזיקה, כאשר מופיעה ההתראה של חדר הנסיעות, `roomId` הוא כבר `"מוזיקה"`. זו שאלה ששתיתי ההתראות אומרות "ברוכים הבאים למוזיקה".
 
-To fix the issue, instead of reading the *latest* `roomId` inside the Effect Event, make it a parameter of your Effect Event, like `connectedRoomId` below. Then pass `roomId` from your Effect by calling `onConnected(roomId)`:
+כדי לתקן את הבעיה, במקום לקרוא את ה'roomId' *האחרון* בתוך אירוע האפקט, הפוך אותו לפרמטר של אירוע האפקט שלך, כמו 'connectedRoomId' למטה. לאחר שהעביר את 'roomId' מהאפקט שלך על ידי קריאה ל'onConnected(roomId)':
 
 <Sandpack>
 
@@ -1694,9 +1694,9 @@ label { display: block; margin-top: 10px; }
 
 </Sandpack>
 
-The Effect that had `roomId` set to `"travel"` (so it connected to the `"travel"` room) will show the notification for `"travel"`. The Effect that had `roomId` set to `"music"` (so it connected to the `"music"` room) will show the notification for `"music"`. In other words, `connectedRoomId` comes from your Effect (which is reactive), while `theme` always uses the latest value.
+האפקט ש-'roomId' הוגדר ל-'"travel"' (כך שהוא מתחבר לחדר ה-''travel'') יציג את ההתראה עבור ''travel''. האפקט שבו הוא גדר `roomId` ל-`"מוזיקה"` (כך שהוא מתחבר לחדר `"מוזיקה"`) יציג את ההתראה עבור `"מוזיקה"`. במילים אחרים, `connectedRoomId` מגיע מהאפקט שלך (שהינו תגובתי), בעוד `theme` משתמש תמיד בערך האחרון.
 
-To solve the additional challenge, save the notification timeout ID and clear it in the cleanup function of your Effect:
+כדי לפתור את האתגר הנוסף, שמור את מזהה הזמן הקצוב להודעה ונקה אותו בפונקציית הניקוי של האפקט שלך:
 
 <Sandpack>
 
@@ -1837,8 +1837,9 @@ label { display: block; margin-top: 10px; }
 
 </Sandpack>
 
-This ensures that already scheduled (but not yet displayed) notifications get cancelled when you change rooms.
+זה מבטיח שהתראות שכבר מתוזמנות (אך עדיין לא הוצגו) יבוטלו כאשר אתה מחליף חדר.
 
 </Solution>
 
 </Challenges>
+

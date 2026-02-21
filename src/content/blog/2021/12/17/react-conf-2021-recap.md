@@ -1,50 +1,50 @@
 ---
-title: "React Conf 2021 Recap"
+title: "סיכום React Conf 2021"
 ---
 
-December 17, 2021 by [Jesslyn Tannady](https://twitter.com/jtannady) and [Rick Hanlon](https://twitter.com/rickhanlonii)
+17 בדצמבר 2021 מאת [ג'סלין טנאדי](https://twitter.com/jtannady) ו[ריק הנלון](https://twitter.com/rickhanlonii)
 
 ---
 
 <Intro>
 
-Last week we hosted our 6th React Conf. In previous years, we've used the React Conf stage to deliver industry changing announcements such as [_React Native_](https://engineering.fb.com/2015/03/26/android/react-native-bringing-modern-web-techniques-to-mobile/) and [_React Hooks_](https://reactjs.org/docs/hooks-intro.html). This year, we shared our multi-platform vision for React, starting with the release of React 18 and gradual adoption of concurrent features.
+בשבוע שעבר אירחנו את React Conf השישי שלנו. מקומי קודמות השתמשנו בבמה של React Conf כדי למסור הכרזות ששינו את הדרג התעשייה, כמו [_React Native_](https://engineering.fb.com/2015/03/26/android/react-native-bringing-modern-web-techniques-to-mobile/) ו-[_React Hooks_](https://reactjs.org/docs/hooks-intro.html). השנה שיתפנו את החזון הרב- שטחי-מו שלנו ל-____T ואי_7 שלנו. __,T זה יכול להתמודד.
 
 </Intro>
 
 ---
 
-This was the first time React Conf was hosted online, and it was streamed for free, translated to 8 different languages. Participants from all over the world joined our conference Discord and the replay event for accessibility in all timezones. Over 50,000 people registered, with over 60,000 views of 19 talks, and 5,000 participants in Discord across both events.
+זו הייתה הפעם הראשונה ש-React Conf התארח אונליין, והוא שודר בחינם עם תרגום ל-8 שפות שונות. משתתפים מכל העולם הצטרפו ל-Discord של הכנס ולאירוע השידור החוזר, כדי לאפשר נגישות בכל אזורי הזמן. יותר מ-50,000 אנשים נרשמו, עם מעל 60,000 צפיות ב-19 הרצאות, ו-5,000 משתתפים ב-Discord בשניים ביחד.
 
-All the talks are [available to stream online](https://www.youtube.com/watch?v=FZ0cG47msEk&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa).
+כל ההרצאות [זמינות לצפייה אונליין](https://www.youtube.com/watch?v=FZ0cG47msEk&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa).
 
-Here’s a summary of what was shared on stage:
+הנה סיכום של מה שעלה על הבמה:
 
-## React 18 and concurrent features {/*react-18-and-concurrent-features*/}
+## React 18 ויכולות להתמודד {/*react-18-and-concurrent-features*/}
 
-In the keynote, we shared our vision for the future of React starting with React 18.
+בהרצאת הפתיחה שיתפנו את החזון שלנו לעתיד React, שמתחיל ב-React 18.
 
-React 18 adds the long-awaited concurrent renderer and updates to Suspense without any major breaking changes. Apps can upgrade to React 18 and begin gradually adopting concurrent features with the amount of effort on par with any other major release.
+React 18 מוסיף את מנוע ה-renderer של בו-זמנית שחיכו לו זמן, יחד עם עדכונים ל-__TK_0 רב__, שינויים שוברים משמעותיים. אפליקציות יכולות לשדרג ל-React 18 ולהתחיל לאמץ יכול להגיע בהדרגה, במאמץ דומה לכל שחרור major אחר.
 
-**This means there is no concurrent mode, only concurrent features.**
+**זה אומר שאין מצב בו זמנית, יש רק תכונות במקביל.**
 
-In the keynote, we also shared our vision for Suspense, Server Components, new React working groups, and our long-term many-platform vision for React Native.
+בהרצאת הפתיחה שיתפנו גם את החזון שלנו לגבי Suspense, רכיבי שרת, קבוצות עבודה חדשות של React, וחזון רב- פלטפורמה ארוכה טווח עבור React Native.
 
-Watch the full keynote from [Andrew Clark](https://twitter.com/acdlite), [Juan Tejada](https://twitter.com/_jstejada), [Lauren Tan](https://twitter.com/potetotes), and [Rick Hanlon](https://twitter.com/rickhanlonii) here:
+צפו בהרצאת הפתיחה המלאה של [Andrew Clark](https://twitter.com/acdlite), [Juan Tejada](https://twitter.com/_jstejada), [Lauren Tan](https://twitter.com/potetotes), and [Rick Hanlon](https://twitter.com/rickhanlonii):
 
 <YouTubeIframe src="https://www.youtube.com/embed/FZ0cG47msEk" />
 
-## React 18 for Application Developers {/*react-18-for-application-developers*/}
+## React 18 למפתחי אפליקציות {/*react-18-for-application-developers*/}
 
-In the keynote, we also announced that the React 18 RC is available to try now. Pending further feedback, this is the exact version of React that we will publish to stable early next year.
+בהרצאת הפתיחה הכרזנו גם ש-React 18 RC זמין לניסיון כבר עכשיו. בכפוף למשוב נוסף, זו תהיה בדיוק גרסת React לפרסם כי הופיעו בתחילת השנה הבאה.
 
-To try the React 18 RC, upgrade your dependencies:
+כדי לנסות את React 18 RC, שדרגו את התלויות:
 
 ```bash
 npm install react@rc react-dom@rc
 ```
 
-and switch to the new `createRoot` API:
+ועברו ל-API החדש של `createRoot`:
 
 ```js
 // before
@@ -57,101 +57,101 @@ const root = ReactDOM.createRoot(container);
 root.render(<App/>);
 ```
 
-For a demo of upgrading to React 18, see [Shruti Kapoor](https://twitter.com/shrutikapoor08)’s talk here:
+להדגמה של שדרוג ל-React 18, ראו את ההרצאה של [שרוטי קאפור](https://twitter.com/shrutikapoor08):
 
 <YouTubeIframe src="https://www.youtube.com/embed/ytudH8je5ko" />
 
-## Streaming Server Rendering with Suspense {/*streaming-server-rendering-with-suspense*/}
+## עיבוד שרת סטרימינג עם Suspense {/*streaming-server-rendering-with-suspense*/}
 
-React 18 also includes improvements to server-side rendering performance using Suspense.
+React 18 כולל גם שיפורים לביצועי רינדור צד שרת באמצעות Suspense.
 
-Streaming server rendering lets you generate HTML from React components on the server, and stream that HTML to your users. In React 18, you can use `Suspense` to break down your app into smaller independent units which can be streamed independently of each other without blocking the rest of the app. This means users will see your content sooner and be able to start interacting with it much faster.
+עיבוד שרת זרימה יכול להשתמש HTML מקומפוננטות React בשרת, ולהזרים את ה-HTML הזה למשתמשים. ב-React 18 אפשר להשתמש ב-`Suspense` כדי לפרק את האפליקציה ליחידות קטנות ועצמאיות שאפשר להזרים בנפרד בלי לחסום את שאר האפליקציה. כלומר, משתמשים יראו תוכן מוקדם יותר ויוכלו להתחיל אינטראקציה הרבה יותר מהר.
 
-For a deep dive, see [Shaundai Person](https://twitter.com/shaundai)’s talk here:
+לצלילה עמוקה, ראו את ההרצאה של [איש שונדאי](https://twitter.com/shaundai):
 
 <YouTubeIframe src="https://www.youtube.com/embed/pj5N-Khihgc" />
 
-## The first React working group {/*the-first-react-working-group*/}
+## קבוצת העבודה הראשונה של React {/*the-first-react-working-group*/}
 
-For React 18, we created our first Working Group to collaborate with a panel of experts, developers, library maintainers, and educators. Together we worked to create our gradual adoption strategy and refine new APIs such as `useId`, `useSyncExternalStore`, and `useInsertionEffect`.
+עבור React 18 יצרנו את קבוצת העבודה הראשונה שלנו כדי לשתף פעולה עם פאנל של מומחים, מפתחים, מתחזקי ספריות ומדריכים. יחד בנינו את אסטרטגיית האימוץ ההדרגתי שלנו ושייפנו APIs חדשים כמו `useId`, `useSyncExternalStore`, ו-`useInsertionEffect`.
 
-For an overview of this work, see [Aakansha' Doshi](https://twitter.com/aakansha1216)'s talk:
+לסקירה של העבודה הזו, ראו את ההרצאה של [Aakansha' Doshi](https://twitter.com/aakansha1216):
 
 <YouTubeIframe src="https://www.youtube.com/embed/qn7gRClrC9U" />
 
-## React Developer Tooling {/*react-developer-tooling*/}
+## כלי פיתוח עבור React {/*react-developer-tooling*/}
 
-To support the new features in this release, we also announced the newly formed React DevTools team and a new Timeline Profiler to help developers debug their React apps.
+כדי לתמוך ביכולות החדשות של השחרור הזה, הכרזנו גם על צוות React DevTools החדש ועל ציר הזמן Profiler חדש שיעזור מפתחים לדבג אפליקציות React.
 
-For more information and a demo of new DevTools features, see [Brian Vaughn](https://twitter.com/brian_d_vaughn)’s talk:
+למידע נוסף ולהדגמה של יכול DevTools חדשות, ראו את ההרצאה של [בריאן ווהן](https://twitter.com/brian_d_vaughn):
 
 <YouTubeIframe src="https://www.youtube.com/embed/oxDfrke8rZg" />
 
-## React without memo {/*react-without-memo*/}
+## React בלי memo {/*react-without-memo*/}
 
-Looking further into the future, [Xuan Huang (黄玄)](https://twitter.com/Huxpro) shared an update from our React Labs research into an auto-memoizing compiler. Check out this talk for more information and a demo of the compiler prototype:
+במבט רחוק יותר לעתיד, [Xuan Huang (黄玄)](https://twitter.com/Huxpro) עדכון ממחקר React Labs שלנו על קומפיילר עם auto-memoization. לצפייה במידע ובהדגמה של אבטיפוס הקומפיילר:
 
 <YouTubeIframe src="https://www.youtube.com/embed/lGEMwh32soc" />
 
-## React docs keynote {/*react-docs-keynote*/}
+## הרצאת תיעוד React {/*react-docs-keynote*/}
 
-[Rachel Nabors](https://twitter.com/rachelnabors) kicked off a section of talks about learning and designing with React with a keynote about our investment in React's new docs ([now shipped as react.dev](/blog/2023/03/16/introducing-react-dev)):
+[רייצ'ל נאבורס](React פתחה מקבץ הרצאות על למידה ועיצוב עם React, עם keynote על ההשקעה שלנו בתיעוד React החדש ([שכיום הושק כ-react.dev](/blog/2023/03/16/introducing-react-dev)):
 
 <YouTubeIframe src="https://www.youtube.com/embed/mneDaMYOKP8" />
 
-## And more... {/*and-more*/}
+## ועוד... {/*and-more*/}
 
-**We also heard talks on learning and designing with React:**
+**שמענו גם הרצאות על למידה ועיצוב עם React:**
 
-* Debbie O'Brien: [Things I learnt from the new React docs](https://youtu.be/-7odLW_hG7s).
-* Sarah Rainsberger: [Learning in the Browser](https://youtu.be/5X-WEQflCL0).
-* Linton Ye: [The ROI of Designing with React](https://youtu.be/7cPWmID5XAk).
-* Delba de Oliveira: [Interactive playgrounds with React](https://youtu.be/zL8cz2W0z34).
+* דבי אובריאן: [דברים שלמדתי מהמסמכים החדשים של React](https://youtu.be/-7odLW_hG7s).
+* שרה ריינברגר: [למידה בדפדפן](https://youtu.be/5X-WEQflCL0).
+* Linton Ye: [החזר ה-ROI של עיצוב עם React](https://youtu.be/7cPWmID5XAk).
+* Delba de Oliveira: [מגרשי משחקים אינטראקטיביים עם React](https://youtu.be/zL8cz2W0z34).
 
-**Talks from the Relay, React Native, and PyTorch teams:**
+**הרצאות מצוותי ממסר, React Native ו-PyTorch:**
 
-* Robert Balicki: [Re-introducing Relay](https://youtu.be/lhVGdErZuN4).
-* Eric Rozell and Steven Moyes: [React Native Desktop](https://youtu.be/9L4FFrvwJwY).
-* Roman Rädle: [On-device Machine Learning for React Native](https://youtu.be/NLj73vrc2I8)
+* רוברט באליצקי: [מציג מחדש את הממסר](https://youtu.be/lhVGdErZuN4).
+* אריק רוזל וסטיבן מויס: [React שולחן עבודה מקורי](https://youtu.be/9L4FFrvwJwY).
+* רומן ראדל: [למידה מכונה במכשיר עבור React Native](https://youtu.be/NLj73vrc2I8)
 
-**And talks from the community on accessibility, tooling, and Server Components:**
+**וגם הרצאות קהילה על נגישות, כלי פיתוח ו-Server Components:**
 
-* Daishi Kato: [React 18 for External Store Libraries](https://youtu.be/oPfSC5bQPR8).
-* Diego Haz: [Building Accessible Components in React 18](https://youtu.be/dcm8fjBfro8).
-* Tafu Nakazaki: [Accessible Japanese Form Components with React](https://youtu.be/S4a0QlsH0pU).
-* Lyle Troxell: [UI tools for artists](https://youtu.be/b3l4WxipFsE).
-* Helen Lin: [Hydrogen + React 18](https://youtu.be/HS6vIYkSNks).
+* Daishi Kato: [React 18 עבור ספריות חנות חיצוניות](https://youtu.be/oPfSC5bQPR8).
+* דייגו האז: [בניית רכיבים נגישים ב-React 18](https://youtu.be/dcm8fjBfro8).
+* Tafu Nakazaki: [רכיבי טופס יפני נגישים עם React](https://youtu.be/S4a0QlsH0pU).
+* לייל טרוקסל: [כלי ממשק משתמש לאמנים](https://youtu.be/b3l4WxipFsE).
+* הלן לין: [מימן + React 18](https://youtu.be/HS6vIYkSNks).
 
-## Thank you {/*thank-you*/}
+## תודה {/*thank-you*/}
 
-This was our first year planning a conference ourselves, and we have a lot of people to thank.
+זו הייתה השנה הראשונה שבה תכננו כנס בעצמנו, ויש לנו הרבה אנשים להודות להם.
 
-First, thanks to all of our speakers [Aakansha Doshi](https://twitter.com/aakansha1216), [Andrew Clark](https://twitter.com/acdlite), [Brian Vaughn](https://twitter.com/brian_d_vaughn), [Daishi Kato](https://twitter.com/dai_shi), [Debbie O'Brien](https://twitter.com/debs_obrien), [Delba de Oliveira](https://twitter.com/delba_oliveira), [Diego Haz](https://twitter.com/diegohaz), [Eric Rozell](https://twitter.com/EricRozell), [Helen Lin](https://twitter.com/wizardlyhel), [Juan Tejada](https://twitter.com/_jstejada), [Lauren Tan](https://twitter.com/potetotes), [Linton Ye](https://twitter.com/lintonye), [Lyle Troxell](https://twitter.com/lyle), [Rachel Nabors](https://twitter.com/rachelnabors), [Rick Hanlon](https://twitter.com/rickhanlonii), [Robert Balicki](https://twitter.com/StatisticsFTW), [Roman Rädle](https://twitter.com/raedle), [Sarah Rainsberger](https://twitter.com/sarah11918), [Shaundai Person](https://twitter.com/shaundai), [Shruti Kapoor](https://twitter.com/shrutikapoor08), [Steven Moyes](https://twitter.com/moyessa), [Tafu Nakazaki](https://twitter.com/hawaiiman0), and  [Xuan Huang (黄玄)](https://twitter.com/Huxpro).
+קודם כל תודה לכל הדוברים שלנו [Aakansha Doshi](https://twitter.com/Huxpro). [אנדרו קלארק](__TK_1__ [Brian Vaughn](__TK_2__ [Daishi Kato](__TK_3__ [דבי אובריאן](__TK_4__ [Delba de Oliveira](E__TK_6__] [__TK_6__] Rozell](__TK_7__ [Helen Lin](__TK_8__ [Juan Tejada](__TK_9__ [Lauren Tan](__TK_10__ [Linton Ye](__TK_11__ [Lyle Troxell](__TK_12__ [רייצ'ל Nabors](__TK_13]4 [__TK_13]__ [__TK_13] Balicki](__TK_15__ [Roman Rädle](__TK_16__ [שרה ריינברגר](__TK_17__ [Shaundai Person](__TK_18__ [Shruti Kapoor](__TK_19__ [סטיבן מויס](__TK_20__ [Huang_21](__TK_20__ ו-נקזאקיאן) (黄玄)](https://twitter.com/Huxpro).
 
-Thanks to everyone who helped provide feedback on talks including [Andrew Clark](https://twitter.com/acdlite), [Dan Abramov](https://twitter.com/dan_abramov), [Dave McCabe](https://twitter.com/mcc_abe), [Eli White](https://twitter.com/Eli_White), [Joe Savona](https://twitter.com/en_JS),  [Lauren Tan](https://twitter.com/potetotes), [Rachel Nabors](https://twitter.com/rachelnabors), and [Tim Yung](https://twitter.com/yungsters).
+תודה לכל מי שעזרו לתת פידבק על ההרצק, כולל [אנדרו קלארק](https://twitter.com/acdlite), [דן אברמוב](https://twitter.com/dan_abramov), [דייב מקייב](https://twitter.com/mcc_abe), [אלי ווייט](https://twitter.com/Eli_White), [ג'ו סאבונה](https://twitter.com/en_JS), [לורן טאן](https://twitter.com/potetotes),]6) [https://twitter.com/potetotes),]6](https://twitter.com/potetotes),]6) [https://twitter.com/potetotes),] [https://twitter.com/potetotes),] יונג](https://twitter.com/yungsters).
 
-Thanks to [Lauren Tan](https://twitter.com/potetotes) for setting up the conference Discord and serving as our Discord admin.
+תודה ל-[Lauren Tan](https://twitter.com/potetotes) על הקמת Discord של הכנס ועל התפקיד כ-Discord admin שלנו.
 
-Thanks to [Seth Webster](https://twitter.com/sethwebster) for feedback on overall direction and making sure we were focused on diversity and inclusion.
+תודה ל-[סת' וובסטר](https://twitter.com/sethwebster) לגבי הכיוון הכללי ועל כך שווידא שנשארנו ממוקדים בגיוון והכלה.
 
-Thanks to [Rachel Nabors](https://twitter.com/rachelnabors) for spearheading our moderation effort, and [Aisha Blake](https://twitter.com/AishaBlake) for creating our moderation guide, leading our moderation team, training the translators and moderators, and helping to moderate both events.
+תודה ל-[רחל נאבורס](https://twitter.com/rachelnabors) על הובלת מאמץ המודרציה שלנו, ול-[עיישה בלייק](https://twitter.com/AishaBlake) על יצירת מדריך המודרציה, הובלת צוות המודרציה, הכשרת המתרגמים והמודרטים, וסיוע במודרציה של שני המבצעים.
 
-Thanks to our moderators [Jesslyn Tannady](https://twitter.com/jtannady), [Suzie Grange](https://twitter.com/missuze), [Becca Bailey](https://twitter.com/beccaliz), [Luna Wei](https://twitter.com/lunaleaps), [Joe Previte](https://twitter.com/jsjoeio), [Nicola Corti](https://twitter.com/Cortinico), [Gijs Weterings](https://twitter.com/gweterings), [Claudio Procida](https://twitter.com/claudiopro), Julia Neumann, Mengdi Chen, Jean Zhang, Ricky Li, and [Xuan Huang (黄玄)](https://twitter.com/Huxpro).
+תודה למודרטורים שלנו [Jesslyn Tannady](https://twitter.com/Huxpro). [Suzie Grange](__TK_1__ [בקה ביילי](__TK_2__ [Luna Wei](__TK_3__ [Joe Previte](__TK_4__ [Nicola Corti](__TK_5__ [GijsKdio Weterings](__TK_5__ [Clau__Kdio Weterings]___] ג'וליה נוימן, מנגדי צ'ן, ז'אן ז'אנג, ריקי לי ו[שואן הואנג (黄玄)](https://twitter.com/Huxpro).
 
-Thanks to [Manjula Dube](https://twitter.com/manjula_dube), [Sahil Mhapsekar](https://twitter.com/apheri0), and Vihang Patel from [React India](https://www.reactindia.io/), and [Jasmine Xie](https://twitter.com/jasmine_xby), [QiChang Li](https://twitter.com/QCL15), and [YanLun Li](https://twitter.com/anneincoding) from [React China](https://twitter.com/ReactChina) for helping moderate our replay event and keep it engaging for the community.
+תודה ל-[Manjula Dube](https://twitter.com/manjula_dube), [Sahil Mhapsekar](https://twitter.com/apheri0), וויהאנג פאטל מהודו [React](https://www.reactindia.io/), ול-[Jasmine Xie](https://twitter.com/jasmine_xby), [QiChang Li](https://twitter.com/QCL15), ו-[YanLun Li](__TK___5](__TK___ 5) מ-[__K___8) China](https://twitter.com/ReactChina) על עזרה במודרציה של אירוע השידור החוזר ושמירה על מעורבות גבוהה בקהילה.
 
-Thanks to Vercel for publishing their [Virtual Event Starter Kit](https://vercel.com/virtual-event-starter-kit), which the conference website was built on, and to [Lee Robinson](https://twitter.com/leeerob) and [Delba de Oliveira](https://twitter.com/delba_oliveira) for sharing their experience running Next.js Conf.
+תודה ל-Vercel על פרסום [Virtual Event Starter Kit](https://vercel.com/virtual-event-starter-kit), שעליו נבנה אתר הכנס, ול-[Lee Robinson](https://twitter.com/leeerob) ו-[Delba de Oliveira](https://twitter.com/delba_oliveira) על שיתוף ניסיון מהפקת Next.js Conf.
 
-Thanks to [Leah Silber](https://twitter.com/wifelette) for sharing her experience running conferences, learnings from running [RustConf](https://rustconf.com/), and for her book [Event Driven](https://leanpub.com/eventdriven/) and the advice it contains for running conferences.
+תודה ל-[לאה זילבר](https://twitter.com/wifelette) על שיתוף פעולה בהפקת כנסים, תובנות מ-[RustConf](https://rustconf.com/), ועל הספר שלה [Event Driven](https://leanpub.com/eventdriven/) והעצות שבו הפקת על הכנסים.
 
-Thanks to [Kevin Lewis](https://twitter.com/_phzn) and [Rachel Nabors](https://twitter.com/rachelnabors) for sharing their experience running Women of React Conf.
+תודה ל-[קווין לואיס](https://twitter.com/_phzn) ול-[רחל נאבורס](https://twitter.com/rachelnabors) על שיתוף ניסיון מהפקת Women of React Conf.
 
-Thanks to [Aakansha Doshi](https://twitter.com/aakansha1216), [Laurie Barth](https://twitter.com/laurieontech), [Michael Chan](https://twitter.com/chantastic), and [Shaundai Person](https://twitter.com/shaundai) for their advice and ideas throughout planning.
+תודה ל-[Aakansha Doshi](https://twitter.com/aakansha1216), [Laurie Barth](https://twitter.com/laurieontech), [Michael Chan](https://twitter.com/chantastic), and [Shaundai Person](https://twitter.com/shaundai) על העצות והרעיונות לאורך כל התכנון.
 
-Thanks to [Dan Lebowitz](https://twitter.com/lebo) for help designing and building the conference website and tickets.
+תודה ל-[דן לבוביץ](https://twitter.com/lebo) על עזרה בעיצוב ובניית אתר הכנס והכרטיסים.
 
-Thanks to Laura Podolak Waddell, Desmond Osei-Acheampong, Mark Rossi, Josh Toberman and others on the Facebook Video Productions team for recording the videos for the Keynote and Meta employee talks.
+תודה ל-Laura Podolak Waddell, Desmond Osei-Acheampong, Mark Rossi, Josh Toberman ואחרים מצוות Facebook Video Productions על הקלטת הסרטונים ל-Keynote ולהרצאות עובדי Meta.
 
-Thanks to our partner HitPlay for helping to organize the conference, editing all the videos in the stream, translating all the talks, and moderating the Discord in multiple languages.
+תודה לשותפים שלנו ב-HitPlay על עזרה בארגון הכנס, עריכת כל סרטוני השידור, תרגום כל ההרצאות ומודרציה של Discord בכמה שפות.
 
-Finally, thanks to all of our participants for making this a great React Conf!
+ולבסוף, תודה לכל המשתתפים שלנו שהפכה את זה ל-React Conf נהדר.
