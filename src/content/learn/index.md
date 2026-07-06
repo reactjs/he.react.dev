@@ -4,7 +4,7 @@ title: Quick Start
 
 <Intro>
 
-Welcome to the React documentation! This page will give you an introduction to the 80% of React concepts that you will use on a daily basis.
+Welcome to the React documentation! This page will give you an introduction to 80% of the React concepts that you will use on a daily basis.
 
 </Intro>
 
@@ -143,7 +143,7 @@ You can put more complex expressions inside the JSX curly braces too, for exampl
 ```js
 const user = {
   name: 'Hedy Lamarr',
-  imageUrl: 'https://i.imgur.com/yXOvdOSs.jpg',
+  imageUrl: 'https://react.dev/images/docs/scientists/yXOvdOSs.jpg',
   imageSize: 90,
 };
 

@@ -57,7 +57,7 @@ On the client, call [`hydrateRoot`](/reference/react-dom/client/hydrateRoot) to 
   * **optional** `nonce`: A [`nonce`](http://developer.mozilla.org/en-US/docs/Web/HTML/Element/script#nonce) string to allow scripts for [`script-src` Content-Security-Policy](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/script-src).
   * **optional** `onAllReady`: A callback that fires when all rendering is complete, including both the [shell](#specifying-what-goes-into-the-shell) and all additional [content.](#streaming-more-content-as-it-loads) You can use this instead of `onShellReady` [for crawlers and static generation.](#waiting-for-all-content-to-load-for-crawlers-and-static-generation) If you start streaming here, you won't get any progressive loading. The stream will contain the final HTML.
   * **optional** `onError`: A callback that fires whenever there is a server error, whether [recoverable](#recovering-from-errors-outside-the-shell) or [not.](#recovering-from-errors-inside-the-shell) By default, this only calls `console.error`. If you override it to [log crash reports,](#logging-crashes-on-the-server) make sure that you still call `console.error`. You can also use it to [adjust the status code](#setting-the-status-code) before the shell is emitted.
-  * **optional** `onShellReady`: A callback that fires right after the [initial shell](#specifying-what-goes-into-the-shell) has been rendered. You can [set the status code](#setting-the-status-code) and call `pipe` here to start streaming. React will [stream the additional content](#streaming-more-content-as-it-loads) after the shell along with the inline `<script>` tags that place that replace the HTML loading fallbacks with the content.
+  * **optional** `onShellReady`: A callback that fires right after the [initial shell](#specifying-what-goes-into-the-shell) has been rendered. You can [set the status code](#setting-the-status-code) and call `pipe` here to start streaming. React will [stream the additional content](#streaming-more-content-as-it-loads) after the shell along with the inline `<script>` tags that replace the HTML loading fallbacks with the content.
   * **optional** `onShellError`: A callback that fires if there was an error rendering the initial shell.  It receives the error as an argument. No bytes were emitted from the stream yet, and neither `onShellReady` nor `onAllReady` will get called, so you can [output a fallback HTML shell.](#recovering-from-errors-inside-the-shell)
   * **optional** `progressiveChunkSize`: The number of bytes in a chunk. [Read more about the default heuristic.](https://github.com/facebook/react/blob/14c2be8dac2d5482fda8a0906a31d239df8551fc/packages/react-server/src/ReactFizzServer.js#L210-L225)
 
@@ -294,7 +294,7 @@ Suspense **does not** detect when data is fetched inside an Effect or event hand
 
 The exact way you would load data in the `Posts` component above depends on your framework. If you use a Suspense-enabled framework, you'll find the details in its data fetching documentation.
 
-Suspense-enabled data fetching without the use of an opinionated framework is not yet supported. The requirements for implementing a Suspense-enabled data source are unstable and undocumented. An official API for integrating data sources with Suspense will be released in a future version of React. 
+Suspense-enabled data fetching without the use of an opinionated framework is not yet supported. The requirements for implementing a Suspense-enabled data source are unstable and undocumented. An official API for integrating data sources with Suspense will be released in a future version of React.
 
 </Note>
 
@@ -401,7 +401,7 @@ const { pipe } = renderToPipeableStream(<App />, {
   onShellError(error) {
     response.statusCode = 500;
     response.setHeader('content-type', 'text/html');
-    response.send('<h1>Something went wrong</h1>'); 
+    response.send('<h1>Something went wrong</h1>');
   },
   onError(error) {
     console.error(error);
@@ -460,7 +460,7 @@ const { pipe } = renderToPipeableStream(<App />, {
   onShellError(error) {
     response.statusCode = 500;
     response.setHeader('content-type', 'text/html');
-    response.send('<h1>Something went wrong</h1>'); 
+    response.send('<h1>Something went wrong</h1>');
   },
   onError(error) {
     console.error(error);
@@ -486,7 +486,7 @@ const { pipe } = renderToPipeableStream(<App />, {
   onShellError(error) {
     response.statusCode = 500;
     response.setHeader('content-type', 'text/html');
-    response.send('<h1>Something went wrong</h1>'); 
+    response.send('<h1>Something went wrong</h1>');
   },
   onError(error) {
     didError = true;
@@ -530,7 +530,7 @@ const { pipe } = renderToPipeableStream(<App />, {
   onShellError(error) {
    response.statusCode = getStatusCode();
    response.setHeader('content-type', 'text/html');
-   response.send('<h1>Something went wrong</h1>'); 
+   response.send('<h1>Something went wrong</h1>');
   },
   onError(error) {
     didError = true;
@@ -570,13 +570,13 @@ const { pipe } = renderToPipeableStream(<App />, {
   onShellError(error) {
     response.statusCode = 500;
     response.setHeader('content-type', 'text/html');
-    response.send('<h1>Something went wrong</h1>'); 
+    response.send('<h1>Something went wrong</h1>');
   },
   onAllReady() {
     if (isCrawler) {
       response.statusCode = didError ? 500 : 200;
       response.setHeader('content-type', 'text/html');
-      pipe(response);      
+      pipe(response);
     }
   },
   onError(error) {
